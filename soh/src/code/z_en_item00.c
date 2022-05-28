@@ -1325,7 +1325,7 @@ void EnItem00_DrawHeartPiece(EnItem00* this, GlobalContext* globalCtx) {
     if (gSaveContext.n64ddFlag) {
         f32 mtxScale = 16.0f;
         Matrix_Scale(mtxScale, mtxScale, mtxScale, MTXMODE_APPLY);
-        GetItem_Draw(globalCtx, GetItemModelFromId(GetItemFromSceneAndParams(gGlobalCtx->sceneNum, this->ogParams)));
+        GetItem_Draw(globalCtx, GetItemModelFromId(GetItemFromSceneAndParams(gGlobalCtx->sceneNum, this->ogParams, GI_HEART_PIECE)));
     } else {
         s32 pad;
 
