@@ -4,17 +4,55 @@
 #include <variables.h>
 #include <macros.h>
 #include <objects/gameplay_keep/gameplay_keep.h>
-#include <objects/object_gi_bomb_1/object_gi_bomb_1.h>
-#include <objects/object_gi_letter/object_gi_letter.h>
+#include <functions.h>
+#include <Cvar.h>
+#include <textures/icon_item_static/icon_item_static.h>
+#include <textures/icon_item_24_static/icon_item_24_static.h>
 
 using json = nlohmann::json;
 
 Randomizer::Randomizer() {
     //todo something?
 }
+
 Randomizer::~Randomizer() { 
     this->itemLocations.clear();
 }
+
+/* std::unordered_map<std::string, Sprite> gSeedTextures = {
+    { "Deku Stick", { gHookshotIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Deku Nut", { gDekuNutIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Bow", { gFairyBowIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Slingshot", { gFairySlingshotIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Fairy Ocarina", { gFairyOcarinaIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Bombchu", { gBombchuIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Longshot", { gLongshotIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Boomerang", { gBoomerangIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Lens of Truth", { gLensofTruthIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Beans", { gMagicBeansIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Megaton Hammer", { gMegatonHammerIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Bottled Fish", { gFishIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Bottled Milk", { gMilkFullIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Mask of Truth", { gMaskofTruthIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "SOLD OUT", { gSoldOutIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Cucco", { gCuccoIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Mushroom", { gOddMushroomIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Saw", { gPoachersSawIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Frog", { gEyeBallFrogIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Master Sword", { gMasterSwordIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Mirror Shield", { gMirrorShieldIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Kokiri Tunic", { gKokiriTunicIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Hover Boots", { gHoverBootsIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Silver Gauntlets", { gSilverGauntletsIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Gold Scale", { gGoldenScaleIconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Stone of Agony", { gStoneOfAgonyIconTex, 24, 24, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Skull Token", { gGoldSkulltulaIconTex, 24, 24, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Heart Container", { gHeartContainerIconTex, 24, 24, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Boss Key", { gBossKeyIconTex, 24, 24, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Compass", { gCompassIconTex, 24, 24, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Map", { gDungeonMapIconTex, 24, 24, G_IM_FMT_RGBA, G_IM_SIZ_32b } },
+    { "Big Magic", { gBigMagicJarIconTex, 24, 24, G_IM_FMT_RGBA, G_IM_SIZ_32b } }
+};*/
 
 std::unordered_map<std::string, RandomizerCheck> SpoilerfileCheckNameToEnum = {
     {"Links Pocket", LINKS_POCKET},
@@ -643,9 +681,9 @@ s16 Randomizer::GetItemModelFromId(s16 itemId) {
     return itemIdToModel[itemId];
 }
 
-void Randomizer::LoadItemLocations() {
+void Randomizer::LoadItemLocations(std::string spoilerFileName) {
     // bandaid until new save stuff happens
-    ParseItemLocations("");
+    ParseItemLocations(spoilerFileName);
 
     for(auto itemLocation : gSaveContext.itemLocations) {
         this->itemLocations[itemLocation.check] = itemLocation.get;
@@ -654,30 +692,53 @@ void Randomizer::LoadItemLocations() {
 
 void Randomizer::ParseItemLocations(std::string spoilerFileName) {
     // todo pull this in from cvar or something
-    std::ifstream spoilerFileStream("spoiler.json");
+    std::ifstream spoilerFileStream(spoilerFileName);
     if (!spoilerFileStream)
         return;
-    json spoilerFileJson;
-    spoilerFileStream >> spoilerFileJson;
-    json locationsJson = spoilerFileJson["locations"];
-    int index = 0;
-    for (auto it = locationsJson.begin(); it != locationsJson.end(); ++it) {
-        if (it->is_structured()) {
-            json itemJson = *it;
-            for (auto itemit = itemJson.begin(); itemit != itemJson.end(); ++itemit) {
-                // todo handle prices
-                if (itemit.key() == "item") {
 
-                    gSaveContext.itemLocations[index].check = SpoilerfileCheckNameToEnum[it.key()];
-                    gSaveContext.itemLocations[index].get = SpoilerfileGetNameToEnum[itemit.value()];
-                }
-            }
-        } else {
-            gSaveContext.itemLocations[index].check = SpoilerfileCheckNameToEnum[it.key()];
-            gSaveContext.itemLocations[index].get = SpoilerfileGetNameToEnum[it.value()];
+    bool success = false;
+
+    try {
+        json spoilerFileJson;
+        spoilerFileStream >> spoilerFileJson;
+        json locationsJson = spoilerFileJson["locations"];
+        json hashJson = spoilerFileJson["file_hash"];
+
+        int index = 0;
+        for (auto it = hashJson.begin(); it != hashJson.end(); ++it) {
+            //gSaveContext.seedIcons[index] = gSeedTextures[it.value()];
+            index++;
         }
 
-        index++;
+        index = 0;
+        for (auto it = locationsJson.begin(); it != locationsJson.end(); ++it) {
+            if (it->is_structured()) {
+                json itemJson = *it;
+                for (auto itemit = itemJson.begin(); itemit != itemJson.end(); ++itemit) {
+                    // todo handle prices
+                    if (itemit.key() == "item") {
+
+                        gSaveContext.itemLocations[index].check = SpoilerfileCheckNameToEnum[it.key()];
+                        gSaveContext.itemLocations[index].get = SpoilerfileGetNameToEnum[itemit.value()];
+                    }
+                }
+            } else {
+                gSaveContext.itemLocations[index].check = SpoilerfileCheckNameToEnum[it.key()];
+                gSaveContext.itemLocations[index].get = SpoilerfileGetNameToEnum[it.value()];
+            }
+
+            index++;
+        }
+
+        Audio_PlaySoundGeneral(NA_SE_SY_CORRECT_CHIME, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
+        success = true;
+    } catch (const std::exception& e) {
+        Audio_PlaySoundGeneral(NA_SE_SY_ERROR, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
+        return;
+    }
+
+    if (success) {
+        CVar_SetS32("gRandomizer", 1);
     }
 }
 

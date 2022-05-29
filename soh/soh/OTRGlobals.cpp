@@ -1000,12 +1000,12 @@ extern "C" s16 GetItemModelFromId(s16 itemId) {
     return OTRGlobals::Instance->gRandomizer->GetItemModelFromId(itemId);
 }
 
-extern "C" void LoadItemLocations() {
-    OTRGlobals::Instance->gRandomizer->LoadItemLocations();
+extern "C" void LoadItemLocations(std::string spoilerFileName) {
+    OTRGlobals::Instance->gRandomizer->LoadItemLocations(spoilerFileName);
 }
 
-extern "C" void ParseItemLocations(const char* spoilerfilename) {
-    OTRGlobals::Instance->gRandomizer->ParseItemLocations(spoilerfilename);
+extern "C" void ParseItemLocations(std::string spoilerFileName) {
+    OTRGlobals::Instance->gRandomizer->ParseItemLocations(spoilerFileName);
 }
 
 extern "C" GetItemID GetItemFromActor(s16 actorId, GetItemID ogItemId) {

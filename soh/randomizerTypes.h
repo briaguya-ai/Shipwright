@@ -1,6 +1,5 @@
 #pragma once
 
-
 typedef enum {
     LINKS_POCKET,
     QUEEN_GOHMA,

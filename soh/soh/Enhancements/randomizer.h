@@ -2,10 +2,9 @@
 #define RANDOMIZER_H
 
 #include <unordered_map>
-#include <string>
-#include "../../include/ultra64.h"
-#include "../../include/z64item.h"
 #include <randomizerTypes.h>
+#include <z64item.h>
+#include <z64math.h>
 
 class Randomizer {
   private:
@@ -19,8 +18,8 @@ class Randomizer {
     ~Randomizer();
 
     s16 GetItemModelFromId(s16 itemId);
-    void LoadItemLocations();
-    void ParseItemLocations(std::string spoilerfilename);
+    void LoadItemLocations(std::string spoilerFileName);
+    void ParseItemLocations(std::string spoilerFileName);
     GetItemID GetItemFromActor(s16 actorId, GetItemID ogItemId);
     GetItemID GetItemFromSceneAndParams(s16 sceneNum, s16 actorParams, GetItemID ogItemId);
     GetItemID GetItemFromSceneParamsAndHomePos(s16 sceneNum, s16 actorParams, s32 homePosX, s32 homePosY, s32 homePosZ, GetItemID ogItemId);
