@@ -90,6 +90,8 @@ namespace SohImGui {
     ImVec4 navi_prop_i_col;
     ImVec4 navi_prop_o_col;
 
+    // todo figure out a better way to handle this
+    const u8 RainbowColorCvarsLength = 15;
     const char* RainbowColorCvarList[] = {
     //This is the list of possible CVars that has rainbow effect.
         "gTunic_Kokiri_","gTunic_Goron_","gTunic_Zora_",
@@ -259,7 +261,8 @@ namespace SohImGui {
     }
 
     void LoadRainbowColor() {
-        for (uint16_t s=0; s <= sizeof(RainbowColorCvarList); s++) {
+        // return;
+        for (u8 s=0; s < RainbowColorCvarsLength; s++) {
             std::string cvarName = RainbowColorCvarList[s];
             std::string Cvar_Red = cvarName;
             Cvar_Red += "R";
