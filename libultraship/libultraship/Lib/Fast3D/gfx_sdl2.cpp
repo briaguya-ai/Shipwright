@@ -230,7 +230,7 @@ static void gfx_sdl_onkeyup(int scancode) {
     }
 }
 
-extern "C" void LoadItemLocations(std::string spoilerFileName);
+extern "C" void LoadItemLocations(const char* spoilerFileName);
 
 static void gfx_sdl_handle_events(void) {
     SDL_Event event;

@@ -681,7 +681,7 @@ s16 Randomizer::GetItemModelFromId(s16 itemId) {
     return itemIdToModel[itemId];
 }
 
-void Randomizer::LoadItemLocations(std::string spoilerFileName) {
+void Randomizer::LoadItemLocations(const char* spoilerFileName) {
     // bandaid until new save stuff happens
     ParseItemLocations(spoilerFileName);
 
@@ -690,7 +690,7 @@ void Randomizer::LoadItemLocations(std::string spoilerFileName) {
     }
 }
 
-void Randomizer::ParseItemLocations(std::string spoilerFileName) {
+void Randomizer::ParseItemLocations(const char* spoilerFileName) {
     // todo pull this in from cvar or something
     std::ifstream spoilerFileStream(spoilerFileName);
     if (!spoilerFileStream)
