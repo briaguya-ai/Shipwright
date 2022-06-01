@@ -5011,13 +5011,14 @@ void Fishing_HandleOwnerDialog(Fishing* this, GlobalContext* globalCtx) {
                     if (sLinkAge == 1) {
                         if ((D_80B7E078 >= 50.0f) && !(HIGH_SCORE(HS_FISHING) & 0x400)) {
                             HIGH_SCORE(HS_FISHING) |= 0x400;
-                            getItemId = GI_HEART_PIECE;
+                            getItemId = gSaveContext.n64ddFlag ? GetRandomizedItemIdFromKnownCheck(LH_CHILD_FISHING, GI_HEART_PIECE) : GI_HEART_PIECE;
                             sSinkingLureLocation = (u8)Rand_ZeroFloat(3.999f) + 1;
                         }
                     } else {
                         if ((D_80B7E078 >= 60.0f) && !(HIGH_SCORE(HS_FISHING) & 0x800)) {
                             HIGH_SCORE(HS_FISHING) |= 0x800;
-                            getItemId = GI_SCALE_GOLD;
+                            // why is it not getting here?
+                            getItemId = gSaveContext.n64ddFlag ? GetRandomizedItemIdFromKnownCheck(LH_ADULT_FISHING, GI_SCALE_GOLD) : GI_SCALE_GOLD;
                             sSinkingLureLocation = (u8)Rand_ZeroFloat(3.999f) + 1;
                         }
                     }
