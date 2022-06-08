@@ -734,7 +734,16 @@ namespace SohImGui {
                 ImGui::SameLine();
                 ImGui::SetCursorPos(ImVec2(25, 0));
             }
-            ImGui::Text("Shipwright");
+            if (ImGui::BeginMenu("Shipwright")) {
+                if (ImGui::MenuItem("Reset")) {
+                    // TODO: RESET FROM HERE
+                }
+                if (ImGui::MenuItem("Exit")) {
+                    // TODO: EXIT FROM HERE
+                }
+                ImGui::EndMenu();
+            }
+
             ImGui::Separator();
 
             if (ImGui::BeginMenu("Audio")) {
