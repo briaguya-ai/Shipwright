@@ -946,6 +946,8 @@ namespace SohImGui {
                 {
                     EnhancementCheckbox("Fix L&R Pause menu", "gUniformLR");
                     Tooltip("Makes the L and R buttons in the pause menu the same color");
+                    EnhancementCheckbox("Fix L&Z Page switch in Pause menu", "gNGCKaleidoSwitcher");
+                    Tooltip("Enabling it make L and R be your page switch like on Gamecube\nZ become the button to open Debug Menu");
                     EnhancementCheckbox("Fix Dungeon entrances", "gFixDungeonMinimapIcon");
                     Tooltip("Show dungeon entrances icon only when it should be");
                     EnhancementCheckbox("Fix Two Handed idle animations", "gTwoHandedIdle");
@@ -962,6 +964,8 @@ namespace SohImGui {
                 {
                     EnhancementCheckbox("Red Ganon blood", "gRedGanonBlood");
                     Tooltip("Restore the original red blood from NTSC 1.0/1.1. Disable for green blood");
+                    EnhancementCheckbox("Fish while hovering", "gHoverFishing");
+                    Tooltip("Restore a bug from NTSC 1.0 that allows casting the Fishing Rod while using the Hover Boots");
 
                     ImGui::EndMenu();
                 }
@@ -1010,6 +1014,12 @@ namespace SohImGui {
                 }
                 EnhancementCheckbox("Disable LOD", "gDisableLOD");
                 Tooltip("Turns off the level of detail setting, making models always use their higher poly variants");
+                EnhancementCheckbox("Disable Draw Distance", "gDisableDrawDistance");
+                Tooltip("Turns off the objects draw distance, making objects being visible from a longer range");
+                if (CVar_GetS32("gDisableDrawDistance", 0) == 1) {
+                    EnhancementCheckbox("Kokiri Draw Distance", "gDisableKokiriDrawDistance");
+                    Tooltip("Kokiris are mystical being that appear from a certain distance\nEnable this will remove their draw distance\nNeeds to reload the map to take effect");
+                }
 
                 ImGui::EndMenu();
             }
@@ -1057,6 +1067,8 @@ namespace SohImGui {
                 Tooltip("Allows you to use any item at any location");
                 EnhancementCheckbox("Freeze Time", "gFreezeTime");
                 Tooltip("Freezes the time of day");
+                EnhancementCheckbox("Drops Don't Despawn", "gDropsDontDie");
+                Tooltip("Drops from enemies, grass, etc. don't disappear after a set amount of time");
                 EnhancementCheckbox("Fireproof Deku Shield", "gFireproofDekuShield");
                 Tooltip("Prevents the Deku Shield from burning on contact with fire");
 
