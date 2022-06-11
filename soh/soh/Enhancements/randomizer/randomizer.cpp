@@ -2481,6 +2481,7 @@ void DrawRandoEditor(bool& open) {
                     ImGui::TableNextColumn();
                     // COLUMN 1 - OPEN SETTINGS
                     ImGui::NewLine();
+                    ImGui::PushItemWidth(-FLT_MIN);
                     SohImGui::EnhancementCheckbox("Randomize All Open Settings", "gRandomizeAllOpenSettings");
                     InsertHelpHoverText("Randomize all Open Settings except for Logic rules");
                     ImGui::Separator();
@@ -2646,10 +2647,12 @@ void DrawRandoEditor(bool& open) {
                         }
                         ImGui::Separator();
                     }
+                    ImGui::PopItemWidth();
                     ImGui::TableNextColumn();
 
                     // COLUMN 2 - WORLD SETTINGS
                     ImGui::NewLine();
+                    ImGui::PushItemWidth(-FLT_MIN);
                     SohImGui::EnhancementCheckbox("Randomize All World Settings", "gRandomizeAllWorldSettings");
                     InsertHelpHoverText("Randomize all World Settings");
                     ImGui::Separator();
@@ -2766,11 +2769,13 @@ void DrawRandoEditor(bool& open) {
                                                       0);
                         ImGui::Separator();
                     }
+                    ImGui::PopItemWidth();
                     ImGui::TableNextColumn();
 
                     // COLUMN 3
                     // Randomize Settings
                     ImGui::NewLine();
+                    ImGui::PushItemWidth(-FLT_MIN);
                     SohImGui::EnhancementCheckbox("Randomize All Shuffle Settings", "gRandomizeAllShuffleSettings");
                     InsertHelpHoverText("Randomize all Shuffle Settings");
                     ImGui::Separator();
@@ -3009,10 +3014,12 @@ void DrawRandoEditor(bool& open) {
                             "only the Claim\nCheck will be found in the pool.");
                         SohImGui::EnhancementCombobox("gRandomizeShuffleAdultTrade", randoShuffleAdultTrade, 2, 0);
                     }
+                    ImGui::PopItemWidth();
                     ImGui::TableNextColumn();
 
                     // COLUMN 4 - SHUFFLE DUNGEON ITEMS
                     ImGui::NewLine();
+                    ImGui::PushItemWidth(-FLT_MIN);
                     SohImGui::EnhancementCheckbox("Randomize All Shuffle Dungeon Items Settings",
                                                   "gRandomizeAllShuffleDungeonItemsettings");
                     InsertHelpHoverText("Randomize all Dungeon Shuffle Settings");
@@ -3225,6 +3232,7 @@ void DrawRandoEditor(bool& open) {
                         }
                         ImGui::Separator();
                     }
+                    ImGui::PopItemWidth();
                     ImGui::EndTable();
                 }
                 ImGui::EndTabItem();
@@ -3239,6 +3247,7 @@ void DrawRandoEditor(bool& open) {
                     ImGui::TableNextColumn();
                     // COLUMN 1 - TIME SAVERS
                     ImGui::NewLine();
+                    ImGui::PushItemWidth(-FLT_MIN);
                     // Skip child stealth
                     SohImGui::EnhancementCheckbox("Skip Child Stealth", "gRandomizeSkipChildStealth");
                     InsertHelpHoverText(
@@ -3321,6 +3330,7 @@ void DrawRandoEditor(bool& open) {
                         "The automatic replay after you play a song will\nbe skipped.\nYou can choose to "
                         "keep the SFX anyway, but you\nwill have control of Link  during it.");
                     SohImGui::EnhancementCombobox("gRandomizeSkipSongReplays", randoSkipSongReplays, 3, 0);
+                    ImGui::PopItemWidth();
                     ImGui::Separator();
 
                     ImGui::TableNextColumn();
@@ -3329,6 +3339,7 @@ void DrawRandoEditor(bool& open) {
                     ImGui::NewLine();
 
                     // Gossip Stone Hints
+                    ImGui::PushItemWidth(-FLT_MIN);
                     ImGui::Text("Gossip Stone Hints");
                     InsertHelpHoverText(
                         "Gossip Stones can be made to give hints about\n<here items can be found.\nDifferent settings "
@@ -3433,12 +3444,14 @@ void DrawRandoEditor(bool& open) {
                             break;
                     }
                     SohImGui::EnhancementCombobox("gRandomizeRandomTrapDamage", randoRandomTrapDamage, 3, 0);
+                    ImGui::PopItemWidth();
                     ImGui::Separator();
 
                     ImGui::TableNextColumn();
 
                     // COLUMN 3 - ITEM POOL SETTINGS
                     ImGui::NewLine();
+                    ImGui::PushItemWidth(-FLT_MIN);
                     ImGui::Text("Item Pool");
                     switch (CVar_GetS32("gRandomizeItemPool", 0)) {
                         case 0:
@@ -3493,6 +3506,7 @@ void DrawRandoEditor(bool& open) {
                         "Giant's Knife will walays be found before Biggoron's\nSword. Medigoron only "
                         "starts selling new knives\nonce the Giant's Knife has been found\nand broken.");
                     ImGui::Separator();
+                    ImGui::PopItemWidth();
                     ImGui::EndTable();
                 }
                 ImGui::EndTabItem();
@@ -3538,6 +3552,7 @@ void DrawRandoEditor(bool& open) {
                     ImGui::TableNextColumn();
                     // COLUMN 1 - GENERAL
                     ImGui::NewLine();
+                    ImGui::PushItemWidth(-FLT_MIN);
                     SohImGui::EnhancementCheckbox("Randomize All General SFX Settings",
                                                   "gRandomizeAllGeneralSFXSettings");
                     InsertHelpHoverText("Randomize all General SFX Settings.");
@@ -3577,9 +3592,11 @@ void DrawRandoEditor(bool& open) {
                         SohImGui::EnhancementCombobox("gRandomizeSFXOcarina", randoSFXOcarina, 7, 0);
                         ImGui::Separator();
                     }
+                    ImGui::PopItemWidth();
                     ImGui::TableNextColumn();
                     // COLUMN 2 - MENU
                     ImGui::NewLine();
+                    ImGui::PushItemWidth(-FLT_MIN);
                     SohImGui::EnhancementCheckbox("Randomize All Menu SFX Settings", "gRandomizeAllMenuSFXSettings");
                     InsertHelpHoverText("Randomize all Menu SFX Settings.");
                     ImGui::Separator();
@@ -3592,9 +3609,11 @@ void DrawRandoEditor(bool& open) {
                         SohImGui::EnhancementCombobox("gRandomizeSFXMenuSelect", randoSFXMenu, 65, 0);
                         ImGui::Separator();
                     }
+                    ImGui::PopItemWidth();
                     ImGui::TableNextColumn();
                     // COLUMN 3 - NPC
                     ImGui::NewLine();
+                    ImGui::PushItemWidth(-FLT_MIN);
                     SohImGui::EnhancementCheckbox("Randomize All NPCs SFX Settings", "gRandomizeAllNPCsSFXSettings");
                     InsertHelpHoverText("Randomize all All NPCs SFX Settings.");
                     ImGui::Separator();
@@ -3606,6 +3625,7 @@ void DrawRandoEditor(bool& open) {
                         ImGui::Text("Navi Enemy");
                         SohImGui::EnhancementCombobox("gRandomizeSFXNaviEnnemy", randoSFXNavi, 32, 0);
                     }
+                    ImGui::PopItemWidth();
                     ImGui::Separator();
 
                     ImGui::EndTable();
