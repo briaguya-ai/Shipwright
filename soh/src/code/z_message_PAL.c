@@ -1673,9 +1673,8 @@ void Message_OpenText(GlobalContext* globalCtx, u16 textId) {
                    gSaveContext.language == LANGUAGE_GER) {
             strcpy(
                 font->msgBuf,
-                //"Du hast eine Goldene Skulltula erhalten! Du hast XX tokens insgesamt gesammelt!"
-                "\x08\x13\x71\Du hast eine \x05\x41Goldene Skulltula\x01\erhalten\x05\x40! Du hast "
-                "\x05\x41\x19\x05\x40 tokens\x01insgesamt gesammelt!\x02");
+                "\x08\x13\x71\Du hast eine \x05\x41Goldene Skulltula\x01\erhalten\x05\x40! Du hast insgesamt\x01"
+                "\x05\x41\x19\x05\x40 symbole gesammelt!\x02");
 
             msgCtx->msgLength = font->msgLength = strlen(font->msgBuf);
         } else if (textId == 0x00b4 && CVar_GetS32("gInjectSkulltulaCount", 0) != 0) {
