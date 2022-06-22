@@ -2969,6 +2969,7 @@ void DrawRandoEditor(bool& open) {
     }
 
     if (!open) {
+        CVar_SetS32("gRandomizer", 0);
         return;
     }
 
