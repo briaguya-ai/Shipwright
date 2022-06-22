@@ -25,7 +25,7 @@ void HintTable_Init() {
     |       GENERAL TEXT       |
     ---------------------------*/
     hintTable[NONE]            = HintText::Exclude({Text{"No Hint","",""}});
-    hintTable[PREFIX]          = HintText::Exclude({Text{"They say that ",              /*french*/"Il paraît que, ",                  /*spanish*/"Según dicen, "}});
+    hintTable[PREFIX]          = HintText::Exclude({Text{"They say that ",              /*french*/"Il parait que, ",                  /*spanish*/"Según dicen, "}});
     hintTable[WAY_OF_THE_HERO] = HintText::Exclude({Text{" is on the way of the hero.", /*french*/" est sur le chemin du h\x96ros.", /*spanish*/" conduce a la senda del h\x96roe."}});
     hintTable[PLUNDERING]      = HintText::Exclude({Text{"plundering ",                 /*french*/"explorer ",                    /*spanish*/"inspeccionar "}});
     hintTable[FOOLISH]         = HintText::Exclude({Text{" is a foolish choice.",       /*french*/" est futile.",                 /*spanish*/" no es una sabia decisión."}});
@@ -526,7 +526,7 @@ void HintTable_Init() {
                        //obscure text
                        Text{"Damp\x96's keepsake", /*french*/"l'h\x96ritage d'Igor",   /*spanish*/"un recuerdo de Damp\x96"},
                        Text{"the Grapple Beam", /*french*/"le rayon grippeur",   /*spanish*/"una garra met\x91lica"},
-                       Text{"the BOING! chain", /*french*/"la chaîne de BOING!", /*spanish*/"una cadena retr\x91ctil"},
+                       Text{"the BOING! chain", /*french*/"la chaine de BOING!", /*spanish*/"una cadena retr\x91ctil"},
                      }, {
                        //ambiguous text
                        Text{"something that can grab things", /*french*/"une chose qui peut attraper", /*spanish*/"algo que pueda agarrar cosas"},
@@ -2245,7 +2245,7 @@ void HintTable_Init() {
 
     hintTable[GF_HBA_1500_POINTS] = HintText::Sometimes({
                        //obscure text
-                       Text{"mastery of #horseback archery# grants", /*french*/"maîtriser l'#archerie \x96questre# donne", /*spanish*/"dominar el #tiro con arco a caballo# premia con"},
+                       Text{"mastery of #horseback archery# grants", /*french*/"maitriser l'#archerie \x96questre# donne", /*spanish*/"dominar el #tiro con arco a caballo# premia con"},
                      }, {},
                        //clear text
                        Text{"scoring 1500 in #horseback archery# grants", /*french*/"obtenir 1500 points dans l'#archerie \x96questre# donne", /*spanish*/"conseguir 1500 puntos en el #tiro con arco a caballo# premia"}
@@ -2301,8 +2301,8 @@ void HintTable_Init() {
 
     hintTable[WASTELAND_CHEST] = HintText::Sometimes({
                        //obscure text
-                       Text{"#deep in the wasteland# is",         /*french*/"#loin dans le d\x96sert# gît",                     /*spanish*/"en lo #profundo del desierto encantado# yace"},
-                       Text{"beneath #the sands#, flames reveal", /*french*/"#sous le d\x96sert#, les flammes font apparaître", /*spanish*/"tras las #arenas# unas llamas revelan"},
+                       Text{"#deep in the wasteland# is",         /*french*/"#loin dans le d\x96sert# git",                     /*spanish*/"en lo #profundo del desierto encantado# yace"},
+                       Text{"beneath #the sands#, flames reveal", /*french*/"#sous le d\x96sert#, les flammes font apparaitre", /*spanish*/"tras las #arenas# unas llamas revelan"},
   });
 
     hintTable[WASTELAND_GS] = HintText::Sometimes({
@@ -2346,7 +2346,7 @@ void HintTable_Init() {
 
     hintTable[DMC_GS_CRATE] = HintText::Sometimes({
                        //obscure text
-                       Text{"a spider under a #crate in the crater# holds", /*french*/"la Skulltula dans une #boîte volcanique# a", /*spanish*/"una Skulltula bajo una #caja del cr\x91ter# otorga"},
+                       Text{"a spider under a #crate in the crater# holds", /*french*/"la Skulltula dans une #boite volcanique# a", /*spanish*/"una Skulltula bajo una #caja del cr\x91ter# otorga"},
   });
 
 
@@ -2456,10 +2456,10 @@ void HintTable_Init() {
 
     hintTable[WATER_TEMPLE_MQ_FREESTANDING_KEY] = HintText::Sometimes({
                        //obscure text
-                       Text{"hidden in a #box under the lake# lies", /*french*/"dans une #boîte sous le lac# gît", /*spanish*/"en una #caja bajo el lago# yace"},
+                       Text{"hidden in a #box under the lake# lies", /*french*/"dans une #boite sous le lac# git", /*spanish*/"en una #caja bajo el lago# yace"},
                      }, {},
                        //clear text
-                       Text{"hidden in a #box in the Water Temple# lies", /*french*/"dans une #boîte dans le temple de l'eau# gît", /*spanish*/"en una #caja del Templo del Agua# yace"}
+                       Text{"hidden in a #box in the Water Temple# lies", /*french*/"dans une #boite dans le temple de l'eau# git", /*spanish*/"en una #caja del Templo del Agua# yace"}
   );
 
     hintTable[WATER_TEMPLE_MQ_GS_FREESTANDING_KEY_AREA] = HintText::Sometimes({
@@ -2579,7 +2579,7 @@ void HintTable_Init() {
                        Text{"the #leader of the Kokiri# hides", /*french*/"le #chef des Kokiri# poss\x95de", /*spanish*/"el #líder de los Kokiri# esconde"},
                      }, {},
                        //clear text
-                       Text{"#inside Mido's house# is", /*french*/"#dans la maison de Mido# gît", /*spanish*/"en la #casa de Mido# yace"}
+                       Text{"#inside Mido's house# is", /*french*/"#dans la maison de Mido# git", /*spanish*/"en la #casa de Mido# yace"}
   );
 
     hintTable[KF_MIDOS_TOP_RIGHT_CHEST] = HintText::Exclude({
@@ -2587,7 +2587,7 @@ void HintTable_Init() {
                        Text{"the #leader of the Kokiri# hides", /*french*/"le #chef des Kokiri# poss\x95de", /*spanish*/"el #líder de los Kokiri# esconde"},
                      }, {},
                        //clear text
-                       Text{"#inside Mido's house# is", /*french*/"#dans la maison de Mido# gît", /*spanish*/"en la #casa de Mido# yace"}
+                       Text{"#inside Mido's house# is", /*french*/"#dans la maison de Mido# git", /*spanish*/"en la #casa de Mido# yace"}
   );
 
     hintTable[KF_MIDOS_BOTTOM_LEFT_CHEST] = HintText::Exclude({
@@ -2595,7 +2595,7 @@ void HintTable_Init() {
                        Text{"the #leader of the Kokiri# hides", /*french*/"le #chef des Kokiri# poss\x95de", /*spanish*/"el #líder de los Kokiri# esconde"},
                      }, {},
                        //clear text
-                       Text{"#inside Mido's house# is", /*french*/"#dans la maison de Mido# gît", /*spanish*/"en la #casa de Mido# yace"}
+                       Text{"#inside Mido's house# is", /*french*/"#dans la maison de Mido# git", /*spanish*/"en la #casa de Mido# yace"}
   );
 
     hintTable[KF_MIDOS_BOTTOM_RIGHT_CHEST] = HintText::Exclude({
@@ -2603,7 +2603,7 @@ void HintTable_Init() {
                        Text{"the #leader of the Kokiri# hides", /*french*/"le #chef des Kokiri# poss\x95de", /*spanish*/"el #líder de los Kokiri# esconde"},
                      }, {},
                        //clear text
-                       Text{"#inside Mido's house# is", /*french*/"#dans la maison de Mido# gît", /*spanish*/"en la #casa de Mido# yace"}
+                       Text{"#inside Mido's house# is", /*french*/"#dans la maison de Mido# git", /*spanish*/"en la #casa de Mido# yace"}
   );
 
     hintTable[GRAVEYARD_SHIELD_GRAVE_CHEST] = HintText::Exclude({
@@ -2641,7 +2641,7 @@ void HintTable_Init() {
 
     hintTable[GF_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"on a #rooftop in the desert# lies", /*french*/"sur un #toit du d\x96sert# gît", /*spanish*/"en una #azotea del desierto# yace"},
+                       Text{"on a #rooftop in the desert# lies", /*french*/"sur un #toit du d\x96sert# git", /*spanish*/"en una #azotea del desierto# yace"},
   });
 
     hintTable[KAK_REDEAD_GROTTO_CHEST] = HintText::Exclude({
@@ -2915,17 +2915,17 @@ void HintTable_Init() {
 
     hintTable[KAK_IMPAS_HOUSE_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"#imprisoned in a house# lies", /*french*/"#encag\x96 dans une maison# gît", /*spanish*/"#en una casa entre rejas# yace"},
+                       Text{"#imprisoned in a house# lies", /*french*/"#encag\x96 dans une maison# git", /*spanish*/"#en una casa entre rejas# yace"},
   });
 
     hintTable[HF_TEKTITE_GROTTO_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"#deep underwater in a hole# is", /*french*/"#dans les profondeurs d'une grotte# gît", /*spanish*/"#en lo hondo bajo un hoyo# yace"},
+                       Text{"#deep underwater in a hole# is", /*french*/"#dans les profondeurs d'une grotte# git", /*spanish*/"#en lo hondo bajo un hoyo# yace"},
   });
 
     hintTable[KAK_WINDMILL_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"on a #windmill ledge# lies", /*french*/"#haut perch\x96 dans le moulin# gît", /*spanish*/"al #borde de un molino# yace"},
+                       Text{"on a #windmill ledge# lies", /*french*/"#haut perch\x96 dans le moulin# git", /*spanish*/"al #borde de un molino# yace"},
   });
 
     hintTable[GRAVEYARD_DAMPE_RACE_FREESTANDING_POH] = HintText::Exclude({
@@ -2938,12 +2938,12 @@ void HintTable_Init() {
 
     hintTable[LLR_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"in a #ranch silo# lies", /*french*/"#dans l'entrepôt de la ferme# gît", /*spanish*/"en un #granero rupestre# yace"},
+                       Text{"in a #ranch silo# lies", /*french*/"#dans l'entrepôt de la ferme# git", /*spanish*/"en un #granero rupestre# yace"},
   });
 
     hintTable[GRAVEYARD_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"a #crate in a graveyard# hides", /*french*/"#la boîte dans le cimeti\x95re# contient", /*spanish*/"bajo la #caja de un cementerio# yace"},
+                       Text{"a #crate in a graveyard# hides", /*french*/"#la boite dans le cimeti\x95re# contient", /*spanish*/"bajo la #caja de un cementerio# yace"},
   });
 
     hintTable[GRAVEYARD_DAMPE_GRAVEDIGGING_TOUR] = HintText::Exclude({
@@ -2953,12 +2953,12 @@ void HintTable_Init() {
 
     hintTable[ZR_NEAR_OPEN_GROTTO_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"on top of a #pillar in a river# lies", /*french*/"#sur un pilier au dessus du fleuve# gît", /*spanish*/"en lo alto del #pilar de un río# yace"},
+                       Text{"on top of a #pillar in a river# lies", /*french*/"#sur un pilier au dessus du fleuve# git", /*spanish*/"en lo alto del #pilar de un río# yace"},
   });
 
     hintTable[ZR_NEAR_DOMAIN_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"on a #river ledge by a waterfall# lies", /*french*/"#sur la falaise au dessus du fleuve# gît", /*spanish*/"al borde de #la entrada a una cascada# yace"},
+                       Text{"on a #river ledge by a waterfall# lies", /*french*/"#sur la falaise au dessus du fleuve# git", /*spanish*/"al borde de #la entrada a una cascada# yace"},
   });
 
     hintTable[LH_FREESTANDING_POH] = HintText::Exclude({
@@ -2968,7 +2968,7 @@ void HintTable_Init() {
 
     hintTable[ZF_ICEBERG_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"#floating on ice# is", /*french*/"#gisant sur la glace# gît", /*spanish*/"#flotando sobre hielo# yace"},
+                       Text{"#floating on ice# is", /*french*/"#gisant sur la glace# git", /*spanish*/"#flotando sobre hielo# yace"},
   });
 
     hintTable[GV_WATERFALL_FREESTANDING_POH] = HintText::Exclude({
@@ -2978,27 +2978,27 @@ void HintTable_Init() {
 
     hintTable[GV_CRATE_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"a #crate in a valley# hides", /*french*/"la #boîte dans la vall\x96e# contient", /*spanish*/"bajo la #caja de un valle# yace"},
+                       Text{"a #crate in a valley# hides", /*french*/"la #boite dans la vall\x96e# contient", /*spanish*/"bajo la #caja de un valle# yace"},
   });
 
     hintTable[COLOSSUS_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"on top of an #arch of stone# lies", /*french*/"#gisant sur une arche de pierre# gît", /*spanish*/"en lo alto de un #arco de piedra# yace"},
+                       Text{"on top of an #arch of stone# lies", /*french*/"#gisant sur une arche de pierre# git", /*spanish*/"en lo alto de un #arco de piedra# yace"},
   });
 
     hintTable[DMT_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"above a #mountain cavern entrance# is", /*french*/"gisant #au dessus de la caverne montagneuse# gît", /*spanish*/"en lo alto de la #entrada de una cueva en la montaña# yace"},
+                       Text{"above a #mountain cavern entrance# is", /*french*/"gisant #au dessus de la caverne montagneuse# git", /*spanish*/"en lo alto de la #entrada de una cueva en la montaña# yace"},
   });
 
     hintTable[DMC_WALL_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"nestled in a #volcanic wall# is", /*french*/"dans une #alcove volcanique# gît", /*spanish*/"entre unas #murallas volc\x91nicas# yace"},
+                       Text{"nestled in a #volcanic wall# is", /*french*/"dans une #alcove volcanique# git", /*spanish*/"entre unas #murallas volc\x91nicas# yace"},
   });
 
     hintTable[DMC_VOLCANO_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"obscured by #volcanic ash# is", /*french*/"#recouvert de cendres volcaniques# gît", /*spanish*/"bajo la #ceniza volc\x91nica# yace"},
+                       Text{"obscured by #volcanic ash# is", /*french*/"#recouvert de cendres volcaniques# git", /*spanish*/"bajo la #ceniza volc\x91nica# yace"},
   });
 
     hintTable[GF_NORTH_F1_CARPENTER] = HintText::Exclude({
@@ -3086,7 +3086,7 @@ void HintTable_Init() {
 
     hintTable[DODONGOS_CAVERN_BOSS_ROOM_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#above King Dodongo# lies", /*french*/"#par dessus le Roi Dodongo# gît", /*spanish*/"#sobre el Rey Dodongo# yace"},
+                       Text{"#above King Dodongo# lies", /*french*/"#par dessus le Roi Dodongo# git", /*spanish*/"#sobre el Rey Dodongo# yace"},
   });
 
 
@@ -3102,7 +3102,7 @@ void HintTable_Init() {
 
     hintTable[DODONGOS_CAVERN_BOMB_FLOWER_PLATFORM_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"above a #maze of stone# in Dodongo's Cavern lies", /*french*/"sur #un labyrinthe de pierre# dans la caverne Dodongo gît", /*spanish*/"entre un #laberinto de piedra# en la Cueva de los Dodongos yace"},
+                       Text{"above a #maze of stone# in Dodongo's Cavern lies", /*french*/"sur #un labyrinthe de pierre# dans la caverne Dodongo git", /*spanish*/"entre un #laberinto de piedra# en la Cueva de los Dodongos yace"},
   });
 
     hintTable[DODONGOS_CAVERN_BOMB_BAG_CHEST] = HintText::Exclude({
@@ -3138,12 +3138,12 @@ void HintTable_Init() {
 
     hintTable[DODONGOS_CAVERN_MQ_TORCH_PUZZLE_ROOM_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"above a #maze of stone# in Dodongo's Cavern lies", /*french*/"sur #un labyrinthe de pierre# dans la caverne Dodongo gît", /*spanish*/"sobre un #laberinto de piedra# en la Cueva de los Dodongos yace"},
+                       Text{"above a #maze of stone# in Dodongo's Cavern lies", /*french*/"sur #un labyrinthe de pierre# dans la caverne Dodongo git", /*spanish*/"sobre un #laberinto de piedra# en la Cueva de los Dodongos yace"},
   });
 
     hintTable[DODONGOS_CAVERN_MQ_UNDER_GRAVE_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#beneath a headstone# in Dodongo's Cavern lies", /*french*/"#sous une pierre tombale# dans la caverne Dodongo gît", /*spanish*/"#bajo una l\x91pida# en la Cueva de los Dodongos yace"},
+                       Text{"#beneath a headstone# in Dodongo's Cavern lies", /*french*/"#sous une pierre tombale# dans la caverne Dodongo git", /*spanish*/"#bajo una l\x91pida# en la Cueva de los Dodongos yace"},
   });
 
 
@@ -3180,7 +3180,7 @@ void HintTable_Init() {
 
     hintTable[JABU_JABUS_BELLY_MQ_SECOND_ROOM_LOWER_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"near a #spiked elevator# lies", /*french*/"pr\x95s d'un #ascenseur visqueux# gît", /*spanish*/"cerca de un #ascensor puntiagudo# yace"},
+                       Text{"near a #spiked elevator# lies", /*french*/"pr\x95s d'un #ascenseur visqueux# git", /*spanish*/"cerca de un #ascensor puntiagudo# yace"},
   });
 
     hintTable[JABU_JABUS_BELLY_MQ_COMPASS_CHEST] = HintText::Exclude({
@@ -3232,7 +3232,7 @@ void HintTable_Init() {
 
     hintTable[FOREST_TEMPLE_FIRST_ROOM_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"a #tree in the Forest Temple# supports", /*french*/"sur l'#arbre dans le temple de la forêt# gît", /*spanish*/"sobre un #\x91rbol del Templo del Bosque# yace"},
+                       Text{"a #tree in the Forest Temple# supports", /*french*/"sur l'#arbre dans le temple de la forêt# git", /*spanish*/"sobre un #\x91rbol del Templo del Bosque# yace"},
   });
 
     hintTable[FOREST_TEMPLE_FIRST_STALFOS_CHEST] = HintText::Exclude({
@@ -3252,12 +3252,12 @@ void HintTable_Init() {
 
     hintTable[FOREST_TEMPLE_RAISED_ISLAND_COURTYARD_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"a #chest on a small island# in the Forest Temple holds", /*french*/"le #coffre sur l'îlot# du temple de la forêt contient", /*spanish*/"un #cofre sobre una isla# del Templo del Bosque contiene"},
+                       Text{"a #chest on a small island# in the Forest Temple holds", /*french*/"le #coffre sur l'ilot# du temple de la forêt contient", /*spanish*/"un #cofre sobre una isla# del Templo del Bosque contiene"},
   });
 
     hintTable[FOREST_TEMPLE_FALLING_CEILING_ROOM_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"beneath a #checkerboard falling ceiling# lies", /*french*/"sous #l'\x96chiquier tombant# gît", /*spanish*/"tras un #techo de ajedrez# yace"},
+                       Text{"beneath a #checkerboard falling ceiling# lies", /*french*/"sous #l'\x96chiquier tombant# git", /*spanish*/"tras un #techo de ajedrez# yace"},
   });
 
     hintTable[FOREST_TEMPLE_EYE_SWITCH_CHEST] = HintText::Exclude({
@@ -3310,7 +3310,7 @@ void HintTable_Init() {
 
     hintTable[FOREST_TEMPLE_MQ_FIRST_ROOM_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"a #tree in the Forest Temple# supports", /*french*/"sur l'#arbre dans le temple de la forêt# gît", /*spanish*/"sobre un #\x91rbol del Templo del Bosque# yace"},
+                       Text{"a #tree in the Forest Temple# supports", /*french*/"sur l'#arbre dans le temple de la forêt# git", /*spanish*/"sobre un #\x91rbol del Templo del Bosque# yace"},
   });
 
     hintTable[FOREST_TEMPLE_MQ_WOLFOS_CHEST] = HintText::Exclude({
@@ -3328,12 +3328,12 @@ void HintTable_Init() {
 
     hintTable[FOREST_TEMPLE_MQ_RAISED_ISLAND_COURTYARD_LOWER_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"a #chest on a small island# in the Forest Temple holds", /*french*/"le #coffre sur l'îlot# du temple de la forêt contient", /*spanish*/"un #cofre sobre una isla# del Templo del Bosque contiene"},
+                       Text{"a #chest on a small island# in the Forest Temple holds", /*french*/"le #coffre sur l'ilot# du temple de la forêt contient", /*spanish*/"un #cofre sobre una isla# del Templo del Bosque contiene"},
   });
 
     hintTable[FOREST_TEMPLE_MQ_RAISED_ISLAND_COURTYARD_UPPER_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#high in a courtyard# within the Forest Temple is", /*french*/"#haut perch\x96 dans le jardin# du temple de la forêt gît", /*spanish*/"un #cofre en lo alto de un patio# del Templo del Bosque contiene"},
+                       Text{"#high in a courtyard# within the Forest Temple is", /*french*/"#haut perch\x96 dans le jardin# du temple de la forêt git", /*spanish*/"un #cofre en lo alto de un patio# del Templo del Bosque contiene"},
   });
 
     hintTable[FOREST_TEMPLE_MQ_WELL_CHEST] = HintText::Exclude({
@@ -3359,7 +3359,7 @@ void HintTable_Init() {
 
     hintTable[FOREST_TEMPLE_MQ_FALLING_CEILING_ROOM_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"beneath a #checkerboard falling ceiling# lies", /*french*/"sous #l'\x96chiquier tombant# gît", /*spanish*/"tras un #techo de ajedrez# yace"},
+                       Text{"beneath a #checkerboard falling ceiling# lies", /*french*/"sous #l'\x96chiquier tombant# git", /*spanish*/"tras un #techo de ajedrez# yace"},
   });
 
     hintTable[FOREST_TEMPLE_MQ_BASEMENT_CHEST] = HintText::Exclude({
@@ -3380,7 +3380,7 @@ void HintTable_Init() {
 
     hintTable[FIRE_TEMPLE_NEAR_BOSS_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#near a dragon# is", /*french*/"#pr\x95s d'un dragon# gît", /*spanish*/"#cerca de un dragón# yace"},
+                       Text{"#near a dragon# is", /*french*/"#pr\x95s d'un dragon# git", /*spanish*/"#cerca de un dragón# yace"},
   });
 
     hintTable[FIRE_TEMPLE_FLARE_DANCER_CHEST] = HintText::Exclude({
@@ -3441,7 +3441,7 @@ void HintTable_Init() {
 
     hintTable[FIRE_TEMPLE_MQ_NEAR_BOSS_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#near a dragon# is", /*french*/"#pr\x95s d'un dragon# gît", /*spanish*/"#cerca de un dragón# yace"},
+                       Text{"#near a dragon# is", /*french*/"#pr\x95s d'un dragon# git", /*spanish*/"#cerca de un dragón# yace"},
   });
 
     hintTable[FIRE_TEMPLE_MQ_MEGATON_HAMMER_CHEST] = HintText::Exclude({
@@ -3459,12 +3459,12 @@ void HintTable_Init() {
 
     hintTable[FIRE_TEMPLE_MQ_LIZALFOS_MAZE_LOWER_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#crates in a maze# contain", /*french*/"des #boîtes dans le labyrinthe# contiennent", /*spanish*/"las #cajas de un laberinto# contienen"},
+                       Text{"#crates in a maze# contain", /*french*/"des #boites dans le labyrinthe# contiennent", /*spanish*/"las #cajas de un laberinto# contienen"},
   });
 
     hintTable[FIRE_TEMPLE_MQ_LIZALFOS_MAZE_UPPER_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#crates in a maze# contain", /*french*/"des #boîtes dans le labyrinthe# contiennent", /*spanish*/"las #cajas de un laberinto# contienen"},
+                       Text{"#crates in a maze# contain", /*french*/"des #boites dans le labyrinthe# contiennent", /*spanish*/"las #cajas de un laberinto# contienen"},
   });
 
     hintTable[FIRE_TEMPLE_MQ_MAP_ROOM_SIDE_CHEST] = HintText::Exclude({
@@ -3494,7 +3494,7 @@ void HintTable_Init() {
 
     hintTable[FIRE_TEMPLE_MQ_FREESTANDING_KEY] = HintText::Exclude({
                        //obscure text
-                       Text{"hidden #beneath a block of stone# lies", /*french*/"cach\x96 #derri\x95re un bloc de pierre# gît", /*spanish*/"#bajo unos bloques de piedra# yace"},
+                       Text{"hidden #beneath a block of stone# lies", /*french*/"cach\x96 #derri\x95re un bloc de pierre# git", /*spanish*/"#bajo unos bloques de piedra# yace"},
   });
 
 
@@ -3601,7 +3601,7 @@ void HintTable_Init() {
 
     hintTable[SPIRIT_TEMPLE_MAP_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#before a giant statue# in the Spirit Temple lies", /*french*/"#devant la statue# dans le colosse gît", /*spanish*/"#ante una gran estatua# del Templo del Espíritu aguarda"},
+                       Text{"#before a giant statue# in the Spirit Temple lies", /*french*/"#devant la statue# dans le colosse git", /*spanish*/"#ante una gran estatua# del Templo del Espíritu aguarda"},
   });
 
     hintTable[SPIRIT_TEMPLE_CHILD_CLIMB_NORTH_CHEST] = HintText::Exclude({
@@ -3626,7 +3626,7 @@ void HintTable_Init() {
 
     hintTable[SPIRIT_TEMPLE_STATUE_ROOM_NORTHEAST_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"on a #ledge by a statue# in the Spirit Temple rests", /*french*/"#haut perch\x96 pr\x95s de la statue# dans le colosse gît", /*spanish*/"al #borde de una estatua# del Templo del Espíritu yace"},
+                       Text{"on a #ledge by a statue# in the Spirit Temple rests", /*french*/"#haut perch\x96 pr\x95s de la statue# dans le colosse git", /*spanish*/"al #borde de una estatua# del Templo del Espíritu yace"},
   });
 
     hintTable[SPIRIT_TEMPLE_NEAR_FOUR_ARMOS_CHEST] = HintText::Exclude({
@@ -3677,7 +3677,7 @@ void HintTable_Init() {
 
     hintTable[SPIRIT_TEMPLE_MQ_MAP_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"surrounded by #fire and wrappings# lies", /*french*/"pr\x95s des #pierres tombales dans le colosse# gît", /*spanish*/"rodeado de #fuego y vendas# yace"},
+                       Text{"surrounded by #fire and wrappings# lies", /*french*/"pr\x95s des #pierres tombales dans le colosse# git", /*spanish*/"rodeado de #fuego y vendas# yace"},
   });
 
     hintTable[SPIRIT_TEMPLE_MQ_MAP_ROOM_ENEMY_CHEST] = HintText::Exclude({
@@ -3825,7 +3825,7 @@ void HintTable_Init() {
 
     hintTable[SHADOW_TEMPLE_FREESTANDING_KEY] = HintText::Exclude({
                        //obscure text
-                       Text{"#inside a burning skull# lies", /*french*/"#dans un cr\x92ne enflamm\x96# gît", /*spanish*/"en el #interior de una calavera en llamas# aguarda"},
+                       Text{"#inside a burning skull# lies", /*french*/"#dans un cr\x92ne enflamm\x96# git", /*spanish*/"en el #interior de una calavera en llamas# aguarda"},
   });
 
 
@@ -3886,7 +3886,7 @@ void HintTable_Init() {
 
     hintTable[SHADOW_TEMPLE_MQ_STALFOS_ROOM_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"near an #empty pedestal# within the Shadow Temple lies", /*french*/"#pr\x95s d'un p\x96destal vide du temple de l'ombre# gît", /*spanish*/"cerca de un #vacío pedestal# del Templo de las Sombras yace"},
+                       Text{"near an #empty pedestal# within the Shadow Temple lies", /*french*/"#pr\x95s d'un p\x96destal vide du temple de l'ombre# git", /*spanish*/"cerca de un #vacío pedestal# del Templo de las Sombras yace"},
   });
 
     hintTable[SHADOW_TEMPLE_MQ_INVISIBLE_BLADES_INVISIBLE_CHEST] = HintText::Exclude({
@@ -3916,12 +3916,12 @@ void HintTable_Init() {
 
     hintTable[SHADOW_TEMPLE_MQ_NEAR_SHIP_INVISIBLE_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#caged near a ship# lies", /*french*/"#dans une cage pr\x95s du traversier# gît", /*spanish*/"#entre rejas al lado de un navío# yace"},
+                       Text{"#caged near a ship# lies", /*french*/"#dans une cage pr\x95s du traversier# git", /*spanish*/"#entre rejas al lado de un navío# yace"},
   });
 
     hintTable[SHADOW_TEMPLE_MQ_FREESTANDING_KEY] = HintText::Exclude({
                        //obscure text
-                       Text{"#behind three burning skulls# lies", /*french*/"#derri\x95re trois cr\x92nes enflamm\x96s# gît", /*spanish*/"tras #tres ardientes calaveras# yace"},
+                       Text{"#behind three burning skulls# lies", /*french*/"#derri\x95re trois cr\x92nes enflamm\x96s# git", /*spanish*/"tras #tres ardientes calaveras# yace"},
   });
 
 
@@ -3942,7 +3942,7 @@ void HintTable_Init() {
 
     hintTable[BOTTOM_OF_THE_WELL_COMPASS_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"a #hidden entrance to a cage# in the well leads to", /*french*/"dans un #chemin cach\x96 dans le puits# gît", /*spanish*/"la #entrada oculta de una celda# del pozo conduce a"},
+                       Text{"a #hidden entrance to a cage# in the well leads to", /*french*/"dans un #chemin cach\x96 dans le puits# git", /*spanish*/"la #entrada oculta de una celda# del pozo conduce a"},
   });
 
     hintTable[BOTTOM_OF_THE_WELL_CENTER_SKULLTULA_CHEST] = HintText::Exclude({
@@ -3972,7 +3972,7 @@ void HintTable_Init() {
 
     hintTable[BOTTOM_OF_THE_WELL_MAP_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"in the #depths of the well# lies", /*french*/"#dans le cœur du puits# gît", /*spanish*/"en las #profundidades del pozo# yace"},
+                       Text{"in the #depths of the well# lies", /*french*/"#dans le cœur du puits# git", /*spanish*/"en las #profundidades del pozo# yace"},
   });
 
     hintTable[BOTTOM_OF_THE_WELL_FIRE_KEESE_CHEST] = HintText::Exclude({
@@ -3982,12 +3982,12 @@ void HintTable_Init() {
 
     hintTable[BOTTOM_OF_THE_WELL_LIKE_LIKE_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#locked in a cage# in the well lies", /*french*/"#dans une cage# du puits gît", /*spanish*/"#entre rejas# en el pozo yace"},
+                       Text{"#locked in a cage# in the well lies", /*french*/"#dans une cage# du puits git", /*spanish*/"#entre rejas# en el pozo yace"},
   });
 
     hintTable[BOTTOM_OF_THE_WELL_FREESTANDING_KEY] = HintText::Exclude({
                        //obscure text
-                       Text{"#inside a coffin# hides", /*french*/"dans #un cercueil# gît", /*spanish*/"en el #interior de un ataúd# yace"},
+                       Text{"#inside a coffin# hides", /*french*/"dans #un cercueil# git", /*spanish*/"en el #interior de un ataúd# yace"},
   });
 
 
@@ -4008,13 +4008,13 @@ void HintTable_Init() {
 
     hintTable[BOTTOM_OF_THE_WELL_MQ_EAST_INNER_ROOM_FREESTANDING_KEY] = HintText::Exclude({
                        //obscure text
-                       Text{"an #invisible path in the well# leads to", /*french*/"dans un #chemin cach\x96 dans le puits# gît", /*spanish*/"un #camino invisible del pozo# conduce a"},
+                       Text{"an #invisible path in the well# leads to", /*french*/"dans un #chemin cach\x96 dans le puits# git", /*spanish*/"un #camino invisible del pozo# conduce a"},
   });
 
 
     hintTable[ICE_CAVERN_MAP_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#winds of ice# surround", /*french*/"#fig\x96 dans la glace rouge# gît", /*spanish*/"#heladas borrascas# rodean"},
+                       Text{"#winds of ice# surround", /*french*/"#fig\x96 dans la glace rouge# git", /*spanish*/"#heladas borrascas# rodean"},
   });
 
     hintTable[ICE_CAVERN_COMPASS_CHEST] = HintText::Exclude({
@@ -4040,7 +4040,7 @@ void HintTable_Init() {
 
     hintTable[ICE_CAVERN_MQ_COMPASS_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#winds of ice# surround", /*french*/"#entour\x96 de vent glacial# gît", /*spanish*/"#heladas borrascas# rodean"},
+                       Text{"#winds of ice# surround", /*french*/"#entour\x96 de vent glacial# git", /*spanish*/"#heladas borrascas# rodean"},
   });
 
     hintTable[ICE_CAVERN_MQ_MAP_CHEST] = HintText::Exclude({
@@ -4050,7 +4050,7 @@ void HintTable_Init() {
 
     hintTable[ICE_CAVERN_MQ_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"#winds of ice# surround", /*french*/"#entour\x96 de vent glacial# gît", /*spanish*/"#heladas borrascas# rodean"},
+                       Text{"#winds of ice# surround", /*french*/"#entour\x96 de vent glacial# git", /*spanish*/"#heladas borrascas# rodean"},
   });
 
 
@@ -4076,7 +4076,7 @@ void HintTable_Init() {
 
     hintTable[GERUDO_TRAINING_GROUNDS_HIDDEN_CEILING_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"the #Eye of Truth# in the Gerudo Training Grounds reveals", /*french*/"#bien cach\x96# dans le gymnase Gerudo gît", /*spanish*/"el #Ojo de la Verdad# en el Centro de Instrucción Gerudo revela"},
+                       Text{"the #Eye of Truth# in the Gerudo Training Grounds reveals", /*french*/"#bien cach\x96# dans le gymnase Gerudo git", /*spanish*/"el #Ojo de la Verdad# en el Centro de Instrucción Gerudo revela"},
   });
 
     hintTable[GERUDO_TRAINING_GROUNDS_MAZE_PATH_FIRST_CHEST] = HintText::Exclude({
@@ -4126,27 +4126,27 @@ void HintTable_Init() {
 
     hintTable[GERUDO_TRAINING_GROUNDS_BEFORE_HEAVY_BLOCK_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#before a block of silver# thieves can find", /*french*/"#pr\x95s d'un bloc argent# dans le gymnase Gerudo gît", /*spanish*/"#ante un plateado bloque# las bandidas hallan"},
+                       Text{"#before a block of silver# thieves can find", /*french*/"#pr\x95s d'un bloc argent# dans le gymnase Gerudo git", /*spanish*/"#ante un plateado bloque# las bandidas hallan"},
   });
 
     hintTable[GERUDO_TRAINING_GROUNDS_HEAVY_BLOCK_FIRST_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"a #feat of strength# rewards thieves with", /*french*/"#derri\x95re un bloc argent# dans le gymnase Gerudo gît", /*spanish*/"una #hazaña de fuerza# premia a las bandidas con"},
+                       Text{"a #feat of strength# rewards thieves with", /*french*/"#derri\x95re un bloc argent# dans le gymnase Gerudo git", /*spanish*/"una #hazaña de fuerza# premia a las bandidas con"},
   });
 
     hintTable[GERUDO_TRAINING_GROUNDS_HEAVY_BLOCK_SECOND_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"a #feat of strength# rewards thieves with", /*french*/"#derri\x95re un bloc argent# dans le gymnase Gerudo gît", /*spanish*/"una #hazaña de fuerza# premia a las bandidas con"},
+                       Text{"a #feat of strength# rewards thieves with", /*french*/"#derri\x95re un bloc argent# dans le gymnase Gerudo git", /*spanish*/"una #hazaña de fuerza# premia a las bandidas con"},
   });
 
     hintTable[GERUDO_TRAINING_GROUNDS_HEAVY_BLOCK_THIRD_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"a #feat of strength# rewards thieves with", /*french*/"#derri\x95re un bloc argent# dans le gymnase Gerudo gît", /*spanish*/"una #hazaña de fuerza# premia a las bandidas con"},
+                       Text{"a #feat of strength# rewards thieves with", /*french*/"#derri\x95re un bloc argent# dans le gymnase Gerudo git", /*spanish*/"una #hazaña de fuerza# premia a las bandidas con"},
   });
 
     hintTable[GERUDO_TRAINING_GROUNDS_HEAVY_BLOCK_FOURTH_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"a #feat of strength# rewards thieves with", /*french*/"#derri\x95re un bloc argent# dans le gymnase Gerudo gît", /*spanish*/"una #hazaña de fuerza# premia a las bandidas con"},
+                       Text{"a #feat of strength# rewards thieves with", /*french*/"#derri\x95re un bloc argent# dans le gymnase Gerudo git", /*spanish*/"una #hazaña de fuerza# premia a las bandidas con"},
   });
 
     hintTable[GERUDO_TRAINING_GROUNDS_FREESTANDING_KEY] = HintText::Exclude({
@@ -4157,12 +4157,12 @@ void HintTable_Init() {
 
     hintTable[GERUDO_TRAINING_GROUNDS_MQ_LOBBY_RIGHT_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#thieves prepare for training# with", /*french*/"dans #l'entr\x96e du gymnase Gerudo# gît", /*spanish*/"las #bandidas se instruyen# con"},
+                       Text{"#thieves prepare for training# with", /*french*/"dans #l'entr\x96e du gymnase Gerudo# git", /*spanish*/"las #bandidas se instruyen# con"},
   });
 
     hintTable[GERUDO_TRAINING_GROUNDS_MQ_LOBBY_LEFT_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#thieves prepare for training# with", /*french*/"dans #l'entr\x96e du gymnase Gerudo# gît", /*spanish*/"las #bandidas se instruyen# con"},
+                       Text{"#thieves prepare for training# with", /*french*/"dans #l'entr\x96e du gymnase Gerudo# git", /*spanish*/"las #bandidas se instruyen# con"},
   });
 
     hintTable[GERUDO_TRAINING_GROUNDS_MQ_FIRST_IRON_KNUCKLE_CHEST] = HintText::Exclude({
@@ -4172,7 +4172,7 @@ void HintTable_Init() {
 
     hintTable[GERUDO_TRAINING_GROUNDS_MQ_BEFORE_HEAVY_BLOCK_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"#before a block of silver# thieves can find", /*french*/"#pr\x95s d'un bloc argent# dans le gymnase Gerudo gît", /*spanish*/"#ante un plateado bloque# las bandidas hallan"},
+                       Text{"#before a block of silver# thieves can find", /*french*/"#pr\x95s d'un bloc argent# dans le gymnase Gerudo git", /*spanish*/"#ante un plateado bloque# las bandidas hallan"},
   });
 
     hintTable[GERUDO_TRAINING_GROUNDS_MQ_EYE_STATUE_CHEST] = HintText::Exclude({
@@ -4197,7 +4197,7 @@ void HintTable_Init() {
 
     hintTable[GERUDO_TRAINING_GROUNDS_MQ_MAZE_RIGHT_CENTRAL_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"a #path of fire# leads thieves to", /*french*/"dans le #chemin enflamm\x96# dans le gymnase Gerudo gît", /*spanish*/"un #camino de fuego# conduce a las bandidas a"},
+                       Text{"a #path of fire# leads thieves to", /*french*/"dans le #chemin enflamm\x96# dans le gymnase Gerudo git", /*spanish*/"un #camino de fuego# conduce a las bandidas a"},
   });
 
     hintTable[GERUDO_TRAINING_GROUNDS_MQ_MAZE_PATH_FIRST_CHEST] = HintText::Exclude({
@@ -4207,7 +4207,7 @@ void HintTable_Init() {
 
     hintTable[GERUDO_TRAINING_GROUNDS_MQ_MAZE_RIGHT_SIDE_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"a #path of fire# leads thieves to", /*french*/"dans le #chemin enflamm\x96# dans le gymnase Gerudo gît", /*spanish*/"un #camino de fuego# conduce a las bandidas a"},
+                       Text{"a #path of fire# leads thieves to", /*french*/"dans le #chemin enflamm\x96# dans le gymnase Gerudo git", /*spanish*/"un #camino de fuego# conduce a las bandidas a"},
   });
 
     hintTable[GERUDO_TRAINING_GROUNDS_MQ_MAZE_PATH_THIRD_CHEST] = HintText::Exclude({
@@ -4222,12 +4222,12 @@ void HintTable_Init() {
 
     hintTable[GERUDO_TRAINING_GROUNDS_MQ_HIDDEN_CEILING_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"the #Eye of Truth# in the Gerudo Training Grounds reveals", /*french*/"#bien cach\x96# dans le gymnase Gerudo gît", /*spanish*/"el #Ojo de la Verdad# en el Centro de Instrucción Gerudo revela"},
+                       Text{"the #Eye of Truth# in the Gerudo Training Grounds reveals", /*french*/"#bien cach\x96# dans le gymnase Gerudo git", /*spanish*/"el #Ojo de la Verdad# en el Centro de Instrucción Gerudo revela"},
   });
 
     hintTable[GERUDO_TRAINING_GROUNDS_MQ_HEAVY_BLOCK_CHEST] = HintText::Exclude({
                        //obscure text
-                       Text{"a #feat of strength# rewards thieves with", /*french*/"#derri\x95re un bloc argent# dans le gymnase Gerudo gît", /*spanish*/"una #hazaña de fuerza# premia a las bandidas con"},
+                       Text{"a #feat of strength# rewards thieves with", /*french*/"#derri\x95re un bloc argent# dans le gymnase Gerudo git", /*spanish*/"una #hazaña de fuerza# premia a las bandidas con"},
   });
 
 
@@ -4467,7 +4467,7 @@ void HintTable_Init() {
 
     hintTable[DEKU_TREE_MQ_GS_LOBBY] = HintText::Exclude({
                        //obscure text
-                       Text{"a #spider in a crate# within the Deku Tree hides", /*french*/"une #Skulltula dans une boîte dans l'arbre Mojo# a", /*spanish*/"una #Skulltula bajo una caja# del Árbol Deku otorga"},
+                       Text{"a #spider in a crate# within the Deku Tree hides", /*french*/"une #Skulltula dans une boite dans l'arbre Mojo# a", /*spanish*/"una #Skulltula bajo una caja# del Árbol Deku otorga"},
   });
 
     hintTable[DEKU_TREE_MQ_GS_COMPASS_ROOM] = HintText::Exclude({
@@ -4519,7 +4519,7 @@ void HintTable_Init() {
 
     hintTable[DODONGOS_CAVERN_MQ_GS_LARVAE_ROOM] = HintText::Exclude({
                        //obscure text
-                       Text{"a #spider in a crate# in Dodongo's Cavern holds", /*french*/"une #Skulltula dans une boîte de la caverne Dodongo# a", /*spanish*/"una #Skulltula bajo una caja# de la Cueva de los Dodongos otorga"},
+                       Text{"a #spider in a crate# in Dodongo's Cavern holds", /*french*/"une #Skulltula dans une boite de la caverne Dodongo# a", /*spanish*/"una #Skulltula bajo una caja# de la Cueva de los Dodongos otorga"},
   });
 
     hintTable[DODONGOS_CAVERN_MQ_GS_BACK_AREA] = HintText::Exclude({
@@ -4567,7 +4567,7 @@ void HintTable_Init() {
 
     hintTable[FOREST_TEMPLE_GS_RAISED_ISLAND_COURTYARD] = HintText::Exclude({
                        //obscure text
-                       Text{"a #spider on a small island# in the Forest Temple holds", /*french*/"une #Skulltula sur l'îlot du temple de la forêt# a", /*spanish*/"una #Skulltula sobre una pequeña isla# del Templo del Bosque otorga"},
+                       Text{"a #spider on a small island# in the Forest Temple holds", /*french*/"une #Skulltula sur l'ilot du temple de la forêt# a", /*spanish*/"una #Skulltula sobre una pequeña isla# del Templo del Bosque otorga"},
   });
 
     hintTable[FOREST_TEMPLE_GS_FIRST_ROOM] = HintText::Exclude({
@@ -4949,7 +4949,7 @@ void HintTable_Init() {
 
     hintTable[MARKET_GS_GUARD_HOUSE] = HintText::Exclude({
                        //obscure text
-                       Text{"a #spider in a guarded crate# holds", /*french*/"une #Skulltula dans une boîte en ville# a", /*spanish*/"una #Skulltula bajo una custodiada caja# otorga"},
+                       Text{"a #spider in a guarded crate# holds", /*french*/"une #Skulltula dans une boite en ville# a", /*spanish*/"una #Skulltula bajo una custodiada caja# otorga"},
   });
 
 
@@ -4987,7 +4987,7 @@ void HintTable_Init() {
 
     hintTable[GC_GS_BOULDER_MAZE] = HintText::Exclude({
                        //obscure text
-                       Text{"a spider in a #Goron City crate# holds", /*french*/"une #Skulltula dans une boîte du village Goron# a", /*spanish*/"una #Skulltula bajo una caja# de la Ciudad Goron otorga"},
+                       Text{"a spider in a #Goron City crate# holds", /*french*/"une #Skulltula dans une boite du village Goron# a", /*spanish*/"una #Skulltula bajo una caja# de la Ciudad Goron otorga"},
   });
 
 
@@ -5077,7 +5077,7 @@ void HintTable_Init() {
 
     hintTable[LH_GS_SMALL_ISLAND] = HintText::Exclude({
                        //obscure text
-                       Text{"night reveals a #spider by a lake# holding", /*french*/"une #Skulltula sur un îlot du lac# a", /*spanish*/"la noche revela una #Skulltula junto a un lago# que otorga"},
+                       Text{"night reveals a #spider by a lake# holding", /*french*/"une #Skulltula sur un ilot du lac# a", /*spanish*/"la noche revela una #Skulltula junto a un lago# que otorga"},
   });
 
     hintTable[LH_GS_LAB_WALL] = HintText::Exclude({
@@ -5087,7 +5087,7 @@ void HintTable_Init() {
 
     hintTable[LH_GS_LAB_CRATE] = HintText::Exclude({
                        //obscure text
-                       Text{"a spider deed underwater in a #lab crate# holds", /*french*/"une #Skulltula dans une boîte au fond d'une cuve d'eau# a", /*spanish*/"una #Skulltula bajo la sumergida caja de un laboratorio# otorga"},
+                       Text{"a spider deed underwater in a #lab crate# holds", /*french*/"une #Skulltula dans une boite au fond d'une cuve d'eau# a", /*spanish*/"una #Skulltula bajo la sumergida caja de un laboratorio# otorga"},
   });
 
     hintTable[LH_GS_TREE] = HintText::Exclude({
@@ -5851,12 +5851,12 @@ void HintTable_Init() {
 
     hintTable[GRAVEYARD_WARP_PAD_REGION_TO_SHADOW_TEMPLE_ENTRYWAY] = HintText::Entrance({
                      //obscure text
-                     Text{"at the #back of the Graveyard#, there is", /*french*/"#derri\x95re le cimeti\x95re# gît", /*spanish*/"en la #parte trasera del cementerio# se halla"},
+                     Text{"at the #back of the Graveyard#, there is", /*french*/"#derri\x95re le cimeti\x95re# git", /*spanish*/"en la #parte trasera del cementerio# se halla"},
   });
 
     hintTable[LAKE_HYLIA_TO_WATER_TEMPLE_LOBBY] = HintText::Entrance({
                      //obscure text
-                     Text{"deep #under a vast lake#, one can find", /*french*/"#sous le lac# gît", /*spanish*/"en las #profundidades de un lago inmenso# se halla"},
+                     Text{"deep #under a vast lake#, one can find", /*french*/"#sous le lac# git", /*spanish*/"en las #profundidades de un lago inmenso# se halla"},
   });
 
     hintTable[GERUDO_FORTRESS_TO_GERUDO_TRAINING_GROUNDS_LOBBY] = HintText::Entrance({
@@ -5871,7 +5871,7 @@ void HintTable_Init() {
 
     hintTable[KAKARIKO_VILLAGE_TO_BOTTOM_OF_THE_WELL] = HintText::Entrance({
                      //obscure text
-                     Text{"a #village well# leads to", /*french*/"dans le fond du #puits du village# gît", /*spanish*/"el #pozo de un pueblo# conduce a"},
+                     Text{"a #village well# leads to", /*french*/"dans le fond du #puits du village# git", /*spanish*/"el #pozo de un pueblo# conduce a"},
   });
 
     /*--------------------------
@@ -6520,7 +6520,7 @@ void HintTable_Init() {
 
     hintTable[JUNK26] = HintText::Junk({
                      //obscure text
-                     Text{"I've heard you can cheat at Sploosh Kaboom.", /*french*/"Selon moi, il y a une carte aux tr\x96sors \x90 Mercantîle... Duh!", /*spanish*/"He oído por ahí que puedes hacer trampa en el Sploosh Kaboom."},
+                     Text{"I've heard you can cheat at Sploosh Kaboom.", /*french*/"Selon moi, il y a une carte aux tr\x96sors \x90 Mercantile... Duh!", /*spanish*/"He oído por ahí que puedes hacer trampa en el Sploosh Kaboom."},
     });
 
     hintTable[JUNK27] = HintText::Junk({
