@@ -124,6 +124,7 @@ std::map<uint32_t, ItemMapEntry> itemMapping = {
     ITEM_MAP_ENTRY(ITEM_SWORD_KNIFE),
     ITEM_MAP_ENTRY(ITEM_WALLET_ADULT),
     ITEM_MAP_ENTRY(ITEM_WALLET_GIANT),
+    { ITEM_WALLET_TYCOON, { ITEM_WALLET_TYCOON, "ITEM_WALLET_TYCOON", "ITEM_WALLET_TYCOON_Faded", static_cast<char*>(gItemIcons[130]) } },
     ITEM_MAP_ENTRY(ITEM_SEEDS),
     ITEM_MAP_ENTRY(ITEM_FISHING_POLE),
     ITEM_MAP_ENTRY(ITEM_KEY_BOSS),
@@ -1133,6 +1134,7 @@ void DrawEquipmentTab() {
         "Child (99)",
         "Adult (200)",
         "Giant (500)",
+        "Tycoon (999)"
     };
     DrawUpgrade("Wallet", UPG_WALLET, walletNames);
 

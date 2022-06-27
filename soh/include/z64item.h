@@ -244,6 +244,7 @@ typedef enum {
     /* 0x99 */ ITEM_STICK_UPGRADE_30,
     /* 0x9A */ ITEM_NUT_UPGRADE_30,
     /* 0x9B */ ITEM_NUT_UPGRADE_40,
+    /* 0x9C */ ITEM_WALLET_TYCOON,
     /* 0xFC */ ITEM_LAST_USED = 0xFC,
     /* 0xFE */ ITEM_NONE_FE = 0xFE,
     /* 0xFF */ ITEM_NONE = 0xFF
@@ -410,7 +411,8 @@ typedef enum {
     GI_DOUBLE_MAGIC,
     GI_DOUBLE_DEFENSE,
 
-    /* 0x84 */ GI_MAX
+    /* 0x84 */ GI_MAX,
+    /* 0x85 */ GI_WALLET_TYCOON
 } GetItemID;
 
 typedef enum {

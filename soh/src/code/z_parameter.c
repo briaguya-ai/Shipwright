@@ -1779,6 +1779,9 @@ u8 Item_Give(GlobalContext* globalCtx, u8 item) {
     } else if (item == ITEM_WALLET_GIANT) {
         Inventory_ChangeUpgrade(UPG_WALLET, 2);
         return ITEM_NONE;
+    } else if (item == ITEM_WALLET_TYCOON) {
+        Inventory_ChangeUpgrade(UPG_WALLET, 3);
+        return ITEM_NONE;
     } else if (item == ITEM_STICK_UPGRADE_20) {
         if (gSaveContext.inventory.items[slot] == ITEM_NONE) {
             INV_CONTENT(ITEM_STICK) = ITEM_STICK;

@@ -273,6 +273,8 @@ void GiveLinkWalletUpgrade(GetItemID giid) {
         Inventory_ChangeUpgrade(UPG_WALLET, 1);
     } else if (giid == GI_WALLET_GIANT) {
         Inventory_ChangeUpgrade(UPG_WALLET, 2);
+    } else if (giid == GI_WALLET_TYCOON) {
+        Inventory_ChangeUpgrade(UPG_WALLET, 3);
     }
 }
 
@@ -734,7 +736,8 @@ void Sram_InitSave(FileChooseContext* fileChooseCtx) {
                        giid == GI_SCALE_GOLD) {
                 GiveLinkScaleUpgrade(giid);
             } else if (giid == GI_WALLET_ADULT ||
-                       giid == GI_WALLET_GIANT) {
+                       giid == GI_WALLET_GIANT ||
+                       giid == GI_WALLET_TYCOON) {
                 GiveLinkWalletUpgrade(giid);
             } else if (giid == GI_STONE_OF_AGONY) {
                 GiveLinkStoneOfAgony();

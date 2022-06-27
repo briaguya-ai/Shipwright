@@ -917,6 +917,7 @@ std::unordered_map<s16, s16> itemIdToModel = { { GI_NONE, GID_MAXIMUM },
                                                { GI_MAGIC_LARGE, GID_MAGIC_LARGE },
                                                { GI_WALLET_ADULT, GID_WALLET_ADULT },
                                                { GI_WALLET_GIANT, GID_WALLET_GIANT },
+                                               { GI_WALLET_TYCOON, GID_WALLET_GIANT },
                                                { GI_WEIRD_EGG, GID_EGG },
                                                { GI_HEART, GID_HEART },
                                                { GI_ARROWS_SMALL, GID_ARROWS_SMALL },
@@ -2106,6 +2107,8 @@ GetItemID Randomizer::GetItemFromGet(RandomizerGet randoGet, GetItemID ogItemId)
                     return GI_WALLET_ADULT;
                 case 1:
                     return GI_WALLET_GIANT;
+                case 2:
+                    return GI_WALLET_TYCOON;
             }
             return GI_RUPEE_BLUE;
 
