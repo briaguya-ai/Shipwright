@@ -1667,13 +1667,14 @@ void Message_OpenText(GlobalContext* globalCtx, u16 textId) {
         } else if (gSaveContext.n64ddFlag && (textId == 0x7040 || textId == 0x7088)) {
             // rando hints at altar
             msgCtx->msgLength = font->msgLength = CopyAltarMessage(font->msgBuf, sizeof(font->msgBuf));
-        } else if (gSaveContext.n64ddFlag && textId == 0xFF) {
+        } else if (gSaveContext.n64ddFlag && textId == 0x00F8) {
             switch (gSaveContext.language) { 
                 case LANGUAGE_ENG:
                 default:
                     strcpy(font->msgBuf, "\x08\x13\x57You got a \x05\x41Tycoon's Wallet\x05\x40!\x01"
                                          "It's gigantic! Now you can carry\x01"
                                          "up to\x05\x46 999 rupees\x05\x40!\x02");
+                    font->charTexBuf[0] = 0x23;
                     break;
             }
             msgCtx->msgLength = font->msgLength = strlen(font->msgBuf);
