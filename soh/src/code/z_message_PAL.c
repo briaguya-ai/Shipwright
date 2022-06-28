@@ -1667,6 +1667,16 @@ void Message_OpenText(GlobalContext* globalCtx, u16 textId) {
         } else if (gSaveContext.n64ddFlag && (textId == 0x7040 || textId == 0x7088)) {
             // rando hints at altar
             msgCtx->msgLength = font->msgLength = CopyAltarMessage(font->msgBuf, sizeof(font->msgBuf));
+        } else if (gSaveContext.n64ddFlag && textId == 0xFF) {
+            switch (gSaveContext.language) { 
+                case LANGUAGE_ENG:
+                default:
+                    strcpy(font->msgBuf, "\x08\x13\x57You got a \x05\x41Tycoon's Wallet\x05\x40! "
+                                         "It's gigantic!\x01Now you can carry"
+                                         "up to\x05\x46 999 rupees\x05\x40!\x02");
+                    break;
+            }
+            msgCtx->msgLength = font->msgLength = strlen(font->msgBuf);
         } else if (textId == 0x00b4 && CVar_GetS32("gInjectSkulltulaCount", 0) != 0) {
             switch (gSaveContext.language) {
                 case LANGUAGE_FRA:
