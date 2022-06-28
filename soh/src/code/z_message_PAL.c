@@ -1671,8 +1671,8 @@ void Message_OpenText(GlobalContext* globalCtx, u16 textId) {
             switch (gSaveContext.language) { 
                 case LANGUAGE_ENG:
                 default:
-                    strcpy(font->msgBuf, "\x08\x13\x57You got a \x05\x41Tycoon's Wallet\x05\x40! "
-                                         "It's gigantic!\x01Now you can carry"
+                    strcpy(font->msgBuf, "\x08\x13\x57You got a \x05\x41Tycoon's Wallet\x05\x40!\x01"
+                                         "It's gigantic! Now you can carry\x01"
                                          "up to\x05\x46 999 rupees\x05\x40!\x02");
                     break;
             }
