@@ -1405,7 +1405,7 @@ std::unordered_map<std::string, RandomizerSettingKey> SpoilerfileSettingNameToEn
     { "Skip Child Zelda", RSK_SKIP_CHILD_ZELDA },
     { "Start with Consumables", RSK_STARTING_CONSUMABLES },
     { "Timesaver Settings:Big Poe Target Count", RSK_BIG_POE_COUNT },
-    { "Shuffle Tycoon's Wallet", RSK_SHOPSANITY }
+    { "Shuffle Settings:Shopsanity", RSK_SHOPSANITY }
 };
 
 s32 Randomizer::GetItemIDFromGetItemID(s32 getItemId) {
@@ -1662,6 +1662,12 @@ void Randomizer::ParseRandomizerSettingsFile(const char* spoilerFileName) {
                             gSaveContext.randoSettings[index].value = 1;
                         }
                         break;
+                    case RSK_SHOPSANITY:
+                        if (it.value() == "Off") {
+                            gSaveContext.randoSettings[index].value = 0;
+                        } else {
+                            gSaveContext.randoSettings[index].value = 2;
+                        }
                 }
                 index++;        
             }
@@ -2109,7 +2115,14 @@ GetItemID Randomizer::GetItemFromGet(RandomizerGet randoGet, GetItemID ogItemId)
                 case 1:
                     return GI_WALLET_GIANT;
                 case 2:
-                    return GI_WALLET_TYCOON;
+                    switch (GetRandoSettingValue(RSK_SHOPSANITY)) {
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
+                            return GI_WALLET_TYCOON;
+                    }
             }
             return GI_RUPEE_BLUE;
 
