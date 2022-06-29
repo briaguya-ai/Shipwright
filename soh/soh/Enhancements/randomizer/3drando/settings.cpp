@@ -2522,6 +2522,7 @@ namespace Settings {
     GanonsBossKey.SetSelectedIndex(cvarSettings[RSK_GANONS_BOSS_KEY]);
 
     BigPoeTargetCount.SetSelectedIndex(cvarSettings[RSK_BIG_POE_COUNT]-1);
+    Shopsanity.SetSelectedIndex(cvarSettings[RSK_SHOPSANITY] == 0 ? 0 : 2);
 
     // RANDOTODO implement chest shuffle with keysanity
     // ShuffleChestMinigame.SetSelectedIndex(cvarSettings[RSK_SHUFFLE_CHEST_MINIGAME]);

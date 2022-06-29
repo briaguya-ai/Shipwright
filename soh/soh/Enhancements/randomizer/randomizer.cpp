@@ -1404,7 +1404,8 @@ std::unordered_map<std::string, RandomizerSettingKey> SpoilerfileSettingNameToEn
     { "Misc Settings:  Hint Distribution", RSK_HINT_DISTRIBUTION},
     { "Skip Child Zelda", RSK_SKIP_CHILD_ZELDA },
     { "Start with Consumables", RSK_STARTING_CONSUMABLES },
-    { "Timesaver Settings:Big Poe Target Count", RSK_BIG_POE_COUNT }
+    { "Timesaver Settings:Big Poe Target Count", RSK_BIG_POE_COUNT },
+    { "Shuffle Tycoon's Wallet", RSK_SHOPSANITY }
 };
 
 s32 Randomizer::GetItemIDFromGetItemID(s32 getItemId) {
@@ -3227,6 +3228,8 @@ void GenerateRandomizerImgui() {
 
     cvarSettings[RSK_BIG_POE_COUNT] = CVar_GetS32("gRandomizeBigPoeTargetCount", 10);
 
+    cvarSettings[RSK_SHOPSANITY] = CVar_GetS32("gShopsanity", 0);
+
     RandoMain::GenerateRando(cvarSettings);
 
     CVar_SetS32("gRandoGenerating", 0);
@@ -3875,6 +3878,13 @@ void DrawRandoEditor(bool& open) {
                                 break;
                         }
                         SohImGui::EnhancementCombobox("gRandomizeShuffleSongs", randoShuffleSongs, 3, 0);
+                        ImGui::Separator();
+
+                        ImGui::Text("Tycoon's Wallet");
+                        InsertHelpHoverText(
+                            "An extra progressive wallet is added to the pool,\nalong with more large rupees");
+                        SohImGui::EnhancementCheckbox("Add Tycoon's Wallet", "gShopsanity");
+
                         ImGui::Separator();
 
                         // todo implement shops
