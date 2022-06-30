@@ -1780,6 +1780,9 @@ u8 Item_Give(GlobalContext* globalCtx, u8 item) {
         return ITEM_NONE;
     } else if (item == ITEM_WALLET_TYCOON) {
         Inventory_ChangeUpgrade(UPG_WALLET, 3);
+        if (gSaveContext.n64ddFlag && GetRandoSettingValue(RSK_FULL_WALLETS)) {
+            Rupees_ChangeBy(999);
+        }
         return ITEM_NONE;
     } else if (item == ITEM_STICK_UPGRADE_20) {
         if (gSaveContext.inventory.items[slot] == ITEM_NONE) {
