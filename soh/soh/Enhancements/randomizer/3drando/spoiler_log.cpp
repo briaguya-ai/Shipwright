@@ -24,6 +24,7 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
+#include <variables.h>
 
 using json = nlohmann::json;
 
@@ -257,14 +258,19 @@ void WriteIngameSpoilerLog() {
 
 // Writes the location to the specified node.
 static void WriteLocation(
-    std::string sphere, const uint32_t locationKey,
-    const bool withPadding = false
-) {
+    std::string sphere, const uint32_t locationKey, const bool withPadding = false) {
   ItemLocation* location = Location(locationKey);
 
-  // PURPLE TODO: LOCALIZATION
   // auto node = parentNode->InsertNewChildElement("location");
-  jsonData["playthrough"][sphere][location->GetName()] = location->GetPlacedItemName().GetEnglish();
+  switch (gSaveContext.language) {
+        case LANGUAGE_ENG:
+        default:
+            jsonData["playthrough"][sphere][location->GetName()] = location->GetPlacedItemName().GetEnglish();
+            break;
+        case LANGUAGE_FRA:
+            jsonData["playthrough"][sphere][location->GetName()] = location->GetPlacedItemName().GetFrench();
+            break;
+    }
   // node->SetAttribute("name", location->GetName().c_str());
   // node->SetText(location->GetPlacedItemName().GetEnglish().c_str());
 
@@ -333,7 +339,9 @@ static void WriteSettings(const bool printAll = false) {
 
     if (menu->name == "Timesaver Settings") {
       for (const Option* setting : *menu->settingsList) {
-        if (setting->GetName() == "Big Poe Target Count" || setting->GetName() == "Cuccos to return") {
+        if (setting->GetName() == "Big Poe Target Count" ||
+            setting->GetName() == "Cuccos to return" ||
+            setting->GetName() == "Skip Epona Race") {
             std::string settingName = menu->name + ":" + setting->GetName();
             jsonData["settings"][settingName] = setting->GetSelectedOptionText();
         }
@@ -415,7 +423,7 @@ static void WriteStartingInventory() {
         jsonData["settings"]["Start With " + setting->GetName()] = setting->GetSelectedOptionText();
       }
 
-      if (setting->GetName() == "Start with Consumables") {
+      if (setting->GetName() == "Start with Consumables" || setting->GetName() == "Start with Max Rupees") {
         jsonData["settings"][setting->GetName()] = setting->GetSelectedOptionText();
       }
     }
@@ -592,27 +600,38 @@ static void WriteHints(int language) {
                 break;
         }
 
-        //insert newlines either manually or when encountering a '&'
-        constexpr size_t lineLength = 34;
-        size_t lastNewline = 0;
-        while (lastNewline + lineLength < textStr.length()) {
-          size_t carrot     = textStr.find('^', lastNewline);
-          size_t ampersand  = textStr.find('&', lastNewline);
-          size_t lastSpace  = textStr.rfind(' ', lastNewline + lineLength);
-          size_t lastPeriod = textStr.rfind('.', lastNewline + lineLength);
-          //replace '&' first if it's within the newline range
-          if (ampersand < lastNewline + lineLength) {
-            lastNewline = ampersand;
-          //or move the lastNewline cursor to the next line if a '^' is encountered
-          } else if (carrot < lastNewline + lineLength) {
-            lastNewline = carrot + 1;
-          //some lines need to be split but don't have spaces, look for periods instead
-          } else if (lastSpace == std::string::npos) {
-            textStr.replace(lastPeriod, 1, ".&");
-            lastNewline = lastPeriod + 2;
-          } else {
-            textStr.replace(lastSpace, 1, "&");
-            lastNewline = lastSpace + 1;
+        
+
+        // RANDOTODO: don't just make manual exceptions
+        bool needsAutomaicNewlines = true;
+        if (textStr == "Erreur 0x69a504:&Traduction manquante^C'est de la faute à Purple Hato!&J'vous jure!" ||
+            textStr == "Mon très cher @:&Viens vite au château, je t'ai préparé&un délicieux gâteau...^À bientôt, Princesse Zelda") {
+          needsAutomaicNewlines = false;
+        }
+
+        if (needsAutomaicNewlines) {
+          //insert newlines either manually or when encountering a '&'
+          constexpr size_t lineLength = 34;
+          size_t lastNewline = 0;
+          while (lastNewline + lineLength < textStr.length()) {
+            size_t carrot     = textStr.find('^', lastNewline);
+            size_t ampersand  = textStr.find('&', lastNewline);
+            size_t lastSpace  = textStr.rfind(' ', lastNewline + lineLength);
+            size_t lastPeriod = textStr.rfind('.', lastNewline + lineLength);
+            //replace '&' first if it's within the newline range
+            if (ampersand < lastNewline + lineLength) {
+              lastNewline = ampersand;
+            //or move the lastNewline cursor to the next line if a '^' is encountered
+            } else if (carrot < lastNewline + lineLength) {
+              lastNewline = carrot + 1;
+            //some lines need to be split but don't have spaces, look for periods instead
+            } else if (lastSpace == std::string::npos) {
+              textStr.replace(lastPeriod, 1, ".&");
+              lastNewline = lastPeriod + 2;
+            } else {
+              textStr.replace(lastSpace, 1, "&");
+              lastNewline = lastSpace + 1;
+            }
           }
         }
 
