@@ -1407,11 +1407,11 @@ std::unordered_map<std::string, RandomizerSettingKey> SpoilerfileSettingNameToEn
     { "Misc Settings:  Hint Distribution", RSK_HINT_DISTRIBUTION},
     { "Skip Child Zelda", RSK_SKIP_CHILD_ZELDA },
     { "Start with Consumables", RSK_STARTING_CONSUMABLES },
+    { "Shuffle Settings:Shopsanity", RSK_SHOPSANITY },
     { "Start with Max Rupees", RSK_FULL_WALLETS },
     { "Timesaver Settings:Cuccos to return", RSK_CUCCO_COUNT },
     { "Timesaver Settings:Big Poe Target Count", RSK_BIG_POE_COUNT },
-    { "Timesaver Settings:Skip Epona Race", RSK_SKIP_EPONA_RACE},
-    { "Shuffle Settings:Shopsanity", RSK_SHOPSANITY }
+    { "Timesaver Settings:Skip Epona Race", RSK_SKIP_EPONA_RACE}
 };
 
 s32 Randomizer::GetItemIDFromGetItemID(s32 getItemId) {
@@ -1670,19 +1670,20 @@ void Randomizer::ParseRandomizerSettingsFile(const char* spoilerFileName) {
                             gSaveContext.randoSettings[index].value = 1;
                         }
                         break;
-                    case RSK_SKIP_EPONA_RACE:
-                        if(it.value() == "Don't Skip") {
-                            gSaveContext.randoSettings[index].value = 0;
-                        } else if (it.value() == "Skip") {
-                            gSaveContext.randoSettings[index].value = 1;
-                        }
-                }
                     case RSK_SHOPSANITY:
                         if (it.value() == "Off") {
                             gSaveContext.randoSettings[index].value = 0;
                         } else {
                             gSaveContext.randoSettings[index].value = 2;
                         }
+                        break;
+                    case RSK_SKIP_EPONA_RACE:
+                        if(it.value() == "Don't Skip") {
+                            gSaveContext.randoSettings[index].value = 0;
+                        } else if (it.value() == "Skip") {
+                            gSaveContext.randoSettings[index].value = 1;
+                        }
+                        break;
                 }
                 index++;        
             }
@@ -3260,9 +3261,9 @@ void GenerateRandomizerImgui() {
     cvarSettings[RSK_CUCCO_COUNT] = CVar_GetS32("gRandomizeCuccosToReturn", 7);
     cvarSettings[RSK_BIG_POE_COUNT] = CVar_GetS32("gRandomizeBigPoeTargetCount", 10);
 
+    cvarSettings[RSK_SHOPSANITY] = CVar_GetS32("gShopsanity", 0);
     cvarSettings[RSK_SKIP_EPONA_RACE] = CVar_GetS32("gRandomizeSkipEponaRace", 0);
 
-    cvarSettings[RSK_SHOPSANITY] = CVar_GetS32("gShopsanity", 0);
 
     RandoMain::GenerateRando(cvarSettings);
 
