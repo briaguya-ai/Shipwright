@@ -1194,6 +1194,17 @@ namespace SohImGui {
                 ImGui::EndMenu();
             }
 
+            if (ImGui::BeginMenu("Randomizer"))
+            {
+                std::string filename = CVar_GetString("gSpoilerLog", "");
+                if(filename != "") {
+                    EnhancementCheckbox("Randomize new save files", "gRandomizer");
+                    Tooltip("Use the randomizer settings from the loaded spoiler file to randomize the game when creating a new save file");
+                }
+
+                ImGui::EndMenu();
+            }
+
             bool Margins_isOpen = CVar_GetS32("gUseMargins", 0);
             bool Cosmetics_isOpen = CVar_GetS32("gCosmeticEditor", 0);
             bool Interface_isOpen = CVar_GetS32("gColorsEditor", 0);

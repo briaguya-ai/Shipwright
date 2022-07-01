@@ -3267,6 +3267,7 @@ void DrawRandoEditor(bool& open) {
     }
 
     if (!open) {
+        CVar_SetS32("gRandomizerSettingsEnabled", 0);
         return;
     }
 
@@ -3493,24 +3494,20 @@ void DrawRandoEditor(bool& open) {
         ImGui::PushStyleVar(ImGuiStyleVar_Alpha,
                             ImGui::GetStyle().Alpha * CVar_GetS32("gRandoGenerating", 0) ? 0.5f : 1.0f);
 
-        SohImGui::EnhancementCheckbox("Enable Randomizer", "gRandomizer");
-
-        if (CVar_GetS32("gRandomizer", 0) == 1) {
-            if (ImGui::Button("Generate Seed")) {
-                if (CVar_GetS32("gRandoGenerating", 0) == 0) {
-                    randoThread = std::thread(&GenerateRandomizerImgui);
-                }
+        if (ImGui::Button("Generate Seed")) {
+            if (CVar_GetS32("gRandoGenerating", 0) == 0) {
+                randoThread = std::thread(&GenerateRandomizerImgui);
             }
-            std::string spoilerfilepath = CVar_GetString("gSpoilerLog", "");
-            ImGui::Text("Spoiler File: %s", spoilerfilepath.c_str());
+        }
+        std::string spoilerfilepath = CVar_GetString("gSpoilerLog", "");
+        ImGui::Text("Spoiler File: %s", spoilerfilepath.c_str());
 
             // RANDOTODO settings presets
             // std::string presetfilepath = CVar_GetString("gLoadedPreset", "");
             // ImGui::Text("Settings File: %s", presetfilepath.c_str());
-        }
         ImGui::Separator();
 
-        if (CVar_GetS32("gRandomizer", 0) == 1 && ImGui::BeginTabBar("Randomizer Settings", ImGuiTabBarFlags_NoCloseWithMiddleMouseButton)) {
+        if (ImGui::BeginTabBar("Randomizer Settings", ImGuiTabBarFlags_NoCloseWithMiddleMouseButton)) {
             if (ImGui::BeginTabItem("Main Rules")) {
                 if (ImGui::BeginTable("tableRandoMainRules", 3, ImGuiTableFlags_BordersH | ImGuiTableFlags_BordersV)) {
                     ImGui::TableSetupColumn("Open Settings", ImGuiTableColumnFlags_WidthStretch, 200.0f);

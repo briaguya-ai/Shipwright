@@ -24,4 +24,5 @@ void RandoMain::GenerateRando(std::unordered_map<RandomizerSettingKey, u8> cvarS
     Game::SaveSettings();
     Game::LoadSettings();
     CVar_SetS32("gNewSeedGenerated", 1);
+    CVar_SetS32("gRandomizer", 1);
 }
