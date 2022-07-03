@@ -4452,12 +4452,12 @@ void DrawRandoEditor(bool& open) {
                     // Gossip Stone Hints
                     ImGui::Text("Gossip Stone Hints");
                     InsertHelpHoverText(
-                        "Gossip Stones can be made to give hints about\nwhere items can be found.\nDifferent settings "
-                        "can "
-                        "be chosen to decide which\nitem is needed to speak to Gossip Stones. Choosing\nto sticl with "
-                        "the "
-                        "Mask of Trutj will make the\nhints very difficult to obtain.\nHints for \"on the way of the "
-                        "hero\" are locations\ntaht contain items that are required to beat the\ngame.");
+                        "Allows Gossip Stones to provide hints on item\nlocations.\n\n"
+                        "Need Nothing: Hints are always available from\nGossip Stones.\n\n"
+                        "Need Stone of Agony: Hints are only available\nafter obtaining the Stone of Agony.\n\n"
+                        "Need Mask of Truth: Hints are only available\nwhilst wearing the Mask of Truth.\n\n"
+                        "Hints mentioning \"Way of the Hero\" indicate a\nlocation holds an item required to beat."
+                        "the\nseed.");
 
                     SohImGui::EnhancementCombobox("gRandomizeGossipStoneHints", randoGossipStoneHints, 4, 1);
                     if (CVar_GetS32("gRandomizeGossipStoneHints", 1) != 0) {
