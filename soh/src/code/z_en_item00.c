@@ -1162,7 +1162,7 @@ void EnItem00_Draw(Actor* thisx, GlobalContext* globalCtx) {
 				}
                 break;
             case ITEM00_HEART_PIECE:
-                if (CVar_GetS32("gNewDrops", 0) !=0) {
+                if (CVar_GetS32("gNewDrops", 0) != 0 && !gSaveContext.n64ddFlag) {
                     GetItem_Draw(globalCtx, GID_HEART_PIECE);
                 } else {
                     EnItem00_DrawHeartPiece(this, globalCtx);
@@ -1252,7 +1252,7 @@ void EnItem00_Draw(Actor* thisx, GlobalContext* globalCtx) {
 					break;
 				}
             case ITEM00_SMALL_KEY:
-            	if (CVar_GetS32("gNewDrops", 0) !=0) {
+                if (CVar_GetS32("gNewDrops", 0) != 0 && !gSaveContext.n64ddFlag) {
                     GetItem_Draw(globalCtx, GID_KEY_SMALL);
             	} else {
                     EnItem00_DrawCollectible(this, globalCtx);
