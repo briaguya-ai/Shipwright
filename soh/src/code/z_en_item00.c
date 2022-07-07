@@ -391,7 +391,7 @@ void EnItem00_Init(Actor* thisx, GlobalContext* globalCtx) {
             break;
         case ITEM00_SMALL_KEY:
             this->unk_158 = 0;
-            if (CVar_GetS32("gNewDrops", 0) !=0) {
+            if (CVar_GetS32("gNewDrops", 0) != 0 && !gSaveContext.n64ddFlag) {
                 Actor_SetScale(&this->actor, 0.3f);
                 this->scale = 0.3f;
                 yOffset = 50.0f;
@@ -405,7 +405,7 @@ void EnItem00_Init(Actor* thisx, GlobalContext* globalCtx) {
             break;
         case ITEM00_HEART_PIECE:
             this->unk_158 = 0;
-            if (CVar_GetS32("gNewDrops", 0) !=0) {
+            if (CVar_GetS32("gNewDrops", 0) != 0 && !gSaveContext.n64ddFlag) {
                 Actor_SetScale(&this->actor, 0.5f);
                 this->scale = 0.5f;
                 yOffset = 50.0f;
@@ -730,7 +730,7 @@ void func_8001DFC8(EnItem00* this, GlobalContext* globalCtx) {
 		    (this->actor.params == ITEM00_ARROWS_MEDIUM) || (this->actor.params == ITEM00_ARROWS_LARGE) ||
 		    (this->actor.params == ITEM00_BOMBS_A) || (this->actor.params == ITEM00_BOMBS_B) ||
 		    (this->actor.params == ITEM00_NUTS) || (this->actor.params == ITEM00_STICK) ||
-		    (this->actor.params == ITEM00_MAGIC_SMALL) || (this->actor.params == ITEM00_SEEDS) || (this->actor.params == ITEM00_SMALL_KEY) ||
+		    (this->actor.params == ITEM00_MAGIC_SMALL) || (this->actor.params == ITEM00_SEEDS) || ((this->actor.params == ITEM00_SMALL_KEY) && !gSaveContext.n64ddFlag) ||
 		    (this->actor.params == ITEM00_MAGIC_LARGE) || (this->actor.params == ITEM00_HEART) || (this->actor.params == ITEM00_BOMBS_SPECIAL)) {
 		    this->actor.shape.rot.y = DroppedItemRot;
 		}
@@ -758,7 +758,7 @@ void func_8001DFC8(EnItem00* this, GlobalContext* globalCtx) {
     }
 
     if (this->actor.params == ITEM00_HEART_PIECE) {
-        if (CVar_GetS32("gNewDrops", 0) !=0) {
+        if (CVar_GetS32("gNewDrops", 0) != 0 && !gSaveContext.n64ddFlag) {
             this->actor.shape.yOffset = Math_SinS(this->actor.shape.rot.y) * 20.0f + 50.0f;
         } else {
             this->actor.shape.yOffset = Math_SinS(this->actor.shape.rot.y) * 150.0f + 850.0f;
