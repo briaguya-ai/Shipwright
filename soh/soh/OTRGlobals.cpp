@@ -37,6 +37,7 @@
 #include "Enhancements/debugger/debugger.h"
 #include "Enhancements/randomizer/randomizer.h"
 #include <soh/Enhancements/randomizer/randomizer_item_tracker.h>
+#include "Enhancements/n64_weird_frame_data.inc"
 #include "soh/frame_interpolation.h"
 #include "Utils/BitConverter.h"
 #include "variables.h"
@@ -1571,4 +1572,9 @@ extern "C" s32 GetRandomizedItemId(GetItemID ogId, s16 actorId, s16 actorParams,
 
 extern "C" s32 GetRandomizedItemIdFromKnownCheck(RandomizerCheck randomizerCheck, GetItemID ogId) {
     return OTRGlobals::Instance->gRandomizer->GetRandomizedItemIdFromKnownCheck(randomizerCheck, ogId);
+}
+
+extern "C" void* getN64WeirdFrame(s32 i) {
+    char* weirdFrameBytes = reinterpret_cast<char*>(n64WeirdFrames);
+    return &weirdFrameBytes[i + sizeof(n64WeirdFrames)];
 }
