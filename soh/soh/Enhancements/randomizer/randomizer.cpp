@@ -3193,8 +3193,8 @@ void GenerateRandomizerImgui() {
     std::unordered_map<RandomizerSettingKey, u8> cvarSettings;
     cvarSettings[RSK_FOREST] = CVar_GetS32("gRandomizeForest", 1);
     cvarSettings[RSK_KAK_GATE] = CVar_GetS32("gRandomizeKakarikoGate", 1);
-    cvarSettings[RSK_ZORAS_FOUNTAIN] = CVar_GetS32("gRandomizeZorasFountain", 0);
     cvarSettings[RSK_DOOR_OF_TIME] = CVar_GetS32("gRandomizeDoorOfTime", 0);
+    cvarSettings[RSK_ZORAS_FOUNTAIN] = CVar_GetS32("gRandomizeZorasFountain", 0);
     cvarSettings[RSK_GERUDO_FORTRESS] = CVar_GetS32("gRandomizeGerudoFortress", 1);
     cvarSettings[RSK_RAINBOW_BRIDGE] = CVar_GetS32("gRandomizeRainbowBridge", 3);
     cvarSettings[RSK_RAINBOW_BRIDGE_STONE_COUNT] = CVar_GetS32("gRandomizeStoneCount", 1);
@@ -3279,7 +3279,7 @@ void DrawRandoEditor(bool& open) {
     const char* randoDoorOfTime[3] = { "Closed", "Song only", "Open" };
     const char* randoZorasFountain[3] = { "Closed", "Closed as child", "Open" };
     const char* randoGerudoFortress[3] = { "Normal", "Fast", "Open" };
-    const char* randoRainbowBridge[7] = { "Always open", "Vanilla", "Stones", "Medallions", "Dungeon rewards", "Dungeons", "Tokens" };
+    const char* randoRainbowBridge[7] = { "Vanilla", "Always open", "Stones", "Medallions", "Dungeon rewards", "Dungeons", "Tokens" };
     const char* randoGanonsTrial[2] = { "Off", "On" };
 
     // World Settings
@@ -3530,7 +3530,7 @@ void DrawRandoEditor(bool& open) {
                     if (CVar_GetS32("gRandomizeAllOpenSettings", 0) != 1) {
                         ImGui::Separator();
                         // Forest
-                        ImGui::Text("Forest");
+                        ImGui::Text(Settings::OpenForest.GetName().c_str());
                         InsertHelpHoverText(
                             "Closed - Kokiri sword & shield are required to access\n"
                             "the Deku Tree, and completing the Deku Tree is required to\n"
@@ -3545,7 +3545,7 @@ void DrawRandoEditor(bool& open) {
                         SohImGui::EnhancementCombobox("gRandomizeForest", randoForest, 3, 1);
                         ImGui::Separator();
                         // Kakariko Gate
-                        ImGui::Text("Kakariko Gate");
+                        ImGui::Text(Settings::OpenKakariko.GetName().c_str());
                         InsertHelpHoverText(
                             "Closed - The gate will remain closed until Zelda's letter\n"
                             "is shown to the guard.\n"
@@ -3557,7 +3557,7 @@ void DrawRandoEditor(bool& open) {
                         ImGui::Separator();
 
                         // Door of Time
-                        ImGui::Text("Door of Time");
+                        ImGui::Text(Settings::OpenDoorOfTime.GetName().c_str());
                         InsertHelpHoverText(
                             "Closed - The Ocarina of Time, the Song of Time and all\n"
                             "three spiritual stones are required to open the Door of Time.\n"
@@ -3572,7 +3572,7 @@ void DrawRandoEditor(bool& open) {
                         ImGui::Separator();
 
                         // Zora's Fountain
-                        ImGui::Text("Zora's Fountain");
+                        ImGui::Text(Settings::ZorasFountain.GetName().c_str());
                         InsertHelpHoverText(
                             "Closed - King Zora obstructs the way to Zora's Fountain.\n"
                             "Ruto's letter must be shown as child Link in order to move\n"
@@ -3588,7 +3588,7 @@ void DrawRandoEditor(bool& open) {
                         ImGui::Separator();
 
                         // Gerudo Fortress
-                        ImGui::Text("Gerudo Fortress");
+                        ImGui::Text(Settings::GerudoFortress.GetName().c_str());
                         InsertHelpHoverText(
                             "Sets the amount of carpenters required to repair the bridge\n"
                             "in Gerudo Valley.\n"
@@ -3603,7 +3603,7 @@ void DrawRandoEditor(bool& open) {
                         ImGui::Separator();
 
                         // Rainbow Bridge
-                        ImGui::Text("Rainbow Bridge");
+                        ImGui::Text(Settings::Bridge.GetName().c_str());
                         InsertHelpHoverText(
                             "Alters the requirements to open the bridge to Ganon's Castle.\n"
                             "\n"
@@ -3666,8 +3666,8 @@ void DrawRandoEditor(bool& open) {
                     if (CVar_GetS32("gRandomizeAllShuffleSettings", 0) != 1) {
                         ImGui::Separator();
 
-                        // Shuffle Song
-                        ImGui::Text("Shuffle Songs");
+                        // Shuffle Songs
+                        ImGui::Text(Settings::ShuffleSongs.GetName().c_str());
                         InsertHelpHoverText(
                             "Song locations - Songs will only appear at locations that normally\n"
                             "teach songs.\n"
@@ -3687,7 +3687,7 @@ void DrawRandoEditor(bool& open) {
 
                         if(CVar_GetS32("gRandomizeStartingKokiriSword", 0) == 0) {
                             // Shuffle Kokiri Sword
-                            SohImGui::EnhancementCheckbox("Shuffle Kokiri Sword", "gRandomizeShuffleKokiriSword");
+                            SohImGui::EnhancementCheckbox(Settings::ShuffleKokiriSword.GetName().c_str(), "gRandomizeShuffleKokiriSword");
                             InsertHelpHoverText(
                                 "Shuffles the Kokiri Sword into the item pool.\n"
                                 "\n"
@@ -3699,7 +3699,7 @@ void DrawRandoEditor(bool& open) {
 
                         if(CVar_GetS32("gRandomizeStartingOcarina", 0) == 0) {
                             // Shuffle Ocarinas
-                            SohImGui::EnhancementCheckbox("Shuffle Ocarinas", "gRandomizeShuffleOcarinas");
+                            SohImGui::EnhancementCheckbox(Settings::ShuffleOcarinas.GetName().c_str(), "gRandomizeShuffleOcarinas");
                             InsertHelpHoverText(
                                 "Enabling this shuffles the Fairy Ocarina and the Ocarina of Time\n"
                                 "into the item pool.\n"
@@ -3712,7 +3712,7 @@ void DrawRandoEditor(bool& open) {
                         // hide this option if we're skipping child zelda
                         if(CVar_GetS32("gRandomizeSkipChildZelda", 0) == 0) {
                             // Shuffle Weird Egg
-                            SohImGui::EnhancementCheckbox("Shuffle Weird Egg", "gRandomizeShuffleWeirdEgg");
+                            SohImGui::EnhancementCheckbox(Settings::ShuffleWeirdEgg.GetName().c_str(), "gRandomizeShuffleWeirdEgg");
                             InsertHelpHoverText(
                                 "Shuffles the Weird Egg from Malon in to the item pool.\n"
                                 "\n"
@@ -3727,7 +3727,7 @@ void DrawRandoEditor(bool& open) {
                         }
 
                         // Shuffle Gerudo Membership Card
-                        SohImGui::EnhancementCheckbox("Shuffle Gerudo Card", "gRandomizeShuffleGerudoToken");
+                        SohImGui::EnhancementCheckbox(Settings::ShuffleGerudoToken.GetName().c_str(), "gRandomizeShuffleGerudoToken");
                         InsertHelpHoverText(
                             "Shuffles the Gerudo Membership Card into the item pool.\n"
                             "\n"
@@ -3746,7 +3746,7 @@ void DrawRandoEditor(bool& open) {
                     ImGui::PushItemWidth(-FLT_MIN);
 
                     // Shuffle Dungeon Rewards
-                    ImGui::Text("Shuffle Dungeon Rewards");
+                    ImGui::Text(Settings::ShuffleRewards.GetName().c_str());
                     InsertHelpHoverText(
                         "Shuffles the location of spiritual stones and medallions.\n"
                         "\n"
@@ -3764,7 +3764,7 @@ void DrawRandoEditor(bool& open) {
                     ImGui::Separator();
 
                     // Ganon's Boss Key
-                    ImGui::Text("Ganon's Boss Key");
+                    ImGui::Text(Settings::GanonsBossKey.GetName().c_str());
                     InsertHelpHoverText(
                         "Vanilla - Key will appear in the vanilla location.\n"
                         "\n"
@@ -3777,7 +3777,7 @@ void DrawRandoEditor(bool& open) {
                     ImGui::Separator();
 
                     // Start with Maps & Compasses
-                    SohImGui::EnhancementCheckbox("Start with Maps/Compasses", "gRandomizeStartingMapsCompasses");
+                    SohImGui::EnhancementCheckbox(Settings::MapsAndCompasses.GetName().c_str(), "gRandomizeStartingMapsCompasses");
                     ImGui::Separator();
 
                     ImGui::PopItemWidth();
@@ -3815,7 +3815,7 @@ void DrawRandoEditor(bool& open) {
                     ImGui::Separator();
 
                     // Skip child stealth
-                    SohImGui::EnhancementCheckbox("Skip Child Stealth", "gRandomizeSkipChildStealth");
+                    SohImGui::EnhancementCheckbox(Settings::SkipChildStealth.GetName().c_str(), "gRandomizeSkipChildStealth");
                     InsertHelpHoverText(
                         "The crawlspace into Hyrule Castle goes straight to Zelda, skipping\n"
                         "the guards."
@@ -3823,14 +3823,14 @@ void DrawRandoEditor(bool& open) {
                     ImGui::Separator();
 
                     // Skip Epona race
-                    SohImGui::EnhancementCheckbox("Skip Epona Race", "gRandomizeSkipEponaRace");
+                    SohImGui::EnhancementCheckbox(Settings::SkipEponaRace.GetName().c_str(), "gRandomizeSkipEponaRace");
                     InsertHelpHoverText(
                         "Epona can be summoned with Epona's Song without needing to race Ingo."
                     );
                     ImGui::Separator();
 
                     // Skip tower escape
-                    SohImGui::EnhancementCheckbox("Skip Tower Escape", "gRandomizeSkipTowerEscape");
+                    SohImGui::EnhancementCheckbox(Settings::SkipTowerEscape.GetName().c_str(), "gRandomizeSkipTowerEscape");
                     InsertHelpHoverText(
                         "The tower escape sequence between Ganondorf and Ganon will be skipped."
                     );
@@ -3842,7 +3842,7 @@ void DrawRandoEditor(bool& open) {
                     ImGui::Separator();
 
                     // Gossip Stone Hints
-                    ImGui::Text("Gossip Stone Hints");
+                    ImGui::Text(Settings::GossipStoneHints.GetName().c_str());
                     InsertHelpHoverText(
                         "Allows Gossip Stones to provide hints on item locations. Hints mentioning\n"
                         "\"Way of the Hero\" indicate a location that holds an item required to beat\n"
@@ -3861,7 +3861,7 @@ void DrawRandoEditor(bool& open) {
                     if (CVar_GetS32("gRandomizeGossipStoneHints", 1) != 0) {
                         // Hint Clarity
                         ImGui::Indent();
-                        ImGui::Text("Hint Clarity");
+                        ImGui::Text(Settings::ClearerHints.GetName().c_str());
                         InsertHelpHoverText(
                             "Sets the difficulty of hints.\n"
                             "\n"
@@ -3877,7 +3877,7 @@ void DrawRandoEditor(bool& open) {
                         SohImGui::EnhancementCombobox("gRandomizeHintClarity", randoHintClarity, 3, 2);
 
                         // Hint Distribution
-                        ImGui::Text("Hint Distribution");
+                        ImGui::Text(Settings::HintDistribution.GetName().c_str());
                         InsertHelpHoverText(
                             "Sets how many hints will be useful.\n"
                             "\n"
@@ -3899,7 +3899,7 @@ void DrawRandoEditor(bool& open) {
                     ImGui::TableNextColumn();
                     ImGui::PushItemWidth(-FLT_MIN);
                     ImGui::Separator();
-                    ImGui::Text("Item Pool");
+                    ImGui::Text(Settings::ItemPoolValue.GetName().c_str());
                     InsertHelpHoverText(
                         "Sets how many major items appear in the item pool.\n"
                         "\n"
@@ -3915,7 +3915,7 @@ void DrawRandoEditor(bool& open) {
                     ImGui::Separator();
 
                     // Ice Traps
-                    ImGui::Text("Ice Traps");
+                    ImGui::Text(Settings::IceTrapValue.GetName().c_str());
                     InsertHelpHoverText(
                         "Sets how many items are replaced by ice traps.\n"
                         "\n"
@@ -3985,15 +3985,15 @@ void DrawRandoEditor(bool& open) {
 
                     // COLUMN 1 - STARTING INVENTORY
                     ImGui::Separator();
-                    SohImGui::EnhancementCheckbox("Start with Fairy Ocarina", "gRandomizeStartingOcarina");
+                    SohImGui::EnhancementCheckbox(Settings::StartingOcarina.GetName().c_str(), "gRandomizeStartingOcarina");
                     ImGui::Separator();
-                    SohImGui::EnhancementCheckbox("Start with Kokiri Sword", "gRandomizeStartingKokiriSword");
+                    SohImGui::EnhancementCheckbox(Settings::StartingKokiriSword.GetName().c_str(), "gRandomizeStartingKokiriSword");
                     ImGui::Separator();
-                    SohImGui::EnhancementCheckbox("Start with Deku Shield", "gRandomizeStartingDekuShield");
+                    SohImGui::EnhancementCheckbox(Settings::StartingDekuShield.GetName().c_str(), "gRandomizeStartingDekuShield");
                     ImGui::Separator();
                     SohImGui::EnhancementCheckbox("Skip Child Zelda", "gRandomizeSkipChildZelda");
                     ImGui::Separator();
-                    SohImGui::EnhancementCheckbox("Start with Consumables", "gRandomizeStartingConsumables");
+                    SohImGui::EnhancementCheckbox(Settings::StartingConsumables.GetName().c_str(), "gRandomizeStartingConsumables");
                     ImGui::Separator();
                     SohImGui::EnhancementCheckbox("Full Wallets", "gRandomizeFullWallets");
                     InsertHelpHoverText("Start with a full wallet. All wallet upgrades come filled with rupees.");
