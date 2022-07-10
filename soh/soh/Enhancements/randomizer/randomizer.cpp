@@ -3821,6 +3821,12 @@ void DrawRandoEditor(bool& open) {
                         "the guards."
                     );
                     ImGui::Separator();
+                    SohImGui::EnhancementCheckbox("Skip Child Zelda", "gRandomizeSkipChildZelda");
+                    InsertHelpHoverText(
+                        "Start with Zelda's Letter in your inventory and skip the sequence up\n"
+                        "until after meeting Zelda. Disables the ability to shuffle Weird Egg."
+                    );
+                    ImGui::Separator();
 
                     // Skip Epona race
                     SohImGui::EnhancementCheckbox(Settings::SkipEponaRace.GetName().c_str(), "gRandomizeSkipEponaRace");
@@ -3991,8 +3997,6 @@ void DrawRandoEditor(bool& open) {
                     SohImGui::EnhancementCheckbox(Settings::StartingKokiriSword.GetName().c_str(), "gRandomizeStartingKokiriSword");
                     ImGui::Separator();
                     SohImGui::EnhancementCheckbox(Settings::StartingDekuShield.GetName().c_str(), "gRandomizeStartingDekuShield");
-                    ImGui::Separator();
-                    SohImGui::EnhancementCheckbox("Skip Child Zelda", "gRandomizeSkipChildZelda");
                     ImGui::Separator();
                     SohImGui::EnhancementCheckbox(Settings::StartingConsumables.GetName().c_str(), "gRandomizeStartingConsumables");
                     ImGui::Separator();
