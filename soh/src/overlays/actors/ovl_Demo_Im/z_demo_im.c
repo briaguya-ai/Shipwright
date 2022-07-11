@@ -524,7 +524,7 @@ void DemoIm_DrawTranslucent(DemoIm* this, GlobalContext* globalCtx) {
     void* eyeTex = sEyeTextures[eyeIndex];
     SkelAnime* skelAnime = &this->skelAnime;
 
-    OPEN_DISPS(globalCtx->state.gfxCtx, "../z_demo_im_inKenjyanomaDemo02.c", 281);
+    OPEN_DISPS(globalCtx->state.gfxCtx);
 
     func_80093D84(globalCtx->state.gfxCtx);
 
@@ -536,7 +536,7 @@ void DemoIm_DrawTranslucent(DemoIm* this, GlobalContext* globalCtx) {
     POLY_XLU_DISP = SkelAnime_DrawFlex(globalCtx, skelAnime->skeleton, skelAnime->jointTable, skelAnime->dListCount,
                                        NULL, NULL, NULL, POLY_XLU_DISP);
 
-    CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_demo_im_inKenjyanomaDemo02.c", 308);
+    CLOSE_DISPS(globalCtx->state.gfxCtx);
 }
 
 void func_80985E60(DemoIm* this, GlobalContext* globalCtx) {
@@ -950,7 +950,7 @@ void func_80986D40(DemoIm* this, GlobalContext* globalCtx) {
     if (gSaveContext.sceneSetupIndex == 6) {
         this->action = 19;
         this->drawConfig = 1;
-    } else if (gSaveContext.eventChkInf[8] & 1) {
+    } else if ((gSaveContext.eventChkInf[8] & 1) && !gSaveContext.n64ddFlag) {
         Actor_Kill(&this->actor);
     } else if (!(gSaveContext.eventChkInf[5] & 0x200)) {
         this->action = 23;
@@ -1209,7 +1209,7 @@ void DemoIm_DrawSolid(DemoIm* this, GlobalContext* globalCtx) {
     void* eyeTexture = sEyeTextures[eyeIndex];
     SkelAnime* skelAnime = &this->skelAnime;
 
-    OPEN_DISPS(globalCtx->state.gfxCtx, "../z_demo_im.c", 904);
+    OPEN_DISPS(globalCtx->state.gfxCtx);
 
     func_80093D18(globalCtx->state.gfxCtx);
 
@@ -1221,7 +1221,7 @@ void DemoIm_DrawSolid(DemoIm* this, GlobalContext* globalCtx) {
     SkelAnime_DrawFlexOpa(globalCtx, skelAnime->skeleton, skelAnime->jointTable, skelAnime->dListCount,
                           DemoIm_OverrideLimbDraw, DemoIm_PostLimbDraw, this);
 
-    CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_demo_im.c", 925);
+    CLOSE_DISPS(globalCtx->state.gfxCtx);
 }
 
 void DemoIm_Draw(Actor* thisx, GlobalContext* globalCtx) {

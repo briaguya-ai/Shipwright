@@ -375,7 +375,7 @@ void HintTable_Init_Exclude_Overworld() {
 
     hintTable[GRAVEYARD_FREESTANDING_POH] = HintText::Exclude({
                        //obscure text
-                       Text{"a #crate in a graveyard# hides", /*french*/"#la boîte dans le cimetière# contient", /*spanish*/"bajo la #caja de un cementerio# yace"},
+                       Text{"a #crate in a graveyard# hides", /*french*/"#la boîte dans le Cimetière# contient", /*spanish*/"bajo la #caja de un cementerio# yace"},
   });
 
     hintTable[GRAVEYARD_DAMPE_GRAVEDIGGING_TOUR] = HintText::Exclude({
@@ -605,12 +605,12 @@ void HintTable_Init_Exclude_Overworld() {
 
     hintTable[GRAVEYARD_GS_WALL] = HintText::Exclude({
                        //obscure text
-                       Text{"night reveals a #spider in a graveyard# holding", /*french*/"une #Skulltula sur une façade du cimetière# a", /*spanish*/"la noche revela una #Skulltula del cementerio# que otorga"},
+                       Text{"night reveals a #spider in a graveyard# holding", /*french*/"une #Skulltula sur une façade du Cimetière# a", /*spanish*/"la noche revela una #Skulltula del cementerio# que otorga"},
   });
 
     hintTable[GRAVEYARD_GS_BEAN_PATCH] = HintText::Exclude({
                        //obscure text
-                       Text{"a #spider buried in a graveyard# holds", /*french*/"une #Skulltula enterrée dans le cimetière# a", /*spanish*/"una #Skulltula enterrada en el cementerio# otorga"},
+                       Text{"a #spider buried in a graveyard# holds", /*french*/"une #Skulltula enterrée dans le Cimetière# a", /*spanish*/"una #Skulltula enterrada en el cementerio# otorga"},
   });
 
 
@@ -833,42 +833,42 @@ void HintTable_Init_Exclude_Overworld() {
 
     hintTable[MARKET_BOMBCHU_SHOP_ITEM_1] = HintText::Exclude({
                        //obscure text
-                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
+                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de Missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
   });
 
     hintTable[MARKET_BOMBCHU_SHOP_ITEM_2] = HintText::Exclude({
                        //obscure text
-                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
+                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de Missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
   });
 
     hintTable[MARKET_BOMBCHU_SHOP_ITEM_3] = HintText::Exclude({
                        //obscure text
-                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
+                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de Missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
   });
 
     hintTable[MARKET_BOMBCHU_SHOP_ITEM_4] = HintText::Exclude({
                        //obscure text
-                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
+                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de Missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
   });
 
     hintTable[MARKET_BOMBCHU_SHOP_ITEM_5] = HintText::Exclude({
                        //obscure text
-                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
+                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de Missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
   });
 
     hintTable[MARKET_BOMBCHU_SHOP_ITEM_6] = HintText::Exclude({
                        //obscure text
-                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
+                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de Missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
   });
 
     hintTable[MARKET_BOMBCHU_SHOP_ITEM_7] = HintText::Exclude({
                        //obscure text
-                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
+                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de Missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
   });
 
     hintTable[MARKET_BOMBCHU_SHOP_ITEM_8] = HintText::Exclude({
                        //obscure text
-                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
+                       Text{"a #Bombchu merchant# sells", /*french*/"le #marchand de Missiles# vend", /*spanish*/"un #mercader de bombchus# vende"},
   });
 
 
@@ -877,7 +877,7 @@ void HintTable_Init_Exclude_Overworld() {
                        Text{"a #potion seller# offers", /*french*/"l'#apothicaire# vend", /*spanish*/"un #vendedor de pociones# ofrece"},
                      }, {},
                        //clear text
-                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la place du marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
+                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la Place du Marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
   );
 
     hintTable[MARKET_POTION_SHOP_ITEM_2] = HintText::Exclude({
@@ -885,7 +885,7 @@ void HintTable_Init_Exclude_Overworld() {
                        Text{"a #potion seller# offers", /*french*/"l'#apothicaire# vend", /*spanish*/"un #vendedor de pociones# ofrece"},
                      }, {},
                        //clear text
-                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la place du marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
+                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la Place du Marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
   );
 
     hintTable[MARKET_POTION_SHOP_ITEM_3] = HintText::Exclude({
@@ -893,7 +893,7 @@ void HintTable_Init_Exclude_Overworld() {
                        Text{"a #potion seller# offers", /*french*/"l'#apothicaire# vend", /*spanish*/"un #vendedor de pociones# ofrece"},
                      }, {},
                        //clear text
-                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la place du marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
+                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la Place du Marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
   );
 
     hintTable[MARKET_POTION_SHOP_ITEM_4] = HintText::Exclude({
@@ -901,7 +901,7 @@ void HintTable_Init_Exclude_Overworld() {
                        Text{"a #potion seller# offers", /*french*/"l'#apothicaire# vend", /*spanish*/"un #vendedor de pociones# ofrece"},
                      }, {},
                        //clear text
-                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la place du marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
+                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la Place du Marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
   );
 
     hintTable[MARKET_POTION_SHOP_ITEM_5] = HintText::Exclude({
@@ -909,7 +909,7 @@ void HintTable_Init_Exclude_Overworld() {
                        Text{"a #potion seller# offers", /*french*/"l'#apothicaire# vend", /*spanish*/"un #vendedor de pociones# ofrece"},
                      }, {},
                        //clear text
-                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la place du marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
+                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la Place du Marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
   );
 
     hintTable[MARKET_POTION_SHOP_ITEM_6] = HintText::Exclude({
@@ -917,7 +917,7 @@ void HintTable_Init_Exclude_Overworld() {
                        Text{"a #potion seller# offers", /*french*/"l'#apothicaire# vend", /*spanish*/"un #vendedor de pociones# ofrece"},
                      }, {},
                        //clear text
-                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la place du marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
+                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la Place du Marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
   );
 
     hintTable[MARKET_POTION_SHOP_ITEM_7] = HintText::Exclude({
@@ -925,7 +925,7 @@ void HintTable_Init_Exclude_Overworld() {
                        Text{"a #potion seller# offers", /*french*/"l'#apothicaire# vend", /*spanish*/"un #vendedor de pociones# ofrece"},
                      }, {},
                        //clear text
-                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la place du marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
+                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la Place du Marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
   );
 
     hintTable[MARKET_POTION_SHOP_ITEM_8] = HintText::Exclude({
@@ -933,48 +933,48 @@ void HintTable_Init_Exclude_Overworld() {
                        Text{"a #potion seller# offers", /*french*/"l'#apothicaire# vend", /*spanish*/"un #vendedor de pociones# ofrece"},
                      }, {},
                        //clear text
-                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la place du marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
+                       Text{"the #Market Potion Shop# offers", /*french*/"l'#apothicaire dans la Place du Marché# vend", /*spanish*/"la #tienda de pociones del mercado# ofrece"}
   );
 
 
     hintTable[MARKET_BAZAAR_ITEM_1] = HintText::Exclude({
                        //obscure text
-                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la place du marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
+                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la Place du Marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
   });
 
     hintTable[MARKET_BAZAAR_ITEM_2] = HintText::Exclude({
                        //obscure text
-                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la place du marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
+                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la Place du Marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
   });
 
     hintTable[MARKET_BAZAAR_ITEM_3] = HintText::Exclude({
                        //obscure text
-                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la place du marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
+                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la Place du Marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
   });
 
     hintTable[MARKET_BAZAAR_ITEM_4] = HintText::Exclude({
                        //obscure text
-                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la place du marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
+                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la Place du Marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
   });
 
     hintTable[MARKET_BAZAAR_ITEM_5] = HintText::Exclude({
                        //obscure text
-                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la place du marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
+                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la Place du Marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
   });
 
     hintTable[MARKET_BAZAAR_ITEM_6] = HintText::Exclude({
                        //obscure text
-                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la place du marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
+                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la Place du Marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
   });
 
     hintTable[MARKET_BAZAAR_ITEM_7] = HintText::Exclude({
                        //obscure text
-                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la place du marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
+                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la Place du Marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
   });
 
     hintTable[MARKET_BAZAAR_ITEM_8] = HintText::Exclude({
                        //obscure text
-                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la place du marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
+                       Text{"the #Market Bazaar# offers", /*french*/"le #bazar de la Place du Marché# vend", /*spanish*/"el #bazar del mercado# ofrece"},
   });
 
 

@@ -33,10 +33,12 @@
 #define DRWAV_IMPLEMENTATION
 #include "Lib/dr_libs/wav.h"
 #include "AudioPlayer.h"
+#include "Enhancements/cosmetics/CosmeticsEditor.h"
 #include "Enhancements/debugconsole.h"
 #include "Enhancements/debugger/debugger.h"
 #include "Enhancements/randomizer/randomizer.h"
 #include <soh/Enhancements/randomizer/randomizer_item_tracker.h>
+#include "Enhancements/n64_weird_frame_data.inc"
 #include "soh/frame_interpolation.h"
 #include "Utils/BitConverter.h"
 #include "variables.h"
@@ -117,6 +119,7 @@ extern "C" void InitOTR() {
     clearMtx = (uintptr_t)&gMtxClear;
     OTRMessage_Init();
     OTRAudio_Init();
+    InitCosmeticsEditor();
     DebugConsole_Init();
     Debug_Init();
     Rando_Init();
@@ -1436,6 +1439,11 @@ extern "C" int Controller_ShouldRumble(size_t i) {
     }
 
     return 0;
+}
+
+extern "C" void* getN64WeirdFrame(s32 i) {
+    char* weirdFrameBytes = reinterpret_cast<char*>(n64WeirdFrames);
+    return &weirdFrameBytes[i + sizeof(n64WeirdFrames)];
 }
 
 extern "C" s16 GetItemModelFromId(s16 itemId) {

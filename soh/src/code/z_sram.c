@@ -3,6 +3,9 @@
 
 #include <string.h>
 
+#define NUM_DUNGEONS 8
+#define NUM_TRIALS 6
+
 /**
  *  Initialize new save.
  *  This save has an empty inventory with 3 hearts and single magic.
@@ -603,12 +606,24 @@ void Sram_InitSave(FileChooseContext* fileChooseCtx) {
         fileChooseCtx->n64ddFlag = 1;
         gSaveContext.n64ddFlag = 1;
 
+        // Sets all the dungeons to incomplete when generating a rando save. Fixes https://github.com/briaguya-ai/rando-issue-tracker/issues/82
+        for (u8 i = 0; i < NUM_DUNGEONS; i++) {
+            gSaveContext.dungeonsDone[i] = 0;
+        }
+
+        // Sets all Ganon's Trials to incomplete when generating a rando save. Fixes https://github.com/briaguya-ai/rando-issue-tracker/issues/131
+        for (u8 i = 0; i < NUM_TRIALS; i++) {
+            gSaveContext.trialsDone[i] = 0;
+        }
+
         // Set Cutscene flags to skip them
         gSaveContext.eventChkInf[0xC] |= 0x10; // returned to tot with medallions
         gSaveContext.eventChkInf[0xC] |= 0x20; //sheik at tot pedestal
         gSaveContext.eventChkInf[4] |= 0x20; // master sword pulled
         gSaveContext.eventChkInf[4] |= 0x8000; // entered master sword chamber
         gSaveContext.infTable[0] |= 1;
+        // RANDTODO: Don't skip this scene if Don't Skip Glitch Useful Cutscenes is enabled.
+        gSaveContext.infTable[17] |= 0x400; // Darunia in Fire Temple
         gSaveContext.cutsceneIndex = 0;
         Flags_SetEventChkInf(5);
 

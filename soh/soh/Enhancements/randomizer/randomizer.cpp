@@ -1,6 +1,6 @@
 #include "randomizer.h"
 #include "3drando/settings.hpp"
-#include "json.hpp"
+#include "soh/Lib/nlohmann/json.hpp"
 #include <fstream>
 #include <variables.h>
 #include <macros.h>
@@ -1048,7 +1048,7 @@ std::unordered_map<std::string, RandomizerGet> SpoilerfileGetNameToEnum = {
     { "Double Defense", RG_DOUBLE_DEFENSE },
     { "Double Défence", RG_DOUBLE_DEFENSE },
     { "Weird Egg", RG_WEIRD_EGG },
-    { "Oeuf curieux", RG_WEIRD_EGG },
+    { "Oeuf Curieux", RG_WEIRD_EGG },
     { "Zelda's Letter", RG_ZELDAS_LETTER },
     { "Lettre de Zelda", RG_ZELDAS_LETTER },
     { "Pocket Egg", RG_POCKET_EGG },
@@ -1094,7 +1094,7 @@ std::unordered_map<std::string, RandomizerGet> SpoilerfileGetNameToEnum = {
     { "Progressive Bombchu", RG_PROGRESSIVE_BOMBCHUS },
     { "Missiles (prog.)", RG_PROGRESSIVE_BOMBCHUS },
     { "Progressive Magic Meter", RG_PROGRESSIVE_MAGIC_METER },
-    { "Jauge de magie (prog.)", RG_PROGRESSIVE_MAGIC_METER },
+    { "Jauge de Magie (prog.)", RG_PROGRESSIVE_MAGIC_METER },
     { "Progressive Ocarina", RG_PROGRESSIVE_OCARINA },
     { "Ocarina (prog.)", RG_PROGRESSIVE_OCARINA },
     { "Progressive Goron Sword", RG_PROGRESSIVE_GORONSWORD },
@@ -1188,17 +1188,17 @@ std::unordered_map<std::string, RandomizerGet> SpoilerfileGetNameToEnum = {
     { "Ice Cavern Compass", RG_ICE_CAVERN_COMPASS },
     { "Boussole de la Caverne Polaire", RG_ICE_CAVERN_COMPASS },
     { "Forest Temple Big Key", RG_FOREST_TEMPLE_BOSS_KEY },
-    { "Clé d'or du Temple de la Forêt", RG_FOREST_TEMPLE_BOSS_KEY },
+    { "Clé d'Or du Temple de la Forêt", RG_FOREST_TEMPLE_BOSS_KEY },
     { "Fire Temple Big Key", RG_FIRE_TEMPLE_BOSS_KEY },
-    { "Clé d'or du Temple du Feu", RG_FIRE_TEMPLE_BOSS_KEY },
+    { "Clé d'Or du Temple du Feu", RG_FIRE_TEMPLE_BOSS_KEY },
     { "Water Temple Big Key", RG_WATER_TEMPLE_BOSS_KEY },
-    { "Clé d'or du Temple de l'Eau", RG_WATER_TEMPLE_BOSS_KEY },
+    { "Clé d'Or du Temple de l'Eau", RG_WATER_TEMPLE_BOSS_KEY },
     { "Spirit Temple Big Key", RG_SPIRIT_TEMPLE_BOSS_KEY },
-    { "Clé d'or du Temple de l'Esprit", RG_SPIRIT_TEMPLE_BOSS_KEY },
+    { "Clé d'Or du Temple de l'Esprit", RG_SPIRIT_TEMPLE_BOSS_KEY },
     { "Shadow Temple Big Key", RG_SHADOW_TEMPLE_BOSS_KEY },
-    { "Clé d'or du Temple de l'Ombre", RG_SHADOW_TEMPLE_BOSS_KEY },
+    { "Clé d'Or du Temple de l'Ombre", RG_SHADOW_TEMPLE_BOSS_KEY },
     { "Ganon's Castle Big Key", RG_GANONS_CASTLE_BOSS_KEY },
-    { "Clé d'or du Château de Ganon", RG_GANONS_CASTLE_BOSS_KEY },
+    { "Clé d'Or du Château de Ganon", RG_GANONS_CASTLE_BOSS_KEY },
     { "Forest Temple Small Key", RG_FOREST_TEMPLE_SMALL_KEY },
     { "Petite Clé du Temple de la Forêt", RG_FOREST_TEMPLE_SMALL_KEY },
     { "Fire Temple Small Key", RG_FIRE_TEMPLE_SMALL_KEY },
@@ -1444,6 +1444,9 @@ std::string sanitize(std::string stringValue) {
     return stringValue;
 }
 
+#pragma optimize("", off)
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
 bool Randomizer::SpoilerFileExists(const char* spoilerFileName) {
     if (strcmp(spoilerFileName, "") != 0) {
         std::ifstream spoilerFileStream(sanitize(spoilerFileName));
@@ -1456,6 +1459,8 @@ bool Randomizer::SpoilerFileExists(const char* spoilerFileName) {
 
     return false;
 }
+#pragma GCC pop_options
+#pragma optimize("", on)
 
 void Randomizer::LoadRandomizerSettings(const char* spoilerFileName) {
     if (strcmp(spoilerFileName, "") != 0) {
@@ -2360,7 +2365,7 @@ GetItemID Randomizer::GetItemFromGet(RandomizerGet randoGet, GetItemID ogItemId)
             return GI_NUTS_10;
 
         case RG_DEKU_SEEDS_30:
-            return GI_SEEDS_30;
+            return CUR_UPG_VALUE(UPG_BULLET_BAG) ? GI_SEEDS_30 : GI_RUPEE_BLUE;
 
         case RG_DEKU_STICK_1:
             return GI_STICKS_1;
@@ -3651,12 +3656,23 @@ void DrawRandoEditor(bool& open) {
                                 break;
                         }
                         ImGui::Separator();
-                        ImGui::PopItemWidth();
-                        SohImGui::EnhancementSliderInt("Ganon's Trial Count: %d", "##RandoTrialCount",
-                                                        "gRandomizeGanonTrialCount", 0, 6, "", 6);
-                        InsertHelpHoverText("Set the number of trials required to enter Ganon's Tower.");
 
-                        // }
+                        // Random Ganon's Trials
+                        /*
+                        ImGui::Text("Random Ganon's Trials");
+                        InsertHelpHoverText("Sets a random number or required trials to enter\nGanon's Tower.");
+                        SohImGui::EnhancementCombobox("gRandomizeGanonTrial", randoGanonsTrial, 2, 0);
+                        if (CVar_GetS32("gRandomizeGanonTrial", 0) == 0) {
+                            ImGui::PopItemWidth();
+                            SohImGui::EnhancementSliderInt("Ganon's Trial Count: %d", "##RandoTrialCount",
+                                                           "gRandomizeGanonTrialCount", 0, 6, "", 6);
+                            InsertHelpHoverText("Set the number of trials required to enter Ganon's Tower.");
+                        RANDTODO: Switch back to slider when pre-completing some of Ganon's Trials is properly implemnted.
+                        }
+                        */
+                        SohImGui::EnhancementCheckbox("Skip Ganon's Trials", "gRandomizeGanonTrialCount");
+                        InsertHelpHoverText(
+                            "Sets whether or not Ganon's Castle Trials are required\nto enter Ganon's Tower.");
                         ImGui::Separator();
                     }
                     ImGui::PopItemWidth();
