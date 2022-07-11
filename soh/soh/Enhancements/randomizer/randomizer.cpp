@@ -3672,7 +3672,7 @@ void DrawRandoEditor(bool& open) {
                         */
                         SohImGui::EnhancementCheckbox("Skip Ganon's Trials", "gRandomizeGanonTrialCount");
                         InsertHelpHoverText(
-                            "Sets whether or not Ganon's Castle Trials are required\nto enter Ganon's Tower.");
+                            "Sets whether or not Ganon's Castle Trials are required to enter Ganon's Tower.");
                         ImGui::Separator();
                     }
                     ImGui::PopItemWidth();
