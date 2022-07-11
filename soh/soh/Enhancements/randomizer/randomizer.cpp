@@ -3628,6 +3628,7 @@ void DrawRandoEditor(bool& open) {
                         SohImGui::EnhancementCombobox("gRandomizeRainbowBridge", randoRainbowBridge, 7, 3);
                         switch (CVar_GetS32("gRandomizeRainbowBridge", 3)) {
                             case 1:
+                                break;
                             case 2:
                                 SohImGui::EnhancementSliderInt("Stone Count: %d", "##RandoStoneCount",
                                                                "gRandomizeStoneCount", 0, 3, "");
