@@ -3612,10 +3612,10 @@ void DrawRandoEditor(bool& open) {
                         InsertHelpHoverText(
                             "Alters the requirements to open the bridge to Ganon's Castle.\n"
                             "\n"
-                            "Always open - No requirements.\n"
-                            "\n"
                             "Vanilla - Obtain the Shadow Medallion, Spirit Medallion and Light\n"
                             "Arrows.\n"
+                            "\n"
+                            "Always open - No requirements.\n"
                             "\n"
                             "Stones - Obtain the specified amount of spiritual stones.\n"
                             "\n"
