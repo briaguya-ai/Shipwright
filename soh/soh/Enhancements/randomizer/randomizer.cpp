@@ -3736,7 +3736,7 @@ void DrawRandoEditor(bool& open) {
                                 "The Weird Egg is required to unlock several events:\n"
                                 "  - Zelda's Lullaby from Impa\n"
                                 "  - Saria's song in Sacred Forest Meadow\n"
-                                "  - Epona's song and chicken minigame at LonLon Ranch\n"
+                                "  - Epona's song and chicken minigame at Lon Lon Ranch\n"
                                 "  - Zelda's letter for Kakariko gate (if set to closed)\n"
                                 "  - Happy Mask Shop sidequest\n"
                             );
