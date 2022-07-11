@@ -805,16 +805,13 @@ namespace SohImGui {
 
                 ImGui::Separator();
 
-                // TODO mutual exclusions -- gDpadEquips and gDpadPauseName cause conflicts, but nothing stops a user from selecting both
-                // There should be some system to prevent conclifting enhancements from being selected
+                // TODO mutual exclusions -- There should be some system to prevent conclifting enhancements from being selected
                 EnhancementCheckbox("D-pad Support on Pause and File Select", "gDpadPauseName");
+                Tooltip("Enables Pause and File Select screen navigation with the D-pad\nIf used with D-pad as Equip Items, you must hold C-Up\nto equip instead of navigate");
                 EnhancementCheckbox("D-pad Support in Ocarina and Text Choice", "gDpadOcarinaText");
                 EnhancementCheckbox("D-pad Support for Browsing Shop Items", "gDpadShop");
                 EnhancementCheckbox("D-pad as Equip Items", "gDpadEquips");
-                Tooltip("Allows the D-pad to be used as extra C buttons\nNote: Incompatible with D-pad on pause and file select");
-                if(CVar_GetS32("gDpadEquips", 0) != 0) {
-                    EnhancementCheckbox("Modify D-pad Equips", "gModifyDpadEquips");
-                }
+                Tooltip("Allows the D-pad to be used as extra C buttons");
                 ImGui::Separator();
 
                 EnhancementCheckbox("Show Inputs", "gInputEnabled");
@@ -860,9 +857,9 @@ namespace SohImGui {
 
             if (ImGui::BeginMenu("Graphics"))
             {
-                EnhancementSliderInt("Internal Resolution: %dx", "##IMul", "gInternalResolution", 1, 8, "");
+                EnhancementSliderFloat("Internal Resolution: %d %%", "##IMul", "gInternalResolution", 0.5f, 2.0f, "", 1.0f, true);
                 Tooltip("Multiplies your output resolution by the value inputted,\nas a more intensive but effective form of anti-aliasing");
-                gfx_current_dimensions.internal_mul = CVar_GetS32("gInternalResolution", 1);
+                gfx_current_dimensions.internal_mul = CVar_GetFloat("gInternalResolution", 1);
                 EnhancementSliderInt("MSAA: %d", "##IMSAA", "gMSAAValue", 1, 8, "");
                 Tooltip("Activates multi-sample anti-aliasing when above 1x\nup to 8x for 8 samples for every pixel");
                 gfx_msaa_level = CVar_GetS32("gMSAAValue", 1);
@@ -1056,6 +1053,8 @@ namespace SohImGui {
                     Tooltip("Allows the cursor on the pause menu to be over any slot\nSimilar to Rando and Spaceworld 97");
                     EnhancementCheckbox("Count Golden Skulltulas", "gInjectSkulltulaCount");
                     Tooltip("Injects Golden Skulltula total count in pickup messages");
+                    EnhancementCheckbox("Pull grave during the day", "gDayGravePull");
+                    Tooltip("Allows graves to be pulled when child during the day");
                     ImGui::EndMenu();
                 }
 
@@ -1241,7 +1240,7 @@ namespace SohImGui {
                 EnhancementCheckbox("Fireproof Deku Shield", "gFireproofDekuShield");
                 Tooltip("Prevents the Deku Shield from burning on contact with fire");
                 EnhancementCheckbox("Shield with Two-Handed Weapons", "gShieldTwoHanded");
-                Tooltip("This allows you to put up your shield with any two-handed weapon in hand");
+                Tooltip("This allows you to put up your shield with any two-handed weapon in hand\nexcept for Deku Sticks");
 
                 ImGui::EndMenu();
             }
@@ -1269,7 +1268,7 @@ namespace SohImGui {
                 if (ImGui::BeginMenu(category.first.c_str())) {
                     for (const std::string& name : category.second) {
                         std::string varName(name);
-                        varName.erase(std::ranges::remove_if(varName, isspace).begin(), varName.end());
+                        varName.erase(std::remove_if(varName.begin(), varName.end(), [](unsigned char x) { return std::isspace(x); }), varName.end());
                         std::string toggleName = "g" + varName + "Enabled";
 
                         EnhancementCheckbox(name.c_str(), toggleName.c_str());
@@ -1316,7 +1315,7 @@ namespace SohImGui {
         ImGui::PushStyleVar(ImGuiStyleVar_ChildBorderSize, 0.0f);
         ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
         ImGuiWindowFlags flags = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground;
-        ImGui::Begin("OoT Master Quest", nullptr, flags);
+        ImGui::Begin("Main Game", nullptr, flags);
         ImGui::PopStyleVar(3);
         ImGui::PopStyleColor();
 
