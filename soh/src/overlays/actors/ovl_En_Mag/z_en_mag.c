@@ -151,7 +151,7 @@ void EnMag_InitVanilla(Actor* thisx, PlayState* play) {
     this->effectScroll = 0;
     this->unk_E30C = 0;
 
-    if (CVar_GetS32("gHudColors",0) == 2 ){
+    if (CVarGetInteger("gHudColors",0) == 2 ){
         this->effectPrimColor[0] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).r;
         this->effectPrimColor[1] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).g;
         this->effectPrimColor[2] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).b;
@@ -180,7 +180,7 @@ void EnMag_InitVanilla(Actor* thisx, PlayState* play) {
         this->effectPrimLodFrac = 128.0f;
         this->effectAlpha = 255.0f;
 
-        if (CVar_GetS32("gHudColors",0) == 2 ){
+        if (CVarGetInteger("gHudColors",0) == 2 ){
             this->effectPrimColor[0] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).r;
             this->effectPrimColor[1] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).g;
             this->effectPrimColor[2] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).b;
@@ -395,7 +395,7 @@ void EnMag_UpdateVanilla(Actor* thisx, PlayState* play) {
                 this->effectPrimLodFrac = 128.0f;
                 this->effectAlpha = 255.0f;
 
-                if (CVar_GetS32("gHudColors",0) == 2 ){
+                if (CVarGetInteger("gHudColors",0) == 2 ){
                     this->effectPrimColor[0] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).r;
                     this->effectPrimColor[1] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).g;
                     this->effectPrimColor[2] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).b;
@@ -448,7 +448,7 @@ void EnMag_UpdateVanilla(Actor* thisx, PlayState* play) {
             this->effectAlpha += 6.375f;
             this->effectPrimLodFrac += 0.8f;
 
-            if (CVar_GetS32("gHudColors",0) != 2 ){
+            if (CVarGetInteger("gHudColors",0) != 2 ){
                 this->effectPrimColor[0] += 6.375f;
                 this->effectPrimColor[1] += 3.875f;
                 this->effectPrimColor[2] += 2.125f;
@@ -462,7 +462,7 @@ void EnMag_UpdateVanilla(Actor* thisx, PlayState* play) {
                 this->effectPrimLodFrac = 32.0f;
                 this->effectAlpha = 255.0f;
 
-                if (CVar_GetS32("gHudColors",0) != 2 ){
+                if (CVarGetInteger("gHudColors",0) != 2 ){
                     this->effectPrimColor[0] = 255.0f;
                     this->effectPrimColor[1] = 255.0f;
                     this->effectPrimColor[2] = 255.0f;
@@ -474,7 +474,7 @@ void EnMag_UpdateVanilla(Actor* thisx, PlayState* play) {
                 this->effectFadeInState = 1;
             }
         } else if (this->effectFadeInState == 1) {
-            if (CVar_GetS32("gHudColors",0) != 2 ){
+            if (CVarGetInteger("gHudColors",0) != 2 ){
                 this->effectPrimColor[2] += -2.125f;
                 this->effectEnvColor[1] += -3.875f;
             }
@@ -486,7 +486,7 @@ void EnMag_UpdateVanilla(Actor* thisx, PlayState* play) {
             if (this->effectFadeInTimer == 0) {
                 this->effectPrimLodFrac = 128.0f;
 
-                if (CVar_GetS32("gHudColors",0) == 2 ){
+                if (CVarGetInteger("gHudColors",0) == 2 ){
                     this->effectPrimColor[0] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).r;
                     this->effectPrimColor[1] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).g;
                     this->effectPrimColor[2] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).b;

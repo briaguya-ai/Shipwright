@@ -2,10 +2,10 @@
 #include <ImGuiImpl.h>
 
 #include <string>
-#include <Cvar.h>
+#include <libultraship/bridge.h>
 #include <random>
 #include <algorithm>
-#include <ultra64/types.h>
+#include <libultraship/libultra/types.h>
 
 #include "../../UIWidgets.hpp"
 
@@ -73,7 +73,7 @@ void GetRandomColorRGB(CosmeticsColorSection* ColorSection, int SectionSize){
         Color_RGBA8 NewColors = { 0, 0, 0, 255 };
         std::string cvarName = Element->CvarName;
         std::string cvarLock = cvarName + "Lock";
-        if(CVar_GetS32(cvarLock.c_str(), 0)) {
+        if(CVarGetInteger(cvarLock.c_str(), 0)) {
             continue;
         }
         std::string Cvar_RBM = cvarName + "RBM";
@@ -82,8 +82,8 @@ void GetRandomColorRGB(CosmeticsColorSection* ColorSection, int SectionSize){
         NewColors.g = fmin(fmax(colors.y * 255, 0), 255);
         NewColors.b = fmin(fmax(colors.z * 255, 0), 255);
         Element->ModifiedColor = colors;
-        CVar_SetRGBA(cvarName.c_str(), NewColors);
-        CVar_SetS32(Cvar_RBM.c_str(), 0);
+        CVarSetColor(cvarName.c_str(), NewColors);
+        CVarSetInteger(Cvar_RBM.c_str(), 0);
     }
 }
 void GetDefaultColorRGB(CosmeticsColorSection* ColorSection, int SectionSize){
@@ -103,8 +103,8 @@ void GetDefaultColorRGB(CosmeticsColorSection* ColorSection, int SectionSize){
         colorsRGBA.g = defaultcolors.y;
         colorsRGBA.b = defaultcolors.z;
         if (Element->hasAlpha) { colorsRGBA.a = defaultcolors.w; };
-        CVar_SetRGBA(cvarName.c_str(), colorsRGBA);
-        CVar_SetS32(Cvar_RBM.c_str(), 0); //On click disable rainbow mode.
+        CVarSetColor(cvarName.c_str(), colorsRGBA);
+        CVarSetInteger(Cvar_RBM.c_str(), 0); //On click disable rainbow mode.
 
     }
 }
@@ -118,18 +118,18 @@ void SetMarginAll(const char* ButtonName, bool SetActivated) {
             std::string cvarName = MarginCvarList[s];
             std::string cvarPosType = cvarName+"PosType";
             std::string cvarNameMargins = cvarName+"UseMargins";
-            if (CVar_GetS32(cvarPosType.c_str(),0) <= 2 && SetActivated) { //Our element is not Hidden or Non anchor
+            if (CVarGetInteger(cvarPosType.c_str(),0) <= 2 && SetActivated) { //Our element is not Hidden or Non anchor
                 for(int i = 0; i < arrayLengthNonMargin; i++){
-                    if(MarginCvarNonAnchor[i] == cvarName && CVar_GetS32(cvarPosType.c_str(),0) == 0){ //Our element is both in original position and do not have anchor by default so we skip it.
-                        CVar_SetS32(cvarNameMargins.c_str(), false); //force set off
-                    } else if(MarginCvarNonAnchor[i] == cvarName && CVar_GetS32(cvarPosType.c_str(),0) != 0){ //Our element is not in original position regarless it has no anchor by default since player made it anchored we can toggle margins
-                        CVar_SetS32(cvarNameMargins.c_str(), SetActivated);
+                    if(MarginCvarNonAnchor[i] == cvarName && CVarGetInteger(cvarPosType.c_str(),0) == 0){ //Our element is both in original position and do not have anchor by default so we skip it.
+                        CVarSetInteger(cvarNameMargins.c_str(), false); //force set off
+                    } else if(MarginCvarNonAnchor[i] == cvarName && CVarGetInteger(cvarPosType.c_str(),0) != 0){ //Our element is not in original position regarless it has no anchor by default since player made it anchored we can toggle margins
+                        CVarSetInteger(cvarNameMargins.c_str(), SetActivated);
                     } else if(MarginCvarNonAnchor[i] != cvarName){ //Our elements has an anchor by default so regarless of it's position right now that okay to toggle margins.
-                        CVar_SetS32(cvarNameMargins.c_str(), SetActivated);
+                        CVarSetInteger(cvarNameMargins.c_str(), SetActivated);
                     }
                 }
             } else { //Since the user requested to turn all margin off no need to do any check there.
-                CVar_SetS32(cvarNameMargins.c_str(), SetActivated);
+                CVarSetInteger(cvarNameMargins.c_str(), SetActivated);
             }
         }
     }
@@ -141,15 +141,15 @@ void ResetPositionAll() {
             std::string cvarName = MarginCvarList[s];
             std::string cvarPosType = cvarName+"PosType";
             std::string cvarNameMargins = cvarName+"UseMargins";
-            CVar_SetS32(cvarPosType.c_str(), 0);
-            CVar_SetS32(cvarNameMargins.c_str(), false); //Turn margin off to everythings as that original position.
+            CVarSetInteger(cvarPosType.c_str(), 0);
+            CVarSetInteger(cvarNameMargins.c_str(), false); //Turn margin off to everythings as that original position.
         }
     }
 }
 
 void ResetTrailLength(const char* variable, int value) {
     if (ImGui::Button("Reset")) {
-        CVar_SetS32(variable, value);
+        CVarSetInteger(variable, value);
         }
     }
 
@@ -164,12 +164,12 @@ void LoadRainbowColor(bool& open) {
         f32 Canon = 10.f * s;
         ImVec4 NewColor;
         const f32 deltaTime = 1.0f / ImGui::GetIO().Framerate;
-        f32 hue = CVar_GetFloat(RBM_HUE.c_str(), 0.0f);
-        f32 newHue = hue + CVar_GetS32("gColorRainbowSpeed", 1) * 36.0f * deltaTime;
+        f32 hue = CVarGetFloat(RBM_HUE.c_str(), 0.0f);
+        f32 newHue = hue + CVarGetInteger("gColorRainbowSpeed", 1) * 36.0f * deltaTime;
         if (newHue >= 360)
             newHue = 0;
-        CVar_SetFloat(RBM_HUE.c_str(), newHue);
-        f32 current_hue = CVar_GetFloat(RBM_HUE.c_str(), 0);
+        CVarSetFloat(RBM_HUE.c_str(), newHue);
+        f32 current_hue = CVarGetFloat(RBM_HUE.c_str(), 0);
         u8 i = current_hue / 60 + 1;
         u8 a = (-current_hue / 60.0f + i) * 255;
         u8 b = (current_hue / 60.0f + (1 - i)) * 255;
@@ -188,8 +188,8 @@ void LoadRainbowColor(bool& open) {
             fmin(fmax(NewColor.z, 0), 255),
             255
         };
-        if (CVar_GetS32(Cvar_RBM.c_str(), 0) != 0) {
-            CVar_SetRGBA(cvarName.c_str(), NewColorRGB);
+        if (CVarGetInteger(Cvar_RBM.c_str(), 0) != 0) {
+            CVarSetColor(cvarName.c_str(), NewColorRGB);
         }
     }
 }
@@ -400,18 +400,18 @@ bool DrawRandomizeResetButton(const std::string Identifier, CosmeticsColorSectio
     #else
         if(ImGui::Button(RNG_BtnText.c_str(), ImVec2( ImGui::GetContentRegionAvail().x, 20.0f))){
     #endif
-            CVar_SetS32("gHudColors", 2);
-            CVar_SetS32("gUseNaviCol", 1);
-            CVar_SetS32("gUseKeeseCol", 1);
-            CVar_SetS32("gUseDogsCol", 1);
-            CVar_SetS32("gUseTunicsCol", 1);
-            CVar_SetS32("gUseMirrorShieldColors", 1);
-            CVar_SetS32("gUseGauntletsCol", 1);
-            CVar_SetS32("gUseArrowsCol", 1);
-            CVar_SetS32("gUseSpellsCol", 1);
-            CVar_SetS32("gUseChargedCol", 1);
-            CVar_SetS32("gUseTrailsCol", 1);
-            CVar_SetS32("gCCparated", 1);
+            CVarSetInteger("gHudColors", 2);
+            CVarSetInteger("gUseNaviCol", 1);
+            CVarSetInteger("gUseKeeseCol", 1);
+            CVarSetInteger("gUseDogsCol", 1);
+            CVarSetInteger("gUseTunicsCol", 1);
+            CVarSetInteger("gUseMirrorShieldColors", 1);
+            CVarSetInteger("gUseGauntletsCol", 1);
+            CVarSetInteger("gUseArrowsCol", 1);
+            CVarSetInteger("gUseSpellsCol", 1);
+            CVarSetInteger("gUseChargedCol", 1);
+            CVarSetInteger("gUseTrailsCol", 1);
+            CVarSetInteger("gCCparated", 1);
             GetRandomColorRGB(ColorSection, SectionSize);
             changed = true;
         }
@@ -436,10 +436,10 @@ void Draw_Npcs(){
     DrawRandomizeResetButton("all NPCs", NPCs_section, SECTION_SIZE(NPCs_section));
     UIWidgets::EnhancementCheckbox("Custom colors for Navi", "gUseNaviCol");
     UIWidgets::Tooltip("Enable/Disable custom Navi colors\nIf disabled, default colors will be used\nColors go into effect when Navi goes back into your pockets");
-    if (CVar_GetS32("gUseNaviCol",0)) { 
+    if (CVarGetInteger("gUseNaviCol",0)) { 
         DrawRandomizeResetButton("Navi's", Navi_Section, SECTION_SIZE(Navi_Section)); 
     };
-    if (CVar_GetS32("gUseNaviCol",0) && ImGui::BeginTable("tableNavi", 2, FlagsTable)) {
+    if (CVarGetInteger("gUseNaviCol",0) && ImGui::BeginTable("tableNavi", 2, FlagsTable)) {
         ImGui::TableSetupColumn("Inner colors##Navi", FlagsCell, TablesCellsWidth/2);
         ImGui::TableSetupColumn("Outer colors##Navi", FlagsCell, TablesCellsWidth/2);
         Table_InitHeader();
@@ -448,7 +448,7 @@ void Draw_Npcs(){
     }
     UIWidgets::EnhancementCheckbox("Custom colors for Keese", "gUseKeeseCol");
     UIWidgets::Tooltip("Enable/Disable custom Keese element colors\nIf disabled, default element colors will be used\nColors go into effect when Keese respawn (or when the room is reloaded)");
-    if (CVar_GetS32("gUseKeeseCol",0) && ImGui::BeginTable("tableKeese", 2, FlagsTable)) {
+    if (CVarGetInteger("gUseKeeseCol",0) && ImGui::BeginTable("tableKeese", 2, FlagsTable)) {
         ImGui::TableSetupColumn("Fire colors##Keese", FlagsCell, TablesCellsWidth/2);
         ImGui::TableSetupColumn("Ice colors##Keese", FlagsCell, TablesCellsWidth/2);
         Table_InitHeader();
@@ -457,7 +457,7 @@ void Draw_Npcs(){
     }
     UIWidgets::EnhancementCheckbox("Custom colors for Dogs", "gUseDogsCol");
     UIWidgets::Tooltip("Enable/Disable custom colors for the two Dog variants\nIf disabled, default colors will be used");
-    if (CVar_GetS32("gUseDogsCol",0) && ImGui::BeginTable("tableDogs", 2, FlagsTable)) {
+    if (CVarGetInteger("gUseDogsCol",0) && ImGui::BeginTable("tableDogs", 2, FlagsTable)) {
         ImGui::TableSetupColumn("White Dog color", FlagsCell, TablesCellsWidth/2);
         ImGui::TableSetupColumn("Brown Dog color", FlagsCell, TablesCellsWidth/2);
         Table_InitHeader();
@@ -471,10 +471,10 @@ void Draw_ItemsSkills(){
     };
     UIWidgets::EnhancementCheckbox("Custom tunics color", "gUseTunicsCol");
     UIWidgets::Tooltip("Enable/Disable custom Link's tunics colors\nIf disabled you will have original colors for Link's tunics.");
-    if (CVar_GetS32("gUseTunicsCol",0)) {
+    if (CVarGetInteger("gUseTunicsCol",0)) {
         DrawRandomizeResetButton("Link's tunics", Tunics_Section, SECTION_SIZE(Tunics_Section));
     };
-    if (CVar_GetS32("gUseTunicsCol",0) && ImGui::BeginTable("tableTunics", 3, FlagsTable)) {
+    if (CVarGetInteger("gUseTunicsCol",0) && ImGui::BeginTable("tableTunics", 3, FlagsTable)) {
         ImGui::TableSetupColumn("Kokiri Tunic", FlagsCell, TablesCellsWidth/3);
         ImGui::TableSetupColumn("Goron Tunic", FlagsCell, TablesCellsWidth/3);
         ImGui::TableSetupColumn("Zora Tunic", FlagsCell, TablesCellsWidth/3);
@@ -486,10 +486,10 @@ void Draw_ItemsSkills(){
     UIWidgets::EnhancementCheckbox("Custom gauntlets color", "gUseGauntletsCol");
     UIWidgets::Tooltip(
         "Enable/Disable custom Link's gauntlets colors\nIf disabled you will have original colors for Link's gauntlets.");
-    if (CVar_GetS32("gUseGauntletsCol", 0)) {
+    if (CVarGetInteger("gUseGauntletsCol", 0)) {
         DrawRandomizeResetButton("Link's gauntlets", Gauntlets_Section, SECTION_SIZE(Gauntlets_Section));
     };
-    if (CVar_GetS32("gUseGauntletsCol", 0) && ImGui::BeginTable("tableGauntlets", 2, FlagsTable)) {
+    if (CVarGetInteger("gUseGauntletsCol", 0) && ImGui::BeginTable("tableGauntlets", 2, FlagsTable)) {
         ImGui::TableSetupColumn("Silver Gauntlets", FlagsCell, TablesCellsWidth / 2);
         ImGui::TableSetupColumn("Gold Gauntlets", FlagsCell, TablesCellsWidth / 2);
         Table_InitHeader();
@@ -502,12 +502,12 @@ void Draw_ItemsSkills(){
     }
     UIWidgets::Tooltip(
         "Enable/Disable custom Mirror shield colors\nIf disabled you will have original colors for the Mirror shield.");
-    if (CVar_GetS32("gUseMirrorShieldColors", 0)) {
+    if (CVarGetInteger("gUseMirrorShieldColors", 0)) {
         if (DrawRandomizeResetButton("Mirror Shield", MirrorShield_Section, SECTION_SIZE(MirrorShield_Section))) {
             ApplyOrResetCustomGfxPatches();
         }
     };
-    if (CVar_GetS32("gUseMirrorShieldColors", 0) && ImGui::BeginTable("tableMirrorShield", 3, FlagsTable)) {
+    if (CVarGetInteger("gUseMirrorShieldColors", 0) && ImGui::BeginTable("tableMirrorShield", 3, FlagsTable)) {
         ImGui::TableSetupColumn("Border/Back", FlagsCell, TablesCellsWidth / 3);
         ImGui::TableSetupColumn("Mirror", FlagsCell, TablesCellsWidth / 3);
         ImGui::TableSetupColumn("Emblem", FlagsCell, TablesCellsWidth / 3);
@@ -519,10 +519,10 @@ void Draw_ItemsSkills(){
     }
 
     UIWidgets::EnhancementCheckbox("Custom arrows colors", "gUseArrowsCol");
-    if (CVar_GetS32("gUseArrowsCol",0)) {
+    if (CVarGetInteger("gUseArrowsCol",0)) {
         DrawRandomizeResetButton("elemental arrows", Arrows_section, SECTION_SIZE(Arrows_section));
     }
-    if (CVar_GetS32("gUseArrowsCol",0) && ImGui::BeginTable("tableArrows", 2, FlagsTable)) {
+    if (CVarGetInteger("gUseArrowsCol",0) && ImGui::BeginTable("tableArrows", 2, FlagsTable)) {
         ImGui::TableSetupColumn("Primary colors##Arrows", FlagsCell, TablesCellsWidth/2);
         ImGui::TableSetupColumn("Env colors##Arrows", FlagsCell, TablesCellsWidth/2);
         Table_InitHeader();
@@ -530,10 +530,10 @@ void Draw_ItemsSkills(){
         ImGui::EndTable();
     }
     UIWidgets::EnhancementCheckbox("Custom spells colors", "gUseSpellsCol");
-    if (CVar_GetS32("gUseSpellsCol",0)) {
+    if (CVarGetInteger("gUseSpellsCol",0)) {
         DrawRandomizeResetButton("spells", Spells_section, SECTION_SIZE(Spells_section));
     }
-    if (CVar_GetS32("gUseSpellsCol",0) && ImGui::BeginTable("tableSpells", 2, FlagsTable)) {
+    if (CVarGetInteger("gUseSpellsCol",0) && ImGui::BeginTable("tableSpells", 2, FlagsTable)) {
         ImGui::TableSetupColumn("Inner colors##Spells", FlagsCell, TablesCellsWidth/2);
         ImGui::TableSetupColumn("Outer colors##Spells", FlagsCell, TablesCellsWidth/2);
         Table_InitHeader();
@@ -541,10 +541,10 @@ void Draw_ItemsSkills(){
         ImGui::EndTable();
     }
     UIWidgets::EnhancementCheckbox("Custom spin attack colors", "gUseChargedCol");
-    if (CVar_GetS32("gUseChargedCol",0)) {
+    if (CVarGetInteger("gUseChargedCol",0)) {
         DrawRandomizeResetButton("spins attack", SpinAtk_section, SECTION_SIZE(SpinAtk_section));
     }
-    if (CVar_GetS32("gUseChargedCol",0) && ImGui::BeginTable("tableChargeAtk", 2, FlagsTable)) {
+    if (CVarGetInteger("gUseChargedCol",0) && ImGui::BeginTable("tableChargeAtk", 2, FlagsTable)) {
         ImGui::TableSetupColumn("Primary colors##Charge", FlagsCell, TablesCellsWidth/2);
         ImGui::TableSetupColumn("Env colors##Charge", FlagsCell, TablesCellsWidth/2);
         Table_InitHeader();
@@ -552,10 +552,10 @@ void Draw_ItemsSkills(){
         ImGui::EndTable();
     }
     UIWidgets::EnhancementCheckbox("Custom trails", "gUseTrailsCol");
-    if (CVar_GetS32("gUseTrailsCol", 0)) {
+    if (CVarGetInteger("gUseTrailsCol", 0)) {
         DrawRandomizeResetButton("trails", AllTrail_section, SECTION_SIZE(AllTrail_section));
     }
-    if (CVar_GetS32("gUseTrailsCol", 0) && ImGui::BeginTable("tabletrails", 3, FlagsTable)) {
+    if (CVarGetInteger("gUseTrailsCol", 0) && ImGui::BeginTable("tabletrails", 3, FlagsTable)) {
         ImGui::TableSetupColumn("Sword Trails", FlagsCell, TablesCellsWidth);
         ImGui::TableSetupColumn("Boomerang Trails", FlagsCell, TablesCellsWidth);
         ImGui::TableSetupColumn("Bomb Trails", FlagsCell, TablesCellsWidth);
@@ -566,7 +566,7 @@ void Draw_ItemsSkills(){
         UIWidgets::Tooltip("Determines the duration of Link's sword trails.");
         ResetTrailLength("gTrailDuration", 4);
         UIWidgets::EnhancementCheckbox("Swords use separate colors", "gSeperateSwords");
-        if (CVar_GetS32("gSeperateSwords", 0) && ImGui::CollapsingHeader("Individual Sword Colors")) {
+        if (CVarGetInteger("gSeperateSwords", 0) && ImGui::CollapsingHeader("Individual Sword Colors")) {
             if (ImGui::BeginTable("tabletrailswords", 5, FlagsTable)) {
                 ImGui::TableSetupColumn("Kokiri Sword", FlagsCell, TablesCellsWidth / 2);
                 ImGui::TableSetupColumn("Master Sword", FlagsCell, TablesCellsWidth / 2);
@@ -582,7 +582,7 @@ void Draw_ItemsSkills(){
     }
 }
 void Draw_Menus(){
-    if (CVar_GetS32("gHudColors",0) ==2 ){
+    if (CVarGetInteger("gHudColors",0) ==2 ){
         if (ImGui::BeginTable("tableFileChoose", 2, FlagsTable)) {
             ImGui::TableSetupColumn("File Choose color", FlagsCell, TablesCellsWidth/2);
             ImGui::TableSetupColumn("Bottom text color", FlagsCell, TablesCellsWidth/2);
@@ -641,7 +641,7 @@ void Draw_Placements(){
             ImGui::EndTable();
         }
     }
-    if (CVar_GetS32("gVisualAgony",0) && ImGui::CollapsingHeader("Visual stone of agony position")) {
+    if (CVarGetInteger("gVisualAgony",0) && ImGui::CollapsingHeader("Visual stone of agony position")) {
         if (ImGui::BeginTable("tabledvisualstoneofagony", 1, FlagsTable)) {
             ImGui::TableSetupColumn("Visual stone of agony settings", FlagsCell, TablesCellsWidth);
             Table_InitHeader(false);
@@ -649,9 +649,9 @@ void Draw_Placements(){
             DrawPositionsRadioBoxes("gVSOA");
             s16 Min_X_VSOA = 0;
             s16 Max_X_VSOA = ImGui::GetWindowViewport()->Size.x/2;
-            if(CVar_GetS32("gVSOAPosType",0) == 2){
+            if(CVarGetInteger("gVSOAPosType",0) == 2){
                 Max_X_VSOA = 290;
-            } else if(CVar_GetS32("gVSOAPosType",0) == 4){
+            } else if(CVarGetInteger("gVSOAPosType",0) == 4){
                 Min_X_VSOA = (ImGui::GetWindowViewport()->Size.x/2)*-1;
             }
             DrawPositionSlider("gVSOA", 0, ImGui::GetWindowViewport()->Size.y/2, Min_X_VSOA, Max_X_VSOA);
@@ -704,11 +704,11 @@ void Draw_Placements(){
             DrawPositionsRadioBoxes("gCBtnU");
             s16 Min_X_CU = 0;
             s16 Max_X_CU = ImGui::GetWindowViewport()->Size.x/2;
-            if(CVar_GetS32("gCBtnUPosType",0) == 2){
+            if(CVarGetInteger("gCBtnUPosType",0) == 2){
                 Max_X_CU = 294;
-            } else if(CVar_GetS32("gCBtnUPosType",0) == 3){
+            } else if(CVarGetInteger("gCBtnUPosType",0) == 3){
                 Max_X_CU = ImGui::GetWindowViewport()->Size.x/2;
-            } else if(CVar_GetS32("gCBtnUPosType",0) == 4){
+            } else if(CVarGetInteger("gCBtnUPosType",0) == 4){
                 Min_X_CU = (ImGui::GetWindowViewport()->Size.x/2)*-1;
             }
             DrawPositionSlider("gCBtnU", 0, ImGui::GetWindowViewport()->Size.y/2, Min_X_CU, Max_X_CU);
@@ -725,11 +725,11 @@ void Draw_Placements(){
             DrawPositionsRadioBoxes("gCBtnD");
             s16 Min_X_CD = 0;
             s16 Max_X_CD = ImGui::GetWindowViewport()->Size.x/2;
-            if(CVar_GetS32("gCBtnDPosType",0) == 2){
+            if(CVarGetInteger("gCBtnDPosType",0) == 2){
                 Max_X_CD = 294;
-            } else if(CVar_GetS32("gCBtnDPosType",0) == 3){
+            } else if(CVarGetInteger("gCBtnDPosType",0) == 3){
                 Max_X_CD = ImGui::GetWindowViewport()->Size.x/2;
-            } else if(CVar_GetS32("gCBtnDPosType",0) == 4){
+            } else if(CVarGetInteger("gCBtnDPosType",0) == 4){
                 Min_X_CD = (ImGui::GetWindowViewport()->Size.x/2)*-1;
             }
             DrawPositionSlider("gCBtnD", 0, ImGui::GetWindowViewport()->Size.y/2, Min_X_CD, Max_X_CD);
@@ -746,11 +746,11 @@ void Draw_Placements(){
             DrawPositionsRadioBoxes("gCBtnL");
             s16 Min_X_CL = 0;
             s16 Max_X_CL = ImGui::GetWindowViewport()->Size.x/2;
-            if(CVar_GetS32("gCBtnLPosType",0) == 2){
+            if(CVarGetInteger("gCBtnLPosType",0) == 2){
                 Max_X_CL = 294;
-            } else if(CVar_GetS32("gCBtnLPosType",0) == 3){
+            } else if(CVarGetInteger("gCBtnLPosType",0) == 3){
                 Max_X_CL = ImGui::GetWindowViewport()->Size.x/2;
-            } else if(CVar_GetS32("gCBtnLPosType",0) == 4){
+            } else if(CVarGetInteger("gCBtnLPosType",0) == 4){
                 Min_X_CL = (ImGui::GetWindowViewport()->Size.x/2)*-1;
             }
             DrawPositionSlider("gCBtnL", 0, ImGui::GetWindowViewport()->Size.y/2, Min_X_CL, Max_X_CL);
@@ -767,11 +767,11 @@ void Draw_Placements(){
             DrawPositionsRadioBoxes("gCBtnR");
             s16 Min_X_CR = 0;
             s16 Max_X_CR = ImGui::GetWindowViewport()->Size.x/2;
-            if(CVar_GetS32("gCBtnRPosType",0) == 2){
+            if(CVarGetInteger("gCBtnRPosType",0) == 2){
                 Max_X_CR = 294;
-            } else if(CVar_GetS32("gCBtnRPosType",0) == 3){
+            } else if(CVarGetInteger("gCBtnRPosType",0) == 3){
                 Max_X_CR = ImGui::GetWindowViewport()->Size.x/2;
-            } else if(CVar_GetS32("gCBtnRPosType",0) == 4){
+            } else if(CVarGetInteger("gCBtnRPosType",0) == 4){
                 Min_X_CR = (ImGui::GetWindowViewport()->Size.x/2)*-1;
             }
             DrawPositionSlider("gCBtnR", 0, ImGui::GetWindowViewport()->Size.y/2, Min_X_CR, Max_X_CR);
@@ -780,7 +780,7 @@ void Draw_Placements(){
             ImGui::EndTable();
         }
     }
-    if (CVar_GetS32("gDpadEquips",0) && ImGui::CollapsingHeader("DPad items position")) {
+    if (CVarGetInteger("gDpadEquips",0) && ImGui::CollapsingHeader("DPad items position")) {
         if (ImGui::BeginTable("tabledpaditems", 1, FlagsTable)) {
             ImGui::TableSetupColumn("DPad items settings", FlagsCell, TablesCellsWidth);
             Table_InitHeader(false);
@@ -788,9 +788,9 @@ void Draw_Placements(){
             DrawPositionsRadioBoxes("gDPad");
             s16 Min_X_Dpad = 0;
             s16 Max_X_Dpad = ImGui::GetWindowViewport()->Size.x/2;
-            if(CVar_GetS32("gDPadPosType",0) == 2){
+            if(CVarGetInteger("gDPadPosType",0) == 2){
                 Max_X_Dpad = 290;
-            } else if(CVar_GetS32("gDPadPosType",0) == 4){
+            } else if(CVarGetInteger("gDPadPosType",0) == 4){
                 Min_X_Dpad = (ImGui::GetWindowViewport()->Size.x/2)*-1;
             }
             DrawPositionSlider("gDPad", 0, ImGui::GetWindowViewport()->Size.y/2, Min_X_Dpad, Max_X_Dpad);
@@ -897,7 +897,7 @@ void Draw_Placements(){
     }
 }
 void Draw_HUDButtons(){
-    if (CVar_GetS32("gHudColors",0) == 2){
+    if (CVarGetInteger("gHudColors",0) == 2){
         DrawRandomizeResetButton("every buttons", Buttons_section, SECTION_SIZE(Buttons_section));
         if (ImGui::CollapsingHeader("A Button colors & A Cursors")) {
             if (ImGui::BeginTable("tableBTN_A", 1, FlagsTable)) {
@@ -923,7 +923,7 @@ void Draw_HUDButtons(){
                 ImGui::EndTable();
             }
             UIWidgets::EnhancementCheckbox("C-Buttons use separate colors", "gCCparated");
-            if (CVar_GetS32("gCCparated",0) && ImGui::CollapsingHeader("C Button individual colors")) {
+            if (CVarGetInteger("gCCparated",0) && ImGui::CollapsingHeader("C Button individual colors")) {
                 if (ImGui::BeginTable("tableBTN_CSep", 1, FlagsTable)) {
                     ImGui::TableSetupColumn("C-Buttons individual colors", FlagsCell, TablesCellsWidth);
                     Table_InitHeader(false);
@@ -940,7 +940,7 @@ void Draw_HUDButtons(){
                 ImGui::EndTable();
             }
         }
-        if (CVar_GetS32("gDpadEquips",0) && ImGui::CollapsingHeader("DPad colors")) {
+        if (CVarGetInteger("gDpadEquips",0) && ImGui::CollapsingHeader("DPad colors")) {
             if (ImGui::BeginTable("tableDpadHud", 1, FlagsTable)) {
                 ImGui::TableSetupColumn("DPad color", FlagsCell, TablesCellsWidth);
                 Table_InitHeader(false);
@@ -971,7 +971,7 @@ void Draw_General(){
         UIWidgets::EnhancementRadioButton("Custom Colors", "gHudColors", 2);
         ImGui::EndTable();
     }
-    if (CVar_GetS32("gHudColors",0) ==2 ){
+    if (CVarGetInteger("gHudColors",0) ==2 ){
         DrawRandomizeResetButton("interface (excluding buttons)", Misc_Interface_section, SECTION_SIZE(Misc_Interface_section));
         if (ImGui::CollapsingHeader("Hearts colors")) {
             UIWidgets::Tooltip("Hearts colors in general\nDD stand for Double Defense");
@@ -1058,7 +1058,7 @@ void Draw_General(){
 }
 void DrawCosmeticsEditor(bool& open) {
     if (!open) {
-        CVar_SetS32("gCosmeticsEditorEnabled", 0);
+        CVarSetInteger("gCosmeticsEditorEnabled", 0);
         return;
     }
 

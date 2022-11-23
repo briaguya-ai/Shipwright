@@ -340,7 +340,7 @@ void EnMThunder_Draw(Actor* thisx, PlayState* play2) {
 
     switch (this->unk_1C6) {
         case 0:
-            if (CVar_GetS32("gUseChargedCol",0)) {
+            if (CVarGetInteger("gUseChargedCol",0)) {
                 Color_RGB8 SpinColor = {255, 255, 170};
                 gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, CVar_GetRGB("gCharged2Col", SpinColor).r, CVar_GetRGB("gCharged2Col", SpinColor).g, CVar_GetRGB("gCharged2Col", SpinColor).b, (u8)(this->unk_1B0 * 255));
             } else {
@@ -350,7 +350,7 @@ void EnMThunder_Draw(Actor* thisx, PlayState* play2) {
             gSPDisplayList(POLY_XLU_DISP++, gSpinAttack4DL);
             break;
         case 1:
-            if (CVar_GetS32("gUseChargedCol",0)) {
+            if (CVarGetInteger("gUseChargedCol",0)) {
                 Color_RGB8 SpinColor = {255, 255, 170};
                 gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, CVar_GetRGB("gCharged1Col", SpinColor).r, CVar_GetRGB("gCharged1Col", SpinColor).g, CVar_GetRGB("gCharged1Col", SpinColor).b, (u8)(this->unk_1B0 * 255));
             } else {
@@ -383,7 +383,7 @@ void EnMThunder_Draw(Actor* thisx, PlayState* play2) {
 
     if (this->unk_1B8 >= 0.85f) {
         phi_f14 = (D_80AA046C[(play->gameplayFrames & 7)] * 6.0f) + 1.0f;
-        if (CVar_GetS32("gUseChargedCol",0)) {
+        if (CVarGetInteger("gUseChargedCol",0)) {
             Color_RGB8 SpinColor1 = {255, 255, 170};
             Color_RGB8 SpinColor2 = {255, 100, 0};
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, CVar_GetRGB("gCharged2Col", SpinColor1).r, CVar_GetRGB("gCharged2Col", SpinColor1).g, CVar_GetRGB("gCharged2Col", SpinColor1).b, this->unk_1C8);
@@ -396,7 +396,7 @@ void EnMThunder_Draw(Actor* thisx, PlayState* play2) {
         phi_t1 = 0x28;
     } else {
         phi_f14 = (D_80AA046C[play->gameplayFrames & 7] * 2.0f) + 1.0f;
-        if (CVar_GetS32("gUseChargedCol",0)) {
+        if (CVarGetInteger("gUseChargedCol",0)) {
             Color_RGB8 SpinColor1 = {170, 255, 255};
             Color_RGB8 SpinColor2 = {20, 100, 255};
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, CVar_GetRGB("gCharged1Col", SpinColor1).r, CVar_GetRGB("gCharged1Col", SpinColor1).g, CVar_GetRGB("gCharged1Col", SpinColor1).b, this->unk_1C8);

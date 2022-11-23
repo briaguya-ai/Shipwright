@@ -212,7 +212,7 @@ void ArrowLight_Draw(Actor* thisx, PlayState* play) {
         // Draw yellow effect over the screen when arrow hits
         if (this->unk_164 > 0) {
             POLY_XLU_DISP = func_800937C0(POLY_XLU_DISP);
-            if (CVar_GetS32("gUseArrowsCol", 0)) {
+            if (CVarGetInteger("gUseArrowsCol", 0)) {
                 gDPSetPrimColor(POLY_XLU_DISP++, 0, 0, 
                 (s32)(Arrow_env.r * this->unk_164) & 0xFF,
                 (s32)(Arrow_env.g * this->unk_164) & 0xFF, 
@@ -229,7 +229,7 @@ void ArrowLight_Draw(Actor* thisx, PlayState* play) {
 
         // Draw light on the arrow
         func_80093D84(play->state.gfxCtx);
-        if (CVar_GetS32("gUseArrowsCol", 0)) {
+        if (CVarGetInteger("gUseArrowsCol", 0)) {
             gDPSetPrimColor(POLY_XLU_DISP++, 0x80, 0x80, Arrow_col.r, Arrow_col.g, Arrow_col.b, this->alpha);
             gDPSetEnvColor(POLY_XLU_DISP++, Arrow_env.r, Arrow_env.g, Arrow_env.b, 128);
         } else {

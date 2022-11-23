@@ -93,15 +93,15 @@ void EnArrow_Init(Actor* thisx, PlayState* play) {
     Color_RGBA8 Ice_env_ori = { 0, 0, 255, 255 };
     Color_RGBA8 Ice_col_ori = { 170, 255, 255, 0 };
 
-    if (CVar_GetS32("gUseArrowsCol", 0) != 0) {
-        blureNormal.altPrimColor = CVar_GetRGBA("gNormalArrowCol", Arrow_col_ori);
-        blureNormal.altEnvColor = CVar_GetRGBA("gNormalArrowColEnv", Arrow_env_ori);
-        blureFire.altPrimColor = CVar_GetRGBA("gFireArrowCol", Fire_col_ori);
-        blureFire.altEnvColor = CVar_GetRGBA("gFireArrowColEnv", Fire_env_ori);
-        blureIce.altPrimColor = CVar_GetRGBA("gIceArrowCol", Ice_col_ori);
-        blureIce.altEnvColor = CVar_GetRGBA("gIceArrowColEnv", Ice_env_ori);
-        blureLight.altPrimColor = CVar_GetRGBA("gLightArrowCol", Light_col_ori);
-        blureLight.altEnvColor = CVar_GetRGBA("gLightArrowColEnv", Light_env_ori);
+    if (CVarGetInteger("gUseArrowsCol", 0) != 0) {
+        blureNormal.altPrimColor = CVarGetColor("gNormalArrowCol", Arrow_col_ori);
+        blureNormal.altEnvColor = CVarGetColor("gNormalArrowColEnv", Arrow_env_ori);
+        blureFire.altPrimColor = CVarGetColor("gFireArrowCol", Fire_col_ori);
+        blureFire.altEnvColor = CVarGetColor("gFireArrowColEnv", Fire_env_ori);
+        blureIce.altPrimColor = CVarGetColor("gIceArrowCol", Ice_col_ori);
+        blureIce.altEnvColor = CVarGetColor("gIceArrowColEnv", Ice_env_ori);
+        blureLight.altPrimColor = CVarGetColor("gLightArrowCol", Light_col_ori);
+        blureLight.altEnvColor = CVarGetColor("gLightArrowColEnv", Light_env_ori);
 
         //make sure the alpha values are correct.
         blureNormal.altPrimColor.a = 255;

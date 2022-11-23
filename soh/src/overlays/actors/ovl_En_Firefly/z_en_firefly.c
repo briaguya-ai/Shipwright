@@ -760,7 +760,7 @@ void EnFirefly_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* 
     s16 effScaleStep;
     s16 effLife;
     EnFirefly* this = (EnFirefly*)thisx;
-    if (CVar_GetS32("gUseKeeseCol", 0)) {
+    if (CVarGetInteger("gUseKeeseCol", 0)) {
         Color_RGBA8 fireAuraPrimColor_custom = { CVar_GetRGB("gKeese1_Ef_Prim", fireAuraPrimColor_ori).r,CVar_GetRGB("gKeese1_Ef_Prim", fireAuraPrimColor_ori).g,CVar_GetRGB("gKeese1_Ef_Prim", fireAuraPrimColor_ori).b, 255 };
         Color_RGBA8 fireAuraEnvColor_custom = { CVar_GetRGB("gKeese1_Ef_Env", fireAuraEnvColor_ori).r,CVar_GetRGB("gKeese1_Ef_Env", fireAuraEnvColor_ori).g,CVar_GetRGB("gKeese1_Ef_Env", fireAuraEnvColor_ori).b, 0 };
         Color_RGBA8 iceAuraPrimColor_custom = { CVar_GetRGB("gKeese2_Ef_Prim", iceAuraPrimColor_ori).r,CVar_GetRGB("gKeese2_Ef_Prim", iceAuraPrimColor_ori).g,CVar_GetRGB("gKeese2_Ef_Prim", iceAuraPrimColor_ori).b, 255 };

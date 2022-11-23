@@ -338,7 +338,7 @@ void func_8002BF60(TargetContext* targetCtx, Actor* actor, s32 actorCategory, Pl
     Color_RGB8 customInnerNaviColor;
     Color_RGB8 customOuterNaviColor;
 
-    if (!CVar_GetS32("gUseNaviCol",0)) {
+    if (!CVarGetInteger("gUseNaviCol",0)) {
         if (actorCategory == ACTORCAT_PLAYER) {
             naviColor->inner.r = 255; naviColor->inner.g = 255; naviColor->inner.b = 255;
             naviColor->outer.r = 0; naviColor->outer.g = 0; naviColor->outer.b = 255;
@@ -1019,9 +1019,9 @@ void TitleCard_InitPlaceName(PlayState* play, TitleCardContext* titleCtx, void* 
 void TitleCard_Update(PlayState* play, TitleCardContext* titleCtx) {
     const Color_RGB8 TitleCard_Colors_ori = {255,255,255};
     Color_RGB8 TitleCard_Colors = {255,255,255};
-    if (titleCtx->isBossCard && CVar_GetS32("gHudColors", 1) == 2) {//Bosses cards.
+    if (titleCtx->isBossCard && CVarGetInteger("gHudColors", 1) == 2) {//Bosses cards.
         TitleCard_Colors = CVar_GetRGB("gCCTC_B_U_Prim", TitleCard_Colors_ori);
-    } else if (!titleCtx->isBossCard && CVar_GetS32("gHudColors", 1) == 2) {
+    } else if (!titleCtx->isBossCard && CVarGetInteger("gHudColors", 1) == 2) {
         TitleCard_Colors = CVar_GetRGB("gCCTC_OW_U_Prim", TitleCard_Colors_ori);
     } else {
         TitleCard_Colors = TitleCard_Colors_ori;
@@ -1057,20 +1057,20 @@ void TitleCard_Draw(PlayState* play, TitleCardContext* titleCtx) {
     if (titleCtx->alpha != 0) {
         width = titleCtx->width;
         height = titleCtx->height;
-        s16 TitleCard_PosX_Modifier = (titleCtx->isBossCard ? CVar_GetS32("gTCBPosX", 0) : CVar_GetS32("gTCMPosX", 0));
-        s16 TitleCard_PosY_Modifier = (titleCtx->isBossCard ? CVar_GetS32("gTCBPosY", 0) : CVar_GetS32("gTCMPosY", 0));
-        s16 TitleCard_PosType_Checker = (titleCtx->isBossCard ? CVar_GetS32("gTCBPosType", 0) : CVar_GetS32("gTCMPosType", 0));
-        s16 TitleCard_Margin_Checker = (titleCtx->isBossCard ? CVar_GetS32("gTCBUseMargins", 0) : CVar_GetS32("gTCMUseMargins", 0));
+        s16 TitleCard_PosX_Modifier = (titleCtx->isBossCard ? CVarGetInteger("gTCBPosX", 0) : CVarGetInteger("gTCMPosX", 0));
+        s16 TitleCard_PosY_Modifier = (titleCtx->isBossCard ? CVarGetInteger("gTCBPosY", 0) : CVarGetInteger("gTCMPosY", 0));
+        s16 TitleCard_PosType_Checker = (titleCtx->isBossCard ? CVarGetInteger("gTCBPosType", 0) : CVarGetInteger("gTCMPosType", 0));
+        s16 TitleCard_Margin_Checker = (titleCtx->isBossCard ? CVarGetInteger("gTCBUseMargins", 0) : CVarGetInteger("gTCMUseMargins", 0));
         s16 TitleCard_MarginX = 0;
         s16 TitleCard_PosX = titleCtx->x;
         s16 TitleCard_PosY = titleCtx->y;
         if (TitleCard_PosType_Checker != 0) {
             TitleCard_PosY = TitleCard_PosY_Modifier;
             if (TitleCard_PosType_Checker == 1) {//Anchor Left
-                if (TitleCard_Margin_Checker != 0) {TitleCard_MarginX = CVar_GetS32("gHUDMargin_L", 0)*-1;};
+                if (TitleCard_Margin_Checker != 0) {TitleCard_MarginX = CVarGetInteger("gHUDMargin_L", 0)*-1;};
                 TitleCard_PosX = OTRGetDimensionFromLeftEdge(TitleCard_PosX_Modifier+TitleCard_MarginX)-11;            
             } else if (TitleCard_PosType_Checker == 2) {//Anchor Right
-                if (TitleCard_Margin_Checker != 0) {TitleCard_MarginX = CVar_GetS32("gHUDMargin_R", 0);};
+                if (TitleCard_Margin_Checker != 0) {TitleCard_MarginX = CVarGetInteger("gHUDMargin_R", 0);};
                 TitleCard_PosX = OTRGetDimensionFromRightEdge(TitleCard_PosX_Modifier+TitleCard_MarginX);
             } else if (TitleCard_PosType_Checker == 3) {//Anchor None
                 TitleCard_PosX = TitleCard_PosX_Modifier;
@@ -1196,7 +1196,7 @@ void Actor_Init(Actor* actor, PlayState* play) {
     actor->uncullZoneForward = 1000.0f;
     actor->uncullZoneScale = 350.0f;
     actor->uncullZoneDownward = 700.0f;
-    if (CVar_GetS32("gDisableDrawDistance", 0) != 0 && actor->id != ACTOR_EN_TORCH2 && actor->id != ACTOR_EN_BLKOBJ // Extra check for Dark Link and his room 
+    if (CVarGetInteger("gDisableDrawDistance", 0) != 0 && actor->id != ACTOR_EN_TORCH2 && actor->id != ACTOR_EN_BLKOBJ // Extra check for Dark Link and his room 
         && actor->id != ACTOR_EN_HORSE // Check for Epona, else if we call her she will spawn at the other side of the  map + we can hear her during the title screen sequence
         && actor->id != ACTOR_EN_HORSE_GANON && actor->id != ACTOR_EN_HORSE_ZELDA  // check for Zelda's and Ganondorf's horses that will always be scene during cinematic whith camera paning
         && (play->sceneNum != SCENE_DDAN && actor->id != ACTOR_EN_ZF)) { // Check for DC and Lizalfos for the case where the miniboss music would still play under certains conditions and changing room
@@ -2838,7 +2838,7 @@ s32 func_800314B0(PlayState* play, Actor* actor) {
 s32 func_800314D4(PlayState* play, Actor* actor, Vec3f* arg2, f32 arg3) {
     f32 var;
 
-    if (CVar_GetS32("gDisableDrawDistance", 0) != 0 && actor->id != ACTOR_EN_TORCH2 && actor->id != ACTOR_EN_BLKOBJ // Extra check for Dark Link and his room 
+    if (CVarGetInteger("gDisableDrawDistance", 0) != 0 && actor->id != ACTOR_EN_TORCH2 && actor->id != ACTOR_EN_BLKOBJ // Extra check for Dark Link and his room 
         && actor->id != ACTOR_EN_HORSE // Check for Epona, else if we call her she will spawn at the other side of the  map + we can hear her during the title screen sequence
         && actor->id != ACTOR_EN_HORSE_GANON && actor->id != ACTOR_EN_HORSE_ZELDA  // check for Zelda's and Ganondorf's horses that will always be scene during cinematic whith camera paning
         && (play->sceneNum != SCENE_DDAN && actor->id != ACTOR_EN_ZF)) { // Check for DC and Lizalfos for the case where the miniboss music would still play under certains conditions and changing room

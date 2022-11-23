@@ -362,7 +362,7 @@ s32 Player_ActionToModelGroup(Player* this, s32 actionParam) {
 void Player_SetModelsForHoldingShield(Player* this) {
     if ((this->stateFlags1 & 0x400000) &&
         ((this->itemActionParam < 0) || (this->itemActionParam == this->heldItemActionParam))) {
-        if ((CVar_GetS32("gShieldTwoHanded", 0) && (this->heldItemActionParam != PLAYER_AP_STICK) ||
+        if ((CVarGetInteger("gShieldTwoHanded", 0) && (this->heldItemActionParam != PLAYER_AP_STICK) ||
             !Player_HoldsTwoHandedWeapon(this)) && !Player_IsChildWithHylianShield(this)) {
             this->rightHandType = 10;
             this->rightHandDLists = &sPlayerDListGroups[10][gSaveContext.linkAge];
@@ -489,7 +489,7 @@ s32 Player_IsBurningStickInRange(PlayState* play, Vec3f* pos, f32 xzRange, f32 y
 s32 Player_GetStrength(void) {
     s32 strengthUpgrade = CUR_UPG_VALUE(UPG_STRENGTH);
 
-    if (CVar_GetS32("gTimelessEquipment", 0) || LINK_IS_ADULT) {
+    if (CVarGetInteger("gTimelessEquipment", 0) || LINK_IS_ADULT) {
         return strengthUpgrade;
     } else if (strengthUpgrade != 0) {
         return PLAYER_STR_BRACELET;
@@ -633,9 +633,9 @@ s32 func_8008F2F8(PlayState* play) {
         triggerEntry = &sTextTriggers[var];
 
         if ((triggerEntry->flag != 0) && !(gSaveContext.textTriggerFlags & triggerEntry->flag) &&
-            (((var == 0) && (this->currentTunic != PLAYER_TUNIC_GORON && CVar_GetS32("gSuperTunic", 0) == 0)) ||
+            (((var == 0) && (this->currentTunic != PLAYER_TUNIC_GORON && CVarGetInteger("gSuperTunic", 0) == 0)) ||
              (((var == 1) || (var == 3)) && (this->currentBoots == PLAYER_BOOTS_IRON) &&
-              (this->currentTunic != PLAYER_TUNIC_ZORA && CVar_GetS32("gSuperTunic", 0) == 0)))) {
+              (this->currentTunic != PLAYER_TUNIC_ZORA && CVarGetInteger("gSuperTunic", 0) == 0)))) {
             Message_StartTextbox(play, triggerEntry->textId, NULL);
             gSaveContext.textTriggerFlags |= triggerEntry->flag;
         }
@@ -753,13 +753,13 @@ void func_8008F470(PlayState* play, void** skeleton, Vec3s* jointTable, s32 dLis
         { 0, 60, 100 },
     };
     color = &sTemp;
-    if (tunic == PLAYER_TUNIC_KOKIRI && CVar_GetS32("gUseTunicsCol",0)) {
+    if (tunic == PLAYER_TUNIC_KOKIRI && CVarGetInteger("gUseTunicsCol",0)) {
         *color = CVar_GetRGB("gTunic_Kokiri", sTunicColors[PLAYER_TUNIC_KOKIRI]);
-    } else if (tunic == PLAYER_TUNIC_GORON && CVar_GetS32("gUseTunicsCol",0)) {
+    } else if (tunic == PLAYER_TUNIC_GORON && CVarGetInteger("gUseTunicsCol",0)) {
         *color = CVar_GetRGB("gTunic_Goron", sTunicColors[PLAYER_TUNIC_GORON]);
-    } else if (tunic == PLAYER_TUNIC_ZORA && CVar_GetS32("gUseTunicsCol",0)) {
+    } else if (tunic == PLAYER_TUNIC_ZORA && CVarGetInteger("gUseTunicsCol",0)) {
         *color = CVar_GetRGB("gTunic_Zora", sTunicColors[PLAYER_TUNIC_ZORA]);
-    } else if (!CVar_GetS32("gUseTunicsCol",0)){
+    } else if (!CVarGetInteger("gUseTunicsCol",0)){
         if (tunic >= 3) {
             color->r = sOriginalTunicColors[0].r;
             color->g = sOriginalTunicColors[0].g;
@@ -784,7 +784,7 @@ void func_8008F470(PlayState* play, void** skeleton, Vec3s* jointTable, s32 dLis
             if (strengthUpgrade >= 2) { // silver or gold gauntlets
                 gDPPipeSync(POLY_OPA_DISP++);
 
-                if (!CVar_GetS32("gUseGauntletsCol", 0)) {
+                if (!CVarGetInteger("gUseGauntletsCol", 0)) {
                     color = &sGauntletColors[strengthUpgrade - 2];
                 } else if (strengthUpgrade == PLAYER_STR_SILVER_G) {
                     *color = CVar_GetRGB("gGauntlets_Silver", sGauntletColors[PLAYER_STR_SILVER_G - 2]);
@@ -1187,7 +1187,7 @@ void Player_DrawGetItemImpl(PlayState* play, Player* this, Vec3f* refPos, s32 dr
     if (!(this->getItemEntry.modIndex == MOD_RANDOMIZER && this->getItemEntry.getItemId == RG_ICE_TRAP)) {
         // RANDOTODO: Make this more flexible for easier toggling of individual item recolors in the future.
         if (this->getItemEntry.drawFunc != NULL &&
-            (CVar_GetS32("gRandoMatchKeyColors", 0) || this->getItemEntry.getItemId == RG_DOUBLE_DEFENSE)) {
+            (CVarGetInteger("gRandoMatchKeyColors", 0) || this->getItemEntry.getItemId == RG_DOUBLE_DEFENSE)) {
             this->getItemEntry.drawFunc(play, &this->getItemEntry);
         } else {
             GetItem_Draw(play, drawIdPlusOne - 1);
@@ -1353,7 +1353,7 @@ void func_80090D20(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void
                 D_80126080.x = 1500.0f;
             } else {
                 D_80126080.x = sSwordLengths[Player_GetSwordHeld(this)];
-                if (CVar_GetS32("gSeperateSwords", 0) != 0)
+                if (CVarGetInteger("gSeperateSwords", 0) != 0)
                     EffectBlure_ChangeType(Effect_GetByIndex(this->swordEffectIndex), sSwordTypes[Player_GetSwordHeld(this)]);
                 else
                     EffectBlure_ChangeType(Effect_GetByIndex(this->swordEffectIndex),1); //default sword type
@@ -1565,7 +1565,7 @@ s32 func_80091880(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s
         type = gPlayerModelTypes[modelGroup][3];
         if ((type == 18) || (type == 19)) {
             dListOffset = ptr[1] * ptrSize;
-        } else if (type == 16 && CVar_GetS32("gPauseLiveLink", 0)) {
+        } else if (type == 16 && CVarGetInteger("gPauseLiveLink", 0)) {
             //if (ptr[0] == 1)
                 //dListOffset = 4;
         }
@@ -1644,8 +1644,8 @@ void func_80091A24(PlayState* play, void* seg04, void* seg06, SkelAnime* skelAni
     sp12C[0] = sword;
     sp12C[1] = shield;
 
-    Matrix_SetTranslateRotateYXZ(pos->x - ((CVar_GetS32("gPauseLiveLink", 0) && LINK_AGE_IN_YEARS == YEARS_ADULT) ? 25 : 0),
-                                 pos->y - (CVar_GetS32("gPauseTriforce", 0) ? 16 : 0), pos->z, rot);
+    Matrix_SetTranslateRotateYXZ(pos->x - ((CVarGetInteger("gPauseLiveLink", 0) && LINK_AGE_IN_YEARS == YEARS_ADULT) ? 25 : 0),
+                                 pos->y - (CVarGetInteger("gPauseTriforce", 0) ? 16 : 0), pos->z, rot);
     Matrix_Scale(scale, scale, scale, MTXMODE_APPLY);
 
     gSPSegment(POLY_OPA_DISP++, 0x04, seg04);
@@ -1664,7 +1664,7 @@ void func_80091A24(PlayState* play, void* seg04, void* seg06, SkelAnime* skelAni
     func_8008F470(play, skelAnime->skeleton, skelAnime->jointTable, skelAnime->dListCount, 0, tunic, boots, 0,
                   func_80091880, NULL, &sp12C);
 
-     if (CVar_GetS32("gPauseTriforce", 0)) {
+     if (CVarGetInteger("gPauseTriforce", 0)) {
 
         Matrix_SetTranslateRotateYXZ(pos->x - (LINK_AGE_IN_YEARS == YEARS_ADULT ? 25 : 0),
                                       pos->y + 280 + (LINK_AGE_IN_YEARS == YEARS_ADULT ? 48 : 0), pos->z, rot);
@@ -1698,8 +1698,8 @@ void func_8009214C(PlayState* play, u8* segment, SkelAnime* skelAnime, Vec3f* po
     Vec3s* srcTable;
     s32 i;
     bool canswitchrnd = false;
-    s16 SelectedMode = CVar_GetS32("gPauseLiveLink", 0);
-    MinFrameCount = CVar_GetS32("gMinFrameCount", 200);
+    s16 SelectedMode = CVarGetInteger("gPauseLiveLink", 0);
+    MinFrameCount = CVarGetInteger("gMinFrameCount", 200);
 
     gSegments[4] = VIRTUAL_TO_PHYSICAL(segment + 0x3800);
     gSegments[6] = VIRTUAL_TO_PHYSICAL(segment + 0x8800);
@@ -1724,7 +1724,7 @@ void func_8009214C(PlayState* play, u8* segment, SkelAnime* skelAnime, Vec3f* po
     };
     s16 AnimArraySize = ARRAY_COUNT(PauseMenuAnimSet);
 
-    if (CVar_GetS32("gPauseLiveLink", 0) || CVar_GetS32("gPauseTriforce", 0)) {
+    if (CVarGetInteger("gPauseLiveLink", 0) || CVarGetInteger("gPauseTriforce", 0)) {
         uintptr_t anim = 0; // Initialise anim
 
         if (CUR_EQUIP_VALUE(EQUIP_SWORD) >= 3) {
@@ -1881,7 +1881,7 @@ void func_8009214C(PlayState* play, u8* segment, SkelAnime* skelAnime, Vec3f* po
 
         //anim = gPlayerAnim_link_wait_itemD2_20f; // Use for biggoron sword?
 
-        if (CVar_GetS32("gPauseTriforce", 0)) {
+        if (CVarGetInteger("gPauseTriforce", 0)) {
             anim = gPlayerAnim_link_magic_kaze2;
             sword = 0;
             shield = 0;

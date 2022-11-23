@@ -136,7 +136,7 @@ void Sram_OpenSave() {
 
     Save_LoadFile();
 
-    if (!CVar_GetS32("gRememberSaveLocation", 0) || gSaveContext.savedSceneNum == SCENE_YOUSEI_IZUMI_TATE ||
+    if (!CVarGetInteger("gRememberSaveLocation", 0) || gSaveContext.savedSceneNum == SCENE_YOUSEI_IZUMI_TATE ||
         gSaveContext.savedSceneNum == SCENE_KAKUSIANA) {
         switch (gSaveContext.savedSceneNum) {
             case SCENE_YDAN:
@@ -200,7 +200,7 @@ void Sram_OpenSave() {
     // Setup the modified entrance table and entrance shuffle table for rando
     if (gSaveContext.n64ddFlag) {
         Entrance_Init();
-        if (!CVar_GetS32("gRememberSaveLocation", 0) || gSaveContext.savedSceneNum == SCENE_YOUSEI_IZUMI_TATE ||
+        if (!CVarGetInteger("gRememberSaveLocation", 0) || gSaveContext.savedSceneNum == SCENE_YOUSEI_IZUMI_TATE ||
             gSaveContext.savedSceneNum == SCENE_KAKUSIANA) {
             Entrance_SetSavewarpEntrance();
         }
@@ -292,7 +292,7 @@ void Sram_InitSave(FileChooseContext* fileChooseCtx) {
     u16* ptr;
     u16 checksum;
 
-    if (fileChooseCtx->buttonIndex != 0 || !CVar_GetS32("gDebugEnabled", 0)) {
+    if (fileChooseCtx->buttonIndex != 0 || !CVarGetInteger("gDebugEnabled", 0)) {
         Sram_InitNewSave();
     } else {
         Sram_InitDebugSave();
@@ -303,7 +303,7 @@ void Sram_InitSave(FileChooseContext* fileChooseCtx) {
     gSaveContext.dayTime = 0x6AAB;
     gSaveContext.cutsceneIndex = 0xFFF1;
 
-    if ((fileChooseCtx->buttonIndex == 0 && CVar_GetS32("gDebugEnabled", 0)) || CVar_GetS32("gNaviSkipCutscene", 0)) {
+    if ((fileChooseCtx->buttonIndex == 0 && CVarGetInteger("gDebugEnabled", 0)) || CVarGetInteger("gNaviSkipCutscene", 0)) {
         gSaveContext.cutsceneIndex = 0;
     }
 
@@ -311,7 +311,7 @@ void Sram_InitSave(FileChooseContext* fileChooseCtx) {
         gSaveContext.playerName[offset] = Save_GetSaveMetaInfo(fileChooseCtx->buttonIndex)->playerName[offset];
     }
 
-    if (fileChooseCtx->questType[fileChooseCtx->buttonIndex] == 2 && strnlen(CVar_GetString("gSpoilerLog", ""), 1) != 0 &&
+    if (fileChooseCtx->questType[fileChooseCtx->buttonIndex] == 2 && strnlen(CVarGetString("gSpoilerLog", ""), 1) != 0 &&
         !((Save_GetSaveMetaInfo(fileChooseCtx->buttonIndex)->requiresMasterQuest && !ResourceMgr_GameHasMasterQuest()) ||
           (Save_GetSaveMetaInfo(fileChooseCtx->buttonIndex)->requiresMasterQuest && !ResourceMgr_GameHasOriginal()))) {
         // Set N64DD Flags for save file

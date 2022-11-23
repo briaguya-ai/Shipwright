@@ -12,11 +12,11 @@
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include <ImGui/imgui_internal.h>
 #include <ImGuiImpl.h>
-#include <Cvar.h>
+#include <libultraship/bridge.h>
 #include <Hooks.h>
-#include <ultra64/types.h>
-#include <ultra64/pi.h>
-#include <ultra64/sptask.h>
+#include <libultraship/libultra/types.h>
+#include <libultraship/libultra/pi.h>
+#include <libultraship/libultra/sptask.h>
 
 #ifdef __SWITCH__
 #include <port/switch/SwitchImpl.h>
@@ -82,22 +82,22 @@ namespace GameMenuBar {
     }
 
     void BindAudioSlider(const char* name, const char* key, float defaultValue, SeqPlayers playerId) {
-        float value = CVar_GetFloat(key, defaultValue);
+        float value = CVarGetFloat(key, defaultValue);
 
         ImGui::Text(name, static_cast<int>(100 * value));
         if (ImGui::SliderFloat((std::string("##") + key).c_str(), &value, 0.0f, 1.0f, "")) {
             const float volume = floorf(value * 100) / 100;
-            CVar_SetFloat(key, volume);
+            CVarSetFloat(key, volume);
             SohImGui::RequestCvarSaveOnNextTick();
             Audio_SetGameVolume(playerId, volume);
         }
     }
 
     void UpdateAudio() {
-        Audio_SetGameVolume(SEQ_BGM_MAIN, CVar_GetFloat("gMainMusicVolume", 1));
-        Audio_SetGameVolume(SEQ_BGM_SUB, CVar_GetFloat("gSubMusicVolume", 1));
-        Audio_SetGameVolume(SEQ_FANFARE, CVar_GetFloat("gSFXMusicVolume", 1));
-        Audio_SetGameVolume(SEQ_SFX, CVar_GetFloat("gFanfareVolume", 1));
+        Audio_SetGameVolume(SEQ_BGM_MAIN, CVarGetFloat("gMainMusicVolume", 1));
+        Audio_SetGameVolume(SEQ_BGM_SUB, CVarGetFloat("gSubMusicVolume", 1));
+        Audio_SetGameVolume(SEQ_FANFARE, CVarGetFloat("gSFXMusicVolume", 1));
+        Audio_SetGameVolume(SEQ_SFX, CVarGetFloat("gFanfareVolume", 1));
     }
 
     // MARK: - Delegates
@@ -153,12 +153,12 @@ namespace GameMenuBar {
                 ImGui::PushStyleVar(ImGuiStyleVar_ButtonTextAlign, ImVec2(0, 0));
                 ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1.0f);
                 ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0.22f, 0.38f, 0.56f, 1.0f));
-                if (ImGui::Button(GetWindowButtonText("Controller Configuration", CVar_GetS32("gControllerConfigurationEnabled", 0)).c_str()))
+                if (ImGui::Button(GetWindowButtonText("Controller Configuration", CVarGetInteger("gControllerConfigurationEnabled", 0)).c_str()))
                 {
-                    bool currentValue = CVar_GetS32("gControllerConfigurationEnabled", 0);
-                    CVar_SetS32("gControllerConfigurationEnabled", !currentValue);
+                    bool currentValue = CVarGetInteger("gControllerConfigurationEnabled", 0);
+                    CVarSetInteger("gControllerConfigurationEnabled", !currentValue);
                     SohImGui::RequestCvarSaveOnNextTick();
-                    SohImGui::ToggleInputEditorWindow(CVar_GetS32("gControllerConfigurationEnabled", 0));
+                    SohImGui::ToggleInputEditorWindow(CVarGetInteger("gControllerConfigurationEnabled", 0));
                 }
                 ImGui::PopStyleColor(1);
                 ImGui::PopStyleVar(3);
@@ -188,18 +188,18 @@ namespace GameMenuBar {
             #ifndef __APPLE__
                 UIWidgets::EnhancementSliderFloat("Internal Resolution: %d %%", "##IMul", "gInternalResolution", 0.5f, 2.0f, "", 1.0f, true, true);
                 UIWidgets::Tooltip("Multiplies your output resolution by the value inputted, as a more intensive but effective form of anti-aliasing");
-                SohImGui::SetResolutionMultiplier(CVar_GetFloat("gInternalResolution", 1));
+                SohImGui::SetResolutionMultiplier(CVarGetFloat("gInternalResolution", 1));
             #endif
             #ifndef __WIIU__
                 UIWidgets::PaddedEnhancementSliderInt("MSAA: %d", "##IMSAA", "gMSAAValue", 1, 8, "", 1, false, true, false);
                 UIWidgets::Tooltip("Activates multi-sample anti-aliasing when above 1x up to 8x for 8 samples for every pixel");
-                SohImGui::SetMSAALevel(CVar_GetS32("gMSAAValue", 1));
+                SohImGui::SetMSAALevel(CVarGetInteger("gMSAAValue", 1));
             #endif
 
                 if (SohImGui::WindowBackend() == SohImGui::Backend::DX11)
                 {
                     const char* cvar = "gExtraLatencyThreshold";
-                    int val = CVar_GetS32(cvar, 80);
+                    int val = CVarGetInteger(cvar, 80);
                     val = fmax(fmin(val, 360), 0);
                     int fps = val;
 
@@ -218,7 +218,7 @@ namespace GameMenuBar {
                     std::string PlusBTNELT = " + ##ExtraLatencyThreshold";
                     if (ImGui::Button(MinusBTNELT.c_str())) {
                         val--;
-                        CVar_SetS32(cvar, val);
+                        CVarSetInteger(cvar, val);
                         SohImGui::RequestCvarSaveOnNextTick();
                     }
                     ImGui::SameLine();
@@ -232,7 +232,7 @@ namespace GameMenuBar {
                 #endif
                     if (ImGui::SliderInt("##ExtraLatencyThreshold", &val, 0, 360, "", ImGuiSliderFlags_AlwaysClamp))
                     {
-                        CVar_SetS32(cvar, val);
+                        CVarSetInteger(cvar, val);
                         SohImGui::RequestCvarSaveOnNextTick();
                     }
                     ImGui::PopItemWidth();
@@ -242,7 +242,7 @@ namespace GameMenuBar {
                     ImGui::SetCursorPosX(ImGui::GetCursorPosX() - 7.0f);
                     if (ImGui::Button(PlusBTNELT.c_str())) {
                         val++;
-                        CVar_SetS32(cvar, val);
+                        CVarSetInteger(cvar, val);
                         SohImGui::RequestCvarSaveOnNextTick();
                     }
 
@@ -314,13 +314,13 @@ namespace GameMenuBar {
                 ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0.22f, 0.38f, 0.56f, 1.0f));
                 float availableWidth = ImGui::GetContentRegionAvail().x;
                 if (ImGui::Button(
-                    GetWindowButtonText("Customize Game Controls", CVar_GetS32("gGameControlEditorEnabled", 0)).c_str(),
+                    GetWindowButtonText("Customize Game Controls", CVarGetInteger("gGameControlEditorEnabled", 0)).c_str(),
                     ImVec2(availableWidth, 0)
                 )) {
-                    bool currentValue = CVar_GetS32("gGameControlEditorEnabled", 0);
-                    CVar_SetS32("gGameControlEditorEnabled", !currentValue);
+                    bool currentValue = CVarGetInteger("gGameControlEditorEnabled", 0);
+                    CVarSetInteger("gGameControlEditorEnabled", !currentValue);
                     SohImGui::RequestCvarSaveOnNextTick();
-                    SohImGui::EnableWindow("Game Control Editor", CVar_GetS32("gGameControlEditorEnabled", 0));
+                    SohImGui::EnableWindow("Game Control Editor", CVarGetInteger("gGameControlEditorEnabled", 0));
                 }
                 ImGui::PopStyleVar(3);
                 ImGui::PopStyleColor(1);
@@ -339,7 +339,7 @@ namespace GameMenuBar {
                 UIWidgets::Tooltip("Speak to Navi with L but enter first-person camera with C-Up");
                 UIWidgets::PaddedEnhancementCheckbox("Enable walk speed modifiers", "gEnableWalkModify", true, false);
                 UIWidgets::Tooltip("Hold the assigned button to change the maximum walking speed\nTo change the assigned button, click Customize Game Controls");
-                if (CVar_GetS32("gEnableWalkModify", 0)) {
+                if (CVarGetInteger("gEnableWalkModify", 0)) {
                     UIWidgets::PaddedEnhancementCheckbox("Toggle modifier instead of holding", "gWalkSpeedToggle", true, false);
                     UIWidgets::EnhancementSliderFloat("Modifier 1: %d %%", "##WalkMod1", "gWalkModifierOne", 0.0f, 5.0f, "", 1.0f, true);
                     UIWidgets::EnhancementSliderFloat("Modifier 2: %d %%", "##WalkMod2", "gWalkModifierTwo", 0.0f, 5.0f, "", 1.0f, true);
@@ -379,11 +379,11 @@ namespace GameMenuBar {
                         " - Skulltula Tokens: Small skulltula chest\n"
                     );
                     if (UIWidgets::EnhancementCombobox("gChestSizeAndTextureMatchesContents", chestSizeAndTextureMatchesContentsOptions, 4, 0)) {
-                        if (CVar_GetS32("gChestSizeAndTextureMatchesContents", 0) == 0) {
-                            CVar_SetS32("gChestSizeDependsStoneOfAgony", 0);
+                        if (CVarGetInteger("gChestSizeAndTextureMatchesContents", 0) == 0) {
+                            CVarSetInteger("gChestSizeDependsStoneOfAgony", 0);
                         }
                     }
-                    if (CVar_GetS32("gChestSizeAndTextureMatchesContents", 0) > 0) {
+                    if (CVarGetInteger("gChestSizeAndTextureMatchesContents", 0) > 0) {
                         UIWidgets::PaddedEnhancementCheckbox("Chests of Agony", "gChestSizeDependsStoneOfAgony", true, false);
                         UIWidgets::Tooltip("Only change the size/texture of chests if you have the Stone of Agony.");
                     }
@@ -570,7 +570,7 @@ namespace GameMenuBar {
                     if (ImGui::BeginMenu("Shooting Gallery")) {
                         UIWidgets::EnhancementCheckbox("Customize Behavior", "gCustomizeShootingGallery");
                         UIWidgets::Tooltip("Turn on/off changes to the shooting gallery behavior");
-                        bool disabled = CVar_GetS32("gCustomizeShootingGallery", 0) == 0;
+                        bool disabled = CVarGetInteger("gCustomizeShootingGallery", 0) == 0;
                         const char* disabledTooltip = "This option is disabled because \"Customize Behavior\" is turned off";
                         UIWidgets::EnhancementCheckbox("Instant Win", "gInstantShootingGalleryWin", disabled, disabledTooltip);
                         UIWidgets::Tooltip("Skips the shooting gallery minigame");
@@ -670,7 +670,7 @@ namespace GameMenuBar {
                     UIWidgets::Tooltip("Allow you to rotate Link on the Equipment menu with the C-buttons\nUse C-Up or C-Down to reset Link's rotation");
                     UIWidgets::EnhancementRadioButton("Rotate Link with Right Stick", "gPauseLiveLinkRotation", 3);
                     UIWidgets::Tooltip("Allow you to rotate Link on the Equipment menu with the Right Stick\nYou can zoom in by pointing up and reset Link's rotation by pointing down");
-                    if (CVar_GetS32("gPauseLiveLinkRotation", 0) != 0) {
+                    if (CVarGetInteger("gPauseLiveLinkRotation", 0) != 0) {
                         UIWidgets::EnhancementSliderInt("Rotation Speed: %d", "##MinRotationSpeed", "gPauseLiveLinkRotationSpeed", 1, 20, "");
                     }
                     UIWidgets::PaddedSeparator();
@@ -698,7 +698,7 @@ namespace GameMenuBar {
                     UIWidgets::Tooltip("Randomize the animation played on the menu after a certain time");
                     UIWidgets::EnhancementRadioButton("Random cycle (Idle)", "gPauseLiveLink", 17);
                     UIWidgets::Tooltip("Randomize the animation played on the menu after a certain time (Idle animations only)");
-                    if (CVar_GetS32("gPauseLiveLink", 0) >= 16) {
+                    if (CVarGetInteger("gPauseLiveLink", 0) >= 16) {
                         UIWidgets::EnhancementSliderInt("Frame to wait: %d", "##MinFrameCount", "gMinFrameCount", 1, 1000, "", 0, true);
                     }
 
@@ -742,8 +742,8 @@ namespace GameMenuBar {
                 UIWidgets::Tooltip("Make Anubis fireballs do fire damage when reflected back at them with the Mirror Shield");
                 UIWidgets::PaddedEnhancementCheckbox("Fix Megaton Hammer crouch stab", "gCrouchStabHammerFix", true, false);
                 UIWidgets::Tooltip("Make the Megaton Hammer's crouch stab able to destroy rocks without first swinging it normally");
-                if (CVar_GetS32("gCrouchStabHammerFix", 0) == 0) {
-                    CVar_SetS32("gCrouchStabFix", 0);
+                if (CVarGetInteger("gCrouchStabHammerFix", 0) == 0) {
+                    CVarSetInteger("gCrouchStabFix", 0);
                 } else {
                     UIWidgets::PaddedEnhancementCheckbox("Remove power crouch stab", "gCrouchStabFix", true, false);
                     UIWidgets::Tooltip("Make crouch stabbing always do the same damage as a regular slash");
@@ -788,25 +788,25 @@ namespace GameMenuBar {
             ImGui::PushStyleVar(ImGuiStyleVar_ButtonTextAlign, ImVec2(0, 0));
             ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1.0f);
             ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0.22f, 0.38f, 0.56f, 1.0f));
-            if (ImGui::Button(GetWindowButtonText("Cosmetics Editor", CVar_GetS32("gCosmeticsEditorEnabled", 0)).c_str(), ImVec2(-1.0f, 0.0f)))
+            if (ImGui::Button(GetWindowButtonText("Cosmetics Editor", CVarGetInteger("gCosmeticsEditorEnabled", 0)).c_str(), ImVec2(-1.0f, 0.0f)))
             {
-                bool currentValue = CVar_GetS32("gCosmeticsEditorEnabled", 0);
-                CVar_SetS32("gCosmeticsEditorEnabled", !currentValue);
+                bool currentValue = CVarGetInteger("gCosmeticsEditorEnabled", 0);
+                CVarSetInteger("gCosmeticsEditorEnabled", !currentValue);
                 SohImGui::RequestCvarSaveOnNextTick();
-                SohImGui::EnableWindow("Cosmetics Editor", CVar_GetS32("gCosmeticsEditorEnabled", 0));
+                SohImGui::EnableWindow("Cosmetics Editor", CVarGetInteger("gCosmeticsEditorEnabled", 0));
             }
-            if (ImGui::Button(GetWindowButtonText("SFX Editor", CVar_GetS32("gSfxEditor", 0)).c_str(), ImVec2(-1.0f, 0.0f)))
+            if (ImGui::Button(GetWindowButtonText("SFX Editor", CVarGetInteger("gSfxEditor", 0)).c_str(), ImVec2(-1.0f, 0.0f)))
             {
-                bool currentValue = CVar_GetS32("gSfxEditor", 0);
-                CVar_SetS32("gSfxEditor", !currentValue);
+                bool currentValue = CVarGetInteger("gSfxEditor", 0);
+                CVarSetInteger("gSfxEditor", !currentValue);
                 SohImGui::RequestCvarSaveOnNextTick();
-                SohImGui::EnableWindow("SFX Editor", CVar_GetS32("gSfxEditor", 0));
+                SohImGui::EnableWindow("SFX Editor", CVarGetInteger("gSfxEditor", 0));
             }
-            if (ImGui::Button(GetWindowButtonText("Gameplay Stats", CVar_GetS32("gGameplayStatsEnabled", 0)).c_str(), ImVec2(-1.0f, 0.0f))) {
-                bool currentValue = CVar_GetS32("gGameplayStatsEnabled", 0);
-                CVar_SetS32("gGameplayStatsEnabled", !currentValue);
+            if (ImGui::Button(GetWindowButtonText("Gameplay Stats", CVarGetInteger("gGameplayStatsEnabled", 0)).c_str(), ImVec2(-1.0f, 0.0f))) {
+                bool currentValue = CVarGetInteger("gGameplayStatsEnabled", 0);
+                CVarSetInteger("gGameplayStatsEnabled", !currentValue);
                 SohImGui::RequestCvarSaveOnNextTick();
-                SohImGui::EnableWindow("Gameplay Stats", CVar_GetS32("gGameplayStatsEnabled", 0));
+                SohImGui::EnableWindow("Gameplay Stats", CVarGetInteger("gGameplayStatsEnabled", 0));
             }
             ImGui::PopStyleVar(3);
             ImGui::PopStyleColor(1);
@@ -823,7 +823,7 @@ namespace GameMenuBar {
                 int maxFps = 360;
             #endif
 
-                int val = CVar_GetS32(fps_cvar, minFps);
+                int val = CVarGetInteger(fps_cvar, minFps);
                 val = fmax(fmin(val, maxFps), 20);
 
             #ifdef __WIIU__
@@ -851,7 +851,7 @@ namespace GameMenuBar {
                 #else
                     val--;
                 #endif
-                    CVar_SetS32(fps_cvar, val);
+                    CVarSetInteger(fps_cvar, val);
                     SohImGui::RequestCvarSaveOnNextTick();
                 }
                 ImGui::SameLine();
@@ -878,7 +878,7 @@ namespace GameMenuBar {
                         val = 20;
                     }
 
-                    CVar_SetS32(fps_cvar, val);
+                    CVarSetInteger(fps_cvar, val);
                     SohImGui::RequestCvarSaveOnNextTick();
                 }
                 ImGui::PopItemWidth();
@@ -898,7 +898,7 @@ namespace GameMenuBar {
                 #else
                     val++;
                 #endif
-                    CVar_SetS32(fps_cvar, val);
+                    CVarSetInteger(fps_cvar, val);
                     SohImGui::RequestCvarSaveOnNextTick();
                 }
             }
@@ -912,7 +912,7 @@ namespace GameMenuBar {
                     int hz = roundf(SohImGui::WindowRefreshRate());
                     if (hz >= 20 && hz <= 360)
                     {
-                        CVar_SetS32(fps_cvar, hz);
+                        CVarSetInteger(fps_cvar, hz);
                         SohImGui::RequestCvarSaveOnNextTick();
                     }
                 }
@@ -922,12 +922,12 @@ namespace GameMenuBar {
             UIWidgets::EnhancementCheckbox("Disable LOD", "gDisableLOD");
             UIWidgets::Tooltip("Turns off the Level of Detail setting, making models use their higher-poly variants at any distance");
             if (UIWidgets::PaddedEnhancementCheckbox("Disable Draw Distance", "gDisableDrawDistance", true, false)) {
-                if (CVar_GetS32("gDisableDrawDistance", 0) == 0) {
-                    CVar_SetS32("gDisableKokiriDrawDistance", 0);
+                if (CVarGetInteger("gDisableDrawDistance", 0) == 0) {
+                    CVarSetInteger("gDisableKokiriDrawDistance", 0);
                 }
             }
             UIWidgets::Tooltip("Turns off the objects draw distance, making objects being visible from a longer range");
-            if (CVar_GetS32("gDisableDrawDistance", 0) == 1) {
+            if (CVarGetInteger("gDisableDrawDistance", 0) == 1) {
                 UIWidgets::PaddedEnhancementCheckbox("Kokiri Draw Distance", "gDisableKokiriDrawDistance", true, false);
                 UIWidgets::Tooltip("The Kokiri are mystical beings that fade into view when approached\nEnabling this will remove their draw distance");
             }
@@ -938,13 +938,13 @@ namespace GameMenuBar {
             
          #ifdef __SWITCH__
             UIWidgets::Spacer(0);
-            int slot = CVar_GetS32("gSwitchPerfMode", (int)Ship::SwitchProfiles::STOCK);
+            int slot = CVarGetInteger("gSwitchPerfMode", (int)Ship::SwitchProfiles::STOCK);
             ImGui::Text("Switch performance mode");
             if (ImGui::BeginCombo("##perf", SWITCH_CPU_PROFILES[slot])) {
                 for (int sId = 0; sId <= Ship::SwitchProfiles::POWERSAVINGM3; sId++) {
                     if (ImGui::Selectable(SWITCH_CPU_PROFILES[sId], sId == slot)) {
                         SPDLOG_INFO("Profile:: %s", SWITCH_CPU_PROFILES[sId]);
-                        CVar_SetS32("gSwitchPerfMode", sId);
+                        CVarSetInteger("gSwitchPerfMode", sId);
                         Ship::Switch::ApplyOverclock();
                         SohImGui::RequestCvarSaveOnNextTick();
                     }
@@ -1002,9 +1002,9 @@ namespace GameMenuBar {
             UIWidgets::Tooltip("This syncs the ingame time with the real world time");
 
             {
-                static int32_t betaQuestEnabled = CVar_GetS32("gEnableBetaQuest", 0);
+                static int32_t betaQuestEnabled = CVarGetInteger("gEnableBetaQuest", 0);
                 static int32_t lastBetaQuestEnabled = betaQuestEnabled;
-                static int32_t betaQuestWorld = CVar_GetS32("gBetaQuestWorld", 0xFFEF);
+                static int32_t betaQuestWorld = CVarGetInteger("gBetaQuestWorld", 0xFFEF);
                 static int32_t lastBetaQuestWorld = betaQuestWorld;
 
                 if (!isBetaQuestEnabled) {
@@ -1014,7 +1014,7 @@ namespace GameMenuBar {
 
                 UIWidgets::PaddedEnhancementCheckbox("Enable Beta Quest", "gEnableBetaQuest", true, false);
                 UIWidgets::Tooltip("Turns on OoT Beta Quest. *WARNING* This will reset your game.");
-                betaQuestEnabled = CVar_GetS32("gEnableBetaQuest", 0);
+                betaQuestEnabled = CVarGetInteger("gEnableBetaQuest", 0);
                 if (betaQuestEnabled) {
                     if (betaQuestEnabled != lastBetaQuestEnabled) {
                         betaQuestWorld = 0;
@@ -1046,15 +1046,15 @@ namespace GameMenuBar {
                 }
                 else {
                     lastBetaQuestWorld = betaQuestWorld = 0xFFEF;
-                    CVar_SetS32("gBetaQuestWorld", betaQuestWorld);
+                    CVarSetInteger("gBetaQuestWorld", betaQuestWorld);
                 }
                 if (betaQuestEnabled != lastBetaQuestEnabled || betaQuestWorld != lastBetaQuestWorld)
                 {
                     // Reset the game if the beta quest state or world changed because beta quest happens on redirecting the title screen cutscene.
                     lastBetaQuestEnabled = betaQuestEnabled;
                     lastBetaQuestWorld = betaQuestWorld;
-                    CVar_SetS32("gEnableBetaQuest", betaQuestEnabled);
-                    CVar_SetS32("gBetaQuestWorld", betaQuestWorld);
+                    CVarSetInteger("gEnableBetaQuest", betaQuestEnabled);
+                    CVarSetInteger("gBetaQuestWorld", betaQuestWorld);
 
                     SohImGui::DispatchConsoleCommand("reset");
 
@@ -1068,7 +1068,7 @@ namespace GameMenuBar {
             }
 
             if (ImGui::Button("Change Age")) {
-                CVar_SetS32("gSwitchAge", 1);
+                CVarSetInteger("gSwitchAge", 1);
             }
             UIWidgets::Tooltip("Switches links age and reloads the area.");   
 
@@ -1085,7 +1085,7 @@ namespace GameMenuBar {
             UIWidgets::Tooltip("Enables Skulltula Debug, when moving the cursor in the menu above various map icons (boss key, compass, map screen locations, etc) will set the GS bits in that area.\nUSE WITH CAUTION AS IT DOES NOT UPDATE THE GS COUNT.");
             UIWidgets::PaddedEnhancementCheckbox("Fast File Select", "gSkipLogoTitle", true, false);
             UIWidgets::Tooltip("Load the game to the selected menu or file\n\"Zelda Map Select\" require debug mode else you will fallback to File choose menu\nUsing a file number that don't have save will create a save file only if you toggle on \"Create a new save if none ?\" else it will bring you to the File choose menu");
-            if (CVar_GetS32("gSkipLogoTitle", 0)) {
+            if (CVarGetInteger("gSkipLogoTitle", 0)) {
                 const char* FastFileSelect[5] = {
                     "File N.1",
                     "File N.2",
@@ -1105,46 +1105,46 @@ namespace GameMenuBar {
             ImGui::PushStyleVar(ImGuiStyleVar_ButtonTextAlign, ImVec2(0,0));
             ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1.0f);
             ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0.22f, 0.38f, 0.56f, 1.0f));
-            if (ImGui::Button(GetWindowButtonText("Stats", CVar_GetS32("gStatsEnabled", 0)).c_str(), ImVec2(-1.0f, 0.0f)))
+            if (ImGui::Button(GetWindowButtonText("Stats", CVarGetInteger("gStatsEnabled", 0)).c_str(), ImVec2(-1.0f, 0.0f)))
             {
-                bool currentValue = CVar_GetS32("gStatsEnabled", 0);
-                CVar_SetS32("gStatsEnabled", !currentValue);
+                bool currentValue = CVarGetInteger("gStatsEnabled", 0);
+                CVarSetInteger("gStatsEnabled", !currentValue);
                 SohImGui::ToggleStatisticsWindow(true);
                 SohImGui::RequestCvarSaveOnNextTick();
             }
             UIWidgets::Tooltip("Shows the stats window, with your FPS and frametimes, and the OS you're playing on");
             UIWidgets::Spacer(0);
-            if (ImGui::Button(GetWindowButtonText("Console", CVar_GetS32("gConsoleEnabled", 0)).c_str(), ImVec2(-1.0f, 0.0f)))
+            if (ImGui::Button(GetWindowButtonText("Console", CVarGetInteger("gConsoleEnabled", 0)).c_str(), ImVec2(-1.0f, 0.0f)))
             {
-                bool currentValue = CVar_GetS32("gConsoleEnabled", 0);
-                CVar_SetS32("gConsoleEnabled", !currentValue);
+                bool currentValue = CVarGetInteger("gConsoleEnabled", 0);
+                CVarSetInteger("gConsoleEnabled", !currentValue);
                 SohImGui::RequestCvarSaveOnNextTick();
                 SohImGui::ToggleConsoleWindow(!currentValue);
             }
             UIWidgets::Tooltip("Enables the console window, allowing you to input commands, type help for some examples");
             UIWidgets::Spacer(0);
-            if (ImGui::Button(GetWindowButtonText("Save Editor", CVar_GetS32("gSaveEditorEnabled", 0)).c_str(), ImVec2(-1.0f, 0.0f)))
+            if (ImGui::Button(GetWindowButtonText("Save Editor", CVarGetInteger("gSaveEditorEnabled", 0)).c_str(), ImVec2(-1.0f, 0.0f)))
             {
-                bool currentValue = CVar_GetS32("gSaveEditorEnabled", 0);
-                CVar_SetS32("gSaveEditorEnabled", !currentValue);
+                bool currentValue = CVarGetInteger("gSaveEditorEnabled", 0);
+                CVarSetInteger("gSaveEditorEnabled", !currentValue);
                 SohImGui::RequestCvarSaveOnNextTick();
-                SohImGui::EnableWindow("Save Editor", CVar_GetS32("gSaveEditorEnabled", 0));
+                SohImGui::EnableWindow("Save Editor", CVarGetInteger("gSaveEditorEnabled", 0));
             }
             UIWidgets::Spacer(0);
-            if (ImGui::Button(GetWindowButtonText("Collision Viewer", CVar_GetS32("gCollisionViewerEnabled", 0)).c_str(), ImVec2(-1.0f, 0.0f)))
+            if (ImGui::Button(GetWindowButtonText("Collision Viewer", CVarGetInteger("gCollisionViewerEnabled", 0)).c_str(), ImVec2(-1.0f, 0.0f)))
             {
-                bool currentValue = CVar_GetS32("gCollisionViewerEnabled", 0);
-                CVar_SetS32("gCollisionViewerEnabled", !currentValue);
+                bool currentValue = CVarGetInteger("gCollisionViewerEnabled", 0);
+                CVarSetInteger("gCollisionViewerEnabled", !currentValue);
                 SohImGui::RequestCvarSaveOnNextTick();
-                SohImGui::EnableWindow("Collision Viewer", CVar_GetS32("gCollisionViewerEnabled", 0));
+                SohImGui::EnableWindow("Collision Viewer", CVarGetInteger("gCollisionViewerEnabled", 0));
             }
             UIWidgets::Spacer(0);
-            if (ImGui::Button(GetWindowButtonText("Actor Viewer", CVar_GetS32("gActorViewerEnabled", 0)).c_str(), ImVec2(-1.0f, 0.0f)))
+            if (ImGui::Button(GetWindowButtonText("Actor Viewer", CVarGetInteger("gActorViewerEnabled", 0)).c_str(), ImVec2(-1.0f, 0.0f)))
             {
-                bool currentValue = CVar_GetS32("gActorViewerEnabled", 0);
-                CVar_SetS32("gActorViewerEnabled", !currentValue);
+                bool currentValue = CVarGetInteger("gActorViewerEnabled", 0);
+                CVarSetInteger("gActorViewerEnabled", !currentValue);
                 SohImGui::RequestCvarSaveOnNextTick();
-                SohImGui::EnableWindow("Actor Viewer", CVar_GetS32("gActorViewerEnabled", 0));
+                SohImGui::EnableWindow("Actor Viewer", CVarGetInteger("gActorViewerEnabled", 0));
             }
             ImGui::PopStyleVar(3);
             ImGui::PopStyleColor(1);
@@ -1165,28 +1165,28 @@ namespace GameMenuBar {
         #else
             static ImVec2 buttonSize(200.0f, 0.0f);
         #endif
-            if (ImGui::Button(GetWindowButtonText("Randomizer Settings", CVar_GetS32("gRandomizerSettingsEnabled", 0)).c_str(), buttonSize))
+            if (ImGui::Button(GetWindowButtonText("Randomizer Settings", CVarGetInteger("gRandomizerSettingsEnabled", 0)).c_str(), buttonSize))
             {
-                bool currentValue = CVar_GetS32("gRandomizerSettingsEnabled", 0);
-                CVar_SetS32("gRandomizerSettingsEnabled", !currentValue);
+                bool currentValue = CVarGetInteger("gRandomizerSettingsEnabled", 0);
+                CVarSetInteger("gRandomizerSettingsEnabled", !currentValue);
                 SohImGui::RequestCvarSaveOnNextTick();
-                SohImGui::EnableWindow("Randomizer Settings", CVar_GetS32("gRandomizerSettingsEnabled", 0));
+                SohImGui::EnableWindow("Randomizer Settings", CVarGetInteger("gRandomizerSettingsEnabled", 0));
             }
             ImGui::Dummy(ImVec2(0.0f, 0.0f));
-            if (ImGui::Button(GetWindowButtonText("Item Tracker", CVar_GetS32("gItemTrackerEnabled", 0)).c_str(), buttonSize))
+            if (ImGui::Button(GetWindowButtonText("Item Tracker", CVarGetInteger("gItemTrackerEnabled", 0)).c_str(), buttonSize))
             {
-                bool currentValue = CVar_GetS32("gItemTrackerEnabled", 0);
-                CVar_SetS32("gItemTrackerEnabled", !currentValue);
+                bool currentValue = CVarGetInteger("gItemTrackerEnabled", 0);
+                CVarSetInteger("gItemTrackerEnabled", !currentValue);
                 SohImGui::RequestCvarSaveOnNextTick();
-                SohImGui::EnableWindow("Item Tracker", CVar_GetS32("gItemTrackerEnabled", 0));
+                SohImGui::EnableWindow("Item Tracker", CVarGetInteger("gItemTrackerEnabled", 0));
             }
             ImGui::Dummy(ImVec2(0.0f, 0.0f));
-            if (ImGui::Button(GetWindowButtonText("Item Tracker Settings", CVar_GetS32("gItemTrackerSettingsEnabled", 0)).c_str(), buttonSize))
+            if (ImGui::Button(GetWindowButtonText("Item Tracker Settings", CVarGetInteger("gItemTrackerSettingsEnabled", 0)).c_str(), buttonSize))
             {
-                bool currentValue = CVar_GetS32("gItemTrackerSettingsEnabled", 0);
-                CVar_SetS32("gItemTrackerSettingsEnabled", !currentValue);
+                bool currentValue = CVarGetInteger("gItemTrackerSettingsEnabled", 0);
+                CVarSetInteger("gItemTrackerSettingsEnabled", !currentValue);
                 SohImGui::RequestCvarSaveOnNextTick();
-                SohImGui::EnableWindow("Item Tracker Settings", CVar_GetS32("gItemTrackerSettingsEnabled", 0));
+                SohImGui::EnableWindow("Item Tracker Settings", CVarGetInteger("gItemTrackerSettingsEnabled", 0));
             }
             ImGui::PopStyleVar(3);
             ImGui::PopStyleColor(1);
@@ -1194,7 +1194,7 @@ namespace GameMenuBar {
             UIWidgets::PaddedEnhancementCheckbox("Crowd Control", "gCrowdControl", true, false);
             UIWidgets::Tooltip("Requires a full SoH restart to take effect!\n\nEnables CrowdControl. Will attempt to connect to the local Crowd Control server.");
 
-            if (CVar_GetS32("gCrowdControl", 0)) {
+            if (CVarGetInteger("gCrowdControl", 0)) {
                 CrowdControl::Instance->Enable();
             } else {
                 CrowdControl::Instance->Disable();

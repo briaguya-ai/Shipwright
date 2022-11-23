@@ -5,7 +5,7 @@
 
 #include <map>
 #include <string>
-#include <Cvar.h>
+#include <libultraship/bridge.h>
 #include <Hooks.h>
 
 extern "C" {
@@ -110,7 +110,7 @@ void DisplayStatIfNonZero(const char* text, uint32_t value) {
 
 void DrawStatsTracker(bool& open) {
     if (!open) {
-        CVar_SetS32("gGameplayStatsEnabled", 0);
+        CVarSetInteger("gGameplayStatsEnabled", 0);
         return;
     }
 

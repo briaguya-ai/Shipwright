@@ -120,7 +120,7 @@ void EnGSwitch_Init(Actor* thisx, PlayState* play) {
             this->actor.draw = EnGSwitch_DrawRupee;
             this->actor.shape.yOffset = 700.0f;
 
-            if (CVar_GetS32("gNewDrops", 0) !=0) {
+            if (CVarGetInteger("gNewDrops", 0) !=0) {
                 this->actor.shape.yOffset = 35.0f;
             } else {
                 this->actor.shape.yOffset = 700.0f;
@@ -130,7 +130,7 @@ void EnGSwitch_Init(Actor* thisx, PlayState* play) {
                 osSyncPrintf(VT_FGCOL(GREEN) "☆☆☆☆☆ Ｙｏｕ ａｒｅ Ｓｈｏｃｋ！  ☆☆☆☆☆ %d\n" VT_RST, this->switchFlag);
                 Actor_Kill(&this->actor);
             } else {
-                if (CVar_GetS32("gNewDrops", 0) !=0) {
+                if (CVarGetInteger("gNewDrops", 0) !=0) {
                     Actor_SetScale(&this->actor, 0.6f);
                 } else {
                     Actor_SetScale(&this->actor, 0.03f);
@@ -165,7 +165,7 @@ void EnGSwitch_Init(Actor* thisx, PlayState* play) {
             this->actionFunc = EnGSwitch_WaitForObject;
             break;
         case ENGSWITCH_TARGET_RUPEE:
-            if (CVar_GetS32("gNewDrops", 0) !=0) {
+            if (CVarGetInteger("gNewDrops", 0) !=0) {
                 this->actor.shape.yOffset = 35.0f;
                 Actor_SetScale(&this->actor, 0.9f);
             } else {
@@ -498,7 +498,7 @@ void EnGSwitch_DrawRupee(Actor* thisx, PlayState* play) {
         func_80093D18(play->state.gfxCtx);
         func_8002EBCC(&this->actor, play, 0);
         gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-        if (CVar_GetS32("gNewDrops", 0) !=0) {
+        if (CVarGetInteger("gNewDrops", 0) !=0) {
             gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx), G_MTX_MODELVIEW | G_MTX_LOAD);
             if (this->type == ENGSWITCH_TARGET_RUPEE) {
                 GetItem_Draw(play, sRupeeTexturesNew[this->colorIdx]);

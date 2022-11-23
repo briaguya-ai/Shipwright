@@ -163,10 +163,10 @@ void Message_ResetOcarinaNoteState(void) {
     sOcarinaNoteABtnEnv = (Color_RGB8){ .r = 10, .g = 10, .b = 10 };
     sOcarinaNoteCBtnEnv = (Color_RGB8){ .r = 10, .g = 10, .b = 10 };
 
-    if (CVar_GetS32("gHudColors", 1) != 2) {  // N64/GameCube
-        if (CVar_GetS32("gHudColors", 1) == 0) {
+    if (CVarGetInteger("gHudColors", 1) != 2) {  // N64/GameCube
+        if (CVarGetInteger("gHudColors", 1) == 0) {
             sOcarinaNoteD4Prim = (Color_RGB8){ .r = 80, .g = 150, .b = 255 };
-        } else if (CVar_GetS32("gHudColors", 1) == 1) {
+        } else if (CVarGetInteger("gHudColors", 1) == 1) {
             sOcarinaNoteD4Prim = (Color_RGB8){ .r = 80, .g = 255, .b = 150 };
         }
 
@@ -179,17 +179,17 @@ void Message_ResetOcarinaNoteState(void) {
         sOcarinaNoteCBtnPrim = CVar_GetRGB("gCCCBtnPrim", (Color_RGB8){ .r = 255, .g = 255, .b = 50 });
 
         CustomNoteOptions options = (CustomNoteOptions){
-            .separateC = CVar_GetS32("gCCparated", 0),
-            .dpad = CVar_GetS32("gDpadOcarina", 0),
-            .rightStick = CVar_GetS32("gDpadRStick", 0),
+            .separateC = CVarGetInteger("gCCparated", 0),
+            .dpad = CVarGetInteger("gDpadOcarina", 0),
+            .rightStick = CVarGetInteger("gDpadRStick", 0),
         };
 
-        if (CVar_GetS32("gCustomOcarinaControls", 0)) {
-            Message_SetCustomOcarinaNoteColor(&sOcarinaNoteD5Prim, CVar_GetS32("gOcarinaD5BtnMap", BTN_CUP), &options);
-            Message_SetCustomOcarinaNoteColor(&sOcarinaNoteB4Prim, CVar_GetS32("gOcarinaB4BtnMap", BTN_CLEFT), &options);
-            Message_SetCustomOcarinaNoteColor(&sOcarinaNoteA4Prim, CVar_GetS32("gOcarinaA4BtnMap", BTN_CRIGHT), &options);
-            Message_SetCustomOcarinaNoteColor(&sOcarinaNoteF4Prim, CVar_GetS32("gOcarinaF4BtnMap", BTN_CDOWN), &options);
-            Message_SetCustomOcarinaNoteColor(&sOcarinaNoteD4Prim, CVar_GetS32("gOcarinaD4BtnMap", BTN_A), &options);
+        if (CVarGetInteger("gCustomOcarinaControls", 0)) {
+            Message_SetCustomOcarinaNoteColor(&sOcarinaNoteD5Prim, CVarGetInteger("gOcarinaD5BtnMap", BTN_CUP), &options);
+            Message_SetCustomOcarinaNoteColor(&sOcarinaNoteB4Prim, CVarGetInteger("gOcarinaB4BtnMap", BTN_CLEFT), &options);
+            Message_SetCustomOcarinaNoteColor(&sOcarinaNoteA4Prim, CVarGetInteger("gOcarinaA4BtnMap", BTN_CRIGHT), &options);
+            Message_SetCustomOcarinaNoteColor(&sOcarinaNoteF4Prim, CVarGetInteger("gOcarinaF4BtnMap", BTN_CDOWN), &options);
+            Message_SetCustomOcarinaNoteColor(&sOcarinaNoteD4Prim, CVarGetInteger("gOcarinaD4BtnMap", BTN_A), &options);
         } else {
             Message_SetCustomOrGeneralCColor(&sOcarinaNoteD5Prim, options.separateC, 'U');
             Message_SetCustomOrGeneralCColor(&sOcarinaNoteB4Prim, options.separateC, 'L');
@@ -224,7 +224,7 @@ void Message_UpdateOcarinaGame(PlayState* play) {
 u8 Message_ShouldAdvance(PlayState* play) {
     Input* input = &play->state.input[0];
 
-    bool isB_Held = CVar_GetS32("gSkipText", 0) != 0 ? CHECK_BTN_ALL(input->cur.button, BTN_B)
+    bool isB_Held = CVarGetInteger("gSkipText", 0) != 0 ? CHECK_BTN_ALL(input->cur.button, BTN_B)
                                                      : CHECK_BTN_ALL(input->press.button, BTN_B);
 
     if (CHECK_BTN_ALL(input->press.button, BTN_A) || isB_Held || CHECK_BTN_ALL(input->press.button, BTN_CUP)) {
@@ -236,7 +236,7 @@ u8 Message_ShouldAdvance(PlayState* play) {
 u8 Message_ShouldAdvanceSilent(PlayState* play) {
     Input* input = &play->state.input[0];
 
-    bool isB_Held = CVar_GetS32("gSkipText", 0) != 0 ? CHECK_BTN_ALL(input->cur.button, BTN_B)
+    bool isB_Held = CVarGetInteger("gSkipText", 0) != 0 ? CHECK_BTN_ALL(input->cur.button, BTN_B)
                                                      : CHECK_BTN_ALL(input->press.button, BTN_B);
 
     return CHECK_BTN_ALL(input->press.button, BTN_A) || isB_Held || CHECK_BTN_ALL(input->press.button, BTN_CUP);
@@ -261,7 +261,7 @@ void Message_HandleChoiceSelection(PlayState* play, u8 numChoices) {
     static s16 sAnalogStickHeld = false;
     MessageContext* msgCtx = &play->msgCtx;
     Input* input = &play->state.input[0];
-    bool dpad = CVar_GetS32("gDpadText", 0);
+    bool dpad = CVarGetInteger("gDpadText", 0);
 
     if ((input->rel.stick_y >= 30 && !sAnalogStickHeld) || (dpad && CHECK_BTN_ALL(input->press.button, BTN_DUP))) {
         sAnalogStickHeld = true;
@@ -365,7 +365,7 @@ void Message_FindMessage(PlayState* play, u16 textId) {
     const char* seg;
     u16 bufferId = textId;
     // Use the better owl message if better owl is enabled
-    if (CVar_GetS32("gBetterOwl", 0) != 0 && (bufferId == 0x2066 || bufferId == 0x607B ||
+    if (CVarGetInteger("gBetterOwl", 0) != 0 && (bufferId == 0x2066 || bufferId == 0x607B ||
         bufferId == 0x10C2 || bufferId == 0x10C6 || bufferId == 0x206A))
     {
         bufferId = 0x71B3;
@@ -544,7 +544,7 @@ void Message_DrawTextboxIcon(PlayState* play, Gfx** p, s16 x, s16 y) {
     static s16 sIconEnvR = 0;
     static s16 sIconEnvG = 0;
     static s16 sIconEnvB = 0;
-    if (CVar_GetS32("gHudColors", 1) == 0) {
+    if (CVarGetInteger("gHudColors", 1) == 0) {
         sIconPrimColors[0][0] = 4;
         sIconPrimColors[0][1] = 84;
         sIconPrimColors[0][2] = 204;
@@ -557,7 +557,7 @@ void Message_DrawTextboxIcon(PlayState* play, Gfx** p, s16 x, s16 y) {
         sIconEnvColors[1][0] = 0;
         sIconEnvColors[1][1] = 70;
         sIconEnvColors[1][2] = 255;
-    } else if (CVar_GetS32("gHudColors", 1) == 1) {
+    } else if (CVarGetInteger("gHudColors", 1) == 1) {
         sIconPrimColors[0][0] = 4;
         sIconPrimColors[0][1] = 200;
         sIconPrimColors[0][2] = 80;
@@ -570,7 +570,7 @@ void Message_DrawTextboxIcon(PlayState* play, Gfx** p, s16 x, s16 y) {
         sIconEnvColors[1][0] = 0;
         sIconEnvColors[1][1] = 255;
         sIconEnvColors[1][2] = 130;
-    } else if (CVar_GetS32("gHudColors", 1) == 2) {
+    } else if (CVarGetInteger("gHudColors", 1) == 2) {
         Color_RGB8 aBtnColor = CVar_GetRGB("gCCABtnPrim", (Color_RGB8){ .r = 0, .g = 200, .b = 80 });
         sIconPrimColors[0][0] = (aBtnColor.r/255)*95;
         sIconPrimColors[0][1] = (aBtnColor.g/255)*95;
@@ -1143,7 +1143,7 @@ void Message_DrawText(PlayState* play, Gfx** gfxP) {
                 msgCtx->textDelay = msgCtx->msgBufDecoded[++i];
                 break;
             case MESSAGE_UNSKIPPABLE:
-                msgCtx->textUnskippable = CVar_GetS32("gSkipText", 0) != 1;
+                msgCtx->textUnskippable = CVarGetInteger("gSkipText", 0) != 1;
                 break;
             case MESSAGE_TWO_CHOICE:
                 msgCtx->textboxEndType = TEXTBOX_ENDTYPE_2_CHOICE;
@@ -1227,7 +1227,7 @@ void Message_DrawText(PlayState* play, Gfx** gfxP) {
         }
     }
     if (msgCtx->textDelayTimer == 0) {
-        msgCtx->textDrawPos = i + CVar_GetS32("gTextSpeed", 2);
+        msgCtx->textDrawPos = i + CVarGetInteger("gTextSpeed", 2);
         msgCtx->textDelayTimer = msgCtx->textDelay;
     } else {
         msgCtx->textDelayTimer--;
@@ -1749,12 +1749,12 @@ void Message_OpenText(PlayState* play, u16 textId) {
         //DmaMgr_SendRequest1(font->msgBuf, (uintptr_t)(_staff_message_data_staticSegmentRomStart + 4 + font->msgOffset),
                             //font->msgLength, __FILE__, __LINE__);
 
-    } else if (CVar_GetS32("gAskToEquip", 0) &&
-               (((LINK_IS_ADULT || CVar_GetS32("gTimelessEquipment", 0)) &&
+    } else if (CVarGetInteger("gAskToEquip", 0) &&
+               (((LINK_IS_ADULT || CVarGetInteger("gTimelessEquipment", 0)) &&
                  // 0C = Biggoron, 4B = Giant's, 4E = Mirror Shield, 50-51 = Tunics
                  (textId == 0x0C || textId == 0x4B || textId == 0x4E ||
                   textId == 0x50 || textId == 0x51)) ||
-                ((!LINK_IS_ADULT || CVar_GetS32("gTimelessEquipment", 0)) &&
+                ((!LINK_IS_ADULT || CVarGetInteger("gTimelessEquipment", 0)) &&
                 // 4C = Deku Shield, A4 = Kokiri Sword
                  (textId == 0x4C || textId == 0xA4)) ||
                 // 4D == Hylian Shield
@@ -2159,13 +2159,13 @@ void Message_DrawMain(PlayState* play, Gfx** p) {
         { 10, 10, 10 },
         { 110, 110, 50 },
     };
-    if (CVar_GetS32("gHudColors", 1) == 0) { //N64
+    if (CVarGetInteger("gHudColors", 1) == 0) { //N64
         sOcarinaNoteAPrimColors < sOcarinaNoteAPrimColors_N64;
         sOcarinaNoteCPrimColors < sOcarinaNoteCPrimColors_GCN; //GCN and N64 share same C buttons color.
-    } else if (CVar_GetS32("gHudColors", 1) == 1) { //GCN
+    } else if (CVarGetInteger("gHudColors", 1) == 1) { //GCN
         sOcarinaNoteAPrimColors < sOcarinaNoteAPrimColors_GCN;
         sOcarinaNoteCPrimColors < sOcarinaNoteCPrimColors_GCN;
-    } else if (CVar_GetS32("gHudColors", 1) == 2) { //Custom
+    } else if (CVarGetInteger("gHudColors", 1) == 2) { //Custom
         sOcarinaNoteAPrimColors < sOcarinaNoteAPrimColors_CUSTOM;
         sOcarinaNoteCPrimColors < sOcarinaNoteCPrimColors_CUSTOM;
     }
@@ -2220,7 +2220,7 @@ void Message_DrawMain(PlayState* play, Gfx** p) {
         gDPSetCombineLERP(gfx++, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE,
                           0);
 
-            bool isB_Held = CVar_GetS32("gSkipText", 0) != 0 ? CHECK_BTN_ALL(play->state.input[0].cur.button, BTN_B)
+            bool isB_Held = CVarGetInteger("gSkipText", 0) != 0 ? CHECK_BTN_ALL(play->state.input[0].cur.button, BTN_B)
                                                          : CHECK_BTN_ALL(play->state.input[0].press.button, BTN_B);
 
         switch (msgCtx->msgMode) {
@@ -2685,7 +2685,7 @@ void Message_DrawMain(PlayState* play, Gfx** p) {
                 }
                 break;
             case MSGMODE_SETUP_DISPLAY_SONG_PLAYED:
-                if (CVar_GetS32("gFastOcarinaPlayback", 0) == 0 ||
+                if (CVarGetInteger("gFastOcarinaPlayback", 0) == 0 ||
                     play->msgCtx.lastPlayedSong == OCARINA_SONG_TIME ||
                     play->msgCtx.lastPlayedSong == OCARINA_SONG_STORMS ||
                     play->msgCtx.lastPlayedSong == OCARINA_SONG_SUNS) {
@@ -2740,7 +2740,7 @@ void Message_DrawMain(PlayState* play, Gfx** p) {
                 Message_Decode(play);
                 msgCtx->msgMode = MSGMODE_DISPLAY_SONG_PLAYED_TEXT;
 
-                if (CVar_GetS32("gFastOcarinaPlayback", 0) == 0 || play->msgCtx.lastPlayedSong == OCARINA_SONG_TIME
+                if (CVarGetInteger("gFastOcarinaPlayback", 0) == 0 || play->msgCtx.lastPlayedSong == OCARINA_SONG_TIME
                     || play->msgCtx.lastPlayedSong == OCARINA_SONG_STORMS ||
                     play->msgCtx.lastPlayedSong == OCARINA_SONG_SUNS) {
                     msgCtx->stateTimer = 20;
@@ -3255,7 +3255,7 @@ void Message_DrawMain(PlayState* play, Gfx** p) {
  * the last value being saved in a static variable.
  */
 void Message_DrawDebugVariableChanged(s16* var, GraphicsContext* gfxCtx) {
-    if (!CVar_GetS32("gDebugEnabled", 0)) { return; }
+    if (!CVarGetInteger("gDebugEnabled", 0)) { return; }
 
     static s16 sVarLastValue = 0;
     static s16 sFillTimer = 0;
@@ -3392,7 +3392,7 @@ void Message_Update(PlayState* play) {
         return;
     }
 
-    bool isB_Held = CVar_GetS32("gSkipText", 0) != 0 ? CHECK_BTN_ALL(input->cur.button, BTN_B) && !sTextboxSkipped
+    bool isB_Held = CVarGetInteger("gSkipText", 0) != 0 ? CHECK_BTN_ALL(input->cur.button, BTN_B) && !sTextboxSkipped
                                                      : CHECK_BTN_ALL(input->press.button, BTN_B);
 
     switch (msgCtx->msgMode) {

@@ -231,7 +231,7 @@ void MagicFire_Draw(Actor* thisx, PlayState* play) {
         gDPSetColorDither(POLY_XLU_DISP++, G_CD_DISABLE);
         gDPFillRectangle(POLY_XLU_DISP++, 0, 0, 319, 239);
         func_80093D84(play->state.gfxCtx);
-        if (CVar_GetS32("gUseSpellsCol",0)) {
+        if (CVarGetInteger("gUseSpellsCol",0)) {
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, Spell_col.r, Spell_col.g, Spell_col.b, (u8)(this->alphaMultiplier * 255));
             gDPSetEnvColor(POLY_XLU_DISP++, Spell_env.r, Spell_env.g, Spell_env.b, (u8)(this->alphaMultiplier * 255));
         } else {

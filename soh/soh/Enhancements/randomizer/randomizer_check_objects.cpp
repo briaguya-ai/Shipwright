@@ -1,7 +1,7 @@
 #include "randomizer_check_objects.h"
 #include <map>
 #include <string>
-#include <Cvar.h>
+#include <libultraship/bridge.h>
 #include "z64.h"
 
 /*
@@ -903,21 +903,21 @@ void RandomizerCheckObjects::UpdateImGuiVisibility() {
             (locationIt.rcType != RCTYPE_LINKS_POCKET) &&
             (locationIt.rcType != RCTYPE_CHEST_GAME) && // don't show non final reward chest game checks until we support shuffling them
             ((locationIt.rcType != RCTYPE_SKULL_TOKEN) ||
-            (CVar_GetS32("gRandomizeShuffleTokens", 0) == 3) || // all tokens
-            ((CVar_GetS32("gRandomizeShuffleTokens", 0) == 2) && RandomizerCheckObjects::AreaIsOverworld(locationIt.rcArea)) || // overworld tokens
-            ((CVar_GetS32("gRandomizeShuffleTokens", 0) == 1) && RandomizerCheckObjects::AreaIsDungeon(locationIt.rcArea)) // dungeon tokens
+            (CVarGetInteger("gRandomizeShuffleTokens", 0) == 3) || // all tokens
+            ((CVarGetInteger("gRandomizeShuffleTokens", 0) == 2) && RandomizerCheckObjects::AreaIsOverworld(locationIt.rcArea)) || // overworld tokens
+            ((CVarGetInteger("gRandomizeShuffleTokens", 0) == 1) && RandomizerCheckObjects::AreaIsDungeon(locationIt.rcArea)) // dungeon tokens
             ) &&
-            ((locationIt.rcType != RCTYPE_COW) || CVar_GetS32("gRandomizeShuffleCows", 0)) &&
-            ((locationIt.rcType != RCTYPE_ADULT_TRADE) || CVar_GetS32("gRandomizeShuffleAdultTrade", 0)) &&
-            ((locationIt.rc != RC_KF_KOKIRI_SWORD_CHEST) || CVar_GetS32("gRandomizeShuffleKokiriSword", 0)) &&
-            ((locationIt.rc != RC_HC_MALON_EGG) || CVar_GetS32("gRandomizeShuffleWeirdEgg", 0)) &&
-            ((locationIt.rc != RC_GF_GERUDO_MEMBERSHIP_CARD) || CVar_GetS32("gRandomizeShuffleGerudoToken", 0)) &&
-            ((locationIt.rcType != RCTYPE_FROG_SONG) || CVar_GetS32("gRandomizeShuffleFrogSongRupees", 0)) &&
-            ((locationIt.rcType != RCTYPE_MAP_COMPASS) || CVar_GetS32("gRandomizeStartingMapsCompasses", 0) != 1) && // 1 is the value for "vanilla" maps/compasses
-            ((locationIt.rcType != RCTYPE_SMALL_KEY) || CVar_GetS32("gRandomizeKeysanity", 0) != 1) && // 1 is the value for "vanilla" small keys
-            ((locationIt.rcType != RCTYPE_GF_KEY) || CVar_GetS32("randoShuffleGerudoFortressKeys", 0) != 0) && // 0 is the value for "vanilla" gf keys
-            ((locationIt.rcType != RCTYPE_BOSS_KEY) || CVar_GetS32("gRandomizeBossKeysanity", 0) != 1) && // 1 is the value for "vanilla" boss keys
-            ((locationIt.rcType != RCTYPE_GANON_BOSS_KEY) || CVar_GetS32("gRandomizeShuffleGanonBossKey", 0) != 0) // 0 is the value for "vanilla" ganon's boss key
+            ((locationIt.rcType != RCTYPE_COW) || CVarGetInteger("gRandomizeShuffleCows", 0)) &&
+            ((locationIt.rcType != RCTYPE_ADULT_TRADE) || CVarGetInteger("gRandomizeShuffleAdultTrade", 0)) &&
+            ((locationIt.rc != RC_KF_KOKIRI_SWORD_CHEST) || CVarGetInteger("gRandomizeShuffleKokiriSword", 0)) &&
+            ((locationIt.rc != RC_HC_MALON_EGG) || CVarGetInteger("gRandomizeShuffleWeirdEgg", 0)) &&
+            ((locationIt.rc != RC_GF_GERUDO_MEMBERSHIP_CARD) || CVarGetInteger("gRandomizeShuffleGerudoToken", 0)) &&
+            ((locationIt.rcType != RCTYPE_FROG_SONG) || CVarGetInteger("gRandomizeShuffleFrogSongRupees", 0)) &&
+            ((locationIt.rcType != RCTYPE_MAP_COMPASS) || CVarGetInteger("gRandomizeStartingMapsCompasses", 0) != 1) && // 1 is the value for "vanilla" maps/compasses
+            ((locationIt.rcType != RCTYPE_SMALL_KEY) || CVarGetInteger("gRandomizeKeysanity", 0) != 1) && // 1 is the value for "vanilla" small keys
+            ((locationIt.rcType != RCTYPE_GF_KEY) || CVarGetInteger("randoShuffleGerudoFortressKeys", 0) != 0) && // 0 is the value for "vanilla" gf keys
+            ((locationIt.rcType != RCTYPE_BOSS_KEY) || CVarGetInteger("gRandomizeBossKeysanity", 0) != 1) && // 1 is the value for "vanilla" boss keys
+            ((locationIt.rcType != RCTYPE_GANON_BOSS_KEY) || CVarGetInteger("gRandomizeShuffleGanonBossKey", 0) != 0) // 0 is the value for "vanilla" ganon's boss key
         );
     }
 }

@@ -246,7 +246,7 @@ void Title_Main(GameState* thisx) {
     Title_Calc(this);
     Title_Draw(this);
 
-    if (!CVar_GetS32("gHideBuildInfo", 0)) {
+    if (!CVarGetInteger("gHideBuildInfo", 0)) {
         Gfx* gfx = POLY_OPA_DISP;
         s32 pad;
 
@@ -254,13 +254,13 @@ void Title_Main(GameState* thisx) {
         POLY_OPA_DISP = gfx;
     }
 
-    if (this->exit || CVar_GetS32("gSkipLogoTitle", 0)) {
+    if (this->exit || CVarGetInteger("gSkipLogoTitle", 0)) {
         gSaveContext.seqId = (u8)NA_BGM_DISABLED;
         gSaveContext.natureAmbienceId = 0xFF;
         gSaveContext.gameMode = 1;
         this->state.running = false;
 
-        if (gLoadFileSelect || CVar_GetS32("gSkipLogoTitle", 0))
+        if (gLoadFileSelect || CVarGetInteger("gSkipLogoTitle", 0))
             SET_NEXT_GAMESTATE(&this->state, FileChoose_Init, FileChooseContext);
         else
             SET_NEXT_GAMESTATE(&this->state, Opening_Init, OpeningContext);

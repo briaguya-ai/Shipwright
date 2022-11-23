@@ -224,7 +224,7 @@ void MagicDark_DiamondDraw(Actor* thisx, PlayState* play) {
         Matrix_RotateY(this->actor.shape.rot.y * (M_PI / 0x8000), MTXMODE_APPLY);
         gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-        if (CVar_GetS32("gUseSpellsCol",0)) {
+        if (CVarGetInteger("gUseSpellsCol",0)) {
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, Spell_col.r, Spell_col.g, Spell_col.b, (s32)(this->primAlpha * 0.6f) & 0xFF);
             gDPSetEnvColor(POLY_XLU_DISP++, Spell_env.r, Spell_env.g, Spell_env.b, 128);
         } else {

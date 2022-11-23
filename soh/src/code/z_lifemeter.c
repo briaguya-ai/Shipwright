@@ -125,7 +125,7 @@ s16 sHeartsDDEnv[2][3];
 
 void HealthMeter_Init(PlayState* play) {
     InterfaceContext* interfaceCtx = &play->interfaceCtx;
-    if (CVar_GetS32("gHudColors", 1) == 2) {
+    if (CVarGetInteger("gHudColors", 1) == 2) {
         HeartInner = CVar_GetRGB("gCCHeartsPrim", HeartInner_ori);
         HeartDDInner = CVar_GetRGB("gCCDDHeartsPrim", HeartDDInner_ori);
         HeartDDOutline = CVar_GetRGB("gDDCCHeartsPrim", HeartDDOutline_ori);
@@ -179,12 +179,12 @@ void HealthMeter_Update(PlayState* play) {
     s16 gFactor;
     s16 bFactor;
 
-    Top_LM_Margin = CVar_GetS32("gHUDMargin_T", 0);
-    Left_LM_Margin = CVar_GetS32("gHUDMargin_L", 0);
-    Right_LM_Margin = CVar_GetS32("gHUDMargin_R", 0);
-    Bottom_LM_Margin = CVar_GetS32("gHUDMargin_B", 0);
+    Top_LM_Margin = CVarGetInteger("gHUDMargin_T", 0);
+    Left_LM_Margin = CVarGetInteger("gHUDMargin_L", 0);
+    Right_LM_Margin = CVarGetInteger("gHUDMargin_R", 0);
+    Bottom_LM_Margin = CVarGetInteger("gHUDMargin_B", 0);
 
-    if (CVar_GetS32("gHudColors", 1) == 2) {
+    if (CVarGetInteger("gHudColors", 1) == 2) {
         HeartInner = CVar_GetRGB("gCCHeartsPrim", HeartInner_ori);
         HeartDDInner = CVar_GetRGB("gCCDDHeartsPrim", HeartDDInner_ori);
         HeartDDOutline = CVar_GetRGB("gDDCCHeartsPrim", HeartDDOutline_ori);
@@ -218,7 +218,7 @@ void HealthMeter_Update(PlayState* play) {
     interfaceCtx->heartsEnvG[0] = HEARTS_ENV_G;
     interfaceCtx->heartsEnvB[0] = HEARTS_ENV_B;
 
-    if (CVar_GetS32("gHudColors", 1) == 2) {
+    if (CVarGetInteger("gHudColors", 1) == 2) {
         interfaceCtx->heartsPrimR[1] = HeartInner.r;
         interfaceCtx->heartsPrimG[1] = HeartInner.g;
         interfaceCtx->heartsPrimB[1] = HeartInner.b;
@@ -258,7 +258,7 @@ void HealthMeter_Update(PlayState* play) {
     sHeartsDDEnv[0][1] = HeartDDInner.g;
     sHeartsDDEnv[0][2] = HeartDDInner.b;
 
-    if (CVar_GetS32("gHudColors", 1) == 2) {
+    if (CVarGetInteger("gHudColors", 1) == 2) {
         sHeartsDDPrim[2][0] = HeartDDInner.r;
         sHeartsDDPrim[2][1] = HeartDDInner.g;
         sHeartsDDPrim[2][2] = HeartDDInner.b;
@@ -382,20 +382,20 @@ static void* sHeartDDTextures[] = {
 
 s16 getHealthMeterXOffset() {
     s16 X_Margins;
-    if (CVar_GetS32("gHeartsUseMargins", 0) != 0)
+    if (CVarGetInteger("gHeartsUseMargins", 0) != 0)
         X_Margins = Left_LM_Margin;
     else
         X_Margins = 0;
 
-    if (CVar_GetS32("gHeartsCountPosType", 0) != 0) {
-        if (CVar_GetS32("gHeartsCountPosType", 0) == 1) {//Anchor Left
-            return OTRGetDimensionFromLeftEdge(CVar_GetS32("gHeartsCountPosX", 0)+X_Margins+70.0f);
-        } else if (CVar_GetS32("gHeartsCountPosType", 0) == 2) {//Anchor Right
+    if (CVarGetInteger("gHeartsCountPosType", 0) != 0) {
+        if (CVarGetInteger("gHeartsCountPosType", 0) == 1) {//Anchor Left
+            return OTRGetDimensionFromLeftEdge(CVarGetInteger("gHeartsCountPosX", 0)+X_Margins+70.0f);
+        } else if (CVarGetInteger("gHeartsCountPosType", 0) == 2) {//Anchor Right
             X_Margins = Right_LM_Margin;
-            return OTRGetDimensionFromRightEdge(CVar_GetS32("gHeartsCountPosX", 0)+X_Margins+70.0f);
-        } else if (CVar_GetS32("gHeartsCountPosType", 0) == 3) {//Anchor None
-            return CVar_GetS32("gHeartsCountPosX", 0)+70.0f;;
-        } else if (CVar_GetS32("gHeartsCountPosType", 0) == 4) {//Hidden
+            return OTRGetDimensionFromRightEdge(CVarGetInteger("gHeartsCountPosX", 0)+X_Margins+70.0f);
+        } else if (CVarGetInteger("gHeartsCountPosType", 0) == 3) {//Anchor None
+            return CVarGetInteger("gHeartsCountPosX", 0)+70.0f;;
+        } else if (CVarGetInteger("gHeartsCountPosType", 0) == 4) {//Hidden
             return -9999;
         }
     } else {
@@ -405,15 +405,15 @@ s16 getHealthMeterXOffset() {
 
 s16 getHealthMeterYOffset() {
     s16 Y_Margins;
-    if (CVar_GetS32("gHeartsUseMargins", 0) != 0)
+    if (CVarGetInteger("gHeartsUseMargins", 0) != 0)
         Y_Margins = (Top_LM_Margin*-1);
     else
         Y_Margins = 0;
 
     f32 HeartsScale = 0.7f; 
-    if (CVar_GetS32("gHeartsCountPosType", 0) != 0) {
-        HeartsScale = CVar_GetFloat("gHeartsCountScale", 0.7f);
-        return CVar_GetS32("gHeartsCountPosY", 0)+Y_Margins+(HeartsScale*15);
+    if (CVarGetInteger("gHeartsCountPosType", 0) != 0) {
+        HeartsScale = CVarGetFloat("gHeartsCountScale", 0.7f);
+        return CVarGetInteger("gHeartsCountPosY", 0)+Y_Margins+(HeartsScale*15);
     } else {
         return 0.0f+Y_Margins;
     }
@@ -443,8 +443,8 @@ void HealthMeter_Draw(PlayState* play) {
     u8* curBgImgLoaded = NULL;
     s32 ddHeartCountMinusOne = gSaveContext.inventory.defenseHearts - 1;
     f32 HeartsScale = 0.7f; 
-    if (CVar_GetS32("gHeartsCountPosType", 0) != 0) {
-        HeartsScale = CVar_GetFloat("gHeartsCountScale", 0.7f);
+    if (CVarGetInteger("gHeartsCountPosType", 0) != 0) {
+        HeartsScale = CVarGetFloat("gHeartsCountScale", 0.7f);
     }
     static u32 epoch = 0;
     epoch++;
@@ -459,7 +459,7 @@ void HealthMeter_Draw(PlayState* play) {
 /*
     s16 X_Margins;
     s16 Y_Margins;
-    if (CVar_GetS32("gHeartsUseMargins", 0) != 0) {
+    if (CVarGetInteger("gHeartsUseMargins", 0) != 0) {
         X_Margins = Left_LM_Margin;
         Y_Margins = (Top_LM_Margin*-1);
     } else {
@@ -468,16 +468,16 @@ void HealthMeter_Draw(PlayState* play) {
     }
     s16 PosX_original = OTRGetDimensionFromLeftEdge(0.0f)+X_Margins;
     s16 PosY_original = 0.0f+Y_Margins;
-    if (CVar_GetS32("gHeartsCountPosType", 0) != 0) {
-        offsetY = CVar_GetS32("gHeartsCountPosY", 0)+Y_Margins+(HeartsScale*15);
-        if (CVar_GetS32("gHeartsCountPosType", 0) == 1) {//Anchor Left
-            offsetX = OTRGetDimensionFromLeftEdge(CVar_GetS32("gHeartsCountPosX", 0)+X_Margins+70.0f);
-        } else if (CVar_GetS32("gHeartsCountPosType", 0) == 2) {//Anchor Right
+    if (CVarGetInteger("gHeartsCountPosType", 0) != 0) {
+        offsetY = CVarGetInteger("gHeartsCountPosY", 0)+Y_Margins+(HeartsScale*15);
+        if (CVarGetInteger("gHeartsCountPosType", 0) == 1) {//Anchor Left
+            offsetX = OTRGetDimensionFromLeftEdge(CVarGetInteger("gHeartsCountPosX", 0)+X_Margins+70.0f);
+        } else if (CVarGetInteger("gHeartsCountPosType", 0) == 2) {//Anchor Right
             X_Margins = Right_LM_Margin;
-            offsetX = OTRGetDimensionFromRightEdge(CVar_GetS32("gHeartsCountPosX", 0)+X_Margins+70.0f);
-        } else if (CVar_GetS32("gHeartsCountPosType", 0) == 3) {//Anchor None
-            offsetX = CVar_GetS32("gHeartsCountPosX", 0)+70.0f;
-        } else if (CVar_GetS32("gHeartsCountPosType", 0) == 4) {//Hidden
+            offsetX = OTRGetDimensionFromRightEdge(CVarGetInteger("gHeartsCountPosX", 0)+X_Margins+70.0f);
+        } else if (CVarGetInteger("gHeartsCountPosType", 0) == 3) {//Anchor None
+            offsetX = CVarGetInteger("gHeartsCountPosX", 0)+70.0f;
+        } else if (CVarGetInteger("gHeartsCountPosType", 0) == 4) {//Hidden
             offsetX = -9999;
         }
     } else {
@@ -661,7 +661,7 @@ void HealthMeter_Draw(PlayState* play) {
         }
 
         offsetX += 10.0f;
-        s32 lineLength = CVar_GetS32("gHeartsLineLength", 10);
+        s32 lineLength = CVarGetInteger("gHeartsLineLength", 10);
         if (lineLength != 0 && (i+1)%lineLength == 0) {
             offsetX = PosX_anchor;
             offsetY += 10.0f;
@@ -681,7 +681,7 @@ void HealthMeter_HandleCriticalAlarm(PlayState* play) {
         if (interfaceCtx->unk_22A <= 0) {
             interfaceCtx->unk_22A = 0;
             interfaceCtx->unk_22C = 0;
-            if (CVar_GetS32("gLowHpAlarm", 0) == 0 && !Player_InCsMode(play) && (play->pauseCtx.state == 0) &&
+            if (CVarGetInteger("gLowHpAlarm", 0) == 0 && !Player_InCsMode(play) && (play->pauseCtx.state == 0) &&
             (play->pauseCtx.debugState == 0) && HealthMeter_IsCritical() && !Play_InCsMode(play)) {
                 func_80078884(NA_SE_SY_HITPOINT_ALARM);
             }

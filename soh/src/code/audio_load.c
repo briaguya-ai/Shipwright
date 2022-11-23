@@ -2,7 +2,7 @@
 #include <string.h>
 #include <assert.h>
 
-#include "ultra64.h"
+#include <libultraship/libultra.h>
 #include "global.h"
 #include "soh/OTRGlobals.h"
 

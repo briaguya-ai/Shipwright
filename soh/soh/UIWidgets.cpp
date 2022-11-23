@@ -10,9 +10,9 @@
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include <ImGui/imgui_internal.h>
 #include <ImGuiImpl.h>
-#include <Cvar.h>
+#include <libultraship/bridge.h>
 
-#include <ultra64/types.h>
+#include <libultraship/libultra/types.h>
 #include "soh/Enhancements/cosmetics/CosmeticsEditor.h"
 
 namespace UIWidgets {
@@ -59,7 +59,7 @@ namespace UIWidgets {
         defaultColors.b = default_colors.z;
         defaultColors.a = default_colors.w;
 
-        Color_RGBA8 cvarColor = CVar_GetRGBA(cvarname, defaultColors);
+        Color_RGBA8 cvarColor = CVarGetColor(cvarname, defaultColors);
 
         ColorArray.x = cvarColor.r / 255.0;
         ColorArray.y = cvarColor.g / 255.0;
@@ -184,9 +184,9 @@ namespace UIWidgets {
             ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
             ImGui::PushStyleVar(ImGuiStyleVar_Alpha, ImGui::GetStyle().Alpha * 0.5f);
         }
-        bool val = (bool)CVar_GetS32(cvarName, 0);
+        bool val = (bool)CVarGetInteger(cvarName, 0);
         if (CustomCheckbox(text, &val, disabled, disabledGraphic)) {
-            CVar_SetS32(cvarName, val);
+            CVarSetInteger(cvarName, val);
             SohImGui::RequestCvarSaveOnNextTick();
             changed = true;
         }
@@ -215,10 +215,10 @@ namespace UIWidgets {
     }
 
     void EnhancementCombo(const std::string& name, const char* cvarName, const std::vector<std::string>& items, int defaultValue) {
-        if (ImGui::BeginCombo(name.c_str(), items[static_cast<int>(CVar_GetS32(cvarName, defaultValue))].c_str())) {
+        if (ImGui::BeginCombo(name.c_str(), items[static_cast<int>(CVarGetInteger(cvarName, defaultValue))].c_str())) {
             for (int settingIndex = 0; settingIndex < (int) items.size(); settingIndex++) {
                 if (ImGui::Selectable(items[settingIndex].c_str())) {
-                    CVar_SetS32(cvarName, settingIndex);
+                    CVarSetInteger(cvarName, settingIndex);
                     SohImGui::RequestCvarSaveOnNextTick();
 
                 }
@@ -232,14 +232,14 @@ namespace UIWidgets {
         if (FirstTimeValue <= 0) {
             FirstTimeValue = 0;
         }
-        uint8_t selected = CVar_GetS32(name, FirstTimeValue);
+        uint8_t selected = CVarGetInteger(name, FirstTimeValue);
         uint8_t DefaultValue = selected;
         std::string comboName = std::string("##") + std::string(name);
         if (ImGui::BeginCombo(comboName.c_str(), ComboArray[DefaultValue])) {
             for (uint8_t i = 0; i < arraySize; i++) {
                 if (strlen(ComboArray[i]) > 1) {
                     if (ImGui::Selectable(ComboArray[i], i == selected)) {
-                        CVar_SetS32(name, i);
+                        CVarSetInteger(name, i);
                         selected = i;
                         changed = true;
                         SohImGui::RequestCvarSaveOnNextTick();
@@ -275,7 +275,7 @@ namespace UIWidgets {
     }
 
     void EnhancementSliderInt(const char* text, const char* id, const char* cvarName, int min, int max, const char* format, int defaultValue, bool PlusMinusButton, bool disabled, const char* disabledTooltipText) {
-        int val = CVar_GetS32(cvarName, defaultValue);
+        int val = CVarGetInteger(cvarName, defaultValue);
 
         float alpha;
         if (disabled) {
@@ -295,7 +295,7 @@ namespace UIWidgets {
             MinusBTNName += cvarName;
             if (ImGui::Button(MinusBTNName.c_str())) {
                 val--;
-                CVar_SetS32(cvarName, val);
+                CVarSetInteger(cvarName, val);
                 SohImGui::RequestCvarSaveOnNextTick();
             }
             ImGui::SameLine();
@@ -308,7 +308,7 @@ namespace UIWidgets {
 
         if (ImGui::SliderInt(id, &val, min, max, format))
         {
-            CVar_SetS32(cvarName, val);
+            CVarSetInteger(cvarName, val);
             SohImGui::RequestCvarSaveOnNextTick();
         }
 
@@ -323,7 +323,7 @@ namespace UIWidgets {
             ImGui::SetCursorPosX(ImGui::GetCursorPosX() - 7.0f);
             if (ImGui::Button(PlusBTNName.c_str())) {
                 val++;
-                CVar_SetS32(cvarName, val);
+                CVarSetInteger(cvarName, val);
                 SohImGui::RequestCvarSaveOnNextTick();
             }
         }
@@ -339,20 +339,20 @@ namespace UIWidgets {
         if (val < min)
         {
             val = min;
-            CVar_SetS32(cvarName, val);
+            CVarSetInteger(cvarName, val);
             SohImGui::RequestCvarSaveOnNextTick();
         }
 
         if (val > max)
         {
             val = max;
-            CVar_SetS32(cvarName, val);
+            CVarSetInteger(cvarName, val);
             SohImGui::RequestCvarSaveOnNextTick();
         }
     }
 
     void EnhancementSliderFloat(const char* text, const char* id, const char* cvarName, float min, float max, const char* format, float defaultValue, bool isPercentage, bool PlusMinusButton, bool disabled, const char* disabledTooltipText) {
-        float val = CVar_GetFloat(cvarName, defaultValue);
+        float val = CVarGetFloat(cvarName, defaultValue);
 
         if (disabled) {
             ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
@@ -376,7 +376,7 @@ namespace UIWidgets {
                 } else {
                     val -= 0.01f;
                 }
-                CVar_SetFloat(cvarName, val);
+                CVarSetFloat(cvarName, val);
                 SohImGui::RequestCvarSaveOnNextTick();
             }
             ImGui::SameLine();
@@ -393,9 +393,9 @@ namespace UIWidgets {
         }
         if (ImGui::SliderFloat(id, &val, min, max, format)) {
             if (isPercentage) {
-                CVar_SetFloat(cvarName, roundf(val * 100) / 100);
+                CVarSetFloat(cvarName, roundf(val * 100) / 100);
             } else {
-                CVar_SetFloat(cvarName, val);
+                CVarSetFloat(cvarName, val);
             }
             SohImGui::RequestCvarSaveOnNextTick();
         }
@@ -413,7 +413,7 @@ namespace UIWidgets {
                 } else {
                     val += 0.01f;
                 }
-                CVar_SetFloat(cvarName, val);
+                CVarSetFloat(cvarName, val);
                 SohImGui::RequestCvarSaveOnNextTick();
             }
         }
@@ -428,13 +428,13 @@ namespace UIWidgets {
 
         if (val < min) {
             val = min;
-            CVar_SetFloat(cvarName, val);
+            CVarSetFloat(cvarName, val);
             SohImGui::RequestCvarSaveOnNextTick();
         }
 
         if (val > max) {
             val = max;
-            CVar_SetFloat(cvarName, val);
+            CVarSetFloat(cvarName, val);
             SohImGui::RequestCvarSaveOnNextTick();
         }
     }
@@ -464,9 +464,9 @@ namespace UIWidgets {
         make_invisible += text;
         make_invisible += cvarName;
 
-        int val = CVar_GetS32(cvarName, 0);
+        int val = CVarGetInteger(cvarName, 0);
         if (ImGui::RadioButton(make_invisible.c_str(), id == val)) {
-            CVar_SetS32(cvarName, id);
+            CVarSetInteger(cvarName, id);
             SohImGui::RequestCvarSaveOnNextTick();
         }
         ImGui::SameLine();
@@ -493,8 +493,8 @@ namespace UIWidgets {
             colorsRGBA.b = defaultcolors.z;
             if (has_alpha) { colorsRGBA.a = defaultcolors.w; };
 
-            CVar_SetRGBA(cvarName, colorsRGBA);
-            CVar_SetS32(Cvar_RBM.c_str(), 0); //On click disable rainbow mode.
+            CVarSetColor(cvarName, colorsRGBA);
+            CVarSetInteger(Cvar_RBM.c_str(), 0); //On click disable rainbow mode.
             SohImGui::RequestCvarSaveOnNextTick();
             changed = true;
         }
@@ -523,8 +523,8 @@ namespace UIWidgets {
             NewColors.r = fmin(fmax(colors->x * 255, 0), 255);
             NewColors.g = fmin(fmax(colors->y * 255, 0), 255);
             NewColors.b = fmin(fmax(colors->z * 255, 0), 255);
-            CVar_SetRGBA(cvarName, NewColors);
-            CVar_SetS32(Cvar_RBM.c_str(), 0); // On click disable rainbow mode.
+            CVarSetColor(cvarName, NewColors);
+            CVarSetInteger(Cvar_RBM.c_str(), 0); // On click disable rainbow mode.
             SohImGui::RequestCvarSaveOnNextTick();
             changed = true;
         }
@@ -535,7 +535,7 @@ namespace UIWidgets {
     void DrawLockColorCheckbox(const char* cvarName) {
         std::string Cvar_Lock = cvarName;
         Cvar_Lock += "Lock";
-        s32 lock = CVar_GetS32(Cvar_Lock.c_str(), 0);
+        s32 lock = CVarGetInteger(Cvar_Lock.c_str(), 0);
         std::string FullName = "Lock##" + Cvar_Lock;
         EnhancementCheckbox(FullName.c_str(), Cvar_Lock.c_str());
         Tooltip("Prevents this color from being changed upon selecting \"Randomize all\"");
@@ -575,7 +575,7 @@ namespace UIWidgets {
                 colors.b = ColorRGBA.z * 255.0;
                 colors.a = ColorRGBA.w * 255.0;
 
-                CVar_SetRGBA(cvarName, colors);
+                CVarSetColor(cvarName, colors);
                 SohImGui::RequestCvarSaveOnNextTick();
                 changed = true;
             }
@@ -590,7 +590,7 @@ namespace UIWidgets {
                 colors.b = ColorRGBA.z / 255;
                 colors.a = ColorRGBA.w / 255;
 
-                CVar_SetRGBA(cvarName, colors);
+                CVarSetColor(cvarName, colors);
                 SohImGui::RequestCvarSaveOnNextTick();
                 changed = true;
             }

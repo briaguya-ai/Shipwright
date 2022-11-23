@@ -8,8 +8,8 @@
 
 #include <ImGui/imgui.h>
 #include <ImGui/imgui_internal.h>
-#include <Cvar.h>
-#include <UltraController.h>
+#include <libultraship/bridge.h>
+#include <libultraship/libultra/controller.h>
 #include <Utils/StringHelper.h>
 #include <ImGuiImpl.h>
 
@@ -109,7 +109,7 @@ namespace GameControlEditor {
     // Draw a button mapping setting consisting of a padded label and button dropdown.
     // excludedButtons indicates which buttons are unavailable to choose from.
     void DrawMapping(CustomButtonMap& mapping, float labelWidth, N64ButtonMask excludedButtons) {
-        N64ButtonMask currentButton = CVar_GetS32(mapping.cVarName, mapping.defaultBtn);
+        N64ButtonMask currentButton = CVarGetInteger(mapping.cVarName, mapping.defaultBtn);
 
         const char* preview;
         if (buttonNames.contains(currentButton)) {
@@ -134,7 +134,7 @@ namespace GameControlEditor {
                     continue;
                 }
                 if (ImGui::Selectable(i->second, i->first == currentButton)) {
-                    CVar_SetS32(mapping.cVarName, i->first);
+                    CVarSetInteger(mapping.cVarName, i->first);
                 }
             }
             ImGui::EndCombo();
@@ -158,11 +158,11 @@ namespace GameControlEditor {
         ImGui::SetCursorPos(ImVec2(cursor.x + 5, cursor.y + 5));
         UIWidgets::EnhancementCheckbox("Customize Ocarina Controls", "gCustomOcarinaControls");
 
-        if (CVar_GetS32("gCustomOcarinaControls", 0) == 1) {
+        if (CVarGetInteger("gCustomOcarinaControls", 0) == 1) {
             if (ImGui::BeginTable("tableCustomMainOcarinaControls", 2, ImGuiTableFlags_SizingStretchProp)) {
                 float labelWidth;
                 N64ButtonMask disableMask = BTN_B;
-                if (CVar_GetS32("gDpadOcarina", 0)) {
+                if (CVarGetInteger("gDpadOcarina", 0)) {
                     disableMask |= BTN_DUP | BTN_DDOWN | BTN_DLEFT | BTN_DRIGHT;
                 }
 
@@ -247,7 +247,7 @@ namespace GameControlEditor {
 
     void DrawUI(bool& open) {
         if (!open) {
-            CVar_SetS32("gGameControlEditorEnabled", false);
+            CVarSetInteger("gGameControlEditorEnabled", false);
             return;
         }
 

@@ -6,7 +6,7 @@
 #include <macros.h>
 #include <objects/gameplay_keep/gameplay_keep.h>
 #include <functions.h>
-#include <Cvar.h>
+#include <libultraship/bridge.h>
 #include <textures/icon_item_static/icon_item_static.h>
 #include <textures/icon_item_24_static/icon_item_24_static.h>
 #include <ImGuiImpl.h>
@@ -2555,110 +2555,110 @@ RandomizerCheck Randomizer::GetCheckFromRandomizerInf(RandomizerInf randomizerIn
 std::thread randoThread;
 
 void GenerateRandomizerImgui() {
-    CVar_SetS32("gRandoGenerating", 1);
-    CVar_Save();
+    CVarSetInteger("gRandoGenerating", 1);
+    CVarSave();
 
     std::unordered_map<RandomizerSettingKey, u8> cvarSettings;
-    cvarSettings[RSK_LOGIC_RULES] = CVar_GetS32("gRandomizeLogicRules", 0);
-    cvarSettings[RSK_FOREST] = CVar_GetS32("gRandomizeForest", 0);
-    cvarSettings[RSK_KAK_GATE] = CVar_GetS32("gRandomizeKakarikoGate", 0);
-    cvarSettings[RSK_DOOR_OF_TIME] = CVar_GetS32("gRandomizeDoorOfTime", 0);
-    cvarSettings[RSK_ZORAS_FOUNTAIN] = CVar_GetS32("gRandomizeZorasFountain", 0);
-    cvarSettings[RSK_STARTING_AGE] = CVar_GetS32("gRandomizeStartingAge", 0);
-    cvarSettings[RSK_GERUDO_FORTRESS] = CVar_GetS32("gRandomizeGerudoFortress", 0);
-    cvarSettings[RSK_RAINBOW_BRIDGE] = CVar_GetS32("gRandomizeRainbowBridge", 0);
-    cvarSettings[RSK_RAINBOW_BRIDGE_STONE_COUNT] = CVar_GetS32("gRandomizeStoneCount", 3);
-    cvarSettings[RSK_RAINBOW_BRIDGE_MEDALLION_COUNT] = CVar_GetS32("gRandomizeMedallionCount", 6);
-    cvarSettings[RSK_RAINBOW_BRIDGE_REWARD_COUNT] = CVar_GetS32("gRandomizeRewardCount", 9);
-    cvarSettings[RSK_RAINBOW_BRIDGE_DUNGEON_COUNT] = CVar_GetS32("gRandomizeDungeonCount", 8);
-    cvarSettings[RSK_RAINBOW_BRIDGE_TOKEN_COUNT] = CVar_GetS32("gRandomizeTokenCount", 100);
-    cvarSettings[RSK_RANDOM_TRIALS] = CVar_GetS32("gRandomizeGanonTrial", 0);
-    cvarSettings[RSK_TRIAL_COUNT] = CVar_GetS32("gRandomizeGanonTrialCount", 6);
-    cvarSettings[RSK_STARTING_OCARINA] = CVar_GetS32("gRandomizeStartingOcarina", 0);
-    cvarSettings[RSK_SHUFFLE_OCARINA] = CVar_GetS32("gRandomizeShuffleOcarinas", 0) ||
-                                        CVar_GetS32("gRandomizeStartingOcarina", 0);
-    cvarSettings[RSK_STARTING_KOKIRI_SWORD] = CVar_GetS32("gRandomizeStartingKokiriSword", 0);
-    cvarSettings[RSK_SHUFFLE_KOKIRI_SWORD] = CVar_GetS32("gRandomizeShuffleKokiriSword", 0) ||
-                                             CVar_GetS32("gRandomizeStartingKokiriSword", 0);
-    cvarSettings[RSK_STARTING_DEKU_SHIELD] = CVar_GetS32("gRandomizeStartingDekuShield", 0);
-    cvarSettings[RSK_STARTING_SKULLTULA_TOKEN] = CVar_GetS32("gRandomizeStartingSkulltulaToken", 0);
-    cvarSettings[RSK_STARTING_MAPS_COMPASSES] = CVar_GetS32("gRandomizeStartingMapsCompasses", 2);
-    cvarSettings[RSK_SHUFFLE_DUNGEON_REWARDS] = CVar_GetS32("gRandomizeShuffleDungeonReward", 0);
-    cvarSettings[RSK_SHUFFLE_SONGS] = CVar_GetS32("gRandomizeShuffleSongs", 0);
-    cvarSettings[RSK_SHUFFLE_TOKENS] = CVar_GetS32("gRandomizeShuffleTokens", 0);
-    cvarSettings[RSK_SHOPSANITY] = CVar_GetS32("gRandomizeShopsanity", 0);
-    cvarSettings[RSK_SHUFFLE_SCRUBS] = CVar_GetS32("gRandomizeShuffleScrubs", 0);
-    cvarSettings[RSK_SHUFFLE_COWS] = CVar_GetS32("gRandomizeShuffleCows", 0);
-    cvarSettings[RSK_SHUFFLE_ADULT_TRADE] = CVar_GetS32("gRandomizeShuffleAdultTrade", 0);
-    cvarSettings[RSK_SHUFFLE_MAGIC_BEANS] = CVar_GetS32("gRandomizeShuffleBeans", 0);
-    cvarSettings[RSK_SHUFFLE_MERCHANTS] = CVar_GetS32("gRandomizeShuffleMerchants", 0);
-    cvarSettings[RSK_ENABLE_BOMBCHU_DROPS] = CVar_GetS32("gRandomizeEnableBombchuDrops", 0);
-    cvarSettings[RSK_BOMBCHUS_IN_LOGIC] = CVar_GetS32("gRandomizeBombchusInLogic", 0);
-    cvarSettings[RSK_SKIP_CHILD_ZELDA] = CVar_GetS32("gRandomizeSkipChildZelda", 0);
+    cvarSettings[RSK_LOGIC_RULES] = CVarGetInteger("gRandomizeLogicRules", 0);
+    cvarSettings[RSK_FOREST] = CVarGetInteger("gRandomizeForest", 0);
+    cvarSettings[RSK_KAK_GATE] = CVarGetInteger("gRandomizeKakarikoGate", 0);
+    cvarSettings[RSK_DOOR_OF_TIME] = CVarGetInteger("gRandomizeDoorOfTime", 0);
+    cvarSettings[RSK_ZORAS_FOUNTAIN] = CVarGetInteger("gRandomizeZorasFountain", 0);
+    cvarSettings[RSK_STARTING_AGE] = CVarGetInteger("gRandomizeStartingAge", 0);
+    cvarSettings[RSK_GERUDO_FORTRESS] = CVarGetInteger("gRandomizeGerudoFortress", 0);
+    cvarSettings[RSK_RAINBOW_BRIDGE] = CVarGetInteger("gRandomizeRainbowBridge", 0);
+    cvarSettings[RSK_RAINBOW_BRIDGE_STONE_COUNT] = CVarGetInteger("gRandomizeStoneCount", 3);
+    cvarSettings[RSK_RAINBOW_BRIDGE_MEDALLION_COUNT] = CVarGetInteger("gRandomizeMedallionCount", 6);
+    cvarSettings[RSK_RAINBOW_BRIDGE_REWARD_COUNT] = CVarGetInteger("gRandomizeRewardCount", 9);
+    cvarSettings[RSK_RAINBOW_BRIDGE_DUNGEON_COUNT] = CVarGetInteger("gRandomizeDungeonCount", 8);
+    cvarSettings[RSK_RAINBOW_BRIDGE_TOKEN_COUNT] = CVarGetInteger("gRandomizeTokenCount", 100);
+    cvarSettings[RSK_RANDOM_TRIALS] = CVarGetInteger("gRandomizeGanonTrial", 0);
+    cvarSettings[RSK_TRIAL_COUNT] = CVarGetInteger("gRandomizeGanonTrialCount", 6);
+    cvarSettings[RSK_STARTING_OCARINA] = CVarGetInteger("gRandomizeStartingOcarina", 0);
+    cvarSettings[RSK_SHUFFLE_OCARINA] = CVarGetInteger("gRandomizeShuffleOcarinas", 0) ||
+                                        CVarGetInteger("gRandomizeStartingOcarina", 0);
+    cvarSettings[RSK_STARTING_KOKIRI_SWORD] = CVarGetInteger("gRandomizeStartingKokiriSword", 0);
+    cvarSettings[RSK_SHUFFLE_KOKIRI_SWORD] = CVarGetInteger("gRandomizeShuffleKokiriSword", 0) ||
+                                             CVarGetInteger("gRandomizeStartingKokiriSword", 0);
+    cvarSettings[RSK_STARTING_DEKU_SHIELD] = CVarGetInteger("gRandomizeStartingDekuShield", 0);
+    cvarSettings[RSK_STARTING_SKULLTULA_TOKEN] = CVarGetInteger("gRandomizeStartingSkulltulaToken", 0);
+    cvarSettings[RSK_STARTING_MAPS_COMPASSES] = CVarGetInteger("gRandomizeStartingMapsCompasses", 2);
+    cvarSettings[RSK_SHUFFLE_DUNGEON_REWARDS] = CVarGetInteger("gRandomizeShuffleDungeonReward", 0);
+    cvarSettings[RSK_SHUFFLE_SONGS] = CVarGetInteger("gRandomizeShuffleSongs", 0);
+    cvarSettings[RSK_SHUFFLE_TOKENS] = CVarGetInteger("gRandomizeShuffleTokens", 0);
+    cvarSettings[RSK_SHOPSANITY] = CVarGetInteger("gRandomizeShopsanity", 0);
+    cvarSettings[RSK_SHUFFLE_SCRUBS] = CVarGetInteger("gRandomizeShuffleScrubs", 0);
+    cvarSettings[RSK_SHUFFLE_COWS] = CVarGetInteger("gRandomizeShuffleCows", 0);
+    cvarSettings[RSK_SHUFFLE_ADULT_TRADE] = CVarGetInteger("gRandomizeShuffleAdultTrade", 0);
+    cvarSettings[RSK_SHUFFLE_MAGIC_BEANS] = CVarGetInteger("gRandomizeShuffleBeans", 0);
+    cvarSettings[RSK_SHUFFLE_MERCHANTS] = CVarGetInteger("gRandomizeShuffleMerchants", 0);
+    cvarSettings[RSK_ENABLE_BOMBCHU_DROPS] = CVarGetInteger("gRandomizeEnableBombchuDrops", 0);
+    cvarSettings[RSK_BOMBCHUS_IN_LOGIC] = CVarGetInteger("gRandomizeBombchusInLogic", 0);
+    cvarSettings[RSK_SKIP_CHILD_ZELDA] = CVarGetInteger("gRandomizeSkipChildZelda", 0);
 
     // if we skip child zelda, we start with zelda's letter, and malon starts
     // at the ranch, so we should *not* shuffle the weird egg
-    cvarSettings[RSK_SHUFFLE_WEIRD_EGG] = ((CVar_GetS32("gRandomizeSkipChildZelda", 0) == 0) &&
-                                            CVar_GetS32("gRandomizeShuffleWeirdEgg", 0));
+    cvarSettings[RSK_SHUFFLE_WEIRD_EGG] = ((CVarGetInteger("gRandomizeSkipChildZelda", 0) == 0) &&
+                                            CVarGetInteger("gRandomizeShuffleWeirdEgg", 0));
     
-    cvarSettings[RSK_SHUFFLE_GERUDO_MEMBERSHIP_CARD] = CVar_GetS32("gRandomizeShuffleGerudoToken", 0);
-    cvarSettings[RSK_SHUFFLE_FROG_SONG_RUPEES] = CVar_GetS32("gRandomizeShuffleFrogSongRupees", 0);
-    cvarSettings[RSK_ITEM_POOL] = CVar_GetS32("gRandomizeItemPool", 1);
-    cvarSettings[RSK_ICE_TRAPS] = CVar_GetS32("gRandomizeIceTraps", 1);
-    cvarSettings[RSK_GOSSIP_STONE_HINTS] = CVar_GetS32("gRandomizeGossipStoneHints", 1);
-    cvarSettings[RSK_HINT_CLARITY] = CVar_GetS32("gRandomizeHintClarity", 2);
-    cvarSettings[RSK_HINT_DISTRIBUTION] = CVar_GetS32("gRandomizeHintDistribution", 1);
-    cvarSettings[RSK_BLUE_FIRE_ARROWS] = CVar_GetS32("gRandomizeBlueFireArrows", 0);
-    cvarSettings[RSK_SUNLIGHT_ARROWS] = CVar_GetS32("gRandomizeSunlightArrows", 0);
-    cvarSettings[RSK_KEYSANITY] = CVar_GetS32("gRandomizeKeysanity", 2);
-    cvarSettings[RSK_GERUDO_KEYS] = CVar_GetS32("gRandomizeGerudoKeys", 0);
-    cvarSettings[RSK_KEYRINGS] = CVar_GetS32("gRandomizeShuffleKeyRings", 0);
-    cvarSettings[RSK_KEYRINGS_RANDOM_COUNT] = CVar_GetS32("gRandomizeShuffleKeyRingsRandomCount", 8);
-    cvarSettings[RSK_KEYRINGS_FOREST_TEMPLE] = CVar_GetS32("gRandomizeShuffleKeyRingsForestTemple", 0);
-    cvarSettings[RSK_KEYRINGS_FIRE_TEMPLE] = CVar_GetS32("gRandomizeShuffleKeyRingsFireTemple", 0);
-    cvarSettings[RSK_KEYRINGS_WATER_TEMPLE] = CVar_GetS32("gRandomizeShuffleKeyRingsWaterTemple", 0);
-    cvarSettings[RSK_KEYRINGS_SPIRIT_TEMPLE] = CVar_GetS32("gRandomizeShuffleKeyRingsSpiritTemple", 0);
-    cvarSettings[RSK_KEYRINGS_SHADOW_TEMPLE] = CVar_GetS32("gRandomizeShuffleKeyRingsShadowTemple", 0);
-    cvarSettings[RSK_KEYRINGS_BOTTOM_OF_THE_WELL] = CVar_GetS32("gRandomizeShuffleKeyRingsBottomOfTheWell", 0);
-    cvarSettings[RSK_KEYRINGS_GTG] = CVar_GetS32("gRandomizeShuffleKeyRingsGTG", 0);
-    cvarSettings[RSK_KEYRINGS_GANONS_CASTLE] = CVar_GetS32("gRandomizeShuffleKeyRingsGanonsCastle", 0);
-    cvarSettings[RSK_BOSS_KEYSANITY] = CVar_GetS32("gRandomizeBossKeysanity", 2);
-    cvarSettings[RSK_GANONS_BOSS_KEY] = CVar_GetS32("gRandomizeShuffleGanonBossKey", 1);
-    cvarSettings[RSK_LACS_STONE_COUNT] = CVar_GetS32("gRandomizeLacsStoneCount", 3);
-    cvarSettings[RSK_LACS_MEDALLION_COUNT] = CVar_GetS32("gRandomizeLacsMedallionCount", 6);
-    cvarSettings[RSK_LACS_REWARD_COUNT] = CVar_GetS32("gRandomizeLacsRewardCount", 9);
-    cvarSettings[RSK_LACS_DUNGEON_COUNT] = CVar_GetS32("gRandomizeLacsDungeonCount", 8);
-    cvarSettings[RSK_LACS_TOKEN_COUNT] = CVar_GetS32("gRandomizeLacsTokenCount", 100);
-    cvarSettings[RSK_STARTING_CONSUMABLES] = CVar_GetS32("gRandomizeStartingConsumables", 0);
-    cvarSettings[RSK_FULL_WALLETS] = CVar_GetS32("gRandomizeFullWallets", 0);
+    cvarSettings[RSK_SHUFFLE_GERUDO_MEMBERSHIP_CARD] = CVarGetInteger("gRandomizeShuffleGerudoToken", 0);
+    cvarSettings[RSK_SHUFFLE_FROG_SONG_RUPEES] = CVarGetInteger("gRandomizeShuffleFrogSongRupees", 0);
+    cvarSettings[RSK_ITEM_POOL] = CVarGetInteger("gRandomizeItemPool", 1);
+    cvarSettings[RSK_ICE_TRAPS] = CVarGetInteger("gRandomizeIceTraps", 1);
+    cvarSettings[RSK_GOSSIP_STONE_HINTS] = CVarGetInteger("gRandomizeGossipStoneHints", 1);
+    cvarSettings[RSK_HINT_CLARITY] = CVarGetInteger("gRandomizeHintClarity", 2);
+    cvarSettings[RSK_HINT_DISTRIBUTION] = CVarGetInteger("gRandomizeHintDistribution", 1);
+    cvarSettings[RSK_BLUE_FIRE_ARROWS] = CVarGetInteger("gRandomizeBlueFireArrows", 0);
+    cvarSettings[RSK_SUNLIGHT_ARROWS] = CVarGetInteger("gRandomizeSunlightArrows", 0);
+    cvarSettings[RSK_KEYSANITY] = CVarGetInteger("gRandomizeKeysanity", 2);
+    cvarSettings[RSK_GERUDO_KEYS] = CVarGetInteger("gRandomizeGerudoKeys", 0);
+    cvarSettings[RSK_KEYRINGS] = CVarGetInteger("gRandomizeShuffleKeyRings", 0);
+    cvarSettings[RSK_KEYRINGS_RANDOM_COUNT] = CVarGetInteger("gRandomizeShuffleKeyRingsRandomCount", 8);
+    cvarSettings[RSK_KEYRINGS_FOREST_TEMPLE] = CVarGetInteger("gRandomizeShuffleKeyRingsForestTemple", 0);
+    cvarSettings[RSK_KEYRINGS_FIRE_TEMPLE] = CVarGetInteger("gRandomizeShuffleKeyRingsFireTemple", 0);
+    cvarSettings[RSK_KEYRINGS_WATER_TEMPLE] = CVarGetInteger("gRandomizeShuffleKeyRingsWaterTemple", 0);
+    cvarSettings[RSK_KEYRINGS_SPIRIT_TEMPLE] = CVarGetInteger("gRandomizeShuffleKeyRingsSpiritTemple", 0);
+    cvarSettings[RSK_KEYRINGS_SHADOW_TEMPLE] = CVarGetInteger("gRandomizeShuffleKeyRingsShadowTemple", 0);
+    cvarSettings[RSK_KEYRINGS_BOTTOM_OF_THE_WELL] = CVarGetInteger("gRandomizeShuffleKeyRingsBottomOfTheWell", 0);
+    cvarSettings[RSK_KEYRINGS_GTG] = CVarGetInteger("gRandomizeShuffleKeyRingsGTG", 0);
+    cvarSettings[RSK_KEYRINGS_GANONS_CASTLE] = CVarGetInteger("gRandomizeShuffleKeyRingsGanonsCastle", 0);
+    cvarSettings[RSK_BOSS_KEYSANITY] = CVarGetInteger("gRandomizeBossKeysanity", 2);
+    cvarSettings[RSK_GANONS_BOSS_KEY] = CVarGetInteger("gRandomizeShuffleGanonBossKey", 1);
+    cvarSettings[RSK_LACS_STONE_COUNT] = CVarGetInteger("gRandomizeLacsStoneCount", 3);
+    cvarSettings[RSK_LACS_MEDALLION_COUNT] = CVarGetInteger("gRandomizeLacsMedallionCount", 6);
+    cvarSettings[RSK_LACS_REWARD_COUNT] = CVarGetInteger("gRandomizeLacsRewardCount", 9);
+    cvarSettings[RSK_LACS_DUNGEON_COUNT] = CVarGetInteger("gRandomizeLacsDungeonCount", 8);
+    cvarSettings[RSK_LACS_TOKEN_COUNT] = CVarGetInteger("gRandomizeLacsTokenCount", 100);
+    cvarSettings[RSK_STARTING_CONSUMABLES] = CVarGetInteger("gRandomizeStartingConsumables", 0);
+    cvarSettings[RSK_FULL_WALLETS] = CVarGetInteger("gRandomizeFullWallets", 0);
     
     // RANDOTODO implement chest minigame shuffle with keysanity
     cvarSettings[RSK_SHUFFLE_CHEST_MINIGAME] = false;
 
-    cvarSettings[RSK_LANGUAGE] = CVar_GetS32("gLanguages", 0);
+    cvarSettings[RSK_LANGUAGE] = CVarGetInteger("gLanguages", 0);
 
-    cvarSettings[RSK_CUCCO_COUNT] = CVar_GetS32("gRandomizeCuccosToReturn", 7);
-    cvarSettings[RSK_BIG_POE_COUNT] = CVar_GetS32("gRandomizeBigPoeTargetCount", 10);
+    cvarSettings[RSK_CUCCO_COUNT] = CVarGetInteger("gRandomizeCuccosToReturn", 7);
+    cvarSettings[RSK_BIG_POE_COUNT] = CVarGetInteger("gRandomizeBigPoeTargetCount", 10);
 
     // If we skip child zelda, skip child stealth is pointless, so this needs to be reflected in the spoiler log
     cvarSettings[RSK_SKIP_CHILD_STEALTH] =
-        !CVar_GetS32("gRandomizeSkipChildZelda", 0) && CVar_GetS32("gRandomizeSkipChildStealth", 0);
+        !CVarGetInteger("gRandomizeSkipChildZelda", 0) && CVarGetInteger("gRandomizeSkipChildStealth", 0);
 
-    cvarSettings[RSK_SKIP_EPONA_RACE] = CVar_GetS32("gRandomizeSkipEponaRace", 0);
-    cvarSettings[RSK_SKIP_TOWER_ESCAPE] = CVar_GetS32("gRandomizeSkipTowerEscape", 0);
-    cvarSettings[RSK_COMPLETE_MASK_QUEST] = CVar_GetS32("gRandomizeCompleteMaskQuest", 0);
-    cvarSettings[RSK_SKIP_SCARECROWS_SONG] = CVar_GetS32("gRandomizeSkipScarecrowsSong", 0);
-    cvarSettings[RSK_ENABLE_GLITCH_CUTSCENES] = CVar_GetS32("gRandomizeEnableGlitchCutscenes", 0);
+    cvarSettings[RSK_SKIP_EPONA_RACE] = CVarGetInteger("gRandomizeSkipEponaRace", 0);
+    cvarSettings[RSK_SKIP_TOWER_ESCAPE] = CVarGetInteger("gRandomizeSkipTowerEscape", 0);
+    cvarSettings[RSK_COMPLETE_MASK_QUEST] = CVarGetInteger("gRandomizeCompleteMaskQuest", 0);
+    cvarSettings[RSK_SKIP_SCARECROWS_SONG] = CVarGetInteger("gRandomizeSkipScarecrowsSong", 0);
+    cvarSettings[RSK_ENABLE_GLITCH_CUTSCENES] = CVarGetInteger("gRandomizeEnableGlitchCutscenes", 0);
 
-    cvarSettings[RSK_SKULLS_SUNS_SONG] = CVar_GetS32("gRandomizeGsExpectSunsSong", 0);
+    cvarSettings[RSK_SKULLS_SUNS_SONG] = CVarGetInteger("gRandomizeGsExpectSunsSong", 0);
     // Link's Pocket has to have a dungeon reward if the other rewards are shuffled to end of dungeon.
-    cvarSettings[RSK_LINKS_POCKET] = CVar_GetS32("gRandomizeShuffleDungeonReward", 0) != 0 ? 
-                                        CVar_GetS32("gRandomizeLinksPocket", 0) : 0;
+    cvarSettings[RSK_LINKS_POCKET] = CVarGetInteger("gRandomizeShuffleDungeonReward", 0) != 0 ? 
+                                        CVarGetInteger("gRandomizeLinksPocket", 0) : 0;
 
     if (OTRGlobals::Instance->HasMasterQuest() && OTRGlobals::Instance->HasOriginal()) {
         // If both OTRs are loaded.
-        cvarSettings[RSK_RANDOM_MQ_DUNGEONS] = CVar_GetS32("gRandomizeMqDungeons", 0);
-        cvarSettings[RSK_MQ_DUNGEON_COUNT] = CVar_GetS32("gRandomizeMqDungeonCount", 12);
+        cvarSettings[RSK_RANDOM_MQ_DUNGEONS] = CVarGetInteger("gRandomizeMqDungeons", 0);
+        cvarSettings[RSK_MQ_DUNGEON_COUNT] = CVarGetInteger("gRandomizeMqDungeonCount", 12);
     } else if (OTRGlobals::Instance->HasMasterQuest()) {
         // If only Master Quest is loaded.
         cvarSettings[RSK_RANDOM_MQ_DUNGEONS] = 1;
@@ -2670,19 +2670,19 @@ void GenerateRandomizerImgui() {
     }
 
     // Enable if any of the entrance rando options are enabled.
-    cvarSettings[RSK_SHUFFLE_ENTRANCES] = CVar_GetS32("gRandomizeShuffleDungeonsEntrances", 0) ||
-                                          CVar_GetS32("gRandomizeShuffleOverworldEntrances", 0) ||
-                                          CVar_GetS32("gRandomizeShuffleInteriorsEntrances", 0) ||
-                                          CVar_GetS32("gRandomizeShuffleGrottosEntrances", 0);
+    cvarSettings[RSK_SHUFFLE_ENTRANCES] = CVarGetInteger("gRandomizeShuffleDungeonsEntrances", 0) ||
+                                          CVarGetInteger("gRandomizeShuffleOverworldEntrances", 0) ||
+                                          CVarGetInteger("gRandomizeShuffleInteriorsEntrances", 0) ||
+                                          CVarGetInteger("gRandomizeShuffleGrottosEntrances", 0);
 
-    cvarSettings[RSK_SHUFFLE_DUNGEON_ENTRANCES] = CVar_GetS32("gRandomizeShuffleDungeonsEntrances", 0);
-    cvarSettings[RSK_SHUFFLE_OVERWORLD_ENTRANCES] = CVar_GetS32("gRandomizeShuffleOverworldEntrances", 0);
-    cvarSettings[RSK_SHUFFLE_INTERIOR_ENTRANCES] = CVar_GetS32("gRandomizeShuffleInteriorsEntrances", 0);
-    cvarSettings[RSK_SHUFFLE_GROTTO_ENTRANCES] = CVar_GetS32("gRandomizeShuffleGrottosEntrances", 0);
+    cvarSettings[RSK_SHUFFLE_DUNGEON_ENTRANCES] = CVarGetInteger("gRandomizeShuffleDungeonsEntrances", 0);
+    cvarSettings[RSK_SHUFFLE_OVERWORLD_ENTRANCES] = CVarGetInteger("gRandomizeShuffleOverworldEntrances", 0);
+    cvarSettings[RSK_SHUFFLE_INTERIOR_ENTRANCES] = CVarGetInteger("gRandomizeShuffleInteriorsEntrances", 0);
+    cvarSettings[RSK_SHUFFLE_GROTTO_ENTRANCES] = CVarGetInteger("gRandomizeShuffleGrottosEntrances", 0);
 
     // todo: this efficently when we build out cvar array support
     std::set<RandomizerCheck> excludedLocations;
-    std::stringstream excludedLocationStringStream(CVar_GetString("gRandomizeExcludedLocations", ""));
+    std::stringstream excludedLocationStringStream(CVarGetString("gRandomizeExcludedLocations", ""));
     std::string excludedLocationString;
     while (getline(excludedLocationStringStream, excludedLocationString, ',')) {
         excludedLocations.insert((RandomizerCheck)std::stoi(excludedLocationString));
@@ -2690,9 +2690,9 @@ void GenerateRandomizerImgui() {
 
     RandoMain::GenerateRando(cvarSettings, excludedLocations);
 
-    CVar_SetS32("gRandoGenerating", 0);
-    CVar_Save();
-    CVar_Load();
+    CVarSetInteger("gRandoGenerating", 0);
+    CVarSave();
+    CVarLoad();
 
     generated = 1;
 }
@@ -2704,7 +2704,7 @@ void DrawRandoEditor(bool& open) {
     }
 
     if (!open) {
-        CVar_SetS32("gRandomizerSettingsEnabled", 0);
+        CVarSetInteger("gRandomizerSettingsEnabled", 0);
         return;
     }
 
@@ -2773,22 +2773,22 @@ void DrawRandoEditor(bool& open) {
 
     DrawPresetSelector(PRESET_TYPE_RANDOMIZER);
 
-    bool disableEditingRandoSettings = CVar_GetS32("gRandoGenerating", 0) || CVar_GetS32("gOnFileSelectNameEntry", 0);
+    bool disableEditingRandoSettings = CVarGetInteger("gRandoGenerating", 0) || CVarGetInteger("gOnFileSelectNameEntry", 0);
     ImGui::PushItemFlag(ImGuiItemFlags_Disabled, disableEditingRandoSettings);
     ImGui::PushStyleVar(ImGuiStyleVar_Alpha, ImGui::GetStyle().Alpha * (disableEditingRandoSettings ? 0.5f : 1.0f));
 
     ImGui::Dummy(ImVec2(0.0f, 0.0f));
     if (ImGui::Button("Generate Seed")) {
-        if (CVar_GetS32("gRandoGenerating", 0) == 0) {
+        if (CVarGetInteger("gRandoGenerating", 0) == 0) {
             randoThread = std::thread(&GenerateRandomizerImgui);
         }
     }
     ImGui::Dummy(ImVec2(0.0f, 0.0f));
-    std::string spoilerfilepath = CVar_GetString("gSpoilerLog", "");
+    std::string spoilerfilepath = CVarGetString("gSpoilerLog", "");
     ImGui::Text("Spoiler File: %s", spoilerfilepath.c_str());
 
     // RANDOTODO settings presets
-    // std::string presetfilepath = CVar_GetString("gLoadedPreset", "");
+    // std::string presetfilepath = CVarGetString("gLoadedPreset", "");
     // ImGui::Text("Settings File: %s", presetfilepath.c_str());
 
     UIWidgets::PaddedSeparator();
@@ -2888,10 +2888,10 @@ void DrawRandoEditor(bool& open) {
                 //Starting Age
                 //Disabled when Forest is set to Closed or under very specific conditions
                 //RANDOTODO: Replace magic number checks with enums
-                bool disableRandoStartingAge =  (CVar_GetS32("gRandomizeLogicRules", 0) == 0) && // glitchless logic
-                ((CVar_GetS32("gRandomizeForest", 0) == 0) || // Closed Forest
-                 ((CVar_GetS32("gRandomizeDoorOfTime", 0) == 0) && // Closed Door of Time 
-                 (CVar_GetS32("gRandomizeShuffleOcarinas", 0) == 0)));  // ocarinas not shuffled
+                bool disableRandoStartingAge =  (CVarGetInteger("gRandomizeLogicRules", 0) == 0) && // glitchless logic
+                ((CVarGetInteger("gRandomizeForest", 0) == 0) || // Closed Forest
+                 ((CVarGetInteger("gRandomizeDoorOfTime", 0) == 0) && // Closed Door of Time 
+                 (CVarGetInteger("gRandomizeShuffleOcarinas", 0) == 0)));  // ocarinas not shuffled
                     
                 const char* disableRandoStartingAgeText = "This option is disabled due to other options making the game unbeatable.";
                 ImGui::Text(Settings::StartingAge.GetName().c_str());
@@ -2909,7 +2909,7 @@ void DrawRandoEditor(bool& open) {
                     if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
                        ImGui::SetTooltip("%s", disableRandoStartingAgeText);
                     }
-                    CVar_SetS32("gRandomizeStartingAge", RO_AGE_CHILD);
+                    CVarSetInteger("gRandomizeStartingAge", RO_AGE_CHILD);
                     ImGui::PopStyleVar(1);
                     ImGui::PopItemFlag();
                 }                
@@ -2957,7 +2957,7 @@ void DrawRandoEditor(bool& open) {
 
                 UIWidgets::EnhancementCombobox("gRandomizeRainbowBridge", randoRainbowBridge, 7, RO_BRIDGE_VANILLA);
                 ImGui::PopItemWidth();
-                switch (CVar_GetS32("gRandomizeRainbowBridge", 0)) {
+                switch (CVarGetInteger("gRandomizeRainbowBridge", 0)) {
                     case 0:
                         break;
                     case 1:
@@ -3004,13 +3004,13 @@ void DrawRandoEditor(bool& open) {
                     "\n"
                     "Random Number - A Random number and set of trials will be required."
                 );
-                UIWidgets::EnhancementCombobox("gRandomizeGanonTrial", randoGanonsTrial, 3, CVar_GetS32("gRandomizeGanonTrial", 0));
+                UIWidgets::EnhancementCombobox("gRandomizeGanonTrial", randoGanonsTrial, 3, CVarGetInteger("gRandomizeGanonTrial", 0));
                 ImGui::PopItemWidth();
-                if (CVar_GetS32("gRandomizeGanonTrial", 0) == 1) {
+                if (CVarGetInteger("gRandomizeGanonTrial", 0) == 1) {
                     ImGui::Dummy(ImVec2(0.0f, 0.0f));
                     UIWidgets::EnhancementSliderInt("Ganon's Trial Count: %d", "##RandoTrialCount",
                                                     "gRandomizeGanonTrialCount", 1, 6, "", 
-                                                    CVar_GetS32("gRandomizeGanonTrialCount", 6), true);
+                                                    CVarGetInteger("gRandomizeGanonTrialCount", 6), true);
                     UIWidgets::InsertHelpHoverText("Set the number of trials required to enter Ganon's Tower.");
                 }
 
@@ -3029,12 +3029,12 @@ void DrawRandoEditor(bool& open) {
                         "\n"
                         "Random Number - A Random number and set of dungeons will be their Master Quest varieties."
                     );
-                    UIWidgets::EnhancementCombobox("gRandomizeMqDungeons", randoMqDungeons, 3, CVar_GetS32("gRandomizeMqDungeons", 0));
+                    UIWidgets::EnhancementCombobox("gRandomizeMqDungeons", randoMqDungeons, 3, CVarGetInteger("gRandomizeMqDungeons", 0));
                     ImGui::PopItemWidth();
-                    if (CVar_GetS32("gRandomizeMqDungeons", 0) == 1) {
+                    if (CVarGetInteger("gRandomizeMqDungeons", 0) == 1) {
                         ImGui::Dummy(ImVec2(0.0f, 0.0f));
                         UIWidgets::EnhancementSliderInt("Master Quest Dungeon Count: %d", "##RandoMqDungeonCount",
-                            "gRandomizeMqDungeonCount", 1, 12, "", CVar_GetS32("gRandomizeMqDungeonCount", 12), true);
+                            "gRandomizeMqDungeonCount", 1, 12, "", CVarGetInteger("gRandomizeMqDungeonCount", 12), true);
                     }
                 }
 
@@ -3169,7 +3169,7 @@ void DrawRandoEditor(bool& open) {
 
                 // Shuffle Kokiri Sword
                 // Disabled when Start with Kokiri Sword is active
-                bool disableShuffleKokiriSword = CVar_GetS32("gRandomizeStartingKokiriSword", 0);
+                bool disableShuffleKokiriSword = CVarGetInteger("gRandomizeStartingKokiriSword", 0);
                 const char* disableShuffleKokiriSwordText = "This option is disabled because \"Start with Kokiri Sword\" is enabled.";
                 UIWidgets::EnhancementCheckbox(Settings::ShuffleKokiriSword.GetName().c_str(), "gRandomizeShuffleKokiriSword",
                                                 disableShuffleKokiriSword, disableShuffleKokiriSwordText);
@@ -3183,7 +3183,7 @@ void DrawRandoEditor(bool& open) {
 
                 // Shuffle Ocarinas
                 // Disabled when Start with Ocarina is active
-                bool disableShuffleOcarinas = CVar_GetS32("gRandomizeStartingOcarina", 0);
+                bool disableShuffleOcarinas = CVarGetInteger("gRandomizeStartingOcarina", 0);
                 const char* disableShuffleOcarinasText = "This option is disabled because \"Start with Fairy Ocarina\" is enabled.";
                 UIWidgets::EnhancementCheckbox(Settings::ShuffleOcarinas.GetName().c_str(), "gRandomizeShuffleOcarinas",
                                               disableShuffleOcarinas, disableShuffleOcarinasText);
@@ -3197,7 +3197,7 @@ void DrawRandoEditor(bool& open) {
 
                 // Shuffle Weird Egg
                 // Disabled when Skip Child Zelda is active
-                bool disableShuffleWeirdEgg = CVar_GetS32("gRandomizeSkipChildZelda", 0);
+                bool disableShuffleWeirdEgg = CVarGetInteger("gRandomizeSkipChildZelda", 0);
                 const char* disableShuffleWeirdEggText = "This option is disabled because \"Skip Child Zelda\" is enabled.";
                 UIWidgets::EnhancementCheckbox(Settings::ShuffleWeirdEgg.GetName().c_str(), "gRandomizeShuffleWeirdEgg",
                                               disableShuffleWeirdEgg, disableShuffleWeirdEggText);
@@ -3401,7 +3401,7 @@ void DrawRandoEditor(bool& open) {
                 );
                 UIWidgets::EnhancementCombobox("gRandomizeShuffleKeyRings", randoShuffleKeyRings, 4, RO_KEYRINGS_OFF);
                 ImGui::PopItemWidth();
-                switch (CVar_GetS32("gRandomizeShuffleKeyRings", RO_KEYRINGS_OFF)) {
+                switch (CVarGetInteger("gRandomizeShuffleKeyRings", RO_KEYRINGS_OFF)) {
                     case RO_KEYRINGS_COUNT:
                         ImGui::Dummy(ImVec2(0.0f, 0.0f));
                         UIWidgets::EnhancementSliderInt("Key Ring Count: %d", "##RandomizeShuffleKeyRingsRandomCount",
@@ -3483,7 +3483,7 @@ void DrawRandoEditor(bool& open) {
                 );
                 UIWidgets::EnhancementCombobox("gRandomizeShuffleGanonBossKey", randoShuffleGanonsBossKey, 12, RO_GANON_BOSS_KEY_VANILLA);
                 ImGui::PopItemWidth();
-                switch (CVar_GetS32("gRandomizeShuffleGanonBossKey", RO_GANON_BOSS_KEY_OWN_DUNGEON)) {
+                switch (CVarGetInteger("gRandomizeShuffleGanonBossKey", RO_GANON_BOSS_KEY_OWN_DUNGEON)) {
                     case RO_GANON_BOSS_KEY_LACS_MEDALLIONS:
                         ImGui::Dummy(ImVec2(0.0f, 0.0f));
                         UIWidgets::EnhancementSliderInt("Medallion Count: %d", "##RandoLacsMedallionCount",
@@ -3556,7 +3556,7 @@ void DrawRandoEditor(bool& open) {
 
                 // Skip child stealth
                 // Disabled when Skip Child Zelda is active
-                bool disableChildStealth = CVar_GetS32("gRandomizeSkipChildZelda", 0);
+                bool disableChildStealth = CVarGetInteger("gRandomizeSkipChildZelda", 0);
                 const char* disableChildStealthText = "This option is disabled because \"Skip Child Zelda\" is enabled";
                 UIWidgets::EnhancementCheckbox(Settings::SkipChildStealth.GetName().c_str(), "gRandomizeSkipChildStealth", disableChildStealth, disableChildStealthText);
                 UIWidgets::InsertHelpHoverText("The crawlspace into Hyrule Castle goes straight to Zelda, skipping the guards.");
@@ -3657,7 +3657,7 @@ void DrawRandoEditor(bool& open) {
                     "\n"
                     "Need Mask of Truth - Hints are only available whilst wearing the Mask of Truth.\n");
                 UIWidgets::EnhancementCombobox("gRandomizeGossipStoneHints", randoGossipStoneHints, 4, RO_GOSSIP_STONES_NEED_NOTHING);
-                if (CVar_GetS32("gRandomizeGossipStoneHints", 1) != 0) {
+                if (CVarGetInteger("gRandomizeGossipStoneHints", 1) != 0) {
                     // Hint Clarity
                     ImGui::Dummy(ImVec2(0.0f, 0.0f));
                     ImGui::Indent();
@@ -3763,7 +3763,7 @@ void DrawRandoEditor(bool& open) {
                 locationsTabOpen = true;
                 RandomizerCheckObjects::UpdateImGuiVisibility();
                 // todo: this efficently when we build out cvar array support
-                std::stringstream excludedLocationStringStream(CVar_GetString("gRandomizeExcludedLocations", ""));
+                std::stringstream excludedLocationStringStream(CVarGetString("gRandomizeExcludedLocations", ""));
                 std::string excludedLocationString;
                 excludedLocations.clear();
                 while (getline(excludedLocationStringStream, excludedLocationString, ',')) {
@@ -3813,7 +3813,7 @@ void DrawRandoEditor(bool& open) {
                                             excludedLocationString += std::to_string(excludedLocationIt);
                                             excludedLocationString += ",";
                                         }
-                                        CVar_SetString("gRandomizeExcludedLocations", excludedLocationString.c_str());
+                                        CVarSetString("gRandomizeExcludedLocations", excludedLocationString.c_str());
                                         SohImGui::RequestCvarSaveOnNextTick();
                                     }
                                     ImGui::SameLine();
@@ -3854,7 +3854,7 @@ void DrawRandoEditor(bool& open) {
                                             excludedLocationString += std::to_string(excludedLocationIt);
                                             excludedLocationString += ",";
                                         }
-                                        CVar_SetString("gRandomizeExcludedLocations", excludedLocationString.c_str());
+                                        CVarSetString("gRandomizeExcludedLocations", excludedLocationString.c_str());
                                         SohImGui::RequestCvarSaveOnNextTick();
                                     }
                                     ImGui::SameLine();
@@ -3951,7 +3951,7 @@ void DrawRandoEditor(bool& open) {
                 ImGui::BeginChild("ChildStartingEquipment", ImVec2(0, -8));
                 // Don't display this option if Dungeon Rewards are Shuffled to End of Dungeon.
                 // TODO: Show this but disabled when we have options for disabled Comboboxes.
-                if (CVar_GetS32("gRandomizeShuffleDungeonReward", 0) != 0) {
+                if (CVarGetInteger("gRandomizeShuffleDungeonReward", 0) != 0) {
                     ImGui::Text(Settings::LinksPocketItem.GetName().c_str());
                     UIWidgets::EnhancementCombobox("gRandomizeLinksPocket", randoLinksPocket, 4, RO_LINKS_POCKET_DUNGEON_REWARD);
                     UIWidgets::PaddedSeparator();

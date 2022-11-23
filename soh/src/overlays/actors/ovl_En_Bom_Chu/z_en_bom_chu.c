@@ -139,7 +139,7 @@ void EnBomChu_UpdateFloorPoly(EnBomChu* this, CollisionPoly* floorPoly, PlayStat
     f32 normDotUp;
     MtxF mf;
 
-    if (CVar_GetS32("gBombchusOOB", 0) && floorPoly == NULL) {
+    if (CVarGetInteger("gBombchusOOB", 0) && floorPoly == NULL) {
         EnBomChu_Explode(this, play);
         return;
     }
@@ -515,7 +515,7 @@ void EnBomChu_Draw(Actor* thisx, PlayState* play) {
 
     colorIntensity = blinkTime / (f32)blinkHalfPeriod;
 
-    if (CVar_GetS32("gUseTrailsCol", 0) != 0)
+    if (CVarGetInteger("gUseTrailsCol", 0) != 0)
         gDPSetEnvColor(POLY_OPA_DISP++, (colorIntensity * BombchuCol.r), (colorIntensity * BombchuCol.g),
                        (colorIntensity * BombchuCol.b), 255);
     else gDPSetEnvColor(POLY_OPA_DISP++, 9.0f + (colorIntensity * 209.0f), 9.0f + (colorIntensity * 34.0f),

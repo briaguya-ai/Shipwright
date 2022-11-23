@@ -482,7 +482,7 @@ void EnDog_Draw(Actor* thisx, PlayState* play) {
     func_80093D18(play->state.gfxCtx);
 
     gDPPipeSync(POLY_OPA_DISP++);
-    if (CVar_GetS32("gUseDogsCol",0)) {
+    if (CVarGetInteger("gUseDogsCol",0)) {
         colors[0].r = Dog1.r;
         colors[0].g = Dog1.g;
         colors[0].b = Dog1.b;
