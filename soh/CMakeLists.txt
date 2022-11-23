@@ -1735,7 +1735,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE assets
     ${CMAKE_CURRENT_SOURCE_DIR}/../libultraship/src/misc
     ${CMAKE_CURRENT_SOURCE_DIR}/../libultraship/src/core
     ${CMAKE_CURRENT_SOURCE_DIR}/../libultraship/src/resource
-    ${CMAKE_CURRENT_SOURCE_DIR}/../libultraship/src/resource/types
+    ${CMAKE_CURRENT_SOURCE_DIR}/../libultraship/src/resource/type
     ${CMAKE_CURRENT_SOURCE_DIR}/../libultraship/src/audio
     ${CMAKE_CURRENT_SOURCE_DIR}/../libultraship/extern
     ${CMAKE_CURRENT_SOURCE_DIR}/../libultraship/extern/Mercury

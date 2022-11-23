@@ -2,6 +2,7 @@
 #define Z64_H
 
 #include <libultraship/libultra.h>
+#include "unk.h"
 #include "z64save.h"
 #include "z64light.h"
 #include "z64bgcheck.h"

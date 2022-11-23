@@ -780,13 +780,13 @@ extern "C" char* ResourceMgr_LoadJPEG(char* data, int dataSize)
     return (char*)finalBuffer;
 }
 
-extern "C" char* ResourceMgr_LoadTexByName(const char* texPath);
+// extern "C" char* ResourceMgr_LoadTexByName(const char* texPath);
 
-extern "C" uint16_t ResourceMgr_LoadTexWidthByName(char* texPath);
+// extern "C" uint16_t ResourceMgr_LoadTexWidthByName(char* texPath);
 
-extern "C" uint16_t ResourceMgr_LoadTexHeightByName(char* texPath);
+// extern "C" uint16_t ResourceMgr_LoadTexHeightByName(char* texPath);
 
-extern "C" uint32_t ResourceMgr_LoadTexSizeByName(const char* texPath);
+// extern "C" uint32_t ResourceMgr_LoadTexSizeByName(const char* texPath);
 
 extern "C" char* ResourceMgr_LoadTexOrDListByName(const char* filePath) {
     auto res = ResourceMgr_LoadResource(filePath);
@@ -817,11 +817,11 @@ extern "C" char* ResourceMgr_LoadPlayerAnimByName(const char* animPath) {
     return (char*)&anim->limbRotData[0];
 }
 
-extern "C" Gfx* ResourceMgr_LoadGfxByName(const char* path)
-{
-    auto res = std::static_pointer_cast<Ship::DisplayList>(ResourceMgr_LoadResource(path));
-    return (Gfx*)&res->instructions[0];
-}
+// extern "C" Gfx* ResourceMgr_LoadGfxByName(const char* path)
+// {
+//     auto res = std::static_pointer_cast<Ship::DisplayList>(ResourceMgr_LoadResource(path));
+//     return (Gfx*)&res->instructions[0];
+// }
 
 typedef struct {
     int index;
