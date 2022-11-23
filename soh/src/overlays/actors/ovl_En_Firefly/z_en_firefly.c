@@ -761,10 +761,10 @@ void EnFirefly_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* 
     s16 effLife;
     EnFirefly* this = (EnFirefly*)thisx;
     if (CVarGetInteger("gUseKeeseCol", 0)) {
-        Color_RGBA8 fireAuraPrimColor_custom = { CVar_GetRGB("gKeese1_Ef_Prim", fireAuraPrimColor_ori).r,CVar_GetRGB("gKeese1_Ef_Prim", fireAuraPrimColor_ori).g,CVar_GetRGB("gKeese1_Ef_Prim", fireAuraPrimColor_ori).b, 255 };
-        Color_RGBA8 fireAuraEnvColor_custom = { CVar_GetRGB("gKeese1_Ef_Env", fireAuraEnvColor_ori).r,CVar_GetRGB("gKeese1_Ef_Env", fireAuraEnvColor_ori).g,CVar_GetRGB("gKeese1_Ef_Env", fireAuraEnvColor_ori).b, 0 };
-        Color_RGBA8 iceAuraPrimColor_custom = { CVar_GetRGB("gKeese2_Ef_Prim", iceAuraPrimColor_ori).r,CVar_GetRGB("gKeese2_Ef_Prim", iceAuraPrimColor_ori).g,CVar_GetRGB("gKeese2_Ef_Prim", iceAuraPrimColor_ori).b, 255 };
-        Color_RGBA8 iceAuraEnvColor_custom = { CVar_GetRGB("gKeese2_Ef_Env", iceAuraEnvColor_ori).r,CVar_GetRGB("gKeese2_Ef_Env", iceAuraEnvColor_ori).g,CVar_GetRGB("gKeese2_Ef_Env", iceAuraEnvColor_ori).b, 0 };
+        Color_RGBA8 fireAuraPrimColor_custom = { CVarGetColor24("gKeese1_Ef_Prim", fireAuraPrimColor_ori).r,CVarGetColor24("gKeese1_Ef_Prim", fireAuraPrimColor_ori).g,CVarGetColor24("gKeese1_Ef_Prim", fireAuraPrimColor_ori).b, 255 };
+        Color_RGBA8 fireAuraEnvColor_custom = { CVarGetColor24("gKeese1_Ef_Env", fireAuraEnvColor_ori).r,CVarGetColor24("gKeese1_Ef_Env", fireAuraEnvColor_ori).g,CVarGetColor24("gKeese1_Ef_Env", fireAuraEnvColor_ori).b, 0 };
+        Color_RGBA8 iceAuraPrimColor_custom = { CVarGetColor24("gKeese2_Ef_Prim", iceAuraPrimColor_ori).r,CVarGetColor24("gKeese2_Ef_Prim", iceAuraPrimColor_ori).g,CVarGetColor24("gKeese2_Ef_Prim", iceAuraPrimColor_ori).b, 255 };
+        Color_RGBA8 iceAuraEnvColor_custom = { CVarGetColor24("gKeese2_Ef_Env", iceAuraEnvColor_ori).r,CVarGetColor24("gKeese2_Ef_Env", iceAuraEnvColor_ori).g,CVarGetColor24("gKeese2_Ef_Env", iceAuraEnvColor_ori).b, 0 };
         fireAuraPrimColor = fireAuraPrimColor_custom;
         fireAuraEnvColor = fireAuraEnvColor_custom;
         iceAuraPrimColor = iceAuraPrimColor_custom;

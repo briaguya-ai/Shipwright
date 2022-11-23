@@ -126,9 +126,9 @@ s16 sHeartsDDEnv[2][3];
 void HealthMeter_Init(PlayState* play) {
     InterfaceContext* interfaceCtx = &play->interfaceCtx;
     if (CVarGetInteger("gHudColors", 1) == 2) {
-        HeartInner = CVar_GetRGB("gCCHeartsPrim", HeartInner_ori);
-        HeartDDInner = CVar_GetRGB("gCCDDHeartsPrim", HeartDDInner_ori);
-        HeartDDOutline = CVar_GetRGB("gDDCCHeartsPrim", HeartDDOutline_ori);
+        HeartInner = CVarGetColor24("gCCHeartsPrim", HeartInner_ori);
+        HeartDDInner = CVarGetColor24("gCCDDHeartsPrim", HeartDDInner_ori);
+        HeartDDOutline = CVarGetColor24("gDDCCHeartsPrim", HeartDDOutline_ori);
     } else {
         HeartInner = HeartInner_ori;
         HeartDDInner = HeartDDInner_ori;
@@ -185,9 +185,9 @@ void HealthMeter_Update(PlayState* play) {
     Bottom_LM_Margin = CVarGetInteger("gHUDMargin_B", 0);
 
     if (CVarGetInteger("gHudColors", 1) == 2) {
-        HeartInner = CVar_GetRGB("gCCHeartsPrim", HeartInner_ori);
-        HeartDDInner = CVar_GetRGB("gCCDDHeartsPrim", HeartDDInner_ori);
-        HeartDDOutline = CVar_GetRGB("gDDCCHeartsPrim", HeartDDOutline_ori);
+        HeartInner = CVarGetColor24("gCCHeartsPrim", HeartInner_ori);
+        HeartDDInner = CVarGetColor24("gCCDDHeartsPrim", HeartDDInner_ori);
+        HeartDDOutline = CVarGetColor24("gDDCCHeartsPrim", HeartDDOutline_ori);
     } else {
         HeartInner = HeartInner_ori;
         HeartDDInner = HeartDDInner_ori;
@@ -271,7 +271,7 @@ void HealthMeter_Update(PlayState* play) {
         sHeartsDDEnv[1][1] = HeartDDInner.g;
         sHeartsDDEnv[1][2] = HeartDDInner.b;
 
-        HeartDDInner = CVar_GetRGB("gCCDDHeartsPrim", HeartDDInner_ori);
+        HeartDDInner = CVarGetColor24("gCCDDHeartsPrim", HeartDDInner_ori);
 
         sHeartsDDEnv[0][0] = HeartDDInner.r;
         sHeartsDDEnv[0][1] = HeartDDInner.g;

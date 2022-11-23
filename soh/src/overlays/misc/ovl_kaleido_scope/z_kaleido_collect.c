@@ -6,13 +6,13 @@ extern const char* digitTextures[];
 
 void KaleidoScope_DrawQuestStatus(PlayState* play, GraphicsContext* gfxCtx) {
     Color_RGB8 A_button_ori = {80, 255, 150};
-    Color_RGB8 A_button = CVar_GetRGB("gCCABtnPrim", A_button_ori);
+    Color_RGB8 A_button = CVarGetColor24("gCCABtnPrim", A_button_ori);
     Color_RGB8 C_button_ori = {255, 255, 50};
-    Color_RGB8 C_button_uni = CVar_GetRGB("gCCCBtnPrim", C_button_ori);
-    Color_RGB8 C_button_U = CVar_GetRGB("gCCCUBtnPrim", C_button_ori);
-    Color_RGB8 C_button_D = CVar_GetRGB("gCCCDBtnPrim", C_button_ori);
-    Color_RGB8 C_button_L = CVar_GetRGB("gCCCLBtnPrim", C_button_ori);
-    Color_RGB8 C_button_R = CVar_GetRGB("gCCCRBtnPrim", C_button_ori);
+    Color_RGB8 C_button_uni = CVarGetColor24("gCCCBtnPrim", C_button_ori);
+    Color_RGB8 C_button_U = CVarGetColor24("gCCCUBtnPrim", C_button_ori);
+    Color_RGB8 C_button_D = CVarGetColor24("gCCCDBtnPrim", C_button_ori);
+    Color_RGB8 C_button_L = CVarGetColor24("gCCCLBtnPrim", C_button_ori);
+    Color_RGB8 C_button_R = CVarGetColor24("gCCCRBtnPrim", C_button_ori);
     static s16 D_8082A070[][4] = {
         { 255, 0, 0, 255 },
         { 255, 70, 0, 150 },

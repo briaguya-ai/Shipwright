@@ -197,11 +197,11 @@ void LoadRainbowColor(bool& open) {
 void ApplyOrResetCustomGfxPatches() {
     // Mirror Shield
     Color_RGB8 mirrorDefaultColor = {MirrorShieldMirror.DefaultColor.w, MirrorShieldMirror.DefaultColor.x, MirrorShieldMirror.DefaultColor.y};
-    Color_RGB8 mirror = CVar_GetRGB(MirrorShieldMirror.CvarName.c_str(), mirrorDefaultColor);
+    Color_RGB8 mirror = CVarGetColor24(MirrorShieldMirror.CvarName.c_str(), mirrorDefaultColor);
     Color_RGB8 borderDefaultColor = {MirrorShieldBorder.DefaultColor.w, MirrorShieldBorder.DefaultColor.x, MirrorShieldBorder.DefaultColor.y};
-    Color_RGB8 border = CVar_GetRGB(MirrorShieldBorder.CvarName.c_str(), borderDefaultColor);
+    Color_RGB8 border = CVarGetColor24(MirrorShieldBorder.CvarName.c_str(), borderDefaultColor);
     Color_RGB8 emblemDefaultColor = {MirrorShieldEmblem.DefaultColor.w, MirrorShieldEmblem.DefaultColor.x, MirrorShieldEmblem.DefaultColor.y};
-    Color_RGB8 emblem = CVar_GetRGB(MirrorShieldEmblem.CvarName.c_str(), emblemDefaultColor);
+    Color_RGB8 emblem = CVarGetColor24(MirrorShieldEmblem.CvarName.c_str(), emblemDefaultColor);
     PATCH_GFX(gGiMirrorShieldDL,                              "CosmeticsEditor_Mirror",  "gUseMirrorShieldColors", 94,  gsDPSetPrimColor(0, 0, mirror.r, mirror.g, mirror.b, 255));
     PATCH_GFX(gGiMirrorShieldDL,                              "CosmeticsEditor_mirror2", "gUseMirrorShieldColors", 96,  gsDPSetEnvColor(mirror.r / 3, mirror.g / 3, mirror.b / 3, 255));
     PATCH_GFX(gGiMirrorShieldDL,                              "CosmeticsEditor_Border",  "gUseMirrorShieldColors", 10,  gsDPSetPrimColor(0, 0, border.r, border.g, border.b, 255));

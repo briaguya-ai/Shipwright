@@ -474,8 +474,8 @@ void EnDog_Draw(Actor* thisx, PlayState* play) {
     Color_RGBA8 colors[] = { { 255, 255, 200, 0 }, { 150, 100, 50, 0 } };
     Color_RGB8 Dog1_ori = {colors[0].r, colors[0].g, colors[0].b};
     Color_RGB8 Dog2_ori = {colors[1].r, colors[1].g, colors[1].b};
-    Color_RGB8 Dog1 = CVar_GetRGB("gDog1Col", Dog1_ori);
-    Color_RGB8 Dog2 = CVar_GetRGB("gDog2Col", Dog2_ori);
+    Color_RGB8 Dog1 = CVarGetColor24("gDog1Col", Dog1_ori);
+    Color_RGB8 Dog2 = CVarGetColor24("gDog2Col", Dog2_ori);
 
     OPEN_DISPS(play->state.gfxCtx);
 

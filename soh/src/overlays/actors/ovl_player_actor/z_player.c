@@ -10463,9 +10463,9 @@ void func_80848EF8(Player* this, PlayState* play) {
             gDPPipeSync(OVERLAY_DISP++);
 
             if (CVarGetInteger("gHudColors", 1) == 2) {
-                gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVar_GetRGB("gCCVSOAPrim", StoneOfAgony_ori).r,
-                                CVar_GetRGB("gCCVSOAPrim", StoneOfAgony_ori).g,
-                                CVar_GetRGB("gCCVSOAPrim", StoneOfAgony_ori).b, DefaultIconA);
+                gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVarGetColor24("gCCVSOAPrim", StoneOfAgony_ori).r,
+                                CVarGetColor24("gCCVSOAPrim", StoneOfAgony_ori).g,
+                                CVarGetColor24("gCCVSOAPrim", StoneOfAgony_ori).b, DefaultIconA);
             } else {
                 gDPSetPrimColor(OVERLAY_DISP++, 0, 0, StoneOfAgony_ori.r, StoneOfAgony_ori.g, StoneOfAgony_ori.b,
                                 DefaultIconA);
@@ -10475,18 +10475,18 @@ void func_80848EF8(Player* this, PlayState* play) {
                               PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0);
             if (this->unk_6A0 > 4000000.0f) {
                 if (CVarGetInteger("gHudColors", 1) == 2) {
-                    gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVar_GetRGB("gCCVSOAPrim", StoneOfAgony_ori).r,
-                                    CVar_GetRGB("gCCVSOAPrim", StoneOfAgony_ori).g,
-                                    CVar_GetRGB("gCCVSOAPrim", StoneOfAgony_ori).b, 255);
+                    gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVarGetColor24("gCCVSOAPrim", StoneOfAgony_ori).r,
+                                    CVarGetColor24("gCCVSOAPrim", StoneOfAgony_ori).g,
+                                    CVarGetColor24("gCCVSOAPrim", StoneOfAgony_ori).b, 255);
                 } else {
                     gDPSetPrimColor(OVERLAY_DISP++, 0, 0, StoneOfAgony_ori.r, StoneOfAgony_ori.g, StoneOfAgony_ori.b,
                                     255);
                 }
             } else {
                 if (CVarGetInteger("gHudColors", 1) == 2) {
-                    gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVar_GetRGB("gCCVSOAPrim", StoneOfAgony_ori).r,
-                                    CVar_GetRGB("gCCVSOAPrim", StoneOfAgony_ori).g,
-                                    CVar_GetRGB("gCCVSOAPrim", StoneOfAgony_ori).b, DefaultIconA);
+                    gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVarGetColor24("gCCVSOAPrim", StoneOfAgony_ori).r,
+                                    CVarGetColor24("gCCVSOAPrim", StoneOfAgony_ori).g,
+                                    CVarGetColor24("gCCVSOAPrim", StoneOfAgony_ori).b, DefaultIconA);
                 } else {
                     gDPSetPrimColor(OVERLAY_DISP++, 0, 0, StoneOfAgony_ori.r, StoneOfAgony_ori.g, StoneOfAgony_ori.b,
                                     DefaultIconA);
@@ -10497,9 +10497,9 @@ void func_80848EF8(Player* this, PlayState* play) {
                 link is standing out range but do not refresh unk_6A0.
                 Also used to make a default value in my case.*/
                 if (CVarGetInteger("gHudColors", 1) == 2) {
-                    gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVar_GetRGB("gCCVSOAPrim", StoneOfAgony_ori).r,
-                                    CVar_GetRGB("gCCVSOAPrim", StoneOfAgony_ori).g,
-                                    CVar_GetRGB("gCCVSOAPrim", StoneOfAgony_ori).b, DefaultIconA);
+                    gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVarGetColor24("gCCVSOAPrim", StoneOfAgony_ori).r,
+                                    CVarGetColor24("gCCVSOAPrim", StoneOfAgony_ori).g,
+                                    CVarGetColor24("gCCVSOAPrim", StoneOfAgony_ori).b, DefaultIconA);
                 } else {
                     gDPSetPrimColor(OVERLAY_DISP++, 0, 0, StoneOfAgony_ori.r, StoneOfAgony_ori.g, StoneOfAgony_ori.b,
                                     DefaultIconA);

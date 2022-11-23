@@ -342,7 +342,7 @@ void EnMThunder_Draw(Actor* thisx, PlayState* play2) {
         case 0:
             if (CVarGetInteger("gUseChargedCol",0)) {
                 Color_RGB8 SpinColor = {255, 255, 170};
-                gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, CVar_GetRGB("gCharged2Col", SpinColor).r, CVar_GetRGB("gCharged2Col", SpinColor).g, CVar_GetRGB("gCharged2Col", SpinColor).b, (u8)(this->unk_1B0 * 255));
+                gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, CVarGetColor24("gCharged2Col", SpinColor).r, CVarGetColor24("gCharged2Col", SpinColor).g, CVarGetColor24("gCharged2Col", SpinColor).b, (u8)(this->unk_1B0 * 255));
             } else {
                 gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, 255, 255, 170, (u8)(this->unk_1B0 * 255));
             }
@@ -352,7 +352,7 @@ void EnMThunder_Draw(Actor* thisx, PlayState* play2) {
         case 1:
             if (CVarGetInteger("gUseChargedCol",0)) {
                 Color_RGB8 SpinColor = {255, 255, 170};
-                gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, CVar_GetRGB("gCharged1Col", SpinColor).r, CVar_GetRGB("gCharged1Col", SpinColor).g, CVar_GetRGB("gCharged1Col", SpinColor).b, (u8)(this->unk_1B0 * 255));
+                gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, CVarGetColor24("gCharged1Col", SpinColor).r, CVarGetColor24("gCharged1Col", SpinColor).g, CVarGetColor24("gCharged1Col", SpinColor).b, (u8)(this->unk_1B0 * 255));
             } else {
                 gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, 170, 255, 255, (u8)(this->unk_1B0 * 255));
             }
@@ -386,8 +386,8 @@ void EnMThunder_Draw(Actor* thisx, PlayState* play2) {
         if (CVarGetInteger("gUseChargedCol",0)) {
             Color_RGB8 SpinColor1 = {255, 255, 170};
             Color_RGB8 SpinColor2 = {255, 100, 0};
-            gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, CVar_GetRGB("gCharged2Col", SpinColor1).r, CVar_GetRGB("gCharged2Col", SpinColor1).g, CVar_GetRGB("gCharged2Col", SpinColor1).b, this->unk_1C8);
-            gDPSetEnvColor(POLY_XLU_DISP++, CVar_GetRGB("gCharged2ColEnv", SpinColor2).r, CVar_GetRGB("gCharged2ColEnv", SpinColor2).g, CVar_GetRGB("gCharged2ColEnv", SpinColor2).b, 128);
+            gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, CVarGetColor24("gCharged2Col", SpinColor1).r, CVarGetColor24("gCharged2Col", SpinColor1).g, CVarGetColor24("gCharged2Col", SpinColor1).b, this->unk_1C8);
+            gDPSetEnvColor(POLY_XLU_DISP++, CVarGetColor24("gCharged2ColEnv", SpinColor2).r, CVarGetColor24("gCharged2ColEnv", SpinColor2).g, CVarGetColor24("gCharged2ColEnv", SpinColor2).b, 128);
         } else {
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, 255, 255, 170, this->unk_1C8);
             gDPSetEnvColor(POLY_XLU_DISP++, 255, 100, 0, 128);
@@ -399,8 +399,8 @@ void EnMThunder_Draw(Actor* thisx, PlayState* play2) {
         if (CVarGetInteger("gUseChargedCol",0)) {
             Color_RGB8 SpinColor1 = {170, 255, 255};
             Color_RGB8 SpinColor2 = {20, 100, 255};
-            gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, CVar_GetRGB("gCharged1Col", SpinColor1).r, CVar_GetRGB("gCharged1Col", SpinColor1).g, CVar_GetRGB("gCharged1Col", SpinColor1).b, this->unk_1C8);
-            gDPSetEnvColor(POLY_XLU_DISP++, CVar_GetRGB("gCharged1ColEnv", SpinColor2).r, CVar_GetRGB("gCharged1ColEnv", SpinColor2).g, CVar_GetRGB("gCharged1ColEnv", SpinColor2).b, 128);
+            gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, CVarGetColor24("gCharged1Col", SpinColor1).r, CVarGetColor24("gCharged1Col", SpinColor1).g, CVarGetColor24("gCharged1Col", SpinColor1).b, this->unk_1C8);
+            gDPSetEnvColor(POLY_XLU_DISP++, CVarGetColor24("gCharged1ColEnv", SpinColor2).r, CVarGetColor24("gCharged1ColEnv", SpinColor2).g, CVarGetColor24("gCharged1ColEnv", SpinColor2).b, 128);
         } else {
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, 170, 255, 255, this->unk_1C8);
             gDPSetEnvColor(POLY_XLU_DISP++, 0, 100, 255, 128);

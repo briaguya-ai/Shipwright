@@ -123,7 +123,7 @@ set(Header_Files__include
     #"include/stdbool_n64.h"
     #"include/stddef_n64.h"
     #"include/stdlib_n64.h"
-    "include/ultra64.h"
+    # "include/ultra64.h"
     "include/unk.h"
     "include/variables.h"
     "include/vt.h"

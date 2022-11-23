@@ -754,11 +754,11 @@ void func_8008F470(PlayState* play, void** skeleton, Vec3s* jointTable, s32 dLis
     };
     color = &sTemp;
     if (tunic == PLAYER_TUNIC_KOKIRI && CVarGetInteger("gUseTunicsCol",0)) {
-        *color = CVar_GetRGB("gTunic_Kokiri", sTunicColors[PLAYER_TUNIC_KOKIRI]);
+        *color = CVarGetColor24("gTunic_Kokiri", sTunicColors[PLAYER_TUNIC_KOKIRI]);
     } else if (tunic == PLAYER_TUNIC_GORON && CVarGetInteger("gUseTunicsCol",0)) {
-        *color = CVar_GetRGB("gTunic_Goron", sTunicColors[PLAYER_TUNIC_GORON]);
+        *color = CVarGetColor24("gTunic_Goron", sTunicColors[PLAYER_TUNIC_GORON]);
     } else if (tunic == PLAYER_TUNIC_ZORA && CVarGetInteger("gUseTunicsCol",0)) {
-        *color = CVar_GetRGB("gTunic_Zora", sTunicColors[PLAYER_TUNIC_ZORA]);
+        *color = CVarGetColor24("gTunic_Zora", sTunicColors[PLAYER_TUNIC_ZORA]);
     } else if (!CVarGetInteger("gUseTunicsCol",0)){
         if (tunic >= 3) {
             color->r = sOriginalTunicColors[0].r;
@@ -787,9 +787,9 @@ void func_8008F470(PlayState* play, void** skeleton, Vec3s* jointTable, s32 dLis
                 if (!CVarGetInteger("gUseGauntletsCol", 0)) {
                     color = &sGauntletColors[strengthUpgrade - 2];
                 } else if (strengthUpgrade == PLAYER_STR_SILVER_G) {
-                    *color = CVar_GetRGB("gGauntlets_Silver", sGauntletColors[PLAYER_STR_SILVER_G - 2]);
+                    *color = CVarGetColor24("gGauntlets_Silver", sGauntletColors[PLAYER_STR_SILVER_G - 2]);
                 } else if (strengthUpgrade == PLAYER_STR_GOLD_G) {
-                    *color = CVar_GetRGB("gGauntlets_Golden", sGauntletColors[PLAYER_STR_GOLD_G - 2]);
+                    *color = CVarGetColor24("gGauntlets_Golden", sGauntletColors[PLAYER_STR_GOLD_G - 2]);
                 }
                 
                 gDPSetEnvColor(POLY_OPA_DISP++, color->r, color->g, color->b, 0);

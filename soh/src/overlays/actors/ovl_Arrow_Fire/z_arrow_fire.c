@@ -196,8 +196,8 @@ void ArrowFire_Draw(Actor* thisx, PlayState* play2) {
     Actor* tranform;
     Color_RGB8 Arrow_env_ori = {255,0,0};
     Color_RGB8 Arrow_col_ori = {255,200,0};
-    Color_RGB8 Arrow_env = CVar_GetRGB("gFireArrowColEnv", Arrow_env_ori);
-    Color_RGB8 Arrow_col = CVar_GetRGB("gFireArrowCol", Arrow_col_ori);
+    Color_RGB8 Arrow_env = CVarGetColor24("gFireArrowColEnv", Arrow_env_ori);
+    Color_RGB8 Arrow_col = CVarGetColor24("gFireArrowCol", Arrow_col_ori);
 
     stateFrames = play->state.frames;
     arrow = (EnArrow*)this->actor.parent;

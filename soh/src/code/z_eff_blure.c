@@ -206,21 +206,21 @@ s32 EffectBlure_Update(void* thisx) {
     EffectBlure* this = (EffectBlure*)thisx;
     s32 i;
 
-    Color_RGB8 SwordTopCol = CVar_GetRGB("gSwordTrailTopCol", TrailsColorOriginal);
-    Color_RGB8 SwordBottomCol = CVar_GetRGB("gSwordTrailBottomCol", TrailsColorOriginal);
-    Color_RGB8 BoomStartCol = CVar_GetRGB("gBoomTrailStartCol", BoomColorOriginal);
-    Color_RGB8 BoomEndCol = CVar_GetRGB("gBoomTrailEndCol", BoomColorOriginal);
-    Color_RGB8 BombchuCol = CVar_GetRGB("gBombTrailCol", BombColorOriginal);
-    Color_RGB8 KSwordTopCol = CVar_GetRGB("gKSwordTrailTopCol", TrailsColorOriginal);
-    Color_RGB8 KSwordBottomCol = CVar_GetRGB("gKSwordTrailBottomCol", TrailsColorOriginal);
-    Color_RGB8 MSwordTopCol = CVar_GetRGB("gMSwordTrailTopCol", TrailsColorOriginal);
-    Color_RGB8 MSwordBottomCol = CVar_GetRGB("gMSwordTrailBottomCol", TrailsColorOriginal);
-    Color_RGB8 BSwordTopCol = CVar_GetRGB("gBSwordTrailTopCol", TrailsColorOriginal);
-    Color_RGB8 BSwordBottomCol = CVar_GetRGB("gBSwordTrailBottomCol", TrailsColorOriginal);
-    Color_RGB8 StickTopCol = CVar_GetRGB("gStickTrailTopCol", TrailsColorOriginal);
-    Color_RGB8 StickBottomCol = CVar_GetRGB("gStickTrailBottomCol", TrailsColorOriginal);
-    Color_RGB8 HammerTopCol = CVar_GetRGB("gHammerTrailTopCol", TrailsColorOriginal);
-    Color_RGB8 HammerBottomCol = CVar_GetRGB("gHammerTrailBottomCol", TrailsColorOriginal);
+    Color_RGB8 SwordTopCol = CVarGetColor24("gSwordTrailTopCol", TrailsColorOriginal);
+    Color_RGB8 SwordBottomCol = CVarGetColor24("gSwordTrailBottomCol", TrailsColorOriginal);
+    Color_RGB8 BoomStartCol = CVarGetColor24("gBoomTrailStartCol", BoomColorOriginal);
+    Color_RGB8 BoomEndCol = CVarGetColor24("gBoomTrailEndCol", BoomColorOriginal);
+    Color_RGB8 BombchuCol = CVarGetColor24("gBombTrailCol", BombColorOriginal);
+    Color_RGB8 KSwordTopCol = CVarGetColor24("gKSwordTrailTopCol", TrailsColorOriginal);
+    Color_RGB8 KSwordBottomCol = CVarGetColor24("gKSwordTrailBottomCol", TrailsColorOriginal);
+    Color_RGB8 MSwordTopCol = CVarGetColor24("gMSwordTrailTopCol", TrailsColorOriginal);
+    Color_RGB8 MSwordBottomCol = CVarGetColor24("gMSwordTrailBottomCol", TrailsColorOriginal);
+    Color_RGB8 BSwordTopCol = CVarGetColor24("gBSwordTrailTopCol", TrailsColorOriginal);
+    Color_RGB8 BSwordBottomCol = CVarGetColor24("gBSwordTrailBottomCol", TrailsColorOriginal);
+    Color_RGB8 StickTopCol = CVarGetColor24("gStickTrailTopCol", TrailsColorOriginal);
+    Color_RGB8 StickBottomCol = CVarGetColor24("gStickTrailBottomCol", TrailsColorOriginal);
+    Color_RGB8 HammerTopCol = CVarGetColor24("gHammerTrailTopCol", TrailsColorOriginal);
+    Color_RGB8 HammerBottomCol = CVarGetColor24("gHammerTrailBottomCol", TrailsColorOriginal);
 
     if ((CVarGetInteger("gUseTrailsCol", 0) != 0) && (this->trailType != 0)) {
         switch (this->trailType) { //there HAS to be a better way to do this.

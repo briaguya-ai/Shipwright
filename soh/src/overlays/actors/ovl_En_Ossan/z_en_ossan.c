@@ -1928,7 +1928,7 @@ void EnOssan_UpdateItemSelectedProperty(EnOssan* this) {
 
 void EnOssan_UpdateCursorAnim(EnOssan* this) {
     Color_RGB8 A_button_ori = {0,255,80};
-    Color_RGB8 A_button = CVar_GetRGB("gCCABtnPrim", A_button_ori);
+    Color_RGB8 A_button = CVarGetColor24("gCCABtnPrim", A_button_ori);
     f32 t;
 
     t = this->cursorAnimTween;

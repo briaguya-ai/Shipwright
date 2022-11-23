@@ -195,8 +195,8 @@ void ArrowLight_Draw(Actor* thisx, PlayState* play) {
     Actor* tranform;
     Color_RGB8 Arrow_env_ori = {255, 255, 0};
     Color_RGB8 Arrow_col_ori = {255, 255, 170};
-    Color_RGB8 Arrow_env = CVar_GetRGB("gLightArrowColEnv", Arrow_env_ori);
-    Color_RGB8 Arrow_col = CVar_GetRGB("gLightArrowCol", Arrow_col_ori);
+    Color_RGB8 Arrow_env = CVarGetColor24("gLightArrowColEnv", Arrow_env_ori);
+    Color_RGB8 Arrow_col = CVarGetColor24("gLightArrowCol", Arrow_col_ori);
 
     if ((arrow != NULL) && (arrow->actor.update != NULL) && (this->timer < 255)) {
         tranform = (arrow->hitFlags & 2) ? &this->actor : &arrow->actor;

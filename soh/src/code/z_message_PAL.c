@@ -92,7 +92,7 @@ void Message_SetCustomOrGeneralCColor(Color_RGB8* color, bool separate, char cDi
     // C direction is '*' @ idx 4
     char cVar[] = "gCCC*BtnPrim";
     cVar[4] = cDirection;
-    *color = CVar_GetRGB(cVar, (Color_RGB8){ .r = 255, .g = 255, .b = 50});
+    *color = CVarGetColor24(cVar, (Color_RGB8){ .r = 255, .g = 255, .b = 50});
 }
 
 typedef struct {
@@ -109,7 +109,7 @@ typedef struct {
 void Message_SetCustomOcarinaNoteColor(Color_RGB8* color, s32 btnMap, CustomNoteOptions* flags) {
     switch (btnMap) {
         case BTN_A:
-            *color = CVar_GetRGB("gCCABtnPrim", (Color_RGB8){ .r = 80, .g = 255, .b = 150 });
+            *color = CVarGetColor24("gCCABtnPrim", (Color_RGB8){ .r = 80, .g = 255, .b = 150 });
             break;
         case BTN_CUP:
             Message_SetCustomOrGeneralCColor(color, flags->separateC, 'U');
@@ -124,13 +124,13 @@ void Message_SetCustomOcarinaNoteColor(Color_RGB8* color, s32 btnMap, CustomNote
             Message_SetCustomOrGeneralCColor(color, flags->separateC, 'R');
             break;
         case BTN_START:
-            *color = CVar_GetRGB("gCCStartBtnPrim", (Color_RGB8){ .r = 200, .g = 0, .b = 0 });
+            *color = CVarGetColor24("gCCStartBtnPrim", (Color_RGB8){ .r = 200, .g = 0, .b = 0 });
             break;
         case BTN_DUP:
         case BTN_DDOWN:
         case BTN_DLEFT:
         case BTN_DRIGHT:
-            *color = CVar_GetRGB("gCCDpadPrim", (Color_RGB8){ .r = 255, .g = 255, .b = 255 });
+            *color = CVarGetColor24("gCCDpadPrim", (Color_RGB8){ .r = 255, .g = 255, .b = 255 });
             color->r *= 103 / 255;
             color->g *= 103 / 255;
             color->b *= 103 / 255;
@@ -138,7 +138,7 @@ void Message_SetCustomOcarinaNoteColor(Color_RGB8* color, s32 btnMap, CustomNote
         case 0:
             if (flags->dpad && !flags->rightStick) {
                 // D pad is dark gray even when set to white, so emulate that.
-                *color = CVar_GetRGB("gCCDpadPrim", (Color_RGB8){ .r = 255, .g = 255, .b = 255 });
+                *color = CVarGetColor24("gCCDpadPrim", (Color_RGB8){ .r = 255, .g = 255, .b = 255 });
                 color->r *= 103 / 255;
                 color->g *= 103 / 255;
                 color->b *= 103 / 255;
@@ -176,7 +176,7 @@ void Message_ResetOcarinaNoteState(void) {
         sOcarinaNoteA4Prim = sOcarinaNoteCBtnPrim;
         sOcarinaNoteF4Prim = sOcarinaNoteCBtnPrim;
     } else {  // Custom
-        sOcarinaNoteCBtnPrim = CVar_GetRGB("gCCCBtnPrim", (Color_RGB8){ .r = 255, .g = 255, .b = 50 });
+        sOcarinaNoteCBtnPrim = CVarGetColor24("gCCCBtnPrim", (Color_RGB8){ .r = 255, .g = 255, .b = 50 });
 
         CustomNoteOptions options = (CustomNoteOptions){
             .separateC = CVarGetInteger("gCCparated", 0),
@@ -195,7 +195,7 @@ void Message_ResetOcarinaNoteState(void) {
             Message_SetCustomOrGeneralCColor(&sOcarinaNoteB4Prim, options.separateC, 'L');
             Message_SetCustomOrGeneralCColor(&sOcarinaNoteA4Prim, options.separateC, 'R');
             Message_SetCustomOrGeneralCColor(&sOcarinaNoteF4Prim, options.separateC, 'D');
-            sOcarinaNoteD4Prim = CVar_GetRGB("gCCABtnPrim", (Color_RGB8){ .r = 80, .g = 255, .b = 150 });
+            sOcarinaNoteD4Prim = CVarGetColor24("gCCABtnPrim", (Color_RGB8){ .r = 80, .g = 255, .b = 150 });
         }
     }
 }
@@ -571,7 +571,7 @@ void Message_DrawTextboxIcon(PlayState* play, Gfx** p, s16 x, s16 y) {
         sIconEnvColors[1][1] = 255;
         sIconEnvColors[1][2] = 130;
     } else if (CVarGetInteger("gHudColors", 1) == 2) {
-        Color_RGB8 aBtnColor = CVar_GetRGB("gCCABtnPrim", (Color_RGB8){ .r = 0, .g = 200, .b = 80 });
+        Color_RGB8 aBtnColor = CVarGetColor24("gCCABtnPrim", (Color_RGB8){ .r = 0, .g = 200, .b = 80 });
         sIconPrimColors[0][0] = (aBtnColor.r/255)*95;
         sIconPrimColors[0][1] = (aBtnColor.g/255)*95;
         sIconPrimColors[0][2] = (aBtnColor.b/255)*95;
@@ -2096,7 +2096,7 @@ void Message_DrawMain(PlayState* play, Gfx** p) {
         { 80, 255, 150 },
         { 100, 255, 200 },
     };
-    Color_RGB8 ABtnColor = CVar_GetRGB("gCCABtnPrim", (Color_RGB8){ .r = 80, .g = 255, .b = 150});
+    Color_RGB8 ABtnColor = CVarGetColor24("gCCABtnPrim", (Color_RGB8){ .r = 80, .g = 255, .b = 150});
     s16 ABtnR = ABtnColor.r;
     s16 ABtnG = ABtnColor.g;
     s16 ABtnB = ABtnColor.b;
@@ -2121,26 +2121,26 @@ void Message_DrawMain(PlayState* play, Gfx** p) {
     };
 
 	Color_RGB8 CBtnDefaultColor = {255, 255, 50};
-    Color_RGB8 CBtnColor = CVar_GetRGB("gCCCBtnPrim", CBtnDefaultColor);
+    Color_RGB8 CBtnColor = CVarGetColor24("gCCCBtnPrim", CBtnDefaultColor);
     s16 CBtnR = CBtnColor.r;
     s16 CBtnG = CBtnColor.g;
     s16 CBtnB = CBtnColor.b;
     s16 CBtnR_2 = CBtnColor.r+20;
     s16 CBtnG_2 = CBtnColor.g+20;
     s16 CBtnB_2 = CBtnColor.b+20;
-    Color_RGB8 CUpColor = CVar_GetRGB("gCCCUBtnPrim", CBtnDefaultColor);
+    Color_RGB8 CUpColor = CVarGetColor24("gCCCUBtnPrim", CBtnDefaultColor);
     s16 CBtnRU = CUpColor.r;
     s16 CBtnGU = CUpColor.g;
     s16 CBtnBU = CUpColor.b;
-    Color_RGB8 CLeftColor = CVar_GetRGB("gCCCLBtnPrim", CBtnDefaultColor);
+    Color_RGB8 CLeftColor = CVarGetColor24("gCCCLBtnPrim", CBtnDefaultColor);
     s16 CBtnRL = CLeftColor.r;
     s16 CBtnGL = CLeftColor.g;
     s16 CBtnBL = CLeftColor.b;
-    Color_RGB8 CDownColor = CVar_GetRGB("gCCCDBtnPrim", CBtnDefaultColor);
+    Color_RGB8 CDownColor = CVarGetColor24("gCCCDBtnPrim", CBtnDefaultColor);
     s16 CBtnRD = CDownColor.r;
     s16 CBtnGD = CDownColor.g;
     s16 CBtnBD = CDownColor.b;
-    Color_RGB8 CRightColor = CVar_GetRGB("gCCCRBtnPrim", CBtnDefaultColor);
+    Color_RGB8 CRightColor = CVarGetColor24("gCCCRBtnPrim", CBtnDefaultColor);
     s16 CBtnRR = CRightColor.r;
     s16 CBtnGR = CRightColor.g;
     s16 CBtnBR = CRightColor.b;

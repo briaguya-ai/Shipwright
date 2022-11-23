@@ -1010,12 +1010,12 @@ void KaleidoScope_DrawCursor(PlayState* play, u16 pageIndex) {
         sCursorColors[2][1] = Cursor_ABTN_ori.g;
         sCursorColors[2][2] = Cursor_ABTN_ori.b;
     } else if (CVarGetInteger("gHudColors", 1) == 2) {
-        sCursorColors[1][0] = CVar_GetRGB("gCCCBtnPrim", Cursor_CBTN_ori).r;
-        sCursorColors[1][1] = CVar_GetRGB("gCCCBtnPrim", Cursor_CBTN_ori).g;
-        sCursorColors[1][2] = CVar_GetRGB("gCCCBtnPrim", Cursor_CBTN_ori).b;
-        sCursorColors[2][0] = CVar_GetRGB("gCCABtnPrim", Cursor_ABTN_ori).r;
-        sCursorColors[2][1] = CVar_GetRGB("gCCABtnPrim", Cursor_ABTN_ori).g;
-        sCursorColors[2][2] = CVar_GetRGB("gCCABtnPrim", Cursor_ABTN_ori).b;
+        sCursorColors[1][0] = CVarGetColor24("gCCCBtnPrim", Cursor_CBTN_ori).r;
+        sCursorColors[1][1] = CVarGetColor24("gCCCBtnPrim", Cursor_CBTN_ori).g;
+        sCursorColors[1][2] = CVarGetColor24("gCCCBtnPrim", Cursor_CBTN_ori).b;
+        sCursorColors[2][0] = CVarGetColor24("gCCABtnPrim", Cursor_ABTN_ori).r;
+        sCursorColors[2][1] = CVarGetColor24("gCCABtnPrim", Cursor_ABTN_ori).g;
+        sCursorColors[2][2] = CVarGetColor24("gCCABtnPrim", Cursor_ABTN_ori).b;
     }
 
     if ((((pauseCtx->unk_1E4 == 0) || (temp == 8)) && (pauseCtx->state == 6)) ||
@@ -1116,18 +1116,18 @@ void KaleidoScope_DrawPages(PlayState* play, GraphicsContext* gfxCtx) {
         D_8082ACF4[11][1] = Cursor_ABTN_ori.g;
         D_8082ACF4[11][2] = Cursor_ABTN_ori.b;
     } else if (CVarGetInteger("gHudColors", 1) == 2) {
-        D_8082ACF4[4][0] = CVar_GetRGB("gCCCBtnPrim", Cursor_CBTN_ori).r;
-        D_8082ACF4[4][1] = CVar_GetRGB("gCCCBtnPrim", Cursor_CBTN_ori).g;
-        D_8082ACF4[4][2] = CVar_GetRGB("gCCCBtnPrim", Cursor_CBTN_ori).b;
-        D_8082ACF4[7][0] = CVar_GetRGB("gCCCBtnPrim", Cursor_CBTN_ori).r;
-        D_8082ACF4[7][1] = CVar_GetRGB("gCCCBtnPrim", Cursor_CBTN_ori).g;
-        D_8082ACF4[7][2] = CVar_GetRGB("gCCCBtnPrim", Cursor_CBTN_ori).b;
-        D_8082ACF4[8][0] = CVar_GetRGB("gCCABtnPrim", Cursor_ABTN_ori).r;
-        D_8082ACF4[8][1] = CVar_GetRGB("gCCABtnPrim", Cursor_ABTN_ori).g;
-        D_8082ACF4[8][2] = CVar_GetRGB("gCCABtnPrim", Cursor_ABTN_ori).b;
-        D_8082ACF4[11][0] = CVar_GetRGB("gCCABtnPrim", Cursor_ABTN_ori).r;
-        D_8082ACF4[11][1] = CVar_GetRGB("gCCABtnPrim", Cursor_ABTN_ori).g;
-        D_8082ACF4[11][2] = CVar_GetRGB("gCCABtnPrim", Cursor_ABTN_ori).b;
+        D_8082ACF4[4][0] = CVarGetColor24("gCCCBtnPrim", Cursor_CBTN_ori).r;
+        D_8082ACF4[4][1] = CVarGetColor24("gCCCBtnPrim", Cursor_CBTN_ori).g;
+        D_8082ACF4[4][2] = CVarGetColor24("gCCCBtnPrim", Cursor_CBTN_ori).b;
+        D_8082ACF4[7][0] = CVarGetColor24("gCCCBtnPrim", Cursor_CBTN_ori).r;
+        D_8082ACF4[7][1] = CVarGetColor24("gCCCBtnPrim", Cursor_CBTN_ori).g;
+        D_8082ACF4[7][2] = CVarGetColor24("gCCCBtnPrim", Cursor_CBTN_ori).b;
+        D_8082ACF4[8][0] = CVarGetColor24("gCCABtnPrim", Cursor_ABTN_ori).r;
+        D_8082ACF4[8][1] = CVarGetColor24("gCCABtnPrim", Cursor_ABTN_ori).g;
+        D_8082ACF4[8][2] = CVarGetColor24("gCCABtnPrim", Cursor_ABTN_ori).b;
+        D_8082ACF4[11][0] = CVarGetColor24("gCCABtnPrim", Cursor_ABTN_ori).r;
+        D_8082ACF4[11][1] = CVarGetColor24("gCCABtnPrim", Cursor_ABTN_ori).g;
+        D_8082ACF4[11][2] = CVarGetColor24("gCCABtnPrim", Cursor_ABTN_ori).b;
     }
     static s16 D_8082AD3C = 20;
     static s16 D_8082AD40 = 0;
@@ -1135,7 +1135,7 @@ void KaleidoScope_DrawPages(PlayState* play, GraphicsContext* gfxCtx) {
     static s16 D_8082AD48 = 0;
     static s16 D_8082AD4C = 0;
     static s16 D_8082AD50 = 0;
-    const Color_RGB8 A_cursor = CVar_GetRGB("gCCABtnPrim", A_BTN_ori);
+    const Color_RGB8 A_cursor = CVarGetColor24("gCCABtnPrim", A_BTN_ori);
     PauseContext* pauseCtx = &play->pauseCtx;
     Input* input = &play->state.input[0];
     s16 stepR;
@@ -1585,13 +1585,13 @@ void KaleidoScope_DrawInfoPanel(PlayState* play) {
         { 0, 100, 255, 255 },//Original N64
     };
     Color_RGB8 A_button_ori = {gABtnTexColour[0][0],gABtnTexColour[0][1],gABtnTexColour[0][2]};
-    Color_RGB8 A_button = CVar_GetRGB("gCCABtnPrim", A_button_ori);
+    Color_RGB8 A_button = CVarGetColor24("gCCABtnPrim", A_button_ori);
     Color_RGB8 C_button_ori = {R_C_BTN_COLOR(0), R_C_BTN_COLOR(1), R_C_BTN_COLOR(2)};
-    Color_RGB8 C_button_uni = CVar_GetRGB("gCCCBtnPrim", C_button_ori);
-    Color_RGB8 C_button_U = CVar_GetRGB("gCCCUBtnPrim", C_button_ori);
-    Color_RGB8 C_button_D = CVar_GetRGB("gCCCDBtnPrim", C_button_ori);
-    Color_RGB8 C_button_L = CVar_GetRGB("gCCCLBtnPrim", C_button_ori);
-    Color_RGB8 C_button_R = CVar_GetRGB("gCCCRBtnPrim", C_button_ori);
+    Color_RGB8 C_button_uni = CVarGetColor24("gCCCBtnPrim", C_button_ori);
+    Color_RGB8 C_button_U = CVarGetColor24("gCCCUBtnPrim", C_button_ori);
+    Color_RGB8 C_button_D = CVarGetColor24("gCCCDBtnPrim", C_button_ori);
+    Color_RGB8 C_button_L = CVarGetColor24("gCCCLBtnPrim", C_button_ori);
+    Color_RGB8 C_button_R = CVarGetColor24("gCCCRBtnPrim", C_button_ori);
     static const void* sToEquipTextures[3] = {
         gPauseToEquipENGTex,
         gPauseToEquipGERTex,

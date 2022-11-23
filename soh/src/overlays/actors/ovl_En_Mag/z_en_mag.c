@@ -152,12 +152,12 @@ void EnMag_InitVanilla(Actor* thisx, PlayState* play) {
     this->unk_E30C = 0;
 
     if (CVarGetInteger("gHudColors",0) == 2 ){
-        this->effectPrimColor[0] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).r;
-        this->effectPrimColor[1] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).g;
-        this->effectPrimColor[2] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).b;
-        this->effectEnvColor[0] = (float)CVar_GetRGB("gCCTCFireEnv", Original_Env).r;
-        this->effectEnvColor[1] = (float)CVar_GetRGB("gCCTCFireEnv", Original_Env).g;
-        this->effectEnvColor[2] = (float)CVar_GetRGB("gCCTCFireEnv", Original_Env).b;
+        this->effectPrimColor[0] = (float)CVarGetColor24("gCCTCFirePrim", Original_Prim).r;
+        this->effectPrimColor[1] = (float)CVarGetColor24("gCCTCFirePrim", Original_Prim).g;
+        this->effectPrimColor[2] = (float)CVarGetColor24("gCCTCFirePrim", Original_Prim).b;
+        this->effectEnvColor[0] = (float)CVarGetColor24("gCCTCFireEnv", Original_Env).r;
+        this->effectEnvColor[1] = (float)CVarGetColor24("gCCTCFireEnv", Original_Env).g;
+        this->effectEnvColor[2] = (float)CVarGetColor24("gCCTCFireEnv", Original_Env).b;
     } else {
         this->effectPrimColor[0] = 0.0f;
         this->effectPrimColor[1] = 100.0f;
@@ -181,12 +181,12 @@ void EnMag_InitVanilla(Actor* thisx, PlayState* play) {
         this->effectAlpha = 255.0f;
 
         if (CVarGetInteger("gHudColors",0) == 2 ){
-            this->effectPrimColor[0] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).r;
-            this->effectPrimColor[1] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).g;
-            this->effectPrimColor[2] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).b;
-            this->effectEnvColor[0] = (float)CVar_GetRGB("gCCTCFireEnv", Original_Env).r;
-            this->effectEnvColor[1] = (float)CVar_GetRGB("gCCTCFireEnv", Original_Env).g;
-            this->effectEnvColor[2] = (float)CVar_GetRGB("gCCTCFireEnv", Original_Env).b;
+            this->effectPrimColor[0] = (float)CVarGetColor24("gCCTCFirePrim", Original_Prim).r;
+            this->effectPrimColor[1] = (float)CVarGetColor24("gCCTCFirePrim", Original_Prim).g;
+            this->effectPrimColor[2] = (float)CVarGetColor24("gCCTCFirePrim", Original_Prim).b;
+            this->effectEnvColor[0] = (float)CVarGetColor24("gCCTCFireEnv", Original_Env).r;
+            this->effectEnvColor[1] = (float)CVarGetColor24("gCCTCFireEnv", Original_Env).g;
+            this->effectEnvColor[2] = (float)CVarGetColor24("gCCTCFireEnv", Original_Env).b;
         } else {
             this->effectPrimColor[0] = (float)Original_Prim.r;
             this->effectPrimColor[1] = (float)Original_Prim.g;
@@ -396,12 +396,12 @@ void EnMag_UpdateVanilla(Actor* thisx, PlayState* play) {
                 this->effectAlpha = 255.0f;
 
                 if (CVarGetInteger("gHudColors",0) == 2 ){
-                    this->effectPrimColor[0] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).r;
-                    this->effectPrimColor[1] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).g;
-                    this->effectPrimColor[2] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).b;
-                    this->effectEnvColor[0] = (float)CVar_GetRGB("gCCTCFireEnv", Original_Env).r;
-                    this->effectEnvColor[1] = (float)CVar_GetRGB("gCCTCFireEnv", Original_Env).g;
-                    this->effectEnvColor[2] = (float)CVar_GetRGB("gCCTCFireEnv", Original_Env).b;
+                    this->effectPrimColor[0] = (float)CVarGetColor24("gCCTCFirePrim", Original_Prim).r;
+                    this->effectPrimColor[1] = (float)CVarGetColor24("gCCTCFirePrim", Original_Prim).g;
+                    this->effectPrimColor[2] = (float)CVarGetColor24("gCCTCFirePrim", Original_Prim).b;
+                    this->effectEnvColor[0] = (float)CVarGetColor24("gCCTCFireEnv", Original_Env).r;
+                    this->effectEnvColor[1] = (float)CVarGetColor24("gCCTCFireEnv", Original_Env).g;
+                    this->effectEnvColor[2] = (float)CVarGetColor24("gCCTCFireEnv", Original_Env).b;
                 } else {
                     this->effectPrimColor[0] = (float)Original_Prim.r;
                     this->effectPrimColor[1] = (float)Original_Prim.g;
@@ -487,12 +487,12 @@ void EnMag_UpdateVanilla(Actor* thisx, PlayState* play) {
                 this->effectPrimLodFrac = 128.0f;
 
                 if (CVarGetInteger("gHudColors",0) == 2 ){
-                    this->effectPrimColor[0] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).r;
-                    this->effectPrimColor[1] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).g;
-                    this->effectPrimColor[2] = (float)CVar_GetRGB("gCCTCFirePrim", Original_Prim).b;
-                    this->effectEnvColor[0] = (float)CVar_GetRGB("gCCTCFireEnv", Original_Env).r;
-                    this->effectEnvColor[1] = (float)CVar_GetRGB("gCCTCFireEnv", Original_Env).g;
-                    this->effectEnvColor[2] = (float)CVar_GetRGB("gCCTCFireEnv", Original_Env).b;
+                    this->effectPrimColor[0] = (float)CVarGetColor24("gCCTCFirePrim", Original_Prim).r;
+                    this->effectPrimColor[1] = (float)CVarGetColor24("gCCTCFirePrim", Original_Prim).g;
+                    this->effectPrimColor[2] = (float)CVarGetColor24("gCCTCFirePrim", Original_Prim).b;
+                    this->effectEnvColor[0] = (float)CVarGetColor24("gCCTCFireEnv", Original_Env).r;
+                    this->effectEnvColor[1] = (float)CVarGetColor24("gCCTCFireEnv", Original_Env).g;
+                    this->effectEnvColor[2] = (float)CVarGetColor24("gCCTCFireEnv", Original_Env).b;
                 } else {
                     this->effectPrimColor[2] = 170.0f;
                     this->effectEnvColor[1] = 100.0f;

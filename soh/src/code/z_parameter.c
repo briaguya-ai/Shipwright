@@ -3332,21 +3332,21 @@ void Interface_UpdateMagicBar(PlayState* play) {
     Color_RGB8 MagicBorder_3 = { 255, 255, 50 };
 
     if (CVarGetInteger("gHudColors", 1) == 2) { //This will make custom color based on users selected colors.
-        sMagicBorderColors[0][0] = CVar_GetRGB("gCCMagicBorderPrim", MagicBorder_0).r;
-        sMagicBorderColors[0][1] = CVar_GetRGB("gCCMagicBorderPrim", MagicBorder_0).g;
-        sMagicBorderColors[0][2] = CVar_GetRGB("gCCMagicBorderPrim", MagicBorder_0).b;
+        sMagicBorderColors[0][0] = CVarGetColor24("gCCMagicBorderPrim", MagicBorder_0).r;
+        sMagicBorderColors[0][1] = CVarGetColor24("gCCMagicBorderPrim", MagicBorder_0).g;
+        sMagicBorderColors[0][2] = CVarGetColor24("gCCMagicBorderPrim", MagicBorder_0).b;
 
-        sMagicBorderColors[1][0] = CVar_GetRGB("gCCMagicBorderPrim", MagicBorder_1).r/2;
-        sMagicBorderColors[1][1] = CVar_GetRGB("gCCMagicBorderPrim", MagicBorder_1).g/2;
-        sMagicBorderColors[1][2] = CVar_GetRGB("gCCMagicBorderPrim", MagicBorder_1).b/2;
+        sMagicBorderColors[1][0] = CVarGetColor24("gCCMagicBorderPrim", MagicBorder_1).r/2;
+        sMagicBorderColors[1][1] = CVarGetColor24("gCCMagicBorderPrim", MagicBorder_1).g/2;
+        sMagicBorderColors[1][2] = CVarGetColor24("gCCMagicBorderPrim", MagicBorder_1).b/2;
 
-        sMagicBorderColors[2][0] = CVar_GetRGB("gCCMagicBorderPrim", MagicBorder_2).r/2.5;
-        sMagicBorderColors[2][1] = CVar_GetRGB("gCCMagicBorderPrim", MagicBorder_2).g/2.5;
-        sMagicBorderColors[2][2] = CVar_GetRGB("gCCMagicBorderPrim", MagicBorder_2).b/2.5;
+        sMagicBorderColors[2][0] = CVarGetColor24("gCCMagicBorderPrim", MagicBorder_2).r/2.5;
+        sMagicBorderColors[2][1] = CVarGetColor24("gCCMagicBorderPrim", MagicBorder_2).g/2.5;
+        sMagicBorderColors[2][2] = CVarGetColor24("gCCMagicBorderPrim", MagicBorder_2).b/2.5;
 
-        sMagicBorderColors[3][0] = CVar_GetRGB("gCCMagicBorderPrim", MagicBorder_3).r/3;
-        sMagicBorderColors[3][1] = CVar_GetRGB("gCCMagicBorderPrim", MagicBorder_3).g/3;
-        sMagicBorderColors[3][2] = CVar_GetRGB("gCCMagicBorderPrim", MagicBorder_3).b/3;
+        sMagicBorderColors[3][0] = CVarGetColor24("gCCMagicBorderPrim", MagicBorder_3).r/3;
+        sMagicBorderColors[3][1] = CVarGetColor24("gCCMagicBorderPrim", MagicBorder_3).g/3;
+        sMagicBorderColors[3][2] = CVarGetColor24("gCCMagicBorderPrim", MagicBorder_3).b/3;
     }
 
     static s16 sMagicBorderIndexes[] = { 0, 1, 1, 0 };
@@ -3407,14 +3407,14 @@ void Interface_UpdateMagicBar(PlayState* play) {
                 gSaveContext.magic = 0;
                 gSaveContext.unk_13F0 = 3;
                 if (CVarGetInteger("gHudColors", 1) == 2) {
-                    sMagicBorder = CVar_GetRGB("gCCMagicBorderNormPrim", sMagicBorder_ori);
+                    sMagicBorder = CVarGetColor24("gCCMagicBorderNormPrim", sMagicBorder_ori);
                 } else {
                     sMagicBorder = sMagicBorder_ori;
                 }
             } else if (gSaveContext.magic == gSaveContext.unk_13F8) {
                 gSaveContext.unk_13F0 = 3;
                 if (CVarGetInteger("gHudColors", 1) == 2) {
-                    sMagicBorder = CVar_GetRGB("gCCMagicBorderNormPrim", sMagicBorder_ori);
+                    sMagicBorder = CVarGetColor24("gCCMagicBorderNormPrim", sMagicBorder_ori);
                 } else {
                     sMagicBorder = sMagicBorder_ori;
                 }
@@ -3460,7 +3460,7 @@ void Interface_UpdateMagicBar(PlayState* play) {
 
         case 5:
             if (CVarGetInteger("gHudColors", 1) == 2) {
-                sMagicBorder = CVar_GetRGB("gCCMagicBorderNormPrim", sMagicBorder_ori);
+                sMagicBorder = CVarGetColor24("gCCMagicBorderNormPrim", sMagicBorder_ori);
             } else {
                 sMagicBorder = sMagicBorder_ori;
             }
@@ -3486,7 +3486,7 @@ void Interface_UpdateMagicBar(PlayState* play) {
                                            &D_801333E8);
                     gSaveContext.unk_13F0 = 0;
                     if (CVarGetInteger("gHudColors", 1) == 2) {
-                        sMagicBorder = CVar_GetRGB("gCCMagicBorderNormPrim", sMagicBorder_ori);
+                        sMagicBorder = CVarGetColor24("gCCMagicBorderNormPrim", sMagicBorder_ori);
                     } else {
                         sMagicBorder = sMagicBorder_ori;
                     }
@@ -3680,7 +3680,7 @@ void Interface_DrawMagicBar(PlayState* play) {
         if (gSaveContext.unk_13F0 == 4) {
             // Yellow part of the bar indicating the amount of magic to be subtracted
             if (CVarGetInteger("gHudColors", 1) == 2) {
-                gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVar_GetRGB("gCCMagicUsePrim", magicbar_yellow).r, CVar_GetRGB("gCCMagicUsePrim", magicbar_yellow).g, CVar_GetRGB("gCCMagicUsePrim", magicbar_yellow).b, interfaceCtx->magicAlpha);
+                gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVarGetColor24("gCCMagicUsePrim", magicbar_yellow).r, CVarGetColor24("gCCMagicUsePrim", magicbar_yellow).g, CVarGetColor24("gCCMagicUsePrim", magicbar_yellow).b, interfaceCtx->magicAlpha);
             } else {
                 gDPSetPrimColor(OVERLAY_DISP++, 0, 0, magicbar_yellow.r, magicbar_yellow.g, magicbar_yellow.b, interfaceCtx->magicAlpha);
             }
@@ -3696,7 +3696,7 @@ void Interface_DrawMagicBar(PlayState* play) {
             // Fill the rest of the bar with the normal magic color
             gDPPipeSync(OVERLAY_DISP++);
             if (CVarGetInteger("gHudColors", 1) == 2) {
-                gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVar_GetRGB("gCCMagicPrim", magicbar_green).r, CVar_GetRGB("gCCMagicPrim", magicbar_green).g, CVar_GetRGB("gCCMagicPrim", magicbar_green).b, interfaceCtx->magicAlpha);
+                gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVarGetColor24("gCCMagicPrim", magicbar_green).r, CVarGetColor24("gCCMagicPrim", magicbar_green).g, CVarGetColor24("gCCMagicPrim", magicbar_green).b, interfaceCtx->magicAlpha);
             } else {
                 gDPSetPrimColor(OVERLAY_DISP++, 0, 0, magicbar_green.r, magicbar_green.g, magicbar_green.b, interfaceCtx->magicAlpha);
             }
@@ -3707,7 +3707,7 @@ void Interface_DrawMagicBar(PlayState* play) {
         } else {
             // Fill the whole bar with the normal magic color
             if (CVarGetInteger("gHudColors", 1) == 2) {
-                gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVar_GetRGB("gCCMagicPrim", magicbar_green).r, CVar_GetRGB("gCCMagicPrim", magicbar_green).g, CVar_GetRGB("gCCMagicPrim", magicbar_green).b, interfaceCtx->magicAlpha);
+                gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVarGetColor24("gCCMagicPrim", magicbar_green).r, CVarGetColor24("gCCMagicPrim", magicbar_green).g, CVarGetColor24("gCCMagicPrim", magicbar_green).b, interfaceCtx->magicAlpha);
             } else {
                 gDPSetPrimColor(OVERLAY_DISP++, 0, 0, magicbar_green.r, magicbar_green.g, magicbar_green.b, interfaceCtx->magicAlpha);
             }
@@ -3784,17 +3784,17 @@ void Interface_DrawItemButtons(PlayState* play) {
     s16 width;
     s16 height;
     Color_RGB8 A_button_ori = {R_A_BTN_COLOR(0), R_A_BTN_COLOR(1), R_A_BTN_COLOR(2)};
-    Color_RGB8 A_button = CVar_GetRGB("gCCABtnPrim", A_button_ori);
+    Color_RGB8 A_button = CVarGetColor24("gCCABtnPrim", A_button_ori);
     Color_RGB8 B_button_ori = {R_B_BTN_COLOR(0), R_B_BTN_COLOR(1), R_B_BTN_COLOR(2)};
-    Color_RGB8 B_button = CVar_GetRGB("gCCBBtnPrim", B_button_ori);
+    Color_RGB8 B_button = CVarGetColor24("gCCBBtnPrim", B_button_ori);
     Color_RGB8 Start_button_ori = {120, 120, 120};
-    Color_RGB8 Start_button = CVar_GetRGB("gCCStartBtnPrim", Start_button_ori);
+    Color_RGB8 Start_button = CVarGetColor24("gCCStartBtnPrim", Start_button_ori);
     Color_RGB8 C_button_ori = {R_C_BTN_COLOR(0), R_C_BTN_COLOR(1), R_C_BTN_COLOR(2)};
-    Color_RGB8 C_button_uni = CVar_GetRGB("gCCCBtnPrim", C_button_ori);
-    Color_RGB8 C_button_U = CVar_GetRGB("gCCCUBtnPrim", C_button_ori);
-    Color_RGB8 C_button_D = CVar_GetRGB("gCCCDBtnPrim", C_button_ori);
-    Color_RGB8 C_button_L = CVar_GetRGB("gCCCLBtnPrim", C_button_ori);
-    Color_RGB8 C_button_R = CVar_GetRGB("gCCCRBtnPrim", C_button_ori);
+    Color_RGB8 C_button_uni = CVarGetColor24("gCCCBtnPrim", C_button_ori);
+    Color_RGB8 C_button_U = CVarGetColor24("gCCCUBtnPrim", C_button_ori);
+    Color_RGB8 C_button_D = CVarGetColor24("gCCCDBtnPrim", C_button_ori);
+    Color_RGB8 C_button_L = CVarGetColor24("gCCCLBtnPrim", C_button_ori);
+    Color_RGB8 C_button_R = CVarGetColor24("gCCCRBtnPrim", C_button_ori);
 
     //B Button
     s16 X_Margins_BtnB;
@@ -4952,7 +4952,7 @@ void Interface_Draw(PlayState* play) {
     Color_RGB8 keyColor_ori = { 200, 230, 255 };
     Color_RGB8 keyColor;
     Color_RGB8 DPad_colors_ori = {255, 255, 255};
-    Color_RGB8 DPad_colors = CVar_GetRGB("gCCDpadPrim", DPad_colors_ori);
+    Color_RGB8 DPad_colors = CVarGetColor24("gCCDpadPrim", DPad_colors_ori);
     static s16 spoilingItemEntrances[] = { 0x01AD, 0x0153, 0x0153 };
     static f32 D_80125B54[] = { -40.0f, -35.0f }; // unused
     static s16 D_80125B5C[] = { 91, 91 };         // unused
@@ -5008,7 +5008,7 @@ void Interface_Draw(PlayState* play) {
                     rColor.b = rupeeWalletColors[CUR_UPG_VALUE(UPG_WALLET)][2];
                 } else {
                     //else use our custom color
-                    rColor = CVar_GetRGB("gCCRupeePrim", rColor_ori);
+                    rColor = CVarGetColor24("gCCRupeePrim", rColor_ori);
                 }
             } else {
                 //Custom colors is off so check if Dynamic Wallet is on.
@@ -5110,7 +5110,7 @@ void Interface_Draw(PlayState* play) {
                         gDPPipeSync(OVERLAY_DISP++);
 
                         if (CVarGetInteger("gHudColors", 1) == 2) {
-                            gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVar_GetRGB("gCCKeysPrim", keyColor_ori).r,CVar_GetRGB("gCCKeysPrim", keyColor_ori).g,CVar_GetRGB("gCCKeysPrim", keyColor_ori).b, interfaceCtx->magicAlpha);
+                            gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVarGetColor24("gCCKeysPrim", keyColor_ori).r,CVarGetColor24("gCCKeysPrim", keyColor_ori).g,CVarGetColor24("gCCKeysPrim", keyColor_ori).b, interfaceCtx->magicAlpha);
                             gDPSetEnvColor(OVERLAY_DISP++, 0, 0, 0, 255); //We reset this here so it match user color :)
                         } else {
                             gDPSetPrimColor(OVERLAY_DISP++, 0, 0, keyColor_ori.r, keyColor_ori.g, keyColor_ori.b, interfaceCtx->magicAlpha);
@@ -5481,7 +5481,7 @@ void Interface_Draw(PlayState* play) {
         } else if (CVarGetInteger("gHudColors", 1) == 1) {
             gDPSetPrimColor(OVERLAY_DISP++, 0, 0, A_Button_Colors.r, A_Button_Colors.g, A_Button_Colors.b, interfaceCtx->aAlpha);
         } else if (CVarGetInteger("gHudColors", 1) == 2) {
-            gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVar_GetRGB("gCCABtnPrim", A_Button_Colors).r,CVar_GetRGB("gCCABtnPrim", A_Button_Colors).g,CVar_GetRGB("gCCABtnPrim", A_Button_Colors).b, interfaceCtx->aAlpha);
+            gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVarGetColor24("gCCABtnPrim", A_Button_Colors).r,CVarGetColor24("gCCABtnPrim", A_Button_Colors).g,CVarGetColor24("gCCABtnPrim", A_Button_Colors).b, interfaceCtx->aAlpha);
         }
         if (fullUi) {
             Interface_DrawActionButton(play, PosX_BtnA, PosY_BtnA);

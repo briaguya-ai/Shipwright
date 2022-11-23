@@ -660,7 +660,7 @@ void Minimap_DrawCompassIcons(PlayState* play) {
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 
         if (CVarGetInteger("gHudColors", 1) == 2) {
-            gDPSetPrimColor(OVERLAY_DISP++, 0, 0xFF, CVar_GetRGB("gCCMinimapCPPrim", CurrentPosition_arrow).r, CVar_GetRGB("gCCMinimapCPPrim", CurrentPosition_arrow).g, CVar_GetRGB("gCCMinimapCPPrim", CurrentPosition_arrow).b, 255);       
+            gDPSetPrimColor(OVERLAY_DISP++, 0, 0xFF, CVarGetColor24("gCCMinimapCPPrim", CurrentPosition_arrow).r, CVarGetColor24("gCCMinimapCPPrim", CurrentPosition_arrow).g, CVarGetColor24("gCCMinimapCPPrim", CurrentPosition_arrow).b, 255);       
         } else {
             gDPSetPrimColor(OVERLAY_DISP++, 0, 0xFF, CurrentPosition_arrow.r, CurrentPosition_arrow.g, CurrentPosition_arrow.b, 255);
         }
@@ -701,7 +701,7 @@ void Minimap_DrawCompassIcons(PlayState* play) {
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 
         if (CVarGetInteger("gHudColors", 1) == 2) {
-            gDPSetPrimColor(OVERLAY_DISP++, 0, 0xFF, CVar_GetRGB("gCCMinimapLEPrim", LastEntrance_arrow).r,CVar_GetRGB("gCCMinimapLEPrim", LastEntrance_arrow).g,CVar_GetRGB("gCCMinimapLEPrim", LastEntrance_arrow).b, 255);
+            gDPSetPrimColor(OVERLAY_DISP++, 0, 0xFF, CVarGetColor24("gCCMinimapLEPrim", LastEntrance_arrow).r,CVarGetColor24("gCCMinimapLEPrim", LastEntrance_arrow).g,CVarGetColor24("gCCMinimapLEPrim", LastEntrance_arrow).b, 255);
         } else {
             gDPSetPrimColor(OVERLAY_DISP++, 0, 0xFF, LastEntrance_arrow.r, LastEntrance_arrow.g, LastEntrance_arrow.b, 255);
         }
@@ -755,7 +755,7 @@ void Minimap_Draw(PlayState* play) {
 
                     if (CHECK_DUNGEON_ITEM(DUNGEON_MAP, mapIndex)) {
                         if (CVarGetInteger("gHudColors", 1) == 2) { //Dungeon minimap
-                            gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVar_GetRGB("gCCMinimapDGNPrim", Dungeon_minimap).r,CVar_GetRGB("gCCMinimapDGNPrim", Dungeon_minimap).g,CVar_GetRGB("gCCMinimapDGNPrim", Dungeon_minimap).b, interfaceCtx->minimapAlpha);
+                            gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVarGetColor24("gCCMinimapDGNPrim", Dungeon_minimap).r,CVarGetColor24("gCCMinimapDGNPrim", Dungeon_minimap).g,CVarGetColor24("gCCMinimapDGNPrim", Dungeon_minimap).b, interfaceCtx->minimapAlpha);
                         } else {
                             gDPSetPrimColor(OVERLAY_DISP++, 0, 0, Dungeon_minimap.r, Dungeon_minimap.g, Dungeon_minimap.b, interfaceCtx->minimapAlpha);
                         }
@@ -830,7 +830,7 @@ void Minimap_Draw(PlayState* play) {
 
                     gDPSetCombineMode(OVERLAY_DISP++, G_CC_MODULATEIA_PRIM, G_CC_MODULATEIA_PRIM);
                     if (CVarGetInteger("gHudColors", 1) == 2) {//Overworld minimap
-                        gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVar_GetRGB("gCCMinimapPrim", Overworld_minimap).r,CVar_GetRGB("gCCMinimapPrim", Overworld_minimap).g,CVar_GetRGB("gCCMinimapPrim", Overworld_minimap).b, interfaceCtx->minimapAlpha);
+                        gDPSetPrimColor(OVERLAY_DISP++, 0, 0, CVarGetColor24("gCCMinimapPrim", Overworld_minimap).r,CVarGetColor24("gCCMinimapPrim", Overworld_minimap).g,CVarGetColor24("gCCMinimapPrim", Overworld_minimap).b, interfaceCtx->minimapAlpha);
                     } else {
                         gDPSetPrimColor(OVERLAY_DISP++, 0, 0, Overworld_minimap.r, Overworld_minimap.g, Overworld_minimap.b, interfaceCtx->minimapAlpha);
                     }

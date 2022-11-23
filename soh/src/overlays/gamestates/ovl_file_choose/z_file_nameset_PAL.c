@@ -134,9 +134,9 @@ void FileChoose_SetNameEntryVtx(GameState* thisx) {
     for (phi_t1 = 0; phi_t1 < 2; phi_t1++, phi_s0 += 4) {
 
         if (CVarGetInteger("gHudColors", 1) == 2) {
-            gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, CVar_GetRGB("gCCFileChoosePrim", Background_Color).r,
-                            CVar_GetRGB("gCCFileChoosePrim", Background_Color).g,
-                            CVar_GetRGB("gCCFileChoosePrim", Background_Color).b, 255);
+            gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, CVarGetColor24("gCCFileChoosePrim", Background_Color).r,
+                            CVarGetColor24("gCCFileChoosePrim", Background_Color).g,
+                            CVarGetColor24("gCCFileChoosePrim", Background_Color).b, 255);
         } else {
             gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, this->windowColor[0], this->windowColor[1], this->windowColor[2],
                             255);
@@ -204,9 +204,9 @@ void FileChoose_SetNameEntryVtx(GameState* thisx) {
                       ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0);
 
     if (CVarGetInteger("gHudColors", 1) == 2) {
-        gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, CVar_GetRGB("gCCFileChoosePrim", Background_Color).r,
-                        CVar_GetRGB("gCCFileChoosePrim", Background_Color).g,
-                        CVar_GetRGB("gCCFileChoosePrim", Background_Color).b,
+        gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, CVarGetColor24("gCCFileChoosePrim", Background_Color).r,
+                        CVarGetColor24("gCCFileChoosePrim", Background_Color).g,
+                        CVarGetColor24("gCCFileChoosePrim", Background_Color).b,
                         this->nameEntryBoxAlpha);
     } else {
         gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, this->windowColor[0], this->windowColor[1], this->windowColor[2],
@@ -336,9 +336,9 @@ void FileChoose_DrawNameEntry(GameState* thisx) {
                       PRIMITIVE, 0);
 
     if (CVarGetInteger("gHudColors", 1) == 2) {
-        gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, CVar_GetRGB("gCCFileChoosePrim", Background_Color).r,
-                        CVar_GetRGB("gCCFileChoosePrim", Background_Color).g,
-                        CVar_GetRGB("gCCFileChoosePrim", Background_Color).b,
+        gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, CVarGetColor24("gCCFileChoosePrim", Background_Color).r,
+                        CVarGetColor24("gCCFileChoosePrim", Background_Color).g,
+                        CVarGetColor24("gCCFileChoosePrim", Background_Color).b,
                         this->highlightColor[3]);
     } else {
         gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, this->highlightColor[0], this->highlightColor[1],

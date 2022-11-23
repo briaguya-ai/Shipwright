@@ -197,8 +197,8 @@ void ArrowIce_Draw(Actor* thisx, PlayState* play) {
     EnArrow* arrow = (EnArrow*)this->actor.parent;
     Color_RGB8 Arrow_env_ori = {0,0,255};
     Color_RGB8 Arrow_col_ori = {170, 255, 255};
-    Color_RGB8 Arrow_env = CVar_GetRGB("gIceArrowColEnv", Arrow_env_ori);
-    Color_RGB8 Arrow_col = CVar_GetRGB("gIceArrowCol", Arrow_col_ori);
+    Color_RGB8 Arrow_env = CVarGetColor24("gIceArrowColEnv", Arrow_env_ori);
+    Color_RGB8 Arrow_col = CVarGetColor24("gIceArrowCol", Arrow_col_ori);
 
     if ((arrow != NULL) && (arrow->actor.update != NULL) && (this->timer < 255)) {
         tranform = (arrow->hitFlags & 2) ? &this->actor : &arrow->actor;

@@ -357,20 +357,20 @@ void func_8002BF60(TargetContext* targetCtx, Actor* actor, s32 actorCategory, Pl
         }
     } else {
         if (actorCategory == ACTORCAT_PLAYER) {
-            customInnerNaviColor = CVar_GetRGB("gNavi_Idle_Inner", (Color_RGB8){ 0, 0, 0 });
-            customOuterNaviColor = CVar_GetRGB("gNavi_Idle_Outer", (Color_RGB8){ 0, 0, 0 });
+            customInnerNaviColor = CVarGetColor24("gNavi_Idle_Inner", (Color_RGB8){ 0, 0, 0 });
+            customOuterNaviColor = CVarGetColor24("gNavi_Idle_Outer", (Color_RGB8){ 0, 0, 0 });
         }
         if (actorCategory == ACTORCAT_NPC) {
-            customInnerNaviColor = CVar_GetRGB("gNavi_NPC_Inner", (Color_RGB8){ 0, 0, 0 });
-            customOuterNaviColor = CVar_GetRGB("gNavi_NPC_Outer", (Color_RGB8){ 0, 0, 0 });
+            customInnerNaviColor = CVarGetColor24("gNavi_NPC_Inner", (Color_RGB8){ 0, 0, 0 });
+            customOuterNaviColor = CVarGetColor24("gNavi_NPC_Outer", (Color_RGB8){ 0, 0, 0 });
         }
         if (actorCategory == ACTORCAT_BOSS || actorCategory == ACTORCAT_ENEMY) {
-            customInnerNaviColor = CVar_GetRGB("gNavi_Enemy_Inner", (Color_RGB8){ 0, 0, 0 });
-            customOuterNaviColor = CVar_GetRGB("gNavi_Enemy_Outer", (Color_RGB8){ 0, 0, 0 });
+            customInnerNaviColor = CVarGetColor24("gNavi_Enemy_Inner", (Color_RGB8){ 0, 0, 0 });
+            customOuterNaviColor = CVarGetColor24("gNavi_Enemy_Outer", (Color_RGB8){ 0, 0, 0 });
         }
         if (actorCategory == ACTORCAT_PROP) {
-            customInnerNaviColor = CVar_GetRGB("gNavi_Prop_Inner", (Color_RGB8){ 0, 0, 0 });
-            customOuterNaviColor = CVar_GetRGB("gNavi_Prop_Outer", (Color_RGB8){ 0, 0, 0 });
+            customInnerNaviColor = CVarGetColor24("gNavi_Prop_Inner", (Color_RGB8){ 0, 0, 0 });
+            customOuterNaviColor = CVarGetColor24("gNavi_Prop_Outer", (Color_RGB8){ 0, 0, 0 });
         }
         naviColor->inner.r = customInnerNaviColor.r;
         naviColor->inner.g = customInnerNaviColor.g;
@@ -1020,9 +1020,9 @@ void TitleCard_Update(PlayState* play, TitleCardContext* titleCtx) {
     const Color_RGB8 TitleCard_Colors_ori = {255,255,255};
     Color_RGB8 TitleCard_Colors = {255,255,255};
     if (titleCtx->isBossCard && CVarGetInteger("gHudColors", 1) == 2) {//Bosses cards.
-        TitleCard_Colors = CVar_GetRGB("gCCTC_B_U_Prim", TitleCard_Colors_ori);
+        TitleCard_Colors = CVarGetColor24("gCCTC_B_U_Prim", TitleCard_Colors_ori);
     } else if (!titleCtx->isBossCard && CVarGetInteger("gHudColors", 1) == 2) {
-        TitleCard_Colors = CVar_GetRGB("gCCTC_OW_U_Prim", TitleCard_Colors_ori);
+        TitleCard_Colors = CVarGetColor24("gCCTC_OW_U_Prim", TitleCard_Colors_ori);
     } else {
         TitleCard_Colors = TitleCard_Colors_ori;
     }
