@@ -974,13 +974,13 @@ static bool GetCVarHandler(std::shared_ptr<Ship::Console> Console, const std::ve
 
     if (cvar != nullptr)
     {
-        if (cvar->Type == ConsoleVariableType::Integer)
+        if (cvar->Type == Ship::ConsoleVariableType::Integer)
             SohImGui::GetConsole()->SendInfoMessage("[SOH] Variable %s is %i", args[1].c_str(), cvar->Integer);
-        else if (cvar->Type == ConsoleVariableType::Float)
+        else if (cvar->Type == Ship::ConsoleVariableType::Float)
             SohImGui::GetConsole()->SendInfoMessage("[SOH] Variable %s is %f", args[1].c_str(), cvar->Float);
-        else if (cvar->Type == ConsoleVariableType::String)
+        else if (cvar->Type == Ship::ConsoleVariableType::String)
             SohImGui::GetConsole()->SendInfoMessage("[SOH] Variable %s is %s", args[1].c_str(), cvar->String);
-        else if (cvar->Type == ConsoleVariableType::Color)
+        else if (cvar->Type == Ship::ConsoleVariableType::Color)
             SohImGui::GetConsole()->SendInfoMessage("[SOH] Variable %s is %08X", args[1].c_str(), cvar->Color);
     }
     else
