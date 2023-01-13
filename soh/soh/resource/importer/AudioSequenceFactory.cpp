@@ -35,7 +35,7 @@ void Ship::AudioSequenceFactoryV0::ParseFileBinary(std::shared_ptr<BinaryReader>
     audioSequence->sequence.seqDataSize = reader->ReadInt32();
     audioSequence->sequenceData.reserve(audioSequence->sequence.seqDataSize);
     for (uint32_t i = 0; i < audioSequence->sequence.seqDataSize; i++) {
-        audioSequence->sequenceData.push_back(reader->ReadChar());
+        audioSequence->sequenceData.push_back(reader->ReadUByte());
     }
     audioSequence->sequence.seqData = audioSequence->sequenceData.data();
     
@@ -43,7 +43,7 @@ void Ship::AudioSequenceFactoryV0::ParseFileBinary(std::shared_ptr<BinaryReader>
     audioSequence->sequence.medium = reader->ReadUByte();
     audioSequence->sequence.cachePolicy = reader->ReadUByte();
 
-    audioSequence->sequence.numFonts = reader->ReadUInt32();
+    audioSequence->sequence.numFonts = reader->ReadInt32();
     for (uint32_t i = 0; i < 16; i++) {
         audioSequence->sequence.fonts[i] = 0;
     }

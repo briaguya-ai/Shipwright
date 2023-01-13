@@ -313,6 +313,11 @@ void func_800E5584(AudioCmd* cmd) {
         case 0xF9:
             gAudioContext.resetStatus = 5;
             gAudioContext.audioResetSpecIdToLoad = cmd->asUInt;
+
+            if (gAudioContext.audioResetSpecIdToLoad > 17) {
+                int blarg = 3;
+            }
+
             return;
         case 0xFB:
             D_801755D0 = (void (*)(void))cmd->asUInt;
@@ -499,6 +504,11 @@ void Audio_ProcessCmds(u32 msg) {
             return;
         }
 
+        // it crashes after this
+        if (curCmdRdPos == 3) {
+            int blarg = 3;
+        }
+
         cmd = &gAudioContext.cmdBuf[curCmdRdPos++ & 0xFF];
         if (cmd->op == 0xF8) {
             gAudioContext.cmdQueueFinished = 1;
@@ -563,6 +573,11 @@ s32 func_800E5F88(s32 resetPreloadID) {
             return -2;
         } else if (resetStatus > 2) {
             gAudioContext.audioResetSpecIdToLoad = resetPreloadID;
+
+            if (gAudioContext.audioResetSpecIdToLoad > 17) {
+                int blarg = 3;
+            }
+
             return -3;
         } else {
             osRecvMesg(gAudioContext.audioResetQueueP, &msg, OS_MESG_BLOCK);

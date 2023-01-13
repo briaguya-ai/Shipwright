@@ -32,11 +32,11 @@ void Ship::AudioSampleFactoryV0::ParseFileBinary(std::shared_ptr<BinaryReader> r
 	std::shared_ptr<AudioSample> audioSample = std::static_pointer_cast<AudioSample>(resource);
 	ResourceVersionFactory::ParseFileBinary(reader, audioSample);
 
-    audioSample->sample.codec = reader->ReadUByte();
-    audioSample->sample.medium = reader->ReadUByte();
-    audioSample->sample.unk_bit26 = reader->ReadUByte();
-    audioSample->sample.unk_bit25 = reader->ReadUByte();
-    audioSample->sample.size = reader->ReadUInt32();
+    audioSample->sample.codec = reader->ReadInt8();
+    audioSample->sample.medium = reader->ReadInt8();
+    audioSample->sample.unk_bit26 = reader->ReadInt8();
+    audioSample->sample.unk_bit25 = reader->ReadInt8();
+    audioSample->sample.size = reader->ReadInt32();
 
     audioSample->audioSampleData.reserve(audioSample->sample.size);
     for (uint32_t i = 0; i < audioSample->sample.size; i++) {
@@ -59,7 +59,7 @@ void Ship::AudioSampleFactoryV0::ParseFileBinary(std::shared_ptr<BinaryReader> r
 
     audioSample->book.order = reader->ReadInt32();
     audioSample->book.npredictors = reader->ReadInt32();
-    audioSample->bookDataCount = reader->ReadUInt32();
+    audioSample->bookDataCount = reader->ReadInt32();
 
     audioSample->bookData.reserve(audioSample->bookDataCount);
     for (uint32_t i = 0; i < audioSample->bookDataCount; i++) {

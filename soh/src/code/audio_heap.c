@@ -808,6 +808,10 @@ void AudioHeap_Init(void) {
     s32 pad2;
     AudioSpec* spec;
 
+    if (gAudioContext.audioResetSpecIdToLoad > 17) {
+        int blarg = 3;
+    }
+
     spec = &gAudioSpecs[gAudioContext.audioResetSpecIdToLoad];
     gAudioContext.sampleDmaCount = 0;
     gAudioContext.audioBufferParameters.frequency = spec->frequency;

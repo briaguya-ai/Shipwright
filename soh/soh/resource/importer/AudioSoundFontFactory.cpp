@@ -37,20 +37,20 @@ void Ship::AudioSoundFontFactoryV0::ParseFileBinary(std::shared_ptr<BinaryReader
     audioSoundFont->medium = reader->ReadInt8();
     audioSoundFont->cachePolicy = reader->ReadInt8();
     
-    audioSoundFont->data1 = reader->ReadUInt16();
+    audioSoundFont->data1 = reader->ReadInt16();
     audioSoundFont->soundFont.sampleBankId1 = audioSoundFont->data1 >> 8;
     audioSoundFont->soundFont.sampleBankId2 = audioSoundFont->data1 & 0xFF;
 
-    audioSoundFont->data2 = reader->ReadUInt16();
-    audioSoundFont->data3 = reader->ReadUInt16();
+    audioSoundFont->data2 = reader->ReadInt16();
+    audioSoundFont->data3 = reader->ReadInt16();
 
-    uint32_t drumCount = reader->ReadUInt32();
+    uint32_t drumCount = reader->ReadInt32();
     audioSoundFont->soundFont.numDrums = drumCount;
     
-    uint32_t instrumentCount = reader->ReadUInt32();
+    uint32_t instrumentCount = reader->ReadInt32();
     audioSoundFont->soundFont.numInstruments = instrumentCount;
     
-    uint32_t soundEffectCount = reader->ReadUInt32();
+    uint32_t soundEffectCount = reader->ReadInt32();
     audioSoundFont->soundFont.numSfx = soundEffectCount;
 
     // 🥁 DRUMS 🥁
@@ -63,7 +63,7 @@ void Ship::AudioSoundFontFactoryV0::ParseFileBinary(std::shared_ptr<BinaryReader
         drum.loaded = reader->ReadUByte();
         drum.loaded = 0; // this was always getting set to zero in ResourceMgr_LoadAudioSoundFont
 
-        uint32_t envelopeCount = reader->ReadUInt32();
+        uint32_t envelopeCount = reader->ReadInt32();
         audioSoundFont->drumEnvelopeCounts.push_back(envelopeCount);
         std::vector<AdsrEnvelope> drumEnvelopes;
         drumEnvelopes.reserve(audioSoundFont->drumEnvelopeCounts[i]);
