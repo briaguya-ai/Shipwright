@@ -8,7 +8,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build-macos:
-    runs-on: ${{ MAC_RUNNER || 'macos-12' }}
+    runs-on: ${{ vars.MAC_RUNNER || 'macos-12' }}
     steps:
     - uses: actions/checkout@v3
       with:
