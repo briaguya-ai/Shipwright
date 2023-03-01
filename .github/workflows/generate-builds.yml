@@ -1,3 +1,4 @@
+# blarg
 name: generate-builds
 on:
   push:
