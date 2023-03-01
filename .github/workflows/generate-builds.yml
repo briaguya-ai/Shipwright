@@ -6,10 +6,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 env:
-  MAC_RUNNER: vars.MAC_RUNNER || 'macos-12'
+  MAC_RUNNER: ${{ vars.MAC_RUNNER || 'macos-12' }}
 jobs:
   build-macos:
-    runs-on: ${{ fromJSON($MAC_RUNNER) }}
+    runs-on: ${{ fromJSON(env.MAC_RUNNER) }}
     steps:
     - uses: actions/checkout@v3
       with:
