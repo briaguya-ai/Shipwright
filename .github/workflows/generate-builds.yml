@@ -27,12 +27,12 @@ jobs:
         set $env:PATH="$env:USERPROFILE/.cargo/bin;$env:PATH"
         cmake -S . -B build-windows -G Ninja -DCMAKE_MAKE_PROGRAM=ninja -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
         cmake --build build-windows --target OTRGui --config Release --parallel 10
-        mkdir otrgui
-        mv ./x64/Release/OTRGui.exe ./otrgui/OTRGui.exe
-        mv ./build-windows/OTRGui/assets ./otrgui
-        mv ./build-windows/ZAPD/ZAPD.exe ./otrgui/assets/extractor/ZAPD.exe
+        mkdir otrgui-build
+        mv ./x64/Release/OTRGui.exe ./otrgui-build/OTRGui.exe
+        mv ./build-windows/OTRGui/assets ./otrgui-build
+        mv ./build-windows/ZAPD/ZAPD.exe ./otrgui-build/assets/extractor/ZAPD.exe
     - name: Upload build
       uses: actions/upload-artifact@v3
       with:
         name: OTRGui
-        path: otrgui
+        path: otrgui-build
