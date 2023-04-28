@@ -26,6 +26,7 @@ jobs:
       run: |
         set $env:PATH="$env:USERPROFILE/.cargo/bin;$env:PATH"
         cmake -S . -B build-windows -G Ninja -DCMAKE_MAKE_PROGRAM=ninja -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+        cmake --build build-windows --target ZAPD --config Release --parallel 10
         cmake --build build-windows --target OTRGui --config Release --parallel 10
         mkdir otrgui-build
         mv ./x64/Release/OTRGui.exe ./otrgui-build/OTRGui.exe
