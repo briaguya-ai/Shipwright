@@ -364,7 +364,7 @@ void DrawSettingsMenu() {
                     auto backend = LUS::Context::GetInstance()->GetWindow()->GetAvailableWindowBackends()->data()[i];
                     if (ImGui::Selectable(windowBackendNames[backend], backend == configWindowBackend)) {
                         LUS::Context::GetInstance()->GetConfig()->setInt("Window.Backend.Id", static_cast<int>(backend));
-                        LUS::Context::GetInstance()->GetConfig()->setString("Window.Backend.Name", LUS::Context::GetInstance()->GetWindow()->GetBackendNameFromBackend(backend));
+                        LUS::Context::GetInstance()->GetConfig()->setString("Window.Backend.Name", windowBackendNames[backend]);
                         LUS::Context::GetInstance()->GetConfig()->save();
                     }
                 }
