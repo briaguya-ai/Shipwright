@@ -1,4 +1,5 @@
 // clang-format off
+// this test should pass
 
 #pragma once
 
