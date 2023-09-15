@@ -11,7 +11,7 @@ BinPackArguments: true
 BinPackParameters: true
 AlignAfterOpenBracket: Align
 AlignOperands: true
-AlignConsecutiveDeclarations: ACS_AcrossComments
+AlignConsecutiveDeclarations: AcrossComments
 AlignTrailingComments: true
 BreakBeforeTernaryOperators: true
 BreakBeforeBinaryOperators: None
