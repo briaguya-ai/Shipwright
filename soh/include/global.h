@@ -1,5 +1,4 @@
-// clang-format off
-// this test should pass
+// this test should fail
 
 #pragma once
 
