@@ -31,8 +31,8 @@ void BossDodongo_Damaged(BossDodongo* this, PlayState* play);
 void BossDodongo_UpdateDamage(BossDodongo* this, PlayState* play);
 void BossDodongo_PlayerPosCheck(BossDodongo* this, PlayState* play);
 void BossDodongo_PlayerYawCheck(BossDodongo* this, PlayState* play);
-f32 func_808C4F6C(BossDodongo* this, PlayState* play);
-f32 func_808C50A8(BossDodongo* this, PlayState* play);
+f32  func_808C4F6C(BossDodongo* this, PlayState* play);
+f32  func_808C50A8(BossDodongo* this, PlayState* play);
 void BossDodongo_DrawEffects(PlayState* play);
 void BossDodongo_UpdateEffects(PlayState* play);
 
@@ -92,11 +92,11 @@ void func_808C1554(void* arg0, void* floorTex, s32 arg2, f32 arg3) {
 
     u16* temp_s3 = SEGMENTED_TO_VIRTUAL(arg0);
     u16* temp_s1 = SEGMENTED_TO_VIRTUAL(floorTex);
-    s16 i;
-    s16 i2;
-    u16 sp54[2048];
-    s16 temp;
-    s16 temp2;
+    s16  i;
+    s16  i2;
+    u16  sp54[2048];
+    s16  temp;
+    s16  temp2;
 
     for (i = 0; i < 2048; i += 32) {
         temp = sinf((((i / 32) + (s16)((arg2 * 50.0f) / 100.0f)) & 0x1F) * (M_PI / 16)) * arg3;
@@ -115,7 +115,7 @@ void func_808C1554(void* arg0, void* floorTex, s32 arg2, f32 arg3) {
 }
 
 void func_808C17C8(PlayState* play, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, f32 arg4, s16 arg5) {
-    s16 i;
+    s16                i;
     BossDodongoEffect* eff = (BossDodongoEffect*)play->specialEffects;
 
     for (i = 0; i < arg5; i++, eff++) {
@@ -134,9 +134,9 @@ void func_808C17C8(PlayState* play, Vec3f* arg1, Vec3f* arg2, Vec3f* arg3, f32 a
 }
 
 s32 BossDodongo_AteExplosive(BossDodongo* this, PlayState* play) {
-    f32 dx;
-    f32 dy;
-    f32 dz;
+    f32    dx;
+    f32    dy;
+    f32    dz;
     Actor* currentExplosive = play->actorCtx.actorLists[ACTORCAT_EXPLOSIVE].head;
     Actor* thisx = &this->actor;
 
@@ -163,10 +163,10 @@ s32 BossDodongo_AteExplosive(BossDodongo* this, PlayState* play) {
 
 void BossDodongo_Init(Actor* thisx, PlayState* play) {
     BossDodongo* this = (BossDodongo*)thisx;
-    s16 i;
+    s16  i;
     u16* temp_s1_3;
     u16* temp_s2;
-    u32 temp_v0;
+    u32  temp_v0;
 
     play->specialEffects = &this->effects;
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -236,7 +236,7 @@ void BossDodongo_Init(Actor* thisx, PlayState* play) {
 
     // OTRTODO: This is causing OOB memory reads with HD assets
     // commenting this out means the lava will stay lava even after beating king d
-    // 
+    //
     // Gfx_RegisterBlendedTexture(gDodongosCavernBossLavaFloorTex, sMaskTexLava, sLavaFloorRockTex);
 }
 
@@ -257,12 +257,12 @@ void BossDodongo_SetupIntroCutscene(BossDodongo* this, PlayState* play) {
 }
 
 void BossDodongo_IntroCutscene(BossDodongo* this, PlayState* play) {
-    f32 phi_f0;
+    f32     phi_f0;
     Camera* camera;
     Player* player;
-    Vec3f sp60;
-    Vec3f sp54;
-    Vec3f sp48;
+    Vec3f   sp60;
+    Vec3f   sp54;
+    Vec3f   sp48;
 
     player = GET_PLAYER(play);
     camera = Play_GetCamera(play, MAIN_CAM);
@@ -540,11 +540,11 @@ void BossDodongo_Damaged(BossDodongo* this, PlayState* play) {
 void BossDodongo_Explode(BossDodongo* this, PlayState* play) {
     static Color_RGBA8 dustPrimColor = { 255, 255, 0, 255 };
     static Color_RGBA8 dustEnvColor = { 255, 10, 0, 255 };
-    s16 pad;
-    Vec3f dustVel;
-    Vec3f dustAcell;
-    Vec3f dustPos;
-    s16 i;
+    s16                pad;
+    Vec3f              dustVel;
+    Vec3f              dustAcell;
+    Vec3f              dustPos;
+    s16                i;
 
     Math_SmoothStepToF(&this->unk_208, 0.05f, 1.0f, 0.005f, 0.0f);
     SkelAnime_Update(&this->skelAnime);
@@ -617,7 +617,7 @@ void BossDodongo_GetUp(BossDodongo* this, PlayState* play) {
 }
 
 void BossDodongo_BlowFire(BossDodongo* this, PlayState* play) {
-    s32 pad;
+    s32   pad;
     Vec3f unusedZeroVec1 = { 0.0f, 0.0f, 0.0f };
     Vec3f unusedZeroVec2 = { 0.0f, 0.0f, 0.0f };
 
@@ -673,8 +673,8 @@ static Vec3f sCornerPositions[] = {
 
 void BossDodongo_Walk(BossDodongo* this, PlayState* play) {
     Vec3f* sp4C;
-    f32 sp48;
-    f32 sp44;
+    f32    sp48;
+    f32    sp44;
 
     if (this->unk_1AA == 0) {
         if (Animation_OnFrame(&this->skelAnime, 14.0f)) {
@@ -747,9 +747,9 @@ void BossDodongo_Walk(BossDodongo* this, PlayState* play) {
 
 void BossDodongo_Roll(BossDodongo* this, PlayState* play) {
     Vec3f* sp5C;
-    Vec3f sp50;
-    f32 sp4C;
-    f32 sp48;
+    Vec3f  sp50;
+    f32    sp4C;
+    f32    sp48;
 
     this->actor.flags |= ACTOR_FLAG_PLAY_HIT_SFX;
     SkelAnime_Update(&this->skelAnime);
@@ -835,11 +835,11 @@ void BossDodongo_Roll(BossDodongo* this, PlayState* play) {
 void BossDodongo_Update(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
     BossDodongo* this = (BossDodongo*)thisx;
-    f32 temp_f0;
-    s16 i;
+    f32     temp_f0;
+    s16     i;
     Player* player = GET_PLAYER(play);
     Player* player2 = GET_PLAYER(play);
-    s32 pad;
+    s32     pad;
 
     this->unk_1E2 = 0;
     this->unk_19E++;
@@ -977,9 +977,9 @@ void BossDodongo_Update(Actor* thisx, PlayState* play2) {
         if ((this->unk_19E & phi_s0_3) == 0) {
             static Color_RGBA8 magmaPrimColor[] = { { 255, 255, 0, 255 }, { 0, 0, 0, 150 } };
             static Color_RGBA8 magmaEnvColor[] = { { 255, 0, 0, 255 }, { 0, 0, 0, 0 } };
-            Vec3f sp84;
-            f32 temp_f12;
-            f32 temp_f10;
+            Vec3f              sp84;
+            f32                temp_f12;
+            f32                temp_f10;
 
             temp_f12 = Rand_ZeroOne() * 330.0f;
             temp_f10 = Rand_ZeroOne() * 6.28f;
@@ -994,8 +994,8 @@ void BossDodongo_Update(Actor* thisx, PlayState* play2) {
             Vec3f sp6C = { 0.0f, 0.0f, 0.0f };
             Vec3f sp60 = { 0.0f, 0.0f, 0.0f };
             Vec3f sp54;
-            f32 sp50 = Rand_ZeroOne() * 330.0f;
-            f32 sp4C = Rand_ZeroOne() * 6.28f;
+            f32   sp50 = Rand_ZeroOne() * 330.0f;
+            f32   sp4C = Rand_ZeroOne() * 6.28f;
 
             sp54.x = sinf(sp4C) * sp50 + (-890.0f);
             sp54.y = -1523.76f;
@@ -1015,13 +1015,13 @@ void BossDodongo_Update(Actor* thisx, PlayState* play2) {
         }
 
         // TODO The lave floor bubbles with an effect that modifies the texture. This needs to be recreated shader-side.
-        //func_808C1554(gDodongosCavernBossLavaFloorTex, sLavaFloorLavaTex, this->unk_19E, this->unk_224);
+        // func_808C1554(gDodongosCavernBossLavaFloorTex, sLavaFloorLavaTex, this->unk_19E, this->unk_224);
     }
 
     if (this->unk_1C6 != 0) {
         u16* ptr1 = ResourceGetDataByName(sLavaFloorLavaTex);
         u16* ptr2 = ResourceGetDataByName(sLavaFloorRockTex);
-        s16 i2;
+        s16  i2;
 
         for (i2 = 0; i2 < 20; i2++) {
             s16 new_var = this->unk_1C2 & 0x7FF;
@@ -1176,12 +1176,12 @@ void BossDodongo_Draw(Actor* thisx, PlayState* play) {
 }
 
 f32 func_808C4F6C(BossDodongo* this, PlayState* play) {
-    f32 xDiff;
-    f32 zDiff;
-    f32 sp2C;
-    s32 pad;
-    f32 temp_f2;
-    f32 rotation;
+    f32     xDiff;
+    f32     zDiff;
+    f32     sp2C;
+    s32     pad;
+    f32     temp_f2;
+    f32     rotation;
     Player* player = GET_PLAYER(play);
 
     xDiff = player->actor.world.pos.x - this->actor.world.pos.x;
@@ -1199,12 +1199,12 @@ f32 func_808C4F6C(BossDodongo* this, PlayState* play) {
 }
 
 f32 func_808C50A8(BossDodongo* this, PlayState* play) {
-    f32 xDiff;
-    f32 zDiff;
-    f32 sp2C;
-    s32 pad;
-    f32 temp_f2;
-    f32 rotation;
+    f32     xDiff;
+    f32     zDiff;
+    f32     sp2C;
+    s32     pad;
+    f32     temp_f2;
+    f32     rotation;
     Player* player = GET_PLAYER(play);
 
     xDiff = player->actor.world.pos.x - this->actor.world.pos.x;
@@ -1234,7 +1234,7 @@ void BossDodongo_PlayerYawCheck(BossDodongo* this, PlayState* play) {
 
 void BossDodongo_PlayerPosCheck(BossDodongo* this, PlayState* play) {
     Vec3f* temp_v1;
-    s16 i;
+    s16    i;
 
     this->playerPosInRange = false;
 
@@ -1255,12 +1255,12 @@ void BossDodongo_SpawnFire(BossDodongo* this, PlayState* play, s16 params) {
 }
 
 void BossDodongo_UpdateDamage(BossDodongo* this, PlayState* play) {
-    s32 pad;
+    s32           pad;
     ColliderInfo* item1;
-    u8 swordDamage;
-    s32 damage;
+    u8            swordDamage;
+    s32           damage;
     ColliderInfo* item2;
-    s16 i;
+    s16           i;
 
     if ((this->health <= 0) && (this->actionFunc != BossDodongo_DeathCutscene)) {
         BossDodongo_SetupDeathCutscene(this);
@@ -1318,14 +1318,14 @@ void BossDodongo_SetupDeathCutscene(BossDodongo* this) {
 }
 
 void BossDodongo_DeathCutscene(BossDodongo* this, PlayState* play) {
-    Vec3f* cornerPos;
-    Vec3f sp198;
-    Vec3f sp184;
-    f32 tempSin;
-    f32 tempCos;
-    f32 sp178;
-    s16 i;
-    Vec3f effectPos;
+    Vec3f*  cornerPos;
+    Vec3f   sp198;
+    Vec3f   sp184;
+    f32     tempSin;
+    f32     tempCos;
+    f32     sp178;
+    s16     i;
+    Vec3f   effectPos;
     Camera* camera;
     Player* player = GET_PLAYER(play);
 
@@ -1531,13 +1531,13 @@ void BossDodongo_DeathCutscene(BossDodongo* this, PlayState* play) {
                         Math_SmoothStepToF(&this->unk_228, -6600.0f, 0.2f, 30.0f, 0.0f);
                     }
                     {
-                        static Vec3f dustVel = { 0.0f, 0.0f, 0.0f };
-                        static Vec3f dustAcell = { 0.0f, 1.0f, 0.0f };
+                        static Vec3f       dustVel = { 0.0f, 0.0f, 0.0f };
+                        static Vec3f       dustAcell = { 0.0f, 1.0f, 0.0f };
                         static Color_RGBA8 dustPrimColor = { 255, 255, 100, 255 };
                         static Color_RGBA8 dustEnvColor = { 255, 100, 0, 255 };
-                        s16 colorIndex;
-                        Color_RGBA8 magmaPrimColor2[] = { { 255, 255, 0, 255 }, { 0, 0, 0, 100 } };
-                        Color_RGBA8 magmaEnvColor2[] = { { 255, 0, 0, 255 }, { 0, 0, 0, 0 } };
+                        s16                colorIndex;
+                        Color_RGBA8        magmaPrimColor2[] = { { 255, 255, 0, 255 }, { 0, 0, 0, 100 } };
+                        Color_RGBA8        magmaEnvColor2[] = { { 255, 0, 0, 255 }, { 0, 0, 0, 0 } };
 
                         effectPos.x = Rand_CenteredFloat(120.0f) + this->actor.focus.pos.x;
                         effectPos.y = Rand_ZeroFloat(50.0f) + this->actor.world.pos.y;
@@ -1585,12 +1585,12 @@ void BossDodongo_DeathCutscene(BossDodongo* this, PlayState* play) {
                                      { -1390.0f, 0.0f, -3304.0f },
                                      { -890.0f, 0.0f, -2804.0f } };
 
-                    Vec3f sp7C[] = { { -890.0f, 0.0f, -2804.0f },
-                                     { -390.0f, 0.0f, -3304.0f },
-                                     { -890.0f, 0.0f, -3804.0f },
-                                     { -1390.0f, 0.0f, -3304.0f } };
+                    Vec3f  sp7C[] = { { -890.0f, 0.0f, -2804.0f },
+                                      { -390.0f, 0.0f, -3304.0f },
+                                      { -890.0f, 0.0f, -3804.0f },
+                                      { -1390.0f, 0.0f, -3304.0f } };
                     Vec3f* sp78;
-                    s32 pad74;
+                    s32    pad74;
 
                     if (this->unk_1A2 == 0) {
                         sp78 = &spAC[this->unk_1A0];
@@ -1661,7 +1661,7 @@ void BossDodongo_DeathCutscene(BossDodongo* this, PlayState* play) {
             }
         case 100:
             if ((this->unk_1DA < 0x2C6) && (Rand_ZeroOne() < 0.5f)) {
-                Vec3f sp68;
+                Vec3f       sp68;
                 Color_RGBA8 D_808CA568 = { 0, 0, 0, 100 };
                 Color_RGBA8 D_808CA56C = { 0, 0, 0, 0 };
 
@@ -1680,9 +1680,9 @@ void BossDodongo_DeathCutscene(BossDodongo* this, PlayState* play) {
 
 void BossDodongo_UpdateEffects(PlayState* play) {
     BossDodongoEffect* eff = (BossDodongoEffect*)play->specialEffects;
-    Color_RGB8 effectColors[] = { { 255, 128, 0 }, { 255, 0, 0 }, { 255, 255, 0 }, { 255, 0, 0 } };
-    s16 colorIndex;
-    s16 i;
+    Color_RGB8         effectColors[] = { { 255, 128, 0 }, { 255, 0, 0 }, { 255, 255, 0 }, { 255, 0, 0 } };
+    s16                colorIndex;
+    s16                i;
 
     for (i = 0; i < 80; i++, eff++) {
         if (eff->unk_24 != 0) {
@@ -1709,11 +1709,11 @@ void BossDodongo_UpdateEffects(PlayState* play) {
 }
 
 void BossDodongo_DrawEffects(PlayState* play) {
-    MtxF* unkMtx;
-    s16 i;
-    u8 phi_s3 = 0;
+    MtxF*              unkMtx;
+    s16                i;
+    u8                 phi_s3 = 0;
     BossDodongoEffect* eff;
-    GraphicsContext* gfxCtx = play->state.gfxCtx;
+    GraphicsContext*   gfxCtx = play->state.gfxCtx;
 
     eff = (BossDodongoEffect*)play->specialEffects;
 

@@ -111,10 +111,10 @@ void EnAnubice_Hover(EnAnubice* this, PlayState* play) {
 }
 
 void EnAnubice_SetFireballRot(EnAnubice* this, PlayState* play) {
-    f32 xzdist;
-    f32 x;
-    f32 y;
-    f32 z;
+    f32     xzdist;
+    f32     x;
+    f32     y;
+    f32     z;
     Player* player = GET_PLAYER(play);
 
     x = player->actor.world.pos.x - this->fireballPos.x;
@@ -174,7 +174,7 @@ void EnAnubice_Destroy(Actor* thisx, PlayState* play) {
 
 void EnAnubice_FindFlameCircles(EnAnubice* this, PlayState* play) {
     Actor* currentProp;
-    s32 flameCirclesFound;
+    s32    flameCirclesFound;
 
     if (this->isMirroringLink) {
         if (!this->hasSearchedForFlameCircles) {
@@ -319,11 +319,11 @@ void EnAnubice_SetupDie(EnAnubice* this, PlayState* play) {
 }
 
 void EnAnubice_Die(EnAnubice* this, PlayState* play) {
-    f32 curFrame;
-    f32 rotX;
+    f32   curFrame;
+    f32   rotX;
     Vec3f fireEffectInitialPos = { 0.0f, 0.0f, 0.0f };
     Vec3f fireEffectPos = { 0.0f, 0.0f, 0.0f };
-    s32 pad;
+    s32   pad;
 
     SkelAnime_Update(&this->skelAnime);
     Math_ApproachZeroF(&this->actor.shape.shadowScale, 0.4f, 0.25f);
@@ -359,11 +359,11 @@ void EnAnubice_Die(EnAnubice* this, PlayState* play) {
 }
 
 void EnAnubice_Update(Actor* thisx, PlayState* play) {
-    f32 zero;
+    f32             zero;
     BgHidanCurtain* flameCircle;
-    s32 i;
-    Vec3f sp48;
-    Vec3f sp3C;
+    s32             i;
+    Vec3f           sp48;
+    Vec3f           sp3C;
     EnAnubice* this = (EnAnubice*)thisx;
 
     if ((this->actionFunc != EnAnubice_SetupDie) && (this->actionFunc != EnAnubice_Die) &&

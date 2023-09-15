@@ -34,17 +34,19 @@ void func_8006D0AC(PlayState* play) {
 }
 
 typedef struct {
-    /* 0x00 */ s16 scene;
+    /* 0x00 */ s16   scene;
     /* 0x02 */ Vec3s pos;
-    /* 0x08 */ s16 angle;
-    /* 0x0A */ s16 type;
+    /* 0x08 */ s16   angle;
+    /* 0x0A */ s16   type;
 } HorseSpawn;
 
 void func_8006D0EC(PlayState* play, Player* player) {
-    s32 i;
+    s32        i;
     HorseSpawn horseSpawns[] = {
-        { SCENE_HYRULE_FIELD, -460, 100, 6640, 0, 2 },  { SCENE_LAKE_HYLIA, -1929, -1025, 768, 0, 2 },
-        { SCENE_GERUDO_VALLEY, 2566, -259, 767, 0, 2 }, { SCENE_GERUDOS_FORTRESS, -328, 10, 953, 0, 2 },
+        { SCENE_HYRULE_FIELD, -460, 100, 6640, 0, 2 },
+        { SCENE_LAKE_HYLIA, -1929, -1025, 768, 0, 2 },
+        { SCENE_GERUDO_VALLEY, 2566, -259, 767, 0, 2 },
+        { SCENE_GERUDOS_FORTRESS, -328, 10, 953, 0, 2 },
         { SCENE_LON_LON_RANCH, 928, 0, -2280, 0, 2 },
     };
 
@@ -74,8 +76,9 @@ void func_8006D0EC(PlayState* play, Player* player) {
         assert(horseActor != NULL);
     } else if ((play->sceneNum == gSaveContext.horseData.scene) &&
                (((Flags_GetEventChkInf(EVENTCHKINF_EPONA_OBTAINED) != 0) && (!gSaveContext.n64ddFlag ||
-               (gSaveContext.n64ddFlag && CHECK_QUEST_ITEM(QUEST_SONG_EPONA) &&
-               (INV_CONTENT(ITEM_OCARINA_FAIRY) != ITEM_NONE)))) || DREG(1) != 0)) {
+                                                                             (gSaveContext.n64ddFlag && CHECK_QUEST_ITEM(QUEST_SONG_EPONA) &&
+                                                                              (INV_CONTENT(ITEM_OCARINA_FAIRY) != ITEM_NONE)))) ||
+                DREG(1) != 0)) {
         // "Set by existence of horse %d %d %d"
         osSyncPrintf("馬存在によるセット %d %d %d\n", gSaveContext.horseData.scene, Flags_GetEventChkInf(EVENTCHKINF_EPONA_OBTAINED),
                      DREG(1));
@@ -122,16 +125,16 @@ void func_8006D0EC(PlayState* play, Player* player) {
 }
 
 typedef struct {
-    /* 0x00 */ s16 scene;
-    /* 0x04 */ s32 cutsceneIndex;
+    /* 0x00 */ s16   scene;
+    /* 0x04 */ s32   cutsceneIndex;
     /* 0x08 */ Vec3s pos;
-    /* 0x0E */ s16 angle;
-    /* 0x10 */ s16 type;
+    /* 0x0E */ s16   angle;
+    /* 0x10 */ s16   type;
 } struct_8011F9B8;
 
 void func_8006D684(PlayState* play, Player* player) {
-    s32 pad;
-    s32 i;
+    s32   pad;
+    s32   i;
     Vec3s spawnPos;
 
     if ((gSaveContext.entranceIndex == 0x028A || gSaveContext.entranceIndex == 0x028E ||
@@ -205,7 +208,7 @@ void func_8006D684(PlayState* play, Player* player) {
                     func_8002DE74(play, player);
                 } else if ((D_8011F9B8[i].type == 5) || (D_8011F9B8[i].type == 6) || (D_8011F9B8[i].type == 8)) {
                     Vec3f sp54;
-                    s32 temp = 0;
+                    s32   temp = 0;
 
                     if (((gSaveContext.eventInf[0] & 0x10) >> 4) && D_8011F9B8[i].type == 6) {
                         temp = 0x8000;

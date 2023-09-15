@@ -45,12 +45,21 @@ static s16 D_8089BA00[4] = { 48, 48, 36, 36 };
 static f32 D_8089BA08[4] = { 8.0f, 8.0f, 10.0f, 10.0f };
 
 static s16 D_8089BA18[6][2] = {
-    { 0x0388, 0x0395 }, { 0x03EA, 0x03FF }, { 0x0454, 0x0467 },
-    { 0x04B4, 0x04C1 }, { 0x0518, 0x0528 }, { 0x0581, 0x0590 },
+    { 0x0388, 0x0395 },
+    { 0x03EA, 0x03FF },
+    { 0x0454, 0x0467 },
+    { 0x04B4, 0x04C1 },
+    { 0x0518, 0x0528 },
+    { 0x0581, 0x0590 },
 };
 
 static s16 D_8089BA30[6] = {
-    0, 0, 1, 2, 2, 3,
+    0,
+    0,
+    1,
+    2,
+    2,
+    3,
 };
 
 static InitChainEntry sInitChain[] = {
@@ -62,9 +71,9 @@ static InitChainEntry sInitChain[] = {
 
 void BgJyaZurerukabe_InitDynaPoly(BgJyaZurerukabe* this, PlayState* play, CollisionHeader* collision,
                                   s32 flag) {
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
-    s32 pad2;
+    s32              pad2;
 
     DynaPolyActor_Init(&this->dyna, flag);
     CollisionHeader_GetVirtual(collision, &colHeader);

@@ -10,11 +10,11 @@
 
 #define FLAGS ACTOR_FLAG_UPDATE_WHILE_CULLED
 
-#define MOVEBG_TYPE(params) (((u16)(params) >> 0xC) & 0xF)
-#define MOVEBG_FLAGS(params) ((u16)(params)&0x3F)
-#define MOVEBG_PATH_ID(params) (((u16)(params) >> 0x8) & 0xF)
+#define MOVEBG_TYPE(params)     (((u16)(params) >> 0xC) & 0xF)
+#define MOVEBG_FLAGS(params)    ((u16)(params)&0x3F)
+#define MOVEBG_PATH_ID(params)  (((u16)(params) >> 0x8) & 0xF)
 #define MOVEBG_POINT_ID(params) ((u16)(params)&0xF)
-#define MOVEBG_SPEED(params) (((u16)(params) >> 0x4) & 0xF)
+#define MOVEBG_SPEED(params)    (((u16)(params) >> 0x4) & 0xF)
 
 void BgMizuMovebg_Init(Actor* thisx, PlayState* play);
 void BgMizuMovebg_Destroy(Actor* thisx, PlayState* play);
@@ -23,7 +23,7 @@ void BgMizuMovebg_Draw(Actor* thisx, PlayState* play);
 
 void func_8089E318(BgMizuMovebg* this, PlayState* play);
 void func_8089E650(BgMizuMovebg* this, PlayState* play);
-s32 func_8089E108(Path* pathList, Vec3f* pos, s32 pathId, s32 pointId);
+s32  func_8089E108(Path* pathList, Vec3f* pos, s32 pathId, s32 pointId);
 
 const ActorInit Bg_Mizu_Movebg_InitVars = {
     ACTOR_BG_MIZU_MOVEBG,
@@ -41,15 +41,25 @@ const ActorInit Bg_Mizu_Movebg_InitVars = {
 static f32 D_8089EB40[] = { -115.200005f, -115.200005f, -115.200005f, 0.0f };
 
 static Gfx* D_8089EB50[] = {
-    gObjectMizuObjectsMovebgDL_000190, gObjectMizuObjectsMovebgDL_000680, gObjectMizuObjectsMovebgDL_000C20,
-    gObjectMizuObjectsMovebgDL_002E10, gObjectMizuObjectsMovebgDL_002E10, gObjectMizuObjectsMovebgDL_002E10,
-    gObjectMizuObjectsMovebgDL_002E10, gObjectMizuObjectsMovebgDL_0011F0,
+    gObjectMizuObjectsMovebgDL_000190,
+    gObjectMizuObjectsMovebgDL_000680,
+    gObjectMizuObjectsMovebgDL_000C20,
+    gObjectMizuObjectsMovebgDL_002E10,
+    gObjectMizuObjectsMovebgDL_002E10,
+    gObjectMizuObjectsMovebgDL_002E10,
+    gObjectMizuObjectsMovebgDL_002E10,
+    gObjectMizuObjectsMovebgDL_0011F0,
 };
 
 static CollisionHeader* D_8089EB70[] = {
-    &gObjectMizuObjectsMovebgCol_0003F0, &gObjectMizuObjectsMovebgCol_000998, &gObjectMizuObjectsMovebgCol_000ED0,
-    &gObjectMizuObjectsMovebgCol_003590, &gObjectMizuObjectsMovebgCol_003590, &gObjectMizuObjectsMovebgCol_003590,
-    &gObjectMizuObjectsMovebgCol_003590, &gObjectMizuObjectsMovebgCol_0015F8,
+    &gObjectMizuObjectsMovebgCol_0003F0,
+    &gObjectMizuObjectsMovebgCol_000998,
+    &gObjectMizuObjectsMovebgCol_000ED0,
+    &gObjectMizuObjectsMovebgCol_003590,
+    &gObjectMizuObjectsMovebgCol_003590,
+    &gObjectMizuObjectsMovebgCol_003590,
+    &gObjectMizuObjectsMovebgCol_003590,
+    &gObjectMizuObjectsMovebgCol_0015F8,
 };
 
 static InitChainEntry sInitChain[] = {
@@ -80,12 +90,12 @@ s32 func_8089DC30(PlayState* play) {
 }
 
 void BgMizuMovebg_Init(Actor* thisx, PlayState* play) {
-    s32 type;
-    s32 waypointId;
-    WaterBox* waterBoxes = play->colCtx.colHeader->waterBoxes;
-    f32 temp;
+    s32              type;
+    s32              waypointId;
+    WaterBox*        waterBoxes = play->colCtx.colHeader->waterBoxes;
+    f32              temp;
     CollisionHeader* colHeader = NULL;
-    Vec3f sp48;
+    Vec3f            sp48;
 
     Actor_ProcessInitChain(thisx, sInitChain);
     ((BgMizuMovebg*)thisx)->homeY = thisx->world.pos.y;
@@ -190,7 +200,7 @@ void BgMizuMovebg_Destroy(Actor* thisx, PlayState* play) {
 }
 
 s32 func_8089E108(Path* pathList, Vec3f* pos, s32 pathId, s32 pointId) {
-    Path* path = pathList;
+    Path*  path = pathList;
     Vec3s* point;
 
     path += pathId;
@@ -238,9 +248,9 @@ void func_8089E198(BgMizuMovebg* this, PlayState* play) {
 
 void func_8089E318(BgMizuMovebg* this, PlayState* play) {
     WaterBox* waterBoxes = play->colCtx.colHeader->waterBoxes;
-    f32 phi_f0;
-    s32 type;
-    Vec3f sp28;
+    f32       phi_f0;
+    s32       type;
+    Vec3f     sp28;
 
     func_8089E198(this, play);
 
@@ -319,10 +329,10 @@ void func_8089E318(BgMizuMovebg* this, PlayState* play) {
 
 void func_8089E650(BgMizuMovebg* this, PlayState* play) {
     Vec3f waypoint;
-    f32 dist;
-    f32 dx;
-    f32 dy;
-    f32 dz;
+    f32   dist;
+    f32   dx;
+    f32   dy;
+    f32   dz;
 
     this->dyna.actor.speedXZ = MOVEBG_SPEED(this->dyna.actor.params) * 0.1f;
     func_8089E108(play->setupPathList, &waypoint, MOVEBG_PATH_ID(this->dyna.actor.params), this->waypointId);
@@ -361,7 +371,7 @@ void BgMizuMovebg_Update(Actor* thisx, PlayState* play) {
 void BgMizuMovebg_Draw(Actor* thisx, PlayState* play2) {
     BgMizuMovebg* this = (BgMizuMovebg*)thisx;
     PlayState* play = play2;
-    u32 frames;
+    u32        frames;
 
     OPEN_DISPS(play->state.gfxCtx);
 

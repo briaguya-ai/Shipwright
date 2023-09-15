@@ -61,8 +61,18 @@ void ObjMure2_SetPosShrubCircle(Vec3f* vec, ObjMure2* this) {
 }
 
 static Mure2sScatteredShrubInfo sScatteredShrubInfo[] = {
-    { 40, 0x0666 }, { 40, 0x2CCC }, { 40, 0x5999 }, { 40, 0x8666 }, { 20, 0xC000 }, { 80, 0x1333 },
-    { 80, 0x4000 }, { 80, 0x6CCC }, { 80, 0x9333 }, { 80, 0xACCC }, { 80, 0xC666 }, { 60, 0xE000 },
+    { 40, 0x0666 },
+    { 40, 0x2CCC },
+    { 40, 0x5999 },
+    { 40, 0x8666 },
+    { 20, 0xC000 },
+    { 80, 0x1333 },
+    { 80, 0x4000 },
+    { 80, 0x6CCC },
+    { 80, 0x9333 },
+    { 80, 0xACCC },
+    { 80, 0xC666 },
+    { 60, 0xE000 },
 };
 
 void ObjMure2_SetPosShrubScattered(Vec3f* vec, ObjMure2* this) {
@@ -87,7 +97,7 @@ void ObjMure2_SetPosRockCircle(Vec3f* vec, ObjMure2* this) {
 
 void ObjMure2_SetActorSpawnParams(s16* params, ObjMure2* this) {
     static s16 actorSpawnParams[] = { 0, 0, 0 };
-    s16 dropTable = (this->actor.params >> 8) & 0xF;
+    s16        dropTable = (this->actor.params >> 8) & 0xF;
 
     if (dropTable >= 13) {
         dropTable = 0;
@@ -102,10 +112,10 @@ void ObjMure2_SpawnActors(ObjMure2* this, PlayState* play) {
         ObjMure2_SetPosShrubScattered,
         ObjMure2_SetPosRockCircle,
     };
-    s32 actorNum = this->actor.params & 3;
-    s32 i;
+    s32   actorNum = this->actor.params & 3;
+    s32   i;
     Vec3f spawnPos[12];
-    s16 params;
+    s16   params;
 
     setPosFunc[actorNum](spawnPos, this);
     ObjMure2_SetActorSpawnParams(&params, this);
@@ -210,7 +220,7 @@ void func_80B9A6F8(ObjMure2* this, PlayState* play) {
     }
 
     if ((sDistSquared2[this->actor.params & 3] * this->unk_184) <=
-            Math3D_Dist1DSq(this->actor.projectedPos.x, this->actor.projectedPos.z)) {
+        Math3D_Dist1DSq(this->actor.projectedPos.x, this->actor.projectedPos.z)) {
         this->actor.flags &= ~ACTOR_FLAG_UPDATE_WHILE_CULLED;
         ObjMure2_CleanupAndDie(this, play);
         func_80B9A658(this);

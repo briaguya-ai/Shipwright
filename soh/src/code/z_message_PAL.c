@@ -43,8 +43,14 @@ MessageTableEntry* sStaffMessageEntryTablePtr = NULL;
 char* _message_0xFFFC_nes;
 
 s16 sTextboxBackgroundForePrimColors[][3] = {
-    { 255, 255, 255 }, { 50, 20, 0 },     { 255, 60, 0 },    { 255, 255, 255 },
-    { 255, 255, 255 }, { 255, 255, 255 }, { 255, 255, 255 }, { 255, 255, 255 },
+    { 255, 255, 255 },
+    { 50, 20, 0 },
+    { 255, 60, 0 },
+    { 255, 255, 255 },
+    { 255, 255, 255 },
+    { 255, 255, 255 },
+    { 255, 255, 255 },
+    { 255, 255, 255 },
 };
 
 s16 sTextboxBackgroundBackPrimColors[][3] = {
@@ -66,9 +72,18 @@ s16 sOcarinaNotesAlphaValues[9] = { 0 };
 
 // Maps the ocarina song order to the quest item order
 s16 gOcarinaSongItemMap[] = {
-    OCARINA_SONG_MINUET,   OCARINA_SONG_BOLERO,  OCARINA_SONG_SERENADE, OCARINA_SONG_REQUIEM,
-    OCARINA_SONG_NOCTURNE, OCARINA_SONG_PRELUDE, OCARINA_SONG_LULLABY,  OCARINA_SONG_EPONAS,
-    OCARINA_SONG_SARIAS,   OCARINA_SONG_SUNS,    OCARINA_SONG_TIME,     OCARINA_SONG_STORMS,
+    OCARINA_SONG_MINUET,
+    OCARINA_SONG_BOLERO,
+    OCARINA_SONG_SERENADE,
+    OCARINA_SONG_REQUIEM,
+    OCARINA_SONG_NOCTURNE,
+    OCARINA_SONG_PRELUDE,
+    OCARINA_SONG_LULLABY,
+    OCARINA_SONG_EPONAS,
+    OCARINA_SONG_SARIAS,
+    OCARINA_SONG_SUNS,
+    OCARINA_SONG_TIME,
+    OCARINA_SONG_STORMS,
 };
 
 s32 sCharTexSize;
@@ -150,7 +165,7 @@ u8 Message_ShouldAdvance(PlayState* play) {
     Input* input = &play->state.input[0];
 
     bool isB_Held = CVarGetInteger("gSkipText", 0) != 0 ? CHECK_BTN_ALL(input->cur.button, BTN_B)
-                                                     : CHECK_BTN_ALL(input->press.button, BTN_B);
+                                                        : CHECK_BTN_ALL(input->press.button, BTN_B);
 
     if (CHECK_BTN_ALL(input->press.button, BTN_A) || isB_Held || CHECK_BTN_ALL(input->press.button, BTN_CUP)) {
         Audio_PlaySoundGeneral(NA_SE_SY_MESSAGE_PASS, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
@@ -162,7 +177,7 @@ u8 Message_ShouldAdvanceSilent(PlayState* play) {
     Input* input = &play->state.input[0];
 
     bool isB_Held = CVarGetInteger("gSkipText", 0) != 0 ? CHECK_BTN_ALL(input->cur.button, BTN_B)
-                                                     : CHECK_BTN_ALL(input->press.button, BTN_B);
+                                                        : CHECK_BTN_ALL(input->press.button, BTN_B);
 
     return CHECK_BTN_ALL(input->press.button, BTN_A) || isB_Held || CHECK_BTN_ALL(input->press.button, BTN_CUP);
 }
@@ -183,10 +198,10 @@ void Message_CloseTextbox(PlayState* play) {
 }
 
 void Message_HandleChoiceSelection(PlayState* play, u8 numChoices) {
-    static s16 sAnalogStickHeld = false;
+    static s16      sAnalogStickHeld = false;
     MessageContext* msgCtx = &play->msgCtx;
-    Input* input = &play->state.input[0];
-    bool dpad = CVarGetInteger("gDpadText", 0);
+    Input*          input = &play->state.input[0];
+    bool            dpad = CVarGetInteger("gDpadText", 0);
 
     if ((input->rel.stick_y >= 30 && !sAnalogStickHeld) || (dpad && CHECK_BTN_ALL(input->press.button, BTN_DUP))) {
         sAnalogStickHeld = true;
@@ -214,9 +229,9 @@ void Message_HandleChoiceSelection(PlayState* play, u8 numChoices) {
 
 void Message_DrawTextChar(PlayState* play, void* textureImage, Gfx** p) {
     MessageContext* msgCtx = &play->msgCtx;
-    Gfx* gfx = *p;
-    s16 x = msgCtx->textPosX;
-    s16 y = msgCtx->textPosY;
+    Gfx*            gfx = *p;
+    s16             x = msgCtx->textPosX;
+    s16             y = msgCtx->textPosY;
 
     gDPPipeSync(gfx++);
 
@@ -246,10 +261,24 @@ void Message_DrawTextChar(PlayState* play, void* textureImage, Gfx** p) {
 // resizes textboxes when opening them
 void Message_GrowTextbox(MessageContext* msgCtx) {
     static f32 sWidthCoefficients[] = {
-        1.2f, 1.5f, 1.8f, 2.0f, 2.1f, 2.2f, 2.1f, 2.0f,
+        1.2f,
+        1.5f,
+        1.8f,
+        2.0f,
+        2.1f,
+        2.2f,
+        2.1f,
+        2.0f,
     };
     static f32 sHeightCoefficients[] = {
-        0.6f, 0.75f, 0.9f, 1.0f, 1.05f, 1.1f, 1.05f, 1.0f,
+        0.6f,
+        0.75f,
+        0.9f,
+        1.0f,
+        1.05f,
+        1.1f,
+        1.05f,
+        1.0f,
     };
     f32 width =
         R_TEXTBOX_WIDTH_TARGET * (sWidthCoefficients[msgCtx->stateTimer] + sWidthCoefficients[msgCtx->stateTimer]);
@@ -282,17 +311,16 @@ void Message_GrowTextbox(MessageContext* msgCtx) {
 }
 
 void Message_FindMessage(PlayState* play, u16 textId) {
-    const char* foundSeg;
-    const char* nextSeg;
+    const char*        foundSeg;
+    const char*        nextSeg;
     MessageTableEntry* messageTableEntry = sNesMessageEntryTablePtr;
-    const char** languageSegmentTable;
-    Font* font;
-    const char* seg;
-    u16 bufferId = textId;
+    const char**       languageSegmentTable;
+    Font*              font;
+    const char*        seg;
+    u16                bufferId = textId;
     // Use the better owl message if better owl is enabled
     if (CVarGetInteger("gBetterOwl", 0) != 0 && (bufferId == 0x2066 || bufferId == 0x607B ||
-        bufferId == 0x10C2 || bufferId == 0x10C6 || bufferId == 0x206A))
-    {
+                                                 bufferId == 0x10C2 || bufferId == 0x10C6 || bufferId == 0x206A)) {
         bufferId = 0x71B3;
     }
 
@@ -341,11 +369,11 @@ void Message_FindMessage(PlayState* play, u16 textId) {
 }
 
 void Message_FindCreditsMessage(PlayState* play, u16 textId) {
-    const char* foundSeg;
-    const char* nextSeg;
-    const char* seg;
+    const char*        foundSeg;
+    const char*        nextSeg;
+    const char*        seg;
     MessageTableEntry* messageTableEntry = sStaffMessageEntryTablePtr;
-    Font* font;
+    Font*              font;
 
     seg = messageTableEntry->segment;
     while (messageTableEntry->textId != 0xFFFF) {
@@ -470,19 +498,19 @@ void Message_DrawTextboxIcon(PlayState* play, Gfx** p, s16 x, s16 y) {
         sIconEnvColors[1] = color;
     } else if (CVarGetInteger("gCosmetics.DefaultColorScheme", COLORSCHEME_N64) == COLORSCHEME_GAMECUBE) {
         sIconPrimColors[0] = (Color_RGB8){ 0, 200, 80 };
-        sIconPrimColors[1] = (Color_RGB8){ 50, 255, 130 }; 
-        sIconEnvColors[1] = (Color_RGB8){ 50, 255, 130 }; 
+        sIconPrimColors[1] = (Color_RGB8){ 50, 255, 130 };
+        sIconEnvColors[1] = (Color_RGB8){ 50, 255, 130 };
     }
-    static Color_RGB8 sIconPrim =  { 0, 80, 200 };
-    static s16 sIconFlashTimer = 12;
-    static s16 sIconFlashColorIdx = 0;
+    static Color_RGB8 sIconPrim = { 0, 80, 200 };
+    static s16        sIconFlashTimer = 12;
+    static s16        sIconFlashColorIdx = 0;
     static Color_RGB8 sIconEnv = { 0, 0, 0 };
-    MessageContext* msgCtx = &play->msgCtx;
-    Font* font = &msgCtx->font;
-    Gfx* gfx = *p;
-    Color_RGB8 prim;
-    Color_RGB8 env;
-    u8* iconTexture = font->iconBuf;
+    MessageContext*   msgCtx = &play->msgCtx;
+    Font*             font = &msgCtx->font;
+    Gfx*              gfx = *p;
+    Color_RGB8        prim;
+    Color_RGB8        env;
+    u8*               iconTexture = font->iconBuf;
     gSPInvalidateTexCache(gfx++, iconTexture);
 
     if (sTextIsCredits) {
@@ -717,8 +745,8 @@ f32 Message_GetCharacterWidth(unsigned char characterIndex) {
 }
 
 u16 Message_DrawItemIcon(PlayState* play, u16 itemId, Gfx** p, u16 i) {
-    s32 pad;
-    Gfx* gfx = *p;
+    s32             pad;
+    Gfx*            gfx = *p;
     MessageContext* msgCtx = &play->msgCtx;
 
     // clang-format off
@@ -827,14 +855,14 @@ void Message_HandleOcarina(PlayState* play) {
  */
 void Message_DrawText(PlayState* play, Gfx** gfxP) {
     MessageContext* msgCtx = &play->msgCtx;
-    u16 lookAheadCharacter;
-    u8 character;
-    u16 j;
-    u16 i;
-    u16 sfxHi;
-    u16 charTexIdx;
-    Font* font = &play->msgCtx.font;
-    Gfx* gfx = *gfxP;
+    u16             lookAheadCharacter;
+    u8              character;
+    u16             j;
+    u16             i;
+    u16             sfxHi;
+    u16             charTexIdx;
+    Font*           font = &play->msgCtx.font;
+    Gfx*            gfx = *gfxP;
 
     play->msgCtx.textPosX = R_TEXT_INIT_XPOS;
 
@@ -1123,9 +1151,9 @@ void Message_DrawText(PlayState* play, Gfx** gfxP) {
 }
 
 void Message_LoadItemIcon(PlayState* play, u16 itemId, s16 y) {
-    static s16 sIconItem32XOffsets[] = { 74, 74, 74 };
-    static s16 sIconItem24XOffsets[] = { 72, 72, 72 };
-    MessageContext* msgCtx = &play->msgCtx;
+    static s16        sIconItem32XOffsets[] = { 74, 74, 74 };
+    static s16        sIconItem24XOffsets[] = { 72, 72, 72 };
+    MessageContext*   msgCtx = &play->msgCtx;
     InterfaceContext* interfaceCtx = &play->interfaceCtx;
 
     if (itemId == ITEM_DUNGEON_MAP) {
@@ -1154,19 +1182,19 @@ void Message_LoadItemIcon(PlayState* play, u16 itemId, s16 y) {
 }
 
 void Message_Decode(PlayState* play) {
-    u8 temp_s2;
-    u8 phi_s1;
-    u16 phi_s0_3;
-    s32 loadChar;
-    s32 charTexIdx = 0;
-    s16 playerNameLen;
-    s16 decodedBufPos = 0;
-    s16 numLines = 0;
-    s16 i;
-    s16 digits[4];
-    f32 timeInSeconds;
+    u8              temp_s2;
+    u8              phi_s1;
+    u16             phi_s0_3;
+    s32             loadChar;
+    s32             charTexIdx = 0;
+    s16             playerNameLen;
+    s16             decodedBufPos = 0;
+    s16             numLines = 0;
+    s16             i;
+    s16             digits[4];
+    f32             timeInSeconds;
     MessageContext* msgCtx = &play->msgCtx;
-    Font* font = &play->msgCtx.font;
+    Font*           font = &play->msgCtx.font;
 
     if ((msgCtx->msgMode >= MSGMODE_OCARINA_STARTING && msgCtx->msgMode <= MSGMODE_OCARINA_AWAIT_INPUT) || msgCtx->textBoxType == TEXTBOX_TYPE_OCARINA) {
         // TODO: Figure out what specific textures to invalidate to prevent the ocarina textboxes from flashing
@@ -1187,14 +1215,12 @@ void Message_Decode(PlayState* play) {
         phi_s1 = temp_s2 = msgCtx->msgBufDecoded[decodedBufPos] = font->msgBuf[msgCtx->msgBufPos];
 
         // Don't require input for credits textboxes in randomizer
-        if (CVarGetInteger("gNoInputForCredits", 0) && (
-            msgCtx->textId == 0x706F ||
-            msgCtx->textId == 0x7091 ||
-            msgCtx->textId == 0x7092 ||
-            msgCtx->textId == 0x7093 ||
-            msgCtx->textId == 0x7094 ||
-            msgCtx->textId == 0x7095
-        )) {
+        if (CVarGetInteger("gNoInputForCredits", 0) && (msgCtx->textId == 0x706F ||
+                                                        msgCtx->textId == 0x7091 ||
+                                                        msgCtx->textId == 0x7092 ||
+                                                        msgCtx->textId == 0x7093 ||
+                                                        msgCtx->textId == 0x7094 ||
+                                                        msgCtx->textId == 0x7095)) {
             if (temp_s2 == MESSAGE_BOX_BREAK) {
                 phi_s1 = temp_s2 = msgCtx->msgBufDecoded[decodedBufPos] = font->msgBuf[msgCtx->msgBufPos] = MESSAGE_BOX_BREAK_DELAYED;
             } else if (temp_s2 == MESSAGE_END) {
@@ -1576,10 +1602,10 @@ void Message_Decode(PlayState* play) {
 extern const char* msgStaticTbl[];
 
 void Message_OpenText(PlayState* play, u16 textId) {
-    static s16 messageStaticIndices[] = { 0, 1, 3, 2 };
+    static s16      messageStaticIndices[] = { 0, 1, 3, 2 };
     MessageContext* msgCtx = &play->msgCtx;
-    Font* font = &msgCtx->font;
-    s16 textBoxType;
+    Font*           font = &msgCtx->font;
+    s16             textBoxType;
 
     if (msgCtx->msgMode == MSGMODE_NONE) {
         gSaveContext.unk_13EE = gSaveContext.unk_13EA;
@@ -1648,8 +1674,8 @@ void Message_OpenText(PlayState* play, u16 textId) {
         memcpy(font->msgBuf, src, font->msgLength);
 
         // OTRTODO
-        //DmaMgr_SendRequest1(font->msgBuf, (uintptr_t)(_staff_message_data_staticSegmentRomStart + 4 + font->msgOffset),
-                            //font->msgLength, __FILE__, __LINE__);
+        // DmaMgr_SendRequest1(font->msgBuf, (uintptr_t)(_staff_message_data_staticSegmentRomStart + 4 + font->msgOffset),
+        // font->msgLength, __FILE__, __LINE__);
 
     } else if (CVarGetInteger("gAskToEquip", 0) &&
                (((LINK_IS_ADULT || CVarGetInteger("gTimelessEquipment", 0)) &&
@@ -1657,7 +1683,7 @@ void Message_OpenText(PlayState* play, u16 textId) {
                  (textId == 0x0C || textId == 0x4B || textId == 0x4E ||
                   textId == 0x50 || textId == 0x51)) ||
                 ((!LINK_IS_ADULT || CVarGetInteger("gTimelessEquipment", 0)) &&
-                // 4C = Deku Shield, A4 = Kokiri Sword
+                 // 4C = Deku Shield, A4 = Kokiri Sword
                  (textId == 0x4C || textId == 0xA4)) ||
                 // 4D == Hylian Shield
                 textId == 0x4D)) {
@@ -1751,18 +1777,26 @@ void Message_ContinueTextbox(PlayState* play, u16 textId) {
 
 void Message_StartOcarina(PlayState* play, u16 ocarinaActionId) {
     static u16 sOcarinaSongFlagsMap[] = {
-        (1 << OCARINA_SONG_MINUET),    (1 << OCARINA_SONG_BOLERO),   (1 << OCARINA_SONG_SERENADE),
-        (1 << OCARINA_SONG_REQUIEM),   (1 << OCARINA_SONG_NOCTURNE), (1 << OCARINA_SONG_PRELUDE),
-        (1 << OCARINA_SONG_LULLABY),   (1 << OCARINA_SONG_EPONAS),   (1 << OCARINA_SONG_SARIAS),
-        (1 << OCARINA_SONG_SUNS),      (1 << OCARINA_SONG_TIME),     (1 << OCARINA_SONG_STORMS),
+        (1 << OCARINA_SONG_MINUET),
+        (1 << OCARINA_SONG_BOLERO),
+        (1 << OCARINA_SONG_SERENADE),
+        (1 << OCARINA_SONG_REQUIEM),
+        (1 << OCARINA_SONG_NOCTURNE),
+        (1 << OCARINA_SONG_PRELUDE),
+        (1 << OCARINA_SONG_LULLABY),
+        (1 << OCARINA_SONG_EPONAS),
+        (1 << OCARINA_SONG_SARIAS),
+        (1 << OCARINA_SONG_SUNS),
+        (1 << OCARINA_SONG_TIME),
+        (1 << OCARINA_SONG_STORMS),
         (1 << OCARINA_SONG_SCARECROW),
     };
     MessageContext* msgCtx = &play->msgCtx;
-    s32 textId;
-    s16 j;
-    s16 i;
-    s16 noStop;
-    s32 k;
+    s32             textId;
+    s16             j;
+    s16             i;
+    s16             noStop;
+    s32             k;
 
     osSyncPrintf(VT_FGCOL(GREEN));
 
@@ -1925,7 +1959,7 @@ u8 Message_GetState(MessageContext* msgCtx) {
 
 void Message_DrawTextBox(PlayState* play, Gfx** p) {
     MessageContext* msgCtx = &play->msgCtx;
-    Gfx* gfx = *p;
+    Gfx*            gfx = *p;
 
     gSPInvalidateTexCache(gfx++, msgCtx->textboxSegment);
     gDPPipeSync(gfx++);
@@ -1998,12 +2032,21 @@ void Message_SetView(View* view) {
  */
 void Message_DrawMain(PlayState* play, Gfx** p) {
     static s16 sOcarinaEffectActorIds[] = {
-        ACTOR_OCEFF_WIPE3, ACTOR_OCEFF_WIPE2, ACTOR_OCEFF_WIPE,  ACTOR_OCEFF_SPOT,
-        ACTOR_OCEFF_WIPE,  ACTOR_OCEFF_STORM, ACTOR_OCEFF_WIPE4,
+        ACTOR_OCEFF_WIPE3,
+        ACTOR_OCEFF_WIPE2,
+        ACTOR_OCEFF_WIPE,
+        ACTOR_OCEFF_SPOT,
+        ACTOR_OCEFF_WIPE,
+        ACTOR_OCEFF_STORM,
+        ACTOR_OCEFF_WIPE4,
     };
-    static s16 sOcarinaEffectActorParams[] = { 0x0000, 0x0000, 0x0000, 0x0000, 0x0001, 0x0000, 0x0000 };
+    static s16   sOcarinaEffectActorParams[] = { 0x0000, 0x0000, 0x0000, 0x0000, 0x0001, 0x0000, 0x0000 };
     static void* sOcarinaNoteTextures[] = {
-        gOcarinaBtnIconATex, gOcarinaBtnIconCDownTex, gOcarinaBtnIconCRightTex, gOcarinaBtnIconCLeftTex, gOcarinaBtnIconCUpTex,
+        gOcarinaBtnIconATex,
+        gOcarinaBtnIconCDownTex,
+        gOcarinaBtnIconCRightTex,
+        gOcarinaBtnIconCLeftTex,
+        gOcarinaBtnIconCUpTex,
     };
     static Color_RGB8 sOcarinaNoteAPrimColors[2] = {
         { 80, 150, 255 },
@@ -2114,23 +2157,32 @@ void Message_DrawMain(PlayState* play, Gfx** p) {
     static s16 sOcarinaNoteFlashTimer = 12;
     static s16 sOcarinaNoteFlashColorIdx = 1;
     static s16 sOcarinaSongFanfares[] = {
-        NA_BGM_OCA_MINUET,   NA_BGM_OCA_BOLERO, NA_BGM_OCA_SERENADE, NA_BGM_OCA_REQUIEM,
-        NA_BGM_OCA_NOCTURNE, NA_BGM_OCA_LIGHT,  NA_BGM_OCA_SARIA,    NA_BGM_OCA_EPONA,
-        NA_BGM_OCA_ZELDA,    NA_BGM_OCA_SUNS,   NA_BGM_OCA_TIME,     NA_BGM_OCA_STORM,
+        NA_BGM_OCA_MINUET,
+        NA_BGM_OCA_BOLERO,
+        NA_BGM_OCA_SERENADE,
+        NA_BGM_OCA_REQUIEM,
+        NA_BGM_OCA_NOCTURNE,
+        NA_BGM_OCA_LIGHT,
+        NA_BGM_OCA_SARIA,
+        NA_BGM_OCA_EPONA,
+        NA_BGM_OCA_ZELDA,
+        NA_BGM_OCA_SUNS,
+        NA_BGM_OCA_TIME,
+        NA_BGM_OCA_STORM,
     };
     InterfaceContext* interfaceCtx = &play->interfaceCtx;
-    MessageContext* msgCtx = &play->msgCtx;
-    u16 noteBufPos;
-    Player* player = GET_PLAYER(play);
-    s32 pad;
-    Gfx* gfx = *p;
-    s16 r;
-    s16 g;
-    s16 b;
-    u16 i;
-    u16 notePosX;
-    u16 pad1;
-    u16 j;
+    MessageContext*   msgCtx = &play->msgCtx;
+    u16               noteBufPos;
+    Player*           player = GET_PLAYER(play);
+    s32               pad;
+    Gfx*              gfx = *p;
+    s16               r;
+    s16               g;
+    s16               b;
+    u16               i;
+    u16               notePosX;
+    u16               pad1;
+    u16               j;
 
     gSPSegment(gfx++, 0x02, play->interfaceCtx.parameterSegment);
     gSPSegment(gfx++, 0x07, msgCtx->textboxSegment);
@@ -2150,8 +2202,8 @@ void Message_DrawMain(PlayState* play, Gfx** p) {
         gDPSetCombineLERP(gfx++, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, PRIMITIVE, TEXEL0, 0, PRIMITIVE,
                           0);
 
-            bool isB_Held = CVarGetInteger("gSkipText", 0) != 0 ? CHECK_BTN_ALL(play->state.input[0].cur.button, BTN_B)
-                                                         : CHECK_BTN_ALL(play->state.input[0].press.button, BTN_B);
+        bool isB_Held = CVarGetInteger("gSkipText", 0) != 0 ? CHECK_BTN_ALL(play->state.input[0].cur.button, BTN_B)
+                                                            : CHECK_BTN_ALL(play->state.input[0].press.button, BTN_B);
 
         switch (msgCtx->msgMode) {
             case MSGMODE_TEXT_START:
@@ -2486,8 +2538,7 @@ void Message_DrawMain(PlayState* play, Gfx** p) {
                 Message_Decode(play);
                 msgCtx->msgMode = MSGMODE_DISPLAY_SONG_PLAYED_TEXT;
 
-                if (CVarGetInteger("gFastOcarinaPlayback", 0) == 0 || play->msgCtx.lastPlayedSong == OCARINA_SONG_TIME
-                    || play->msgCtx.lastPlayedSong == OCARINA_SONG_STORMS ||
+                if (CVarGetInteger("gFastOcarinaPlayback", 0) == 0 || play->msgCtx.lastPlayedSong == OCARINA_SONG_TIME || play->msgCtx.lastPlayedSong == OCARINA_SONG_STORMS ||
                     play->msgCtx.lastPlayedSong == OCARINA_SONG_SUNS) {
                     msgCtx->stateTimer = 20;
                 } else {
@@ -2678,7 +2729,7 @@ void Message_DrawMain(PlayState* play, Gfx** p) {
                     osSyncPrintf(VT_FGCOL(YELLOW));
                     osSyncPrintf("\n====================================================================\n");
                     memcpy(gSaveContext.scarecrowLongSong, gScarecrowCustomSongPtr,
-                            sizeof(gSaveContext.scarecrowLongSong));
+                           sizeof(gSaveContext.scarecrowLongSong));
                     for (i = 0; i < ARRAY_COUNT(gSaveContext.scarecrowLongSong); i++) {
                         osSyncPrintf("%d, ", gSaveContext.scarecrowLongSong[i]);
                     }
@@ -2741,7 +2792,7 @@ void Message_DrawMain(PlayState* play, Gfx** p) {
                     osSyncPrintf(VT_FGCOL(YELLOW));
                     osSyncPrintf("\n====================================================================\n");
                     memcpy(gSaveContext.scarecrowSpawnSong, gScarecrowSpawnSongPtr,
-                            sizeof(gSaveContext.scarecrowSpawnSong));
+                           sizeof(gSaveContext.scarecrowSpawnSong));
                     for (i = 0; i < ARRAY_COUNT(gSaveContext.scarecrowSpawnSong); i++) {
                         osSyncPrintf("%d, ", gSaveContext.scarecrowSpawnSong[i]);
                     }
@@ -3002,11 +3053,13 @@ void Message_DrawMain(PlayState* play, Gfx** p) {
  * the last value being saved in a static variable.
  */
 void Message_DrawDebugVariableChanged(s16* var, GraphicsContext* gfxCtx) {
-    if (!CVarGetInteger("gDebugEnabled", 0)) { return; }
+    if (!CVarGetInteger("gDebugEnabled", 0)) {
+        return;
+    }
 
     static s16 sVarLastValue = 0;
     static s16 sFillTimer = 0;
-    s32 pad;
+    s32        pad;
 
     OPEN_DISPS(gfxCtx);
 
@@ -3033,9 +3086,9 @@ void Message_DrawDebugVariableChanged(s16* var, GraphicsContext* gfxCtx) {
 }
 
 void Message_DrawDebugText(PlayState* play, Gfx** p) {
-    s32 pad;
+    s32      pad;
     GfxPrint printer;
-    s32 pad1;
+    s32      pad1;
 
     GfxPrint_Init(&printer);
     GfxPrint_Open(&printer, *p);
@@ -3053,7 +3106,7 @@ void Message_DrawDebugText(PlayState* play, Gfx** p) {
 void Message_Draw(PlayState* play) {
     Gfx* plusOne;
     Gfx* polyOpaP;
-    s16 watchVar;
+    s16  watchVar;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -3078,36 +3131,87 @@ void Message_Draw(PlayState* play) {
 
 void Message_Update(PlayState* play) {
     static s16 sTextboxXPositions[] = {
-        34, 34, 34, 34, 34, 34,
+        34,
+        34,
+        34,
+        34,
+        34,
+        34,
     };
     static s16 sTextboxLowerYPositions[] = {
-        142, 142, 142, 142, 174, 142,
+        142,
+        142,
+        142,
+        142,
+        174,
+        142,
     };
     static s16 sTextboxUpperYPositions[] = {
-        38, 38, 38, 38, 174, 38,
+        38,
+        38,
+        38,
+        38,
+        174,
+        38,
     };
     static s16 sTextboxMidYPositions[] = {
-        90, 90, 90, 90, 174, 90,
+        90,
+        90,
+        90,
+        90,
+        174,
+        90,
     };
     static s16 sTextboxEndIconYOffset[] = {
-        59, 59, 59, 59, 34, 59,
+        59,
+        59,
+        59,
+        59,
+        34,
+        59,
     };
     static s16 D_80153D3C[] = {
         // additional unreferenced data
-        0x0400, 0x0400, 0x0200, 0x0000, 0x1038, 0x0008, 0x200A, 0x088B, 0x0007, 0x0009, 0x000A, 0x107E, 0x2008, 0x2007,
-        0x0015, 0x0016, 0x0017, 0x0003, 0x0000, 0x270B, 0x00C8, 0x012C, 0x012D, 0xFFDA, 0x0014, 0x0016, 0x0014, 0x0016,
+        0x0400,
+        0x0400,
+        0x0200,
+        0x0000,
+        0x1038,
+        0x0008,
+        0x200A,
+        0x088B,
+        0x0007,
+        0x0009,
+        0x000A,
+        0x107E,
+        0x2008,
+        0x2007,
+        0x0015,
+        0x0016,
+        0x0017,
+        0x0003,
+        0x0000,
+        0x270B,
+        0x00C8,
+        0x012C,
+        0x012D,
+        0xFFDA,
+        0x0014,
+        0x0016,
+        0x0014,
+        0x0016,
     };
-    static u8 D_80153D74 = 0;
-    static u16 D_80153D78 = 0;
-    MessageContext* msgCtx = &play->msgCtx;
+    static u8         D_80153D74 = 0;
+    static u16        D_80153D78 = 0;
+    MessageContext*   msgCtx = &play->msgCtx;
     InterfaceContext* interfaceCtx = &play->interfaceCtx;
-    Player* player = GET_PLAYER(play);
-    Input* input = &play->state.input[0];
-    s16 var;
-    s16 focusScreenPosX;
-    s16 averageY = 0;
-    s16 playerFocusScreenPosY;
-    s16 actorFocusScreenPosY;
+    Player*           player = GET_PLAYER(play);
+    Input*            input = &play->state.input[0];
+    s16               var;
+    s16               focusScreenPosX;
+    s16               averageY = 0;
+    s16               playerFocusScreenPosY;
+    s16               actorFocusScreenPosY;
 
     if (BREG(0) != 0) {
         if (CHECK_BTN_ALL(input->press.button, BTN_DDOWN) && CHECK_BTN_ALL(input->cur.button, BTN_L)) {
@@ -3138,11 +3242,11 @@ void Message_Update(PlayState* play) {
     if (msgCtx->msgLength == 0) {
         return;
     }
-    
+
     GameInteractor_ExecuteOnDialogMessage();
 
     bool isB_Held = CVarGetInteger("gSkipText", 0) != 0 ? CHECK_BTN_ALL(input->cur.button, BTN_B) && !sTextboxSkipped
-                                                     : CHECK_BTN_ALL(input->press.button, BTN_B);
+                                                        : CHECK_BTN_ALL(input->press.button, BTN_B);
 
     switch (msgCtx->msgMode) {
         case MSGMODE_TEXT_START:
@@ -3396,10 +3500,10 @@ void Message_SetTables(void) {
     OTRMessage_Init();
 
     // OTRTODO
-    //sNesMessageEntryTablePtr = sNesMessageEntryTable;
-    //sGerMessageEntryTablePtr = sGerMessageEntryTable;
-    //sFraMessageEntryTablePtr = sFraMessageEntryTable;
-    //sStaffMessageEntryTablePtr = sStaffMessageEntryTable;
+    // sNesMessageEntryTablePtr = sNesMessageEntryTable;
+    // sGerMessageEntryTablePtr = sGerMessageEntryTable;
+    // sFraMessageEntryTablePtr = sFraMessageEntryTable;
+    // sStaffMessageEntryTablePtr = sStaffMessageEntryTable;
 }
 
 // Appears to be file padding

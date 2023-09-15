@@ -61,18 +61,48 @@ void func_80B523C8(EnZl2* this, PlayState* play);
 void func_80B525D4(EnZl2* this, PlayState* play);
 
 static void* sEyeTextures[] = { gZelda2EyeOpenTex, gZelda2EyeHalfTex, gZelda2EyeShutTex,
-                                gZelda2Eye03Tex,   gZelda2Eye04Tex,   gZelda2Eye05Tex,
-                                gZelda2Eye06Tex,   gZelda2Eye07Tex,   gZelda2Eye08Tex };
+                                gZelda2Eye03Tex, gZelda2Eye04Tex, gZelda2Eye05Tex,
+                                gZelda2Eye06Tex, gZelda2Eye07Tex, gZelda2Eye08Tex };
 
 static void* sMouthTextures[] = { gZelda2MouthSeriousTex, gZelda2MouthHappyTex, gZelda2MouthOpenTex };
 
 static EnZl2ActionFunc sActionFuncs[] = {
-    func_80B521A0, func_80B50BBC, func_80B50BEC, func_80B50C40, func_80B50CA8, func_80B50CFC,
-    func_80B50D50, func_80B50D94, func_80B50DE8, func_80B50E3C, func_80B50E90, func_80B50EE4,
-    func_80B50F38, func_80B50F8C, func_80B50FE8, func_80B51034, func_80B51080, func_80B510CC,
-    func_80B51118, func_80B51164, func_80B511B0, func_80B511FC, func_80B51250, func_80B512B8,
-    func_80B51310, func_80B51A5C, func_80B51A8C, func_80B51AE4, func_80B51B44, func_80B51BA8,
-    func_80B51C0C, func_80B51C64, func_80B51CA8, func_80B52068, func_80B52098, func_80B52108,
+    func_80B521A0,
+    func_80B50BBC,
+    func_80B50BEC,
+    func_80B50C40,
+    func_80B50CA8,
+    func_80B50CFC,
+    func_80B50D50,
+    func_80B50D94,
+    func_80B50DE8,
+    func_80B50E3C,
+    func_80B50E90,
+    func_80B50EE4,
+    func_80B50F38,
+    func_80B50F8C,
+    func_80B50FE8,
+    func_80B51034,
+    func_80B51080,
+    func_80B510CC,
+    func_80B51118,
+    func_80B51164,
+    func_80B511B0,
+    func_80B511FC,
+    func_80B51250,
+    func_80B512B8,
+    func_80B51310,
+    func_80B51A5C,
+    func_80B51A8C,
+    func_80B51AE4,
+    func_80B51B44,
+    func_80B51BA8,
+    func_80B51C0C,
+    func_80B51C64,
+    func_80B51CA8,
+    func_80B52068,
+    func_80B52098,
+    func_80B52108,
 };
 
 static OverrideLimbDraw sOverrideLimbDrawFuncs[] = {
@@ -105,7 +135,7 @@ void EnZl2_Destroy(Actor* thisx, PlayState* play) {
 }
 
 void EnZl2_UpdateEyes(EnZl2* this) {
-    s32 pad[4];
+    s32  pad[4];
     s16* eyeTexIndex2 = &this->eyeTexIndex2;
     s16* blinkTimer = &this->blinkTimer;
     s16* eyeTexIndex = &this->eyeTexIndex;
@@ -437,11 +467,11 @@ s32 func_80B4F45C(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s
                   Gfx** gfx) {
     s32 pad;
     EnZl2* this = (EnZl2*)thisx;
-    Mtx* sp74;
-    MtxF sp34;
+    Mtx*  sp74;
+    MtxF  sp34;
     Vec3s sp2C;
-    s16 pad2;
-    s16* unk_1DC = this->unk_1DC;
+    s16   pad2;
+    s16*  unk_1DC = this->unk_1DC;
 
     if (limbIndex == 14) {
         sp74 = Graph_Alloc(play->state.gfxCtx, sizeof(Mtx) * 7);
@@ -623,9 +653,9 @@ void func_80B4FED8(EnZl2* this) {
 
 void EnZl2_GiveLightArrows(EnZl2* this, PlayState* play) {
     Player* player;
-    f32 posX;
-    f32 posY;
-    f32 posZ;
+    f32     posX;
+    f32     posY;
+    f32     posZ;
 
     if (this->unk_244 == 0) {
         player = GET_PLAYER(play);
@@ -681,14 +711,14 @@ void func_80B5008C(EnZl2* this) {
 
 void func_80B500E0(EnZl2* this, PlayState* play) {
     CsCmdActorAction* npcAction = EnZl2_GetNpcAction(play, 0);
-    Vec3f* thisPos = &this->actor.world.pos;
-    f32 startX;
-    f32 startY;
-    f32 startZ;
-    f32 endX;
-    f32 endY;
-    f32 endZ;
-    f32 someFloat;
+    Vec3f*            thisPos = &this->actor.world.pos;
+    f32               startX;
+    f32               startY;
+    f32               startZ;
+    f32               endX;
+    f32               endY;
+    f32               endZ;
+    f32               someFloat;
 
     if (npcAction != NULL) {
         someFloat =
@@ -741,11 +771,11 @@ void func_80B50278(EnZl2* this, PlayState* play) {
 }
 
 void func_80B50304(EnZl2* this, PlayState* play) {
-    s32 pad[2];
-    ActorShape* shape = &this->actor.shape;
+    s32               pad[2];
+    ActorShape*       shape = &this->actor.shape;
     CsCmdActorAction* npcAction = EnZl2_GetNpcAction(play, 0);
-    f32 actionXDelta;
-    f32 actionZDelta;
+    f32               actionXDelta;
+    f32               actionZDelta;
 
     actionXDelta = npcAction->endPos.x - npcAction->startPos.x;
     actionZDelta = npcAction->endPos.z - npcAction->startPos.z;
@@ -916,8 +946,8 @@ void func_80B509A0(EnZl2* this, PlayState* play) {
 
 void func_80B50A04(EnZl2* this, PlayState* play) {
     CsCmdActorAction* npcAction = EnZl2_GetNpcAction(play, 0);
-    s32 newAction;
-    s32 unk_240;
+    s32               newAction;
+    s32               unk_240;
 
     if (npcAction != NULL) {
         newAction = npcAction->action;
@@ -1175,9 +1205,9 @@ void func_80B5135C(EnZl2* this, PlayState* play) {
 
 void func_80B513A8(EnZl2* this, PlayState* play) {
     Player* player;
-    f32 posX;
-    f32 posY;
-    f32 posZ;
+    f32     posX;
+    f32     posY;
+    f32     posZ;
 
     if (this->unk_250 == 0) {
         player = GET_PLAYER(play);
@@ -1327,8 +1357,8 @@ void func_80B518C0(EnZl2* this) {
 
 void func_80B51948(EnZl2* this, PlayState* play) {
     CsCmdActorAction* npcAction = EnZl2_GetNpcAction(play, 0);
-    s32 newAction;
-    s32 unk_240;
+    s32               newAction;
+    s32               unk_240;
 
     if (npcAction != NULL) {
         newAction = npcAction->action;
@@ -1433,8 +1463,8 @@ void func_80B51D0C(EnZl2* this, PlayState* play) {
 }
 
 void func_80B51D24(EnZl2* this, PlayState* play) {
-    s32 pad[2];
-    u32 sfxId;
+    s32        pad[2];
+    u32        sfxId;
     SkelAnime* skelAnime = &this->skelAnime;
 
     if (Animation_OnFrame(skelAnime, 6.0f) || Animation_OnFrame(skelAnime, 0.0f)) {
@@ -1448,14 +1478,14 @@ void func_80B51D24(EnZl2* this, PlayState* play) {
 
 void func_80B51DA4(EnZl2* this, PlayState* play) {
     CsCmdActorAction* npcAction = EnZl2_GetNpcAction(play, 0);
-    Vec3f* thisPos = &this->actor.world.pos;
-    f32 startX;
-    f32 startY;
-    f32 startZ;
-    f32 endX;
-    f32 endY;
-    f32 endZ;
-    f32 someFloat;
+    Vec3f*            thisPos = &this->actor.world.pos;
+    f32               startX;
+    f32               startY;
+    f32               startZ;
+    f32               endX;
+    f32               endY;
+    f32               endZ;
+    f32               someFloat;
 
     if (npcAction != NULL) {
         someFloat =
@@ -1482,9 +1512,9 @@ void func_80B51EA8(EnZl2* this) {
 }
 
 void func_80B51EBC(EnZl2* this, PlayState* play) {
-    ActorShape* shape = &this->actor.shape;
+    ActorShape*       shape = &this->actor.shape;
     CsCmdActorAction* npcAction = EnZl2_GetNpcAction(play, 0);
-    s32 pad[2];
+    s32               pad[2];
 
     this->actor.world.rot.y = shape->rot.y = npcAction->rot.y;
     func_80B4FD00(this, &gZelda2Anime1Anim_00B224, 0, 0.0f, 0);
@@ -1506,8 +1536,8 @@ void func_80B51F38(EnZl2* this, PlayState* play) {
 
 void func_80B51FA8(EnZl2* this, PlayState* play) {
     CsCmdActorAction* npcAction = EnZl2_GetNpcAction(play, 0);
-    s32 action;
-    s32 unk_240;
+    s32               action;
+    s32               unk_240;
 
     if (npcAction != NULL) {
         action = npcAction->action;
@@ -1568,10 +1598,10 @@ void func_80B52114(EnZl2* this, PlayState* play) {
 }
 
 void func_80B521A0(EnZl2* this, PlayState* play) {
-    s32 pad;
+    s32            pad;
     ObjectContext* objectCtx = &play->objectCtx;
-    s32 bankIndex = Object_GetIndex(objectCtx, OBJECT_ZL2_ANIME1);
-    s32 pad2;
+    s32            bankIndex = Object_GetIndex(objectCtx, OBJECT_ZL2_ANIME1);
+    s32            pad2;
 
     if (bankIndex < 0) {
         osSyncPrintf(VT_FGCOL(RED) "En_Zl2_main_bankアニメーションのバンクを読めない!!!!!!!!!!!!\n" VT_RST);
@@ -1599,7 +1629,7 @@ void EnZl2_Update(Actor* thisx, PlayState* play) {
 void EnZl2_Init(Actor* thisx, PlayState* play) {
     EnZl2* this = (EnZl2*)thisx;
     ActorShape* shape = &thisx->shape;
-    s32 pad;
+    s32         pad;
 
     ActorShape_Init(shape, 0.0f, ActorShadow_DrawCircle, 30.0f);
     shape->shadowAlpha = 0;
@@ -1631,15 +1661,15 @@ void func_80B523BC(EnZl2* this, PlayState* play) {
 }
 
 void func_80B523C8(EnZl2* this, PlayState* play) {
-    s32 pad[3];
-    s16 eyeTexIndex = this->eyeTexIndex;
-    s16 eyeTexIndex2 = this->eyeTexIndex2;
-    void* eyeTex = sEyeTextures[eyeTexIndex];
-    void* eyeTex2 = sEyeTextures[eyeTexIndex2];
+    s32        pad[3];
+    s16        eyeTexIndex = this->eyeTexIndex;
+    s16        eyeTexIndex2 = this->eyeTexIndex2;
+    void*      eyeTex = sEyeTextures[eyeTexIndex];
+    void*      eyeTex2 = sEyeTextures[eyeTexIndex2];
     SkelAnime* skelAnime = &this->skelAnime;
-    s16 mouthTexIndex = this->mouthTexIndex;
-    void* mouthTex = sMouthTextures[mouthTexIndex];
-    s32 pad1;
+    s16        mouthTexIndex = this->mouthTexIndex;
+    void*      mouthTex = sMouthTextures[mouthTexIndex];
+    s32        pad1;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -1658,13 +1688,13 @@ void func_80B523C8(EnZl2* this, PlayState* play) {
 }
 
 void func_80B525D4(EnZl2* this, PlayState* play) {
-    s32 pad[2];
-    s16 eyeTexIndex = this->eyeTexIndex;
-    void* eyeTex = sEyeTextures[eyeTexIndex];
-    s16 mouthTexIndex = this->mouthTexIndex;
+    s32        pad[2];
+    s16        eyeTexIndex = this->eyeTexIndex;
+    void*      eyeTex = sEyeTextures[eyeTexIndex];
+    s16        mouthTexIndex = this->mouthTexIndex;
     SkelAnime* skelAnime = &this->skelAnime;
-    void* mouthTex = sMouthTextures[mouthTexIndex];
-    s32 pad1;
+    void*      mouthTex = sMouthTextures[mouthTexIndex];
+    s32        pad1;
 
     OPEN_DISPS(play->state.gfxCtx);
 

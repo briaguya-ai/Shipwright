@@ -58,7 +58,7 @@ static Gfx* sDLists[] = {
 
 void BgMoriHineri_Init(Actor* thisx, PlayState* play) {
     BgMoriHineri* this = (BgMoriHineri*)thisx;
-    s8 moriHineriObjIdx;
+    s8  moriHineriObjIdx;
     u32 switchFlagParam;
     s32 t6;
 
@@ -167,7 +167,7 @@ void BgMoriHineri_DoNothing(BgMoriHineri* this, PlayState* play) {
 void BgMoriHineri_SpawnBossKeyChest(BgMoriHineri* this, PlayState* play) {
     if (this->dyna.actor.params == 0) {
         Object_Spawn(&play->objectCtx, OBJECT_BOX);
-        Actor_Spawn(&play->actorCtx, play, ACTOR_EN_BOX, -1515.0f, 1440.0f,  -3475.0f, -0x4000, 0x4000, 0, 0x27EE, true);
+        Actor_Spawn(&play->actorCtx, play, ACTOR_EN_BOX, -1515.0f, 1440.0f, -3475.0f, -0x4000, 0x4000, 0, 0x27EE, true);
         this->actionFunc = func_808A3C8C;
     } else {
         Actor_Spawn(&play->actorCtx, play, ACTOR_EN_BOX, this->dyna.actor.world.pos.x + 147.0f,
@@ -177,7 +177,7 @@ void BgMoriHineri_SpawnBossKeyChest(BgMoriHineri* this, PlayState* play) {
 }
 
 void func_808A3C8C(BgMoriHineri* this, PlayState* play) {
-    f32 f0;
+    f32     f0;
     Player* player = GET_PLAYER(play);
 
     f0 = 1100.0f - (player->actor.world.pos.z - this->dyna.actor.world.pos.z);
@@ -239,7 +239,7 @@ void BgMoriHineri_Update(Actor* thisx, PlayState* play) {
 
 void BgMoriHineri_DrawHallAndRoom(Actor* thisx, PlayState* play) {
     BgMoriHineri* this = (BgMoriHineri*)thisx;
-    s8 objIndex;
+    s8   objIndex;
     MtxF mtx;
 
     OPEN_DISPS(play->state.gfxCtx);

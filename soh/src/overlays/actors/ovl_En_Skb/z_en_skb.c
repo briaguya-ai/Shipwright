@@ -122,8 +122,8 @@ void EnSkb_SpawnDebris(PlayState* play, EnSkb* this, Vec3f* spawnPos) {
     Vec3f pos;
     Vec3f vel = { 0.0f, 8.0f, 0.0f };
     Vec3f accel = { 0.0f, -1.5f, 0.0f };
-    f32 spreadAngle;
-    f32 scale;
+    f32   spreadAngle;
+    f32   scale;
 
     spreadAngle = (Rand_ZeroOne() - 0.5f) * 6.28f;
     pos.y = this->actor.floorHeight;
@@ -259,9 +259,9 @@ void func_80AFD0A4(EnSkb* this) {
 }
 
 void EnSkb_Advance(EnSkb* this, PlayState* play) {
-    s32 thisKeyFrame;
-    s32 prevKeyFrame;
-    f32 playSpeed;
+    s32     thisKeyFrame;
+    s32     prevKeyFrame;
+    f32     playSpeed;
     Player* player = GET_PLAYER(play);
 
     if ((this->unk_283 != 0) && ((play->gameplayFrames & 0xF) == 0)) {
@@ -438,11 +438,11 @@ void func_80AFD880(EnSkb* this, PlayState* play) {
 }
 
 void func_80AFD968(EnSkb* this, PlayState* play) {
-    s16 pad;
-    s32 i;
-    Vec3f flamePos;
-    s16 scale;
-    s16 phi_v1;
+    s16     pad;
+    s32     i;
+    Vec3f   flamePos;
+    s16     scale;
+    s16     phi_v1;
     Player* player;
 
     if ((this->unk_280 != 1) && (this->actor.bgCheckFlags & 0x60) && (this->actor.yDistToWater >= 40.0f)) {

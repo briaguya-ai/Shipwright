@@ -144,7 +144,7 @@ void func_80A5057C(EnGuest* this, PlayState* play) {
 
 void func_80A505CC(Actor* thisx, PlayState* play) {
     EnGuest* this = (EnGuest*)thisx;
-    s32 pad;
+    s32     pad;
     Player* player;
 
     player = GET_PLAYER(play);

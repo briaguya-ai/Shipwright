@@ -186,17 +186,29 @@ static u8 sDecayTex[16 * 16] = { { 0 } };
 
 // These are Phantom Ganon's body textures, but I don't know which is which.
 static void* sLimbTex_rgba16_8x8[] = {
-    gPhantomGanonLimbTex_00A800, gPhantomGanonLimbTex_00AE80, gPhantomGanonLimbTex_00AF00,
-    gPhantomGanonLimbTex_00C180, gPhantomGanonLimbTex_00C400,
+    gPhantomGanonLimbTex_00A800,
+    gPhantomGanonLimbTex_00AE80,
+    gPhantomGanonLimbTex_00AF00,
+    gPhantomGanonLimbTex_00C180,
+    gPhantomGanonLimbTex_00C400,
 };
 static void* sLimbTex_rgba16_16x8[] = {
-    gPhantomGanonLimbTex_00B980, gPhantomGanonLimbTex_00C480, gPhantomGanonLimbTex_00BC80,
-    gPhantomGanonLimbTex_00BD80, gPhantomGanonLimbTex_00C080,
+    gPhantomGanonLimbTex_00B980,
+    gPhantomGanonLimbTex_00C480,
+    gPhantomGanonLimbTex_00BC80,
+    gPhantomGanonLimbTex_00BD80,
+    gPhantomGanonLimbTex_00C080,
 };
 static void* sLimbTex_rgba16_16x16[] = {
-    gPhantomGanonLimbTex_00C200, gPhantomGanonLimbTex_00A000, gPhantomGanonLimbTex_00A200,
-    gPhantomGanonLimbTex_00A400, gPhantomGanonLimbTex_00A600, gPhantomGanonLimbTex_00A880,
-    gPhantomGanonLimbTex_00B780, gPhantomGanonLimbTex_00BA80, gPhantomGanonLimbTex_00BE80,
+    gPhantomGanonLimbTex_00C200,
+    gPhantomGanonLimbTex_00A000,
+    gPhantomGanonLimbTex_00A200,
+    gPhantomGanonLimbTex_00A400,
+    gPhantomGanonLimbTex_00A600,
+    gPhantomGanonLimbTex_00A880,
+    gPhantomGanonLimbTex_00B780,
+    gPhantomGanonLimbTex_00BA80,
+    gPhantomGanonLimbTex_00BE80,
 };
 static void* sLimbTex_rgba16_16x32[] = { gPhantomGanonLimbTex_00AA80, gPhantomGanonLimbTex_00AF80 };
 
@@ -301,8 +313,8 @@ void BossGanondrof_SetupIntro(BossGanondrof* this, PlayState* play) {
 }
 
 void BossGanondrof_Intro(BossGanondrof* this, PlayState* play) {
-    s16 i;
-    s32 pad;
+    s16    i;
+    s32    pad;
     EnfHG* horse = (EnfHG*)this->actor.child;
 
     SkelAnime_Update(&this->skelAnime);
@@ -452,14 +464,14 @@ void BossGanondrof_SetupNeutral(BossGanondrof* this, f32 arg1) {
 }
 
 void BossGanondrof_Neutral(BossGanondrof* this, PlayState* play) {
-    f32 targetX;
-    f32 targetY;
-    f32 targetZ;
+    f32     targetX;
+    f32     targetY;
+    f32     targetZ;
     Player* player = GET_PLAYER(play);
-    Actor* playerx = &player->actor;
-    Actor* thisx = &this->actor;
-    f32 rand01;
-    s16 i;
+    Actor*  playerx = &player->actor;
+    Actor*  thisx = &this->actor;
+    f32     rand01;
+    s16     i;
 
     SkelAnime_Update(&this->skelAnime);
     switch (this->flyMode) {
@@ -588,7 +600,7 @@ void BossGanondrof_Neutral(BossGanondrof* this, PlayState* play) {
 
 void BossGanondrof_SetupThrow(BossGanondrof* this, PlayState* play) {
     EnfHG* horseTemp;
-    s16 lightTime;
+    s16    lightTime;
 
     this->fwork[GND_END_FRAME] = Animation_GetLastFrame(&gPhantomGanonThrowAnim);
     Animation_MorphToPlayOnce(&this->skelAnime, &gPhantomGanonThrowAnim, -5.0f);
@@ -653,7 +665,7 @@ void BossGanondrof_Throw(BossGanondrof* this, PlayState* play) {
 
 void BossGanondrof_SetupReturn(BossGanondrof* this, PlayState* play) {
     static AnimationHeader* returnAnim[] = { &gPhantomGanonReturn1Anim, &gPhantomGanonReturn2Anim };
-    s16 rand = Rand_ZeroOne() * 1.99f;
+    s16                     rand = Rand_ZeroOne() * 1.99f;
 
     this->fwork[GND_END_FRAME] = Animation_GetLastFrame(returnAnim[rand]);
     Animation_MorphToPlayOnce(&this->skelAnime, returnAnim[rand], 0.0f);
@@ -767,10 +779,10 @@ void BossGanondrof_SetupCharge(BossGanondrof* this, PlayState* play) {
 
 void BossGanondrof_Charge(BossGanondrof* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Actor* playerx = &player->actor;
-    Actor* thisx = &this->actor;
-    f32 dxCenter = thisx->world.pos.x - GND_BOSSROOM_CENTER_X;
-    f32 dzCenter = thisx->world.pos.z - GND_BOSSROOM_CENTER_Z;
+    Actor*  playerx = &player->actor;
+    Actor*  thisx = &this->actor;
+    f32     dxCenter = thisx->world.pos.x - GND_BOSSROOM_CENTER_X;
+    f32     dzCenter = thisx->world.pos.z - GND_BOSSROOM_CENTER_Z;
 
     this->colliderBody.base.colType = COLTYPE_METAL;
     SkelAnime_Update(&this->skelAnime);
@@ -856,7 +868,7 @@ void BossGanondrof_Charge(BossGanondrof* this, PlayState* play) {
         thisx->world.pos.y += 2.0f * Math_SinS(this->work[GND_VARIANCE_TIMER] * 1500);
     }
     {
-        s16 i;
+        s16   i;
         Vec3f pos;
         Vec3f vel = { 0.0f, 0.0f, 0.0f };
         Vec3f accel = { 0.0f, 0.0f, 0.0f };
@@ -907,11 +919,11 @@ void BossGanondrof_SetupDeath(BossGanondrof* this, PlayState* play) {
 }
 
 void BossGanondrof_Death(BossGanondrof* this, PlayState* play) {
-    u8 holdCamera = false;
-    u8 bodyDecayLevel = 0;
-    f32 camX;
-    f32 camZ;
-    f32 pad;
+    u8      holdCamera = false;
+    u8      bodyDecayLevel = 0;
+    f32     camX;
+    f32     camZ;
+    f32     pad;
     Player* player = GET_PLAYER(play);
     Camera* camera = Play_GetCamera(play, 0);
 
@@ -962,7 +974,7 @@ void BossGanondrof_Death(BossGanondrof* this, PlayState* play) {
                     if (Animation_OnFrame(&this->skelAnime, this->fwork[GND_END_FRAME]) && !gSaveContext.n64ddFlag && !gSaveContext.isBossRush) {
                         this->fwork[GND_END_FRAME] = Animation_GetLastFrame(&gPhantomGanonAirDamageAnim);
                         Animation_Change(&this->skelAnime, &gPhantomGanonAirDamageAnim, 0.5f, 0.0f,
-                                            this->fwork[GND_END_FRAME], ANIMMODE_ONCE_INTERP, 0.0f);
+                                         this->fwork[GND_END_FRAME], ANIMMODE_ONCE_INTERP, 0.0f);
                         this->work[GND_ACTION_STATE] = DEATH_LIMP;
                     } else if (gSaveContext.n64ddFlag || gSaveContext.isBossRush) {
                         // Skip to death scream animation and move ganondrof to middle
@@ -1123,8 +1135,8 @@ void BossGanondrof_Death(BossGanondrof* this, PlayState* play) {
         Vec3f vel = { 0.0f, 0.0f, 0.0f };
         Vec3f accelKFire = { 0.0f, 0.0f, 0.0f };
         Vec3f accelHahen = { 0.0f, -0.5f, 0.0f };
-        s16 limbDecayIndex;
-        s16 i;
+        s16   limbDecayIndex;
+        s16   i;
 
         vel.x = this->actor.world.pos.x - this->actor.prevPos.x;
         vel.z = this->actor.world.pos.z - this->actor.prevPos.z;
@@ -1211,8 +1223,8 @@ void BossGanondrof_Death(BossGanondrof* this, PlayState* play) {
 }
 
 void BossGanondrof_CollisionCheck(BossGanondrof* this, PlayState* play) {
-    s32 acHit;
-    EnfHG* horse = (EnfHG*)this->actor.child;
+    s32           acHit;
+    EnfHG*        horse = (EnfHG*)this->actor.child;
     ColliderInfo* hurtbox;
 
     if (this->work[GND_INVINC_TIMER] != 0) {
@@ -1232,8 +1244,8 @@ void BossGanondrof_CollisionCheck(BossGanondrof* this, PlayState* play) {
                     osSyncPrintf("hit != 0 \n");
                 } else if (this->actionFunc != BossGanondrof_Charge) {
                     if (this->returnCount == 0) {
-                        u8 dmg;
-                        u8 canKill = false;
+                        u8  dmg;
+                        u8  canKill = false;
                         s32 dmgFlags = hurtbox->toucher.dmgFlags;
 
                         if (dmgFlags & 0x80) {

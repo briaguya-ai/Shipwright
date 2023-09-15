@@ -21,7 +21,7 @@
 #define vQueuedJumps actionVar2
 
 //  EnTite_FlipOnBack
-#define vOnBackTimer actionVar1
+#define vOnBackTimer    actionVar1
 #define vLegTwitchTimer actionVar2
 
 typedef enum {
@@ -158,7 +158,12 @@ static InitChainEntry sInitChain[] = {
 };
 
 static AnimationHeader* D_80B1B634[] = {
-    &object_tite_Anim_00083C, &object_tite_Anim_0004F8, &object_tite_Anim_00069C, NULL, NULL, NULL,
+    &object_tite_Anim_00083C,
+    &object_tite_Anim_0004F8,
+    &object_tite_Anim_00069C,
+    NULL,
+    NULL,
+    NULL,
 };
 
 // Some kind of offset for the position of each tektite foot
@@ -166,9 +171,18 @@ static Vec3f sFootOffset = { 2800.0f, -200.0f, 0.0f };
 
 // Relative positions to spawn ice chunks when tektite is frozen
 static Vec3f sIceChunks[12] = {
-    { 20.0f, 20.0f, 0.0f },   { 10.0f, 40.0f, 10.0f },   { -10.0f, 40.0f, 10.0f }, { -20.0f, 20.0f, 0.0f },
-    { 10.0f, 40.0f, -10.0f }, { -10.0f, 40.0f, -10.0f }, { 0.0f, 20.0f, -20.0f },  { 10.0f, 0.0f, 10.0f },
-    { 10.0f, 0.0f, -10.0f },  { 0.0f, 20.0f, 20.0f },    { -10.0f, 0.0f, 10.0f },  { -10.0f, 0.0f, -10.0f },
+    { 20.0f, 20.0f, 0.0f },
+    { 10.0f, 40.0f, 10.0f },
+    { -10.0f, 40.0f, 10.0f },
+    { -20.0f, 20.0f, 0.0f },
+    { 10.0f, 40.0f, -10.0f },
+    { -10.0f, 40.0f, -10.0f },
+    { 0.0f, 20.0f, -20.0f },
+    { 10.0f, 0.0f, 10.0f },
+    { 10.0f, 0.0f, -10.0f },
+    { 0.0f, 20.0f, 20.0f },
+    { -10.0f, 0.0f, 10.0f },
+    { -10.0f, 0.0f, -10.0f },
 };
 
 void EnTite_SetupAction(EnTite* this, EnTiteActionFunc actionFunc) {
@@ -266,8 +280,8 @@ void EnTite_SetupAttack(EnTite* this) {
 }
 
 void EnTite_Attack(EnTite* this, PlayState* play) {
-    s16 angleToPlayer;
-    s32 attackState;
+    s16   angleToPlayer;
+    s32   attackState;
     Vec3f ripplePos;
 
     if (SkelAnime_Update(&this->skelAnime) != 0) {
@@ -890,10 +904,10 @@ void EnTite_CheckDamage(Actor* thisx, PlayState* play) {
 
 void EnTite_Update(Actor* thisx, PlayState* play) {
     EnTite* this = (EnTite*)thisx;
-    char pad[0x4];
+    char           pad[0x4];
     CollisionPoly* floorPoly;
-    WaterBox* waterBox;
-    f32 waterSurfaceY;
+    WaterBox*      waterBox;
+    f32            waterSurfaceY;
 
     EnTite_CheckDamage(thisx, play);
     // Stay still if hit by immunity damage type this frame
@@ -1005,7 +1019,7 @@ void EnTite_Draw(Actor* thisx, PlayState* play) {
         this->spawnIceTimer--;
         if ((this->spawnIceTimer & 3) == 0) {
             Vec3f iceChunk;
-            s32 idx = this->spawnIceTimer >> 2;
+            s32   idx = this->spawnIceTimer >> 2;
 
             iceChunk.x = thisx->world.pos.x + sIceChunks[idx].x;
             iceChunk.y = thisx->world.pos.y + sIceChunks[idx].y;

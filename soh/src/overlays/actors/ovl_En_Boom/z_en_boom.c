@@ -107,20 +107,20 @@ void EnBoom_Destroy(Actor* thisx, PlayState* play) {
 }
 
 void EnBoom_Fly(EnBoom* this, PlayState* play) {
-    Actor* target;
-    Player* player;
-    s32 collided;
-    s16 yawTarget;
-    s16 yawDiff;
-    s16 pitchTarget;
-    s16 pitchDiff;
-    s32 pad1;
-    f32 distXYZScale;
-    f32 distFromLink;
+    Actor*         target;
+    Player*        player;
+    s32            collided;
+    s16            yawTarget;
+    s16            yawDiff;
+    s16            pitchTarget;
+    s16            pitchDiff;
+    s32            pad1;
+    f32            distXYZScale;
+    f32            distFromLink;
     DynaPolyActor* hitActor;
-    s32 hitDynaID;
-    Vec3f hitPoint;
-    s32 pad2;
+    s32            hitDynaID;
+    Vec3f          hitPoint;
+    s32            pad2;
 
     player = GET_PLAYER(play);
     target = this->moveTo;

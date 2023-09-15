@@ -39,7 +39,7 @@ static InitChainEntry sInitChain[] = {
 
 void BgGjyoBridge_Init(Actor* thisx, PlayState* play) {
     BgGjyoBridge* this = (BgGjyoBridge*)thisx;
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader;
 
     colHeader = NULL;
@@ -147,7 +147,7 @@ void BgGjyoBridge_TriggerCutscene(BgGjyoBridge* this, PlayState* play) {
 
 void BgGjyoBridge_SpawnBridge(BgGjyoBridge* this, PlayState* play) {
     if (gSaveContext.n64ddFlag || (play->csCtx.state != CS_STATE_IDLE) && (play->csCtx.npcActions[2] != NULL) &&
-        (play->csCtx.npcActions[2]->action == 2)) {
+                                      (play->csCtx.npcActions[2]->action == 2)) {
         this->dyna.actor.draw = BgGjyoBridge_Draw;
         func_8003EC50(play, &play->colCtx.dyna, this->dyna.bgId);
         Flags_SetEventChkInf(EVENTCHKINF_RAINBOW_BRIDGE_BUILT);

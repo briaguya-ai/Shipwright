@@ -7,20 +7,20 @@
 #include "z_eff_ss_dead_db.h"
 #include "objects/gameplay_keep/gameplay_keep.h"
 
-#define rScale regs[0]
-#define rTextIdx regs[1]
+#define rScale      regs[0]
+#define rTextIdx    regs[1]
 #define rPrimColorR regs[2]
 #define rPrimColorG regs[3]
 #define rPrimColorB regs[4]
 #define rPrimColorA regs[5]
-#define rEnvColorR regs[6]
-#define rEnvColorG regs[7]
-#define rEnvColorB regs[8]
-#define rScaleStep regs[9]
-#define rPlaySound regs[10]
-#define rReg11 regs[11]
+#define rEnvColorR  regs[6]
+#define rEnvColorG  regs[7]
+#define rEnvColorB  regs[8]
+#define rScaleStep  regs[9]
+#define rPlaySound  regs[10]
+#define rReg11      regs[11]
 
-u32 EffectSsDeadDb_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsDeadDb_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsDeadDb_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsDeadDb_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -57,18 +57,25 @@ u32 EffectSsDeadDb_Init(PlayState* play, u32 index, EffectSs* this, void* initPa
 }
 
 static void* sTextures[] = {
-    gEffEnemyDeathFlame1Tex, gEffEnemyDeathFlame2Tex,  gEffEnemyDeathFlame3Tex, gEffEnemyDeathFlame4Tex,
-    gEffEnemyDeathFlame5Tex, gEffEnemyDeathFlame6Tex,  gEffEnemyDeathFlame7Tex, gEffEnemyDeathFlame8Tex,
-    gEffEnemyDeathFlame9Tex, gEffEnemyDeathFlame10Tex,
+    gEffEnemyDeathFlame1Tex,
+    gEffEnemyDeathFlame2Tex,
+    gEffEnemyDeathFlame3Tex,
+    gEffEnemyDeathFlame4Tex,
+    gEffEnemyDeathFlame5Tex,
+    gEffEnemyDeathFlame6Tex,
+    gEffEnemyDeathFlame7Tex,
+    gEffEnemyDeathFlame8Tex,
+    gEffEnemyDeathFlame9Tex,
+    gEffEnemyDeathFlame10Tex,
 };
 
 void EffectSsDeadDb_Draw(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    MtxF mfTrans;
-    MtxF mfScale;
-    MtxF mfResult;
-    Mtx* mtx;
-    f32 scale;
+    MtxF             mfTrans;
+    MtxF             mfScale;
+    MtxF             mfResult;
+    Mtx*             mtx;
+    f32              scale;
 
     OPEN_DISPS(gfxCtx);
 

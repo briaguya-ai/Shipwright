@@ -75,8 +75,13 @@ static InitChainEntry sInitChain[] = {
 };
 
 static Gfx* D_80B3BF54[] = {
-    object_wood02_DL_0078D0, object_wood02_DL_007CA0, object_wood02_DL_0080D0, object_wood02_DL_000090,
-    object_wood02_DL_000340, object_wood02_DL_000340, object_wood02_DL_000700,
+    object_wood02_DL_0078D0,
+    object_wood02_DL_007CA0,
+    object_wood02_DL_0080D0,
+    object_wood02_DL_000090,
+    object_wood02_DL_000340,
+    object_wood02_DL_000340,
+    object_wood02_DL_000700,
 };
 
 static Gfx* D_80B3BF70[] = {
@@ -124,11 +129,11 @@ s32 EnWood02_SpawnZoneCheck(EnWood02* this, PlayState* play, Vec3f* pos) {
  * memory usage down in Hyrule Field. */
 void EnWood02_SpawnOffspring(EnWood02* this, PlayState* play) {
     EnWood02* childWood;
-    s16* childSpawnAngle;
-    Vec3f childPos;
-    s16 extraRot;
-    s16 childParams;
-    s32 i;
+    s16*      childSpawnAngle;
+    Vec3f     childPos;
+    s16       extraRot;
+    s16       childParams;
+    s32       i;
 
     for (i = 4; i >= 0; i--) {
         if ((this->unk_14E[i] & 0x7F) == 0) {
@@ -164,14 +169,14 @@ void EnWood02_SpawnOffspring(EnWood02* this, PlayState* play) {
 }
 
 void EnWood02_Init(Actor* thisx, PlayState* play2) {
-    s16 spawnType;
-    f32 actorScale;
+    s16        spawnType;
+    f32        actorScale;
     PlayState* play = play2;
     EnWood02* this = (EnWood02*)thisx;
     CollisionPoly* outPoly;
-    s32 bgId;
-    f32 floorY;
-    s16 extraRot;
+    s32            bgId;
+    f32            floorY;
+    s16            extraRot;
 
     // The tree in Kakariko's day scene does not have the same params to spawn the GS
     // as the night scene, For the always spawn GS enhancement we apply the needed
@@ -315,13 +320,13 @@ void EnWood02_Destroy(Actor* thisx, PlayState* play) {
 void EnWood02_Update(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
     EnWood02* this = (EnWood02*)thisx;
-    f32 wobbleAmplitude;
-    u8 new_var;
-    u8 phi_v0;
-    s32 pad;
+    f32   wobbleAmplitude;
+    u8    new_var;
+    u8    phi_v0;
+    s32   pad;
     Vec3f dropsSpawnPt;
-    s32 i;
-    s32 leavesParams;
+    s32   i;
+    s32   leavesParams;
 
     // Despawn extra trees in a group if out of range
     if ((this->spawnType == WOOD_SPAWN_SPAWNED) && (this->actor.parent != NULL)) {
@@ -427,11 +432,11 @@ void EnWood02_Update(Actor* thisx, PlayState* play2) {
 
 void EnWood02_Draw(Actor* thisx, PlayState* play) {
     EnWood02* this = (EnWood02*)thisx;
-    s16 type;
+    s16              type;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    u8 red;
-    u8 green;
-    u8 blue;
+    u8               red;
+    u8               green;
+    u8               blue;
 
     OPEN_DISPS(gfxCtx);
     type = this->actor.params;

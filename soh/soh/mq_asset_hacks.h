@@ -138,8 +138,14 @@ static const ALIGN_ASSET(2) char gDCLavaFloor7Tex_MQ[] = dgDCLavaFloor7Tex_MQ;
 #define dgDCLavaFloor8Tex_MQ "__OTR__scenes/mq/ddan_scene/gDCLavaFloor8Tex"
 static const ALIGN_ASSET(2) char gDCLavaFloor8Tex_MQ[] = dgDCLavaFloor8Tex_MQ;
 void* sDCLavaFloorTextures_MQ[] = {
-    gDCLavaFloor1Tex_MQ, gDCLavaFloor2Tex_MQ, gDCLavaFloor3Tex_MQ, gDCLavaFloor4Tex_MQ,
-    gDCLavaFloor5Tex_MQ, gDCLavaFloor6Tex_MQ, gDCLavaFloor7Tex_MQ, gDCLavaFloor8Tex_MQ,
+    gDCLavaFloor1Tex_MQ,
+    gDCLavaFloor2Tex_MQ,
+    gDCLavaFloor3Tex_MQ,
+    gDCLavaFloor4Tex_MQ,
+    gDCLavaFloor5Tex_MQ,
+    gDCLavaFloor6Tex_MQ,
+    gDCLavaFloor7Tex_MQ,
+    gDCLavaFloor8Tex_MQ,
 };
 
 #define dgWaterTempleDayEntranceTex_MQ "__OTR__scenes/mq/MIZUsin_scene/gWaterTempleDayEntranceTex"

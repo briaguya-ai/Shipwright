@@ -83,7 +83,7 @@ void EnBdfire_Destroy(Actor* thisx, PlayState* play) {
 
 void func_809BC2A4(EnBdfire* this, PlayState* play) {
     BossDodongo* kingDodongo;
-    s32 temp;
+    s32          temp;
 
     kingDodongo = (BossDodongo*)this->actor.parent;
     this->actor.world.pos.x = kingDodongo->firePos.x;
@@ -120,13 +120,13 @@ void func_809BC2A4(EnBdfire* this, PlayState* play) {
 }
 
 void func_809BC598(EnBdfire* this, PlayState* play) {
-    s16 phi_v1_2;
-    Player* player = GET_PLAYER(play);
-    f32 distToBurn;
+    s16          phi_v1_2;
+    Player*      player = GET_PLAYER(play);
+    f32          distToBurn;
     BossDodongo* bossDodongo;
-    s16 i;
-    s16 phi_v1;
-    s32 temp;
+    s16          i;
+    s16          phi_v1;
+    s32          temp;
 
     bossDodongo = ((BossDodongo*)this->actor.parent);
     this->unk_158 = bossDodongo->unk_1A2;
@@ -197,9 +197,14 @@ void EnBdfire_Update(Actor* thisx, PlayState* play) {
 
 void EnBdfire_DrawFire(EnBdfire* this, PlayState* play) {
     static void* D_809BCB10[] = {
-        object_kingdodongo_Tex_0264E0, object_kingdodongo_Tex_0274E0, object_kingdodongo_Tex_0284E0,
-        object_kingdodongo_Tex_0294E0, object_kingdodongo_Tex_02A4E0, object_kingdodongo_Tex_02B4E0,
-        object_kingdodongo_Tex_02C4E0, object_kingdodongo_Tex_02D4E0,
+        object_kingdodongo_Tex_0264E0,
+        object_kingdodongo_Tex_0274E0,
+        object_kingdodongo_Tex_0284E0,
+        object_kingdodongo_Tex_0294E0,
+        object_kingdodongo_Tex_02A4E0,
+        object_kingdodongo_Tex_02B4E0,
+        object_kingdodongo_Tex_02C4E0,
+        object_kingdodongo_Tex_02D4E0,
     };
     s16 temp;
     s32 pad;

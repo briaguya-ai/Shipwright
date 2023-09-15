@@ -65,7 +65,6 @@ void DoorWarp1_Init(Actor* thisx, PlayState* play) {
     DoorWarp1* this = (DoorWarp1*)thisx;
     PlayState* play2 = play;
 
-
     this->unk_1B8 = 0;
     this->unk_1B4 = 0.0f;
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -73,7 +72,7 @@ void DoorWarp1_Init(Actor* thisx, PlayState* play) {
 
     if (this->actor.params != WARP_SAGES && this->actor.params != WARP_BLUE_CRYSTAL &&
         this->actor.params != WARP_YELLOW && this->actor.params != WARP_DESTINATION) {
-        
+
         Lights_PointNoGlowSetInfo(&this->upperLightInfo, this->actor.world.pos.x, this->actor.world.pos.y,
                                   this->actor.world.pos.z, 0, 0, 0, 0);
         this->upperLight = LightContext_InsertLight(play2, &play2->lightCtx, &this->upperLightInfo);
@@ -329,7 +328,7 @@ void func_80999214(DoorWarp1* this, PlayState* play) {
     } else {
         darkness = 0.0f;
     }
-    
+
     for (i = 0; i < 3; i++) {
         play->envCtx.adjAmbientColor[i] = play->envCtx.adjFogColor[i] = play->envCtx.adjLight1Color[i] =
             -255.0f * darkness;
@@ -475,7 +474,7 @@ void func_809998A4(DoorWarp1* this, PlayState* play) {
 
 s32 DoorWarp1_PlayerInRange(DoorWarp1* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 ret = false;
+    s32     ret = false;
 
     if (fabsf(this->actor.xzDistToPlayer) < 60.0f) {
         if ((player->actor.world.pos.y - 20.0f) < this->actor.world.pos.y) {
@@ -532,7 +531,7 @@ void DoorWarp1_ChildWarpIdle(DoorWarp1* this, PlayState* play) {
 
     if (DoorWarp1_PlayerInRange(this, play)) {
         player = GET_PLAYER(play);
-        
+
         if (gSaveContext.n64ddFlag) {
             GivePlayerRandoReward(this, player, play, 0, 0);
             return;
@@ -610,7 +609,7 @@ void DoorWarp1_ChildWarpOut(DoorWarp1* this, PlayState* play) {
         }
 
         if (gSaveContext.n64ddFlag && (Randomizer_GetSettingValue(RSK_SHUFFLE_DUNGEON_ENTRANCES) != RO_DUNGEON_ENTRANCE_SHUFFLE_OFF ||
-            Randomizer_GetSettingValue(RSK_SHUFFLE_BOSS_ENTRANCES) != RO_BOSS_ROOM_ENTRANCE_SHUFFLE_OFF)) {
+                                       Randomizer_GetSettingValue(RSK_SHUFFLE_BOSS_ENTRANCES) != RO_BOSS_ROOM_ENTRANCE_SHUFFLE_OFF)) {
             Entrance_OverrideBlueWarp();
         }
 
@@ -651,8 +650,8 @@ void DoorWarp1_RutoWarpIdle(DoorWarp1* this, PlayState* play) {
 static s16 sRutoWarpSubCamId;
 
 void func_80999EE0(DoorWarp1* this, PlayState* play) {
-    Vec3f at;
-    Vec3f eye;
+    Vec3f   at;
+    Vec3f   eye;
     Player* player = GET_PLAYER(play);
 
     if (this->rutoWarpState == WARP_BLUE_RUTO_STATE_3) {
@@ -717,7 +716,7 @@ void DoorWarp1_RutoWarpOut(DoorWarp1* this, PlayState* play) {
         }
 
         if (gSaveContext.n64ddFlag && (Randomizer_GetSettingValue(RSK_SHUFFLE_DUNGEON_ENTRANCES) != RO_DUNGEON_ENTRANCE_SHUFFLE_OFF ||
-            Randomizer_GetSettingValue(RSK_SHUFFLE_BOSS_ENTRANCES) != RO_BOSS_ROOM_ENTRANCE_SHUFFLE_OFF)) {
+                                       Randomizer_GetSettingValue(RSK_SHUFFLE_BOSS_ENTRANCES) != RO_BOSS_ROOM_ENTRANCE_SHUFFLE_OFF)) {
             Entrance_OverrideBlueWarp();
         }
 
@@ -798,7 +797,7 @@ void func_8099A508(DoorWarp1* this, PlayState* play) {
 
 void DoorWarp1_AdultWarpOut(DoorWarp1* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 temp_f0_2;
+    f32     temp_f0_2;
 
     if (this->unk_1B2 != 0) {
         this->unk_1B2--;
@@ -942,7 +941,7 @@ void DoorWarp1_AdultWarpOut(DoorWarp1* this, PlayState* play) {
         }
 
         if (gSaveContext.n64ddFlag && (Randomizer_GetSettingValue(RSK_SHUFFLE_DUNGEON_ENTRANCES) != RO_DUNGEON_ENTRANCE_SHUFFLE_OFF ||
-            Randomizer_GetSettingValue(RSK_SHUFFLE_BOSS_ENTRANCES) != RO_BOSS_ROOM_ENTRANCE_SHUFFLE_OFF)) {
+                                       Randomizer_GetSettingValue(RSK_SHUFFLE_BOSS_ENTRANCES) != RO_BOSS_ROOM_ENTRANCE_SHUFFLE_OFF)) {
             Entrance_OverrideBlueWarp();
         }
 
@@ -1064,7 +1063,7 @@ void DoorWarp1_DrawBlueCrystal(DoorWarp1* this, PlayState* play) {
 }
 
 void DoorWarp1_DrawPurpleCrystal(DoorWarp1* this, PlayState* play) {
-    s32 pad[2];
+    s32   pad[2];
     Vec3f eye;
 
     eye.x = -(Math_SinS(play->state.frames * 200) * 120.0f) * 80.0f;

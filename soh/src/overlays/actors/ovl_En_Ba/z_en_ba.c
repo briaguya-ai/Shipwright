@@ -94,8 +94,8 @@ static InitChainEntry sInitChain[] = {
 void EnBa_Init(Actor* thisx, PlayState* play) {
     EnBa* this = (EnBa*)thisx;
     Vec3f sp38 = D_809B80E4;
-    s32 pad;
-    s16 i;
+    s32   pad;
+    s16   i;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
     this->actor.world.pos.y = this->actor.home.pos.y + 100.0f;
@@ -143,9 +143,9 @@ void EnBa_SetupIdle(EnBa* this) {
 
 void EnBa_Idle(EnBa* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 i;
-    s32 pad;
-    Vec3s sp5C;
+    s32     i;
+    s32     pad;
+    Vec3s   sp5C;
 
     if ((this->actor.colChkInfo.mass == MASS_IMMOVABLE) && (this->actor.xzDistToPlayer > 175.0f)) {
         Math_SmoothStepToF(&this->actor.world.pos.y, this->actor.home.pos.y + 330.0f, 1.0f, 7.0f, 0.0f);
@@ -233,10 +233,10 @@ void EnBa_SetupSwingAtPlayer(EnBa* this) {
 
 void EnBa_SwingAtPlayer(EnBa* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 temp;
-    s16 i;
-    Vec3s sp58;
-    s16 phi_fp;
+    s16     temp;
+    s16     i;
+    Vec3s   sp58;
+    s16     phi_fp;
 
     Math_SmoothStepToF(&this->actor.world.pos.y, this->actor.home.pos.y + 60.0f, 1.0f, 10.0f, 0.0f);
     if ((this->actor.xzDistToPlayer <= 175.0f) || (this->unk_31A != 0)) {
@@ -334,7 +334,7 @@ void func_809B7174(EnBa* this) {
 }
 
 void EnBa_RecoilFromDamage(EnBa* this, PlayState* play) {
-    s32 i;
+    s32   i;
     Vec3s sp6C;
 
     Math_SmoothStepToF(&this->actor.world.pos.y, this->actor.home.pos.y + 330.0f, 1.0f, 30.0f, 0.0f);
@@ -380,9 +380,9 @@ void EnBa_RecoilFromDamage(EnBa* this, PlayState* play) {
 }
 
 void func_809B75A0(EnBa* this, PlayState* play2) {
-    s16 unk_temp;
-    s32 i;
-    Vec3f sp74 = { 0.0f, 0.0f, 0.0f };
+    s16        unk_temp;
+    s32        i;
+    Vec3f      sp74 = { 0.0f, 0.0f, 0.0f };
     PlayState* play = play2;
 
     this->unk_31C = 2500;
@@ -413,8 +413,8 @@ void func_809B75A0(EnBa* this, PlayState* play2) {
 
 void EnBa_Die(EnBa* this, PlayState* play) {
     Vec3f sp6C = { 0.0f, 0.0f, 0.0f };
-    s16 temp;
-    s32 i;
+    s16   temp;
+    s32   i;
 
     if (this->unk_31A != 0) {
         this->actor.speedXZ = 30.0f;
@@ -478,9 +478,9 @@ static void* D_809B8118[] = {
 
 void EnBa_Draw(Actor* thisx, PlayState* play) {
     EnBa* this = (EnBa*)thisx;
-    s32 pad;
-    s16 i;
-    Mtx* mtx = Graph_Alloc(play->state.gfxCtx, sizeof(Mtx) * 14);
+    s32   pad;
+    s16   i;
+    Mtx*  mtx = Graph_Alloc(play->state.gfxCtx, sizeof(Mtx) * 14);
     Vec3f unused = { 0.0f, 0.0f, 448.0f };
 
     OPEN_DISPS(play->state.gfxCtx);

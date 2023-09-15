@@ -13,8 +13,8 @@
 
 typedef struct {
     /* 0x00 */ CollisionHeader* colHeader;
-    /* 0x04 */ Gfx* dList;
-    /* 0x08 */ s8 colType;
+    /* 0x04 */ Gfx*             dList;
+    /* 0x08 */ s8               colType;
 } BombableWallInfo;
 
 void BgBreakwall_Init(Actor* thisx, PlayState* play);
@@ -160,19 +160,19 @@ void BgBreakwall_Destroy(Actor* thisx, PlayState* play) {
 Actor* BgBreakwall_SpawnFragments(PlayState* play, BgBreakwall* this, Vec3f* pos, f32 velocity, f32 scaleY,
                                   f32 scaleX, s32 count, f32 accel) {
     Actor* actor;
-    Vec3f actorPos;
-    s32 k;
-    s32 j;
-    s32 i;
-    s16 angle1;
-    s16 angle2 = 0;
-    Vec3f zeroVec = { 0.0f, 0.0f, 0.0f }; // unused
-    Vec3s actorRotList[] = { { 0, 0, 0 }, { 0, 0, 0x4000 }, { 0, 0, -0x4000 }, { 0, 0, 0 } };
-    Vec3f actorScaleList[] = {
-        { 0.004f, 0.004f, 0.004f },
-        { 0.004f, 0.004f, 0.004f },
-        { 0.004f, 0.004f, 0.004f },
-        { 0.004f, 0.004f, 0.004f },
+    Vec3f  actorPos;
+    s32    k;
+    s32    j;
+    s32    i;
+    s16    angle1;
+    s16    angle2 = 0;
+    Vec3f  zeroVec = { 0.0f, 0.0f, 0.0f }; // unused
+    Vec3s  actorRotList[] = { { 0, 0, 0 }, { 0, 0, 0x4000 }, { 0, 0, -0x4000 }, { 0, 0, 0 } };
+    Vec3f  actorScaleList[] = {
+         { 0.004f, 0.004f, 0.004f },
+         { 0.004f, 0.004f, 0.004f },
+         { 0.004f, 0.004f, 0.004f },
+         { 0.004f, 0.004f, 0.004f },
     };
     Vec3f actorPosList[][4] = {
         { { 40.0f, 15.0f, 0.0f }, { 30.0f, 57.0f, 0.0f }, { 50.0f, 57.0f, 0.0f }, { 40.0f, 70.0f, 0.0f } },
@@ -238,7 +238,7 @@ Actor* BgBreakwall_SpawnFragments(PlayState* play, BgBreakwall* this, Vec3f* pos
 void BgBreakwall_WaitForObject(BgBreakwall* this, PlayState* play) {
     if (Object_IsLoaded(&play->objectCtx, this->bankIndex)) {
         CollisionHeader* colHeader = NULL;
-        s32 wallType = ((this->dyna.actor.params >> 13) & 3) & 0xFF;
+        s32              wallType = ((this->dyna.actor.params >> 13) & 3) & 0xFF;
 
         this->dyna.actor.objBankIndex = this->bankIndex;
         Actor_SetObjectDependency(play, &this->dyna.actor);
@@ -273,11 +273,11 @@ void BgBreakwall_Wait(BgBreakwall* this, PlayState* play) {
             }
         }
     }
-    
+
     // Break the floor immediately in Boss Rush so the player can jump in the hole immediately.
     if (this->collider.base.acFlags & 2 || blueFireArrowHit || gSaveContext.isBossRush) {
         Vec3f effectPos;
-        s32 wallType = ((this->dyna.actor.params >> 13) & 3) & 0xFF;
+        s32   wallType = ((this->dyna.actor.params >> 13) & 3) & 0xFF;
 
         DynaPoly_DeleteBgActor(play, &play->colCtx.dyna, this->dyna.bgId);
         effectPos.y = effectPos.z = effectPos.x = 0.0f;
@@ -350,10 +350,10 @@ void BgBreakwall_Draw(Actor* thisx, PlayState* play) {
         gSPDisplayList(POLY_OPA_DISP++, this->bombableWallDList);
 
         if (this->colType >= 0) {
-            Vec3f colQuad[4];
+            Vec3f  colQuad[4];
             Vec3f* src = &sColQuadList[this->colType][0];
             Vec3f* dst = &colQuad[0];
-            s32 i;
+            s32    i;
 
             for (i = 0; i < 4; i++) {
                 Matrix_MultVec3f(src++, dst++);

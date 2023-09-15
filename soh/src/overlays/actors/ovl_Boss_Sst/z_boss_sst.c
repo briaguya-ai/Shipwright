@@ -18,8 +18,8 @@
 #define vParity actionVar
 #define vVanish actionVar
 
-#define LEFT 0
-#define RIGHT 1
+#define LEFT             0
+#define RIGHT            1
 #define OTHER_HAND(hand) ((BossSst*)hand->actor.child)
 #define HAND_STATE(hand) sHandState[hand->actor.params]
 
@@ -58,7 +58,6 @@ void BossSst_DrawHead(Actor* thisx, PlayState* play);
 void BossSst_UpdateEffect(Actor* thisx, PlayState* play);
 void BossSst_DrawEffect(Actor* thisx, PlayState* play);
 void BossSst_Reset(void);
-
 
 void BossSst_HeadSfx(BossSst* this, u16 sfxId);
 
@@ -193,15 +192,15 @@ void BossSst_IceShatter(BossSst* this);
 
 #include "overlays/ovl_Boss_Sst/ovl_Boss_Sst.h"
 
-static BossSst* sHead;
-static BossSst* sHands[2];
+static BossSst*    sHead;
+static BossSst*    sHands[2];
 static BgSstFloor* sFloor;
 
 static Vec3f sRoomCenter = { ROOM_CENTER_X, ROOM_CENTER_Y, ROOM_CENTER_Z };
 static Vec3f sHandOffsets[2];
-static s16 sHandYawOffsets[2];
+static s16   sHandYawOffsets[2];
 
-static s16 sCutsceneCamera;
+static s16   sCutsceneCamera;
 static Vec3f sCameraAt = { ROOM_CENTER_X + 50.0f, ROOM_CENTER_Y + 0.0f, ROOM_CENTER_Z + 0.0f };
 static Vec3f sCameraEye = { ROOM_CENTER_X + 150.0f, ROOM_CENTER_Y + 100.0f, ROOM_CENTER_Z + 0.0f };
 static Vec3f sCameraAtVel = { 0.0f, 0.0f, 0.0f };
@@ -230,14 +229,14 @@ static Vec3f sCameraEyePoints[] = {
 };
 
 static Vec3f sZeroVec = { 0.0f, 0.0f, 0.0f };
-static u32 sBodyStatic = false;
+static u32   sBodyStatic = false;
 
 // Unreferenced. Maybe two zero vectors?
 static u32 sUnkValues[] = { 0, 0, 0, 0, 0, 0 };
 
 static Color_RGBA8 sBodyColor = { 255, 255, 255, 255 };
 static Color_RGBA8 sStaticColor = { 0, 0, 0, 255 };
-static s32 sHandState[] = { HAND_WAIT, HAND_WAIT };
+static s32         sHandState[] = { HAND_WAIT, HAND_WAIT };
 
 const ActorInit Boss_Sst_InitVars = {
     ACTOR_BOSS_SST,
@@ -370,7 +369,7 @@ void BossSst_HeadLurk(BossSst* this, PlayState* play) {
 }
 
 void BossSst_HeadSetupIntro(BossSst* this, PlayState* play) {
-    //Make sure to restore original behavior if the quick kill didn't happen
+    // Make sure to restore original behavior if the quick kill didn't happen
     if (CVarGetInteger("gQuickBongoKill", 0)) {
         this->colliderCyl.base.acFlags &= ~AC_ON;
     }
@@ -406,9 +405,9 @@ void BossSst_HeadSetupIntro(BossSst* this, PlayState* play) {
 
 void BossSst_HeadIntro(BossSst* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 tempo;
-    s32 introStateTimer;
-    s32 revealStateTimer;
+    s32     tempo;
+    s32     introStateTimer;
+    s32     revealStateTimer;
 
     if (this->timer != 0) {
         this->timer--;
@@ -993,8 +992,8 @@ void BossSst_SetCameraTargets(f32 cameraSpeedMod, s32 targetIndex) {
 void BossSst_UpdateDeathCamera(BossSst* this, PlayState* play) {
     Vec3f cameraAt;
     Vec3f cameraEye;
-    f32 sn;
-    f32 cs;
+    f32   sn;
+    f32   cs;
 
     sCameraAt.x += sCameraAtVel.x;
     sCameraAt.y += sCameraAtVel.y;
@@ -1184,7 +1183,7 @@ void BossSst_HeadFinish(BossSst* this, PlayState* play) {
         { 100, 100, 100, 0 },
     };
     Vec3f spawnPos;
-    s32 i;
+    s32   i;
 
     this->timer--;
     if (this->effectMode == BONGO_NULL) {
@@ -1573,7 +1572,7 @@ void BossSst_HandSetupSweep(BossSst* this) {
 
 void BossSst_HandSweep(BossSst* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 newTargetYaw;
+    s16     newTargetYaw;
 
     SkelAnime_Update(&this->skelAnime);
     this->handAngSpeed += 0x60;
@@ -1707,7 +1706,7 @@ void BossSst_HandSetupClap(BossSst* this) {
 
 void BossSst_HandClap(BossSst* this, PlayState* play) {
     static s32 dropFlag = false;
-    Player* player = GET_PLAYER(play);
+    Player*    player = GET_PLAYER(play);
 
     SkelAnime_Update(&this->skelAnime);
     if (this->timer != 0) {
@@ -1915,7 +1914,7 @@ void BossSst_HandSetupSwing(BossSst* this) {
 
 void BossSst_HandSwing(BossSst* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 offXZ;
+    f32     offXZ;
 
     if (Math_ScaledStepToS(&this->actor.shape.rot.x, this->amplitude, this->timer * 0xE4 + 0x1C8)) {
         if (this->amplitude != 0) {
@@ -2440,10 +2439,10 @@ void BossSst_HandReleasePlayer(BossSst* this, PlayState* play, s32 dropPlayer) {
 
 void BossSst_MoveAround(BossSst* this) {
     BossSst* hand;
-    Vec3f* vec;
-    f32 sn;
-    f32 cs;
-    s32 i;
+    Vec3f*   vec;
+    f32      sn;
+    f32      cs;
+    s32      i;
 
     sn = Math_SinS(this->actor.shape.rot.y);
     cs = Math_CosS(this->actor.shape.rot.y);
@@ -2742,10 +2741,10 @@ void BossSst_DrawHand(Actor* thisx, PlayState* play) {
     if (this->trailCount >= 2) {
         BossSstHandTrail* trail;
         BossSstHandTrail* trail2;
-        s32 i;
-        s32 idx;
-        s32 end;
-        s32 pad;
+        s32               i;
+        s32               idx;
+        s32               end;
+        s32               pad;
 
         Gfx_SetupDL_25Xlu(play->state.gfxCtx);
 
@@ -2769,7 +2768,7 @@ void BossSst_DrawHand(Actor* thisx, PlayState* play) {
                 POLY_XLU_DISP = SkelAnime_DrawFlex(play, this->skelAnime.skeleton, this->skelAnime.jointTable,
                                                    this->skelAnime.dListCount, BossSst_OverrideHandTrailDraw, NULL,
                                                    trail, POLY_XLU_DISP);
-                
+
                 FrameInterpolation_RecordCloseChild();
             }
             idx = (idx + 5) % 7;
@@ -2920,7 +2919,7 @@ void BossSst_DrawHead(Actor* thisx, PlayState* play) {
     }
 
     if ((this->actionFunc == BossSst_HeadIntro) && (113 >= this->timer) && (this->timer > 20)) {
-        s32 yOffset;
+        s32   yOffset;
         Vec3f vanishMaskPos;
         Vec3f vanishMaskOffset;
 
@@ -2968,7 +2967,7 @@ void BossSst_SpawnHeadShadow(BossSst* this) {
 
     for (i = 0; i < 3; i++) {
         BossSstEffect* shadow = &this->effects[i];
-        Vec3f* offset = &shadowOffset[i];
+        Vec3f*         offset = &shadowOffset[i];
 
         shadow->pos.x = this->actor.world.pos.x + (sn * offset->z) + (cs * offset->x);
         shadow->pos.y = 0.0f;
@@ -3019,7 +3018,7 @@ void BossSst_SpawnShockwave(BossSst* this) {
 
 void BossSst_SpawnIceCrystal(BossSst* this, s32 index) {
     BossSstEffect* ice = &this->effects[index];
-    Sphere16* sphere;
+    Sphere16*      sphere;
 
     if (index < 11) {
         sphere = &this->colliderJntSph.elements[index].dim.worldSphere;
@@ -3066,9 +3065,9 @@ void BossSst_SpawnIceCrystal(BossSst* this, s32 index) {
 }
 
 void BossSst_SpawnIceShard(BossSst* this) {
-    s32 i;
+    s32   i;
     Vec3f spawnPos;
-    f32 offXZ;
+    f32   offXZ;
 
     this->effectMode = BONGO_ICE;
     offXZ = Math_CosS(this->actor.shape.rot.x) * 50.0f;
@@ -3117,7 +3116,7 @@ void BossSst_IceShatter(BossSst* this) {
 void BossSst_UpdateEffect(Actor* thisx, PlayState* play) {
     BossSst* this = (BossSst*)thisx;
     BossSstEffect* effect;
-    s32 i;
+    s32            i;
 
     if (this->effectMode != BONGO_NULL) {
         if (this->effectMode == BONGO_ICE) {
@@ -3143,7 +3142,7 @@ void BossSst_UpdateEffect(Actor* thisx, PlayState* play) {
         } else if (this->effectMode == BONGO_SHOCKWAVE) {
             for (i = 0; i < 3; i++) {
                 BossSstEffect* effect2 = &this->effects[i];
-                s32 scale = effect2->move * 2;
+                s32            scale = effect2->move * 2;
 
                 effect2->scale += CLAMP_MAX(scale, 20) + i;
                 if (effect2->move != 0) {
@@ -3178,7 +3177,7 @@ void BossSst_UpdateEffect(Actor* thisx, PlayState* play) {
 void BossSst_DrawEffect(Actor* thisx, PlayState* play) {
     s32 pad;
     BossSst* this = (BossSst*)thisx;
-    s32 i;
+    s32            i;
     BossSstEffect* effect;
 
     if (this->effectMode != BONGO_NULL) {
@@ -3256,7 +3255,7 @@ void BossSst_DrawEffect(Actor* thisx, PlayState* play) {
                 gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
                           G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
                 gSPDisplayList(POLY_XLU_DISP++, sShadowDList);
-                
+
                 FrameInterpolation_RecordCloseChild();
                 effect++;
             }
@@ -3274,7 +3273,7 @@ void BossSst_Reset(void) {
     sHandOffsets[0].x = 0.0f;
     sHandOffsets[0].y = 0.0f;
     sHandOffsets[0].z = 0.0f;
-    
+
     sHandOffsets[1].x = 0.0f;
     sHandOffsets[1].y = 0.0f;
     sHandOffsets[1].z = 0.0f;
@@ -3282,7 +3281,7 @@ void BossSst_Reset(void) {
     sHandYawOffsets[0] = 0;
     sHandYawOffsets[1] = 0;
 
-    sCutsceneCamera= 0;
+    sCutsceneCamera = 0;
     sBodyStatic = false;
     // Reset death colors
     sBodyColor.a = 255;

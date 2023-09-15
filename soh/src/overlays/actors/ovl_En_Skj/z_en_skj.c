@@ -41,8 +41,8 @@ void EnSkj_SetupDie(EnSkj* this);
 void func_80AFF1F0(EnSkj* this);
 void EnSkj_OfferNextRound(EnSkj* this, PlayState* play);
 void EnSkj_SetupAskForMask(EnSkj* this, PlayState* play);
-f32 EnSkj_GetItemXzRange(EnSkj* this);
-s32 EnSkj_CollisionCheck(EnSkj* this, PlayState* play);
+f32  EnSkj_GetItemXzRange(EnSkj* this);
+s32  EnSkj_CollisionCheck(EnSkj* this, PlayState* play);
 void EnSkj_SetupTakeMask(EnSkj* this, PlayState* play);
 void EnSkj_TurnPlayer(EnSkj* this, Player* player);
 
@@ -94,7 +94,7 @@ void EnSkj_SpawnBlood(PlayState* play, Vec3f* pos);
 
 void EnSkj_SetupWaitInRange(EnSkj* this);
 
-#define songFailTimer multiuseTimer
+#define songFailTimer   multiuseTimer
 #define battleExitTimer multiuseTimer
 
 typedef enum {
@@ -154,7 +154,7 @@ typedef enum {
 } SkullKidAction;
 
 typedef struct {
-    u8 unk_0;
+    u8     unk_0;
     EnSkj* skullkid;
 } EnSkjUnkStruct;
 
@@ -366,8 +366,8 @@ void EnSkj_Init(Actor* thisx, PlayState* play2) {
     s16 type = (thisx->params >> 0xA) & 0x3F;
     EnSkj* this = (EnSkj*)thisx;
     PlayState* play = play2;
-    s32 pad;
-    Player* player;
+    s32        pad;
+    Player*    player;
 
     Actor_ProcessInitChain(thisx, sInitChain);
     switch (type) {
@@ -479,8 +479,8 @@ s32 EnSkj_RangeCheck(Player* player, EnSkj* this) {
 
 f32 EnSkj_GetItemXzRange(EnSkj* this) {
     EnSkj* temp_v0;
-    f32 zDiff;
-    f32 xDiff;
+    f32    zDiff;
+    f32    xDiff;
 
     temp_v0 = sSmallStumpSkullKid.skullkid;
     xDiff = temp_v0->actor.world.pos.x - this->actor.world.pos.x;
@@ -493,9 +493,9 @@ f32 EnSkj_GetItemYRange(EnSkj* this) {
 }
 
 s32 EnSkj_ShootNeedle(EnSkj* this, PlayState* play) {
-    s32 pad;
-    Vec3f pos;
-    Vec3f pos2;
+    s32          pad;
+    Vec3f        pos;
+    Vec3f        pos2;
     EnSkjneedle* needle;
 
     pos.x = 1.5f;
@@ -521,7 +521,7 @@ s32 EnSkj_ShootNeedle(EnSkj* this, PlayState* play) {
 
 void EnSkj_SpawnBlood(PlayState* play, Vec3f* pos) {
     EffectSparkInit effect;
-    s32 sp20;
+    s32             sp20;
 
     effect.position.x = pos->x;
     effect.position.y = pos->y;
@@ -579,7 +579,7 @@ void EnSkj_SpawnBlood(PlayState* play, Vec3f* pos) {
 }
 
 s32 EnSkj_CollisionCheck(EnSkj* this, PlayState* play) {
-    s16 yawDiff;
+    s16   yawDiff;
     Vec3f effectPos;
 
     if (!((this->unk_2D3 == 0) || (D_80B01EA0 != 0) || !(this->collider.base.acFlags & AC_HIT))) {
@@ -689,7 +689,7 @@ void EnSkj_SetupWaitToShootNeedle(EnSkj* this) {
 }
 
 void EnSkj_WaitToShootNeedle(EnSkj* this, PlayState* play) {
-    u8 val;
+    u8  val;
     s16 lastFrame = Animation_GetLastFrame(&gSkullKidShootNeedleAnim);
 
     if ((this->skelAnime.curFrame == lastFrame) && (this->needleShootTimer == 0)) {
@@ -809,11 +809,11 @@ void EnSkj_SetupStand(EnSkj* this) {
 void EnSkj_Fight(EnSkj* this, PlayState* play) {
     Vec3f pos1;
     Vec3f pos2;
-    s32 pad[3];
-    f32 prevPosX;
-    f32 prevPosZ;
-    f32 phi_f14;
-    s16 yawDistToPlayer;
+    s32   pad[3];
+    f32   prevPosX;
+    f32   prevPosZ;
+    f32   phi_f14;
+    s16   yawDistToPlayer;
 
     if (this->needleShootTimer == 0) {
         EnSkj_SetupWaitToShootNeedle(this);
@@ -868,7 +868,7 @@ void EnSkj_SpawnDeathEffect(EnSkj* this, PlayState* play) {
     Vec3f effectPos;
     Vec3f effectVel;
     Vec3f effectAccel;
-    u32 phi_v0;
+    u32   phi_v0;
 
     phi_v0 = this->alpha - 4;
 
@@ -957,7 +957,7 @@ void EnSkj_WaitForSong(EnSkj* this, PlayState* play) {
 
     // Played a song thats not Saria's song
     if (!Flags_GetItemGetInf(ITEMGETINF_16) && ((play->msgCtx.msgMode == MSGMODE_OCARINA_FAIL) ||
-                                                 (play->msgCtx.msgMode == MSGMODE_OCARINA_FAIL_NO_TEXT))) {
+                                                (play->msgCtx.msgMode == MSGMODE_OCARINA_FAIL_NO_TEXT))) {
         play->msgCtx.ocarinaMode = OCARINA_MODE_04;
         Message_CloseTextbox(play);
         player->unk_6A8 = &this->actor;
@@ -1209,7 +1209,7 @@ void EnSkj_SetupWaitForTextClear(EnSkj* this) {
 }
 
 void EnSkj_SariasSongWaitForTextClear(EnSkj* this, PlayState* play) {
-    u8 state = Message_GetState(&play->msgCtx);
+    u8      state = Message_GetState(&play->msgCtx);
     Player* player = GET_PLAYER(play);
 
     if (state == TEXT_STATE_DONE && Message_ShouldAdvance(play)) {
@@ -1296,7 +1296,7 @@ void EnSkj_LeaveOcarinaGame(EnSkj* this, PlayState* play) {
 
 void EnSkj_Update(Actor* thisx, PlayState* play) {
     Vec3f dropPos;
-    s32 pad;
+    s32   pad;
     EnSkj* this = (EnSkj*)thisx;
 
     D_80B01EA0 = Actor_ProcessTalkRequest(&this->actor, play);
@@ -1406,7 +1406,7 @@ void EnSkj_WaitForOcarina(EnSkj* this, PlayState* play) {
 }
 
 void EnSkj_StartOcarinaMinigame(EnSkj* this, PlayState* play) {
-    u8 dialogState = Message_GetState(&play->msgCtx);
+    u8      dialogState = Message_GetState(&play->msgCtx);
     Player* player = GET_PLAYER(play);
 
     EnSkj_TurnPlayer(this, player);

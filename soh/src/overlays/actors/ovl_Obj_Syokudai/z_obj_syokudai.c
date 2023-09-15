@@ -80,7 +80,7 @@ static s32 sLitTorchCount;
 
 void ObjSyokudai_Init(Actor* thisx, PlayState* play) {
     static u8 sColTypesStand[] = { 0x09, 0x0B, 0x0B };
-    s32 pad;
+    s32       pad;
     ObjSyokudai* this = (ObjSyokudai*)thisx;
     s32 torchType = this->actor.params & 0xF000;
 
@@ -121,21 +121,21 @@ void ObjSyokudai_Destroy(Actor* thisx, PlayState* play) {
 void ObjSyokudai_Update(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
     ObjSyokudai* this = (ObjSyokudai*)thisx;
-    s32 torchCount = (this->actor.params >> 6) & 0xF;
-    s32 switchFlag = this->actor.params & 0x3F;
-    s32 torchType = this->actor.params & 0xF000;
-    s32 litTimeScale;
+    s32       torchCount = (this->actor.params >> 6) & 0xF;
+    s32       switchFlag = this->actor.params & 0x3F;
+    s32       torchType = this->actor.params & 0xF000;
+    s32       litTimeScale;
     WaterBox* dummy;
-    f32 waterSurface;
-    s32 lightRadius = -1;
-    u8 brightness = 0;
-    Player* player;
-    EnArrow* arrow;
-    s32 interactionType;
-    u32 dmgFlags;
-    Vec3f tipToFlame;
-    s32 pad;
-    s32 pad2;
+    f32       waterSurface;
+    s32       lightRadius = -1;
+    u8        brightness = 0;
+    Player*   player;
+    EnArrow*  arrow;
+    s32       interactionType;
+    u32       dmgFlags;
+    Vec3f     tipToFlame;
+    s32       pad;
+    s32       pad2;
 
     litTimeScale = torchCount;
     if (torchCount == 10) {
@@ -259,7 +259,7 @@ void ObjSyokudai_Update(Actor* thisx, PlayState* play2) {
 
 void ObjSyokudai_Draw(Actor* thisx, PlayState* play) {
     static Gfx* displayLists[] = { gGoldenTorchDL, gTimedTorchDL, gWoodenTorchDL };
-    s32 pad;
+    s32         pad;
     ObjSyokudai* this = (ObjSyokudai*)thisx;
     s32 timerMax;
 

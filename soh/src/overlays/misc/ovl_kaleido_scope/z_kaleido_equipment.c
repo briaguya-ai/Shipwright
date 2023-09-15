@@ -11,21 +11,36 @@ static u8 sAdultUpgradeItemBases[] = { ITEM_QUIVER_30, ITEM_BOMB_BAG_20, ITEM_BR
 static u8 sUpgradeItemOffsets[] = { 0x00, 0x03, 0x06, 0x09 };
 
 static u8 sEquipmentItemOffsets[] = {
-    0x00, 0x00, 0x01, 0x02, 0x00, 0x03, 0x04, 0x05, 0x00, 0x06, 0x07, 0x08, 0x00, 0x09, 0x0A, 0x0B,
+    0x00,
+    0x00,
+    0x01,
+    0x02,
+    0x00,
+    0x03,
+    0x04,
+    0x05,
+    0x00,
+    0x06,
+    0x07,
+    0x08,
+    0x00,
+    0x09,
+    0x0A,
+    0x0B,
 };
 
 static s16 sEquipTimer = 0;
 
 void KaleidoScope_DrawEquipmentImage(PlayState* play, void* source, u32 width, u32 height) {
     PauseContext* pauseCtx = &play->pauseCtx;
-    u8* curTexture;
-    s32 vtxIndex;
-    s32 textureCount;
-    s32 textureHeight;
-    s32 remainingSize;
-    s32 textureSize;
-    s32 pad;
-    s32 i;
+    u8*           curTexture;
+    s32           vtxIndex;
+    s32           textureCount;
+    s32           textureHeight;
+    s32           remainingSize;
+    s32           textureSize;
+    s32           pad;
+    s32           i;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -93,15 +108,14 @@ Vec3s link_kaleido_rot = { 0, 32300, 0 }; // Default rotation link face us.
 
 void KaleidoScope_DrawPlayerWork(PlayState* play) {
     PauseContext* pauseCtx = &play->pauseCtx;
-    Vec3f pos;
-    //Vec3s rot; // Removed for not having it use din the function
-    f32 scale;
-    Input* input = &play->state.input[0];
-    s16 RotationSpeed = 150 * CVarGetInteger("gPauseLiveLinkRotationSpeed", 0);
-    u8 AllowStickRotation = (CVarGetInteger("gPauseLiveLinkRotation", 0) == 3) ? true : false;
-    u8 AllowCRotation = (CVarGetInteger("gPauseLiveLinkRotation", 0) == 2) ? true : false;
-    u8 AllowDPadRotation = (CVarGetInteger("gPauseLiveLinkRotation", 0) == 1) ? true : false;
-
+    Vec3f         pos;
+    // Vec3s rot; // Removed for not having it use din the function
+    f32           scale;
+    Input*        input = &play->state.input[0];
+    s16           RotationSpeed = 150 * CVarGetInteger("gPauseLiveLinkRotationSpeed", 0);
+    u8            AllowStickRotation = (CVarGetInteger("gPauseLiveLinkRotation", 0) == 3) ? true : false;
+    u8            AllowCRotation = (CVarGetInteger("gPauseLiveLinkRotation", 0) == 2) ? true : false;
+    u8            AllowDPadRotation = (CVarGetInteger("gPauseLiveLinkRotation", 0) == 1) ? true : false;
 
     if (LINK_AGE_IN_YEARS == YEARS_CHILD) {
         pos.x = 2.0f;
@@ -146,7 +160,6 @@ void KaleidoScope_DrawPlayerWork(PlayState* play) {
         scale = scale + input->cur.right_stick_y * 10.0f * .00005f;
         pos.y = pos.y - input->cur.right_stick_y * 10.0f * 0.25f;
     }
-    
 
     link_kaleido_rot.x = 0;
 
@@ -160,24 +173,24 @@ void KaleidoScope_DrawPlayerWork(PlayState* play) {
 
 void KaleidoScope_DrawEquipment(PlayState* play) {
     PauseContext* pauseCtx = &play->pauseCtx;
-    Input* input = &play->state.input[0];
-    u16 i;
-    u16 j;
-    u16 k;
-    u16 bit;
-    u16 temp;
-    u16 point;
-    u16 rowStart;
-    u16 pad;
-    s16 cursorMoveResult;
-    u16 cursorItem;
-    u16 cursorSlot = 0;
-    s16 cursorPoint;
-    s16 cursorX;
-    s16 cursorY;
-    s16 oldCursorPoint;
-    bool dpad = (CVarGetInteger("gDpadPause", 0) && !CHECK_BTN_ALL(input->cur.button, BTN_CUP));
-    bool pauseAnyCursor = (CVarGetInteger("gPauseAnyCursor", 0) == PAUSE_ANY_CURSOR_RANDO_ONLY && gSaveContext.n64ddFlag) ||
+    Input*        input = &play->state.input[0];
+    u16           i;
+    u16           j;
+    u16           k;
+    u16           bit;
+    u16           temp;
+    u16           point;
+    u16           rowStart;
+    u16           pad;
+    s16           cursorMoveResult;
+    u16           cursorItem;
+    u16           cursorSlot = 0;
+    s16           cursorPoint;
+    s16           cursorX;
+    s16           cursorY;
+    s16           oldCursorPoint;
+    bool          dpad = (CVarGetInteger("gDpadPause", 0) && !CHECK_BTN_ALL(input->cur.button, BTN_CUP));
+    bool          pauseAnyCursor = (CVarGetInteger("gPauseAnyCursor", 0) == PAUSE_ANY_CURSOR_RANDO_ONLY && gSaveContext.n64ddFlag) ||
                           (CVarGetInteger("gPauseAnyCursor", 0) == PAUSE_ANY_CURSOR_ALWAYS_ON);
 
     OPEN_DISPS(play->state.gfxCtx);
@@ -263,7 +276,7 @@ void KaleidoScope_DrawEquipment(PlayState* play) {
                                 cursorMoveResult = 1;
                             }
                         } else if ((gBitFlags[pauseCtx->cursorPoint[PAUSE_EQUIP] - 1] & gSaveContext.inventory.equipment) || pauseAnyCursor) {
-                                cursorMoveResult = 2;
+                            cursorMoveResult = 2;
                         }
                     } else {
                         pauseCtx->cursorX[PAUSE_EQUIP] = cursorX;
@@ -313,7 +326,8 @@ void KaleidoScope_DrawEquipment(PlayState* play) {
                                 cursorMoveResult = 1;
                             }
                         } else if ((gBitFlags[pauseCtx->cursorPoint[PAUSE_EQUIP] - 1] &
-                                   gSaveContext.inventory.equipment) || pauseAnyCursor) {
+                                    gSaveContext.inventory.equipment) ||
+                                   pauseAnyCursor) {
                             cursorMoveResult = 2;
                         }
                     } else {
@@ -331,7 +345,8 @@ void KaleidoScope_DrawEquipment(PlayState* play) {
                                 cursorMoveResult = 1;
                             }
                         } else if ((gBitFlags[pauseCtx->cursorPoint[PAUSE_EQUIP] - 1] &
-                                   gSaveContext.inventory.equipment) || pauseAnyCursor) {
+                                    gSaveContext.inventory.equipment) ||
+                                   pauseAnyCursor) {
                             cursorMoveResult = 2;
                         }
                     } else {
@@ -520,14 +535,13 @@ void KaleidoScope_DrawEquipment(PlayState* play) {
 
                     // If we have the feature toggled on
                     if (CVarGetInteger("gEquipmentCanBeRemoved", 0)) {
-                        
+
                         // If we're on the "swords" section of the equipment screen AND we're on a currently-equipped BGS/Giant's Knife
-                        if (pauseCtx->cursorY[PAUSE_EQUIP] == 0 && pauseCtx->cursorX[PAUSE_EQUIP] == 3 
-                            && CUR_EQUIP_VALUE(EQUIP_SWORD) == 3 && CHECK_OWNED_EQUIP(0,1)){ // And we have the Master Sword
-                            Inventory_ChangeEquipment(EQUIP_SWORD, 2); // "Unequip" it by equipping Master Sword
+                        if (pauseCtx->cursorY[PAUSE_EQUIP] == 0 && pauseCtx->cursorX[PAUSE_EQUIP] == 3 && CUR_EQUIP_VALUE(EQUIP_SWORD) == 3 && CHECK_OWNED_EQUIP(0, 1)) { // And we have the Master Sword
+                            Inventory_ChangeEquipment(EQUIP_SWORD, 2);                                                                                                    // "Unequip" it by equipping Master Sword
                             gSaveContext.equips.buttonItems[0] = ITEM_SWORD_MASTER;
                             gSaveContext.infTable[29] = 0;
-                            goto RESUME_EQUIPMENT_SWORD;               // Skip to here so we don't re-equip it
+                            goto RESUME_EQUIPMENT_SWORD; // Skip to here so we don't re-equip it
                         }
 
                         // If we're on the "shields" section of the equipment screen AND we're on a currently-equipped shield
@@ -555,7 +569,7 @@ void KaleidoScope_DrawEquipment(PlayState* play) {
                         goto EQUIP_FAIL;
                     }
 
-                    RESUME_EQUIPMENT:
+                RESUME_EQUIPMENT:
                     if (pauseCtx->cursorY[PAUSE_EQUIP] == 0) {
                         gSaveContext.infTable[29] = 0;
                         gSaveContext.equips.buttonItems[0] = cursorItem;
@@ -572,7 +586,7 @@ void KaleidoScope_DrawEquipment(PlayState* play) {
                                 gSaveContext.equips.buttonItems[0] = ITEM_SWORD_KNIFE;
                             }
                         }
-                        RESUME_EQUIPMENT_SWORD:
+                    RESUME_EQUIPMENT_SWORD:
                         Interface_LoadItemIcon1(play, 0);
                     }
 
@@ -616,7 +630,7 @@ void KaleidoScope_DrawEquipment(PlayState* play) {
                     }
                 }
             } else {
-                EQUIP_FAIL:
+            EQUIP_FAIL:
                 if (CHECK_BTN_ALL(input->press.button, BTN_A)) {
                     Audio_PlaySoundGeneral(NA_SE_SY_ERROR, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
                 } else if ((CVarGetInteger("gAssignableTunicsAndBoots", 0) != 0) && (pauseCtx->cursorY[PAUSE_EQUIP] > 1)) {
@@ -671,8 +685,8 @@ void KaleidoScope_DrawEquipment(PlayState* play) {
             point = CUR_UPG_VALUE(sChildUpgrades[i]);
             if ((point != 0) && (CUR_UPG_VALUE(sChildUpgrades[i]) != 0)) {
                 if (drawGreyItems &&
-                    ((sChildUpgradeItemBases[i] + CUR_UPG_VALUE(sChildUpgrades[i]) - 1) == ITEM_GAUNTLETS_SILVER || 
-                    (sChildUpgradeItemBases[i] + CUR_UPG_VALUE(sChildUpgrades[i]) - 1) == ITEM_GAUNTLETS_GOLD)) { // Grey Out the Gauntlets
+                    ((sChildUpgradeItemBases[i] + CUR_UPG_VALUE(sChildUpgrades[i]) - 1) == ITEM_GAUNTLETS_SILVER ||
+                     (sChildUpgradeItemBases[i] + CUR_UPG_VALUE(sChildUpgrades[i]) - 1) == ITEM_GAUNTLETS_GOLD)) { // Grey Out the Gauntlets
                     gDPSetGrayscaleColor(POLY_KAL_DISP++, 109, 109, 109, 255);
                     gSPGrayscale(POLY_KAL_DISP++, true);
                 }
@@ -690,7 +704,7 @@ void KaleidoScope_DrawEquipment(PlayState* play) {
             } else if (CUR_UPG_VALUE(sAdultUpgrades[i]) != 0) {
                 if (drawGreyItems &&
                     ((sAdultUpgradeItemBases[i] + CUR_UPG_VALUE(sAdultUpgrades[i]) - 1) == ITEM_BRACELET &&
-                        !(gSaveContext.n64ddFlag))) { // Grey Out the Goron Bracelet when Not Randomized
+                     !(gSaveContext.n64ddFlag))) { // Grey Out the Goron Bracelet when Not Randomized
                     gDPSetGrayscaleColor(POLY_KAL_DISP++, 109, 109, 109, 255);
                     gSPGrayscale(POLY_KAL_DISP++, true);
                 }
@@ -701,7 +715,7 @@ void KaleidoScope_DrawEquipment(PlayState* play) {
         // Draw inventory screen icons
         for (k = 0, bit = rowStart, point = 4; k < 3; k++, point += 4, temp++, bit++) {
 
-            int itemId = ITEM_SWORD_KOKIRI + temp;
+            int  itemId = ITEM_SWORD_KOKIRI + temp;
             bool age_restricted = !CHECK_ITEM_AGE(itemId);
             if (age_restricted) {
                 gDPSetGrayscaleColor(POLY_KAL_DISP++, 109, 109, 109, 255);
@@ -720,26 +734,26 @@ void KaleidoScope_DrawEquipment(PlayState* play) {
 
     KaleidoScope_DrawPlayerWork(play);
 
-    //if ((pauseCtx->unk_1E4 == 7) && (sEquipTimer == 10)) {
-        //KaleidoScope_SetupPlayerPreRender(play);
+    // if ((pauseCtx->unk_1E4 == 7) && (sEquipTimer == 10)) {
+    // KaleidoScope_SetupPlayerPreRender(play);
     //}
 
     if ((pauseCtx->unk_1E4 == 7) && (sEquipTimer == 9)) {
         //! @bug: This function shouldn't take any arguments
-        //KaleidoScope_ProcessPlayerPreRender(play);
+        // KaleidoScope_ProcessPlayerPreRender(play);
     }
 
     // gSPInvalidateTexCache(POLY_KAL_DISP++, 0);
     gSPInvalidateTexCache(POLY_KAL_DISP++, pauseCtx->iconItemSegment);
-    //gSPInvalidateTexCache(POLY_KAL_DISP++, pauseCtx->iconItem24Segment);
+    // gSPInvalidateTexCache(POLY_KAL_DISP++, pauseCtx->iconItem24Segment);
     gSPInvalidateTexCache(POLY_KAL_DISP++, pauseCtx->nameSegment);
 
-    //gSPSegment(POLY_KAL_DISP++, 0x07, pauseCtx->playerSegment);
+    // gSPSegment(POLY_KAL_DISP++, 0x07, pauseCtx->playerSegment);
     gSPSegment(POLY_KAL_DISP++, 0x08, pauseCtx->iconItemSegment);
     gSPSegment(POLY_KAL_DISP++, 0x09, pauseCtx->iconItem24Segment);
     gSPSegment(POLY_KAL_DISP++, 0x0A, pauseCtx->nameSegment);
     gSPSegment(POLY_KAL_DISP++, 0x0B, play->interfaceCtx.mapSegment);
-    //gSPSegment(POLY_KAL_DISP++, 0x0C, pauseCtx->iconItemAltSegment);
+    // gSPSegment(POLY_KAL_DISP++, 0x0C, pauseCtx->iconItemAltSegment);
 
     Gfx_SetupDL_42Kal(play->state.gfxCtx);
     KaleidoScope_DrawEquipmentImage(play, pauseCtx->playerSegment, 64, 112);

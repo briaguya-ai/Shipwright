@@ -1,6 +1,6 @@
 #pragma once
 
-#define BOSSRUSH_OPTIONS_AMOUNT 12
+#define BOSSRUSH_OPTIONS_AMOUNT        12
 #define BOSSRUSH_MAX_OPTIONS_ON_SCREEN 6
 
 typedef enum {

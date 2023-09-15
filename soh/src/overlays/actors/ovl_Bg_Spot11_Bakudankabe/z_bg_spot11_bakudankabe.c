@@ -64,9 +64,9 @@ void func_808B2180(BgSpot11Bakudankabe* this, PlayState* play) {
 
 void func_808B2218(BgSpot11Bakudankabe* this, PlayState* play) {
     Actor* thisx = &this->dyna.actor;
-    Vec3f burstDepthY;
-    Vec3f burstDepthX;
-    s32 i;
+    Vec3f  burstDepthY;
+    Vec3f  burstDepthX;
+    s32    i;
 
     burstDepthX.z = 0;
     burstDepthX.x = 0;
@@ -110,7 +110,7 @@ void func_808B2218(BgSpot11Bakudankabe* this, PlayState* play) {
 
 void BgSpot11Bakudankabe_Init(Actor* thisx, PlayState* play) {
     BgSpot11Bakudankabe* this = (BgSpot11Bakudankabe*)thisx;
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
 
     DynaPolyActor_Init(&this->dyna, DPM_UNK);

@@ -113,8 +113,10 @@ static DamageTable sDamageTable = {
 };
 
 static InitChainEntry sInitChain[] = {
-    ICHAIN_VEC3F_DIV1000(scale, 5, ICHAIN_CONTINUE),  ICHAIN_F32_DIV1000(gravity, -500, ICHAIN_CONTINUE),
-    ICHAIN_F32(minVelocityY, -4, ICHAIN_CONTINUE),    ICHAIN_U8(targetMode, 2, ICHAIN_CONTINUE),
+    ICHAIN_VEC3F_DIV1000(scale, 5, ICHAIN_CONTINUE),
+    ICHAIN_F32_DIV1000(gravity, -500, ICHAIN_CONTINUE),
+    ICHAIN_F32(minVelocityY, -4, ICHAIN_CONTINUE),
+    ICHAIN_U8(targetMode, 2, ICHAIN_CONTINUE),
     ICHAIN_F32(targetArrowOffset, 4000, ICHAIN_STOP),
 };
 
@@ -263,7 +265,7 @@ void EnFirefly_SetupStunned(EnFirefly* this) {
 }
 
 void EnFirefly_SetupFrozenFall(EnFirefly* this, PlayState* play) {
-    s32 i;
+    s32   i;
     Vec3f iceParticlePos;
 
     this->actor.flags |= ACTOR_FLAG_UPDATE_WHILE_CULLED;
@@ -300,7 +302,7 @@ void EnFirefly_SetupDisturbDiveAttack(EnFirefly* this) {
 
 s32 EnFirefly_ReturnToPerch(EnFirefly* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 distFromHome;
+    f32     distFromHome;
 
     if (this->actor.params != KEESE_NORMAL_PERCH) {
         return 0;
@@ -333,9 +335,9 @@ s32 EnFirefly_ReturnToPerch(EnFirefly* this, PlayState* play) {
 s32 EnFirefly_SeekTorch(EnFirefly* this, PlayState* play) {
     ObjSyokudai* findTorch;
     ObjSyokudai* closestTorch;
-    f32 torchDist;
-    f32 currentMinDist;
-    Vec3f flamePos;
+    f32          torchDist;
+    f32          currentMinDist;
+    Vec3f        flamePos;
 
     findTorch = (ObjSyokudai*)play->actorCtx.actorLists[ACTORCAT_PROP].head;
     closestTorch = NULL;
@@ -457,7 +459,7 @@ void EnFirefly_Die(EnFirefly* this, PlayState* play) {
 
 void EnFirefly_DiveAttack(EnFirefly* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Vec3f preyPos;
+    Vec3f   preyPos;
 
     SkelAnime_Update(&this->skelAnime);
     if (this->timer != 0) {
@@ -587,7 +589,7 @@ void EnFirefly_Perch(EnFirefly* this, PlayState* play) {
 
 void EnFirefly_DisturbDiveAttack(EnFirefly* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Vec3f preyPos;
+    Vec3f   preyPos;
 
     SkelAnime_Update(&this->skelAnime);
 
@@ -740,20 +742,20 @@ void EnFirefly_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* 
     static Color_RGBA8 fireAuraEnvColor = { 255, 50, 0, 0 };
     static Color_RGBA8 iceAuraPrimColor = { 100, 200, 255, 255 };
     static Color_RGBA8 iceAuraEnvColor = { 0, 0, 255, 0 };
-    Color_RGBA8 customFireAuraPrimColor = CVarGetColor("gCosmetics.NPC_FireKeesePrimary.Value", fireAuraPrimColor);
-    Color_RGBA8 customFireAuraEnvColor = CVarGetColor("gCosmetics.NPC_FireKeeseSecondary.Value", fireAuraEnvColor);
-    Color_RGBA8 customIceAuraPrimColor = CVarGetColor("gCosmetics.NPC_IceKeesePrimary.Value", iceAuraPrimColor);
-    Color_RGBA8 customIceAuraEnvColor = CVarGetColor("gCosmetics.NPC_IceKeeseSecondary.Value", iceAuraEnvColor);
-    static Vec3f effVelocity = { 0.0f, 0.5f, 0.0f };
-    static Vec3f effAccel = { 0.0f, 0.5f, 0.0f };
-    static Vec3f limbSrc = { 0.0f, 0.0f, 0.0f };
-    Vec3f effPos;
-    Vec3f* limbDest;
-    Color_RGBA8* effPrimColor;
-    Color_RGBA8* effEnvColor;
-    MtxF mtx;
-    s16 effScaleStep;
-    s16 effLife;
+    Color_RGBA8        customFireAuraPrimColor = CVarGetColor("gCosmetics.NPC_FireKeesePrimary.Value", fireAuraPrimColor);
+    Color_RGBA8        customFireAuraEnvColor = CVarGetColor("gCosmetics.NPC_FireKeeseSecondary.Value", fireAuraEnvColor);
+    Color_RGBA8        customIceAuraPrimColor = CVarGetColor("gCosmetics.NPC_IceKeesePrimary.Value", iceAuraPrimColor);
+    Color_RGBA8        customIceAuraEnvColor = CVarGetColor("gCosmetics.NPC_IceKeeseSecondary.Value", iceAuraEnvColor);
+    static Vec3f       effVelocity = { 0.0f, 0.5f, 0.0f };
+    static Vec3f       effAccel = { 0.0f, 0.5f, 0.0f };
+    static Vec3f       limbSrc = { 0.0f, 0.0f, 0.0f };
+    Vec3f              effPos;
+    Vec3f*             limbDest;
+    Color_RGBA8*       effPrimColor;
+    Color_RGBA8*       effEnvColor;
+    MtxF               mtx;
+    s16                effScaleStep;
+    s16                effLife;
     EnFirefly* this = (EnFirefly*)thisx;
 
     if (!this->onFire && (limbIndex == 27)) {

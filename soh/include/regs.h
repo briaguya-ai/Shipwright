@@ -1,8 +1,8 @@
 #ifndef REGS_H
 #define REGS_H
 
-#define REG_GROUPS 29 // number of REG groups, i.e. REG, SREG, OREG, etc.
-#define REG_PAGES 6
+#define REG_GROUPS   29 // number of REG groups, i.e. REG, SREG, OREG, etc.
+#define REG_PAGES    6
 #define REG_PER_PAGE 16
 // clang-format off
 // for some reason it thinks this is a pointer and not math
@@ -11,7 +11,7 @@
 
 #define BASE_REG(n, r) gGameInfo->data[n * REG_PER_GROUP + r]
 
-#define  REG(r) BASE_REG(0, r)
+#define REG(r)  BASE_REG(0, r)
 #define SREG(r) BASE_REG(1, r)
 #define OREG(r) BASE_REG(2, r)
 #define PREG(r) BASE_REG(3, r)

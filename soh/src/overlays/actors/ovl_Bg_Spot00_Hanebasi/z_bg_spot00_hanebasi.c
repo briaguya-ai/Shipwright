@@ -50,8 +50,8 @@ static InitChainEntry sInitChain[] = {
 
 void BgSpot00Hanebasi_Init(Actor* thisx, PlayState* play) {
     BgSpot00Hanebasi* this = (BgSpot00Hanebasi*)thisx;
-    s32 pad;
-    Vec3f chainPos;
+    s32              pad;
+    Vec3f            chainPos;
     CollisionHeader* colHeader = NULL;
 
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
@@ -167,8 +167,8 @@ void BgSpot00Hanebasi_DoNothing(BgSpot00Hanebasi* this, PlayState* play) {
 
 void BgSpot00Hanebasi_DrawbridgeRiseAndFall(BgSpot00Hanebasi* this, PlayState* play) {
     BgSpot00Hanebasi* child;
-    Actor* childsChild;
-    s16 angle = 80;
+    Actor*            childsChild;
+    s16               angle = 80;
 
     if (Math_ScaledStepToS(&this->dyna.actor.shape.rot.x, this->destAngle, 80)) {
         this->actionFunc = BgSpot00Hanebasi_DrawbridgeWait;
@@ -259,8 +259,8 @@ void BgSpot00Hanebasi_Update(Actor* thisx, PlayState* play) {
 
 void BgSpot00Hanebasi_DrawTorches(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
-    f32 angle;
-    s32 i;
+    f32        angle;
+    s32        i;
 
     OPEN_DISPS(play->state.gfxCtx);
 

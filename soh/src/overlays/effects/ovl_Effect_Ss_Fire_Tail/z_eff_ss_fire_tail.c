@@ -7,21 +7,21 @@
 #include "z_eff_ss_fire_tail.h"
 #include "objects/gameplay_keep/gameplay_keep.h"
 
-#define rScale regs[0]
-#define rLifespan regs[1]
-#define rReg2 regs[2]
-#define rReg3 regs[3]
+#define rScale      regs[0]
+#define rLifespan   regs[1]
+#define rReg2       regs[2]
+#define rReg3       regs[3]
 #define rPrimColorR regs[4]
 #define rPrimColorG regs[5]
 #define rPrimColorB regs[6]
-#define rEnvColorR regs[7]
-#define rEnvColorG regs[8]
-#define rEnvColorB regs[9]
-#define rReg10 regs[10]
-#define rBodyPart regs[11]
-#define rType regs[12]
+#define rEnvColorR  regs[7]
+#define rEnvColorG  regs[8]
+#define rEnvColorB  regs[9]
+#define rReg10      regs[10]
+#define rBodyPart   regs[11]
+#define rType       regs[12]
 
-u32 EffectSsFireTail_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsFireTail_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsFireTail_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsFireTail_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -67,12 +67,12 @@ u32 EffectSsFireTail_Init(PlayState* play, u32 index, EffectSs* this, void* init
 
 void EffectSsFireTail_Draw(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s32 pad;
-    s16 yaw;
-    Vec3f scale;
-    f32 temp1;
-    f32 temp2;
-    f32 dist;
+    s32              pad;
+    s16              yaw;
+    Vec3f            scale;
+    f32              temp1;
+    f32              temp2;
+    f32              dist;
 
     OPEN_DISPS(gfxCtx);
 
@@ -87,7 +87,7 @@ void EffectSsFireTail_Draw(PlayState* play, u32 index, EffectSs* this) {
                              this->pos.z + this->actor->world.pos.z, MTXMODE_NEW);
         } else {
             Player* player = GET_PLAYER(play);
-            s16 bodyPart = this->rBodyPart;
+            s16     bodyPart = this->rBodyPart;
 
             this->pos.x =
                 player->bodyPartsPos[bodyPart].x - (Math_SinS(Camera_GetCamDirYaw(GET_ACTIVE_CAM(play))) * 5.0f);

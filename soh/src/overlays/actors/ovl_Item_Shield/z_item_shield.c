@@ -141,12 +141,12 @@ void func_80B86BC8(ItemShield* this, PlayState* play) {
 
 void func_80B86CA8(ItemShield* this, PlayState* play) {
     static Vec3f D_80B871F4 = { 0.0f, 0.0f, 0.0f };
-    static f32 D_80B87200[] = { 0.3f, 0.6f,  0.9f, 1.0f,  1.0f, 1.0f,  1.0f, 1.0f,
-                                1.0f, 0.85f, 0.7f, 0.55f, 0.4f, 0.25f, 0.1f, 0.0f };
-    static f32 D_80B87240[] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.8f,
-                                0.6f, 0.4f, 0.2f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
-    s32 i;
-    s32 temp;
+    static f32   D_80B87200[] = { 0.3f, 0.6f, 0.9f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+                                  1.0f, 0.85f, 0.7f, 0.55f, 0.4f, 0.25f, 0.1f, 0.0f };
+    static f32   D_80B87240[] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.8f,
+                                  0.6f, 0.4f, 0.2f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+    s32          i;
+    s32          temp;
 
     Actor_MoveForward(&this->actor);
     Actor_UpdateBgCheckInfo(play, &this->actor, 10.0f, 10.0f, 0.0f, 5);
@@ -184,9 +184,9 @@ void func_80B86CA8(ItemShield* this, PlayState* play) {
 }
 
 void func_80B86F68(ItemShield* this, PlayState* play) {
-    s32 pad;
+    s32     pad;
     Player* player = GET_PLAYER(play);
-    MtxF* shield = &player->shieldMf;
+    MtxF*   shield = &player->shieldMf;
 
     this->actor.world.pos.x = shield->xw;
     this->actor.world.pos.y = shield->yw;

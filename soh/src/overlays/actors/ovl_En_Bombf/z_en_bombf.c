@@ -144,10 +144,10 @@ void EnBombf_SetupGrowBomb(EnBombf* this, s16 params) {
 
 void EnBombf_GrowBomb(EnBombf* this, PlayState* play) {
     EnBombf* bombFlower;
-    s32 pad;
-    s32 pad1;
-    Player* player = GET_PLAYER(play);
-    s32 pad2;
+    s32      pad;
+    s32      pad1;
+    Player*  player = GET_PLAYER(play);
+    s32      pad2;
 
     if (this->flowerBombScale >= 1.0f) {
         if (Actor_HasParent(&this->actor, play)) {
@@ -314,13 +314,13 @@ void EnBombf_Explode(EnBombf* this, PlayState* play) {
 }
 
 void EnBombf_Update(Actor* thisx, PlayState* play) {
-    Vec3f effVelocity = { 0.0f, 0.0f, 0.0f };
-    Vec3f bomb2Accel = { 0.0f, 0.1f, 0.0f };
-    Vec3f effAccel = { 0.0f, 0.0f, 0.0f };
-    Vec3f effPos;
-    Vec3f dustAccel = { 0.0f, 0.6f, 0.0f };
+    Vec3f       effVelocity = { 0.0f, 0.0f, 0.0f };
+    Vec3f       bomb2Accel = { 0.0f, 0.1f, 0.0f };
+    Vec3f       effAccel = { 0.0f, 0.0f, 0.0f };
+    Vec3f       effPos;
+    Vec3f       dustAccel = { 0.0f, 0.6f, 0.0f };
     Color_RGBA8 dustColor = { 255, 255, 255, 255 };
-    s32 pad[2];
+    s32         pad[2];
     EnBombf* this = (EnBombf*)thisx;
 
     if ((this->unk_200 != 0) && (this->timer != 0)) {

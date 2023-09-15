@@ -64,74 +64,74 @@ void EnMag_Init(Actor* thisx, PlayState* play) {
 }
 
 static s16 sDelayTimer = 0;
-void EnMag_InitMq(Actor* thisx, PlayState* play) {
-    EnMag* this = (EnMag*)thisx;
+void       EnMag_InitMq(Actor* thisx, PlayState* play) {
+          EnMag* this = (EnMag*)thisx;
 
-    YREG(1) = 63;
-    YREG(3) = 80;
-    YREG(4) = 255;
-    YREG(5) = 30;
-    YREG(6) = 30;
-    YREG(7) = 119;
-    YREG(8) = 7;
-    YREG(9) = 5;
-    YREG(10) = 3;
+          YREG(1) = 63;
+          YREG(3) = 80;
+          YREG(4) = 255;
+          YREG(5) = 30;
+          YREG(6) = 30;
+          YREG(7) = 119;
+          YREG(8) = 7;
+          YREG(9) = 5;
+          YREG(10) = 3;
 
-    VREG(4) = 1;
-    VREG(5) = 6;
-    VREG(6) = 2;
+          VREG(4) = 1;
+          VREG(5) = 6;
+          VREG(6) = 2;
 
-    this->copyrightAlphaStep = 6;
-    this->fadeOutAlphaStep = 10;
+          this->copyrightAlphaStep = 6;
+          this->fadeOutAlphaStep = 10;
 
-    VREG(19) = 99;
-    VREG(21) = 9;
-    VREG(23) = 10;
-    VREG(24) = 8;
+          VREG(19) = 99;
+          VREG(21) = 9;
+          VREG(23) = 10;
+          VREG(24) = 8;
 
-    this->effectScroll = 0;
-    this->unk_E30C = 0;
+          this->effectScroll = 0;
+          this->unk_E30C = 0;
 
-    this->effectPrimColor[0] = 0.0f;
-    this->effectPrimColor[1] = 100.0f;
-    this->effectPrimColor[2] = 170.0f;
-    this->effectEnvColor[0] = 0.0f;
-    this->effectEnvColor[1] = 100.0f;
-    this->effectEnvColor[2] = 0.0f;
+          this->effectPrimColor[0] = 0.0f;
+          this->effectPrimColor[1] = 100.0f;
+          this->effectPrimColor[2] = 170.0f;
+          this->effectEnvColor[0] = 0.0f;
+          this->effectEnvColor[1] = 100.0f;
+          this->effectEnvColor[2] = 0.0f;
 
-    this->effectFadeInTimer = 40;
+          this->effectFadeInTimer = 40;
 
-    this->effectFadeInState = this->effectPrimLodFrac = this->globalState = this->effectAlpha = this->mainAlpha =
-        this->subAlpha = this->copyrightAlpha = 0.0f;
+          this->effectFadeInState = this->effectPrimLodFrac = this->globalState = this->effectAlpha = this->mainAlpha =
+              this->subAlpha = this->copyrightAlpha = 0.0f;
 
-    if (gSaveContext.unk_13E7 != 0) {
-        this->mainAlpha = 210;
-        this->subAlpha = 255;
-        this->copyrightAlpha = 255;
+          if (gSaveContext.unk_13E7 != 0) {
+              this->mainAlpha = 210;
+              this->subAlpha = 255;
+              this->copyrightAlpha = 255;
 
-        this->effectPrimLodFrac = 128.0f;
-        this->effectAlpha = 255.0f;
+              this->effectPrimLodFrac = 128.0f;
+              this->effectAlpha = 255.0f;
 
-        this->effectPrimColor[0] = 170;
-        this->effectPrimColor[1] = 255.0f;
-        this->effectPrimColor[2] = 255.0f;
-        this->effectEnvColor[0] = 200.0f;
-        this->effectEnvColor[1] = 255.0f;
-        this->effectEnvColor[2] = 0;
+              this->effectPrimColor[0] = 170;
+              this->effectPrimColor[1] = 255.0f;
+              this->effectPrimColor[2] = 255.0f;
+              this->effectEnvColor[0] = 200.0f;
+              this->effectEnvColor[1] = 255.0f;
+              this->effectEnvColor[2] = 0;
 
-        gSaveContext.unk_13E7 = 0;
-        this->globalState = MAG_STATE_DISPLAY;
-        sDelayTimer = 20;
-        gSaveContext.transFadeDuration = 1;
-        gSaveContext.transWipeSpeed = 255;
+              gSaveContext.unk_13E7 = 0;
+              this->globalState = MAG_STATE_DISPLAY;
+              sDelayTimer = 20;
+              gSaveContext.transFadeDuration = 1;
+              gSaveContext.transWipeSpeed = 255;
     }
 
-    Font_LoadOrderedFont(&this->font);
+          Font_LoadOrderedFont(&this->font);
 
-    this->unk_E316 = 0;
-    this->unk_E318 = 0;
-    this->unk_E31C = 0;
-    this->unk_E320 = 0;
+          this->unk_E316 = 0;
+          this->unk_E318 = 0;
+          this->unk_E31C = 0;
+          this->unk_E320 = 0;
 }
 
 void EnMag_InitVanilla(Actor* thisx, PlayState* play) {
@@ -461,7 +461,7 @@ void EnMag_UpdateVanilla(Actor* thisx, PlayState* play) {
 
             if (this->effectFadeInTimer == 0) {
                 this->effectPrimLodFrac = 128.0f;
-                
+
                 this->effectPrimColor[2] = 170.0f;
                 this->effectEnvColor[1] = 100.0f;
 
@@ -544,7 +544,7 @@ void EnMag_DrawEffectTextures(Gfx** gfxp, const void* maskTex, void* effectTex, 
                               s16 effectWidth, s16 effectHeight, s16 rectLeft, s16 rectTop, s16 rectWidth,
                               s16 rectHeight, u16 dsdx, u16 dtdy, u16 shifts, u16 shiftt, u16 flag, EnMag* this) {
     Gfx* gfx = *gfxp;
-    
+
     gDPLoadMultiBlock_4b(gfx++, maskTex, 0x0000, 0, G_IM_FMT_I, maskWidth, maskHeight, 0, G_TX_NOMIRROR | G_TX_WRAP,
                          G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
 
@@ -563,32 +563,32 @@ void EnMag_DrawEffectTextures(Gfx** gfxp, const void* maskTex, void* effectTex, 
 
 void EnMag_DrawImageRGBA32(Gfx** gfxp, s16 centerX, s16 centerY, const char* source, u32 width, u32 height) {
     Gfx* gfx = *gfxp;
-    u8* curTexture;
-    s32 textureCount;
-    u32 rectLeft;
-    u32 rectTop;
-    u32 textureHeight;
-    s32 remainingSize;
-    s32 textureSize;
-    s32 pad;
-    s32 i;
+    u8*  curTexture;
+    s32  textureCount;
+    u32  rectLeft;
+    u32  rectTop;
+    u32  textureHeight;
+    s32  remainingSize;
+    s32  textureSize;
+    s32  pad;
+    s32  i;
 
     Gfx_SetupDL_56Ptr(&gfx);
-    
+
     rectLeft = centerX - (width / 2);
     rectTop = centerY - (height / 2);
-    
+
     gDPSetTileCustom(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_32b, width, height, 0, G_TX_NOMIRROR | G_TX_CLAMP,
                      G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
-    
+
     gDPSetTextureImage(gfx++, G_IM_FMT_RGBA, G_IM_SIZ_32b, width, source);
-    
+
     gDPLoadSync(gfx++);
     gDPLoadTile(gfx++, G_TX_LOADTILE, 0, 0, (width - 1) << 2, (height - 1) << 2);
-    
+
     gSPTextureRectangle(gfx++, rectLeft << 2, rectTop << 2, (rectLeft + (s32)width) << 2,
                         (rectTop + height) << 2, G_TX_RENDERTILE, 0, 0, 1 << 10, 1 << 10);
-    
+
     *gfxp = gfx;
 }
 
@@ -608,7 +608,7 @@ void EnMag_DrawCharTexture(Gfx** gfxp, u8* texture, s32 rectLeft, s32 rectTop) {
 }
 
 s16 GetCharArraySize(const char* str) {
-    s16 length = 0;
+    s16  length = 0;
     char c = str[length];
 
     while (c != 0) {
@@ -638,31 +638,37 @@ static void EnMag_SetCopyValues(const char** copy_tex, u16* copy_width, u16* cop
 }
 
 void EnMag_DrawInnerMq(Actor* thisx, PlayState* play, Gfx** gfxp) {
-    static s16 textAlpha = 0;
-    static s16 textFadeDirection = 0;
-    static s16 textFadeTimer = 0;
+    static s16   textAlpha = 0;
+    static s16   textFadeDirection = 0;
+    static s16   textFadeTimer = 0;
     static void* effectMaskTextures[] = {
-        gTitleEffectMask00Tex, gTitleEffectMask01Tex, gTitleEffectMask02Tex,
-        gTitleEffectMask10Tex, gTitleEffectMask11Tex, gTitleEffectMask12Tex,
-        gTitleEffectMask20Tex, gTitleEffectMask21Tex, gTitleEffectMask22Tex,
+        gTitleEffectMask00Tex,
+        gTitleEffectMask01Tex,
+        gTitleEffectMask02Tex,
+        gTitleEffectMask10Tex,
+        gTitleEffectMask11Tex,
+        gTitleEffectMask12Tex,
+        gTitleEffectMask20Tex,
+        gTitleEffectMask21Tex,
+        gTitleEffectMask22Tex,
     };
     EnMag* this = (EnMag*)thisx;
     Font* font = &this->font;
-    s32 pad;
-    Gfx* gfx = *gfxp;
-    u16 i, j, k;
-    u16 rectLeft;
-    u16 rectTop;
-    u16 length;
-    int lang = LANGUAGE_ENG;
+    s32   pad;
+    Gfx*  gfx = *gfxp;
+    u16   i, j, k;
+    u16   rectLeft;
+    u16   rectTop;
+    u16   length;
+    int   lang = LANGUAGE_ENG;
     if (CVarGetInteger("gTitleScreenTranslation", 0)) {
         lang = gSaveContext.language;
     }
 
     const char* copy_tex = NULL;
-    u16 copy_width;
-    u16 copy_xl;
-    u16 copy_xh;
+    u16         copy_width;
+    u16         copy_xl;
+    u16         copy_xh;
     EnMag_SetCopyValues(&copy_tex, &copy_width, &copy_xl, &copy_xh);
 
     gSPSegment(gfx++, 0x06, play->objectCtx.status[this->actor.objBankIndex].segment);
@@ -839,31 +845,37 @@ void EnMag_DrawInnerMq(Actor* thisx, PlayState* play, Gfx** gfxp) {
 }
 
 void EnMag_DrawInnerVanilla(Actor* thisx, PlayState* play, Gfx** gfxp) {
-    static s16 textAlpha = 0;
-    static s16 textFadeDirection = 0;
-    static s16 textFadeTimer = 0;
+    static s16         textAlpha = 0;
+    static s16         textFadeDirection = 0;
+    static s16         textFadeTimer = 0;
     static const void* effectMaskTextures[] = {
-        gTitleEffectMask00Tex, gTitleEffectMask01Tex, gTitleEffectMask02Tex,
-        gTitleEffectMask10Tex, gTitleEffectMask11Tex, gTitleEffectMask12Tex,
-        gTitleEffectMask20Tex, gTitleEffectMask21Tex, gTitleEffectMask22Tex,
+        gTitleEffectMask00Tex,
+        gTitleEffectMask01Tex,
+        gTitleEffectMask02Tex,
+        gTitleEffectMask10Tex,
+        gTitleEffectMask11Tex,
+        gTitleEffectMask12Tex,
+        gTitleEffectMask20Tex,
+        gTitleEffectMask21Tex,
+        gTitleEffectMask22Tex,
     };
     EnMag* this = (EnMag*)thisx;
     Font* font = &this->font;
-    s32 pad;
-    Gfx* gfx = *gfxp;
-    u16 i, j, k;
-    u16 rectLeft;
-    u16 rectTop;
-    u16 length;
-    int lang = LANGUAGE_ENG;
+    s32   pad;
+    Gfx*  gfx = *gfxp;
+    u16   i, j, k;
+    u16   rectLeft;
+    u16   rectTop;
+    u16   length;
+    int   lang = LANGUAGE_ENG;
     if (CVarGetInteger("gTitleScreenTranslation", 0)) {
         lang = gSaveContext.language;
     }
 
     const char* copy_tex = NULL;
-    u16 copy_width;
-    u16 copy_xl;
-    u16 copy_xh;
+    u16         copy_width;
+    u16         copy_xl;
+    u16         copy_xh;
     EnMag_SetCopyValues(&copy_tex, &copy_width, &copy_xl, &copy_xh);
 
     gSPSegment(gfx++, 0x06, play->objectCtx.status[this->actor.objBankIndex].segment);
@@ -924,7 +936,6 @@ void EnMag_DrawInnerVanilla(Actor* thisx, PlayState* play, Gfx** gfxp) {
 
         EnMag_DrawTextureI8(&gfx, gTitleTheLegendOfTextTex, 72, 8, 153, 72, 72, 8, 1024, 1024);
         EnMag_DrawTextureI8(&gfx, gTitleOcarinaOfTimeTMTextTex, 96, 8, 151, 126, 96, 8, 1024, 1024);
-
     }
 
     Gfx_SetupDL_39Ptr(&gfx);
@@ -1037,7 +1048,7 @@ void EnMag_DrawInnerVanilla(Actor* thisx, PlayState* play, Gfx** gfxp) {
 }
 
 void EnMag_Draw(Actor* thisx, PlayState* play) {
-    s32 pad;
+    s32  pad;
     Gfx* gfx;
     Gfx* gfxRef;
 

@@ -15,12 +15,12 @@ void BgSpot18Obj_Destroy(Actor* thisx, PlayState* play);
 void BgSpot18Obj_Update(Actor* thisx, PlayState* play);
 void BgSpot18Obj_Draw(Actor* thisx, PlayState* play);
 
-s32 func_808B8910(BgSpot18Obj* this, PlayState* play);
-s32 func_808B8A5C(BgSpot18Obj* this, PlayState* play);
-s32 func_808B8A98(BgSpot18Obj* this, PlayState* play);
-s32 func_808B8B08(BgSpot18Obj* this, PlayState* play);
-s32 func_808B8BB4(BgSpot18Obj* this, PlayState* play);
-s32 func_808B8C90(BgSpot18Obj* this, PlayState* play);
+s32  func_808B8910(BgSpot18Obj* this, PlayState* play);
+s32  func_808B8A5C(BgSpot18Obj* this, PlayState* play);
+s32  func_808B8A98(BgSpot18Obj* this, PlayState* play);
+s32  func_808B8B08(BgSpot18Obj* this, PlayState* play);
+s32  func_808B8BB4(BgSpot18Obj* this, PlayState* play);
+s32  func_808B8C90(BgSpot18Obj* this, PlayState* play);
 void func_808B8DC0(BgSpot18Obj* this);
 void func_808B8DD0(BgSpot18Obj* this, PlayState* play);
 void func_808B8E64(BgSpot18Obj* this);
@@ -68,8 +68,10 @@ static BgSpot18ObjInitFunc D_808B910C[] = {
 };
 
 static InitChainEntry sInitChain1[] = {
-    ICHAIN_F32(minVelocityY, -10, ICHAIN_CONTINUE),       ICHAIN_F32(gravity, -4, ICHAIN_CONTINUE),
-    ICHAIN_F32(uncullZoneForward, 1400, ICHAIN_CONTINUE), ICHAIN_F32(uncullZoneScale, 500, ICHAIN_CONTINUE),
+    ICHAIN_F32(minVelocityY, -10, ICHAIN_CONTINUE),
+    ICHAIN_F32(gravity, -4, ICHAIN_CONTINUE),
+    ICHAIN_F32(uncullZoneForward, 1400, ICHAIN_CONTINUE),
+    ICHAIN_F32(uncullZoneScale, 500, ICHAIN_CONTINUE),
     ICHAIN_F32(uncullZoneDownward, 800, ICHAIN_STOP),
 };
 
@@ -126,7 +128,7 @@ s32 func_808B8A5C(BgSpot18Obj* this, PlayState* play) {
 }
 
 s32 func_808B8A98(BgSpot18Obj* this, PlayState* play) {
-    s32 pad[2];
+    s32              pad[2];
     CollisionHeader* colHeader = NULL;
 
     DynaPolyActor_Init(&this->dyna, DPM_UNK);
@@ -243,7 +245,7 @@ void func_808B8EE0(BgSpot18Obj* this) {
 }
 
 void func_808B8F08(BgSpot18Obj* this, PlayState* play) {
-    s32 pad;
+    s32     pad;
     Player* player = GET_PLAYER(play);
 
     Math_StepToF(&this->dyna.actor.speedXZ, 1.2f, 0.1f);

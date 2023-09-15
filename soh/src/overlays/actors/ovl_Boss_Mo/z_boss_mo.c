@@ -27,29 +27,29 @@
      ((tent->work[MO_TENT_ACTION_STATE] == MO_TENT_GRAB) || (tent->work[MO_TENT_ACTION_STATE] == MO_TENT_SHAKE)))
 
 typedef struct {
-    /* 0x00 */ Vec3f pos;
-    /* 0x0C */ Vec3f vel;
-    /* 0x18 */ Vec3f accel;
-    /* 0x24 */ u8 type;
-    /* 0x25 */ u8 timer;
-    /* 0x26 */ u8 stopTimer;
-    /* 0x28 */ s16 unk_28; // unused?
-    /* 0x2A */ s16 alpha;
-    /* 0x2C */ s16 rippleMode;
-    /* 0x2E */ s16 maxAlpha;
-    /* 0x30 */ f32 scale;
-    /* 0x30 */ f32 fwork[2];
+    /* 0x00 */ Vec3f  pos;
+    /* 0x0C */ Vec3f  vel;
+    /* 0x18 */ Vec3f  accel;
+    /* 0x24 */ u8     type;
+    /* 0x25 */ u8     timer;
+    /* 0x26 */ u8     stopTimer;
+    /* 0x28 */ s16    unk_28; // unused?
+    /* 0x2A */ s16    alpha;
+    /* 0x2C */ s16    rippleMode;
+    /* 0x2E */ s16    maxAlpha;
+    /* 0x30 */ f32    scale;
+    /* 0x30 */ f32    fwork[2];
     /* 0x3C */ Vec3f* targetPos;
-    u32 epoch;
+    u32               epoch;
 } BossMoEffect; // size = 0x40
 
 #define MO_FX_MAX_SIZE 0
-#define MO_FX_SHIMMER 0
-#define MO_FX_SUCTION 0
+#define MO_FX_SHIMMER  0
+#define MO_FX_SUCTION  0
 
 #define MO_FX_SPREAD_RATE 1
-#define MO_FX_STRETCH 1
-#define MO_FX_MAX_SCALE 1
+#define MO_FX_STRETCH     1
+#define MO_FX_MAX_SCALE   1
 
 void BossMo_Init(Actor* thisx, PlayState* play);
 void BossMo_Destroy(Actor* thisx, PlayState* play);
@@ -144,17 +144,55 @@ static BossMo* sMorphaTent1 = NULL;
 static BossMo* sMorphaTent2 = NULL;
 
 static f32 sFlatWidth[41] = {
-    15.0f, 12.0f, 9.0f, 6.5f, 4.8f, 4.0f, 3.4f, 3.1f, 3.0f, 3.1f, 3.2f, 3.4f, 3.6f, 3.8f,
-    4.0f,  4.6f,  5.1f, 5.5f, 6.1f, 6.6f, 7.3f, 7.7f, 8.4f, 8.5f, 8.7f, 8.8f, 8.8f, 8.7f,
-    8.6f,  8.3f,  8.2f, 8.1f, 7.2f, 6.7f, 5.9f, 4.9f, 2.7f, 0.0f, 0.0f, 0.0f, 0.0f,
+    15.0f,
+    12.0f,
+    9.0f,
+    6.5f,
+    4.8f,
+    4.0f,
+    3.4f,
+    3.1f,
+    3.0f,
+    3.1f,
+    3.2f,
+    3.4f,
+    3.6f,
+    3.8f,
+    4.0f,
+    4.6f,
+    5.1f,
+    5.5f,
+    6.1f,
+    6.6f,
+    7.3f,
+    7.7f,
+    8.4f,
+    8.5f,
+    8.7f,
+    8.8f,
+    8.8f,
+    8.7f,
+    8.6f,
+    8.3f,
+    8.2f,
+    8.1f,
+    7.2f,
+    6.7f,
+    5.9f,
+    4.9f,
+    2.7f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
 };
 
 #include "z_boss_mo_colchk.c"
 
 static BossMoEffect sEffects[300];
-static s32 sBossGanonSeed1;
-static s32 sBossGanonSeed2;
-static s32 sBossGanonSeed3;
+static s32          sBossGanonSeed1;
+static s32          sBossGanonSeed2;
+static s32          sBossGanonSeed3;
 
 void BossMo_InitRand(s32 seedInit0, s32 seedInit1, s32 seedInit2) {
     sBossGanonSeed1 = seedInit0;
@@ -198,7 +236,7 @@ s32 BossMo_NearLand(Vec3f* pos, f32 margin) {
 void BossMo_SpawnRipple(BossMoEffect* effect, Vec3f* pos, f32 scale, f32 maxScale, s16 maxAlpha, s16 partLimit,
                         u8 type) {
     static Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
-    s16 i;
+    s16          i;
 
     for (i = 0; i < partLimit; i++, effect++) {
         if (effect->type == MO_FX_NONE) {
@@ -226,7 +264,7 @@ void BossMo_SpawnRipple(BossMoEffect* effect, Vec3f* pos, f32 scale, f32 maxScal
 }
 
 void BossMo_SpawnDroplet(s16 type, BossMoEffect* effect, Vec3f* pos, Vec3f* vel, f32 scale) {
-    s16 i;
+    s16   i;
     Vec3f gravity = { 0.0f, -1.0f, 0.0f };
 
     for (i = 0; i < 290; i++, effect++) {
@@ -248,7 +286,7 @@ void BossMo_SpawnDroplet(s16 type, BossMoEffect* effect, Vec3f* pos, Vec3f* vel,
 }
 
 void BossMo_SpawnStillDroplet(BossMoEffect* effect, Vec3f* pos, f32 scale) {
-    s16 i;
+    s16   i;
     Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
 
     for (i = 0; i < 290; i++, effect++) {
@@ -292,16 +330,133 @@ void BossMo_SpawnBubble(BossMoEffect* effect, Vec3f* pos, Vec3f* vel, Vec3f* acc
 }
 
 static s16 sCurlRot[41] = {
-    0, 0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  2,  4, 8, 8, 8, 9, 9, 9,
-    9, 9, 9, 12, 15, 15, 15, 15, 15, 15, 15, 20, 20, 20, 0, 0, 0, 0, 0, 0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    4,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    12,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    20,
+    20,
+    20,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
 };
 static s16 sGrabRot[41] = {
-    0, 0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 0, 0, -5, -5, -5,
-    0, 5, 10, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 0, 0, 0, 0,  0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -5,
+    -5,
+    -5,
+    0,
+    5,
+    10,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    0,
+    0,
+    0,
+    0,
+    0,
 };
 static s16 sAttackRot[41] = {
-    0, 5, 6, 7, 8, 8, 7, 6, 6, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0,
+    5,
+    6,
+    7,
+    8,
+    8,
+    7,
+    6,
+    6,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
 };
 
 static InitChainEntry sInitChain[] = {
@@ -316,25 +471,115 @@ static Vec3f sAudioZeroVec = { 0.0f, 0.0f, 0.0f };
 static u8 sTentSpawnIndex[21] = { 0, 1, 2, 3, 4, 15, 19, 5, 14, 16, 17, 18, 6, 13, 20, 7, 12, 11, 10, 9, 8 };
 
 static Vec2f sTentSpawnPos[21] = {
-    { -360.0f, -360.0f }, { -180.0f, -360.0f }, { 0.0f, -360.0f },   { 180.0f, -360.0f }, { 360.0f, -360.0f },
-    { -360.0f, -180.0f }, { 0.0f, -180.0f },    { 360.0f, -180.0f }, { -360.0f, 0.0f },   { -180.0f, 0.0f },
-    { 0.0f, 0.0f },       { 180.0f, 0.0f },     { 360.0f, 0.0f },    { -360.0f, 180.0f }, { 0.0f, 180.0f },
-    { 360.0f, 180.0f },   { -360.0f, 360.0f },  { -180.0f, 360.0f }, { 0.0f, 360.0f },    { 180.0f, 360.0f },
+    { -360.0f, -360.0f },
+    { -180.0f, -360.0f },
+    { 0.0f, -360.0f },
+    { 180.0f, -360.0f },
+    { 360.0f, -360.0f },
+    { -360.0f, -180.0f },
+    { 0.0f, -180.0f },
+    { 360.0f, -180.0f },
+    { -360.0f, 0.0f },
+    { -180.0f, 0.0f },
+    { 0.0f, 0.0f },
+    { 180.0f, 0.0f },
+    { 360.0f, 0.0f },
+    { -360.0f, 180.0f },
+    { 0.0f, 180.0f },
+    { 360.0f, 180.0f },
+    { -360.0f, 360.0f },
+    { -180.0f, 360.0f },
+    { 0.0f, 360.0f },
+    { 180.0f, 360.0f },
     { 360.0f, 360.0f },
 };
 
 static f32 sTentWidth[41] = {
-    3.56f, 3.25f, 2.96f, 2.69f, 2.44f, 2.21f, 2.0f, 1.81f, 1.64f, 1.49f, 1.36f, 1.25f, 1.16f, 1.09f,
-    1.04f, 1.01f, 1.0f,  1.0f,  1.0f,  1.0f,  1.0f, 1.0f,  1.0f,  1.0f,  1.0f,  1.0f,  1.0f,  1.0f,
-    1.0f,  1.0f,  1.0f,  1.0f,  0.98f, 0.95f, 0.9f, 0.8f,  0.6f,  1.0f,  1.0f,  1.0f,  1.0f,
+    3.56f,
+    3.25f,
+    2.96f,
+    2.69f,
+    2.44f,
+    2.21f,
+    2.0f,
+    1.81f,
+    1.64f,
+    1.49f,
+    1.36f,
+    1.25f,
+    1.16f,
+    1.09f,
+    1.04f,
+    1.01f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    0.98f,
+    0.95f,
+    0.9f,
+    0.8f,
+    0.6f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
 };
 
 static f32 sDropletWidth[41] = {
-    0.0f,      2.95804f,  4.123106f, 4.974937f, 5.656854f, 6.22495f,  6.708204f, 7.123903f, 7.483315f,
-    7.794229f, 8.062258f, 8.291562f, 8.485281f, 8.645808f, 8.774964f, 8.87412f,  8.944272f, 8.9861f,
-    9.0f,      8.9861f,   8.944272f, 8.87412f,  8.774964f, 8.645808f, 8.485281f, 8.291562f, 8.062258f,
-    7.794229f, 7.483315f, 7.123903f, 6.708204f, 6.22495f,  5.656854f, 4.974937f, 4.123106f, 2.95804f,
-    0.0f,      0.0f,      0.0f,      0.0f,      0.0f,
+    0.0f,
+    2.95804f,
+    4.123106f,
+    4.974937f,
+    5.656854f,
+    6.22495f,
+    6.708204f,
+    7.123903f,
+    7.483315f,
+    7.794229f,
+    8.062258f,
+    8.291562f,
+    8.485281f,
+    8.645808f,
+    8.774964f,
+    8.87412f,
+    8.944272f,
+    8.9861f,
+    9.0f,
+    8.9861f,
+    8.944272f,
+    8.87412f,
+    8.774964f,
+    8.645808f,
+    8.485281f,
+    8.291562f,
+    8.062258f,
+    7.794229f,
+    7.483315f,
+    7.123903f,
+    6.708204f,
+    6.22495f,
+    5.656854f,
+    4.974937f,
+    4.123106f,
+    2.95804f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
 }; // These are sqrt(9^2 - (i/2 - 9)^2), a sphere of radius 9.
 
 void BossMo_Init(Actor* thisx, PlayState* play2) {
@@ -425,51 +670,51 @@ void BossMo_SetupTentacle(BossMo* this, PlayState* play) {
 }
 
 void BossMo_Tentacle(BossMo* this, PlayState* play) {
-    s16 tentXrot;
-    s16 sp1B4 = 0;
-    s32 buttons;
+    s16     tentXrot;
+    s16     sp1B4 = 0;
+    s32     buttons;
     Player* player = GET_PLAYER(play);
-    s16 indS0;
-    s16 indS1;
+    s16     indS0;
+    s16     indS1;
     Camera* camera1;
     Camera* camera2;
     BossMo* otherTent = (BossMo*)this->otherTent;
-    f32 maxSwingRateX;
-    f32 maxSwingLagX;
-    f32 maxSwingSizeX;
-    f32 maxSwingRateZ;
-    f32 maxSwingLagZ;
-    f32 maxSwingSizeZ;
-    f32 swingRateAccel;
-    f32 swingSizeAccel;
-    s16 rippleCount;
-    s16 indT5;
-    Vec3f ripplePos;
-    f32 randAngle;
-    f32 randFloat;
-    f32 tempf1;
-    f32 tempf2;
-    f32 sin;
-    f32 cos;
-    f32 temp;
-    f32 dx;
-    f32 dy;
-    f32 dz;
-    Vec3f sp138;
-    Vec3f sp12C;
-    Vec3f sp120;
-    s32 pad11C;
-    s32 pad118;
-    s32 pad114;
-    s32 pad110;
-    s32 pad10C;
-    s32 pad108;
-    Vec3f spFC;
-    Vec3f spF0;
-    f32 padEC;
-    Vec3f spE0;
-    Vec3f spD4;
-    Vec3f spC8;
+    f32     maxSwingRateX;
+    f32     maxSwingLagX;
+    f32     maxSwingSizeX;
+    f32     maxSwingRateZ;
+    f32     maxSwingLagZ;
+    f32     maxSwingSizeZ;
+    f32     swingRateAccel;
+    f32     swingSizeAccel;
+    s16     rippleCount;
+    s16     indT5;
+    Vec3f   ripplePos;
+    f32     randAngle;
+    f32     randFloat;
+    f32     tempf1;
+    f32     tempf2;
+    f32     sin;
+    f32     cos;
+    f32     temp;
+    f32     dx;
+    f32     dy;
+    f32     dz;
+    Vec3f   sp138;
+    Vec3f   sp12C;
+    Vec3f   sp120;
+    s32     pad11C;
+    s32     pad118;
+    s32     pad114;
+    s32     pad110;
+    s32     pad10C;
+    s32     pad108;
+    Vec3f   spFC;
+    Vec3f   spF0;
+    f32     padEC;
+    Vec3f   spE0;
+    Vec3f   spD4;
+    Vec3f   spC8;
 
     if (this->work[MO_TENT_ACTION_STATE] <= MO_TENT_DEATH_3) {
         this->actor.world.pos.y = MO_WATER_LEVEL(play);
@@ -1141,8 +1386,8 @@ void BossMo_Tentacle(BossMo* this, PlayState* play) {
         (Rand_ZeroOne() < 0.8f) && (this->actor.scale.x > 0.001f)) {
         Vec3f pos;
         Vec3f velocity = { 0.0f, 0.0f, 0.0f };
-        f32 scale;
-        f32 temp;
+        f32   scale;
+        f32   temp;
 
         if (this->work[MO_TENT_ACTION_STATE] >= MO_TENT_DEATH_2) {
             indS1 = 38;
@@ -1165,7 +1410,7 @@ void BossMo_TentCollisionCheck(BossMo* this, PlayState* play) {
 
     for (i1 = 0; i1 < ARRAY_COUNT(this->tentElements); i1++) {
         if (this->tentCollider.elements[i1].info.bumperFlags & BUMP_HIT) {
-            s16 i2;
+            s16           i2;
             ColliderInfo* hurtbox;
 
             for (i2 = 0; i2 < 19; i2++) {
@@ -1209,27 +1454,31 @@ void BossMo_TentCollisionCheck(BossMo* this, PlayState* play) {
 
 void BossMo_IntroCs(BossMo* this, PlayState* play) {
     static Vec3f cutsceneTargets[6] = {
-        { -360.0f, -190.0f, 0.0f },  { 250.0f, -190.0f, 0.0f }, { 300.0f, -120.0f, -278.0f },
-        { 180.0f, -80.0f, -340.0f }, { 180.0f, 0.0f, -340.0f }, { 180.0f, 60.0f, -230.0f },
+        { -360.0f, -190.0f, 0.0f },
+        { 250.0f, -190.0f, 0.0f },
+        { 300.0f, -120.0f, -278.0f },
+        { 180.0f, -80.0f, -340.0f },
+        { 180.0f, 0.0f, -340.0f },
+        { 180.0f, 60.0f, -230.0f },
     };
-    u8 sp9F = 0;
-    f32 dx;
-    f32 dy;
-    f32 dz;
-    f32 tempX;
-    f32 tempY;
-    s32 pad84;
-    f32 sp80;
-    f32 sp7C;
-    f32 sp78;
+    u8      sp9F = 0;
+    f32     dx;
+    f32     dy;
+    f32     dz;
+    f32     tempX;
+    f32     tempY;
+    s32     pad84;
+    f32     sp80;
+    f32     sp7C;
+    f32     sp78;
     Player* player = GET_PLAYER(play);
     Camera* camera = Play_GetCamera(play, MAIN_CAM);
-    Vec3f bubblePos;
-    Vec3f bubblePos2;
+    Vec3f   bubblePos;
+    Vec3f   bubblePos2;
     Camera* camera2;
-    f32 pad50;
-    f32 pad4C;
-    f32 pad48;
+    f32     pad50;
+    f32     pad4C;
+    f32     pad48;
 
     if (this->csState < MO_INTRO_REVEAL) {
         this->cameraZoom = 80.0f;
@@ -1518,17 +1767,17 @@ void BossMo_IntroCs(BossMo* this, PlayState* play) {
 }
 
 void BossMo_DeathCs(BossMo* this, PlayState* play) {
-    s16 i;
-    s16 one;
-    f32 dx;
-    f32 dz;
-    f32 sp80;
-    f32 sp7C;
-    Vec3f sp70;
-    Vec3f sp64;
+    s16     i;
+    s16     one;
+    f32     dx;
+    f32     dz;
+    f32     sp80;
+    f32     sp7C;
+    Vec3f   sp70;
+    Vec3f   sp64;
     Camera* camera = Play_GetCamera(play, MAIN_CAM);
-    Vec3f velocity;
-    Vec3f pos;
+    Vec3f   velocity;
+    Vec3f   pos;
 
     switch (this->csState) {
         case MO_DEATH_START:
@@ -1751,7 +2000,7 @@ void BossMo_DeathCs(BossMo* this, PlayState* play) {
 }
 
 void BossMo_CoreCollisionCheck(BossMo* this, PlayState* play) {
-    s16 i;
+    s16     i;
     Player* player = GET_PLAYER(play);
 
     osSyncPrintf(VT_FGCOL(YELLOW));
@@ -1855,36 +2104,46 @@ void BossMo_CoreCollisionCheck(BossMo* this, PlayState* play) {
 
 void BossMo_Core(BossMo* this, PlayState* play) {
     static f32 coreBulge[11] = {
-        0.1f, 0.15f, 0.2f, 0.3f, 0.4f, 0.43f, 0.4f, 0.3f, 0.2f, 0.15f, 0.1f,
+        0.1f,
+        0.15f,
+        0.2f,
+        0.3f,
+        0.4f,
+        0.43f,
+        0.4f,
+        0.3f,
+        0.2f,
+        0.15f,
+        0.1f,
     };
-    u8 nearLand;
-    s16 i;                                  // not on stack
+    u8      nearLand;
+    s16     i;                         // not on stack
     Player* player = GET_PLAYER(play); // not on stack
-    f32 spDC;
-    f32 spD8;
-    f32 spD4;
-    f32 spD0;
-    f32 spCC;
-    s32 padC8;
-    s32 temp;         // not on stack
-    f32 xScaleTarget; // not on stack
-    f32 yScaleTarget;
-    Vec3f effectPos;
-    Vec3f effectVelocity;
-    Vec3f effectAccel;
-    s32 pad94;
-    s32 pad90;
-    s16 j;
-    s16 index; // not on stack
-    f32 sp88;
-    s32 pad84;
-    f32 sp80;
-    f32 sp7C;
-    Vec3f sp70;
-    Vec3f sp64;
-    f32 sp60;
-    f32 sp5C;
-    f32 sp58;
+    f32     spDC;
+    f32     spD8;
+    f32     spD4;
+    f32     spD0;
+    f32     spCC;
+    s32     padC8;
+    s32     temp;         // not on stack
+    f32     xScaleTarget; // not on stack
+    f32     yScaleTarget;
+    Vec3f   effectPos;
+    Vec3f   effectVelocity;
+    Vec3f   effectAccel;
+    s32     pad94;
+    s32     pad90;
+    s16     j;
+    s16     index; // not on stack
+    f32     sp88;
+    s32     pad84;
+    f32     sp80;
+    f32     sp7C;
+    Vec3f   sp70;
+    Vec3f   sp64;
+    f32     sp60;
+    f32     sp5C;
+    f32     sp58;
 
     this->waterTex1x += -1.0f;
     this->waterTex1y += -1.0f;
@@ -2228,7 +2487,7 @@ void BossMo_Core(BossMo* this, PlayState* play) {
 void BossMo_UpdateCore(Actor* thisx, PlayState* play) {
     s32 pad;
     BossMo* this = (BossMo*)thisx;
-    s16 i;
+    s16     i;
     Player* player = GET_PLAYER(play);
 
     osSyncPrintf("CORE mode = <%d>\n", this->work[MO_TENT_ACTION_STATE]);
@@ -2277,7 +2536,7 @@ void BossMo_UpdateTent(Actor* thisx, PlayState* play) {
     s32 pad;
     BossMo* this = (BossMo*)thisx;
     Player* player = GET_PLAYER(play);
-    f32 phi_f0;
+    f32     phi_f0;
 
     if ((this == sMorphaTent2) && (this->tent2KillTimer != 0)) {
         this->tent2KillTimer++;
@@ -2348,7 +2607,7 @@ void BossMo_UpdateTent(Actor* thisx, PlayState* play) {
         this->actor.world.pos = this->actor.prevPos;
     }
     if ((this->work[MO_TENT_VAR_TIMER] % 8) == 0) {
-        f32 rippleScale;
+        f32   rippleScale;
         Vec3f pos = this->actor.world.pos;
 
         if (this->work[MO_TENT_ACTION_STATE] < MO_TENT_DEATH_START) {
@@ -2367,7 +2626,7 @@ void BossMo_UpdateTent(Actor* thisx, PlayState* play) {
         Vec3f sp7C;
         Vec3f bubblePos;
         Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
-        s32 pad;
+        s32   pad;
 
         this->baseBubblesTimer--;
         sp88.x = 0.0;
@@ -2436,28 +2695,58 @@ void BossMo_UpdateTentColliders(BossMo* this, s32 item, ColliderJntSph* tentColl
 }
 
 static Gfx* sTentDLists[41] = {
-    gMorphaTentaclePart0DL,  gMorphaTentaclePart1DL,  gMorphaTentaclePart2DL,  gMorphaTentaclePart3DL,
-    gMorphaTentaclePart4DL,  gMorphaTentaclePart5DL,  gMorphaTentaclePart6DL,  gMorphaTentaclePart7DL,
-    gMorphaTentaclePart8DL,  gMorphaTentaclePart9DL,  gMorphaTentaclePart10DL, gMorphaTentaclePart11DL,
-    gMorphaTentaclePart12DL, gMorphaTentaclePart13DL, gMorphaTentaclePart14DL, gMorphaTentaclePart15DL,
-    gMorphaTentaclePart16DL, gMorphaTentaclePart17DL, gMorphaTentaclePart18DL, gMorphaTentaclePart19DL,
-    gMorphaTentaclePart20DL, gMorphaTentaclePart21DL, gMorphaTentaclePart22DL, gMorphaTentaclePart23DL,
-    gMorphaTentaclePart24DL, gMorphaTentaclePart25DL, gMorphaTentaclePart26DL, gMorphaTentaclePart27DL,
-    gMorphaTentaclePart28DL, gMorphaTentaclePart29DL, gMorphaTentaclePart30DL, gMorphaTentaclePart31DL,
-    gMorphaTentaclePart32DL, gMorphaTentaclePart33DL, gMorphaTentaclePart34DL, gMorphaTentaclePart35DL,
-    gMorphaTentaclePart36DL, gMorphaTentaclePart37DL, gMorphaTentaclePart38DL, gMorphaTentaclePart39DL,
+    gMorphaTentaclePart0DL,
+    gMorphaTentaclePart1DL,
+    gMorphaTentaclePart2DL,
+    gMorphaTentaclePart3DL,
+    gMorphaTentaclePart4DL,
+    gMorphaTentaclePart5DL,
+    gMorphaTentaclePart6DL,
+    gMorphaTentaclePart7DL,
+    gMorphaTentaclePart8DL,
+    gMorphaTentaclePart9DL,
+    gMorphaTentaclePart10DL,
+    gMorphaTentaclePart11DL,
+    gMorphaTentaclePart12DL,
+    gMorphaTentaclePart13DL,
+    gMorphaTentaclePart14DL,
+    gMorphaTentaclePart15DL,
+    gMorphaTentaclePart16DL,
+    gMorphaTentaclePart17DL,
+    gMorphaTentaclePart18DL,
+    gMorphaTentaclePart19DL,
+    gMorphaTentaclePart20DL,
+    gMorphaTentaclePart21DL,
+    gMorphaTentaclePart22DL,
+    gMorphaTentaclePart23DL,
+    gMorphaTentaclePart24DL,
+    gMorphaTentaclePart25DL,
+    gMorphaTentaclePart26DL,
+    gMorphaTentaclePart27DL,
+    gMorphaTentaclePart28DL,
+    gMorphaTentaclePart29DL,
+    gMorphaTentaclePart30DL,
+    gMorphaTentaclePart31DL,
+    gMorphaTentaclePart32DL,
+    gMorphaTentaclePart33DL,
+    gMorphaTentaclePart34DL,
+    gMorphaTentaclePart35DL,
+    gMorphaTentaclePart36DL,
+    gMorphaTentaclePart37DL,
+    gMorphaTentaclePart38DL,
+    gMorphaTentaclePart39DL,
     gMorphaTentaclePart40DL,
 };
 
 void BossMo_DrawTentacle(BossMo* this, PlayState* play) {
     static Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
-    s16 i;
-    s16 notCut;
-    s16 index;
-    Mtx* matrix = Graph_Alloc(play->state.gfxCtx, 41 * sizeof(Mtx));
-    f32 phi_f20;
-    f32 phi_f22;
-    Vec3f sp110;
+    s16          i;
+    s16          notCut;
+    s16          index;
+    Mtx*         matrix = Graph_Alloc(play->state.gfxCtx, 41 * sizeof(Mtx));
+    f32          phi_f20;
+    f32          phi_f22;
+    Vec3f        sp110;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -2557,7 +2846,7 @@ void BossMo_DrawTentacle(BossMo* this, PlayState* play) {
             Matrix_MultVec3f(&zeroVec, &this->actor.focus.pos);
         }
         if (i == 24) {
-            MtxF sp98;
+            MtxF  sp98;
             Vec3f sp8C = { -16.0f, 13.0f, 30.0f };
             Vec3s sp84;
 
@@ -2577,7 +2866,7 @@ void BossMo_DrawTentacle(BossMo* this, PlayState* play) {
         if ((i < 38) && ((i & 1) == 1)) {
             BossMo_UpdateTentColliders(this, i / 2, &this->tentCollider, &this->tentPos[i]);
         }
-        
+
         FrameInterpolation_RecordCloseChild();
     }
 
@@ -2686,12 +2975,12 @@ void BossMo_DrawCore(Actor* thisx, PlayState* play) {
     }
 
     if ((this->csCamera != 0) && (this->csState < MO_INTRO_REVEAL)) {
-        f32 sp8C;
-        f32 sp88;
-        f32 sp84;
-        f32 temp;
-        f32 sp7C;
-        f32 sp78;
+        f32   sp8C;
+        f32   sp88;
+        f32   sp84;
+        f32   temp;
+        f32   sp7C;
+        f32   sp78;
         Vec3f sp6C;
         Vec3f sp60;
 
@@ -2770,12 +3059,12 @@ void BossMo_DrawTent(Actor* thisx, PlayState* play) {
 
 void BossMo_UpdateEffects(BossMo* this, PlayState* play) {
     BossMoEffect* effect = play->specialEffects;
-    s16 i;
-    Vec3f* targetPos;
-    f32 dx;
-    f32 dz;
-    Vec3f bubbleSpeed = { 0.0f, 0.0f, 0.0f };
-    Vec3f bubbleVel;
+    s16           i;
+    Vec3f*        targetPos;
+    f32           dx;
+    f32           dz;
+    Vec3f         bubbleSpeed = { 0.0f, 0.0f, 0.0f };
+    Vec3f         bubbleVel;
 
     for (i = 0; i < ARRAY_COUNT(sEffects); i++, effect++) {
         if (effect->type != MO_FX_NONE) {
@@ -2922,11 +3211,11 @@ void BossMo_UpdateEffects(BossMo* this, PlayState* play) {
 }
 
 void BossMo_DrawEffects(BossMoEffect* effect, PlayState* play) {
-    u8 flag = 0;
-    s16 i;
-    s32 pad;
+    u8               flag = 0;
+    s16              i;
+    s32              pad;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    BossMoEffect* effectHead = effect;
+    BossMoEffect*    effectHead = effect;
 
     OPEN_DISPS(gfxCtx);
     Matrix_Push();
@@ -3071,543 +3360,544 @@ void BossMo_DrawEffects(BossMoEffect* effect, PlayState* play) {
 void BossMo_Unknown(void) {
     // Appears to be a test function for sound effects.
     static Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
-    static u16 unkSfx[] = {
-        NA_SE_PL_WALK_GROUND,
-        NA_SE_PL_WALK_GROUND,
-        NA_SE_PL_WALK_GROUND,
-        NA_SE_PL_WALK_SAND,
-        NA_SE_PL_WALK_CONCRETE,
-        NA_SE_PL_WALK_DIRT,
-        NA_SE_PL_WALK_WATER0,
-        NA_SE_PL_WALK_WATER1,
-        NA_SE_PL_WALK_WATER2,
-        NA_SE_PL_WALK_MAGMA,
-        NA_SE_PL_WALK_GRASS,
-        NA_SE_PL_WALK_GLASS,
-        NA_SE_PL_WALK_LADDER,
-        NA_SE_PL_WALK_GLASS,
-        NA_SE_PL_WALK_WALL,
-        NA_SE_PL_WALK_HEAVYBOOTS,
-        NA_SE_PL_WALK_ICE,
-        NA_SE_PL_JUMP,
-        NA_SE_PL_JUMP,
-        NA_SE_PL_JUMP_SAND,
-        NA_SE_PL_JUMP_CONCRETE,
-        NA_SE_PL_JUMP_DIRT,
-        NA_SE_PL_JUMP_WATER0,
-        NA_SE_PL_JUMP_WATER1,
-        NA_SE_PL_JUMP_WATER2,
-        NA_SE_PL_JUMP_MAGMA,
-        NA_SE_PL_JUMP_GRASS,
-        NA_SE_PL_JUMP_GLASS,
-        NA_SE_PL_JUMP_LADDER,
-        NA_SE_PL_JUMP_GLASS,
-        NA_SE_PL_JUMP_HEAVYBOOTS,
-        NA_SE_PL_JUMP_ICE,
-        NA_SE_PL_LAND,
-        NA_SE_PL_LAND,
-        NA_SE_PL_LAND_SAND,
-        NA_SE_PL_LAND_CONCRETE,
-        NA_SE_PL_LAND_DIRT,
-        NA_SE_PL_LAND_WATER0,
-        NA_SE_PL_LAND_WATER1,
-        NA_SE_PL_LAND_WATER2,
-        NA_SE_PL_LAND_MAGMA,
-        NA_SE_PL_LAND_GRASS,
-        NA_SE_PL_LAND_GLASS,
-        NA_SE_PL_LAND_LADDER,
-        NA_SE_PL_LAND_GLASS,
-        NA_SE_PL_LAND_HEAVYBOOTS,
-        NA_SE_PL_LAND_ICE,
-        NA_SE_PL_SLIPDOWN,
-        NA_SE_PL_CLIMB_CLIFF,
-        NA_SE_PL_CLIMB_CLIFF,
-        NA_SE_PL_SIT_ON_HORSE,
-        NA_SE_PL_GET_OFF_HORSE,
-        NA_SE_PL_TAKE_OUT_SHIELD,
-        NA_SE_PL_TAKE_OUT_SHIELD,
-        NA_SE_PL_TAKE_OUT_SHIELD,
-        NA_SE_PL_TAKE_OUT_SHIELD,
-        NA_SE_PL_TAKE_OUT_SHIELD,
-        NA_SE_PL_TAKE_OUT_SHIELD,
-        NA_SE_PL_CHANGE_ARMS,
-        NA_SE_PL_CHANGE_ARMS,
-        NA_SE_PL_CHANGE_ARMS,
-        NA_SE_PL_CHANGE_ARMS,
-        NA_SE_PL_CHANGE_ARMS,
-        NA_SE_PL_CHANGE_ARMS,
-        NA_SE_PL_CATCH_BOOMERANG,
-        NA_SE_EV_DIVE_INTO_WATER,
-        NA_SE_EV_JUMP_OUT_WATER,
-        NA_SE_PL_SWIM,
-        NA_SE_PL_THROW,
-        NA_SE_PL_BODY_BOUND,
-        NA_SE_PL_ROLL,
-        NA_SE_PL_SKIP,
-        NA_SE_PL_BODY_HIT,
-        NA_SE_PL_DAMAGE,
-        NA_SE_PL_SLIP,
-        NA_SE_PL_SLIP,
-        NA_SE_PL_SLIP,
-        NA_SE_PL_SLIP_SAND,
-        NA_SE_PL_SLIP_CONCRETE,
-        NA_SE_PL_SLIP_DIRT,
-        NA_SE_PL_SLIP_WATER0,
-        NA_SE_PL_SLIP_WATER1,
-        NA_SE_PL_SLIP_WATER2,
-        NA_SE_PL_SLIP_MAGMA,
-        NA_SE_PL_SLIP_GRASS,
-        NA_SE_PL_SLIP_GLASS,
-        NA_SE_PL_SLIP_LADDER,
-        NA_SE_PL_SLIP_GLASS,
-        NA_SE_PL_SLIP_HEAVYBOOTS,
-        NA_SE_PL_SLIP_ICE,
-        NA_SE_PL_BOUND,
-        NA_SE_PL_BOUND,
-        NA_SE_PL_BOUND_SAND,
-        NA_SE_PL_BOUND_CONCRETE,
-        NA_SE_PL_BOUND_DIRT,
-        NA_SE_PL_BOUND_WATER0,
-        NA_SE_PL_BOUND_WATER1,
-        NA_SE_PL_BOUND_WATER2,
-        NA_SE_PL_BOUND_MAGMA,
-        NA_SE_PL_BOUND_GRASS,
-        NA_SE_PL_BOUND_WOOD,
-        NA_SE_PL_BOUND_LADDER,
-        NA_SE_PL_BOUND_WOOD,
-        NA_SE_PL_BOUND_HEAVYBOOTS,
-        NA_SE_PL_BOUND_ICE,
-        NA_SE_PL_FACE_UP,
-        NA_SE_PL_DIVE_BUBBLE,
-        NA_SE_PL_MOVE_BUBBLE,
-        NA_SE_PL_METALEFFECT_KID,
-        NA_SE_PL_METALEFFECT_ADULT,
-        NA_SE_PL_SPARK - SFX_FLAG,
-        NA_SE_IT_SWORD_IMPACT,
-        NA_SE_IT_SWORD_SWING,
-        NA_SE_IT_SWORD_PUTAWAY,
-        NA_SE_IT_SWORD_PICKOUT,
-        NA_SE_IT_ARROW_SHOT,
-        NA_SE_IT_BOOMERANG_THROW,
-        NA_SE_IT_SHIELD_BOUND,
-        NA_SE_IT_SHIELD_BOUND,
-        NA_SE_IT_BOW_DRAW,
-        NA_SE_IT_SHIELD_REFLECT_SW,
-        NA_SE_IT_ARROW_STICK_HRAD,
-        NA_SE_IT_HAMMER_HIT,
-        NA_SE_IT_HOOKSHOT_CHAIN - SFX_FLAG,
-        NA_SE_IT_SHIELD_REFLECT_MG,
-        NA_SE_IT_BOMB_IGNIT - SFX_FLAG,
-        NA_SE_IT_BOMB_EXPLOSION,
-        NA_SE_IT_BOMB_UNEXPLOSION,
-        NA_SE_IT_BOOMERANG_FLY - SFX_FLAG,
-        NA_SE_IT_SWORD_STRIKE,
-        NA_SE_IT_HAMMER_SWING,
-        NA_SE_IT_HOOKSHOT_REFLECT,
-        NA_SE_IT_ARROW_STICK_CRE,
-        NA_SE_IT_ARROW_STICK_CRE,
-        NA_SE_IT_ARROW_STICK_OBJ,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_IT_SWORD_SWING_HARD,
-        NA_SE_IT_WALL_HIT_HARD,
-        NA_SE_IT_WALL_HIT_SOFT,
-        NA_SE_IT_WALL_HIT_SOFT,
-        NA_SE_IT_STONE_HIT,
-        NA_SE_IT_WOODSTICK_BROKEN,
-        NA_SE_IT_LASH,
-        NA_SE_IT_SHIELD_POSTURE,
-        NA_SE_IT_SLING_SHOT,
-        NA_SE_IT_SLING_DRAW,
-        NA_SE_IT_SWORD_CHARGE - SFX_FLAG,
-        NA_SE_IT_ROLLING_CUT,
-        NA_SE_IT_SWORD_STRIKE_HARD,
-        NA_SE_IT_SLING_REFLECT,
-        NA_SE_IT_SHIELD_REMOVE,
-        NA_SE_IT_HOOKSHOT_READY,
-        NA_SE_IT_HOOKSHOT_RECEIVE,
-        NA_SE_IT_HOOKSHOT_STICK_OBJ,
-        NA_SE_IT_SWORD_REFLECT_MG,
-        NA_SE_IT_DEKU,
-        NA_SE_IT_BOW_FLICK,
-        NA_SE_IT_BOW_FLICK,
-        NA_SE_IT_BOW_FLICK,
-        NA_SE_IT_BOMBCHU_MOVE,
-        NA_SE_IT_SHIELD_CHARGE_LV1,
-        NA_SE_IT_SHIELD_CHARGE_LV2,
-        NA_SE_IT_SHIELD_CHARGE_LV3,
-        NA_SE_IT_SLING_FLICK,
-        NA_SE_IT_SWORD_STICK_STN,
-        NA_SE_IT_REFLECTION_WOOD,
-        NA_SE_IT_SHIELD_REFLECT_MG2,
-        NA_SE_IT_MAGIC_ARROW_SHOT,
-        NA_SE_IT_EXPLOSION_FRAME,
-        NA_SE_IT_EXPLOSION_ICE,
-        NA_SE_IT_YOBI19 - SFX_FLAG,
-        NA_SE_FISHING_REEL_SLOW2 - SFX_FLAG,
-        NA_SE_OC_DOOR_OPEN,
-        NA_SE_EV_DOOR_CLOSE,
-        NA_SE_EV_EXPLOSION,
-        NA_SE_EV_HORSE_WALK,
-        NA_SE_EV_HORSE_RUN,
-        NA_SE_EV_HORSE_NEIGH,
-        NA_SE_EV_RIVER_STREAM - SFX_FLAG,
-        NA_SE_EV_WATER_WALL_BIG - SFX_FLAG,
-        NA_SE_EV_DIVE_WATER,
-        NA_SE_EV_OUT_OF_WATER,
-        NA_SE_EV_ROCK_SLIDE - SFX_FLAG,
-        NA_SE_EV_MAGMA_LEVEL - SFX_FLAG,
-        NA_SE_EV_MAGMA_LEVEL - SFX_FLAG,
-        NA_SE_EV_BRIDGE_OPEN - SFX_FLAG,
-        NA_SE_EV_BRIDGE_CLOSE - SFX_FLAG,
-        NA_SE_EV_BRIDGE_OPEN_STOP,
-        NA_SE_EV_BRIDGE_CLOSE_STOP,
-        NA_SE_EV_WALL_BROKEN,
-        NA_SE_EV_CHICKEN_CRY_N,
-        NA_SE_EV_CHICKEN_CRY_A,
-        NA_SE_EV_CHICKEN_CRY_M,
-        NA_SE_EV_SLIDE_DOOR_OPEN,
-        NA_SE_EV_FOOT_SWITCH,
-        NA_SE_EV_HORSE_GROAN,
-        NA_SE_EV_BOMB_DROP_WATER,
-        NA_SE_EV_BOMB_DROP_WATER,
-        NA_SE_EV_HORSE_JUMP,
-        NA_SE_EV_HORSE_LAND,
-        NA_SE_EV_HORSE_SLIP,
-        NA_SE_EV_FAIRY_DASH,
-        NA_SE_EV_SLIDE_DOOR_CLOSE,
-        NA_SE_EV_STONE_BOUND,
-        NA_SE_EV_STONE_STATUE_OPEN - SFX_FLAG,
-        NA_SE_EV_TBOX_UNLOCK,
-        NA_SE_EV_TBOX_OPEN,
-        NA_SE_SY_TIMER - SFX_FLAG,
-        NA_SE_EV_FLAME_IGNITION,
-        NA_SE_EV_SPEAR_HIT,
-        NA_SE_EV_ELEVATOR_MOVE - SFX_FLAG,
-        NA_SE_EV_WARP_HOLE - SFX_FLAG,
-        NA_SE_EV_LINK_WARP,
-        NA_SE_EV_PILLAR_SINK - SFX_FLAG,
-        NA_SE_EV_WATER_WALL - SFX_FLAG,
-        NA_SE_EV_RIVER_STREAM_S - SFX_FLAG,
-        NA_SE_EV_RIVER_STREAM_F - SFX_FLAG,
-        NA_SE_EV_HORSE_LAND2,
-        NA_SE_EV_HORSE_SANDDUST,
-        NA_SE_EV_BOMB_BOUND,
-        NA_SE_EV_BOMB_BOUND,
-        NA_SE_EV_WATERDROP - SFX_FLAG,
-        NA_SE_EV_TORCH - SFX_FLAG,
-        NA_SE_EV_MAGMA_LEVEL_M - SFX_FLAG,
-        NA_SE_EV_FIRE_PILLAR - SFX_FLAG,
-        NA_SE_EV_FIRE_PLATE - SFX_FLAG,
-        NA_SE_EV_BLOCK_BOUND,
-        NA_SE_EV_METALDOOR_SLIDE - SFX_FLAG,
-        NA_SE_EV_METALDOOR_STOP,
-        NA_SE_EV_BLOCK_SHAKE,
-        NA_SE_EV_BOX_BREAK,
-        NA_SE_EV_HAMMER_SWITCH,
-        NA_SE_EV_MAGMA_LEVEL_L - SFX_FLAG,
-        NA_SE_EV_SPEAR_FENCE,
-        NA_SE_EV_GANON_HORSE_NEIGH,
-        NA_SE_EV_GANON_HORSE_GROAN,
-        NA_SE_EV_FANTOM_WARP_S,
-        NA_SE_EV_FANTOM_WARP_L - SFX_FLAG,
-        NA_SE_EV_FOUNTAIN - SFX_FLAG,
-        NA_SE_EV_KID_HORSE_WALK,
-        NA_SE_EV_KID_HORSE_RUN,
-        NA_SE_EV_KID_HORSE_NEIGH,
-        NA_SE_EV_KID_HORSE_GROAN,
-        NA_SE_EV_WHITE_OUT,
-        NA_SE_EV_LIGHT_GATHER - SFX_FLAG,
-        NA_SE_EV_TREE_CUT,
-        NA_SE_EV_WATERDROP,
-        NA_SE_EV_TORCH,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_EN_DODO_J_WALK,
-        NA_SE_EN_DODO_J_CRY,
-        NA_SE_EN_DODO_J_FIRE - SFX_FLAG,
-        NA_SE_EN_DODO_J_DAMAGE,
-        NA_SE_EN_DODO_J_DEAD,
-        NA_SE_EN_DODO_K_CRY,
-        NA_SE_EN_DODO_K_DAMAGE,
-        NA_SE_EN_DODO_K_DEAD,
-        NA_SE_EN_DODO_K_WALK,
-        NA_SE_EN_DODO_K_FIRE - SFX_FLAG,
-        NA_SE_EN_GOMA_WALK,
-        NA_SE_EN_GOMA_HIGH,
-        NA_SE_EN_GOMA_CLIM,
-        NA_SE_EN_GOMA_DOWN,
-        NA_SE_EN_GOMA_CRY1,
-        NA_SE_EN_GOMA_CRY2,
-        NA_SE_EN_GOMA_DAM1,
-        NA_SE_EN_GOMA_DAM2,
-        NA_SE_EN_GOMA_DEAD,
-        NA_SE_EN_GOMA_UNARI,
-        NA_SE_EN_GOMA_EGG1,
-        NA_SE_EN_GOMA_EGG2,
-        NA_SE_EN_GOMA_JR_WALK,
-        NA_SE_EN_GOMA_JR_CRY,
-        NA_SE_EN_GOMA_JR_DAM1,
-        NA_SE_EN_GOMA_JR_DAM2,
-        NA_SE_EN_GOMA_JR_DEAD,
-        NA_SE_EN_GOMA_DEMO_EYE,
-        NA_SE_EN_GOMA_LAST - SFX_FLAG,
-        NA_SE_EN_GOMA_UNARI2,
-        NA_SE_EN_DODO_M_CRY,
-        NA_SE_EN_DODO_M_DEAD,
-        NA_SE_EN_DODO_M_MOVE,
-        NA_SE_EN_DODO_M_DOWN,
-        NA_SE_EN_DODO_M_UP,
-        NA_SE_EN_DODO_M_GND,
-        NA_SE_EN_RIZA_CRY,
-        NA_SE_EN_RIZA_ATTACK,
-        NA_SE_EN_RIZA_DAMAGE,
-        NA_SE_EN_RIZA_WARAU,
-        NA_SE_EN_RIZA_DEAD,
-        NA_SE_EN_RIZA_WALK,
-        NA_SE_EN_RIZA_JUMP,
-        NA_SE_EN_RIZA_ONGND,
-        NA_SE_EN_RIZA_DOWN,
-        NA_SE_EN_STAL_WARAU,
-        NA_SE_EN_STAL_SAKEBI,
-        NA_SE_EN_STAL_DAMAGE,
-        NA_SE_EN_STAL_DEAD,
-        NA_SE_EN_STAL_JUMP,
-        NA_SE_EN_STAL_WALK,
-        NA_SE_EN_RIZA_DOWN,
-        NA_SE_EN_FFLY_ATTACK,
-        NA_SE_EN_FFLY_FLY,
-        NA_SE_EN_FFLY_DEAD,
-        NA_SE_EN_AMOS_WALK,
-        NA_SE_EN_AMOS_WAVE,
-        NA_SE_EN_AMOS_DEAD,
-        NA_SE_EN_AMOS_DAMAGE,
-        NA_SE_EN_AMOS_VOICE,
-        NA_SE_EN_DODO_K_COLI,
-        NA_SE_EN_DODO_K_COLI2,
-        NA_SE_EN_DODO_K_ROLL - SFX_FLAG,
-        NA_SE_EN_DODO_K_BREATH - SFX_FLAG,
-        NA_SE_EN_DODO_K_DRINK,
-        NA_SE_EN_DODO_K_DOWN - SFX_FLAG,
-        NA_SE_EN_DODO_K_OTAKEBI,
-        NA_SE_EN_DODO_K_END,
-        NA_SE_EN_DODO_K_LAST - SFX_FLAG,
-        NA_SE_EN_DODO_K_LAVA,
-        NA_SE_EN_DODO_J_BREATH - SFX_FLAG,
-        NA_SE_EN_DODO_J_TAIL,
-        NA_SE_EN_RIZA_DOWN,
-        NA_SE_EN_DEKU_MOUTH,
-        NA_SE_EN_DEKU_ATTACK,
-        NA_SE_EN_DEKU_DAMAGE,
-        NA_SE_EN_DEKU_DEAD,
-        NA_SE_EN_DEKU_JR_MOUTH,
-        NA_SE_EN_DEKU_JR_ATTACK,
-        NA_SE_EN_DEKU_JR_DEAD,
-        NA_SE_EN_DODO_M_GND,
-        NA_SE_EN_TAIL_FLY - SFX_FLAG,
-        NA_SE_EN_TAIL_CRY,
-        NA_SE_EN_STALTU_DOWN,
-        NA_SE_EN_STALTU_UP,
-        NA_SE_EN_STALTU_LAUGH,
-        NA_SE_EN_STALTU_DAMAGE,
-        NA_SE_EN_STAL_JUMP,
-        NA_SE_EN_DODO_M_GND,
-        NA_SE_EN_TEKU_DEAD,
-        NA_SE_EN_TEKU_WALK,
-        NA_SE_EN_PO_KANTERA,
-        NA_SE_EN_PO_FLY - SFX_FLAG,
-        NA_SE_EN_PO_AWAY - SFX_FLAG,
-        NA_SE_EN_PO_APPEAR,
-        NA_SE_EN_PO_DISAPPEAR,
-        NA_SE_EN_PO_DAMAGE,
-        NA_SE_EN_PO_DEAD,
-        NA_SE_EN_PO_DEAD2,
-        NA_SE_EN_EXTINCT,
-        NA_SE_EN_NUTS_UP,
-        NA_SE_EN_NUTS_DOWN,
-        NA_SE_EN_NUTS_THROW,
-        NA_SE_EN_NUTS_WALK,
-        NA_SE_EN_NUTS_DAMAGE,
-        NA_SE_EN_NUTS_DEAD,
-        NA_SE_EN_STALTU_ROLL,
-        NA_SE_EN_STALWALL_DEAD,
-        NA_SE_EN_TEKU_DAMAGE,
-        NA_SE_EN_FALL_AIM,
-        NA_SE_EN_FALL_UP,
-        NA_SE_EN_FALL_CATCH,
-        NA_SE_EN_FALL_LAND,
-        NA_SE_EN_FALL_WALK,
-        NA_SE_EN_FALL_DAMAGE,
-        NA_SE_EN_BIRI_FLY,
-        NA_SE_EN_BIRI_JUMP,
-        NA_SE_EN_BIRI_SPARK - SFX_FLAG,
-        NA_SE_EN_FANTOM_TRANSFORM,
-        NA_SE_EN_FANTOM_TRANSFORM,
-        NA_SE_EN_FANTOM_THUNDER,
-        NA_SE_EN_FANTOM_SPARK,
-        NA_SE_EN_FANTOM_FLOAT - SFX_FLAG,
-        NA_SE_EN_FANTOM_MASIC1,
-        NA_SE_EN_FANTOM_MASIC2,
-        NA_SE_EN_FANTOM_FIRE - SFX_FLAG,
-        NA_SE_EN_FANTOM_HIT_THUNDER,
-        NA_SE_EN_FANTOM_ATTACK,
-        NA_SE_EN_FANTOM_STICK,
-        NA_SE_EN_FANTOM_EYE,
-        NA_SE_EN_FANTOM_LAST,
-        NA_SE_EN_FANTOM_THUNDER_GND,
-        NA_SE_EN_FANTOM_DAMAGE,
-        NA_SE_EN_FANTOM_DEAD,
-        NA_SE_EN_FANTOM_LAUGH,
-        NA_SE_EN_FANTOM_DAMAGE2,
-        NA_SE_EN_FANTOM_VOICE,
-        NA_SE_EN_MORIBLIN_WALK,
-        NA_SE_EN_MORIBLIN_SLIDE,
-        NA_SE_EN_MORIBLIN_ATTACK,
-        NA_SE_EN_MORIBLIN_VOICE,
-        NA_SE_EN_MORIBLIN_SPEAR_AT,
-        NA_SE_EN_MORIBLIN_SPEAR_NORM,
-        NA_SE_EN_MORIBLIN_DEAD,
-        NA_SE_EN_NUTS_THROW,
-        NA_SE_EN_OCTAROCK_FLOAT,
-        NA_SE_EN_OCTAROCK_JUMP,
-        NA_SE_EN_OCTAROCK_LAND,
-        NA_SE_EN_OCTAROCK_SINK,
-        NA_SE_EN_OCTAROCK_BUBLE,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_SY_WIN_OPEN,
-        NA_SE_SY_WIN_CLOSE,
-        NA_SE_SY_CORRECT_CHIME,
-        NA_SE_SY_GET_RUPY,
-        NA_SE_SY_MESSAGE_WOMAN,
-        NA_SE_SY_MESSAGE_MAN,
-        NA_SE_SY_ERROR,
-        NA_SE_SY_TRE_BOX_APPEAR,
-        NA_SE_SY_TRE_BOX_APPEAR,
-        NA_SE_SY_DECIDE,
-        NA_SE_SY_CURSOR,
-        NA_SE_SY_CANCEL,
-        NA_SE_SY_HP_RECOVER,
-        NA_SE_SY_ATTENTION_ON,
-        NA_SE_SY_ATTENTION_ON,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_SY_LOCK_ON,
-        NA_SE_SY_LOCK_ON,
-        NA_SE_SY_LOCK_OFF,
-        NA_SE_SY_LOCK_ON_HUMAN,
-        NA_SE_SY_CAMERA_ZOOM_UP,
-        NA_SE_SY_CAMERA_ZOOM_DOWN,
-        NA_SE_SY_ATTENTION_ON_OLD,
-        NA_SE_SY_ATTENTION_URGENCY,
-        NA_SE_SY_MESSAGE_PASS,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_SY_PIECE_OF_HEART,
-        NA_SE_SY_GET_ITEM,
-        NA_SE_SY_WIN_SCROLL_LEFT,
-        NA_SE_SY_WIN_SCROLL_RIGHT,
-        NA_SE_SY_OCARINA_ERROR,
-        NA_SE_SY_CAMERA_ZOOM_UP_2,
-        NA_SE_SY_CAMERA_ZOOM_DOWN_2,
-        NA_SE_SY_GLASSMODE_ON,
-        NA_SE_SY_GLASSMODE_OFF,
-        NA_SE_SY_ATTENTION_ON,
-        NA_SE_SY_ATTENTION_URGENCY,
-        NA_SE_OC_OCARINA,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_LAND - SFX_FLAG,
-        NA_SE_VO_LI_SWORD_N,
-        NA_SE_VO_LI_SWORD_N,
-        NA_SE_VO_LI_SWORD_N,
-        NA_SE_VO_LI_SWORD_N,
-        NA_SE_VO_LI_SWORD_N,
-        NA_SE_VO_LI_SWORD_N,
-        NA_SE_VO_LI_SWORD_N,
-        NA_SE_VO_LI_SWORD_L,
-        NA_SE_VO_LI_SWORD_L,
-        NA_SE_VO_LI_MAGIC_ATTACK,
-        NA_SE_VO_LI_LASH,
-        NA_SE_VO_LI_HANG,
-        NA_SE_VO_LI_AUTO_JUMP,
-        NA_SE_VO_LI_CLIMB_END,
-        NA_SE_VO_LI_CLIMB_END,
-        NA_SE_VO_LI_CLIMB_END,
-        NA_SE_VO_LI_CLIMB_END,
-        NA_SE_VO_LI_DAMAGE_S,
-        NA_SE_VO_LI_DAMAGE_S,
-        NA_SE_VO_LI_FALL_L,
-        NA_SE_VO_LI_FALL_S,
-        NA_SE_VO_LI_FALL_L,
-        NA_SE_VO_LI_FALL_L,
-        NA_SE_VO_LI_BREATH_REST,
-        NA_SE_VO_LI_BREATH_REST,
-        NA_SE_VO_LI_DOWN,
-        NA_SE_VO_LI_TAKEN_AWAY,
-        NA_SE_VO_LI_HELD,
-        NA_SE_VO_NAVY_HELLO,
-        NA_SE_VO_NAVY_HEAR,
-        NA_SE_VO_NAVY_ENEMY,
-        NA_SE_VO_NAVY_HELLO,
-        NA_SE_VO_NAVY_HEAR,
-        NA_SE_VO_NAVY_ENEMY,
-        NA_SE_VO_TA_SLEEP,
-        NA_SE_EN_VALVAISA_APPEAR - SFX_FLAG,
-        NA_SE_EN_VALVAISA_ROAR,
-        NA_SE_EN_VALVAISA_MAHI1,
-        NA_SE_EN_VALVAISA_MAHI2,
-        NA_SE_EN_VALVAISA_KNOCKOUT,
-        NA_SE_EN_VALVAISA_DAMAGE1,
-        NA_SE_EN_VALVAISA_DAMAGE2,
-        NA_SE_EN_VALVAISA_ROCK,
-        NA_SE_EN_VALVAISA_LAND,
-        NA_SE_EN_VALVAISA_DEAD,
-        NA_SE_EN_VALVAISA_BURN - SFX_FLAG,
-        NA_SE_EN_VALVAISA_FIRE - SFX_FLAG,
-        NA_SE_EN_VALVAISA_LAND2,
-        NA_SE_EN_MONBLIN_HAM_LAND,
-        NA_SE_EN_MONBLIN_HAM_DOWN,
-        NA_SE_EN_MONBLIN_HAM_UP,
-        NA_SE_EN_REDEAD_CRY,
-        NA_SE_EN_REDEAD_AIM,
-        NA_SE_EN_REDEAD_DAMAGE,
-        NA_SE_EN_RIZA_DOWN,
-        NA_SE_EN_REDEAD_DEAD,
-        NA_SE_EN_REDEAD_ATTACK,
-        NA_SE_EN_PO_LAUGH,
-        NA_SE_EN_PO_CRY,
-        NA_SE_EN_PO_ROLL,
-        NA_SE_EN_PO_LAUGH2,
-        NA_SE_EN_MOFER_APPEAR - SFX_FLAG,
-        NA_SE_EN_MOFER_ATTACK - SFX_FLAG,
-        NA_SE_EN_MOFER_WAVE,
-        NA_SE_EN_MOFER_CATCH,
-        NA_SE_EN_MOFER_CORE_DAMAGE,
-        NA_SE_EN_MOFER_CUT,
-        NA_SE_EN_MOFER_MOVE_DEMO - SFX_FLAG,
-        NA_SE_EN_MOFER_BUBLE_DEMO,
-        NA_SE_EN_MOFER_CORE_JUMP,
-        NA_SE_EN_GOLON_WAKE_UP,
-        NA_SE_EN_GOLON_SIT_DOWN,
-        NA_SE_EN_DODO_M_GND,
-        NA_SE_EN_DEADHAND_BITE,
-        NA_SE_EN_DEADHAND_WALK,
-        NA_SE_EN_DEADHAND_GRIP,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
-        NA_SE_PL_WALK_GROUND - SFX_FLAG,
+    static u16   unkSfx[] = {
+          NA_SE_PL_WALK_GROUND,
+          NA_SE_PL_WALK_GROUND,
+          NA_SE_PL_WALK_GROUND,
+          NA_SE_PL_WALK_SAND,
+          NA_SE_PL_WALK_CONCRETE,
+          NA_SE_PL_WALK_DIRT,
+          NA_SE_PL_WALK_WATER0,
+          NA_SE_PL_WALK_WATER1,
+          NA_SE_PL_WALK_WATER2,
+          NA_SE_PL_WALK_MAGMA,
+          NA_SE_PL_WALK_GRASS,
+          NA_SE_PL_WALK_GLASS,
+          NA_SE_PL_WALK_LADDER,
+          NA_SE_PL_WALK_GLASS,
+          NA_SE_PL_WALK_WALL,
+          NA_SE_PL_WALK_HEAVYBOOTS,
+          NA_SE_PL_WALK_ICE,
+          NA_SE_PL_JUMP,
+          NA_SE_PL_JUMP,
+          NA_SE_PL_JUMP_SAND,
+          NA_SE_PL_JUMP_CONCRETE,
+          NA_SE_PL_JUMP_DIRT,
+          NA_SE_PL_JUMP_WATER0,
+          NA_SE_PL_JUMP_WATER1,
+          NA_SE_PL_JUMP_WATER2,
+          NA_SE_PL_JUMP_MAGMA,
+          NA_SE_PL_JUMP_GRASS,
+          NA_SE_PL_JUMP_GLASS,
+          NA_SE_PL_JUMP_LADDER,
+          NA_SE_PL_JUMP_GLASS,
+          NA_SE_PL_JUMP_HEAVYBOOTS,
+          NA_SE_PL_JUMP_ICE,
+          NA_SE_PL_LAND,
+          NA_SE_PL_LAND,
+          NA_SE_PL_LAND_SAND,
+          NA_SE_PL_LAND_CONCRETE,
+          NA_SE_PL_LAND_DIRT,
+          NA_SE_PL_LAND_WATER0,
+          NA_SE_PL_LAND_WATER1,
+          NA_SE_PL_LAND_WATER2,
+          NA_SE_PL_LAND_MAGMA,
+          NA_SE_PL_LAND_GRASS,
+          NA_SE_PL_LAND_GLASS,
+          NA_SE_PL_LAND_LADDER,
+          NA_SE_PL_LAND_GLASS,
+          NA_SE_PL_LAND_HEAVYBOOTS,
+          NA_SE_PL_LAND_ICE,
+          NA_SE_PL_SLIPDOWN,
+          NA_SE_PL_CLIMB_CLIFF,
+          NA_SE_PL_CLIMB_CLIFF,
+          NA_SE_PL_SIT_ON_HORSE,
+          NA_SE_PL_GET_OFF_HORSE,
+          NA_SE_PL_TAKE_OUT_SHIELD,
+          NA_SE_PL_TAKE_OUT_SHIELD,
+          NA_SE_PL_TAKE_OUT_SHIELD,
+          NA_SE_PL_TAKE_OUT_SHIELD,
+          NA_SE_PL_TAKE_OUT_SHIELD,
+          NA_SE_PL_TAKE_OUT_SHIELD,
+          NA_SE_PL_CHANGE_ARMS,
+          NA_SE_PL_CHANGE_ARMS,
+          NA_SE_PL_CHANGE_ARMS,
+          NA_SE_PL_CHANGE_ARMS,
+          NA_SE_PL_CHANGE_ARMS,
+          NA_SE_PL_CHANGE_ARMS,
+          NA_SE_PL_CATCH_BOOMERANG,
+          NA_SE_EV_DIVE_INTO_WATER,
+          NA_SE_EV_JUMP_OUT_WATER,
+          NA_SE_PL_SWIM,
+          NA_SE_PL_THROW,
+          NA_SE_PL_BODY_BOUND,
+          NA_SE_PL_ROLL,
+          NA_SE_PL_SKIP,
+          NA_SE_PL_BODY_HIT,
+          NA_SE_PL_DAMAGE,
+          NA_SE_PL_SLIP,
+          NA_SE_PL_SLIP,
+          NA_SE_PL_SLIP,
+          NA_SE_PL_SLIP_SAND,
+          NA_SE_PL_SLIP_CONCRETE,
+          NA_SE_PL_SLIP_DIRT,
+          NA_SE_PL_SLIP_WATER0,
+          NA_SE_PL_SLIP_WATER1,
+          NA_SE_PL_SLIP_WATER2,
+          NA_SE_PL_SLIP_MAGMA,
+          NA_SE_PL_SLIP_GRASS,
+          NA_SE_PL_SLIP_GLASS,
+          NA_SE_PL_SLIP_LADDER,
+          NA_SE_PL_SLIP_GLASS,
+          NA_SE_PL_SLIP_HEAVYBOOTS,
+          NA_SE_PL_SLIP_ICE,
+          NA_SE_PL_BOUND,
+          NA_SE_PL_BOUND,
+          NA_SE_PL_BOUND_SAND,
+          NA_SE_PL_BOUND_CONCRETE,
+          NA_SE_PL_BOUND_DIRT,
+          NA_SE_PL_BOUND_WATER0,
+          NA_SE_PL_BOUND_WATER1,
+          NA_SE_PL_BOUND_WATER2,
+          NA_SE_PL_BOUND_MAGMA,
+          NA_SE_PL_BOUND_GRASS,
+          NA_SE_PL_BOUND_WOOD,
+          NA_SE_PL_BOUND_LADDER,
+          NA_SE_PL_BOUND_WOOD,
+          NA_SE_PL_BOUND_HEAVYBOOTS,
+          NA_SE_PL_BOUND_ICE,
+          NA_SE_PL_FACE_UP,
+          NA_SE_PL_DIVE_BUBBLE,
+          NA_SE_PL_MOVE_BUBBLE,
+          NA_SE_PL_METALEFFECT_KID,
+          NA_SE_PL_METALEFFECT_ADULT,
+          NA_SE_PL_SPARK - SFX_FLAG,
+          NA_SE_IT_SWORD_IMPACT,
+          NA_SE_IT_SWORD_SWING,
+          NA_SE_IT_SWORD_PUTAWAY,
+          NA_SE_IT_SWORD_PICKOUT,
+          NA_SE_IT_ARROW_SHOT,
+          NA_SE_IT_BOOMERANG_THROW,
+          NA_SE_IT_SHIELD_BOUND,
+          NA_SE_IT_SHIELD_BOUND,
+          NA_SE_IT_BOW_DRAW,
+          NA_SE_IT_SHIELD_REFLECT_SW,
+          NA_SE_IT_ARROW_STICK_HRAD,
+          NA_SE_IT_HAMMER_HIT,
+          NA_SE_IT_HOOKSHOT_CHAIN - SFX_FLAG,
+          NA_SE_IT_SHIELD_REFLECT_MG,
+          NA_SE_IT_BOMB_IGNIT - SFX_FLAG,
+          NA_SE_IT_BOMB_EXPLOSION,
+          NA_SE_IT_BOMB_UNEXPLOSION,
+          NA_SE_IT_BOOMERANG_FLY - SFX_FLAG,
+          NA_SE_IT_SWORD_STRIKE,
+          NA_SE_IT_HAMMER_SWING,
+          NA_SE_IT_HOOKSHOT_REFLECT,
+          NA_SE_IT_ARROW_STICK_CRE,
+          NA_SE_IT_ARROW_STICK_CRE,
+          NA_SE_IT_ARROW_STICK_OBJ,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_IT_SWORD_SWING_HARD,
+          NA_SE_IT_WALL_HIT_HARD,
+          NA_SE_IT_WALL_HIT_SOFT,
+          NA_SE_IT_WALL_HIT_SOFT,
+          NA_SE_IT_STONE_HIT,
+          NA_SE_IT_WOODSTICK_BROKEN,
+          NA_SE_IT_LASH,
+          NA_SE_IT_SHIELD_POSTURE,
+          NA_SE_IT_SLING_SHOT,
+          NA_SE_IT_SLING_DRAW,
+          NA_SE_IT_SWORD_CHARGE - SFX_FLAG,
+          NA_SE_IT_ROLLING_CUT,
+          NA_SE_IT_SWORD_STRIKE_HARD,
+          NA_SE_IT_SLING_REFLECT,
+          NA_SE_IT_SHIELD_REMOVE,
+          NA_SE_IT_HOOKSHOT_READY,
+          NA_SE_IT_HOOKSHOT_RECEIVE,
+          NA_SE_IT_HOOKSHOT_STICK_OBJ,
+          NA_SE_IT_SWORD_REFLECT_MG,
+          NA_SE_IT_DEKU,
+          NA_SE_IT_BOW_FLICK,
+          NA_SE_IT_BOW_FLICK,
+          NA_SE_IT_BOW_FLICK,
+          NA_SE_IT_BOMBCHU_MOVE,
+          NA_SE_IT_SHIELD_CHARGE_LV1,
+          NA_SE_IT_SHIELD_CHARGE_LV2,
+          NA_SE_IT_SHIELD_CHARGE_LV3,
+          NA_SE_IT_SLING_FLICK,
+          NA_SE_IT_SWORD_STICK_STN,
+          NA_SE_IT_REFLECTION_WOOD,
+          NA_SE_IT_SHIELD_REFLECT_MG2,
+          NA_SE_IT_MAGIC_ARROW_SHOT,
+          NA_SE_IT_EXPLOSION_FRAME,
+          NA_SE_IT_EXPLOSION_ICE,
+          NA_SE_IT_YOBI19 - SFX_FLAG,
+          NA_SE_FISHING_REEL_SLOW2 - SFX_FLAG,
+          NA_SE_OC_DOOR_OPEN,
+          NA_SE_EV_DOOR_CLOSE,
+          NA_SE_EV_EXPLOSION,
+          NA_SE_EV_HORSE_WALK,
+          NA_SE_EV_HORSE_RUN,
+          NA_SE_EV_HORSE_NEIGH,
+          NA_SE_EV_RIVER_STREAM - SFX_FLAG,
+          NA_SE_EV_WATER_WALL_BIG - SFX_FLAG,
+          NA_SE_EV_DIVE_WATER,
+          NA_SE_EV_OUT_OF_WATER,
+          NA_SE_EV_ROCK_SLIDE - SFX_FLAG,
+          NA_SE_EV_MAGMA_LEVEL - SFX_FLAG,
+          NA_SE_EV_MAGMA_LEVEL - SFX_FLAG,
+          NA_SE_EV_BRIDGE_OPEN - SFX_FLAG,
+          NA_SE_EV_BRIDGE_CLOSE - SFX_FLAG,
+          NA_SE_EV_BRIDGE_OPEN_STOP,
+          NA_SE_EV_BRIDGE_CLOSE_STOP,
+          NA_SE_EV_WALL_BROKEN,
+          NA_SE_EV_CHICKEN_CRY_N,
+          NA_SE_EV_CHICKEN_CRY_A,
+          NA_SE_EV_CHICKEN_CRY_M,
+          NA_SE_EV_SLIDE_DOOR_OPEN,
+          NA_SE_EV_FOOT_SWITCH,
+          NA_SE_EV_HORSE_GROAN,
+          NA_SE_EV_BOMB_DROP_WATER,
+          NA_SE_EV_BOMB_DROP_WATER,
+          NA_SE_EV_HORSE_JUMP,
+          NA_SE_EV_HORSE_LAND,
+          NA_SE_EV_HORSE_SLIP,
+          NA_SE_EV_FAIRY_DASH,
+          NA_SE_EV_SLIDE_DOOR_CLOSE,
+          NA_SE_EV_STONE_BOUND,
+          NA_SE_EV_STONE_STATUE_OPEN - SFX_FLAG,
+          NA_SE_EV_TBOX_UNLOCK,
+          NA_SE_EV_TBOX_OPEN,
+          NA_SE_SY_TIMER - SFX_FLAG,
+          NA_SE_EV_FLAME_IGNITION,
+          NA_SE_EV_SPEAR_HIT,
+          NA_SE_EV_ELEVATOR_MOVE - SFX_FLAG,
+          NA_SE_EV_WARP_HOLE - SFX_FLAG,
+          NA_SE_EV_LINK_WARP,
+          NA_SE_EV_PILLAR_SINK - SFX_FLAG,
+          NA_SE_EV_WATER_WALL - SFX_FLAG,
+          NA_SE_EV_RIVER_STREAM_S - SFX_FLAG,
+          NA_SE_EV_RIVER_STREAM_F - SFX_FLAG,
+          NA_SE_EV_HORSE_LAND2,
+          NA_SE_EV_HORSE_SANDDUST,
+          NA_SE_EV_BOMB_BOUND,
+          NA_SE_EV_BOMB_BOUND,
+          NA_SE_EV_WATERDROP - SFX_FLAG,
+          NA_SE_EV_TORCH - SFX_FLAG,
+          NA_SE_EV_MAGMA_LEVEL_M - SFX_FLAG,
+          NA_SE_EV_FIRE_PILLAR - SFX_FLAG,
+          NA_SE_EV_FIRE_PLATE - SFX_FLAG,
+          NA_SE_EV_BLOCK_BOUND,
+          NA_SE_EV_METALDOOR_SLIDE - SFX_FLAG,
+          NA_SE_EV_METALDOOR_STOP,
+          NA_SE_EV_BLOCK_SHAKE,
+          NA_SE_EV_BOX_BREAK,
+          NA_SE_EV_HAMMER_SWITCH,
+          NA_SE_EV_MAGMA_LEVEL_L - SFX_FLAG,
+          NA_SE_EV_SPEAR_FENCE,
+          NA_SE_EV_GANON_HORSE_NEIGH,
+          NA_SE_EV_GANON_HORSE_GROAN,
+          NA_SE_EV_FANTOM_WARP_S,
+          NA_SE_EV_FANTOM_WARP_L - SFX_FLAG,
+          NA_SE_EV_FOUNTAIN - SFX_FLAG,
+          NA_SE_EV_KID_HORSE_WALK,
+          NA_SE_EV_KID_HORSE_RUN,
+          NA_SE_EV_KID_HORSE_NEIGH,
+          NA_SE_EV_KID_HORSE_GROAN,
+          NA_SE_EV_WHITE_OUT,
+          NA_SE_EV_LIGHT_GATHER - SFX_FLAG,
+          NA_SE_EV_TREE_CUT,
+          NA_SE_EV_WATERDROP,
+          NA_SE_EV_TORCH,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_EN_DODO_J_WALK,
+          NA_SE_EN_DODO_J_CRY,
+          NA_SE_EN_DODO_J_FIRE - SFX_FLAG,
+          NA_SE_EN_DODO_J_DAMAGE,
+          NA_SE_EN_DODO_J_DEAD,
+          NA_SE_EN_DODO_K_CRY,
+          NA_SE_EN_DODO_K_DAMAGE,
+          NA_SE_EN_DODO_K_DEAD,
+          NA_SE_EN_DODO_K_WALK,
+          NA_SE_EN_DODO_K_FIRE - SFX_FLAG,
+          NA_SE_EN_GOMA_WALK,
+          NA_SE_EN_GOMA_HIGH,
+          NA_SE_EN_GOMA_CLIM,
+          NA_SE_EN_GOMA_DOWN,
+          NA_SE_EN_GOMA_CRY1,
+          NA_SE_EN_GOMA_CRY2,
+          NA_SE_EN_GOMA_DAM1,
+          NA_SE_EN_GOMA_DAM2,
+          NA_SE_EN_GOMA_DEAD,
+          NA_SE_EN_GOMA_UNARI,
+          NA_SE_EN_GOMA_EGG1,
+          NA_SE_EN_GOMA_EGG2,
+          NA_SE_EN_GOMA_JR_WALK,
+          NA_SE_EN_GOMA_JR_CRY,
+          NA_SE_EN_GOMA_JR_DAM1,
+          NA_SE_EN_GOMA_JR_DAM2,
+          NA_SE_EN_GOMA_JR_DEAD,
+          NA_SE_EN_GOMA_DEMO_EYE,
+          NA_SE_EN_GOMA_LAST - SFX_FLAG,
+          NA_SE_EN_GOMA_UNARI2,
+          NA_SE_EN_DODO_M_CRY,
+          NA_SE_EN_DODO_M_DEAD,
+          NA_SE_EN_DODO_M_MOVE,
+          NA_SE_EN_DODO_M_DOWN,
+          NA_SE_EN_DODO_M_UP,
+          NA_SE_EN_DODO_M_GND,
+          NA_SE_EN_RIZA_CRY,
+          NA_SE_EN_RIZA_ATTACK,
+          NA_SE_EN_RIZA_DAMAGE,
+          NA_SE_EN_RIZA_WARAU,
+          NA_SE_EN_RIZA_DEAD,
+          NA_SE_EN_RIZA_WALK,
+          NA_SE_EN_RIZA_JUMP,
+          NA_SE_EN_RIZA_ONGND,
+          NA_SE_EN_RIZA_DOWN,
+          NA_SE_EN_STAL_WARAU,
+          NA_SE_EN_STAL_SAKEBI,
+          NA_SE_EN_STAL_DAMAGE,
+          NA_SE_EN_STAL_DEAD,
+          NA_SE_EN_STAL_JUMP,
+          NA_SE_EN_STAL_WALK,
+          NA_SE_EN_RIZA_DOWN,
+          NA_SE_EN_FFLY_ATTACK,
+          NA_SE_EN_FFLY_FLY,
+          NA_SE_EN_FFLY_DEAD,
+          NA_SE_EN_AMOS_WALK,
+          NA_SE_EN_AMOS_WAVE,
+          NA_SE_EN_AMOS_DEAD,
+          NA_SE_EN_AMOS_DAMAGE,
+          NA_SE_EN_AMOS_VOICE,
+          NA_SE_EN_DODO_K_COLI,
+          NA_SE_EN_DODO_K_COLI2,
+          NA_SE_EN_DODO_K_ROLL - SFX_FLAG,
+          NA_SE_EN_DODO_K_BREATH - SFX_FLAG,
+          NA_SE_EN_DODO_K_DRINK,
+          NA_SE_EN_DODO_K_DOWN - SFX_FLAG,
+          NA_SE_EN_DODO_K_OTAKEBI,
+          NA_SE_EN_DODO_K_END,
+          NA_SE_EN_DODO_K_LAST - SFX_FLAG,
+          NA_SE_EN_DODO_K_LAVA,
+          NA_SE_EN_DODO_J_BREATH - SFX_FLAG,
+          NA_SE_EN_DODO_J_TAIL,
+          NA_SE_EN_RIZA_DOWN,
+          NA_SE_EN_DEKU_MOUTH,
+          NA_SE_EN_DEKU_ATTACK,
+          NA_SE_EN_DEKU_DAMAGE,
+          NA_SE_EN_DEKU_DEAD,
+          NA_SE_EN_DEKU_JR_MOUTH,
+          NA_SE_EN_DEKU_JR_ATTACK,
+          NA_SE_EN_DEKU_JR_DEAD,
+          NA_SE_EN_DODO_M_GND,
+          NA_SE_EN_TAIL_FLY - SFX_FLAG,
+          NA_SE_EN_TAIL_CRY,
+          NA_SE_EN_STALTU_DOWN,
+          NA_SE_EN_STALTU_UP,
+          NA_SE_EN_STALTU_LAUGH,
+          NA_SE_EN_STALTU_DAMAGE,
+          NA_SE_EN_STAL_JUMP,
+          NA_SE_EN_DODO_M_GND,
+          NA_SE_EN_TEKU_DEAD,
+          NA_SE_EN_TEKU_WALK,
+          NA_SE_EN_PO_KANTERA,
+          NA_SE_EN_PO_FLY - SFX_FLAG,
+          NA_SE_EN_PO_AWAY - SFX_FLAG,
+          NA_SE_EN_PO_APPEAR,
+          NA_SE_EN_PO_DISAPPEAR,
+          NA_SE_EN_PO_DAMAGE,
+          NA_SE_EN_PO_DEAD,
+          NA_SE_EN_PO_DEAD2,
+          NA_SE_EN_EXTINCT,
+          NA_SE_EN_NUTS_UP,
+          NA_SE_EN_NUTS_DOWN,
+          NA_SE_EN_NUTS_THROW,
+          NA_SE_EN_NUTS_WALK,
+          NA_SE_EN_NUTS_DAMAGE,
+          NA_SE_EN_NUTS_DEAD,
+          NA_SE_EN_STALTU_ROLL,
+          NA_SE_EN_STALWALL_DEAD,
+          NA_SE_EN_TEKU_DAMAGE,
+          NA_SE_EN_FALL_AIM,
+          NA_SE_EN_FALL_UP,
+          NA_SE_EN_FALL_CATCH,
+          NA_SE_EN_FALL_LAND,
+          NA_SE_EN_FALL_WALK,
+          NA_SE_EN_FALL_DAMAGE,
+          NA_SE_EN_BIRI_FLY,
+          NA_SE_EN_BIRI_JUMP,
+          NA_SE_EN_BIRI_SPARK - SFX_FLAG,
+          NA_SE_EN_FANTOM_TRANSFORM,
+          NA_SE_EN_FANTOM_TRANSFORM,
+          NA_SE_EN_FANTOM_THUNDER,
+          NA_SE_EN_FANTOM_SPARK,
+          NA_SE_EN_FANTOM_FLOAT - SFX_FLAG,
+          NA_SE_EN_FANTOM_MASIC1,
+          NA_SE_EN_FANTOM_MASIC2,
+          NA_SE_EN_FANTOM_FIRE - SFX_FLAG,
+          NA_SE_EN_FANTOM_HIT_THUNDER,
+          NA_SE_EN_FANTOM_ATTACK,
+          NA_SE_EN_FANTOM_STICK,
+          NA_SE_EN_FANTOM_EYE,
+          NA_SE_EN_FANTOM_LAST,
+          NA_SE_EN_FANTOM_THUNDER_GND,
+          NA_SE_EN_FANTOM_DAMAGE,
+          NA_SE_EN_FANTOM_DEAD,
+          NA_SE_EN_FANTOM_LAUGH,
+          NA_SE_EN_FANTOM_DAMAGE2,
+          NA_SE_EN_FANTOM_VOICE,
+          NA_SE_EN_MORIBLIN_WALK,
+          NA_SE_EN_MORIBLIN_SLIDE,
+          NA_SE_EN_MORIBLIN_ATTACK,
+          NA_SE_EN_MORIBLIN_VOICE,
+          NA_SE_EN_MORIBLIN_SPEAR_AT,
+          NA_SE_EN_MORIBLIN_SPEAR_NORM,
+          NA_SE_EN_MORIBLIN_DEAD,
+          NA_SE_EN_NUTS_THROW,
+          NA_SE_EN_OCTAROCK_FLOAT,
+          NA_SE_EN_OCTAROCK_JUMP,
+          NA_SE_EN_OCTAROCK_LAND,
+          NA_SE_EN_OCTAROCK_SINK,
+          NA_SE_EN_OCTAROCK_BUBLE,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_SY_WIN_OPEN,
+          NA_SE_SY_WIN_CLOSE,
+          NA_SE_SY_CORRECT_CHIME,
+          NA_SE_SY_GET_RUPY,
+          NA_SE_SY_MESSAGE_WOMAN,
+          NA_SE_SY_MESSAGE_MAN,
+          NA_SE_SY_ERROR,
+          NA_SE_SY_TRE_BOX_APPEAR,
+          NA_SE_SY_TRE_BOX_APPEAR,
+          NA_SE_SY_DECIDE,
+          NA_SE_SY_CURSOR,
+          NA_SE_SY_CANCEL,
+          NA_SE_SY_HP_RECOVER,
+          NA_SE_SY_ATTENTION_ON,
+          NA_SE_SY_ATTENTION_ON,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_SY_LOCK_ON,
+          NA_SE_SY_LOCK_ON,
+          NA_SE_SY_LOCK_OFF,
+          NA_SE_SY_LOCK_ON_HUMAN,
+          NA_SE_SY_CAMERA_ZOOM_UP,
+          NA_SE_SY_CAMERA_ZOOM_DOWN,
+          NA_SE_SY_ATTENTION_ON_OLD,
+          NA_SE_SY_ATTENTION_URGENCY,
+          NA_SE_SY_MESSAGE_PASS,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_SY_PIECE_OF_HEART,
+          NA_SE_SY_GET_ITEM,
+          NA_SE_SY_WIN_SCROLL_LEFT,
+          NA_SE_SY_WIN_SCROLL_RIGHT,
+          NA_SE_SY_OCARINA_ERROR,
+          NA_SE_SY_CAMERA_ZOOM_UP_2,
+          NA_SE_SY_CAMERA_ZOOM_DOWN_2,
+          NA_SE_SY_GLASSMODE_ON,
+          NA_SE_SY_GLASSMODE_OFF,
+          NA_SE_SY_ATTENTION_ON,
+          NA_SE_SY_ATTENTION_URGENCY,
+          NA_SE_OC_OCARINA,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_LAND - SFX_FLAG,
+          NA_SE_VO_LI_SWORD_N,
+          NA_SE_VO_LI_SWORD_N,
+          NA_SE_VO_LI_SWORD_N,
+          NA_SE_VO_LI_SWORD_N,
+          NA_SE_VO_LI_SWORD_N,
+          NA_SE_VO_LI_SWORD_N,
+          NA_SE_VO_LI_SWORD_N,
+          NA_SE_VO_LI_SWORD_L,
+          NA_SE_VO_LI_SWORD_L,
+          NA_SE_VO_LI_MAGIC_ATTACK,
+          NA_SE_VO_LI_LASH,
+          NA_SE_VO_LI_HANG,
+          NA_SE_VO_LI_AUTO_JUMP,
+          NA_SE_VO_LI_CLIMB_END,
+          NA_SE_VO_LI_CLIMB_END,
+          NA_SE_VO_LI_CLIMB_END,
+          NA_SE_VO_LI_CLIMB_END,
+          NA_SE_VO_LI_DAMAGE_S,
+          NA_SE_VO_LI_DAMAGE_S,
+          NA_SE_VO_LI_FALL_L,
+          NA_SE_VO_LI_FALL_S,
+          NA_SE_VO_LI_FALL_L,
+          NA_SE_VO_LI_FALL_L,
+          NA_SE_VO_LI_BREATH_REST,
+          NA_SE_VO_LI_BREATH_REST,
+          NA_SE_VO_LI_DOWN,
+          NA_SE_VO_LI_TAKEN_AWAY,
+          NA_SE_VO_LI_HELD,
+          NA_SE_VO_NAVY_HELLO,
+          NA_SE_VO_NAVY_HEAR,
+          NA_SE_VO_NAVY_ENEMY,
+          NA_SE_VO_NAVY_HELLO,
+          NA_SE_VO_NAVY_HEAR,
+          NA_SE_VO_NAVY_ENEMY,
+          NA_SE_VO_TA_SLEEP,
+          NA_SE_EN_VALVAISA_APPEAR - SFX_FLAG,
+          NA_SE_EN_VALVAISA_ROAR,
+          NA_SE_EN_VALVAISA_MAHI1,
+          NA_SE_EN_VALVAISA_MAHI2,
+          NA_SE_EN_VALVAISA_KNOCKOUT,
+          NA_SE_EN_VALVAISA_DAMAGE1,
+          NA_SE_EN_VALVAISA_DAMAGE2,
+          NA_SE_EN_VALVAISA_ROCK,
+          NA_SE_EN_VALVAISA_LAND,
+          NA_SE_EN_VALVAISA_DEAD,
+          NA_SE_EN_VALVAISA_BURN - SFX_FLAG,
+          NA_SE_EN_VALVAISA_FIRE - SFX_FLAG,
+          NA_SE_EN_VALVAISA_LAND2,
+          NA_SE_EN_MONBLIN_HAM_LAND,
+          NA_SE_EN_MONBLIN_HAM_DOWN,
+          NA_SE_EN_MONBLIN_HAM_UP,
+          NA_SE_EN_REDEAD_CRY,
+          NA_SE_EN_REDEAD_AIM,
+          NA_SE_EN_REDEAD_DAMAGE,
+          NA_SE_EN_RIZA_DOWN,
+          NA_SE_EN_REDEAD_DEAD,
+          NA_SE_EN_REDEAD_ATTACK,
+          NA_SE_EN_PO_LAUGH,
+          NA_SE_EN_PO_CRY,
+          NA_SE_EN_PO_ROLL,
+          NA_SE_EN_PO_LAUGH2,
+          NA_SE_EN_MOFER_APPEAR - SFX_FLAG,
+          NA_SE_EN_MOFER_ATTACK - SFX_FLAG,
+          NA_SE_EN_MOFER_WAVE,
+          NA_SE_EN_MOFER_CATCH,
+          NA_SE_EN_MOFER_CORE_DAMAGE,
+          NA_SE_EN_MOFER_CUT,
+          NA_SE_EN_MOFER_MOVE_DEMO - SFX_FLAG,
+          NA_SE_EN_MOFER_BUBLE_DEMO,
+          NA_SE_EN_MOFER_CORE_JUMP,
+          NA_SE_EN_GOLON_WAKE_UP,
+          NA_SE_EN_GOLON_SIT_DOWN,
+          NA_SE_EN_DODO_M_GND,
+          NA_SE_EN_DEADHAND_BITE,
+          NA_SE_EN_DEADHAND_WALK,
+          NA_SE_EN_DEADHAND_GRIP,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
+          NA_SE_PL_WALK_GROUND - SFX_FLAG,
     };
 
     if (BREG(32) != 0) {
-        BREG(32)--;
+        BREG(32)
+        --;
         Audio_QueueSeqCmd(0x1 << 28 | SEQ_PLAYER_BGM_MAIN << 24 | 0x100FF);
         func_80078914(&zeroVec, unkSfx[BREG(33)]);
     }

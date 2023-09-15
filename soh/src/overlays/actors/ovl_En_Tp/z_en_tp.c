@@ -135,7 +135,7 @@ void EnTp_Init(Actor* thisx, PlayState* play2) {
     EnTp* this = (EnTp*)thisx;
     EnTp* now;
     EnTp* next;
-    s32 i;
+    s32   i;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
     this->actor.targetMode = 3;
@@ -298,8 +298,8 @@ void EnTp_SetupDie(EnTp* this) {
  */
 void EnTp_Die(EnTp* this, PlayState* play) {
     EnTp* now;
-    s16 i;
-    s32 pad;
+    s16   i;
+    s32   pad;
     Vec3f effectVelAccel = { 0.0f, 0.5f, 0.0f };
     Vec3f effectPos = { 0.0f, 0.0f, 0.0f };
 
@@ -375,7 +375,7 @@ void EnTp_Head_SetupTakeOff(EnTp* this) {
  * Flies up and loops around until it makes for Player
  */
 void EnTp_Head_TakeOff(EnTp* this, PlayState* play) {
-    s32 pad;
+    s32     pad;
     Player* player = GET_PLAYER(play);
 
     Math_SmoothStepToF(&this->actor.speedXZ, 2.5f, 0.1f, 0.2f, 0.0f);
@@ -433,7 +433,7 @@ void EnTp_Head_SetupWait(EnTp* this) {
  */
 void EnTp_Head_Wait(EnTp* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 yaw;
+    s16     yaw;
 
     this->unk_15C--;
 
@@ -491,14 +491,14 @@ void EnTp_Head_SetupBurrowReturnHome(EnTp* this) {
 }
 
 void EnTp_Head_BurrowReturnHome(EnTp* this, PlayState* play) {
-    static Vec3f bubbleAccel = { 0.0f, -0.5f, 0.0f };
+    static Vec3f       bubbleAccel = { 0.0f, -0.5f, 0.0f };
     static Color_RGBA8 bubblePrimColor = { 255, 255, 255, 255 };
     static Color_RGBA8 bubbleEnvColor = { 150, 150, 150, 0 };
-    Vec3f bubbleVelocity;
-    Vec3f bubblePos;
-    s32 closeToFloor;
-    EnTp* now;
-    s16 temp_v0; // Required to match, usage can maybe be improved
+    Vec3f              bubbleVelocity;
+    Vec3f              bubblePos;
+    s32                closeToFloor;
+    EnTp*              now;
+    s16                temp_v0; // Required to match, usage can maybe be improved
 
     closeToFloor = false;
     temp_v0 = this->timer;
@@ -568,8 +568,8 @@ void EnTp_Head_BurrowReturnHome(EnTp* this, PlayState* play) {
 }
 
 void EnTp_UpdateDamage(EnTp* this, PlayState* play) {
-    s32 phi_s2;
-    s32 phi_s4;
+    s32   phi_s2;
+    s32   phi_s4;
     EnTp* head; // Can eliminate this and just use now, but they're used differently
     EnTp* now;
 
@@ -649,13 +649,13 @@ void EnTp_UpdateDamage(EnTp* this, PlayState* play) {
 void EnTp_Update(Actor* thisx, PlayState* play) {
     s32 pad;
     EnTp* this = (EnTp*)thisx;
-    Vec3f kiraVelocity = { 0.0f, 0.0f, 0.0f };
-    Vec3f kiraAccel = { 0.0f, -0.6f, 0.0f };
-    Vec3f kiraPos;
+    Vec3f       kiraVelocity = { 0.0f, 0.0f, 0.0f };
+    Vec3f       kiraAccel = { 0.0f, -0.6f, 0.0f };
+    Vec3f       kiraPos;
     Color_RGBA8 kiraPrimColor = { 0, 0, 255, 255 };
     Color_RGBA8 kiraEnvColor = { 0, 0, 0, 0 };
-    Player* player = GET_PLAYER(play);
-    s16 yawToWall;
+    Player*     player = GET_PLAYER(play);
+    s16         yawToWall;
 
     if (player->stateFlags1 & 0x4000000) { // Shielding
         this->damageEffect = TAILPASARAN_DMGEFF_NONE;

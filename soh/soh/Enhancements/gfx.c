@@ -21,8 +21,7 @@ void sprite_load(sprite_t* sprite) {
             0,
             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
             G_TX_NOMASK, G_TX_NOMASK,
-            G_TX_NOLOD, G_TX_NOLOD
-        );
+            G_TX_NOLOD, G_TX_NOLOD);
     } else {
         gDPLoadTextureBlock(
             OVERLAY_DISP++,
@@ -33,8 +32,7 @@ void sprite_load(sprite_t* sprite) {
             0,
             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
             G_TX_NOMASK, G_TX_NOMASK,
-            G_TX_NOLOD, G_TX_NOLOD
-        );
+            G_TX_NOLOD, G_TX_NOLOD);
     }
 
     CLOSE_DISPS(gPlayState->state.gfxCtx);
@@ -56,8 +54,7 @@ void sprite_draw(sprite_t* sprite, int left, int top, int width, int height) {
         (OTRGetRectDimensionFromRightEdge(left) + width) << 2, (top + height) << 2,
         G_TX_RENDERTILE,
         0, 0,
-        width_factor, height_factor
-    );
+        width_factor, height_factor);
 
     CLOSE_DISPS(gPlayState->state.gfxCtx);
 }

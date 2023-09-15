@@ -79,7 +79,7 @@ static InitChainEntry sInitChain[] = {
 
 void BgHakaTubo_Init(Actor* thisx, PlayState* play) {
     BgHakaTubo* this = (BgHakaTubo*)thisx;
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
 
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
@@ -105,7 +105,7 @@ void BgHakaTubo_Destroy(Actor* thisx, PlayState* play) {
 
 void BgHakaTubo_Idle(BgHakaTubo* this, PlayState* play) {
     static Vec3f sZeroVector = { 0.0f, 0.0f, 0.0f };
-    Vec3f pos;
+    Vec3f        pos;
 
     if (this->dyna.actor.room == 12) { // 3 spinning pots room in Shadow Temple
         this->dyna.actor.shape.rot.y += 0x180;
@@ -147,10 +147,10 @@ void BgHakaTubo_Idle(BgHakaTubo* this, PlayState* play) {
 
 void BgHakaTubo_DropCollectible(BgHakaTubo* this, PlayState* play) {
     EnItem00* collectible;
-    f32 rnd;
-    Vec3f spawnPos;
-    s32 i;
-    s32 collectibleParams;
+    f32       rnd;
+    Vec3f     spawnPos;
+    s32       i;
+    s32       collectibleParams;
 
     this->dropTimer--;
     if (this->dropTimer == 0) { // Creates a delay between destroying the pot and dropping the collectible
@@ -183,7 +183,7 @@ void BgHakaTubo_DropCollectible(BgHakaTubo* this, PlayState* play) {
                 // Random rewards
                 if (CVarGetInteger("gNoRandomDrops", 0)) {
                     collectibleParams = -1;
-                } else if(rnd < 0.4f) {
+                } else if (rnd < 0.4f) {
                     collectibleParams = ITEM00_BOMBS_A;
                 } else if (rnd < 0.6f) {
                     collectibleParams = ITEM00_MAGIC_LARGE;
@@ -198,8 +198,7 @@ void BgHakaTubo_DropCollectible(BgHakaTubo* this, PlayState* play) {
             // If small key already collected, drop recovery heart instead
             if (CVarGetInteger("gNoHeartDrops", 0)) {
                 collectibleParams = -1;
-            }
-            else {
+            } else {
                 collectibleParams = ITEM00_HEART;
             }
             func_80078884(NA_SE_SY_TRE_BOX_APPEAR);

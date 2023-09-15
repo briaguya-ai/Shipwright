@@ -32,7 +32,11 @@ const ActorInit Bg_Spot09_Obj_InitVars = {
 };
 
 static CollisionHeader* D_808B1F90[] = {
-    NULL, &gValleyObjects1Col, &gValleyObjects2Col, &gValleyObjects3Col, &gValleyObjects4Col,
+    NULL,
+    &gValleyObjects1Col,
+    &gValleyObjects2Col,
+    &gValleyObjects3Col,
+    &gValleyObjects4Col,
 };
 
 static s32 (*D_808B1FA4[])(BgSpot09Obj* this, PlayState* play) = {
@@ -54,7 +58,11 @@ static InitChainEntry sInitChain2[] = {
 };
 
 static Gfx* sDLists[] = {
-    gValleyBridgeSidesDL, gValleyBrokenBridgeDL, gValleyBridgeChildDL, gCarpentersTentDL, gValleyRepairedBridgeDL,
+    gValleyBridgeSidesDL,
+    gValleyBrokenBridgeDL,
+    gValleyBridgeChildDL,
+    gCarpentersTentDL,
+    gValleyRepairedBridgeDL,
 };
 
 s32 func_808B1AE0(BgSpot09Obj* this, PlayState* play) {
@@ -94,9 +102,9 @@ s32 func_808B1BA0(BgSpot09Obj* this, PlayState* play) {
 }
 
 s32 func_808B1BEC(BgSpot09Obj* this, PlayState* play) {
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
-    s32 pad2[2];
+    s32              pad2[2];
 
     if (D_808B1F90[this->dyna.actor.params] != NULL) {
         DynaPolyActor_Init(&this->dyna, DPM_UNK);

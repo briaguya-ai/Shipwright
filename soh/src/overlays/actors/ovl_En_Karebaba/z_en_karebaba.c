@@ -319,9 +319,9 @@ void EnKarebaba_Spin(EnKarebaba* this, PlayState* play) {
 
 void EnKarebaba_Dying(EnKarebaba* this, PlayState* play) {
     static Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
-    s32 i;
-    Vec3f position;
-    Vec3f rotation;
+    s32          i;
+    Vec3f        position;
+    Vec3f        rotation;
 
     Math_StepToF(&this->actor.speedXZ, 0.0f, 0.1f);
 
@@ -463,8 +463,8 @@ void EnKarebaba_DrawBaseShadow(EnKarebaba* this, PlayState* play) {
 
 void EnKarebaba_Draw(Actor* thisx, PlayState* play) {
     static Color_RGBA8 black = { 0, 0, 0, 0 };
-    static Gfx* stemDLists[] = { gDekuBabaStemTopDL, gDekuBabaStemMiddleDL, gDekuBabaStemBaseDL };
-    static Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
+    static Gfx*        stemDLists[] = { gDekuBabaStemTopDL, gDekuBabaStemMiddleDL, gDekuBabaStemBaseDL };
+    static Vec3f       zeroVec = { 0.0f, 0.0f, 0.0f };
     EnKarebaba* this = (EnKarebaba*)thisx;
     s32 i;
     s32 stemSections;

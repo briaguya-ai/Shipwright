@@ -8,19 +8,19 @@
 #include "objects/gameplay_keep/gameplay_keep.h"
 #include "soh/frame_interpolation.h"
 
-#define rScale regs[0]
-#define rTexIdx regs[1]
+#define rScale      regs[0]
+#define rTexIdx     regs[1]
 #define rPrimColorR regs[2]
 #define rPrimColorG regs[3]
 #define rPrimColorB regs[4]
 #define rPrimColorA regs[5]
-#define rEnvColorR regs[6]
-#define rEnvColorG regs[7]
-#define rEnvColorB regs[8]
-#define rScaleStep regs[9]
-#define rDepth regs[10]
+#define rEnvColorR  regs[6]
+#define rEnvColorG  regs[7]
+#define rEnvColorB  regs[8]
+#define rScaleStep  regs[9]
+#define rDepth      regs[10]
 
-u32 EffectSsBomb2_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsBomb2_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsBomb2_DrawFade(PlayState* play, u32 index, EffectSs* this);
 void EffectSsBomb2_DrawLayered(PlayState* play, u32 index, EffectSs* this);
 void EffectSsBomb2_Update(PlayState* play, u32 index, EffectSs* this);
@@ -63,17 +63,23 @@ u32 EffectSsBomb2_Init(PlayState* play, u32 index, EffectSs* this, void* initPar
 // unused in the original game. looks like EffectSsBomb but with color
 void EffectSsBomb2_DrawFade(PlayState* play, u32 index, EffectSs* this) {
     static void* textures[] = {
-        gEffBombExplosion1Tex, gEffBombExplosion2Tex, gEffBombExplosion3Tex, gEffBombExplosion4Tex,
-        gEffBombExplosion5Tex, gEffBombExplosion6Tex, gEffBombExplosion7Tex, gEffBombExplosion8Tex,
+        gEffBombExplosion1Tex,
+        gEffBombExplosion2Tex,
+        gEffBombExplosion3Tex,
+        gEffBombExplosion4Tex,
+        gEffBombExplosion5Tex,
+        gEffBombExplosion6Tex,
+        gEffBombExplosion7Tex,
+        gEffBombExplosion8Tex,
     };
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    MtxF mfTrans;
-    MtxF mfScale;
-    MtxF mfResult;
-    MtxF mfTrans11DA0;
-    Mtx* mtx;
-    s32 pad;
-    f32 scale;
+    MtxF             mfTrans;
+    MtxF             mfScale;
+    MtxF             mfResult;
+    MtxF             mfTrans11DA0;
+    Mtx*             mtx;
+    s32              pad;
+    f32              scale;
 
     OPEN_DISPS(gfxCtx);
 
@@ -100,22 +106,28 @@ void EffectSsBomb2_DrawFade(PlayState* play, u32 index, EffectSs* this) {
 
 void EffectSsBomb2_DrawLayered(PlayState* play, u32 index, EffectSs* this) {
     static void* textures[] = {
-        gEffBombExplosion1Tex, gEffBombExplosion2Tex, gEffBombExplosion3Tex, gEffBombExplosion4Tex,
-        gEffBombExplosion5Tex, gEffBombExplosion6Tex, gEffBombExplosion7Tex, gEffBombExplosion8Tex,
+        gEffBombExplosion1Tex,
+        gEffBombExplosion2Tex,
+        gEffBombExplosion3Tex,
+        gEffBombExplosion4Tex,
+        gEffBombExplosion5Tex,
+        gEffBombExplosion6Tex,
+        gEffBombExplosion7Tex,
+        gEffBombExplosion8Tex,
     };
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    MtxF mfTrans;
-    MtxF mfScale;
-    MtxF mfResult;
-    MtxF mfTrans11DA0;
-    MtxF mtx2F;
-    Mtx* mtx2;
-    Mtx* mtx;
-    s32 pad[3];
-    f32 scale;
-    f32 depth;
-    f32 layer2Scale = 0.925f;
-    s32 i;
+    MtxF             mfTrans;
+    MtxF             mfScale;
+    MtxF             mfResult;
+    MtxF             mfTrans11DA0;
+    MtxF             mtx2F;
+    Mtx*             mtx2;
+    Mtx*             mtx;
+    s32              pad[3];
+    f32              scale;
+    f32              depth;
+    f32              layer2Scale = 0.925f;
+    s32              i;
 
     OPEN_DISPS(gfxCtx);
 

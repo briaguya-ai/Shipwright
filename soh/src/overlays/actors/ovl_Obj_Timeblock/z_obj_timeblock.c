@@ -18,8 +18,8 @@ void ObjTimeblock_SetupNormal(ObjTimeblock* this);
 void ObjTimeblock_SetupAltBehaviorVisible(ObjTimeblock* this);
 void ObjTimeblock_SetupAltBehaviourNotVisible(ObjTimeblock* this);
 
-s32 ObjTimeblock_WaitForOcarina(ObjTimeblock* this, PlayState* play);
-s32 ObjTimeblock_WaitForSong(ObjTimeblock* this, PlayState* play);
+s32  ObjTimeblock_WaitForOcarina(ObjTimeblock* this, PlayState* play);
+s32  ObjTimeblock_WaitForSong(ObjTimeblock* this, PlayState* play);
 void ObjTimeblock_DoNothing(ObjTimeblock* this, PlayState* play);
 void ObjTimeblock_Normal(ObjTimeblock* this, PlayState* play);
 void ObjTimeblock_AltBehaviorVisible(ObjTimeblock* this, PlayState* play);
@@ -59,8 +59,14 @@ static InitChainEntry sInitChain[] = {
 };
 
 static Color_RGB8 sPrimColors[] = {
-    { 100, 120, 140 }, { 80, 140, 200 }, { 100, 150, 200 }, { 100, 200, 240 },
-    { 80, 110, 140 },  { 70, 160, 225 }, { 80, 100, 130 },  { 100, 110, 190 },
+    { 100, 120, 140 },
+    { 80, 140, 200 },
+    { 100, 150, 200 },
+    { 100, 200, 240 },
+    { 80, 110, 140 },
+    { 70, 160, 225 },
+    { 80, 100, 130 },
+    { 100, 110, 190 },
 };
 
 u32 ObjTimeblock_CalculateIsVisible(ObjTimeblock* this) {
@@ -99,7 +105,7 @@ void ObjTimeblock_ToggleSwitchFlag(PlayState* play, s32 flag) {
 
 void ObjTimeblock_Init(Actor* thisx, PlayState* play) {
     ObjTimeblock* this = (ObjTimeblock*)thisx;
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
 
     DynaPolyActor_Init(&this->dyna, DPM_UNK);
@@ -154,7 +160,7 @@ u8 ObjTimeblock_PlayerIsInRange(ObjTimeblock* this, PlayState* play) {
 
     if (this->dyna.actor.xzDistToPlayer <= sRanges[(this->dyna.actor.params >> 11) & 7]) {
         Vec3f distance;
-        f32 blockSize;
+        f32   blockSize;
 
         func_8002DBD0(&this->dyna.actor, &distance, &GET_PLAYER(play)->actor.world.pos);
         blockSize = this->dyna.actor.scale.x * 50.0f + 6.0f;
@@ -298,7 +304,7 @@ void ObjTimeblock_SetupAltBehaviourNotVisible(ObjTimeblock* this) {
 
 void ObjTimeblock_AltBehaviourNotVisible(ObjTimeblock* this, PlayState* play) {
     s32 switchFlag = this->dyna.actor.params & 0x3F;
-    s8 switchFlagIsSet = (Flags_GetSwitch(play, switchFlag)) ? true : false;
+    s8  switchFlagIsSet = (Flags_GetSwitch(play, switchFlag)) ? true : false;
 
     if (this->unk_176 ^ switchFlagIsSet && switchFlagIsSet ^ (((this->dyna.actor.params >> 15) & 1) ? true : false)) {
         if (this->demoEffectTimer <= 0) {

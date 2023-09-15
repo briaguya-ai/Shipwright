@@ -70,7 +70,7 @@ static ColliderCylinderInit D_80A12CCC = {
 
 void EnFireRock_Init(Actor* thisx, PlayState* play) {
     PlayState* play2 = play;
-    Player* player = GET_PLAYER(play);
+    Player*    player = GET_PLAYER(play);
     EnFireRock* this = (EnFireRock*)thisx;
     s16 temp;
 
@@ -164,8 +164,8 @@ void EnFireRock_Destroy(Actor* thisx, PlayState* play) {
 
 void EnFireRock_Fall(EnFireRock* this, PlayState* play) {
     Player* player;
-    Vec3f flamePos;
-    s32 i;
+    Vec3f   flamePos;
+    s32     i;
 
     player = GET_PLAYER(play);
     if ((this->actor.floorHeight == -10000.0f) || (this->actor.world.pos.y < (player->actor.world.pos.y - 200.0f))) {
@@ -225,9 +225,9 @@ void EnFireRock_Fall(EnFireRock* this, PlayState* play) {
  */
 void EnFireRock_SpawnMoreBrokenPieces(EnFireRock* this, PlayState* play) {
     EnFireRock* spawnedFireRock;
-    s32 nextRockType;
-    s32 i;
-    s32 temp;
+    s32         nextRockType;
+    s32         i;
+    s32         temp;
 
     nextRockType = FIRE_ROCK_SPAWNED_FALLING1;
     switch (this->type) {
@@ -289,7 +289,7 @@ void FireRock_WaitSpawnRocksFromCeiling(EnFireRock* this, PlayState* play) {
 
 void FireRock_WaitOnFloor(EnFireRock* this, PlayState* play) {
     Vec3f flamePos;
-    s16 scale;
+    s16   scale;
 
     if (this->timer2 == 0) {
         flamePos.x = Rand_CenteredFloat(20.0f) + this->actor.world.pos.x;
@@ -303,9 +303,9 @@ void FireRock_WaitOnFloor(EnFireRock* this, PlayState* play) {
 
 void EnFireRock_Update(Actor* thisx, PlayState* play) {
     EnFireRock* this = (EnFireRock*)thisx;
-    s16 setCollision;
+    s16     setCollision;
     Player* player = GET_PLAYER(play);
-    Actor* playerActor = &GET_PLAYER(play)->actor;
+    Actor*  playerActor = &GET_PLAYER(play)->actor;
 
     if (this->timer2 != 0) {
         this->timer2--;

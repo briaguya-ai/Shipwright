@@ -8,11 +8,11 @@
 #include "objects/object_yabusame_point/object_yabusame_point.h"
 
 #define rObjBankIdx regs[0]
-#define rTimer regs[1]
-#define rScoreIdx regs[2]
-#define rScale regs[3]
+#define rTimer      regs[1]
+#define rScoreIdx   regs[2]
+#define rScale      regs[3]
 
-u32 EffectSsExtra_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsExtra_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsExtra_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsExtra_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -25,9 +25,9 @@ EffectSsInit Effect_Ss_Extra_InitVars = {
 
 u32 EffectSsExtra_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx) {
     EffectSsExtraInitParams* initParams = (EffectSsExtraInitParams*)initParamsx;
-    s32 pad;
-    s32 objBankIndex;
-    u32 oldSeg6;
+    s32                      pad;
+    s32                      objBankIndex;
+    u32                      oldSeg6;
 
     objBankIndex = Object_GetIndex(&play->objectCtx, OBJECT_YABUSAME_POINT);
 
@@ -59,10 +59,10 @@ static void* sTextures[] = {
 };
 
 void EffectSsExtra_Draw(PlayState* play, u32 index, EffectSs* this) {
-    s32 pad;
-    f32 scale = this->rScale / 100.0f;
+    s32   pad;
+    f32   scale = this->rScale / 100.0f;
     void* object = play->objectCtx.status[this->rObjBankIdx].segment;
-    u8 mirroredWorld = CVarGetInteger("gMirroredWorld", 0);
+    u8    mirroredWorld = CVarGetInteger("gMirroredWorld", 0);
 
     OPEN_DISPS(play->state.gfxCtx);
 

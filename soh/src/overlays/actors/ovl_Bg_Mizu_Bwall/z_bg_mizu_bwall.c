@@ -149,12 +149,18 @@ static ColliderTrisInit sTrisInitStingerWall = {
 };
 
 static Gfx* sDLists[] = {
-    gObjectMizuObjectsBwallDL_001A30, gObjectMizuObjectsBwallDL_002390, gObjectMizuObjectsBwallDL_001CD0,
-    gObjectMizuObjectsBwallDL_002090, gObjectMizuObjectsBwallDL_001770,
+    gObjectMizuObjectsBwallDL_001A30,
+    gObjectMizuObjectsBwallDL_002390,
+    gObjectMizuObjectsBwallDL_001CD0,
+    gObjectMizuObjectsBwallDL_002090,
+    gObjectMizuObjectsBwallDL_001770,
 };
 static CollisionHeader* sColHeaders[] = {
-    &gObjectMizuObjectsBwallCol_001C58, &gObjectMizuObjectsBwallCol_0025A4, &gObjectMizuObjectsBwallCol_001DE8,
-    &gObjectMizuObjectsBwallCol_001DE8, &gObjectMizuObjectsBwallCol_001DE8,
+    &gObjectMizuObjectsBwallCol_001C58,
+    &gObjectMizuObjectsBwallCol_0025A4,
+    &gObjectMizuObjectsBwallCol_001DE8,
+    &gObjectMizuObjectsBwallCol_001DE8,
+    &gObjectMizuObjectsBwallCol_001DE8,
 };
 
 static InitChainEntry sInitChain[] = {
@@ -195,10 +201,10 @@ void BgMizuBwall_Init(Actor* thisx, PlayState* play) {
                                  __LINE__, this->dyna.actor.params);
                     Actor_Kill(&this->dyna.actor);
                 } else {
-                    f32 sin = Math_SinS(this->dyna.actor.shape.rot.y);
-                    f32 cos = Math_CosS(this->dyna.actor.shape.rot.y);
-                    s32 i;
-                    s32 j;
+                    f32   sin = Math_SinS(this->dyna.actor.shape.rot.y);
+                    f32   cos = Math_CosS(this->dyna.actor.shape.rot.y);
+                    s32   i;
+                    s32   j;
                     Vec3f offset;
                     Vec3f vtx[3];
 
@@ -231,10 +237,10 @@ void BgMizuBwall_Init(Actor* thisx, PlayState* play) {
                                  __LINE__, this->dyna.actor.params);
                     Actor_Kill(&this->dyna.actor);
                 } else {
-                    f32 sin = Math_SinS(this->dyna.actor.shape.rot.y);
-                    f32 cos = Math_CosS(this->dyna.actor.shape.rot.y);
-                    s32 i;
-                    s32 j;
+                    f32   sin = Math_SinS(this->dyna.actor.shape.rot.y);
+                    f32   cos = Math_CosS(this->dyna.actor.shape.rot.y);
+                    s32   i;
+                    s32   j;
                     Vec3f offset;
                     Vec3f vtx[3];
 
@@ -267,10 +273,10 @@ void BgMizuBwall_Init(Actor* thisx, PlayState* play) {
                                  __LINE__, this->dyna.actor.params);
                     Actor_Kill(&this->dyna.actor);
                 } else {
-                    f32 sin = Math_SinS(this->dyna.actor.shape.rot.y);
-                    f32 cos = Math_CosS(this->dyna.actor.shape.rot.y);
-                    s32 i;
-                    s32 j;
+                    f32   sin = Math_SinS(this->dyna.actor.shape.rot.y);
+                    f32   cos = Math_CosS(this->dyna.actor.shape.rot.y);
+                    s32   i;
+                    s32   j;
                     Vec3f offset;
                     Vec3f vtx[3];
 
@@ -305,10 +311,10 @@ void BgMizuBwall_Init(Actor* thisx, PlayState* play) {
                                  __LINE__, this->dyna.actor.params);
                     Actor_Kill(&this->dyna.actor);
                 } else {
-                    f32 sin = Math_SinS(this->dyna.actor.shape.rot.y);
-                    f32 cos = Math_CosS(this->dyna.actor.shape.rot.y);
-                    s32 i;
-                    s32 j;
+                    f32   sin = Math_SinS(this->dyna.actor.shape.rot.y);
+                    f32   cos = Math_CosS(this->dyna.actor.shape.rot.y);
+                    s32   i;
+                    s32   j;
                     Vec3f offset;
                     Vec3f vtx[3];
 
@@ -343,10 +349,10 @@ void BgMizuBwall_Init(Actor* thisx, PlayState* play) {
                                  __LINE__, this->dyna.actor.params);
                     Actor_Kill(&this->dyna.actor);
                 } else {
-                    f32 sin = Math_SinS(this->dyna.actor.shape.rot.y);
-                    f32 cos = Math_CosS(this->dyna.actor.shape.rot.y);
-                    s32 i;
-                    s32 j;
+                    f32   sin = Math_SinS(this->dyna.actor.shape.rot.y);
+                    f32   cos = Math_CosS(this->dyna.actor.shape.rot.y);
+                    s32   i;
+                    s32   j;
                     Vec3f offset;
                     Vec3f vtx[3];
 
@@ -415,17 +421,17 @@ void BgMizuBwall_SetAlpha(BgMizuBwall* this, PlayState* play) {
 }
 
 void BgMizuBwall_SpawnDebris(BgMizuBwall* this, PlayState* play) {
-    s32 i;
-    s32 pad;
-    s16 rand1;
-    s16 rand2;
+    s32    i;
+    s32    pad;
+    s16    rand1;
+    s16    rand2;
     Vec3f* thisPos = &this->dyna.actor.world.pos;
-    Vec3f debrisPos;
-    f32 tempx;
-    f32 tempz;
-    f32 sin = Math_SinS(this->dyna.actor.shape.rot.y);
-    f32 cos = Math_CosS(this->dyna.actor.shape.rot.y);
-    Vec3f debrisOffsets[15];
+    Vec3f  debrisPos;
+    f32    tempx;
+    f32    tempz;
+    f32    sin = Math_SinS(this->dyna.actor.shape.rot.y);
+    f32    cos = Math_CosS(this->dyna.actor.shape.rot.y);
+    Vec3f  debrisOffsets[15];
 
     for (i = 0; i < ARRAY_COUNT(debrisOffsets); i++) {
         switch ((u16)this->dyna.actor.params & 0xF) {
@@ -503,7 +509,7 @@ void BgMizuBwall_Update(Actor* thisx, PlayState* play) {
 void BgMizuBwall_Draw(Actor* thisx, PlayState* play2) {
     BgMizuBwall* this = (BgMizuBwall*)thisx;
     PlayState* play = play2;
-    u32 frames;
+    u32        frames;
 
     OPEN_DISPS(play->state.gfxCtx);
     frames = play->gameplayFrames;

@@ -110,7 +110,7 @@ static Vec3f D_80AE4918 = { 0.0f, 0.0f, 0.0f };
 static Color_RGBA8 D_80AE4924 = { 200, 200, 255, 255 };
 static Color_RGBA8 D_80AE4928 = { 0, 0, 255, 0 };
 
-static Vec3f D_80AE492C = { 0.0f, 0.0f, 0.0f };
+static Vec3f       D_80AE492C = { 0.0f, 0.0f, 0.0f };
 static Color_RGBA8 D_80AE4938 = { 200, 200, 255, 255 };
 static Color_RGBA8 D_80AE493C = { 0, 0, 255, 0 };
 
@@ -314,12 +314,12 @@ void func_80AE2B90(EnRd* this, PlayState* play) {
 }
 
 void func_80AE2C1C(EnRd* this, PlayState* play) {
-    Vec3f sp44 = D_80AE4918;
+    Vec3f       sp44 = D_80AE4918;
     Color_RGBA8 sp40 = D_80AE4924;
     Color_RGBA8 sp3C = D_80AE4928;
-    Player* player = GET_PLAYER(play);
-    s32 pad;
-    s16 sp32 = this->actor.yawTowardsPlayer - this->actor.shape.rot.y - this->unk_30E - this->unk_310;
+    Player*     player = GET_PLAYER(play);
+    s32         pad;
+    s16         sp32 = this->actor.yawTowardsPlayer - this->actor.shape.rot.y - this->unk_30E - this->unk_310;
 
     this->skelAnime.playSpeed = this->actor.speedXZ;
     Math_SmoothStepToS(&this->actor.shape.rot.y, this->actor.yawTowardsPlayer, 1, 0xFA, 0);
@@ -384,8 +384,8 @@ void func_80AE2F50(EnRd* this, PlayState* play) {
 
 void func_80AE2FD0(EnRd* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 pad;
-    s16 targetY = Actor_WorldYawTowardPoint(&this->actor, &this->actor.home.pos);
+    s32     pad;
+    s16     targetY = Actor_WorldYawTowardPoint(&this->actor, &this->actor.home.pos);
 
     if (Actor_WorldDistXYZToPoint(&this->actor, &this->actor.home.pos) >= 5.0f) {
         Math_SmoothStepToS(&this->actor.shape.rot.y, targetY, 1, 0x1C2, 0);
@@ -434,8 +434,8 @@ void func_80AE31DC(EnRd* this) {
 
 void func_80AE3260(EnRd* this, PlayState* play) {
     if (this->actor.parent != NULL) {
-        s32 pad;
-        s16 targetY;
+        s32   pad;
+        s16   targetY;
         Vec3f thisPos = this->actor.parent->world.pos;
 
         targetY = Actor_WorldYawTowardPoint(&this->actor, &thisPos);
@@ -480,7 +480,7 @@ void func_80AE33F0(EnRd* this) {
 }
 
 void func_80AE3454(EnRd* this, PlayState* play) {
-    s32 pad;
+    s32     pad;
     Player* player = GET_PLAYER(play);
 
     if (SkelAnime_Update(&this->skelAnime)) {
@@ -557,11 +557,11 @@ void func_80AE37BC(EnRd* this) {
 }
 
 void func_80AE3834(EnRd* this, PlayState* play) {
-    Vec3f sp34 = D_80AE492C;
+    Vec3f       sp34 = D_80AE492C;
     Color_RGBA8 sp30 = D_80AE4938;
     Color_RGBA8 sp2C = D_80AE493C;
-    Player* player = GET_PLAYER(play);
-    s16 temp_v0 = this->actor.yawTowardsPlayer - this->actor.shape.rot.y - this->unk_30E - this->unk_310;
+    Player*     player = GET_PLAYER(play);
+    s16         temp_v0 = this->actor.yawTowardsPlayer - this->actor.shape.rot.y - this->unk_30E - this->unk_310;
 
     if (ABS(temp_v0) < 0x2008) {
         if (!(this->unk_312 & 0x80) && !CVarGetInteger("gNoRedeadFreeze", 0)) {
@@ -749,7 +749,7 @@ void func_80AE3F9C(EnRd* this, PlayState* play) {
 }
 
 void func_80AE4114(EnRd* this, PlayState* play) {
-    s32 pad;
+    s32     pad;
     Player* player = GET_PLAYER(play);
 
     if ((gSaveContext.sunsSongState != SUNSSONG_INACTIVE) && (this->actor.shape.rot.x == 0) && (this->unk_318 == 0) &&
@@ -802,7 +802,7 @@ void EnRd_Update(Actor* thisx, PlayState* play) {
     s32 pad;
     EnRd* this = (EnRd*)thisx;
     Player* player = GET_PLAYER(play);
-    s32 pad2;
+    s32     pad2;
 
     func_80AE4114(this, play);
 
@@ -856,7 +856,7 @@ s32 EnRd_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* po
 void EnRd_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void* thisx, Gfx** gfx) {
     Vec3f sp2C = D_80AE4940;
     EnRd* this = (EnRd*)thisx;
-    s32 idx = -1;
+    s32   idx = -1;
     Vec3f destPos;
 
     if ((this->unk_31A != 0) || ((this->actor.colorFilterTimer != 0) && (this->actor.colorFilterParams & 0x4000))) {

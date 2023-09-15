@@ -87,9 +87,12 @@ static Vec3f sUnitDirections[] = {
 static s16 sFragmentScales[] = { 108, 102, 96, 84, 66, 55, 42, 38 };
 
 static InitChainEntry sInitChain[] = {
-    ICHAIN_VEC3F_DIV1000(scale, 400, ICHAIN_CONTINUE),         ICHAIN_F32_DIV1000(gravity, -3200, ICHAIN_CONTINUE),
-    ICHAIN_F32_DIV1000(minVelocityY, -17000, ICHAIN_CONTINUE), ICHAIN_F32(uncullZoneForward, 1200, ICHAIN_CONTINUE),
-    ICHAIN_F32(uncullZoneScale, 100, ICHAIN_CONTINUE),         ICHAIN_F32(uncullZoneDownward, 120, ICHAIN_STOP),
+    ICHAIN_VEC3F_DIV1000(scale, 400, ICHAIN_CONTINUE),
+    ICHAIN_F32_DIV1000(gravity, -3200, ICHAIN_CONTINUE),
+    ICHAIN_F32_DIV1000(minVelocityY, -17000, ICHAIN_CONTINUE),
+    ICHAIN_F32(uncullZoneForward, 1200, ICHAIN_CONTINUE),
+    ICHAIN_F32(uncullZoneScale, 100, ICHAIN_CONTINUE),
+    ICHAIN_F32(uncullZoneDownward, 120, ICHAIN_STOP),
 };
 
 void EnKusa_SetupAction(EnKusa* this, EnKusaActionFunc actionFunc) {
@@ -98,11 +101,11 @@ void EnKusa_SetupAction(EnKusa* this, EnKusaActionFunc actionFunc) {
 }
 
 s32 EnKusa_SnapToFloor(EnKusa* this, PlayState* play, f32 yOffset) {
-    s32 pad;
+    s32            pad;
     CollisionPoly* poly;
-    Vec3f pos;
-    s32 bgId;
-    f32 floorY;
+    Vec3f          pos;
+    s32            bgId;
+    f32            floorY;
 
     pos.x = this->actor.world.pos.x;
     pos.y = this->actor.world.pos.y + 30.0f;
@@ -138,11 +141,9 @@ void EnKusa_DropCollectible(EnKusa* this, PlayState* play) {
             break;
         case ENKUSA_TYPE_1:
             if (CVarGetInteger("gNoRandomDrops", 0)) {
-            }
-            else if (CVarGetInteger("gNoHeartDrops", 0)) {
+            } else if (CVarGetInteger("gNoHeartDrops", 0)) {
                 Item_DropCollectible(play, &this->actor.world.pos, ITEM00_SEEDS);
-            }
-            else if (Rand_ZeroOne() < 0.5f) {
+            } else if (Rand_ZeroOne() < 0.5f) {
                 Item_DropCollectible(play, &this->actor.world.pos, ITEM00_SEEDS);
             } else {
                 Item_DropCollectible(play, &this->actor.world.pos, ITEM00_HEART);
@@ -173,12 +174,12 @@ void EnKusa_SetScaleSmall(EnKusa* this) {
 }
 
 void EnKusa_SpawnFragments(EnKusa* this, PlayState* play) {
-    Vec3f velocity;
-    Vec3f pos;
-    s32 i;
-    s32 scaleIndex;
+    Vec3f  velocity;
+    Vec3f  pos;
+    s32    i;
+    s32    scaleIndex;
     Vec3f* dir;
-    s32 pad;
+    s32    pad;
 
     for (i = 0; i < ARRAY_COUNT(sUnitDirections); i++) {
         dir = &sUnitDirections[i];
@@ -378,7 +379,7 @@ void EnKusa_SetupFall(EnKusa* this) {
 }
 
 void EnKusa_Fall(EnKusa* this, PlayState* play) {
-    s32 pad;
+    s32   pad;
     Vec3f contactPos;
 
     if (this->actor.bgCheckFlags & 0xB) {

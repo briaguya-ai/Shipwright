@@ -63,11 +63,11 @@ void OceffWipe3_Update(Actor* thisx, PlayState* play) {
 void OceffWipe3_Draw(Actor* thisx, PlayState* play) {
     u32 scroll = play->state.frames & 0xFFF;
     OceffWipe3* this = (OceffWipe3*)thisx;
-    f32 z;
-    u8 alpha;
-    s32 pad[2];
+    f32   z;
+    u8    alpha;
+    s32   pad[2];
     Vec3f eye;
-    Vtx* vtxPtr;
+    Vtx*  vtxPtr;
     Vec3f vec;
 
     eye = GET_ACTIVE_CAM(play)->eye;

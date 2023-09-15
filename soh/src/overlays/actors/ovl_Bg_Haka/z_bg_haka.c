@@ -40,7 +40,7 @@ static InitChainEntry sInitChain[] = {
 
 void BgHaka_Init(Actor* thisx, PlayState* play) {
     BgHaka* this = (BgHaka*)thisx;
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
 
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
@@ -91,7 +91,7 @@ void func_8087B7E8(BgHaka* this, PlayState* play) {
 
 void func_8087B938(BgHaka* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 sp38;
+    s32     sp38;
 
     this->dyna.actor.speedXZ += 0.05f;
     this->dyna.actor.speedXZ = CLAMP_MAX(this->dyna.actor.speedXZ, 1.5f);
@@ -103,7 +103,7 @@ void func_8087B938(BgHaka* this, PlayState* play) {
     if (sp38 != 0) {
         this->dyna.unk_150 = 0.0f;
         this->state = 1;
-        u8 allPulled = 1;
+        u8     allPulled = 1;
         Actor* actor = play->actorCtx.actorLists[ACTORCAT_BG].head;
 
         while (actor != NULL) {
@@ -152,7 +152,7 @@ void func_8087BAAC(BgHaka* this, PlayState* play) {
 
 void func_8087BAE4(BgHaka* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 pad;
+    s32     pad;
 
     if (this->dyna.actor.params != 0) {
         this->dyna.actor.params -= 1;
@@ -176,16 +176,16 @@ void BgHaka_Update(Actor* thisx, PlayState* play) {
 u16 graveHue = 0;
 
 void BgHaka_Draw(Actor* thisx, PlayState* play) {
-    u16 index = thisx->world.pos.x + thisx->world.pos.z;
-    float frequency = 0.01f;
+    u16        index = thisx->world.pos.x + thisx->world.pos.z;
+    float      frequency = 0.01f;
     Color_RGB8 newColor;
     newColor.r = sin(frequency * ((graveHue + index) % 360) + 0) * 127 + 128;
     newColor.g = sin(frequency * ((graveHue + index) % 360) + 2) * 127 + 128;
     newColor.b = sin(frequency * ((graveHue + index) % 360) + 4) * 127 + 128;
 
     graveHue++;
-    if (graveHue >= 360) graveHue = 0;
-
+    if (graveHue >= 360)
+        graveHue = 0;
 
     OPEN_DISPS(play->state.gfxCtx);
 

@@ -82,14 +82,14 @@ void EnTuboTrap_DropCollectible(EnTuboTrap* this, PlayState* play) {
 }
 
 void EnTuboTrap_SpawnEffectsOnLand(EnTuboTrap* this, PlayState* play) {
-    f32 rand;
-    f32 cos;
-    f32 sin;
-    Vec3f pos;
-    Vec3f velocity;
-    s16 var;
-    s32 arg5;
-    s32 i;
+    f32    rand;
+    f32    cos;
+    f32    sin;
+    Vec3f  pos;
+    Vec3f  velocity;
+    s16    var;
+    s32    arg5;
+    s32    i;
     Vec3f* actorPos = &this->actor.world.pos;
 
     for (i = 0, var = 0; i < 15; i++, var += 20000) {
@@ -125,14 +125,14 @@ void EnTuboTrap_SpawnEffectsOnLand(EnTuboTrap* this, PlayState* play) {
 }
 
 void EnTuboTrap_SpawnEffectsInWater(EnTuboTrap* this, PlayState* play) {
-    f32 rand;
-    f32 cos;
-    f32 sin;
-    Vec3f pos;
-    Vec3f velocity;
-    s16 var;
-    s32 arg5;
-    s32 i;
+    f32    rand;
+    f32    cos;
+    f32    sin;
+    Vec3f  pos;
+    Vec3f  velocity;
+    s16    var;
+    s32    arg5;
+    s32    i;
     Vec3f* actorPos = &this->actor.world.pos;
 
     pos = *actorPos;
@@ -228,7 +228,7 @@ void EnTuboTrap_HandleImpact(EnTuboTrap* this, PlayState* play) {
 
 void EnTuboTrap_WaitForProximity(EnTuboTrap* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 targetHeight;
+    f32     targetHeight;
 
     if (BREG(2) != 0) {
         osSyncPrintf(VT_FGCOL(GREEN) "☆☆☆☆☆ わて     ☆☆☆☆☆ %f\n" VT_RST, this->actor.world.pos.y);   // "You"

@@ -42,14 +42,14 @@ static Vec3f sZeroVec = { 0.0f, 0.0f, 0.0f };
 
 void EffectSs_DrawGEffect(PlayState* play, EffectSs* this, void* texture) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    f32 scale;
-    MtxF mfTrans;
-    MtxF mfScale;
-    MtxF mfResult;
-    MtxF mfTrans11DA0;
-    s32 pad1;
-    Mtx* mtx;
-    void* object = play->objectCtx.status[this->rgObjBankIdx].segment;
+    f32              scale;
+    MtxF             mfTrans;
+    MtxF             mfScale;
+    MtxF             mfResult;
+    MtxF             mfTrans11DA0;
+    s32              pad1;
+    Mtx*             mtx;
+    void*            object = play->objectCtx.status[this->rgObjBankIdx].segment;
 
     OPEN_DISPS(gfxCtx);
 
@@ -197,7 +197,7 @@ void func_80028894(Vec3f* srcPos, f32 randScale, Vec3f* newPos, Vec3f* velocity,
 }
 
 void func_80028990(PlayState* play, f32 randScale, Vec3f* srcPos) {
-    s32 i;
+    s32   i;
     Vec3f pos;
     Vec3f velocity;
     Vec3f accel;
@@ -209,7 +209,7 @@ void func_80028990(PlayState* play, f32 randScale, Vec3f* srcPos) {
 }
 
 void func_80028A54(PlayState* play, f32 randScale, Vec3f* srcPos) {
-    s32 i;
+    s32   i;
     Vec3f pos;
     Vec3f velocity;
     Vec3f accel;
@@ -405,7 +405,7 @@ void EffectSsGSpk_SpawnRandColor(PlayState* play, Actor* actor, Vec3f* pos, Vec3
                                  s16 scale, s16 scaleStep) {
     Color_RGBA8 primColor = { 255, 255, 150, 255 };
     Color_RGBA8 envColor = { 255, 0, 0, 0 };
-    s32 randOffset = (Rand_ZeroOne() * 20.0f) - 10.0f;
+    s32         randOffset = (Rand_ZeroOne() * 20.0f) - 10.0f;
 
     primColor.r += randOffset;
     primColor.g += randOffset;
@@ -606,7 +606,7 @@ void EffectSsHahen_Spawn(PlayState* play, Vec3f* pos, Vec3f* velocity, Vec3f* ac
  */
 void EffectSsHahen_SpawnBurst(PlayState* play, Vec3f* pos, f32 burstScale, s16 unused, s16 scale,
                               s16 randScaleRange, s16 count, s16 objId, s16 life, Gfx* dList) {
-    s32 i;
+    s32   i;
     Vec3f velocity;
     Vec3f accel;
 
@@ -655,11 +655,11 @@ void EffectSsSibuki_Spawn(PlayState* play, Vec3f* pos, Vec3f* velocity, Vec3f* a
 }
 
 void EffectSsSibuki_SpawnBurst(PlayState* play, Vec3f* pos) {
-    s16 i;
+    s16   i;
     Vec3f unusedZeroVec1 = { 0.0f, 0.0f, 0.0f };
     Vec3f unusedZeroVec2 = { 0.0f, 0.0f, 0.0f };
     Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
-    s16 randDirection = Rand_ZeroOne() * 1.99f;
+    s16   randDirection = Rand_ZeroOne() * 1.99f;
 
     for (i = 0; i < KREG(19) + 30; i++) {
         EffectSsSibuki_Spawn(play, pos, &zeroVec, &zeroVec, i / (KREG(27) + 6), randDirection, KREG(18) + 40);
@@ -850,10 +850,10 @@ void EffectSsIcePiece_SpawnBurst(PlayState* play, Vec3f* refPos, f32 scale) {
         { 17.320474f, 20.0f, -9.999695f },
         { -17.320474f, 20.0f, -9.999695f },
     }; // 17.320474 is approximately 10 * sqrt(3)
-    s32 i;
+    s32   i;
     Vec3f velocity;
     Vec3f pos;
-    f32 velocityScale;
+    f32   velocityScale;
 
     accel.y = -0.2f;
 

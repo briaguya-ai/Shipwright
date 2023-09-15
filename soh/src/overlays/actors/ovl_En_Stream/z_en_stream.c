@@ -82,12 +82,12 @@ s32 func_80B0B81C(Vec3f* vortexPosRot, Vec3f* playerPosRot, Vec3f* posDifference
 
 void EnStream_SuckPlayer(EnStream* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 pad48;
-    Vec3f posDifference;
-    f32 xzDist;
-    f32 yDistWithOffset;
-    s32 pad30;
-    s32 pad2C;
+    s32     pad48;
+    Vec3f   posDifference;
+    f32     xzDist;
+    f32     yDistWithOffset;
+    s32     pad30;
+    s32     pad2C;
 
     if (func_80B0B81C(&this->actor.world.pos, &player->actor.world.pos, &posDifference, this->actor.scale.y) != 0) {
         xzDist = sqrtf(SQ(posDifference.x) + SQ(posDifference.z));
@@ -113,8 +113,8 @@ void EnStream_SuckPlayer(EnStream* this, PlayState* play) {
 
 void EnStream_WaitForPlayer(EnStream* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 pad;
-    Vec3f temp;
+    s16     pad;
+    Vec3f   temp;
 
     if (func_80B0B81C(&this->actor.world.pos, &player->actor.world.pos, &temp, this->actor.scale.y) != 0) {
         EnStream_SetupAction(this, EnStream_SuckPlayer);

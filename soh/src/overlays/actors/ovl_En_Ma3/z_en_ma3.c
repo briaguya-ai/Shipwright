@@ -18,8 +18,8 @@ u16 func_80AA2AA0(PlayState* play, Actor* this);
 s16 func_80AA2BD4(PlayState* play, Actor* this);
 
 void func_80AA2E54(EnMa3* this, PlayState* play);
-s32 func_80AA2EC8(EnMa3* this, PlayState* play);
-s32 func_80AA2F28(EnMa3* this);
+s32  func_80AA2EC8(EnMa3* this, PlayState* play);
+s32  func_80AA2F28(EnMa3* this);
 void EnMa3_UpdateEyes(EnMa3* this);
 void func_80AA3200(EnMa3* this, PlayState* play);
 
@@ -67,14 +67,16 @@ typedef enum {
 } EnMa3Animation;
 
 static AnimationFrameCountInfo sAnimationInfo[] = {
-    { &gMalonAdultIdleAnim, 1.0f, ANIMMODE_LOOP, 0.0f },       { &gMalonAdultIdleAnim, 1.0f, ANIMMODE_LOOP, -10.0f },
-    { &gMalonAdultStandStillAnim, 1.0f, ANIMMODE_LOOP, 0.0f }, { &gMalonAdultSingAnim, 1.0f, ANIMMODE_LOOP, 0.0f },
+    { &gMalonAdultIdleAnim, 1.0f, ANIMMODE_LOOP, 0.0f },
+    { &gMalonAdultIdleAnim, 1.0f, ANIMMODE_LOOP, -10.0f },
+    { &gMalonAdultStandStillAnim, 1.0f, ANIMMODE_LOOP, 0.0f },
+    { &gMalonAdultSingAnim, 1.0f, ANIMMODE_LOOP, 0.0f },
     { &gMalonAdultSingAnim, 1.0f, ANIMMODE_LOOP, -10.0f },
 };
 
 u16 func_80AA2AA0(PlayState* play, Actor* thisx) {
     Player* player = GET_PLAYER(play);
-    s16* timer1ValuePtr; // weirdness with this necessary to match
+    s16*    timer1ValuePtr; // weirdness with this necessary to match
 
     if (!Flags_GetInfTable(INFTABLE_B8)) {
         return 0x2000;
@@ -181,7 +183,7 @@ s16 func_80AA2BD4(PlayState* play, Actor* thisx) {
 
 void func_80AA2E54(EnMa3* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 trackingMode;
+    s16     trackingMode;
 
     if ((this->interactInfo.talkState == NPC_TALK_STATE_IDLE) && (this->skelAnime.animation == &gMalonAdultSingAnim)) {
         trackingMode = NPC_TRACKING_NONE;
@@ -354,8 +356,8 @@ void EnMa3_Draw(Actor* thisx, PlayState* play) {
     static void* sEyeTextures[] = { gMalonAdultEyeOpenTex, gMalonAdultEyeHalfTex, gMalonAdultEyeClosedTex };
     EnMa3* this = (EnMa3*)thisx;
     Camera* camera;
-    f32 someFloat;
-    s32 pad;
+    f32     someFloat;
+    s32     pad;
 
     OPEN_DISPS(play->state.gfxCtx);
 

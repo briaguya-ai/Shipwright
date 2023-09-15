@@ -9,9 +9,9 @@
 #include "objects/object_link_child/object_link_child.h"
 
 #define rObjBankIdx regs[0]
-#define rYaw regs[1]
+#define rYaw        regs[1]
 
-u32 EffectSsStick_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsStick_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsStick_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsStick_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -21,7 +21,7 @@ EffectSsInit Effect_Ss_Stick_InitVars = {
 };
 
 typedef struct {
-    /* 0x00 */ s16 objectID;
+    /* 0x00 */ s16  objectID;
     /* 0x04 */ Gfx* displayList;
 } StickDrawInfo;
 
@@ -30,7 +30,7 @@ u32 EffectSsStick_Init(PlayState* play, u32 index, EffectSs* this, void* initPar
         { OBJECT_LINK_BOY, gLinkAdultBrokenGiantsKnifeBladeDL }, // adult, broken sword
         { OBJECT_LINK_CHILD, gLinkChildLinkDekuStickDL },        // child, broken stick
     };
-    StickDrawInfo* ageInfoEntry = gSaveContext.linkAge + drawInfo;
+    StickDrawInfo*           ageInfoEntry = gSaveContext.linkAge + drawInfo;
     EffectSsStickInitParams* initParams = (EffectSsStickInitParams*)initParamsx;
 
     this->rObjBankIdx = Object_GetIndex(&play->objectCtx, ageInfoEntry->objectID);
@@ -50,7 +50,7 @@ u32 EffectSsStick_Init(PlayState* play, u32 index, EffectSs* this, void* initPar
 
 void EffectSsStick_Draw(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s32 pad;
+    s32              pad;
 
     OPEN_DISPS(gfxCtx);
 

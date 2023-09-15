@@ -14,19 +14,19 @@
 #define vTimer actionVar1
 
 // variables for turning the statue. Deg10 rotations are in tenths of a degree
-#define vTurnDirection actionVar1
-#define vTurnRateDeg10 actionVar2
+#define vTurnDirection  actionVar1
+#define vTurnRateDeg10  actionVar2
 #define vTurnAngleDeg10 actionVar3
-#define vRotYDeg10 actionVar4
-#define vInitTurnAngle actionVar5
+#define vRotYDeg10      actionVar4
+#define vInitTurnAngle  actionVar5
 
 // opening angle for floor
 #define vOpenAngle actionVar2
 
 // variables for the skull flames
-#define vFlameScale actionVar3
+#define vFlameScale     actionVar3
 #define vIsSkullOfTruth actionVar4
-#define vScrollTimer actionVar5
+#define vScrollTimer    actionVar5
 
 #define SKULL_OF_TRUTH_FOUND 100
 
@@ -48,7 +48,7 @@ void BgHakaGate_SkullOfTruth(BgHakaGate* this, PlayState* play);
 void BgHakaGate_FalseSkull(BgHakaGate* this, PlayState* play);
 
 static s16 sSkullOfTruthRotY = 0x100;
-static u8 sBgPoEventPuzzleState = 1;
+static u8  sBgPoEventPuzzleState = 1;
 static f32 sStatueDistToPlayer = 0;
 
 static s16 sStatueRotY;
@@ -160,8 +160,8 @@ void BgHakaGate_StatueInactive(BgHakaGate* this, PlayState* play) {
 
 void BgHakaGate_StatueIdle(BgHakaGate* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 linkDirection;
-    f32 forceDirection;
+    s32     linkDirection;
+    f32     forceDirection;
 
     if (this->dyna.unk_150 != 0.0f) {
         if (this->vTimer == 0) {
@@ -189,8 +189,8 @@ void BgHakaGate_StatueIdle(BgHakaGate* this, PlayState* play) {
 
 void BgHakaGate_StatueTurn(BgHakaGate* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 turnFinished;
-    s16 turnAngle;
+    s32     turnFinished;
+    s16     turnAngle;
 
     this->vTurnRateDeg10++;
     this->vTurnRateDeg10 = CLAMP_MAX(this->vTurnRateDeg10, 10);
@@ -223,12 +223,12 @@ void BgHakaGate_StatueTurn(BgHakaGate* this, PlayState* play) {
 void BgHakaGate_FloorClosed(BgHakaGate* this, PlayState* play) {
     if ((sStatueDistToPlayer > 1.0f) && (sStatueRotY != 0)) {
         Player* player = GET_PLAYER(play);
-        f32 radialDist;
-        f32 angDist;
-        f32 cos = Math_CosS(sStatueRotY);
-        f32 sin = Math_SinS(sStatueRotY);
-        f32 dx = player->actor.world.pos.x - this->dyna.actor.world.pos.x;
-        f32 dz = player->actor.world.pos.z - this->dyna.actor.world.pos.z;
+        f32     radialDist;
+        f32     angDist;
+        f32     cos = Math_CosS(sStatueRotY);
+        f32     sin = Math_SinS(sStatueRotY);
+        f32     dx = player->actor.world.pos.x - this->dyna.actor.world.pos.x;
+        f32     dz = player->actor.world.pos.z - this->dyna.actor.world.pos.z;
 
         radialDist = dx * cos - dz * sin;
         angDist = dx * sin + dz * cos;
@@ -312,7 +312,7 @@ void BgHakaGate_Update(Actor* thisx, PlayState* play) {
 
 void BgHakaGate_DrawFlame(BgHakaGate* this, PlayState* play) {
     Actor* thisx = &this->dyna.actor;
-    f32 scale;
+    f32    scale;
 
     if (this->vFlameScale > 0) {
         OPEN_DISPS(play->state.gfxCtx);

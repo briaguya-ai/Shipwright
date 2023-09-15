@@ -8,10 +8,10 @@
 #include "objects/object_fz/object_fz.h"
 
 #define rObjBankIdx regs[0]
-#define rAlpha regs[1]
-#define rScale regs[2]
+#define rAlpha      regs[1]
+#define rScale      regs[2]
 
-u32 EffectSsIceSmoke_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsIceSmoke_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsIceSmoke_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsIceSmoke_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -22,9 +22,9 @@ EffectSsInit Effect_Ss_Ice_Smoke_InitVars = {
 
 u32 EffectSsIceSmoke_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx) {
     EffectSsIceSmokeInitParams* initParams = (EffectSsIceSmokeInitParams*)initParamsx;
-    s32 pad;
-    s32 objBankIdx;
-    void* oldSeg6;
+    s32                         pad;
+    s32                         objBankIdx;
+    void*                       oldSeg6;
 
     objBankIdx = Object_GetIndex(&play->objectCtx, OBJECT_FZ);
 
@@ -51,11 +51,11 @@ u32 EffectSsIceSmoke_Init(PlayState* play, u32 index, EffectSs* this, void* init
 }
 
 void EffectSsIceSmoke_Draw(PlayState* play, u32 index, EffectSs* this) {
-    s32 pad;
+    s32   pad;
     void* object;
-    Mtx* mtx;
-    f32 scale;
-    s32 objBankIdx;
+    Mtx*  mtx;
+    f32   scale;
+    s32   objBankIdx;
 
     object = play->objectCtx.status[this->rObjBankIdx].segment;
 

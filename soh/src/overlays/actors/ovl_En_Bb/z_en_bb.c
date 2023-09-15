@@ -11,11 +11,11 @@
 
 #define FLAGS (ACTOR_FLAG_TARGETABLE | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_UPDATE_WHILE_CULLED | ACTOR_FLAG_PLAY_HIT_SFX)
 
-#define vBombHopPhase actionVar1
-#define vTrailIdx actionVar1
+#define vBombHopPhase  actionVar1
+#define vTrailIdx      actionVar1
 #define vTrailMaxAlpha actionVar2
-#define vMoveAngleY actionVar2
-#define vFlameTimer actionVar2
+#define vMoveAngleY    actionVar2
+#define vFlameTimer    actionVar2
 
 typedef enum {
     /* 0 */ BB_DAMAGE,
@@ -246,7 +246,7 @@ void EnBb_SetupAction(EnBb* this, EnBbActionFunc actionFunc) {
 
 Actor* EnBb_FindExplosive(PlayState* play, EnBb* this, f32 range) {
     Actor* explosive = play->actorCtx.actorLists[ACTORCAT_EXPLOSIVE].head;
-    f32 dist;
+    f32    dist;
 
     while (explosive != NULL) {
         if (explosive->params != 0) {
@@ -265,7 +265,7 @@ Actor* EnBb_FindExplosive(PlayState* play, EnBb* this, f32 range) {
 void EnBb_SpawnFlameTrail(PlayState* play, EnBb* this, s16 startAtZero) {
     EnBb* now = this;
     EnBb* next;
-    s32 i;
+    s32   i;
 
     for (i = 0; i < 5; i++) {
         next = (EnBb*)Actor_Spawn(&play->actorCtx, play, ACTOR_EN_BB, this->actor.world.pos.x,
@@ -309,7 +309,7 @@ void EnBb_KillFlameTrail(EnBb* this) {
 
 void EnBb_Init(Actor* thisx, PlayState* play) {
     EffectBlureInit1 blureInit;
-    s32 pad;
+    s32              pad;
     EnBb* this = (EnBb*)thisx;
 
     Actor_ProcessInitChain(thisx, sInitChain);
@@ -470,7 +470,7 @@ void EnBb_SetupDeath(EnBb* this, PlayState* play) {
 }
 
 void EnBb_Death(EnBb* this, PlayState* play) {
-    s16 enpartType = 3;
+    s16   enpartType = 3;
     Vec3f sp40 = { 0.0f, 0.5f, 0.0f };
     Vec3f sp34 = { 0.0f, 0.0f, 0.0f };
 
@@ -546,9 +546,9 @@ void EnBb_SetupBlue(EnBb* this) {
 
 void EnBb_Blue(EnBb* this, PlayState* play) {
     Actor* explosive;
-    s16 moveYawToWall;
-    s16 thisYawToWall;
-    s16 afterHitAngle;
+    s16    moveYawToWall;
+    s16    thisYawToWall;
+    s16    afterHitAngle;
 
     Math_SmoothStepToF(&this->flameScaleY, 80.0f, 1.0f, 10.0f, 0.0f);
     Math_SmoothStepToF(&this->flameScaleX, 100.0f, 1.0f, 10.0f, 0.0f);
@@ -777,8 +777,8 @@ void EnBb_SetupRed(PlayState* play, EnBb* this) {
 
 void EnBb_Red(EnBb* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 floorType;
-    s16 yawDiff;
+    s32     floorType;
+    s16     yawDiff;
 
     SkelAnime_Update(&this->skelAnime);
     if (this->timer != 0) {
@@ -863,7 +863,7 @@ void EnBb_FaceWaypoint(EnBb* this) {
 }
 
 void EnBb_SetWaypoint(EnBb* this, PlayState* play) {
-    Path* path = &play->setupPathList[this->path];
+    Path*  path = &play->setupPathList[this->path];
     Vec3s* point;
 
     if (this->waypoint == (s16)(path->count - 1)) {
@@ -983,8 +983,8 @@ void EnBb_SetupGreen(EnBb* this) {
 
 void EnBb_Green(EnBb* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Vec3f bobOffset = { 0.0f, 0.0f, 0.0f };
-    Vec3f nextPos = player->actor.world.pos;
+    Vec3f   bobOffset = { 0.0f, 0.0f, 0.0f };
+    Vec3f   nextPos = player->actor.world.pos;
 
     nextPos.y += 30.0f;
     if (this->actor.params == ENBB_GREEN_BIG) {
@@ -1226,11 +1226,11 @@ void EnBb_CollisionCheck(EnBb* this, PlayState* play) {
 void EnBb_Update(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
     EnBb* this = (EnBb*)thisx;
-    Vec3f sp4C = { 0.0f, 0.0f, 0.0f };
-    Vec3f sp40 = { 0.0f, -0.6f, 0.0f };
+    Vec3f       sp4C = { 0.0f, 0.0f, 0.0f };
+    Vec3f       sp40 = { 0.0f, -0.6f, 0.0f };
     Color_RGBA8 sp3C = { 0, 0, 255, 255 };
     Color_RGBA8 sp38 = { 0, 0, 0, 0 };
-    f32 sp34 = -15.0f;
+    f32         sp34 = -15.0f;
 
     if (this->actor.params <= ENBB_BLUE) {
         EnBb_CollisionCheck(this, play);
@@ -1272,9 +1272,18 @@ void EnBb_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, 
 }
 
 static Vec3f sFireIceOffsets[] = {
-    { 13.0f, 10.0f, 0.0f }, { 5.0f, 25.0f, 5.0f },   { -5.0f, 25.0f, 5.0f },  { -13.0f, 10.0f, 0.0f },
-    { 5.0f, 25.0f, -5.0f }, { -5.0f, 25.0f, -5.0f }, { 0.0f, 10.0f, -13.0f }, { 5.0f, 0.0f, 5.0f },
-    { 5.0f, 0.0f, -5.0f },  { 0.0f, 10.0f, 13.0f },  { -5.0f, 0.0f, 5.0f },   { -5.0f, 0.0f, -5.0f },
+    { 13.0f, 10.0f, 0.0f },
+    { 5.0f, 25.0f, 5.0f },
+    { -5.0f, 25.0f, 5.0f },
+    { -13.0f, 10.0f, 0.0f },
+    { 5.0f, 25.0f, -5.0f },
+    { -5.0f, 25.0f, -5.0f },
+    { 0.0f, 10.0f, -13.0f },
+    { 5.0f, 0.0f, 5.0f },
+    { 5.0f, 0.0f, -5.0f },
+    { 0.0f, 10.0f, 13.0f },
+    { -5.0f, 0.0f, 5.0f },
+    { -5.0f, 0.0f, -5.0f },
 };
 
 void EnBb_Draw(Actor* thisx, PlayState* play) {
@@ -1305,7 +1314,7 @@ void EnBb_Draw(Actor* thisx, PlayState* play) {
                 this->fireIceTimer--;
                 if ((this->fireIceTimer % 4) == 0) {
                     Vec3f sp70;
-                    s32 index = this->fireIceTimer >> 2;
+                    s32   index = this->fireIceTimer >> 2;
 
                     sp70.x = this->actor.world.pos.x + sFireIceOffsets[index].x;
                     sp70.y = this->actor.world.pos.y + sFireIceOffsets[index].y;

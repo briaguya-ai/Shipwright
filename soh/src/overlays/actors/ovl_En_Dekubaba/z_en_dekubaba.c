@@ -292,7 +292,7 @@ void EnDekubaba_DisableHitboxes(EnDekubaba* this) {
 }
 
 void EnDekubaba_SetupWait(EnDekubaba* this) {
-    s32 i;
+    s32                    i;
     ColliderJntSphElement* element;
 
     this->actor.shape.rot.x = -0x4000;
@@ -488,10 +488,10 @@ void EnDekubaba_Wait(EnDekubaba* this, PlayState* play) {
 
 void EnDekubaba_Grow(EnDekubaba* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 headDistHorizontal;
-    f32 headDistVertical;
-    f32 headShiftX;
-    f32 headShiftZ;
+    f32     headDistHorizontal;
+    f32     headDistVertical;
+    f32     headShiftX;
+    f32     headShiftZ;
 
     if (this->timer != 0) {
         this->timer--;
@@ -675,9 +675,9 @@ void EnDekubaba_DecideLunge(EnDekubaba* this, PlayState* play) {
 void EnDekubaba_Lunge(EnDekubaba* this, PlayState* play) {
     static Color_RGBA8 primColor = { 105, 255, 105, 255 };
     static Color_RGBA8 envColor = { 150, 250, 150, 0 };
-    s32 allStepsDone;
-    s16 curFrame10;
-    Vec3f velocity;
+    s32                allStepsDone;
+    s16                curFrame10;
+    Vec3f              velocity;
 
     SkelAnime_Update(&this->skelAnime);
 
@@ -753,9 +753,9 @@ void EnDekubaba_PrepareLunge(EnDekubaba* this, PlayState* play) {
 
 void EnDekubaba_PullBack(EnDekubaba* this, PlayState* play) {
     Vec3f dustPos;
-    f32 xIncr;
-    f32 zIncr;
-    s32 i;
+    f32   xIncr;
+    f32   zIncr;
+    s32   i;
 
     SkelAnime_Update(&this->skelAnime);
 
@@ -944,11 +944,11 @@ void EnDekubaba_Sway(EnDekubaba* this, PlayState* play) {
 }
 
 void EnDekubaba_PrunedSomersault(EnDekubaba* this, PlayState* play) {
-    s32 i;
+    s32   i;
     Vec3f dustPos;
-    f32 deltaX;
-    f32 deltaZ;
-    f32 deltaY;
+    f32   deltaX;
+    f32   deltaZ;
+    f32   deltaY;
 
     Math_StepToF(&this->actor.speedXZ, 0.0f, this->size * 0.1f);
 
@@ -1035,8 +1035,8 @@ void EnDekubaba_DeadStickDrop(EnDekubaba* this, PlayState* play) {
 
 void EnDekubaba_UpdateDamage(EnDekubaba* this, PlayState* play) {
     Vec3f* firePos;
-    f32 fireScale;
-    s32 phi_s0; // Used for both health and iterator
+    f32    fireScale;
+    s32    phi_s0; // Used for both health and iterator
 
     if (this->collider.base.acFlags & AC_HIT) {
         this->collider.base.acFlags &= ~AC_HIT;
@@ -1175,12 +1175,12 @@ void EnDekubaba_DrawStemRetracted(EnDekubaba* this, PlayState* play) {
 
 void EnDekubaba_DrawStemExtended(EnDekubaba* this, PlayState* play) {
     static Gfx* stemDLists[] = { gDekuBabaStemTopDL, gDekuBabaStemMiddleDL, gDekuBabaStemBaseDL };
-    MtxF mtx;
-    s32 i;
-    f32 horizontalStepSize;
-    f32 spA4;
-    f32 scale;
-    s32 stemSections;
+    MtxF        mtx;
+    s32         i;
+    f32         horizontalStepSize;
+    f32         spA4;
+    f32         scale;
+    s32         stemSections;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -1255,7 +1255,7 @@ void EnDekubaba_DrawStemBasePruned(EnDekubaba* this, PlayState* play) {
 
 void EnDekubaba_DrawBaseShadow(EnDekubaba* this, PlayState* play) {
     MtxF mtx;
-    f32 horizontalScale;
+    f32  horizontalScale;
 
     OPEN_DISPS(play->state.gfxCtx);
     Gfx_SetupDL_44Xlu(play->state.gfxCtx);
@@ -1325,8 +1325,7 @@ void EnDekubaba_Draw(Actor* thisx, PlayState* play) {
     CLOSE_DISPS(play->state.gfxCtx);
 }
 
-//OTRTODO fix this one
+// OTRTODO fix this one
 void EnDekuBaba_Reset(void) {
     // DMG_ENTRY(2, DEKUBABA_DMGEFF_SWORD)
-    
 }

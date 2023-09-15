@@ -108,81 +108,81 @@ static InitChainEntry sInitChain[] = {
 };
 
 UNK_TYPE D_80881014 = 0;
-void BgHakaTrap_Init(Actor* thisx, PlayState* play) {
-    BgHakaTrap* this = (BgHakaTrap*)thisx;
-    s32 pad;
-    CollisionHeader* colHeader = NULL;
+void     BgHakaTrap_Init(Actor* thisx, PlayState* play) {
+        BgHakaTrap* this = (BgHakaTrap*)thisx;
+        s32              pad;
+        CollisionHeader* colHeader = NULL;
 
-    Actor_ProcessInitChain(thisx, sInitChain);
-    thisx->params &= 0xFF;
+        Actor_ProcessInitChain(thisx, sInitChain);
+        thisx->params &= 0xFF;
 
-    if (thisx->params != HAKA_TRAP_PROPELLER) {
-        Collider_InitCylinder(play, &this->colliderCylinder);
-        Collider_SetCylinder(play, &this->colliderCylinder, thisx, &sCylinderInit);
+        if (thisx->params != HAKA_TRAP_PROPELLER) {
+            Collider_InitCylinder(play, &this->colliderCylinder);
+            Collider_SetCylinder(play, &this->colliderCylinder, thisx, &sCylinderInit);
 
-        if ((thisx->params == HAKA_TRAP_GUILLOTINE_SLOW) || (thisx->params == HAKA_TRAP_GUILLOTINE_FAST)) {
-            this->timer = 20;
-            this->colliderCylinder.dim.yShift = 10;
-            thisx->velocity.y = 0.1f;
+            if ((thisx->params == HAKA_TRAP_GUILLOTINE_SLOW) || (thisx->params == HAKA_TRAP_GUILLOTINE_FAST)) {
+                this->timer = 20;
+                this->colliderCylinder.dim.yShift = 10;
+                thisx->velocity.y = 0.1f;
 
-            if (thisx->params == HAKA_TRAP_GUILLOTINE_FAST) {
-                thisx->params = HAKA_TRAP_GUILLOTINE_SLOW;
-                this->unk_16A = 1;
+                if (thisx->params == HAKA_TRAP_GUILLOTINE_FAST) {
+                    thisx->params = HAKA_TRAP_GUILLOTINE_SLOW;
+                    this->unk_16A = 1;
             }
 
-            this->actionFunc = func_80880484;
+                this->actionFunc = func_80880484;
         } else {
-            DynaPolyActor_Init(&this->dyna, DPM_PLAYER);
-            thisx->flags |= ACTOR_FLAG_UPDATE_WHILE_CULLED;
+                DynaPolyActor_Init(&this->dyna, DPM_PLAYER);
+                thisx->flags |= ACTOR_FLAG_UPDATE_WHILE_CULLED;
 
-            if (thisx->params == HAKA_TRAP_SPIKED_BOX) {
-                CollisionHeader_GetVirtual(&object_haka_objects_Col_009CD0, &colHeader);
-                this->timer = 30;
+                if (thisx->params == HAKA_TRAP_SPIKED_BOX) {
+                    CollisionHeader_GetVirtual(&object_haka_objects_Col_009CD0, &colHeader);
+                    this->timer = 30;
 
-                if (D_80881014 != 0) {
-                    this->actionFunc = func_808808F4;
-                    D_80881014 = 0;
+                    if (D_80881014 != 0) {
+                        this->actionFunc = func_808808F4;
+                        D_80881014 = 0;
                 } else {
-                    D_80881014 = 1;
-                    this->actionFunc = func_808806BC;
-                    thisx->velocity.y = 0.5f;
+                        D_80881014 = 1;
+                        this->actionFunc = func_808806BC;
+                        thisx->velocity.y = 0.5f;
                 }
 
-                thisx->floorHeight = thisx->home.pos.y - 225.0f;
-                this->unk_16A = (thisx->floorHeight + 50.0f) - 25.0f;
+                    thisx->floorHeight = thisx->home.pos.y - 225.0f;
+                    this->unk_16A = (thisx->floorHeight + 50.0f) - 25.0f;
 
-                this->colliderCylinder.dim.radius = 10;
-                this->colliderCylinder.dim.height = 40;
+                    this->colliderCylinder.dim.radius = 10;
+                    this->colliderCylinder.dim.height = 40;
             } else {
-                if (thisx->params == HAKA_TRAP_SPIKED_WALL) {
-                    CollisionHeader_GetVirtual(&object_haka_objects_Col_0081D0, &colHeader);
-                    thisx->home.pos.x -= 200.0f;
+                    if (thisx->params == HAKA_TRAP_SPIKED_WALL) {
+                        CollisionHeader_GetVirtual(&object_haka_objects_Col_0081D0, &colHeader);
+                        thisx->home.pos.x -= 200.0f;
                 } else {
-                    thisx->home.pos.x += 200.0f;
-                    CollisionHeader_GetVirtual(&object_haka_objects_Col_008D10, &colHeader);
+                        thisx->home.pos.x += 200.0f;
+                        CollisionHeader_GetVirtual(&object_haka_objects_Col_008D10, &colHeader);
                 }
 
-                Collider_InitTris(play, &this->colliderSpikes);
-                Collider_SetTris(play, &this->colliderSpikes, thisx, &sTrisInit, this->colliderSpikesItem);
+                    Collider_InitTris(play, &this->colliderSpikes);
+                    Collider_SetTris(play, &this->colliderSpikes, thisx, &sTrisInit, this->colliderSpikesItem);
 
-                this->colliderCylinder.dim.radius = 18;
-                this->colliderCylinder.dim.height = 115;
+                    this->colliderCylinder.dim.radius = 18;
+                    this->colliderCylinder.dim.height = 115;
 
-                this->colliderCylinder.info.toucherFlags = this->colliderCylinder.info.toucherFlags;
-                this->colliderCylinder.info.toucherFlags |= TOUCH_SFX_WOOD;
+                    this->colliderCylinder.info.toucherFlags = this->colliderCylinder.info.toucherFlags;
+                    this->colliderCylinder.info.toucherFlags |= TOUCH_SFX_WOOD;
 
-                this->actionFunc = func_808801B8;
+                    this->actionFunc = func_808801B8;
             }
 
-            this->dyna.bgId = DynaPoly_SetBgActor(play, &play->colCtx.dyna, thisx, colHeader);
+                this->dyna.bgId = DynaPoly_SetBgActor(play, &play->colCtx.dyna, thisx, colHeader);
         }
     } else {
-        this->timer = 40;
-        this->actionFunc = func_808809B0;
-        thisx->uncullZoneScale = 500.0f;
+            this->timer = 40;
+            this->actionFunc = func_808809B0;
+            thisx->uncullZoneScale = 500.0f;
     }
 
-    CollisionCheck_SetInfo(&thisx->colChkInfo, 0, &sColChkInfoInit);
+        CollisionCheck_SetInfo(&thisx->colChkInfo, 0, &sColChkInfoInit);
 }
 
 void BgHakaTrap_Destroy(Actor* thisx, PlayState* play) {
@@ -204,10 +204,10 @@ void BgHakaTrap_Destroy(Actor* thisx, PlayState* play) {
 }
 
 void func_8087FFC0(BgHakaTrap* this, PlayState* play) {
-    f32 cosine;
-    Vec3f sp28;
-    f32 sine;
-    f32 zNonNegative;
+    f32     cosine;
+    Vec3f   sp28;
+    f32     sine;
+    f32     zNonNegative;
     Player* player = GET_PLAYER(play);
 
     func_8002DBD0(&this->dyna.actor, &sp28, &player->actor.world.pos);
@@ -229,36 +229,36 @@ void func_8087FFC0(BgHakaTrap* this, PlayState* play) {
 }
 
 static UNK_TYPE D_80881018 = 0;
-void func_808801B8(BgHakaTrap* this, PlayState* play) {
-    Player* player = GET_PLAYER(play);
+void            func_808801B8(BgHakaTrap* this, PlayState* play) {
+               Player* player = GET_PLAYER(play);
 
-    if ((D_80880F30 == 0) && (!Player_InCsMode(play))) {
-        if (!Math_StepToF(&this->dyna.actor.world.pos.x, this->dyna.actor.home.pos.x, 0.5f)) {
-            func_8002F974(&this->dyna.actor, NA_SE_EV_TRAP_OBJ_SLIDE - SFX_FLAG);
+               if ((D_80880F30 == 0) && (!Player_InCsMode(play))) {
+                   if (!Math_StepToF(&this->dyna.actor.world.pos.x, this->dyna.actor.home.pos.x, 0.5f)) {
+                       func_8002F974(&this->dyna.actor, NA_SE_EV_TRAP_OBJ_SLIDE - SFX_FLAG);
         } else if (this->dyna.actor.params == HAKA_TRAP_SPIKED_WALL) {
-            D_80881018 |= 1;
+                       D_80881018 |= 1;
         } else if (this->dyna.actor.params == HAKA_TRAP_SPIKED_WALL_2) {
-            D_80881018 |= 2;
+                       D_80881018 |= 2;
         }
     }
 
-    func_8087FFC0(this, play);
+               func_8087FFC0(this, play);
 
-    if (this->colliderSpikes.base.acFlags & AC_HIT) {
-        this->timer = 20;
-        D_80880F30 = 1;
-        this->actionFunc = func_808802D8;
+               if (this->colliderSpikes.base.acFlags & AC_HIT) {
+                   this->timer = 20;
+                   D_80880F30 = 1;
+                   this->actionFunc = func_808802D8;
     } else if (D_80881018 == 3) {
-        D_80881018 = 4;
-        player->actor.bgCheckFlags |= 0x100;
+                   D_80881018 = 4;
+                   player->actor.bgCheckFlags |= 0x100;
     }
 }
 
 void func_808802D8(BgHakaTrap* this, PlayState* play) {
     static Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
-    Vec3f vector;
-    f32 xScale;
-    s32 i;
+    Vec3f        vector;
+    f32          xScale;
+    s32          i;
 
     if (this->timer != 0) {
         this->timer--;
@@ -352,10 +352,10 @@ void func_808805C0(BgHakaTrap* this, PlayState* play) {
 
 void func_808806BC(BgHakaTrap* this, PlayState* play) {
     Vec3f vector;
-    f32 tempf20;
-    f32 temp;
-    s32 i;
-    s32 sp64;
+    f32   tempf20;
+    f32   temp;
+    s32   i;
+    s32   sp64;
 
     this->dyna.actor.velocity.y *= 1.6f;
 
@@ -432,7 +432,7 @@ void func_808809B0(BgHakaTrap* this, PlayState* play) {
 
 void func_808809E4(BgHakaTrap* this, PlayState* play, s16 arg2) {
     Player* player = GET_PLAYER(play);
-    Vec3f sp18;
+    Vec3f   sp18;
 
     func_8002DBD0(&this->dyna.actor, &sp18, &player->actor.world.pos);
 
@@ -518,12 +518,15 @@ void func_80880D68(BgHakaTrap* this) {
 
 void BgHakaTrap_Draw(Actor* thisx, PlayState* play) {
     static Gfx* sDLists[5] = {
-        object_haka_objects_DL_007610, object_haka_objects_DL_009860, object_haka_objects_DL_007EF0,
-        object_haka_objects_DL_008A20, object_haka_objects_DL_0072C0,
+        object_haka_objects_DL_007610,
+        object_haka_objects_DL_009860,
+        object_haka_objects_DL_007EF0,
+        object_haka_objects_DL_008A20,
+        object_haka_objects_DL_0072C0,
     };
     static Color_RGBA8 D_8088103C = { 0, 0, 0, 0 };
     BgHakaTrap* this = (BgHakaTrap*)thisx;
-    s32 pad;
+    s32   pad;
     Vec3f sp2C;
 
     if (this->actionFunc == func_808802D8) {

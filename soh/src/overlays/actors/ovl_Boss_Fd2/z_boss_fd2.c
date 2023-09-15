@@ -64,9 +64,15 @@ const ActorInit Boss_Fd2_InitVars = {
 #include "z_boss_fd2_colchk.c"
 
 static Vec3f sHoleLocations[] = {
-    { 0.0f, 90.0f, -243.0f },    { 0.0f, 90.0f, 0.0f },    { 0.0f, 90.0f, 243.0f },
-    { -243.0f, 90.0f, -243.0f }, { -243.0f, 90.0f, 0.0f }, { -243.0f, 90.0f, 243.0f },
-    { 243.0f, 90.0f, -243.0f },  { 243.0f, 90.0f, 0.0f },  { 243.0f, 90.0f, 243.0f },
+    { 0.0f, 90.0f, -243.0f },
+    { 0.0f, 90.0f, 0.0f },
+    { 0.0f, 90.0f, 243.0f },
+    { -243.0f, 90.0f, -243.0f },
+    { -243.0f, 90.0f, 0.0f },
+    { -243.0f, 90.0f, 243.0f },
+    { 243.0f, 90.0f, -243.0f },
+    { 243.0f, 90.0f, 0.0f },
+    { 243.0f, 90.0f, 243.0f },
 };
 
 static InitChainEntry sInitChain[] = {
@@ -204,8 +210,8 @@ void BossFd2_Destroy(Actor* thisx, PlayState* play) {
 
 void BossFd2_SetupEmerge(BossFd2* this, PlayState* play) {
     BossFd* bossFd = (BossFd*)this->actor.parent;
-    s16 temp_rand;
-    s8 health;
+    s16     temp_rand;
+    s8      health;
 
     osSyncPrintf("UP INIT 1\n");
     Animation_PlayOnce(&this->skelAnime, &gHoleVolvagiaEmergeAnim);
@@ -232,11 +238,11 @@ void BossFd2_SetupEmerge(BossFd2* this, PlayState* play) {
 }
 
 void BossFd2_Emerge(BossFd2* this, PlayState* play) {
-    s8 health;
+    s8      health;
     BossFd* bossFd = (BossFd*)this->actor.parent;
     Player* player = GET_PLAYER(play);
-    s16 i;
-    s16 holeTime;
+    s16     i;
+    s16     holeTime;
 
     osSyncPrintf("UP 1    mode %d\n", this->work[FD2_ACTION_STATE]);
     SkelAnime_Update(&this->skelAnime);
@@ -315,8 +321,8 @@ void BossFd2_Emerge(BossFd2* this, PlayState* play) {
 
 void BossFd2_SetupIdle(BossFd2* this, PlayState* play) {
     BossFd* bossFd = (BossFd*)this->actor.parent;
-    s8 health;
-    s16 idleTime;
+    s8      health;
+    s16     idleTime;
 
     osSyncPrintf("UP INIT 1\n");
     Animation_PlayLoop(&this->skelAnime, &gHoleVolvagiaTurnAnim);
@@ -403,15 +409,15 @@ void BossFd2_SetupBreatheFire(BossFd2* this, PlayState* play) {
 static Vec3f sUnkVec = { 0.0f, 0.0f, 50.0f }; // Unused? BossFd uses a similar array for its fire breath sfx.
 
 void BossFd2_BreatheFire(BossFd2* this, PlayState* play) {
-    s16 i;
-    Vec3f toLink;
-    s16 angleX;
-    s16 angleY;
-    s16 breathOpacity = 0;
+    s16     i;
+    Vec3f   toLink;
+    s16     angleX;
+    s16     angleY;
+    s16     breathOpacity = 0;
     BossFd* bossFd = (BossFd*)this->actor.parent;
     Player* player = GET_PLAYER(play);
-    f32 tempX;
-    f32 tempY;
+    f32     tempX;
+    f32     tempY;
 
     SkelAnime_Update(&this->skelAnime);
     if (Animation_OnFrame(&this->skelAnime, this->fwork[FD2_END_FRAME])) {
@@ -453,7 +459,7 @@ void BossFd2_BreatheFire(BossFd2* this, PlayState* play) {
         Math_ApproachS(&this->headRot.x, 0, 5, 0x7D0);
     }
     if (breathOpacity != 0) {
-        f32 breathScale;
+        f32   breathScale;
         Vec3f spawnSpeed = { 0.0f, 0.0f, 0.0f };
         Vec3f spawnVel;
         Vec3f spawnAccel = { 0.0f, 0.0f, 0.0f };
@@ -528,7 +534,7 @@ void BossFd2_SetupVulnerable(BossFd2* this, PlayState* play) {
 
 void BossFd2_Vulnerable(BossFd2* this, PlayState* play) {
     BossFd* bossFd = (BossFd*)this->actor.parent;
-    s16 i;
+    s16     i;
 
     this->disableAT = true;
     this->actor.flags |= ACTOR_FLAG_DRAGGED_BY_HOOKSHOT;
@@ -645,15 +651,15 @@ void BossFd2_UpdateCamera(BossFd2* this, PlayState* play) {
 }
 
 void BossFd2_Death(BossFd2* this, PlayState* play) {
-    f32 retreatSpeed;
-    Vec3f sp70;
-    Vec3f sp64;
-    BossFd* bossFd = (BossFd*)this->actor.parent;
-    Camera* mainCam = Play_GetCamera(play, MAIN_CAM);
-    f32 pad3;
-    f32 pad2;
-    f32 pad1;
-    f32 cameraShake;
+    f32        retreatSpeed;
+    Vec3f      sp70;
+    Vec3f      sp64;
+    BossFd*    bossFd = (BossFd*)this->actor.parent;
+    Camera*    mainCam = Play_GetCamera(play, MAIN_CAM);
+    f32        pad3;
+    f32        pad2;
+    f32        pad1;
+    f32        cameraShake;
     SkelAnime* skelAnime = &this->skelAnime;
 
     SkelAnime_Update(skelAnime);
@@ -817,9 +823,9 @@ void BossFd2_Wait(BossFd2* this, PlayState* play) {
 }
 
 void BossFd2_CollisionCheck(BossFd2* this, PlayState* play) {
-    s16 i;
+    s16           i;
     ColliderInfo* hurtbox;
-    BossFd* bossFd = (BossFd*)this->actor.parent;
+    BossFd*       bossFd = (BossFd*)this->actor.parent;
 
     if (this->actionFunc == BossFd2_ClawSwipe) {
         Player* player = GET_PLAYER(play);
@@ -1072,18 +1078,18 @@ void BossFd2_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* ro
 
 void BossFd2_UpdateMane(BossFd2* this, PlayState* play, Vec3f* head, Vec3f* pos, Vec3f* rot, Vec3f* pull,
                         f32* scale) {
-    f32 sp138[10] = { 0.0f, 100.0f, 50.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
-    f32 sp110[10] = { 0.0f, 5.0f, -10.0f, 500.0f, 500.0f, 500.0f, 500.0f, 500.0f, 500.0f, 500.0f };
-    f32 spE8[10] = { 0.4f, 0.6f, 0.8f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
-    s16 i;
+    f32   sp138[10] = { 0.0f, 100.0f, 50.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+    f32   sp110[10] = { 0.0f, 5.0f, -10.0f, 500.0f, 500.0f, 500.0f, 500.0f, 500.0f, 500.0f, 500.0f };
+    f32   spE8[10] = { 0.4f, 0.6f, 0.8f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
+    s16   i;
     Vec3f temp_vec;
-    f32 temp_f2;
-    f32 phi_f0;
-    f32 temp_angleX;
-    f32 temp_angleY;
+    f32   temp_f2;
+    f32   phi_f0;
+    f32   temp_angleX;
+    f32   temp_angleY;
     Vec3f spBC;
     Vec3f spB0;
-    f32 xyScale;
+    f32   xyScale;
 
     OPEN_DISPS(play->state.gfxCtx);
     Matrix_Push();
@@ -1174,9 +1180,9 @@ void BossFd2_UpdateMane(BossFd2* this, PlayState* play, Vec3f* head, Vec3f* pos,
 }
 
 void BossFd2_DrawMane(BossFd2* this, PlayState* play) {
-    s32 pad;
+    s32     pad;
     BossFd* bossFd = (BossFd*)this->actor.parent;
-    s16 i;
+    s16     i;
 
     OPEN_DISPS(play->state.gfxCtx);
     for (i = 0; i < 10; i++) {
@@ -1206,7 +1212,7 @@ void BossFd2_DrawMane(BossFd2* this, PlayState* play) {
 
 void BossFd2_Draw(Actor* thisx, PlayState* play) {
     static void* eyeTextures[] = { gHoleVolvagiaEyeOpenTex, gHoleVolvagiaEyeHalfTex, gHoleVolvagiaEyeClosedTex };
-    s32 pad;
+    s32          pad;
     BossFd2* this = (BossFd2*)thisx;
 
     OPEN_DISPS(play->state.gfxCtx);

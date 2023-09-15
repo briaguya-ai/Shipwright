@@ -227,7 +227,7 @@ void EnCow_MoveForRandomizer(EnCow* this, PlayState* play) {
         this->actor.world.pos.x = -229.0f;
         this->actor.world.pos.z = 157.0f;
         this->actor.shape.rot.y = 15783.0f;
-    // Move right cow in lon lon stable
+        // Move right cow in lon lon stable
     } else if (play->sceneNum == SCENE_STABLE && this->actor.world.pos.x == -3 && this->actor.world.pos.z == -254) {
         this->actor.world.pos.x += 119.0f;
     }
@@ -235,7 +235,7 @@ void EnCow_MoveForRandomizer(EnCow* this, PlayState* play) {
 
 void EnCow_SetCowMilked(EnCow* this, PlayState* play) {
     CowIdentity cowIdentity = Randomizer_IdentifyCow(play->sceneNum, this->actor.world.pos.x, this->actor.world.pos.z);
-    Player* player = GET_PLAYER(play);
+    Player*     player = GET_PLAYER(play);
     player->pendingFlag.flagID = cowIdentity.randomizerInf;
     player->pendingFlag.flagType = FLAG_RANDOMIZER_INF;
 }
@@ -288,7 +288,7 @@ bool EnCow_HasBeenMilked(EnCow* this, PlayState* play) {
 
 void EnCow_GivePlayerRandomizedItem(EnCow* this, PlayState* play) {
     if (!EnCow_HasBeenMilked(this, play)) {
-        CowIdentity cowIdentity = Randomizer_IdentifyCow(play->sceneNum, this->actor.world.pos.x, this->actor.world.pos.z);
+        CowIdentity  cowIdentity = Randomizer_IdentifyCow(play->sceneNum, this->actor.world.pos.x, this->actor.world.pos.z);
         GetItemEntry itemEntry = Randomizer_GetItemFromKnownCheck(cowIdentity.randomizerCheck, GI_MILK);
         GiveItemEntryFromActor(&this->actor, play, itemEntry, 10000.0f, 100.0f);
     } else {
@@ -357,9 +357,9 @@ void func_809DFA84(EnCow* this, PlayState* play) {
 void EnCow_Update(Actor* thisx, PlayState* play2) {
     EnCow* this = (EnCow*)thisx;
     PlayState* play = play2;
-    s16 targetX;
-    s16 targetY;
-    Player* player = GET_PLAYER(play);
+    s16        targetX;
+    s16        targetY;
+    Player*    player = GET_PLAYER(play);
 
     CollisionCheck_SetOC(play, &play->colChkCtx, &this->colliders[0].base);
     CollisionCheck_SetOC(play, &play->colChkCtx, &this->colliders[1].base);

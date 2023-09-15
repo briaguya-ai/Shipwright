@@ -48,9 +48,18 @@ const ActorInit En_Yabusame_Mark_InitVars = {
 };
 
 static Vec3f sCollisionVertices[] = {
-    { 70.0f, 70.0f, 0.0f },      { 70.0f, -70.0f, 0.0f },      { -70.0f, 70.0f, 0.0f },    { -70.0f, -70.0f, 0.0f },
-    { 90.0f, 130.0f, -120.0f },  { -25.0f, -80.0f, -130.0f },  { 90.0f, 130.0f, 120.0f },  { -25.0f, -80.0, 130.0f },
-    { 115.0f, 160.0f, -150.0f }, { -50.0f, -140.0f, -160.0f }, { 115.0f, 160.0f, 150.0f }, { -50.0f, -140.0f, 160.0f },
+    { 70.0f, 70.0f, 0.0f },
+    { 70.0f, -70.0f, 0.0f },
+    { -70.0f, 70.0f, 0.0f },
+    { -70.0f, -70.0f, 0.0f },
+    { 90.0f, 130.0f, -120.0f },
+    { -25.0f, -80.0f, -130.0f },
+    { 90.0f, 130.0f, 120.0f },
+    { -25.0f, -80.0, 130.0f },
+    { 115.0f, 160.0f, -150.0f },
+    { -50.0f, -140.0f, -160.0f },
+    { 115.0f, 160.0f, 150.0f },
+    { -50.0f, -140.0f, 160.0f },
 };
 
 static Vec3f sTargetPos[] = {
@@ -65,8 +74,8 @@ static Vec3f sTargetPos[] = {
 // 1: second ring
 // 2: outside edge
 static f32 sRingDistance[] = {
-    20.0f, 40.0f,  60.0f,  777.0f, // small
-    40.0f, 80.0f,  120.0f, 777.0f, // medium
+    20.0f, 40.0f, 60.0f, 777.0f,   // small
+    40.0f, 80.0f, 120.0f, 777.0f,  // medium
     40.0f, 120.0f, 160.0f, 777.0f, // large
 };
 
@@ -120,11 +129,11 @@ void func_80B42F74(EnYabusameMark* this, PlayState* play) {
     Vec3f effectVelocity = { 0.0f, 0.0f, 0.0f };
     Vec3f arrowHitPos;
     Vec3f distanceFromCenter;
-    s32 pad;
-    s32 scoreIndex;
-    f32 scoreDistance100;
-    f32 scoreDistance60;
-    f32 scoreDistance30;
+    s32   pad;
+    s32   scoreIndex;
+    f32   scoreDistance100;
+    f32   scoreDistance60;
+    f32   scoreDistance30;
 
     if (this->collider.base.acFlags & AC_HIT) {
         this->collider.base.acFlags &= ~AC_HIT;
@@ -189,7 +198,7 @@ void func_80B42F74(EnYabusameMark* this, PlayState* play) {
 void EnYabusameMark_Update(Actor* thisx, PlayState* play) {
     EnYabusameMark* this = (EnYabusameMark*)thisx;
     Vec3f* vertexArray;
-    u32 arrayIndex;
+    u32    arrayIndex;
 
     this->actionFunc(this, play);
     arrayIndex = this->typeIndex * 4;

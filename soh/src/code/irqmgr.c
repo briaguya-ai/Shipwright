@@ -1,20 +1,20 @@
 #include "global.h"
 #include "vt.h"
 
-vu32 gIrqMgrResetStatus = 0;
+vu32            gIrqMgrResetStatus = 0;
 volatile OSTime sIrqMgrResetTime = 0;
 volatile OSTime gIrqMgrRetraceTime = 0;
-u32 sIrqMgrRetraceCount = 0;
+u32             sIrqMgrRetraceCount = 0;
 
-#define RETRACE_MSG 666
-#define PRE_NMI_MSG 669
+#define RETRACE_MSG   666
+#define PRE_NMI_MSG   669
 #define PRENMI450_MSG 671
 #define PRENMI480_MSG 672
 #define PRENMI500_MSG 673
 
-#define STATUS_IDLE 0
+#define STATUS_IDLE   0
 #define STATUS_PRENMI 1
-#define STATUS_NMI 2
+#define STATUS_NMI    2
 
 void IrqMgr_AddClient(IrqMgr* this, IrqMgrClient* c, OSMesgQueue* msgQ) {
     OSIntMask prevInt;
@@ -43,7 +43,7 @@ void IrqMgr_AddClient(IrqMgr* this, IrqMgrClient* c, OSMesgQueue* msgQ) {
 void IrqMgr_RemoveClient(IrqMgr* this, IrqMgrClient* c) {
     IrqMgrClient* iter = this->clients;
     IrqMgrClient* lastIter = NULL;
-    OSIntMask prevInt;
+    OSIntMask     prevInt;
 
     LOG_CHECK_NULL_POINTER("this", this);
     LOG_CHECK_NULL_POINTER("c", c);

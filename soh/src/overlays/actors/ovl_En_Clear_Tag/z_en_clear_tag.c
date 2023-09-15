@@ -82,8 +82,8 @@ static ColliderCylinderInit sLaserCylinderInit = {
     { 15, 30, 10, { 0, 0, 0 } },
 };
 
-//static UNK_TYPE4 D_809D5C98 = 0; // unused
-//static UNK_TYPE4 D_809D5C9C = 0; // unused
+// static UNK_TYPE4 D_809D5C98 = 0; // unused
+// static UNK_TYPE4 D_809D5C9C = 0; // unused
 
 EnClearTagEffect sClearTagEffects[CLEAR_TAG_EFFECT_MAX_COUNT];
 
@@ -95,7 +95,7 @@ EnClearTagEffect sClearTagEffects[CLEAR_TAG_EFFECT_MAX_COUNT];
  */
 void EnClearTag_CreateDebrisEffect(PlayState* play, Vec3f* position, Vec3f* velocity, Vec3f* acceleration,
                                    f32 scale, f32 floorHeight) {
-    s16 i;
+    s16               i;
     EnClearTagEffect* effect = (EnClearTagEffect*)play->specialEffects;
 
     // Look for an available effect to allocate a Debris effect to.
@@ -129,7 +129,7 @@ void EnClearTag_CreateDebrisEffect(PlayState* play, Vec3f* position, Vec3f* velo
  * Fire effects are spawned by debris effects. Fire effects spawn smoke effects
  */
 void EnClearTag_CreateFireEffect(PlayState* play, Vec3f* pos, f32 scale) {
-    s16 i;
+    s16               i;
     EnClearTagEffect* effect = (EnClearTagEffect*)play->specialEffects;
 
     // Look for an available effect to allocate a fire effect to.
@@ -157,7 +157,7 @@ void EnClearTag_CreateFireEffect(PlayState* play, Vec3f* pos, f32 scale) {
  * Smoke effects are spawned by fire effects.
  */
 void EnClearTag_CreateSmokeEffect(PlayState* play, Vec3f* position, f32 scale) {
-    s16 i;
+    s16               i;
     EnClearTagEffect* effect = (EnClearTagEffect*)play->specialEffects;
 
     // Look for an available effect to allocate a smoke effect to.
@@ -193,7 +193,7 @@ void EnClearTag_CreateSmokeEffect(PlayState* play, Vec3f* position, f32 scale) {
  */
 void EnClearTag_CreateFlashEffect(PlayState* play, Vec3f* position, f32 scale, f32 floorHeight,
                                   Vec3f* floorTangent) {
-    s16 i;
+    s16               i;
     EnClearTagEffect* effect = (EnClearTagEffect*)play->specialEffects;
 
     // Look for an available effect to allocate a flash effect to.
@@ -326,10 +326,10 @@ void EnClearTag_CalculateFloorTangent(EnClearTag* this) {
  * cutscene. The cutscene stops playing when the Arwing is a specified distance from the starting point.
  */
 void EnClearTag_Update(Actor* thisx, PlayState* play2) {
-    u8 hasAtHit = false;
-    s16 i;
-    s16 xRotationTarget;
-    s16 rotationScale;
+    u8         hasAtHit = false;
+    s16        i;
+    s16        xRotationTarget;
+    s16        rotationScale;
     PlayState* play = play2;
     EnClearTag* this = (EnClearTag*)thisx;
     Player* player = GET_PLAYER(play);
@@ -482,7 +482,7 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
 
                     // Check if the Arwing should fire its laser.
                     if ((this->frameCounter % 4) == 0 && (Rand_ZeroOne() < 0.75f) &&
-                            (this->state == CLEAR_TAG_STATE_TARGET_LOCKED) && enemyRandoShootLaser) {
+                        (this->state == CLEAR_TAG_STATE_TARGET_LOCKED) && enemyRandoShootLaser) {
                         this->shouldShootLaser = true;
                     }
                 } else {
@@ -596,9 +596,9 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
             osSyncPrintf("CAMERA_NO %d\n", this->cameraId);
 
             if (this->cutsceneMode != CLEAR_TAG_CUTSCENE_MODE_NONE) {
-                f32 cutsceneCameraCircleX;
-                f32 cutsceneCameraCircleZ;
-                s16 cutsceneTimer;
+                f32   cutsceneCameraCircleX;
+                f32   cutsceneCameraCircleZ;
+                s16   cutsceneTimer;
                 Vec3f cutsceneCameraAtTarget;
                 Vec3f cutsceneCameraEyeTarget;
 
@@ -631,7 +631,7 @@ void EnClearTag_Update(Actor* thisx, PlayState* play2) {
                     Math_ApproachF(&this->cutsceneCameraEye.y, cutsceneCameraEyeTarget.y, 0.2f, 500.0f);
                     Math_ApproachF(&this->cutsceneCameraEye.z, cutsceneCameraEyeTarget.z, 0.2f, 500.0f);
                     Play_CameraSetAtEye(play, this->cameraId, &this->cutsceneCameraEye,
-                                            &this->cutsceneCameraAt);
+                                        &this->cutsceneCameraAt);
                 }
 
                 // Cutscene has finished.
@@ -793,9 +793,9 @@ void EnClearTag_Draw(Actor* thisx, PlayState* play) {
  */
 void EnClearTag_UpdateEffects(PlayState* play) {
     EnClearTagEffect* effect = (EnClearTagEffect*)play->specialEffects;
-    s16 i;
-    f32 originalYPosition;
-    Vec3f sphereCenter;
+    s16               i;
+    f32               originalYPosition;
+    Vec3f             sphereCenter;
 
     for (i = 0; i < CLEAR_TAG_EFFECT_MAX_COUNT; i++, effect++) {
         if (effect->type != CLEAR_TAG_EFFECT_AVAILABLE) {
@@ -906,9 +906,9 @@ void EnClearTag_UpdateEffects(PlayState* play) {
  * type while drawing the first effect of that type.
  */
 void EnClearTag_DrawEffects(PlayState* play) {
-    s16 i;
-    GraphicsContext* gfxCtx = play->state.gfxCtx;
-    u8 isMaterialApplied = false;
+    s16               i;
+    GraphicsContext*  gfxCtx = play->state.gfxCtx;
+    u8                isMaterialApplied = false;
     EnClearTagEffect* effect = (EnClearTagEffect*)play->specialEffects;
     EnClearTagEffect* firstEffect = effect;
 
@@ -996,7 +996,7 @@ void EnClearTag_DrawEffects(PlayState* play) {
             gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(gfxCtx),
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(POLY_XLU_DISP++, gArwingFireEffectDL);
-        
+
             FrameInterpolation_RecordCloseChild();
         }
     }

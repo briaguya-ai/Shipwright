@@ -377,7 +377,8 @@ void EnDog_FollowPlayer(EnDog* this, PlayState* play) {
         // If the dog is too far away it's usually because they are stuck in a hole or on a different floor, this gives them a push
         if (this->actor.xyzDistToPlayerSq > 250000.0f) {
             Player* player = GET_PLAYER(play);
-            if (PlayerGrounded(player)) this->actor.world.pos.y = player->actor.world.pos.y;
+            if (PlayerGrounded(player))
+                this->actor.world.pos.y = player->actor.world.pos.y;
         }
 
         // If doggo is in the water make sure it's floating

@@ -197,7 +197,7 @@ void EnJj_WaitToOpenMouth(EnJj* this, PlayState* play) {
 
 void EnJj_WaitForFish(EnJj* this, PlayState* play) {
     static Vec3f feedingSpot = { -1589.0f, 53.0f, -43.0f };
-    Player* player = GET_PLAYER(play);
+    Player*      player = GET_PLAYER(play);
 
     if ((Math_Vec3f_DistXZ(&feedingSpot, &player->actor.world.pos) < 300.0f) &&
         play->isPlayerDroppingFish(play)) {
@@ -309,7 +309,7 @@ void EnJj_Update(Actor* thisx, PlayState* play) {
 
 void EnJj_Draw(Actor* thisx, PlayState* play2) {
     static void* eyeTextures[] = { gJabuJabuEyeOpenTex, gJabuJabuEyeHalfTex, gJabuJabuEyeClosedTex };
-    PlayState* play = play2;
+    PlayState*   play = play2;
     EnJj* this = (EnJj*)thisx;
 
     OPEN_DISPS(play->state.gfxCtx);

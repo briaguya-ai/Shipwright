@@ -204,7 +204,7 @@ void BgHidanCurtain_Update(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
     BgHidanCurtain* this = (BgHidanCurtain*)thisx;
     BgHidanCurtainParams* hcParams = &sHCParams[this->size];
-    f32 riseProgress;
+    f32                   riseProgress;
 
     if ((play->cameraPtrs[MAIN_CAM]->setting == CAM_SET_SLOW_CHEST_CS) ||
         (play->cameraPtrs[MAIN_CAM]->setting == CAM_SET_TURN_AROUND)) {

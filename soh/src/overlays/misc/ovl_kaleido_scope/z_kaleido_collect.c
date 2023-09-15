@@ -13,7 +13,7 @@ void KaleidoScope_DrawQuestStatus(PlayState* play, GraphicsContext* gfxCtx) {
         aButtonColor = (Color_RGB8){ 80, 255, 150 };
     }
 
-    Color_RGB8 cButtonsColor = {255, 255, 50};
+    Color_RGB8 cButtonsColor = { 255, 255, 50 };
     if (CVarGetInteger("gCosmetics.Hud_CButtons.Changed", 0)) {
         cButtonsColor = CVarGetColor24("gCosmetics.Hud_CButtons.Value", cButtonsColor);
     }
@@ -41,8 +41,18 @@ void KaleidoScope_DrawQuestStatus(PlayState* play, GraphicsContext* gfxCtx) {
         { 255, 0, 0, 255 },
     };
     static s16 D_8082A090[][3] = {
-        { 0, 0, 0 },  { 0, 0, 0 },  { 0, 0, 0 },    { 0, 0, 0 },   { 0, 0, 0 },   { 0, 0, 0 },
-        { 0, 60, 0 }, { 90, 0, 0 }, { 0, 40, 110 }, { 80, 40, 0 }, { 70, 0, 90 }, { 90, 90, 0 },
+        { 0, 0, 0 },
+        { 0, 0, 0 },
+        { 0, 0, 0 },
+        { 0, 0, 0 },
+        { 0, 0, 0 },
+        { 0, 0, 0 },
+        { 0, 60, 0 },
+        { 90, 0, 0 },
+        { 0, 40, 110 },
+        { 80, 40, 0 },
+        { 70, 0, 90 },
+        { 90, 90, 0 },
     };
     static s16 D_8082A0D8[] = { 255, 255, 255, 255, 255, 255 };
     static s16 D_8082A0E4[] = { 255, 255, 255, 255, 255, 255 };
@@ -57,53 +67,131 @@ void KaleidoScope_DrawQuestStatus(PlayState* play, GraphicsContext* gfxCtx) {
     static s16 D_8082A118 = 0;
     static s16 D_8082A11C = 0;
     static s16 D_8082A120 = 0;
-    static u8 D_8082A124[] = {
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    static u8  D_8082A124[] = {
+         0,
+         0,
+         0,
+         0,
+         0,
+         0,
+         0,
+         0,
+         0,
+         0,
     };
     static void* D_8082A130[] = {
-        gOcarinaBtnIconATex, gOcarinaBtnIconCDownTex, gOcarinaBtnIconCRightTex, gOcarinaBtnIconCLeftTex, gOcarinaBtnIconCUpTex,
+        gOcarinaBtnIconATex,
+        gOcarinaBtnIconCDownTex,
+        gOcarinaBtnIconCRightTex,
+        gOcarinaBtnIconCLeftTex,
+        gOcarinaBtnIconCUpTex,
     };
     static u16 D_8082A144[] = {
-        0xFFCC, 0xFFCC, 0xFFCC, 0xFFCC, 0xFFCC,
+        0xFFCC,
+        0xFFCC,
+        0xFFCC,
+        0xFFCC,
+        0xFFCC,
     };
     static s16 D_8082A150[] = {
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
     };
     static s16 D_8082A164[] = {
-        150, 255, 100, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+        150,
+        255,
+        100,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
     };
     static s16 D_8082A17C[] = {
-        255, 80, 150, 160, 100, 240, 255, 255, 255, 255, 255, 255,
+        255,
+        80,
+        150,
+        160,
+        100,
+        240,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
     };
     static s16 D_8082A194[] = {
-        100, 40, 255, 0, 255, 100, 255, 255, 255, 255, 255, 255,
+        100,
+        40,
+        255,
+        0,
+        255,
+        100,
+        255,
+        255,
+        255,
+        255,
+        255,
+        255,
     };
     static s8 D_8082A1AC[][4] = {
-        { 0x05, 0x01, 0x05, 0xFE }, { 0x00, 0x02, 0x02, 0xFE }, { 0xFF, 0x13, 0x03, 0x01 }, { 0x04, 0x02, 0x11, 0x02 },
-        { 0x05, 0x03, 0x18, 0x05 }, { 0xFF, 0xFF, 0x04, 0x00 }, { 0x0C, 0xFF, 0xFD, 0x07 }, { 0x0D, 0xFF, 0x06, 0x08 },
-        { 0x0E, 0xFF, 0x07, 0x09 }, { 0x0F, 0xFF, 0x08, 0x0A }, { 0x10, 0xFF, 0x09, 0x0B }, { 0x11, 0xFF, 0x0A, 0x12 },
-        { 0x17, 0x06, 0xFD, 0x0D }, { 0x17, 0x07, 0x0C, 0x0E }, { 0x17, 0x08, 0x0D, 0x0F }, { 0x18, 0x09, 0x0E, 0x10 },
-        { 0x18, 0x0A, 0x0F, 0x11 }, { 0x18, 0x0B, 0x10, 0x03 }, { 0x02, 0xFF, 0x0B, 0x13 }, { 0x02, 0xFF, 0x12, 0x14 },
-        { 0x02, 0xFF, 0x13, 0xFE }, { 0xFF, 0x17, 0xFD, 0x16 }, { 0xFF, 0x17, 0x15, 0x18 }, { 0x15, 0x0C, 0xFD, 0x18 },
-        { 0xFF, 0x10, 0x16, 0x04 }, { 0x00, 0x00, 0x00, 0x00 },
+        { 0x05, 0x01, 0x05, 0xFE },
+        { 0x00, 0x02, 0x02, 0xFE },
+        { 0xFF, 0x13, 0x03, 0x01 },
+        { 0x04, 0x02, 0x11, 0x02 },
+        { 0x05, 0x03, 0x18, 0x05 },
+        { 0xFF, 0xFF, 0x04, 0x00 },
+        { 0x0C, 0xFF, 0xFD, 0x07 },
+        { 0x0D, 0xFF, 0x06, 0x08 },
+        { 0x0E, 0xFF, 0x07, 0x09 },
+        { 0x0F, 0xFF, 0x08, 0x0A },
+        { 0x10, 0xFF, 0x09, 0x0B },
+        { 0x11, 0xFF, 0x0A, 0x12 },
+        { 0x17, 0x06, 0xFD, 0x0D },
+        { 0x17, 0x07, 0x0C, 0x0E },
+        { 0x17, 0x08, 0x0D, 0x0F },
+        { 0x18, 0x09, 0x0E, 0x10 },
+        { 0x18, 0x0A, 0x0F, 0x11 },
+        { 0x18, 0x0B, 0x10, 0x03 },
+        { 0x02, 0xFF, 0x0B, 0x13 },
+        { 0x02, 0xFF, 0x12, 0x14 },
+        { 0x02, 0xFF, 0x13, 0xFE },
+        { 0xFF, 0x17, 0xFD, 0x16 },
+        { 0xFF, 0x17, 0x15, 0x18 },
+        { 0x15, 0x0C, 0xFD, 0x18 },
+        { 0xFF, 0x10, 0x16, 0x04 },
+        { 0x00, 0x00, 0x00, 0x00 },
     };
     PauseContext* pauseCtx = &play->pauseCtx;
-    Input* input = &play->state.input[0];
-    s16 sp226;
-    s16 sp224;
-    s16 sp222;
-    s16 sp220;
-    s16 phi_s0;
-    s16 phi_s3;
-    s16 sp21A;
-    s16 sp218;
-    s16 sp216;
-    s16 pad1;
-    s16 phi_v1;
-    s16 pad2;
-    s16 phi_s0_2;
-    s16 sp208[3];
-    bool dpad = CVarGetInteger("gDpadPause", 0);
+    Input*        input = &play->state.input[0];
+    s16           sp226;
+    s16           sp224;
+    s16           sp222;
+    s16           sp220;
+    s16           phi_s0;
+    s16           phi_s3;
+    s16           sp21A;
+    s16           sp218;
+    s16           sp216;
+    s16           pad1;
+    s16           phi_v1;
+    s16           pad2;
+    s16           phi_s0_2;
+    s16           sp208[3];
+    bool          dpad = CVarGetInteger("gDpadPause", 0);
 
     OPEN_DISPS(gfxCtx);
 
@@ -178,12 +266,12 @@ void KaleidoScope_DrawQuestStatus(PlayState* play, GraphicsContext* gfxCtx) {
                     } else {
                         phi_s0_2 = pauseCtx->cursorPoint[PAUSE_QUEST] + 0x5A;
                         osSyncPrintf("222 ccc=%d (%d, %d, %d)\n", phi_s0_2, pauseCtx->cursorPoint[PAUSE_QUEST],
-                                        0x12, 0x6C);
+                                     0x12, 0x6C);
                     }
                 } else {
                     phi_s0_2 = PAUSE_ITEM_NONE;
                     osSyncPrintf("999 ccc=%d (%d,  %d)\n", PAUSE_ITEM_NONE, pauseCtx->cursorPoint[PAUSE_QUEST],
-                                    0x18);
+                                 0x18);
                 }
             } else {
                 if ((gSaveContext.inventory.questItems & 0xF0000000) != 0) {
@@ -192,7 +280,7 @@ void KaleidoScope_DrawQuestStatus(PlayState* play, GraphicsContext* gfxCtx) {
                     phi_s0_2 = PAUSE_ITEM_NONE;
                 }
                 osSyncPrintf("888 ccc=%d (%d,  %d,  %x)\n", phi_s0_2, pauseCtx->cursorPoint[PAUSE_QUEST], 0x72,
-                                gSaveContext.inventory.questItems & 0xF0000000);
+                             gSaveContext.inventory.questItems & 0xF0000000);
             }
 
             sp216 = pauseCtx->cursorPoint[PAUSE_QUEST];

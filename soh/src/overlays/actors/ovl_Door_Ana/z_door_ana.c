@@ -20,7 +20,7 @@ void DoorAna_WaitClosed(DoorAna* this, PlayState* play);
 void DoorAna_WaitOpen(DoorAna* this, PlayState* play);
 void DoorAna_GrabPlayer(DoorAna* this, PlayState* play);
 
-s16 GetChestGameRandoGiDrawId(s8 room, s16 ogDrawId, PlayState* play);
+s16  GetChestGameRandoGiDrawId(s8 room, s16 ogDrawId, PlayState* play);
 void Grotto_OverrideActorEntrance(Actor* thisx);
 
 const ActorInit Door_Ana_InitVars = {
@@ -58,8 +58,21 @@ static ColliderCylinderInit sCylinderInit = {
 
 // array of entrance table entries to grotto destinations
 static s16 entrances[] = {
-    0x036D, 0x003F, 0x0598, 0x059C, 0x05A0, 0x05A4, 0x05A8, 0x05AC,
-    0x05B0, 0x05B4, 0x05B8, 0x05BC, 0x05C0, 0x05C4, 0x05FC,
+    0x036D,
+    0x003F,
+    0x0598,
+    0x059C,
+    0x05A0,
+    0x05A4,
+    0x05A8,
+    0x05AC,
+    0x05B0,
+    0x05B4,
+    0x05B8,
+    0x05BC,
+    0x05C0,
+    0x05C4,
+    0x05FC,
 };
 
 void DoorAna_SetupAction(DoorAna* this, DoorAnaActionFunc actionFunc) {
@@ -129,7 +142,7 @@ void DoorAna_WaitClosed(DoorAna* this, PlayState* play) {
 // update routine for grottos that are open
 void DoorAna_WaitOpen(DoorAna* this, PlayState* play) {
     Player* player;
-    s32 destinationIdx;
+    s32     destinationIdx;
 
     player = GET_PLAYER(play);
     if (Math_StepToF(&this->actor.scale.x, 0.01f, 0.001f)) {

@@ -60,19 +60,37 @@ void OceffWipe_Update(Actor* thisx, PlayState* play) {
 #include "overlays/ovl_Oceff_Wipe/ovl_Oceff_Wipe.h"
 
 static u8 sAlphaIndices[] = {
-    0x01, 0x10, 0x22, 0x01, 0x20, 0x12, 0x01, 0x20, 0x12, 0x01,
-    0x10, 0x22, 0x01, 0x20, 0x12, 0x01, 0x12, 0x21, 0x01, 0x02,
+    0x01,
+    0x10,
+    0x22,
+    0x01,
+    0x20,
+    0x12,
+    0x01,
+    0x20,
+    0x12,
+    0x01,
+    0x10,
+    0x22,
+    0x01,
+    0x20,
+    0x12,
+    0x01,
+    0x12,
+    0x21,
+    0x01,
+    0x02,
 };
 
 void OceffWipe_Draw(Actor* thisx, PlayState* play) {
     u32 scroll = play->state.frames & 0xFF;
     OceffWipe* this = (OceffWipe*)thisx;
-    f32 z;
-    s32 pad;
-    u8 alphaTable[3];
-    s32 i;
+    f32   z;
+    s32   pad;
+    u8    alphaTable[3];
+    s32   i;
     Vec3f eye;
-    Vtx* vtxPtr;
+    Vtx*  vtxPtr;
     Vec3f vec;
 
     eye = GET_ACTIVE_CAM(play)->eye;

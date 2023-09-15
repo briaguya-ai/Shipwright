@@ -122,10 +122,10 @@ void EnVbBall_SpawnDust(PlayState* play, BossFdEffect* effect, Vec3f* position, 
 
 void EnVbBall_UpdateBones(EnVbBall* this, PlayState* play) {
     BossFd* bossFd = (BossFd*)this->actor.parent;
-    f32 pad2;
-    f32 pad1;
-    f32 angle;
-    s16 i;
+    f32     pad2;
+    f32     pad1;
+    f32     angle;
+    s16     i;
 
     Actor_UpdateBgCheckInfo(play, &this->actor, 50.0f, 50.0f, 100.0f, 4);
     if ((this->actor.bgCheckFlags & 1) && (this->actor.velocity.y <= 0.0f)) {
@@ -167,10 +167,10 @@ void EnVbBall_Update(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
     EnVbBall* this = (EnVbBall*)thisx;
     BossFd* bossFd = (BossFd*)this->actor.parent;
-    f32 radius;
-    f32 pad2;
-    s16 spawnNum;
-    s16 i;
+    f32     radius;
+    f32     pad2;
+    s16     spawnNum;
+    s16     i;
 
     this->unkTimer2++;
     if (this->unkTimer1 != 0) {
@@ -201,9 +201,9 @@ void EnVbBall_Update(Actor* thisx, PlayState* play2) {
                     spawnNum = 2;
                 }
                 for (i = 0; i < spawnNum; i++) {
-                    Vec3f spawnOffset;
+                    Vec3f     spawnOffset;
                     EnVbBall* newActor;
-                    f32 xRotVel;
+                    f32       xRotVel;
 
                     if (this->actor.params == 100) {
                         spawnOffset.x = Rand_CenteredFloat(13.0f);

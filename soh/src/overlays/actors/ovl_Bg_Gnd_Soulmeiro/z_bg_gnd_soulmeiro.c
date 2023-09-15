@@ -104,9 +104,9 @@ void BgGndSoulmeiro_Destroy(Actor* thisx, PlayState* play) {
 
 void func_8087AF38(BgGndSoulmeiro* this, PlayState* play) {
     static Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
-    Vec3f vecA;
-    Vec3f vecB;
-    Actor* thisx = &this->actor;
+    Vec3f        vecA;
+    Vec3f        vecB;
+    Actor*       thisx = &this->actor;
 
     if (this->unk_198 != 0) {
         this->unk_198--;

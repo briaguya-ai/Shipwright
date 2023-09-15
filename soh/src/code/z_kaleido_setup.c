@@ -10,7 +10,7 @@ f32 sKaleidoSetupEyeZ1[] = { 0.0f, -64.0f, 0.0f, 64.0f };
 
 void KaleidoSetup_Update(PlayState* play) {
     PauseContext* pauseCtx = &play->pauseCtx;
-    Input* input = &play->state.input[0];
+    Input*        input = &play->state.input[0];
 
     if (pauseCtx->state == 0 && pauseCtx->debugState == 0 && play->gameOverCtx.state == GAMEOVER_INACTIVE &&
         play->sceneLoadFlag == 0 && play->transitionMode == 0 && gSaveContext.cutsceneIndex < 0xFFF0 &&
@@ -32,7 +32,7 @@ void KaleidoSetup_Update(PlayState* play) {
                 pauseCtx->debugState = 3;
             }
         } else if ((CHECK_BTN_ALL(input->press.button, BTN_START) && (!easyPauseBufferEnabled || !easyPauseBufferTimer)) ||
-            (easyPauseBufferEnabled && easyPauseBufferTimer == 1)) { // Force Kaleido open when easy pause buffer reaches 0
+                   (easyPauseBufferEnabled && easyPauseBufferTimer == 1)) { // Force Kaleido open when easy pause buffer reaches 0
             // Remember last held buttons for pause buffer cheat (minus start so easy frame advance works)
             CVarSetInteger("gCheatEasyPauseBufferLastInputs", input->cur.button & ~(BTN_START));
 
@@ -42,7 +42,6 @@ void KaleidoSetup_Update(PlayState* play) {
                 CVarSetInteger("gPauseTriforce", 1);
             else
                 CVarSetInteger("gPauseTriforce", 0);
-
 
             WREG(16) = -175;
             WREG(17) = 155;
@@ -82,7 +81,7 @@ void KaleidoSetup_Update(PlayState* play) {
 
 void KaleidoSetup_Init(PlayState* play) {
     PauseContext* pauseCtx = &play->pauseCtx;
-    u64 temp = 0; // Necessary to match
+    u64           temp = 0; // Necessary to match
 
     pauseCtx->state = 0;
     pauseCtx->debugState = 0;

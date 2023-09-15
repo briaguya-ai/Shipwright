@@ -146,8 +146,8 @@ static EnPoFieldInfo sPoFieldInfo[2] = {
 
 static Vec3f D_80AD714C = { 0.0f, 1400.0f, 0.0f };
 
-Vec3s sEnPoFieldSpawnPositions[10];
-u8 sEnPoFieldSpawnSwitchFlags[10];
+Vec3s       sEnPoFieldSpawnPositions[10];
+u8          sEnPoFieldSpawnSwitchFlags[10];
 static MtxF sLimb7Mtx;
 
 void EnPoField_Init(Actor* thisx, PlayState* play) {
@@ -386,7 +386,7 @@ void EnPoField_CorrectYPos(EnPoField* this, PlayState* play) {
 
 f32 EnPoField_SetFleeSpeed(EnPoField* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 speed = ((player->stateFlags1 & 0x800000) && player->rideActor != NULL) ? player->rideActor->speedXZ : 12.0f;
+    f32     speed = ((player->stateFlags1 & 0x800000) && player->rideActor != NULL) ? player->rideActor->speedXZ : 12.0f;
 
     if (this->actor.xzDistToPlayer < 300.0f) {
         this->actor.speedXZ = speed * 1.5f + 2.0f;
@@ -402,9 +402,9 @@ f32 EnPoField_SetFleeSpeed(EnPoField* this, PlayState* play) {
 
 void EnPoField_WaitForSpawn(EnPoField* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 spawnDist;
-    s32 i;
-    s32 bgId;
+    f32     spawnDist;
+    s32     i;
+    s32     bgId;
 
     if (this->actionTimer != 0) {
         this->actionTimer--;
@@ -470,7 +470,7 @@ void EnPoField_Appear(EnPoField* this, PlayState* play) {
 
 void EnPoField_CirclePlayer(EnPoField* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 temp_v1 = 16 - this->unk_194;
+    s32     temp_v1 = 16 - this->unk_194;
 
     SkelAnime_Update(&this->skelAnime);
     if (this->actionTimer != 0) {
@@ -547,10 +547,10 @@ void EnPoField_Damage(EnPoField* this, PlayState* play) {
 
 void EnPoField_Death(EnPoField* this, PlayState* play) {
     Vec3f sp6C;
-    f32 sp68;
-    s32 pad;
-    s32 pad1;
-    f32 temp_f0;
+    f32   sp68;
+    s32   pad;
+    s32   pad1;
+    f32   temp_f0;
 
     this->actionTimer++;
     if (this->actionTimer < 8) {
@@ -626,7 +626,7 @@ void EnPoField_SoulIdle(EnPoField* this, PlayState* play) {
 
 void EnPoField_SoulUpdateProperties(EnPoField* this, s32 arg1) {
     EnPoFieldInfo* info = &sPoFieldInfo[this->actor.params];
-    f32 multiplier;
+    f32            multiplier;
 
     this->lightColor.a = CLAMP(this->lightColor.a + arg1, 0, 255);
     if (arg1 < 0) {
@@ -979,7 +979,7 @@ void EnPoField_UpdateDead(Actor* thisx, PlayState* play) {
 
 void EnPoField_DrawSoul(Actor* thisx, PlayState* play) {
     EnPoField* this = (EnPoField*)thisx;
-    s32 pad;
+    s32            pad;
     EnPoFieldInfo* info = &sPoFieldInfo[this->actor.params];
 
     OPEN_DISPS(play->state.gfxCtx);

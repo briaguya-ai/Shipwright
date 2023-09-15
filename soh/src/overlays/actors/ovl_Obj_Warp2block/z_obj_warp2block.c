@@ -16,11 +16,11 @@ void ObjWarp2block_Update(Actor* thisx, PlayState* play);
 void ObjWarp2block_Draw(Actor* thisx, PlayState* play);
 
 void ObjWarp2block_Spawn(ObjWarp2block* this, PlayState* play);
-s32 func_80BA1ECC(ObjWarp2block* this, PlayState* play);
+s32  func_80BA1ECC(ObjWarp2block* this, PlayState* play);
 void ObjWarp2block_SwapWithChild(ObjWarp2block* this, PlayState* play);
-s32 func_80BA2218(ObjWarp2block* this, PlayState* play);
-s32 func_80BA228C(ObjWarp2block* this, PlayState* play);
-s32 func_80BA2304(ObjWarp2block* this, PlayState* play);
+s32  func_80BA2218(ObjWarp2block* this, PlayState* play);
+s32  func_80BA228C(ObjWarp2block* this, PlayState* play);
+s32  func_80BA2304(ObjWarp2block* this, PlayState* play);
 void ObjWarp2block_SetInactive(ObjWarp2block* this);
 void ObjWarp2block_DoNothing(ObjWarp2block* this, PlayState* play);
 void func_80BA24E8(ObjWarp2block* this);
@@ -61,8 +61,14 @@ static InitChainEntry sInitChain[] = {
 };
 
 static Color_RGB8 sColors[] = {
-    { 100, 120, 140 }, { 80, 140, 200 }, { 100, 150, 200 }, { 100, 200, 240 },
-    { 80, 110, 140 },  { 70, 160, 225 }, { 80, 100, 130 },  { 100, 110, 190 },
+    { 100, 120, 140 },
+    { 80, 140, 200 },
+    { 100, 150, 200 },
+    { 100, 200, 240 },
+    { 80, 110, 140 },
+    { 70, 160, 225 },
+    { 80, 100, 130 },
+    { 100, 110, 190 },
 };
 
 void ObjWarp2block_Spawn(ObjWarp2block* this, PlayState* play) {
@@ -76,11 +82,11 @@ void ObjWarp2block_Spawn(ObjWarp2block* this, PlayState* play) {
 }
 
 s32 func_80BA1ECC(ObjWarp2block* this, PlayState* play) {
-    s32 pad;
-    Actor* temp_a3;
+    s32     pad;
+    Actor*  temp_a3;
     Player* player;
-    Vec3f sp20;
-    f32 temp_f2;
+    Vec3f   sp20;
+    f32     temp_f2;
 
     if (func_80043590(&this->dyna)) {
         return 0;
@@ -114,7 +120,7 @@ s32 func_80BA1ECC(ObjWarp2block* this, PlayState* play) {
 void ObjWarp2block_SwapWithChild(ObjWarp2block* this, PlayState* play) {
     Vec3f tempVec;
     Vec3s tempRot;
-    s32 temp;
+    s32   temp;
 
     Math_Vec3f_Copy(&tempVec, &this->dyna.actor.world.pos);
     Math_Vec3f_Copy(&this->dyna.actor.world.pos, &this->dyna.actor.child->world.pos);

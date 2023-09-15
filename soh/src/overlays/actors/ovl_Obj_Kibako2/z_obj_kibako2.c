@@ -66,12 +66,12 @@ void ObjKibako2_InitCollider(Actor* thisx, PlayState* play) {
 }
 
 void ObjKibako2_Break(ObjKibako2* this, PlayState* play) {
-    s32 pad[2];
+    s32    pad[2];
     Vec3f* thisPos;
-    Vec3f pos;
-    Vec3f velocity;
-    s16 angle;
-    s32 i;
+    Vec3f  pos;
+    Vec3f  velocity;
+    s16    angle;
+    s32    i;
 
     thisPos = &this->dyna.actor.world.pos;
     for (i = 0, angle = 0; i < 0x10; i++, angle += 0x4E20) {
@@ -117,9 +117,9 @@ void ObjKibako2_SpawnCollectible(ObjKibako2* this, PlayState* play) {
 
 void ObjKibako2_Init(Actor* thisx, PlayState* play) {
     ObjKibako2* this = (ObjKibako2*)thisx;
-    s16 pad;
+    s16              pad;
     CollisionHeader* colHeader = NULL;
-    u32 bgId;
+    u32              bgId;
 
     DynaPolyActor_Init(&this->dyna, 0);
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);

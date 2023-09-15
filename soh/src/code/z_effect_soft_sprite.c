@@ -7,8 +7,8 @@
 EffectSsInfo sEffectSsInfo = { 0 }; // "EffectSS2Info"
 
 void EffectSs_InitInfo(PlayState* play, s32 tableSize) {
-    u32 i;
-    EffectSs* effectSs;
+    u32              i;
+    EffectSs*        effectSs;
     EffectSsOverlay* overlay;
 
     for (i = 0; i < ARRAY_COUNT(gEffectSsOverlayTable); i++) {
@@ -36,10 +36,10 @@ void EffectSs_InitInfo(PlayState* play, s32 tableSize) {
 }
 
 void EffectSs_ClearAll(PlayState* play) {
-    u32 i;
-    EffectSs* effectSs;
+    u32              i;
+    EffectSs*        effectSs;
     EffectSsOverlay* overlay;
-    void* addr;
+    void*            addr;
 
     sEffectSsInfo.table = NULL;
     sEffectSsInfo.searchStartIndex = 0;
@@ -169,10 +169,10 @@ void EffectSs_Insert(PlayState* play, EffectSs* effectSs) {
 
 // original name: "EffectSoftSprite2_makeEffect"
 void EffectSs_Spawn(PlayState* play, s32 type, s32 priority, void* initParams) {
-    s32 index;
-    u32 overlaySize;
+    s32              index;
+    u32              overlaySize;
     EffectSsOverlay* overlayEntry;
-    EffectSsInit* initInfo;
+    EffectSsInit*    initInfo;
 
     overlayEntry = &gEffectSsOverlayTable[type];
 
@@ -217,9 +217,9 @@ void EffectSs_Spawn(PlayState* play, s32 type, s32 priority, void* initParams) {
         }
 
         initInfo = (void*)(uintptr_t)((overlayEntry->initInfo != NULL)
-                                    ? (void*)((uintptr_t)overlayEntry->initInfo -
-                                              ((intptr_t)overlayEntry->vramStart - (intptr_t)overlayEntry->loadedRamAddr))
-                                    : NULL);
+                                          ? (void*)((uintptr_t)overlayEntry->initInfo -
+                                                    ((intptr_t)overlayEntry->vramStart - (intptr_t)overlayEntry->loadedRamAddr))
+                                          : NULL);
     }
 
     if (initInfo->init == NULL) {
@@ -297,7 +297,7 @@ void EffectSs_Draw(PlayState* play, s32 index) {
 // original name: "EffectSoftSprite2_disp"
 void EffectSs_DrawAll(PlayState* play) {
     Lights* lights = LightContext_NewLights(&play->lightCtx, play->state.gfxCtx);
-    s32 i;
+    s32     i;
 
     Lights_BindAll(lights, play->lightCtx.listHead, NULL);
     Lights_Draw(lights, play->state.gfxCtx);

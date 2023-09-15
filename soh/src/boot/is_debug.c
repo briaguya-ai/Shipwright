@@ -2,7 +2,7 @@
 
 OSPiHandle* sISVHandle; // official name : is_Handle
 
-#define gISVDbgPrnAdrs ((ISVDbg*)0xB3FF0000)
+#define gISVDbgPrnAdrs           ((ISVDbg*)0xB3FF0000)
 #define ASCII_TO_U32(a, b, c, d) ((u32)((a << 24) | (b << 16) | (c << 8) | (d << 0)))
 
 void isPrintfInit(void) {
@@ -40,7 +40,7 @@ void* is_proutSyncPrintf(void* arg, const char* str, u32 count) {
     s32 start;
     s32 end;
 
-    //OTRLogString(str);
+    // OTRLogString(str);
 
     osEPiReadIo(sISVHandle, (u32)&gISVDbgPrnAdrs->magic, &data);
     if (data != ASCII_TO_U32('I', 'S', '6', '4')) {

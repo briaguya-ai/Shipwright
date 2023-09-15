@@ -34,7 +34,11 @@ const ActorInit Bg_Spot11_Oasis_InitVars = {
 };
 
 static s16 D_808B2E10[][2] = {
-    { 1260, 2040 }, { 1259, 1947 }, { 1135, 1860 }, { 1087, 1912 }, { 1173, 2044 },
+    { 1260, 2040 },
+    { 1259, 1947 },
+    { 1135, 1860 },
+    { 1087, 1912 },
+    { 1173, 2044 },
 };
 
 static InitChainEntry sInitChain[] = {
@@ -45,8 +49,11 @@ static InitChainEntry sInitChain[] = {
 };
 
 static Vec3f D_808B2E34[] = {
-    { 0.0f, -100.0f, 0.0f },   { 100.0f, -80.0f, -50.0f }, { -50.0f, -80.0f, -100.0f },
-    { -75.0f, -90.0f, 90.0f }, { 30.0f, -100.0f, 40.0f },
+    { 0.0f, -100.0f, 0.0f },
+    { 100.0f, -80.0f, -50.0f },
+    { -50.0f, -80.0f, -100.0f },
+    { -75.0f, -90.0f, 90.0f },
+    { 30.0f, -100.0f, 40.0f },
 };
 
 void func_808B27F0(PlayState* play, s16 waterSurface) {
@@ -57,10 +64,10 @@ void func_808B27F0(PlayState* play, s16 waterSurface) {
 
 s32 func_808B280C(PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Vec3f sp58;
-    Vec3f sp4C;
-    Vec3f sp40;
-    s32 i;
+    Vec3f   sp58;
+    Vec3f   sp4C;
+    Vec3f   sp40;
+    s32     i;
 
     sp58.x = D_808B2E10[0][0];
     sp58.z = D_808B2E10[0][1];
@@ -124,8 +131,8 @@ void func_808B2AB8(BgSpot11Oasis* this, PlayState* play) {
 
 void BgSpot11Oasis_Update(Actor* thisx, PlayState* play) {
     BgSpot11Oasis* this = (BgSpot11Oasis*)thisx;
-    s32 pad;
-    u32 gameplayFrames;
+    s32   pad;
+    u32   gameplayFrames;
     Vec3f sp30;
 
     this->actionFunc(this, play);

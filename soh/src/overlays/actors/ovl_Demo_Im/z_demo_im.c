@@ -75,11 +75,37 @@ static ColliderCylinderInitType1 sCylinderInit = {
 #include "z_demo_im_cutscene_data.c" EARLY
 
 static DemoImActionFunc sActionFuncs[] = {
-    func_809856F8, func_80985718, func_80985738, func_80985770, func_809857B0, func_809857F0, func_80985830,
-    func_80985C10, func_80985C40, func_80985C94, func_809863BC, func_809863DC, func_80986430, func_80986494,
-    func_809864D4, func_809868E8, func_80986908, func_80986948, func_80986D40, func_80986DC8, func_80986E20,
-    func_80986E40, func_80986EAC, func_80986F08, func_80986F28, func_80986F88, func_80986FA8, func_80987288,
-    func_809872A8, func_809872F0, func_80987330,
+    func_809856F8,
+    func_80985718,
+    func_80985738,
+    func_80985770,
+    func_809857B0,
+    func_809857F0,
+    func_80985830,
+    func_80985C10,
+    func_80985C40,
+    func_80985C94,
+    func_809863BC,
+    func_809863DC,
+    func_80986430,
+    func_80986494,
+    func_809864D4,
+    func_809868E8,
+    func_80986908,
+    func_80986948,
+    func_80986D40,
+    func_80986DC8,
+    func_80986E20,
+    func_80986E40,
+    func_80986EAC,
+    func_80986F08,
+    func_80986F28,
+    func_80986F88,
+    func_80986FA8,
+    func_80987288,
+    func_809872A8,
+    func_809872F0,
+    func_80987330,
 };
 
 static Vec3f D_809887D8 = { 0.0f, 10.0f, 0.0f };
@@ -104,7 +130,7 @@ const ActorInit Demo_Im_InitVars = {
 };
 
 void func_80984BE0(DemoIm* this) {
-    s32 pad[3];
+    s32  pad[3];
     s16* blinkTimer = &this->blinkTimer;
     s16* eyeIndex = &this->eyeIndex;
 
@@ -165,7 +191,7 @@ void DemoIm_UpdateCollider(DemoIm* this, PlayState* play) {
 }
 
 void func_80984DB8(DemoIm* this) {
-    s32 pad[2];
+    s32    pad[2];
     Vec3s* headRot = &this->interactInfo.headRot;
     Vec3s* torsoRot = &this->interactInfo.torsoRot;
 
@@ -178,8 +204,8 @@ void func_80984DB8(DemoIm* this) {
 
 void func_80984E58(DemoIm* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 yawDiff;
-    s16 npcTrackingMode;
+    s16     yawDiff;
+    s16     npcTrackingMode;
 
     this->interactInfo.trackPos = player->actor.world.pos;
     this->interactInfo.yOffset = kREG(16) + 4.0f;
@@ -223,7 +249,7 @@ s32 DemoIm_IsCsStateIdle(PlayState* play) {
 }
 
 CsCmdActorAction* DemoIm_GetNpcAction(PlayState* play, s32 actionIdx) {
-    s32 pad[2];
+    s32               pad[2];
     CsCmdActorAction* ret = NULL;
 
     if (!DemoIm_IsCsStateIdle(play)) {
@@ -312,9 +338,9 @@ void func_80985358(DemoIm* this, PlayState* play) {
 
 void func_809853B4(DemoIm* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 playerX = player->actor.world.pos.x;
-    f32 playerY = player->actor.world.pos.y + 80.0f;
-    f32 playerZ = player->actor.world.pos.z;
+    f32     playerX = player->actor.world.pos.x;
+    f32     playerY = player->actor.world.pos.y + 80.0f;
+    f32     playerZ = player->actor.world.pos.z;
 
     Actor_SpawnAsChild(&play->actorCtx, &this->actor, play, ACTOR_DEMO_EFFECT, playerX, playerY, playerZ, 0,
                        0, 0, 0xD);
@@ -456,7 +482,7 @@ void func_80985948(DemoIm* this, PlayState* play) {
 
 void func_809859E0(DemoIm* this, PlayState* play) {
     f32* unk_268 = &this->unk_268;
-    s32 alpha = 255;
+    s32  alpha = 255;
 
     if (func_809850E8(this, play, 4, 5)) {
         *unk_268 += 1.0f;
@@ -519,9 +545,9 @@ void func_80985C94(DemoIm* this, PlayState* play) {
 }
 
 void DemoIm_DrawTranslucent(DemoIm* this, PlayState* play) {
-    s32 pad[2];
-    s16 eyeIndex = this->eyeIndex;
-    void* eyeTex = sEyeTextures[eyeIndex];
+    s32        pad[2];
+    s16        eyeIndex = this->eyeIndex;
+    void*      eyeTex = sEyeTextures[eyeIndex];
     SkelAnime* skelAnime = &this->skelAnime;
 
     OPEN_DISPS(play->state.gfxCtx);
@@ -736,10 +762,10 @@ void func_809865F8(DemoIm* this, PlayState* play, s32 arg2) {
         if (*unk_278 >= 0.0f) {
             if (this->unk_27C == 0) {
                 Vec3f* thisPos = &this->actor.world.pos;
-                s16 shapeRotY = this->actor.shape.rot.y;
-                f32 spawnPosX = thisPos->x + (Math_SinS(shapeRotY) * 30.0f);
-                f32 spawnPosY = thisPos->y;
-                f32 spawnPosZ = thisPos->z + (Math_CosS(shapeRotY) * 30.0f);
+                s16    shapeRotY = this->actor.shape.rot.y;
+                f32    spawnPosX = thisPos->x + (Math_SinS(shapeRotY) * 30.0f);
+                f32    spawnPosY = thisPos->y;
+                f32    spawnPosZ = thisPos->z + (Math_CosS(shapeRotY) * 30.0f);
 
                 Actor_Spawn(&play->actorCtx, play, ACTOR_EN_ARROW, spawnPosX, spawnPosY, spawnPosZ, 0xFA0,
                             this->actor.shape.rot.y, 0, ARROW_CS_NUT, true);
@@ -830,8 +856,8 @@ void func_809869B0(DemoIm* this, PlayState* play) {
 
 s32 func_809869F8(DemoIm* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 playerPosX = player->actor.world.pos.x;
-    f32 thisPosX = this->actor.world.pos.x;
+    f32     playerPosX = player->actor.world.pos.x;
+    f32     thisPosX = this->actor.world.pos.x;
 
     if ((thisPosX - (kREG(16) + 30.0f) > playerPosX) && !(this->actor.flags & ACTOR_FLAG_ACTIVE)) {
         return true;
@@ -842,8 +868,8 @@ s32 func_809869F8(DemoIm* this, PlayState* play) {
 
 s32 func_80986A5C(DemoIm* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 playerPosX = player->actor.world.pos.x;
-    f32 thisPosX = this->actor.world.pos.x;
+    f32     playerPosX = player->actor.world.pos.x;
+    f32     thisPosX = this->actor.world.pos.x;
 
     if ((thisPosX - (kREG(17) + 130.0f) < playerPosX) && (!Play_InCsMode(play))) {
         return true;
@@ -1035,8 +1061,8 @@ void func_80987018(DemoIm* this, PlayState* play) {
 
 void func_80987064(DemoIm* this) {
     f32* unk_268 = &this->unk_268;
-    f32 temp;
-    s32 alpha = 255;
+    f32  temp;
+    s32  alpha = 255;
 
     *unk_268 += 1.0f;
     temp = kREG(17) + 10.0f;
@@ -1217,9 +1243,9 @@ void DemoIm_DrawNothing(DemoIm* this, PlayState* play) {
 }
 
 void DemoIm_DrawSolid(DemoIm* this, PlayState* play) {
-    s32 pad[2];
-    s16 eyeIndex = this->eyeIndex;
-    void* eyeTexture = sEyeTextures[eyeIndex];
+    s32        pad[2];
+    s16        eyeIndex = this->eyeIndex;
+    void*      eyeTexture = sEyeTextures[eyeIndex];
     SkelAnime* skelAnime = &this->skelAnime;
 
     OPEN_DISPS(play->state.gfxCtx);

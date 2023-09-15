@@ -196,9 +196,9 @@ void BgHidanFwbig_Move(BgHidanFwbig* this, PlayState* play) {
 
 void BgHidanFwbig_MoveCollider(BgHidanFwbig* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Vec3f projPos;
-    f32 cs;
-    f32 sn;
+    Vec3f   projPos;
+    f32     cs;
+    f32     sn;
 
     func_8002DBD0(&this->actor, &projPos, &player->actor.world.pos);
     projPos.z = ((projPos.z >= 0.0f) ? 1.0f : -1.0f) * 25.0f * -1.0f;

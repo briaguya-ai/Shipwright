@@ -111,11 +111,11 @@ void ObjKibako_Destroy(Actor* thisx, PlayState* play2) {
 }
 
 void ObjKibako_AirBreak(ObjKibako* this, PlayState* play) {
-    s16 angle;
-    s32 i;
+    s16    angle;
+    s32    i;
     Vec3f* breakPos = &this->actor.world.pos;
-    Vec3f pos;
-    Vec3f velocity;
+    Vec3f  pos;
+    Vec3f  velocity;
 
     for (i = 0, angle = 0; i < 12; i++, angle += 0x4E20) {
         f32 sn = Math_SinS(angle);
@@ -148,11 +148,11 @@ void ObjKibako_AirBreak(ObjKibako* this, PlayState* play) {
 }
 
 void ObjKibako_WaterBreak(ObjKibako* this, PlayState* play) {
-    s16 angle;
-    s32 i;
+    s16    angle;
+    s32    i;
     Vec3f* breakPos = &this->actor.world.pos;
-    Vec3f pos;
-    Vec3f velocity;
+    Vec3f  pos;
+    Vec3f  velocity;
 
     pos = *breakPos;
     pos.y += this->actor.yDistToWater;

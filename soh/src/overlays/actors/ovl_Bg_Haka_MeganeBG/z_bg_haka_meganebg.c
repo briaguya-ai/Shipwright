@@ -44,7 +44,11 @@ static InitChainEntry sInitChain[] = {
 
 // Unused
 static u32 D_8087E3FC[] = {
-    0x00000000, 0x00000000, 0x00000000, 0xC8C800FF, 0xFF0000FF,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0xC8C800FF,
+    0xFF0000FF,
 };
 
 static Gfx* D_8087E410[] = {

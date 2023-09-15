@@ -11,13 +11,13 @@
 
 #define FLAGS (ACTOR_FLAG_TARGETABLE | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_UPDATE_WHILE_CULLED)
 
-#define TIMER_SCALE ((f32)OS_CLOCK_RATE / 10000000000)
+#define TIMER_SCALE   ((f32)OS_CLOCK_RATE / 10000000000)
 #define DEGREE_60_RAD (60.0f * M_PI / 180.0f)
 #define DEGREE_15_RAD (15.0f * M_PI / 180.0f)
 
-#define DAMAGE_EFFECT_BURN 2
+#define DAMAGE_EFFECT_BURN       2
 #define DAMAGE_EFFECT_STUN_WHITE 4
-#define DAMAGE_EFFECT_STUN_BLUE 1
+#define DAMAGE_EFFECT_STUN_BLUE  1
 
 void EnWallmas_Init(Actor* thisx, PlayState* play);
 void EnWallmas_Destroy(Actor* thisx, PlayState* play);
@@ -140,7 +140,7 @@ void EnWallmas_Init(Actor* thisx, PlayState* play) {
             Actor_Kill(thisx);
             return;
         }
-        
+
         EnWallmas_ProximityOrSwitchInit(this);
     } else if (thisx->params == WMT_PROXIMITY) {
         EnWallmas_ProximityOrSwitchInit(this);
@@ -171,7 +171,7 @@ void EnWallmas_TimerInit(EnWallmas* this, PlayState* play) {
 }
 
 void EnWallmas_SetupDrop(EnWallmas* this, PlayState* play) {
-    Player* player = GET_PLAYER(play);
+    Player*          player = GET_PLAYER(play);
     AnimationHeader* objSegChangee = &gWallmasterLungeAnim;
 
     Animation_Change(&this->skelAnime, objSegChangee, 0.0f, 20.0f, Animation_GetLastFrame(&gWallmasterLungeAnim),
@@ -302,7 +302,7 @@ void EnWallmas_SetupStun(EnWallmas* this) {
 
 void EnWallmas_WaitToDrop(EnWallmas* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Vec3f* playerPos = &player->actor.world.pos;
+    Vec3f*  playerPos = &player->actor.world.pos;
 
     this->actor.world.pos = *playerPos;
     this->actor.floorHeight = player->actor.floorHeight;
@@ -318,10 +318,10 @@ void EnWallmas_WaitToDrop(EnWallmas* this, PlayState* play) {
             this->timer = 0x82;
         }
     } else if ((player->stateFlags1 & 0x100000) || (player->stateFlags1 & 0x8000000) || !(player->actor.bgCheckFlags & 1) ||
-        ((this->actor.params == 1) && (320.0f < Math_Vec3f_DistXZ(&this->actor.home.pos, playerPos)))) {
+               ((this->actor.params == 1) && (320.0f < Math_Vec3f_DistXZ(&this->actor.home.pos, playerPos)))) {
         Audio_StopSfxById(NA_SE_EN_FALL_AIM);
         this->timer = 0x82;
-        }
+    }
 
     if (this->timer == 0x50) {
         Audio_PlayActorSound2(&this->actor, NA_SE_EN_FALL_AIM);
@@ -403,7 +403,7 @@ void EnWallmas_ReturnToCeiling(EnWallmas* this, PlayState* play) {
     if (this->actor.params == WMT_SHADOWTAG) {
         if (!CVarGetInteger("gShadowTag", 0)) {
             Actor_Kill(&this->actor);
-        } 
+        }
     }
 }
 
@@ -603,8 +603,8 @@ void EnWallmas_Update(Actor* thisx, PlayState* play) {
 }
 
 void EnWallmas_DrawXlu(EnWallmas* this, PlayState* play) {
-    s32 pad;
-    f32 xzScale;
+    s32  pad;
+    f32  xzScale;
     MtxF mf;
 
     if ((this->actor.floorPoly == NULL) || ((this->timer >= 0x51) && (this->actionFunc != EnWallmas_Stun))) {

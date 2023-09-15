@@ -140,7 +140,7 @@ void EnEiyer_Init(Actor* thisx, PlayState* play) {
 
         if (this->actor.params == 0) {
             Actor* child = this->actor.child;
-            s32 clonesSpawned;
+            s32    clonesSpawned;
 
             for (clonesSpawned = 0; clonesSpawned != 3; clonesSpawned++) {
                 if (child == NULL) {
@@ -455,7 +455,7 @@ void EnEiyer_Glide(EnEiyer* this, PlayState* play) {
 
 void EnEiyer_StartAttack(EnEiyer* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Vec3f focus;
+    Vec3f   focus;
 
     SkelAnime_Update(&this->skelanime);
 

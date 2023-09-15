@@ -84,16 +84,16 @@ void func_808B7710(Actor* thisx, PlayState* play) {
     this->dyna.actor.colChkInfo.mass = MASS_IMMOVABLE;
 }
 
-s16 D_808B85D0 = 0;
+s16  D_808B85D0 = 0;
 void func_808B7770(BgSpot18Basket* this, PlayState* play, f32 arg2) {
     Vec3f acceleration;
     Vec3f velocity;
     Vec3f position;
-    f32 cosValue;
-    s32 i;
-    f32 randomValue;
-    f32 sinValue;
-    s32 count;
+    f32   cosValue;
+    s32   i;
+    f32   randomValue;
+    f32   sinValue;
+    s32   count;
 
     for (i = 0, count = 2; i != count; i++) {
         if (play) {}
@@ -202,7 +202,7 @@ void func_808B7BB0(BgSpot18Basket* this) {
 }
 
 void func_808B7BCC(BgSpot18Basket* this, PlayState* play) {
-    f32 positionDiff;
+    f32    positionDiff;
     Actor* colliderBaseAc;
 
     Math_StepToS(&this->unk_210, 0x1F4, 0x1E);
@@ -361,9 +361,9 @@ void func_808B818C(BgSpot18Basket* this) {
 static s16 D_808B85E4[] = { -0x0FA0, 0x0320, 0x0FA0 };
 
 void func_808B81A0(BgSpot18Basket* this, PlayState* play) {
-    s32 i;
-    Actor* actor = &this->dyna.actor;
-    Vec3f tempVector;
+    s32       i;
+    Actor*    actor = &this->dyna.actor;
+    Vec3f     tempVector;
     EnItem00* collectible;
 
     if (this->unk_216 == 1) {

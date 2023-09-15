@@ -60,12 +60,19 @@ static Vec3f sRedLeftFinal1 = { -230.0f, 0.0f, 0.0f };
 static Vec3f sRedLeftFinal2 = { -230.0f, 0.0f, 0.0f };
 static Vec3f sRedRightFinal1 = { 260.0f, 0.0f, 0.0f };
 static Vec3f sRedRightFinal2 = { 260.0f, 0.0f, 0.0f };
-static s16 sTargetColors[] = { 0, 1, 0, 1, 2, 2 };
-static s16 sRupeeTypes[] = { 0, 1, 1, 0, 1, 1, 4, 4, 4, 4 };
+static s16   sTargetColors[] = { 0, 1, 0, 1, 2, 2 };
+static s16   sRupeeTypes[] = { 0, 1, 1, 0, 1, 1, 4, 4, 4, 4 };
 static Vec3f sRupeePos[] = {
-    { -40.0f, 0.0f, -90.0f }, { -20.0f, 0.0f, -90.0f }, { 0.0f, 0.0f, -90.0f },   { 20.0f, 0.0f, -90.0f },
-    { 40.0f, 0.0f, -90.0f },  { -40.0f, 0.0f, -60.0f }, { -20.0f, 0.0f, -60.0f }, { 0.0f, 0.0f, -60.0f },
-    { 20.0f, 0.0f, -60.0f },  { 40.0f, 0.0f, -60.0f },
+    { -40.0f, 0.0f, -90.0f },
+    { -20.0f, 0.0f, -90.0f },
+    { 0.0f, 0.0f, -90.0f },
+    { 20.0f, 0.0f, -90.0f },
+    { 40.0f, 0.0f, -90.0f },
+    { -40.0f, 0.0f, -60.0f },
+    { -20.0f, 0.0f, -60.0f },
+    { 0.0f, 0.0f, -60.0f },
+    { 20.0f, 0.0f, -60.0f },
+    { 40.0f, 0.0f, -60.0f },
 };
 
 void EnSyatekiItm_Init(Actor* thisx, PlayState* play2) {
@@ -100,7 +107,7 @@ void EnSyatekiItm_Destroy(Actor* thisx, PlayState* play) {
 }
 
 void EnSyatekiItm_Idle(EnSyatekiItm* this, PlayState* play) {
-    s32 i;
+    s32     i;
     Player* player = GET_PLAYER(play);
 
     if (this->signal == ENSYATEKI_START) {
@@ -111,7 +118,7 @@ void EnSyatekiItm_Idle(EnSyatekiItm* this, PlayState* play) {
         player->actor.world.rot.x = player->actor.shape.rot.x = player->actor.world.rot.z = player->actor.shape.rot.z =
             0;
         s32 ammunition = 15;
-        if(CVarGetInteger("gCustomizeShootingGallery", 0)) {
+        if (CVarGetInteger("gCustomizeShootingGallery", 0)) {
             ammunition = CVarGetInteger(LINK_IS_ADULT ? "gAdultShootingGalleryAmmunition" : "gChildShootingGalleryAmmunition", 15);
         }
         func_8008EF44(play, ammunition);
@@ -127,8 +134,8 @@ void EnSyatekiItm_Idle(EnSyatekiItm* this, PlayState* play) {
 }
 
 void EnSyatekiItm_StartRound(EnSyatekiItm* this, PlayState* play) {
-    s32 i;
-    s32 j;
+    s32     i;
+    s32     j;
     Player* player = GET_PLAYER(play);
 
     if (this->unkTimer == 0) {
@@ -169,9 +176,9 @@ void EnSyatekiItm_StartRound(EnSyatekiItm* this, PlayState* play) {
 
 void EnSyatekiItm_SpawnTargets(EnSyatekiItm* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
-    s32 i;
-    s32 roundIdx;
+    Vec3f   zeroVec = { 0.0f, 0.0f, 0.0f };
+    s32     i;
+    s32     roundIdx;
 
     if (play->shootingGalleryStatus == -1) {
         player->actor.freezeTimer = 10;
@@ -277,8 +284,8 @@ void EnSyatekiItm_SpawnTargets(EnSyatekiItm* this, PlayState* play) {
 
 void EnSyatekiItm_CheckTargets(EnSyatekiItm* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 i;
-    s16 j;
+    s32     i;
+    s16     j;
 
     if (play->shootingGalleryStatus == -1) {
         player->actor.freezeTimer = 10;

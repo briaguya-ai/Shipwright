@@ -15,7 +15,7 @@
 
 typedef struct {
     /* 0x00 */ Vec3f pos;
-    /* 0x0C */ s16 yRot;
+    /* 0x0C */ s16   yRot;
 } EnfHGPainting; // size = 0x10;
 
 typedef enum {
@@ -60,9 +60,12 @@ const ActorInit En_fHG_InitVars = {
 };
 
 static EnfHGPainting sPaintings[] = {
-    { { 0.0f, 60.0f, -315.0f }, 0x0000 },   { { -260.0f, 60.0f, -145.0f }, 0x2AAA },
-    { { -260.0f, 60.0f, 165.0f }, 0x5554 }, { { 0.0f, 60.0f, 315.0f }, 0x7FFE },
-    { { 260.0f, 60.0f, 155.0f }, 0xAAA8 },  { { 260.0f, 60.0f, -155.0f }, 0xD552 },
+    { { 0.0f, 60.0f, -315.0f }, 0x0000 },
+    { { -260.0f, 60.0f, -145.0f }, 0x2AAA },
+    { { -260.0f, 60.0f, 165.0f }, 0x5554 },
+    { { 0.0f, 60.0f, 315.0f }, 0x7FFE },
+    { { 260.0f, 60.0f, 155.0f }, 0xAAA8 },
+    { { 260.0f, 60.0f, -155.0f }, 0xD552 },
 };
 
 static InitChainEntry sInitChain[] = {
@@ -109,12 +112,12 @@ void EnfHG_SetupIntro(EnfHG* this, PlayState* play) {
 }
 
 void EnfHG_Intro(EnfHG* this, PlayState* play) {
-    static Vec3f audioVec = { 0.0f, 0.0f, 50.0f };
-    s32 pad64;
-    Player* player = GET_PLAYER(play);
+    static Vec3f   audioVec = { 0.0f, 0.0f, 50.0f };
+    s32            pad64;
+    Player*        player = GET_PLAYER(play);
     BossGanondrof* bossGnd = (BossGanondrof*)this->actor.parent;
-    s32 pad58;
-    s32 pad54;
+    s32            pad58;
+    s32            pad54;
 
     if (this->cutsceneState != INTRO_FINISH) {
         SkelAnime_Update(&this->skin.skelAnime);
@@ -650,8 +653,8 @@ void EnfHG_Retreat(EnfHG* this, PlayState* play) {
     }
     if (this->timers[0] == 0) {
         BossGanondrof* bossGnd = (BossGanondrof*)this->actor.parent;
-        s16 paintingIdxReal;
-        s16 paintingIdxFake;
+        s16            paintingIdxReal;
+        s16            paintingIdxFake;
 
         if (this->actor.params != GND_REAL_BOSS) {
             this->killActor = true;
@@ -714,7 +717,7 @@ void EnfHG_PostDraw(Actor* thisx, PlayState* play, Skin* skin) {
 void EnfHG_Draw(Actor* thisx, PlayState* play) {
     EnfHG* this = (EnfHG*)thisx;
     BossGanondrof* bossGnd = (BossGanondrof*)this->actor.parent;
-    s32 pad;
+    s32            pad;
 
     OPEN_DISPS(play->state.gfxCtx);
     Gfx_SetupDL_25Opa(play->state.gfxCtx);

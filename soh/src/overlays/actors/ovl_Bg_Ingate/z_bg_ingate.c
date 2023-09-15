@@ -37,7 +37,7 @@ void BgInGate_SetupAction(BgInGate* this, BgInGateActionFunc actionFunc) {
 void BgInGate_Init(Actor* thisx, PlayState* play) {
     BgInGate* this = (BgInGate*)thisx;
 
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
 
     DynaPolyActor_Init(&this->dyna, DPM_UNK);

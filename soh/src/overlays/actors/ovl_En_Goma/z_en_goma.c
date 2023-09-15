@@ -97,7 +97,7 @@ static ColliderCylinderInit D_80A4B7CC = {
     { 15, 30, 10, { 0, 0, 0 } },
 };
 
-u8 sSpawnNum = 0;
+u8           sSpawnNum = 0;
 static Vec3f sDeadEffectVel = { 0.0f, 0.0f, 0.0f };
 
 static InitChainEntry sInitChain[] = {
@@ -272,7 +272,7 @@ void EnGoma_EggFallToGround(EnGoma* this, PlayState* play) {
 
 void EnGoma_Egg(EnGoma* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 i;
+    s32     i;
 
     this->eggSquishAngle += 1.0f;
     Math_ApproachF(&this->eggSquishAmount, 0.1f, 1.0f, 0.005f);
@@ -610,13 +610,13 @@ void EnGoma_LookAtPlayer(EnGoma* this, PlayState* play) {
 
 void EnGoma_UpdateHit(EnGoma* this, PlayState* play) {
     static Vec3f sShieldKnockbackVel = { 0.0f, 0.0f, 20.0f };
-    Player* player = GET_PLAYER(play);
+    Player*      player = GET_PLAYER(play);
 
     if (this->hurtTimer != 0) {
         this->hurtTimer--;
     } else {
         ColliderInfo* acHitInfo;
-        u8 swordDamage;
+        u8            swordDamage;
 
         if ((this->colCyl1.base.atFlags & 2) && this->actionFunc == EnGoma_Jump) {
             EnGoma_SetupLand(this);
@@ -704,7 +704,7 @@ void EnGoma_SetFloorRot(EnGoma* this) {
 
 void EnGoma_Update(Actor* thisx, PlayState* play) {
     EnGoma* this = (EnGoma*)thisx;
-    s32 pad;
+    s32     pad;
     Player* player = GET_PLAYER(play);
 
     if (this->actionTimer != 0) {
@@ -857,7 +857,7 @@ void EnGoma_Debris(EnGoma* this, PlayState* play) {
 
 void EnGoma_SpawnHatchDebris(EnGoma* this, PlayState* play2) {
     PlayState* play = play2;
-    s16 i;
+    s16        i;
 
     if (this->actor.params < 6) {
         SoundSource_PlaySfxAtFixedWorldPos(play, &this->actor.world.pos, 40, NA_SE_EN_GOMA_BJR_EGG2);
@@ -875,11 +875,11 @@ void EnGoma_SpawnHatchDebris(EnGoma* this, PlayState* play2) {
 }
 
 void EnGoma_BossLimb(EnGoma* this, PlayState* play) {
-    Vec3f vel = { 0.0f, 0.0f, 0.0f };
-    Vec3f accel = { 0.0f, 1.0f, 0.0f };
+    Vec3f       vel = { 0.0f, 0.0f, 0.0f };
+    Vec3f       accel = { 0.0f, 1.0f, 0.0f };
     Color_RGBA8 primColor = { 255, 255, 255, 255 };
     Color_RGBA8 envColor = { 0, 100, 255, 255 };
-    Vec3f pos;
+    Vec3f       pos;
 
     this->actor.world.pos.y -= 5.0f;
     Actor_UpdateBgCheckInfo(play, &this->actor, 50.0f, 50.0f, 100.0f, 4);

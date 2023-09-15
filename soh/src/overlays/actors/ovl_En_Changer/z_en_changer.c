@@ -38,17 +38,30 @@ const ActorInit En_Changer_InitVars = {
 };
 
 static Vec3f sLeftChestPos[] = {
-    { 0.0f, 0.0f, 0.0f },         { -100.0f, 20.0f, -245.0f },  { -100.0f, 20.0f, -685.0f },
-    { -100.0f, 20.0f, -1125.0f }, { -100.0f, 20.0f, -1565.0f }, { -100.0f, 20.0f, -2005.0f },
+    { 0.0f, 0.0f, 0.0f },
+    { -100.0f, 20.0f, -245.0f },
+    { -100.0f, 20.0f, -685.0f },
+    { -100.0f, 20.0f, -1125.0f },
+    { -100.0f, 20.0f, -1565.0f },
+    { -100.0f, 20.0f, -2005.0f },
 };
 
 static Vec3f sRightChestPos[] = {
-    { 0.0f, 0.0f, 0.0f },        { 140.0f, 20.0f, -245.0f },  { 140.0f, 20.0f, -685.0f },
-    { 140.0f, 20.0f, -1125.0f }, { 140.0f, 20.0f, -1565.0f }, { 140.0f, 20.0f, -2005.0f },
+    { 0.0f, 0.0f, 0.0f },
+    { 140.0f, 20.0f, -245.0f },
+    { 140.0f, 20.0f, -685.0f },
+    { 140.0f, 20.0f, -1125.0f },
+    { 140.0f, 20.0f, -1565.0f },
+    { 140.0f, 20.0f, -2005.0f },
 };
 
 static s32 sLoserGetItemIds[] = {
-    GI_NONE, GI_RUPEE_GREEN_LOSE, GI_RUPEE_GREEN_LOSE, GI_RUPEE_BLUE_LOSE, GI_RUPEE_BLUE_LOSE, GI_RUPEE_RED_LOSE,
+    GI_NONE,
+    GI_RUPEE_GREEN_LOSE,
+    GI_RUPEE_GREEN_LOSE,
+    GI_RUPEE_BLUE_LOSE,
+    GI_RUPEE_BLUE_LOSE,
+    GI_RUPEE_RED_LOSE,
 };
 
 static s32 sItemEtcTypes[] = {
@@ -68,15 +81,15 @@ void EnChanger_Destroy(Actor* thisx, PlayState* play) {
 void EnChanger_Init(Actor* thisx, PlayState* play2) {
     EnChanger* this = (EnChanger*)thisx;
     PlayState* play = play2;
-    s16 leftChestParams;
-    s16 rightChestParams;
-    s16 rewardChestParams;
-    s16 minigameRoomNum;
-    s16 rightChestItem;
-    s16 leftChestItem;
-    s16 temp_v1_3;
-    s16 new_var;
-    s32 rewardParams;
+    s16        leftChestParams;
+    s16        rightChestParams;
+    s16        rewardChestParams;
+    s16        minigameRoomNum;
+    s16        rightChestItem;
+    s16        leftChestItem;
+    s16        temp_v1_3;
+    s16        new_var;
+    s32        rewardParams;
 
     minigameRoomNum = play->roomCtx.curRoom.num - 1;
     if (minigameRoomNum < 0) {
@@ -220,11 +233,11 @@ void EnChanger_Wait(EnChanger* this, PlayState* play) {
 
 // Spawns the EnExItem showing what was in the other chest
 void EnChanger_OpenChests(EnChanger* this, PlayState* play) {
-    f32 zPos;
-    f32 yPos;
-    f32 xPos;
-    s16 temp_s0;
-    s16 temp_s0_2;
+    f32    zPos;
+    f32    yPos;
+    f32    xPos;
+    s16    temp_s0;
+    s16    temp_s0_2;
     EnBox* left;
     EnBox* right;
 

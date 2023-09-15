@@ -109,8 +109,8 @@ static InitChainEntry sInitChain[] = {
 void EnOwl_Init(Actor* thisx, PlayState* play) {
     EnOwl* this = (EnOwl*)thisx;
     ColliderCylinder* collider;
-    s32 owlType;
-    s32 switchFlag;
+    s32               owlType;
+    s32               switchFlag;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
     ActorShape_Init(&this->actor.shape, 0, ActorShadow_DrawCircle, 36.0f);
@@ -750,9 +750,9 @@ void EnOwl_WaitLWPostSaria(EnOwl* this, PlayState* play) {
 
 void func_80ACB748(EnOwl* this, PlayState* play) {
     static Vec3f D_80ACD62C = { 0.0f, 0.0f, 0.0f };
-    f32 dist;
-    f32 weight;
-    s32 owlType = (this->actor.params & 0xFC0) >> 6;
+    f32          dist;
+    f32          weight;
+    s32          owlType = (this->actor.params & 0xFC0) >> 6;
 
     dist = Math3D_Vec3f_DistXYZ(&this->eye, &play->view.eye) / 45.0f;
     this->eye.x = play->view.eye.x;
@@ -1412,8 +1412,8 @@ void func_80ACD220(EnOwl* this, Vec3f* arg1, f32 arg2) {
 
 void func_80ACD2CC(EnOwl* this, PlayState* play) {
     Vec3f pos;
-    s32 angle;
-    f32 t = func_80ACD1C4(play, 7);
+    s32   angle;
+    f32   t = func_80ACD1C4(play, 7);
 
     pos.x = play->csCtx.npcActions[7]->startPos.x;
     pos.y = play->csCtx.npcActions[7]->startPos.y;
@@ -1448,7 +1448,7 @@ void func_80ACD2CC(EnOwl* this, PlayState* play) {
 void func_80ACD4D4(EnOwl* this, PlayState* play) {
     Vec3f pos;
     Vec3f endPosf;
-    f32 temp_ret = func_80ACD1C4(play, 7);
+    f32   temp_ret = func_80ACD1C4(play, 7);
 
     pos.x = play->csCtx.npcActions[7]->startPos.x;
     pos.y = play->csCtx.npcActions[7]->startPos.y;

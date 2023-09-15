@@ -48,17 +48,20 @@ enum class SceneCommandID : uint8_t {
 };
 
 class ISceneCommand : public IResource {
-public:
+  public:
     using IResource::IResource;
-    ISceneCommand() : IResource(std::shared_ptr<ResourceInitData>()) {}
+    ISceneCommand()
+        : IResource(std::shared_ptr<ResourceInitData>()) {
+    }
     SceneCommandID cmdId;
 };
 
-template <class T> class SceneCommand : public ISceneCommand {
+template <class T>
+class SceneCommand : public ISceneCommand {
   public:
     using ISceneCommand::ISceneCommand;
     virtual T* GetPointer() = 0;
-    void* GetRawPointer() override {
+    void*      GetRawPointer() override {
         return static_cast<void*>(GetPointer());
     }
 };

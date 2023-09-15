@@ -510,7 +510,7 @@ void EnHintnuts_Update(Actor* thisx, PlayState* play) {
 s32 EnHintnuts_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot,
                                 void* thisx) {
     Vec3f vec;
-    f32 curFrame;
+    f32   curFrame;
     EnHintnuts* this = (EnHintnuts*)thisx;
 
     if (limbIndex == 5 && this->actionFunc == EnHintnuts_ThrowNut) {

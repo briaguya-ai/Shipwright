@@ -146,8 +146,8 @@ void EnCrow_SetupDiveAttack(EnCrow* this) {
 }
 
 void EnCrow_SetupDamaged(EnCrow* this, PlayState* play) {
-    s32 i;
-    f32 scale;
+    s32   i;
+    f32   scale;
     Vec3f iceParticlePos;
 
     this->actor.speedXZ *= Math_CosS(this->actor.world.rot.x);
@@ -232,8 +232,8 @@ void EnCrow_SetupRespawn(EnCrow* this) {
 
 void EnCrow_FlyIdle(EnCrow* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 skelanimeUpdated;
-    s16 var;
+    s32     skelanimeUpdated;
+    s16     var;
 
     SkelAnime_Update(&this->skelAnime);
     skelanimeUpdated = Animation_OnFrame(&this->skelAnime, 0.0f);
@@ -289,9 +289,9 @@ void EnCrow_FlyIdle(EnCrow* this, PlayState* play) {
 
 void EnCrow_DiveAttack(EnCrow* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 facingPlayer;
-    Vec3f pos;
-    s16 target;
+    s32     facingPlayer;
+    Vec3f   pos;
+    s16     target;
 
     SkelAnime_Update(&this->skelAnime);
     if (this->timer != 0) {

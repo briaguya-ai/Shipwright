@@ -58,16 +58,16 @@ void OceffWipe4_Update(Actor* thisx, PlayState* play) {
 void OceffWipe4_Draw(Actor* thisx, PlayState* play) {
     u32 scroll = play->state.frames & 0xFFF;
     OceffWipe4* this = (OceffWipe4*)thisx;
-    f32 z;
-    u8 alpha;
-    s32 pad[2];
+    f32   z;
+    u8    alpha;
+    s32   pad[2];
     Vec3f eye;
-    Vtx* vtxPtr;
+    Vtx*  vtxPtr;
     Vec3f vec;
 
     eye = GET_ACTIVE_CAM(play)->eye;
     Camera_GetSkyboxOffset(&vec, GET_ACTIVE_CAM(play));
-    
+
     int fastOcarinaPlayback = (CVarGetInteger("gFastOcarinaPlayback", 0) != 0);
     if (this->timer < 16) {
         z = Math_SinS(this->timer * 1024) * (fastOcarinaPlayback ? 1200.0f : 1330.0f);

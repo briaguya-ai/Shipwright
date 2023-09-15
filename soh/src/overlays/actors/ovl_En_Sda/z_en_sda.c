@@ -33,54 +33,178 @@ const ActorInit En_Sda_InitVars = {
 static Vec3f D_80AFA0D0 = { 0.0f, 0.0f, 0.0f };
 
 static s16 D_80AFA0DC[] = {
-    1, 2, 3, 3, 2, 1,
+    1,
+    2,
+    3,
+    3,
+    2,
+    1,
 };
 
 static s16 D_80AFA0E8[] = {
-    2, 3, 4, 4, 4, 3, 2, 0,
+    2,
+    3,
+    4,
+    4,
+    4,
+    3,
+    2,
+    0,
 };
 
 static s16 D_80AFA0F8[] = {
-    2, 3, 4, 4, 4, 4, 3, 2,
+    2,
+    3,
+    4,
+    4,
+    4,
+    4,
+    3,
+    2,
 };
 
 static s16 D_80AFA108[] = {
-    2, 4, 5, 5, 6, 6, 6, 6, 5, 5, 4, 2,
+    2,
+    4,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    5,
+    5,
+    4,
+    2,
 };
 
 static s16 D_80AFA120[] = {
-    2, 4, 5, 6, 7, 8, 8, 8, 8, 7, 6, 5, 4, 2,
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    8,
+    8,
+    8,
+    7,
+    6,
+    5,
+    4,
+    2,
 };
 
 static s16 D_80AFA13C[] = {
-    1, -1, 1, 1, 3, 4, 1, 6, 7, 2, 9, 10, 2, 12, 13, 0,
+    1,
+    -1,
+    1,
+    1,
+    3,
+    4,
+    1,
+    6,
+    7,
+    2,
+    9,
+    10,
+    2,
+    12,
+    13,
+    0,
 };
 
 static u8 D_80AFA15C[] = {
-    2, 2, 2, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 3,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    3,
 };
 
 static s8 D_80AFA16C[] = {
-    2, 9, 10, 11, 12, 13, 14, 0, 15, -1, 3, 4, 5, 6, 7, 8, -1, 1, 0, 0,
+    2,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    0,
+    15,
+    -1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    -1,
+    1,
+    0,
+    0,
 };
 
 static Vec3f D_80AFA180[] = {
-    { -1.0f, 2.0f, -0.2f }, { 0.0f, 2.0f, -0.5f },   { 1.0f, 2.0f, -0.2f },   { -2.0f, 1.0f, -0.5f },
-    { -1.0f, 1.0f, -0.2f }, { 0.0f, 1.0f, -0.2f },   { 1.0f, 1.0f, -0.2f },   { 2.0f, 1.0f, -0.5f },
-    { -2.0f, 0.0f, -0.5f }, { -1.0f, 0.0f, -0.2f },  { 0.0f, 0.0f, 0.0f },    { 1.0f, 0.0f, -0.2f },
-    { 2.0f, 0.0f, -0.5f },  { -2.0f, -1.0f, -0.5f }, { -1.0f, -1.0f, -0.2f }, { 0.0f, -1.0f, -0.1f },
-    { 1.0f, -1.0f, -0.2f }, { 2.0f, -1.0f, -0.5f },  { -1.0f, -2.0f, -0.2f }, { 0.0f, -2.0f, -0.2f },
-    { 1.0f, -2.0f, -0.2f }, { 0.0f, -3.0f, -0.5f },
+    { -1.0f, 2.0f, -0.2f },
+    { 0.0f, 2.0f, -0.5f },
+    { 1.0f, 2.0f, -0.2f },
+    { -2.0f, 1.0f, -0.5f },
+    { -1.0f, 1.0f, -0.2f },
+    { 0.0f, 1.0f, -0.2f },
+    { 1.0f, 1.0f, -0.2f },
+    { 2.0f, 1.0f, -0.5f },
+    { -2.0f, 0.0f, -0.5f },
+    { -1.0f, 0.0f, -0.2f },
+    { 0.0f, 0.0f, 0.0f },
+    { 1.0f, 0.0f, -0.2f },
+    { 2.0f, 0.0f, -0.5f },
+    { -2.0f, -1.0f, -0.5f },
+    { -1.0f, -1.0f, -0.2f },
+    { 0.0f, -1.0f, -0.1f },
+    { 1.0f, -1.0f, -0.2f },
+    { 2.0f, -1.0f, -0.5f },
+    { -1.0f, -2.0f, -0.2f },
+    { 0.0f, -2.0f, -0.2f },
+    { 1.0f, -2.0f, -0.2f },
+    { 0.0f, -3.0f, -0.5f },
 };
 
 // Unused, identical to D_80AFA180
 static Vec3f D_80AFA288[] = {
-    { -1.0f, 2.0f, -0.2f }, { 0.0f, 2.0f, -0.5f },   { 1.0f, 2.0f, -0.2f },   { -2.0f, 1.0f, -0.5f },
-    { -1.0f, 1.0f, -0.2f }, { 0.0f, 1.0f, -0.2f },   { 1.0f, 1.0f, -0.2f },   { 2.0f, 1.0f, -0.5f },
-    { -2.0f, 0.0f, -0.5f }, { -1.0f, 0.0f, -0.2f },  { 0.0f, 0.0f, 0.0f },    { 1.0f, 0.0f, -0.2f },
-    { 2.0f, 0.0f, -0.5f },  { -2.0f, -1.0f, -0.5f }, { -1.0f, -1.0f, -0.2f }, { 0.0f, -1.0f, -0.1f },
-    { 1.0f, -1.0f, -0.2f }, { 2.0f, -1.0f, -0.5f },  { -1.0f, -2.0f, -0.2f }, { 0.0f, -2.0f, -0.2f },
-    { 1.0f, -2.0f, -0.2f }, { 0.0f, -3.0f, -0.5f },
+    { -1.0f, 2.0f, -0.2f },
+    { 0.0f, 2.0f, -0.5f },
+    { 1.0f, 2.0f, -0.2f },
+    { -2.0f, 1.0f, -0.5f },
+    { -1.0f, 1.0f, -0.2f },
+    { 0.0f, 1.0f, -0.2f },
+    { 1.0f, 1.0f, -0.2f },
+    { 2.0f, 1.0f, -0.5f },
+    { -2.0f, 0.0f, -0.5f },
+    { -1.0f, 0.0f, -0.2f },
+    { 0.0f, 0.0f, 0.0f },
+    { 1.0f, 0.0f, -0.2f },
+    { 2.0f, 0.0f, -0.5f },
+    { -2.0f, -1.0f, -0.5f },
+    { -1.0f, -1.0f, -0.2f },
+    { 0.0f, -1.0f, -0.1f },
+    { 1.0f, -1.0f, -0.2f },
+    { 2.0f, -1.0f, -0.5f },
+    { -1.0f, -2.0f, -0.2f },
+    { 0.0f, -2.0f, -0.2f },
+    { 1.0f, -2.0f, -0.2f },
+    { 0.0f, -3.0f, -0.5f },
 };
 
 static u32 D_80AFA390[] = { 0, 0 };
@@ -116,7 +240,7 @@ void EnSda_Update(Actor* thisx, PlayState* play) {
 void EnSda_Draw(Actor* thisx, PlayState* play) {
     EnSda* this = (EnSda*)thisx;
     Player* player;
-    u8* shadowTexture = Graph_Alloc(play->state.gfxCtx, 0x1000);
+    u8*     shadowTexture = Graph_Alloc(play->state.gfxCtx, 0x1000);
 
     osSyncPrintf("SDA DRAW \n");
 
@@ -137,14 +261,14 @@ void EnSda_Draw(Actor* thisx, PlayState* play) {
 }
 
 void func_80AF8F60(Player* player, u8* shadowTexture, f32 arg2) {
-    s16 temp_t0;
-    s16 temp_t1;
-    s16 temp_v1;
-    s16 temp_v0;
-    s16 phi_a0;
-    s16 phi_a3;
-    s16 i;
-    s16 j;
+    s16   temp_t0;
+    s16   temp_t1;
+    s16   temp_v1;
+    s16   temp_v0;
+    s16   phi_a0;
+    s16   phi_a3;
+    s16   i;
+    s16   j;
     Vec3f lerp;
     Vec3f sp88;
     Vec3f sp7C;
@@ -236,18 +360,18 @@ void func_80AF8F60(Player* player, u8* shadowTexture, f32 arg2) {
 }
 
 void func_80AF95C4(EnSda* this, u8* shadowTexture, Player* player, PlayState* play) {
-    s16 temp_t0;
-    s16 temp_t1;
-    s16 temp_v0;
-    s16 temp_v1;
-    s16 phi_a0;
-    s16 phi_a3;
-    s16 i;
-    s16 j;
+    s16   temp_t0;
+    s16   temp_t1;
+    s16   temp_v0;
+    s16   temp_v1;
+    s16   phi_a0;
+    s16   phi_a3;
+    s16   i;
+    s16   j;
     Vec3f sp194;
     Vec3f sp188;
-    s32* shadowTextureTemp32;
-    u8* shadowTextureTemp;
+    s32*  shadowTextureTemp32;
+    u8*   shadowTextureTemp;
     Vec3s sp178;
     Vec3f sp16C;
     Vec3f sp64[22];
@@ -333,10 +457,10 @@ void func_80AF95C4(EnSda* this, u8* shadowTexture, Player* player, PlayState* pl
 }
 
 void func_80AF9C70(u8* shadowTexture, Player* player, PlayState* play) {
-    s32 pad;
-    f32 tempx;
-    f32 tempz;
-    s16 phi_s1;
+    s32              pad;
+    f32              tempx;
+    f32              tempz;
+    s16              phi_s1;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
 
     OPEN_DISPS(gfxCtx);

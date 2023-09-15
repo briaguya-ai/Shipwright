@@ -7,14 +7,14 @@
 #include "z_eff_ss_k_fire.h"
 #include "objects/gameplay_keep/gameplay_keep.h"
 
-#define rAlpha regs[0]
-#define rScroll regs[2]
-#define rType regs[3]
-#define rYScale regs[4]
-#define rXZScale regs[5]
+#define rAlpha    regs[0]
+#define rScroll   regs[2]
+#define rType     regs[3]
+#define rYScale   regs[4]
+#define rXZScale  regs[5]
 #define rScaleMax regs[6]
 
-u32 EffectSsKFire_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsKFire_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsKFire_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsKFire_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -42,9 +42,9 @@ u32 EffectSsKFire_Init(PlayState* play, u32 index, EffectSs* this, void* initPar
 
 void EffectSsKFire_Draw(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s32 pad;
-    f32 xzScale;
-    f32 yScale;
+    s32              pad;
+    f32              xzScale;
+    f32              yScale;
 
     xzScale = this->rXZScale / 10000.0f;
     yScale = this->rYScale / 10000.0f;

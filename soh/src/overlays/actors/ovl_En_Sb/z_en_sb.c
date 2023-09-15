@@ -367,10 +367,10 @@ s32 EnSb_IsVulnerable(EnSb* this) {
 
 s32 EnSb_UpdateDamage(EnSb* this, PlayState* play) {
     Vec3f hitPoint;
-    f32 hitY;
-    s16 yawDiff;
-    s32 tookDamage;
-    u8 hitByWindArrow;
+    f32   hitY;
+    s16   yawDiff;
+    s32   tookDamage;
+    u8    hitByWindArrow;
 
     // hit box collided, switch to cool down
     if ((this->collider.base.atFlags & AT_HIT)) {
@@ -483,9 +483,9 @@ void EnSb_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, 
 
 void EnSb_Draw(Actor* thisx, PlayState* play) {
     EnSb* this = (EnSb*)thisx;
-    Vec3f flamePos;
+    Vec3f  flamePos;
     Vec3f* offset;
-    s16 fireDecr;
+    s16    fireDecr;
 
     func_8002EBCC(&this->actor, play, 1);
     SkelAnime_DrawFlexOpa(play, this->skelAnime.skeleton, this->skelAnime.jointTable, this->skelAnime.dListCount,

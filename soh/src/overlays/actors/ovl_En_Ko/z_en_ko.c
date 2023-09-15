@@ -67,23 +67,23 @@ static ColliderCylinderInit sCylinderInit = {
 static CollisionCheckInfoInit2 sColChkInfoInit = { 0, 0, 0, 0, MASS_IMMOVABLE };
 
 static void* sFaEyes[] = { gFaEyeOpenTex, gFaEyeHalfTex, gFaEyeClosedTex, NULL };
-static void* sKw1Eyes[] = { gKw1EyeOpenTex , gKw1EyeHalfTex,
+static void* sKw1Eyes[] = { gKw1EyeOpenTex, gKw1EyeHalfTex,
                             gKw1EyeClosedTex, NULL };
 
 typedef struct {
-    /* 0x0 */ s16 objectId;
-    /* 0x4 */ Gfx* dList;
+    /* 0x0 */ s16    objectId;
+    /* 0x4 */ Gfx*   dList;
     /* 0x8 */ void** eyeTextures;
 } EnKoHead; // size = 0xC
 
 static EnKoHead sHead[] = {
-    { OBJECT_KM1, gKm1DL , NULL },
+    { OBJECT_KM1, gKm1DL, NULL },
     { OBJECT_KW1, object_kw1_DL_002C10, sKw1Eyes },
     { OBJECT_FA, gFaDL, sFaEyes },
 };
 
 typedef struct {
-    /* 0x0 */ s16 objectId;
+    /* 0x0 */ s16                 objectId;
     /* 0x4 */ FlexSkeletonHeader* flexSkeletonHeader;
 } EnKoSkeleton; // size = 0x8
 
@@ -183,10 +183,10 @@ static u8 sOsAnimeLookup[13][5] = {
 };
 
 typedef struct {
-    /* 0x0 */ u8 headId;
-    /* 0x1 */ u8 bodyId;
+    /* 0x0 */ u8          headId;
+    /* 0x1 */ u8          bodyId;
     /* 0x4 */ Color_RGBA8 tunicColor;
-    /* 0x8 */ u8 legsId;
+    /* 0x8 */ u8          legsId;
     /* 0xC */ Color_RGBA8 bootsColor;
 } EnKoModelInfo; // size = 0x10
 
@@ -213,7 +213,7 @@ static EnKoModelInfo sModelInfo[] = {
 };
 
 typedef struct {
-    /* 0x0 */ s8 targetMode;
+    /* 0x0 */ s8  targetMode;
     /* 0x4 */ f32 lookDist; // extended by collider radius
     /* 0x8 */ f32 appearDist;
 } EnKoInteractInfo; // size = 0xC
@@ -1048,7 +1048,7 @@ s32 EnKo_CanSpawn(EnKo* this, PlayState* play) {
 
 void EnKo_Blink(EnKo* this) {
     void** eyeTextures;
-    s32 headId;
+    s32    headId;
 
     if (DECR(this->blinkTimer) == 0) {
         headId = sModelInfo[ENKO_TYPE].headId;
@@ -1062,7 +1062,7 @@ void EnKo_Blink(EnKo* this) {
 }
 
 void func_80A98CD8(EnKo* this) {
-    s32 type = ENKO_TYPE;
+    s32               type = ENKO_TYPE;
     EnKoInteractInfo* info = &sInteractInfo[type];
 
     this->actor.targetMode = info->targetMode;
@@ -1103,7 +1103,7 @@ void func_80A98DB4(EnKo* this, PlayState* play) {
         this->appearDist = 180.0f;
         Math_SmoothStepToF(&this->modelAlpha, (this->appearDist < dist) ? 0.0f : 255.0f, 0.3f, 40.0f, 1.0f);
     }
-    
+
     if (this->modelAlpha < 10.0f) {
         this->actor.flags &= ~ACTOR_FLAG_TARGETABLE;
     } else {
@@ -1257,9 +1257,9 @@ void func_80A99560(EnKo* this, PlayState* play) {
 
 void func_80A995CC(EnKo* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 temp_f2;
-    f32 phi_f0;
-    s16 homeYawToPlayer = Math_Vec3f_Yaw(&this->actor.home.pos, &player->actor.world.pos);
+    f32     temp_f2;
+    f32     phi_f0;
+    s16     homeYawToPlayer = Math_Vec3f_Yaw(&this->actor.home.pos, &player->actor.world.pos);
 
     this->actor.world.pos.x = this->actor.home.pos.x;
     this->actor.world.pos.x += 80.0f * Math_SinS(homeYawToPlayer);
@@ -1318,8 +1318,8 @@ s32 EnKo_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* po
     EnKo* this = (EnKo*)thisx;
     void* eyeTexture;
     Vec3s sp40;
-    u8 headId;
-    s32 pad;
+    u8    headId;
+    s32   pad;
 
     if (limbIndex == 15) {
         gSPSegment((*gfx)++, 0x06, play->objectCtx.status[this->headObjectBankIdx].segment);

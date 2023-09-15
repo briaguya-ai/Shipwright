@@ -169,7 +169,7 @@ static ActorShadowFunc sShadowDrawFuncs[] = {
 
 void EnViewer_InitImpl(EnViewer* this, PlayState* play) {
     EnViewerInitData* initData = &sInitData[this->actor.params >> 8];
-    s32 skelObjBankIndex = Object_GetIndex(&play->objectCtx, initData->skeletonObject);
+    s32               skelObjBankIndex = Object_GetIndex(&play->objectCtx, initData->skeletonObject);
 
     assert(skelObjBankIndex >= 0);
 
@@ -196,7 +196,7 @@ void EnViewer_InitImpl(EnViewer* this, PlayState* play) {
 static s16 sTimer = 0;
 
 void EnViewer_UpdateImpl(EnViewer* this, PlayState* play) {
-    u8 type = this->actor.params >> 8;
+    u8  type = this->actor.params >> 8;
     u16 csFrames;
     s32 animationEnded;
 
@@ -718,8 +718,8 @@ void EnViewer_Draw(Actor* thisx, PlayState* play) {
 void EnViewer_UpdatePosition(EnViewer* this, PlayState* play) {
     Vec3f startPos;
     Vec3f endPos;
-    f32 lerpFactor;
-    s16 type = this->actor.params >> 8;
+    f32   lerpFactor;
+    s16   type = this->actor.params >> 8;
 
     if (type <= ENVIEWER_TYPE_2_ZELDA) { // zelda's horse, impa and zelda
         if (play->csCtx.state != CS_STATE_IDLE && play->csCtx.npcActions[0] != NULL &&
@@ -868,8 +868,8 @@ void EnViewer_DrawFireEffects(EnViewer* this2, PlayState* play) {
 
 void EnViewer_UpdateGanondorfCape(PlayState* play, EnViewer* this) {
     static s16 yOscillationPhase = 0;
-    Vec3f forearmModelOffset;
-    Vec3f forearmWorldOffset;
+    Vec3f      forearmModelOffset;
+    Vec3f      forearmWorldOffset;
 
     if ((this->actor.params >> 8) == ENVIEWER_TYPE_5_GANONDORF) {
         sGanondorfCape->backPush = BREG(54) / 10.0f;

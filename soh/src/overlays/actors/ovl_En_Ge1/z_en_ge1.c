@@ -11,9 +11,9 @@
 
 #define FLAGS (ACTOR_FLAG_TARGETABLE | ACTOR_FLAG_FRIENDLY)
 
-#define GE1_STATE_TALKING (1 << 0)
+#define GE1_STATE_TALKING     (1 << 0)
 #define GE1_STATE_GIVE_QUIVER (1 << 1)
-#define GE1_STATE_IDLE_ANIM (1 << 2)
+#define GE1_STATE_IDLE_ANIM   (1 << 2)
 #define GE1_STATE_STOP_FIDGET (1 << 3)
 
 typedef enum {
@@ -30,7 +30,7 @@ void EnGe1_Draw(Actor* thisx, PlayState* play);
 void EnGe1_WaitTillItemGiven_Archery(EnGe1* this, PlayState* play);
 void EnGe1_BeginGiveItem_Archery(EnGe1* this, PlayState* play);
 
-s32 EnGe1_CheckCarpentersFreed(void);
+s32  EnGe1_CheckCarpentersFreed(void);
 void EnGe1_WatchForPlayerFrontOnly(EnGe1* this, PlayState* play);
 void EnGe1_SetNormalText(EnGe1* this, PlayState* play);
 void EnGe1_WatchForAndSensePlayer(EnGe1* this, PlayState* play);
@@ -95,8 +95,7 @@ void EnGe1_Init(Actor* thisx, PlayState* play) {
     EnGe1* this = (EnGe1*)thisx;
 
     // When spawning the gate operator, also spawn an extra gate operator on the wasteland side
-    if (gSaveContext.n64ddFlag && (Randomizer_GetSettingValue(RSK_SHUFFLE_GERUDO_MEMBERSHIP_CARD) ||
-        Randomizer_GetSettingValue(RSK_SHUFFLE_OVERWORLD_ENTRANCES)) && (this->actor.params & 0xFF) == GE1_TYPE_GATE_OPERATOR) {
+    if (gSaveContext.n64ddFlag && (Randomizer_GetSettingValue(RSK_SHUFFLE_GERUDO_MEMBERSHIP_CARD) || Randomizer_GetSettingValue(RSK_SHUFFLE_OVERWORLD_ENTRANCES)) && (this->actor.params & 0xFF) == GE1_TYPE_GATE_OPERATOR) {
         // Spawn the extra gaurd with params matching the custom type added (0x0300 + 0x02)
         Actor_Spawn(&play->actorCtx, play, ACTOR_EN_GE1, -1358.0f, 88.0f, -3018.0f, 0, 0x95B0, 0,
                     0x0300 | GE1_TYPE_EXTRA_GATE_OPERATOR, true);
@@ -529,7 +528,7 @@ void EnGe1_SetupWait_Archery(EnGe1* this, PlayState* play) {
 
 void EnGe1_WaitTillItemGiven_Archery(EnGe1* this, PlayState* play) {
     GetItemEntry getItemEntry = (GetItemEntry)GET_ITEM_NONE;
-    s32 getItemId;
+    s32          getItemId;
 
     if (Actor_HasParent(&this->actor, play)) {
         if (gSaveContext.n64ddFlag && gSaveContext.minigameScore >= 1500 && !Flags_GetInfTable(INFTABLE_190)) {
@@ -582,7 +581,7 @@ void EnGe1_WaitTillItemGiven_Archery(EnGe1* this, PlayState* play) {
 
 void EnGe1_BeginGiveItem_Archery(EnGe1* this, PlayState* play) {
     GetItemEntry getItemEntry = (GetItemEntry)GET_ITEM_NONE;
-    s32 getItemId;
+    s32          getItemId;
 
     if (Actor_TextboxIsClosing(&this->actor, play)) {
         this->actor.flags &= ~ACTOR_FLAG_WILL_TALK;
@@ -642,7 +641,7 @@ void EnGe1_WaitDoNothing(EnGe1* this, PlayState* play) {
 
 void EnGe1_BeginGame_Archery(EnGe1* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Actor* horse;
+    Actor*  horse;
 
     if ((Message_GetState(&play->msgCtx) == TEXT_STATE_CHOICE) && Message_ShouldAdvance(play)) {
         this->actor.flags &= ~ACTOR_FLAG_WILL_TALK;
@@ -739,7 +738,7 @@ void EnGe1_TalkNoHorse_Archery(EnGe1* this, PlayState* play) {
 
 void EnGe1_Wait_Archery(EnGe1* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    u16 textId;
+    u16     textId;
 
     if (!(player->stateFlags1 & 0x800000)) {
         EnGe1_SetTalkAction(this, play, 0x603F, 100.0f, EnGe1_TalkNoHorse_Archery);

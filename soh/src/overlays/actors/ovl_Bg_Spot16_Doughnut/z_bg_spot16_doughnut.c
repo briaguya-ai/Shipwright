@@ -38,7 +38,11 @@ static InitChainEntry sInitChain[] = {
 };
 
 static s16 sScales[] = {
-    0, 0, 70, 210, 300,
+    0,
+    0,
+    70,
+    210,
+    300,
 };
 
 void BgSpot16Doughnut_Init(Actor* thisx, PlayState* play) {

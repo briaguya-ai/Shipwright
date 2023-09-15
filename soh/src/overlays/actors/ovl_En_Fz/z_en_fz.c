@@ -214,10 +214,10 @@ void EnFz_Destroy(Actor* thisx, PlayState* play) {
 }
 
 void EnFz_UpdateTargetPos(EnFz* this, PlayState* play) {
-    Vec3f pos;
-    Vec3f hitPos;
-    Vec3f vec1;
-    s32 bgId;
+    Vec3f          pos;
+    Vec3f          hitPos;
+    Vec3f          vec1;
+    s32            bgId;
     CollisionPoly* hitPoly;
 
     pos.x = this->actor.world.pos.x;
@@ -250,14 +250,14 @@ s32 EnFz_ReachedTarget(EnFz* this, Vec3f* vec) {
 }
 
 void EnFz_Damaged(EnFz* this, PlayState* play, Vec3f* vec, s32 numEffects, f32 unkFloat) {
-    s32 i;
-    Vec3f pos;
-    Vec3f vel;
-    Vec3f accel;
+    s32         i;
+    Vec3f       pos;
+    Vec3f       vel;
+    Vec3f       accel;
     Color_RGBA8 primColor;
     Color_RGBA8 envColor;
-    f32 scale;
-    s32 life;
+    f32         scale;
+    s32         life;
 
     primColor.r = 155;
     primColor.g = 255;
@@ -502,8 +502,8 @@ void EnFz_BlowSmoke(EnFz* this, PlayState* play) {
     Vec3f pos;
     Vec3f velocity;
     Vec3f accel;
-    u8 isTimerMod8;
-    s16 primAlpha;
+    u8    isTimerMod8;
+    s16   primAlpha;
 
     if (this->timer == 0) {
         EnFz_SetupDisappear(this);
@@ -613,8 +613,8 @@ void EnFz_BlowSmokeStationary(EnFz* this, PlayState* play) {
     Vec3f pos;
     Vec3f velocity;
     Vec3f accel;
-    u8 isTimerMod8;
-    s16 primAlpha;
+    u8    isTimerMod8;
+    s16   primAlpha;
 
     if (this->counter & 0xC0) {
         EnFz_SetYawTowardsPlayer(this);
@@ -747,7 +747,7 @@ void EnFz_Draw(Actor* thisx, PlayState* play) {
 
 void EnFz_SpawnIceSmokeNoFreeze(EnFz* this, Vec3f* pos, Vec3f* velocity, Vec3f* accel, f32 xyScale) {
     EnFzEffectSsIceSmoke* iceSmoke = this->iceSmoke;
-    s16 i;
+    s16                   i;
 
     for (i = 0; i < ARRAY_COUNT(this->iceSmoke); i++) {
         if (iceSmoke->type == 0) {
@@ -770,7 +770,7 @@ void EnFz_SpawnIceSmokeNoFreeze(EnFz* this, Vec3f* pos, Vec3f* velocity, Vec3f* 
 void EnFz_SpawnIceSmokeFreeze(EnFz* this, Vec3f* pos, Vec3f* velocity, Vec3f* accel, f32 xyScale, f32 xyScaleTarget,
                               s16 primAlpha, u8 isTimerMod8) {
     EnFzEffectSsIceSmoke* iceSmoke = this->iceSmoke;
-    s16 i;
+    s16                   i;
 
     for (i = 0; i < ARRAY_COUNT(this->iceSmoke); i++) {
         if (iceSmoke->type == 0) {
@@ -794,8 +794,8 @@ void EnFz_SpawnIceSmokeFreeze(EnFz* this, Vec3f* pos, Vec3f* velocity, Vec3f* ac
 
 void EnFz_UpdateIceSmoke(EnFz* this, PlayState* play) {
     EnFzEffectSsIceSmoke* iceSmoke = this->iceSmoke;
-    s16 i;
-    Vec3f pos;
+    s16                   i;
+    Vec3f                 pos;
 
     for (i = 0; i < ARRAY_COUNT(this->iceSmoke); i++) {
         if (iceSmoke->type) {
@@ -860,9 +860,9 @@ void EnFz_UpdateIceSmoke(EnFz* this, PlayState* play) {
 
 void EnFz_DrawIceSmoke(EnFz* this, PlayState* play) {
     EnFzEffectSsIceSmoke* iceSmoke = this->iceSmoke;
-    s16 i;
-    GraphicsContext* gfxCtx = play->state.gfxCtx;
-    u8 texLoaded = false;
+    s16                   i;
+    GraphicsContext*      gfxCtx = play->state.gfxCtx;
+    u8                    texLoaded = false;
 
     OPEN_DISPS(gfxCtx);
 

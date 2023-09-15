@@ -19,7 +19,7 @@ void BgYdanSp_FloorWebIdle(BgYdanSp* this, PlayState* play);
 void BgYdanSp_BurnWallWeb(BgYdanSp* this, PlayState* play);
 void BgYdanSp_WallWebIdle(BgYdanSp* this, PlayState* play);
 
-//extern CollisionHeader gDTWebWallCol;
+// extern CollisionHeader gDTWebWallCol;
 
 typedef enum {
     /* 0 */ WEB_FLOOR,
@@ -84,14 +84,14 @@ static InitChainEntry sInitChain[] = {
 void BgYdanSp_Init(Actor* thisx, PlayState* play) {
     BgYdanSp* this = (BgYdanSp*)thisx;
     ColliderTrisElementInit* ti0 = &sTrisItemsInit[0];
-    Vec3f tri[3];
-    s32 i;
-    CollisionHeader* colHeader = NULL;
+    Vec3f                    tri[3];
+    s32                      i;
+    CollisionHeader*         colHeader = NULL;
     ColliderTrisElementInit* ti1 = &sTrisItemsInit[1];
-    f32 cossY;
-    f32 sinsY;
-    f32 cossX;
-    f32 nSinsX;
+    f32                      cossY;
+    f32                      sinsY;
+    f32                      cossX;
+    f32                      nSinsX;
 
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
     this->isDestroyedSwitchFlag = thisx->params & 0x3F;
@@ -153,7 +153,7 @@ void BgYdanSp_Destroy(Actor* thisx, PlayState* play) {
 }
 
 void BgYdanSp_UpdateFloorWebCollision(BgYdanSp* this) {
-    s16 newY;
+    s16              newY;
     CollisionHeader* colHeader;
 
     colHeader = ResourceMgr_LoadColByName(SEGMENTED_TO_VIRTUAL(&gDTWebFloorCol));
@@ -183,14 +183,14 @@ void BgYdanSp_BurnWeb(BgYdanSp* this, PlayState* play) {
 
 void BgYdanSp_BurnFloorWeb(BgYdanSp* this, PlayState* play) {
     static Vec3f accel = { 0 };
-    Vec3f velocity;
-    Vec3f pos2;
-    f32 distXZ;
-    f32 sins;
-    f32 coss;
-    s16 rot;
-    s16 rot2;
-    s32 i;
+    Vec3f        velocity;
+    Vec3f        pos2;
+    f32          distXZ;
+    f32          sins;
+    f32          coss;
+    s16          rot;
+    s16          rot2;
+    s32          i;
 
     if (this->timer != 0) {
         this->timer--;
@@ -242,10 +242,10 @@ void BgYdanSp_FloorWebBroken(BgYdanSp* this, PlayState* play) {
 void BgYdanSp_FloorWebBreaking(BgYdanSp* this, PlayState* play) {
     static Color_RGBA8 primColor = { 250, 250, 250, 255 };
     static Color_RGBA8 envColor = { 180, 180, 180, 255 };
-    static Vec3f zeroVec = { 0 };
-    s32 i;
-    Vec3f pos;
-    s16 rot;
+    static Vec3f       zeroVec = { 0 };
+    s32                i;
+    Vec3f              pos;
+    s16                rot;
 
     if (this->timer != 0) {
         this->timer--;
@@ -273,9 +273,9 @@ void BgYdanSp_FloorWebBreaking(BgYdanSp* this, PlayState* play) {
 
 void BgYdanSp_FloorWebIdle(BgYdanSp* this, PlayState* play) {
     Player* player;
-    Vec3f webPos;
-    f32 sqrtFallDistance;
-    f32 unk;
+    Vec3f   webPos;
+    f32     sqrtFallDistance;
+    f32     unk;
 
     player = GET_PLAYER(play);
     webPos.x = this->dyna.actor.world.pos.x;
@@ -343,15 +343,15 @@ void BgYdanSp_FloorWebIdle(BgYdanSp* this, PlayState* play) {
 
 void BgYdanSp_BurnWallWeb(BgYdanSp* this, PlayState* play) {
     static Vec3f accel = { 0 };
-    Vec3f velocity;
-    Vec3f spC8;
-    f32 distXYZ;
-    f32 sins;
-    f32 coss;
-    f32 coss2;
-    s16 rot;
-    s16 rot2;
-    s32 i;
+    Vec3f        velocity;
+    Vec3f        spC8;
+    f32          distXYZ;
+    f32          sins;
+    f32          coss;
+    f32          coss2;
+    s16          rot;
+    s16          rot2;
+    s32          i;
 
     if (this->timer != 0) {
         this->timer--;
@@ -396,7 +396,7 @@ void BgYdanSp_BurnWallWeb(BgYdanSp* this, PlayState* play) {
 
 void BgYdanSp_WallWebIdle(BgYdanSp* this, PlayState* play) {
     Player* player;
-    Vec3f sp30;
+    Vec3f   sp30;
 
     player = GET_PLAYER(play);
     if (Flags_GetSwitch(play, this->burnSwitchFlag) || (this->trisCollider.base.acFlags & 2)) {
@@ -421,7 +421,7 @@ void BgYdanSp_Update(Actor* thisx, PlayState* play) {
 
 void BgYdanSp_Draw(Actor* thisx, PlayState* play) {
     BgYdanSp* this = (BgYdanSp*)thisx;
-    s32 i;
+    s32  i;
     MtxF mtxF;
 
     OPEN_DISPS(play->state.gfxCtx);

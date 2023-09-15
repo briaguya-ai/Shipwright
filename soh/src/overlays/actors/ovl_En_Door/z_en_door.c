@@ -82,10 +82,10 @@ void EnDoor_Init(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
     EnDoor* this = (EnDoor*)thisx;
     EnDoorInfo* objectInfo;
-    s32 i;
-    s32 objBankIndex;
-    f32 xOffset;
-    f32 zOffset;
+    s32         i;
+    s32         objBankIndex;
+    f32         xOffset;
+    f32         zOffset;
 
     objectInfo = &sDoorInfo[0];
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -189,9 +189,9 @@ void EnDoor_SetupType(EnDoor* this, PlayState* play) {
 
 void EnDoor_Idle(EnDoor* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 doorType;
-    Vec3f playerPosRelToDoor;
-    s16 phi_v0;
+    s32     doorType;
+    Vec3f   playerPosRelToDoor;
+    s16     phi_v0;
 
     doorType = this->actor.params >> 7 & 7;
     func_8002DBD0(&this->actor, &playerPosRelToDoor, &player->actor.world.pos);
@@ -303,12 +303,12 @@ void EnDoor_Update(Actor* thisx, PlayState* play) {
 }
 
 s32 EnDoor_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx) {
-    s32 pad;
+    s32                   pad;
     TransitionActorEntry* transitionEntry;
-    Gfx** temp_a2;
-    s32 pad2;
-    s16 phi_v0_2;
-    s32 phi_v0;
+    Gfx**                 temp_a2;
+    s32                   pad2;
+    s16                   phi_v0_2;
+    s32                   phi_v0;
     EnDoor* this = (EnDoor*)thisx;
 
     if (limbIndex == 4) {

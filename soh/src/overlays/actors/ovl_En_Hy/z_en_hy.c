@@ -76,8 +76,8 @@ static void* sEyeTexturesBOJ2[] = { object_boj_Tex_0005FC, object_boj_Tex_0006FC
 static void* sEyeTexturesBOB[] = { object_bob_Tex_0007C8, object_bob_Tex_000FC8, object_bob_Tex_0017C8, NULL };
 
 typedef struct {
-    /* 0x00 */ s16 objectId;
-    /* 0x04 */ Gfx* headDList;
+    /* 0x00 */ s16    objectId;
+    /* 0x04 */ Gfx*   headDList;
     /* 0x08 */ void** eyeTextures;
 } EnHyHeadInfo; // size = 0xC
 
@@ -120,7 +120,7 @@ static EnHyHeadInfo sHeadInfo[] = {
 };
 
 typedef struct {
-    /* 0x00 */ s16 objectId;
+    /* 0x00 */ s16                 objectId;
     /* 0x04 */ FlexSkeletonHeader* skeleton;
 } EnHySkeletonInfo; // size = 0x8
 
@@ -207,13 +207,13 @@ static AnimationInfo sAnimationInfo[] = {
 };
 
 typedef struct {
-    /* 0x00 */ u8 headInfoIndex;  // EnHyHeadIndex
-    /* 0x01 */ u8 skelInfoIndex2; // EnHySkeletonIndex, see EnHy#objBankIndexSkel2
+    /* 0x00 */ u8          headInfoIndex;  // EnHyHeadIndex
+    /* 0x01 */ u8          skelInfoIndex2; // EnHySkeletonIndex, see EnHy#objBankIndexSkel2
     /* 0x02 */ Color_RGBA8 envColorSeg8;
-    /* 0x06 */ u8 skelInfoIndex1; // EnHySkeletonIndex, see EnHy#objBankIndexSkel1
+    /* 0x06 */ u8          skelInfoIndex1; // EnHySkeletonIndex, see EnHy#objBankIndexSkel1
     /* 0x07 */ Color_RGBA8 envColorSeg9;
-    /* 0x0B */ u8 animInfoIndex; // EnHyAnimationIndex
-} EnHyModelInfo;                 // size = 0xC
+    /* 0x0B */ u8          animInfoIndex; // EnHyAnimationIndex
+} EnHyModelInfo;                          // size = 0xC
 
 static EnHyModelInfo sModelInfo[] = {
     /* ENHY_TYPE_AOB */
@@ -262,8 +262,8 @@ static EnHyModelInfo sModelInfo[] = {
 
 typedef struct {
     /* 0x00 */ Vec3s offset;
-    /* 0x06 */ s16 radius;
-    /* 0x08 */ s16 height;
+    /* 0x06 */ s16   radius;
+    /* 0x08 */ s16   height;
 } EnHyColliderInfo; // size 0xA
 
 static EnHyColliderInfo sColliderInfo[] = {
@@ -291,7 +291,7 @@ static EnHyColliderInfo sColliderInfo[] = {
 };
 
 typedef struct {
-    /* 0x00 */ u8 unkPresetIndex;
+    /* 0x00 */ u8  unkPresetIndex;
     /* 0x04 */ f32 unkValueChild;
     /* 0x08 */ f32 unkValueAdult;
 } EnHyInit1Info; // size = 0xC
@@ -321,11 +321,11 @@ static EnHyInit1Info sInit1Info[] = {
 };
 
 typedef struct {
-    /* 0x00 */ f32 shadowScale;
+    /* 0x00 */ f32   shadowScale;
     /* 0x04 */ Vec3f modelOffset;
-    /* 0x10 */ f32 scale;
-    /* 0x14 */ s8 targetMode;
-    /* 0x18 */ f32 unkRange;
+    /* 0x10 */ f32   scale;
+    /* 0x14 */ s8    targetMode;
+    /* 0x18 */ f32   unkRange;
 } EnHyInit2Info; // size = 0x1C
 
 static EnHyInit2Info sInit2Info[] = {
@@ -483,7 +483,7 @@ u16 func_80A6F810(PlayState* play, Actor* thisx) {
                 return 0x5087;
             } else {
                 return (Flags_GetEventChkInf(EVENTCHKINF_ZELDA_FLED_HYRULE_CASTLE)) ? 0x704D
-                                                         : ((Flags_GetInfTable(INFTABLE_C7)) ? 0x7028 : 0x7027);
+                                                                                    : ((Flags_GetInfTable(INFTABLE_C7)) ? 0x7028 : 0x7027);
             }
         case ENHY_TYPE_CNE_8:
             if (Flags_GetEventChkInf(EVENTCHKINF_ZELDA_FLED_HYRULE_CASTLE)) {
@@ -498,7 +498,7 @@ u16 func_80A6F810(PlayState* play, Actor* thisx) {
                 return CHECK_QUEST_ITEM(QUEST_MEDALLION_SHADOW) ? 0x5080 : 0x507F;
             } else {
                 return (Flags_GetEventChkInf(EVENTCHKINF_ZELDA_FLED_HYRULE_CASTLE)) ? 0x7049
-                                                         : ((Flags_GetInfTable(INFTABLE_CA)) ? 0x7020 : 0x701F);
+                                                                                    : ((Flags_GetInfTable(INFTABLE_CA)) ? 0x7020 : 0x701F);
             }
         case ENHY_TYPE_BOJ_10:
             if (play->sceneNum == SCENE_IMPAS_HOUSE) {
@@ -507,11 +507,11 @@ u16 func_80A6F810(PlayState* play, Actor* thisx) {
                 return CHECK_QUEST_ITEM(QUEST_MEDALLION_SHADOW) ? 0x507C : 0x507B;
             } else {
                 return (Flags_GetEventChkInf(EVENTCHKINF_ZELDA_FLED_HYRULE_CASTLE)) ? 0x7046
-                                                         : ((Flags_GetInfTable(INFTABLE_CD)) ? 0x7019 : 0x7018);
+                                                                                    : ((Flags_GetInfTable(INFTABLE_CD)) ? 0x7019 : 0x7018);
             }
         case ENHY_TYPE_CNE_11:
             return (Flags_GetInfTable(INFTABLE_ENTERED_HYRULE_CASTLE)) ? ((Flags_GetInfTable(INFTABLE_CC)) ? 0x7014 : 0x70A4)
-                                                      : 0x7014;
+                                                                       : 0x7014;
         case ENHY_TYPE_BOJ_12:
             if (play->sceneNum == SCENE_KAKARIKO_VILLAGE) {
                 return !IS_DAY ? 0x5084 : 0x5083;
@@ -773,7 +773,7 @@ void func_80A70834(EnHy* this, PlayState* play) {
 
 void func_80A70978(EnHy* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 trackingMode;
+    s16     trackingMode;
 
     switch (this->actor.params & 0x7F) {
         case ENHY_TYPE_BOJ_3:
@@ -1124,9 +1124,9 @@ void EnHy_Update(Actor* thisx, PlayState* play) {
 
 s32 EnHy_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx) {
     EnHy* this = (EnHy*)thisx;
-    s32 pad;
-    Vec3s sp48;
-    u8 i;
+    s32     pad;
+    Vec3s   sp48;
+    u8      i;
     UNK_PTR ptr;
 
     OPEN_DISPS(play->state.gfxCtx);
@@ -1171,7 +1171,7 @@ s32 EnHy_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* po
 
 void EnHy_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void* thisx) {
     EnHy* this = (EnHy*)thisx;
-    s32 pad;
+    s32   pad;
     Vec3f sp3C = { 400.0f, 0.0f, 0.0f };
 
     OPEN_DISPS(play->state.gfxCtx);

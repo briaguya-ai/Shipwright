@@ -50,7 +50,7 @@ void EndTitle_Update(Actor* thisx, PlayState* play) {
 void EndTitle_DrawFull(Actor* thisx, PlayState* play) {
     MtxF* mf;
     EndTitle* this = (EndTitle*)thisx;
-    s32 frameCount = play->csCtx.frames;
+    s32     frameCount = play->csCtx.frames;
     Player* player = GET_PLAYER(play);
 
     mf = &player->mf_9E0;

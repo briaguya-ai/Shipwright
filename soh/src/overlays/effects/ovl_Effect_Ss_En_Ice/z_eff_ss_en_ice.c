@@ -7,21 +7,21 @@
 #include "z_eff_ss_en_ice.h"
 #include "objects/gameplay_keep/gameplay_keep.h"
 
-#define rLifespan regs[0]
-#define rYaw regs[1]
-#define rPitch regs[2]
-#define rRotSpeed regs[3]
+#define rLifespan   regs[0]
+#define rYaw        regs[1]
+#define rPitch      regs[2]
+#define rRotSpeed   regs[3]
 #define rPrimColorR regs[4]
 #define rPrimColorG regs[5]
 #define rPrimColorB regs[6]
 #define rPrimColorA regs[7]
-#define rEnvColorR regs[8]
-#define rEnvColorG regs[9]
-#define rEnvColorB regs[10]
-#define rAlphaMode regs[11]
-#define rScale regs[12]
+#define rEnvColorR  regs[8]
+#define rEnvColorG  regs[9]
+#define rEnvColorB  regs[10]
+#define rAlphaMode  regs[11]
+#define rScale      regs[12]
 
-u32 EffectSsEnIce_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsEnIce_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsEnIce_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsEnIce_Update(PlayState* play, u32 index, EffectSs* this);
 void EffectSsEnIce_UpdateFlying(PlayState* play, u32 index, EffectSs* this);
@@ -87,11 +87,11 @@ u32 EffectSsEnIce_Init(PlayState* play, u32 index, EffectSs* this, void* initPar
 
 void EffectSsEnIce_Draw(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s32 pad;
-    f32 scale;
-    Vec3f hiliteLightDir;
-    u32 gameplayFrames;
-    f32 alpha;
+    s32              pad;
+    f32              scale;
+    Vec3f            hiliteLightDir;
+    u32              gameplayFrames;
+    f32              alpha;
 
     scale = this->rScale * 0.01f;
     gameplayFrames = play->gameplayFrames;

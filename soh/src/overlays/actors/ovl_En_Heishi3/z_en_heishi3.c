@@ -110,9 +110,9 @@ void EnHeishi3_SetupGuardType(EnHeishi3* this, PlayState* play) {
  **/
 void EnHeishi3_StandSentinelInGrounds(EnHeishi3* this, PlayState* play) {
     Player* player;
-    s16 yawDiff;
-    s16 yawDiffNew;
-    f32 sightRange;
+    s16     yawDiff;
+    s16     yawDiffNew;
+    f32     sightRange;
 
     player = GET_PLAYER(play);
     SkelAnime_Update(&this->skelAnime);

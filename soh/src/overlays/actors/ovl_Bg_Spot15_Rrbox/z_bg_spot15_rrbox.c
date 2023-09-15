@@ -51,14 +51,17 @@ static Vec3f D_808B45C4[] = {
 };
 
 static Vec3f D_808B45DC[] = {
-    { 29.99f, 0.01f, -29.99f }, { -29.99f, 0.01f, -29.99f }, { -29.99f, 0.01f, 29.99f },
-    { 29.99f, 0.01f, 29.99f },  { 0.0f, 0.01f, 0.0f },
+    { 29.99f, 0.01f, -29.99f },
+    { -29.99f, 0.01f, -29.99f },
+    { -29.99f, 0.01f, 29.99f },
+    { 29.99f, 0.01f, 29.99f },
+    { 0.0f, 0.01f, 0.0f },
 };
 
 void func_808B3960(BgSpot15Rrbox* this, PlayState* play, CollisionHeader* collision, s32 flags) {
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
-    u32 pad2;
+    u32              pad2;
 
     DynaPolyActor_Init(&this->dyna, flags);
     CollisionHeader_GetVirtual(collision, &colHeader);
@@ -93,7 +96,7 @@ s32 func_808B3A40(BgSpot15Rrbox* this, PlayState* play) {
 }
 
 s32 func_808B3AAC(BgSpot15Rrbox* this, PlayState* play) {
-    s16 rotY;
+    s16    rotY;
     Actor* actor = &this->dyna.actor;
 
     if (play->sceneNum == SCENE_LON_LON_BUILDINGS) {
@@ -142,7 +145,7 @@ void BgSpot15Rrbox_Destroy(Actor* thisx, PlayState* play) {
 }
 
 s32 func_808B3CA0(BgSpot15Rrbox* this, PlayState* play, s32 arg2) {
-    f32 chkDist = 0.0f;
+    f32   chkDist = 0.0f;
     Vec3f actorPosition;
     Vec3f actorScale;
 
@@ -169,13 +172,13 @@ s32 func_808B3CA0(BgSpot15Rrbox* this, PlayState* play, s32 arg2) {
 }
 
 f32 func_808B3DDC(BgSpot15Rrbox* this, PlayState* play) {
-    s32 i;
-    Vec3f position;
-    Vec3f scale;
+    s32    i;
+    Vec3f  position;
+    Vec3f  scale;
     Actor* actor = &this->dyna.actor;
-    f32 yIntersect;
-    f32 returnValue = BGCHECK_Y_MIN;
-    s32 bgId;
+    f32    yIntersect;
+    f32    returnValue = BGCHECK_Y_MIN;
+    s32    bgId;
 
     func_808B3A34(this);
     for (i = 0; i < ARRAY_COUNT(D_808B45DC); i++) {
@@ -254,11 +257,11 @@ void func_808B4178(BgSpot15Rrbox* this, PlayState* play) {
 }
 
 void func_808B4194(BgSpot15Rrbox* this, PlayState* play) {
-    f32 sign;
+    f32     sign;
     Player* player = GET_PLAYER(play);
-    f32 tempUnk178;
-    s32 approxFResult;
-    Actor* actor = &this->dyna.actor;
+    f32     tempUnk178;
+    s32     approxFResult;
+    Actor*  actor = &this->dyna.actor;
 
     this->unk_174 = this->unk_174 + ((CVarGetInteger("gFasterBlockPush", 0) / 2) * 0.5) + 0.5f;
 
@@ -310,9 +313,9 @@ void func_808B4380(BgSpot15Rrbox* this, PlayState* play) {
 }
 
 void func_808B43D0(BgSpot15Rrbox* this, PlayState* play) {
-    f32 floorHeight;
+    f32     floorHeight;
     Player* player = GET_PLAYER(play);
-    Actor* actor = &this->dyna.actor;
+    Actor*  actor = &this->dyna.actor;
 
     if (fabsf(this->dyna.unk_150) > 0.001f) {
         this->dyna.unk_150 = 0.0f;

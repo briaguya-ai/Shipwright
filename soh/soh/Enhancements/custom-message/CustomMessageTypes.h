@@ -51,8 +51,8 @@ typedef enum {
 #ifdef __cplusplus
 
 typedef struct {
-    u16 giid;
-    ItemID iid;
+    u16         giid;
+    ItemID      iid;
     std::string english;
     std::string german;
     std::string french;
@@ -65,6 +65,6 @@ typedef struct {
     { giid, iid, message, message, message }
 
 #define GIMESSAGE_NO_GERMAN(giid, iid, english, french) \
-    { giid, iid, english, english, french  }
+    { giid, iid, english, english, french }
 
 #endif

@@ -70,7 +70,7 @@ static f32 sSideAngles[] = { M_PI / 2, -M_PI / 2, 0.0f, M_PI };
 
 void BgGanonOtyuka_Init(Actor* thisx, PlayState* play2) {
     BgGanonOtyuka* this = (BgGanonOtyuka*)thisx;
-    PlayState* play = play2;
+    PlayState*       play = play2;
     CollisionHeader* colHeader = NULL;
 
     Actor_ProcessInitChain(thisx, sInitChain);
@@ -98,14 +98,14 @@ void BgGanonOtyuka_Destroy(Actor* thisx, PlayState* play2) {
 }
 
 void BgGanonOtyuka_WaitToFall(BgGanonOtyuka* this, PlayState* play) {
-    Actor* thisx = &this->dyna.actor;
-    Actor* prop;
+    Actor*         thisx = &this->dyna.actor;
+    Actor*         prop;
     BgGanonOtyuka* platform;
-    f32 dx;
-    f32 dy;
-    f32 dz;
-    Vec3f center;
-    s16 i;
+    f32            dx;
+    f32            dy;
+    f32            dz;
+    Vec3f          center;
+    s16            i;
 
     if (this->isFalling || ((play->actorCtx.unk_02 != 0) && (this->dyna.actor.xyzDistToPlayerSq < 4900.0f))) {
         osSyncPrintf("OTC O 1\n");
@@ -162,10 +162,10 @@ void BgGanonOtyuka_WaitToFall(BgGanonOtyuka* this, PlayState* play) {
 
 void BgGanonOtyuka_Fall(BgGanonOtyuka* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 i;
-    Vec3f pos;
-    Vec3f velocity;
-    Vec3f accel;
+    s16     i;
+    Vec3f   pos;
+    Vec3f   velocity;
+    Vec3f   accel;
 
     osSyncPrintf("MODE DOWN\n");
     if (this->flashState == FLASH_GROW) {
@@ -248,14 +248,14 @@ void BgGanonOtyuka_Update(Actor* thisx, PlayState* play) {
 
 void BgGanonOtyuka_Draw(Actor* thisx, PlayState* play) {
     BgGanonOtyuka* this = (BgGanonOtyuka*)thisx;
-    s16 i;
-    Gfx* phi_s2;
-    Gfx* phi_s1;
-    Camera* camera = Play_GetCamera(play, 0);
-    Actor* actor;
+    s16            i;
+    Gfx*           phi_s2;
+    Gfx*           phi_s1;
+    Camera*        camera = Play_GetCamera(play, 0);
+    Actor*         actor;
     BgGanonOtyuka* platform;
-    BossGanon* ganondorf;
-    f32 spBC = -30.0f;
+    BossGanon*     ganondorf;
+    f32            spBC = -30.0f;
 
     OPEN_DISPS(play->state.gfxCtx);
 

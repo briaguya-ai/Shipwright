@@ -191,10 +191,10 @@ s32 func_808B4D9C(BgSpot16Bombstone* this, PlayState* play) {
 
 s32 func_808B4E58(BgSpot16Bombstone* this, PlayState* play) {
     Actor* actor = &this->actor;
-    f32 scaleFactor = 1.0f / 600.0f;
-    f32 sinCosPosFactor = 50.0f;
-    f32 sinValue;
-    f32 cosValue;
+    f32    scaleFactor = 1.0f / 600.0f;
+    f32    sinCosPosFactor = 50.0f;
+    f32    sinValue;
+    f32    cosValue;
 
     Actor_ProcessInitChain(actor, sInitChainDebris);
 
@@ -277,8 +277,8 @@ void BgSpot16Bombstone_Destroy(Actor* thisx, PlayState* play) {
 }
 
 void BgSpot16Bombstone_SpawnDust(BgSpot16Bombstone* this, PlayState* play) {
-    f32 scaleX1 = this->actor.scale.x * 150;
-    s16 scaleX2 = this->actor.scale.x * 250;
+    f32   scaleX1 = this->actor.scale.x * 150;
+    s16   scaleX2 = this->actor.scale.x * 250;
     Vec3f world;
 
     world.x = this->actor.world.pos.x;
@@ -289,10 +289,10 @@ void BgSpot16Bombstone_SpawnDust(BgSpot16Bombstone* this, PlayState* play) {
 }
 
 void func_808B5240(BgSpot16Bombstone* this, PlayState* play) {
-    f32 tempUnk6;
-    f32 tempUnk2;
-    s16 index;
-    Vec3f position;
+    f32    tempUnk6;
+    f32    tempUnk2;
+    s16    index;
+    Vec3f  position;
     Vec3f* actorPosition = &this->actor.world.pos;
 
     while (true) {
@@ -317,11 +317,11 @@ void func_808B5240(BgSpot16Bombstone* this, PlayState* play) {
 }
 
 void BgSpot16Bombstone_SpawnFragments(BgSpot16Bombstone* this, PlayState* play) {
-    f32 velocityYMultiplier = 1.3f;
+    f32   velocityYMultiplier = 1.3f;
     Vec3f pos;
     Vec3f velocity;
-    s32 index;
-    s16 scale;
+    s32   index;
+    s16   scale;
 
     if (this->actor.params == 0) {
         Actor_Spawn(&play->actorCtx, play, ACTOR_BG_SPOT16_BOMBSTONE, this->actor.world.pos.x,
@@ -351,7 +351,7 @@ void BgSpot16Bombstone_SpawnFragments(BgSpot16Bombstone* this, PlayState* play) 
 }
 
 void func_808B561C(BgSpot16Bombstone* this, PlayState* play) {
-    s32 index;
+    s32     index;
     PosRot* world;
 
     world = &this->actor.world;
@@ -365,10 +365,10 @@ void func_808B561C(BgSpot16Bombstone* this, PlayState* play) {
 
 void func_808B56BC(BgSpot16Bombstone* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 sinValue;
-    s16 adjustedYawDiff;
-    s32 yawDiff;
-    s32 absYawDiff;
+    f32     sinValue;
+    s16     adjustedYawDiff;
+    s32     yawDiff;
+    s32     absYawDiff;
 
     if (this->actor.xzDistToPlayer < 130.0f && this->actor.yDistToPlayer < 160.0f &&
         this->actor.yDistToPlayer >= -10.0f) {
@@ -392,8 +392,8 @@ void func_808B56BC(BgSpot16Bombstone* this, PlayState* play) {
 }
 
 void func_808B57E0(BgSpot16Bombstone* this, PlayState* play) {
-    Actor* playerHeldActor;
-    Player* player = GET_PLAYER(play);
+    Actor*   playerHeldActor;
+    Player*  player = GET_PLAYER(play);
     EnBombf* currentBomb;
 
     if (sTimer > 0) {

@@ -26,15 +26,23 @@
 #endif
 
 #if defined(__aarch64__) && defined(__ARM_FEATURE_CRC32)
-#define INTRIN_CRC32_64(crc, value) __asm__("crc32cx %w[c], %w[c], %x[v]" : [c] "+r"(crc) : [v] "r"(value))
-#define INTRIN_CRC32_32(crc, value) __asm__("crc32cw %w[c], %w[c], %w[v]" : [c] "+r"(crc) : [v] "r"(value))
-#define INTRIN_CRC32_16(crc, value) __asm__("crc32ch %w[c], %w[c], %w[v]" : [c] "+r"(crc) : [v] "r"(value))
-#define INTRIN_CRC32_8(crc, value) __asm__("crc32cb %w[c], %w[c], %w[v]" : [c] "+r"(crc) : [v] "r"(value))
+#define INTRIN_CRC32_64(crc, value) __asm__("crc32cx %w[c], %w[c], %x[v]" \
+                                            : [c] "+r"(crc)               \
+                                            : [v] "r"(value))
+#define INTRIN_CRC32_32(crc, value) __asm__("crc32cw %w[c], %w[c], %w[v]" \
+                                            : [c] "+r"(crc)               \
+                                            : [v] "r"(value))
+#define INTRIN_CRC32_16(crc, value) __asm__("crc32ch %w[c], %w[c], %w[v]" \
+                                            : [c] "+r"(crc)               \
+                                            : [v] "r"(value))
+#define INTRIN_CRC32_8(crc, value) __asm__("crc32cb %w[c], %w[c], %w[v]" \
+                                           : [c] "+r"(crc)               \
+                                           : [v] "r"(value))
 #elif defined(__GNUC__) || defined(_MSC_VER)
 #define INTRIN_CRC32_64(crc, data) crc = _mm_crc32_u64(crc, data)
 #define INTRIN_CRC32_32(crc, data) crc = _mm_crc32_u32(crc, data)
 #define INTRIN_CRC32_16(crc, data) crc = _mm_crc32_u16(crc, data)
-#define INTRIN_CRC32_8(crc, data) crc = _mm_crc32_u8(crc, data)
+#define INTRIN_CRC32_8(crc, data)  crc = _mm_crc32_u8(crc, data)
 #endif
 
 static const uint32_t crc32Table[256] = {
@@ -73,7 +81,7 @@ static const uint32_t crc32Table[256] = {
 
 static uint32_t CRC32IntrinImpl(unsigned char* data, size_t dataSize) {
     uint32_t ret = 0xFFFFFFFF;
-    int64_t sizeSigned = dataSize;
+    int64_t  sizeSigned = dataSize;
 // Only 64bit platforms support doing a CRC32 operation on a 64bit value
 #if defined(_M_X64) || defined(__x86_64__) || defined(__aarch64__)
     while ((sizeSigned -= sizeof(uint64_t)) >= 0) {
@@ -108,7 +116,7 @@ static uint32_t CRC32IntrinImpl(unsigned char* data, size_t dataSize) {
 
 static uint32_t CRC32TableImpl(unsigned char* data, size_t dataSize) {
     const uint8_t* p = data;
-    uint32_t crc = 0xFFFFFFFF;
+    uint32_t       crc = 0xFFFFFFFF;
 
     while (dataSize--)
         crc = crc32Table[(crc ^ *p++) & 0xff] ^ (crc >> 8);
@@ -123,7 +131,7 @@ uint32_t CRC32C(unsigned char* data, size_t dataSize) {
 #ifdef _WIN32
     __cpuid(cpuidData, 1);
 #elif __APPLE__ || (defined(__aarch64__) && defined(__ARM_FEATURE_CRC32))
-// Every Mac that supports SoH should support this instruction. Also check for ARM64 at the same time
+    // Every Mac that supports SoH should support this instruction. Also check for ARM64 at the same time
     return CRC32IntrinImpl(data, dataSize);
 #else
     __get_cpuid(1, &cpuidData[0], &cpuidData[1], &cpuidData[2], &cpuidData[3]);

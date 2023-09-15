@@ -25,7 +25,7 @@ void EnDodongo_Draw(Actor* thisx, PlayState* play);
 
 void EnDodongo_SetupDeath(EnDodongo* this, PlayState* play);
 void EnDodongo_ShiftVecRadial(s16 yaw, f32 radius, Vec3f* vec);
-s32 EnDodongo_AteBomb(EnDodongo* this, PlayState* play);
+s32  EnDodongo_AteBomb(EnDodongo* this, PlayState* play);
 void EnDodongo_SetupIdle(EnDodongo* this);
 
 void EnDodongo_Idle(EnDodongo* this, PlayState* play);
@@ -241,13 +241,13 @@ void EnDodongo_SetupAction(EnDodongo* this, EnDodongoActionFunc actionFunc) {
 }
 
 void EnDodongo_SpawnBombSmoke(EnDodongo* this, PlayState* play) {
-    s32 pad;
+    s32   pad;
     Vec3f velocity = { 0.0f, 0.0f, 0.0f };
     Vec3f accel = { 0.0f, 0.3f, 0.0f };
     Vec3f pos = this->headPos;
-    s16 randAngle = Rand_CenteredFloat(0x4000);
-    f32 randCos;
-    f32 randSin;
+    s16   randAngle = Rand_CenteredFloat(0x4000);
+    f32   randCos;
+    f32   randSin;
 
     randCos = Math_CosS(this->actor.shape.rot.y + randAngle);
     randSin = Math_SinS(this->actor.shape.rot.y + randAngle);
@@ -425,12 +425,12 @@ void EnDodongo_EndBreatheFire(EnDodongo* this, PlayState* play) {
 }
 
 void EnDodongo_BreatheFire(EnDodongo* this, PlayState* play) {
-    s32 pad;
+    s32   pad;
     Vec3f velocity = { 0.0f, 0.0f, 0.0f };
     Vec3f accel = { 0.0f, 0.0f, 0.0f };
     Vec3f pos;
-    s16 pad2;
-    s16 fireFrame;
+    s16   pad2;
+    s16   fireFrame;
 
     if ((s32)this->skelAnime.curFrame == 24) {
         Audio_PlayActorSound2(&this->actor, NA_SE_EN_DODO_J_CRY);
@@ -452,14 +452,14 @@ void EnDodongo_BreatheFire(EnDodongo* this, PlayState* play) {
 }
 
 void EnDodongo_SwallowBomb(EnDodongo* this, PlayState* play) {
-    Vec3f smokeVel = { 0.0f, 0.0f, 0.0f };
-    Vec3f smokeAccel = { 0.0f, 0.6f, 0.0f };
+    Vec3f       smokeVel = { 0.0f, 0.0f, 0.0f };
+    Vec3f       smokeAccel = { 0.0f, 0.6f, 0.0f };
     Color_RGBA8 white = { 255, 255, 255, 255 };
-    Vec3f deathFireVel = { 0.0f, 0.0f, 0.0f };
-    Vec3f deathFireAccel = { 0.0f, 1.0f, 0.0f };
-    s16 i;
-    Vec3f pos;
-    s32 pad;
+    Vec3f       deathFireVel = { 0.0f, 0.0f, 0.0f };
+    Vec3f       deathFireAccel = { 0.0f, 1.0f, 0.0f };
+    s16         i;
+    Vec3f       pos;
+    s32         pad;
 
     if (this->actor.child != NULL) {
         this->actor.child->world.pos = this->mouthPos;
@@ -528,10 +528,10 @@ void EnDodongo_SwallowBomb(EnDodongo* this, PlayState* play) {
 }
 
 void EnDodongo_Walk(EnDodongo* this, PlayState* play) {
-    s32 pad;
-    f32 playbackSpeed;
+    s32     pad;
+    f32     playbackSpeed;
     Player* player = GET_PLAYER(play);
-    s16 yawDiff = (s16)(this->actor.yawTowardsPlayer - this->actor.shape.rot.y);
+    s16     yawDiff = (s16)(this->actor.yawTowardsPlayer - this->actor.shape.rot.y);
 
     yawDiff = ABS(yawDiff);
 
@@ -618,7 +618,7 @@ void EnDodongo_SweepTail(EnDodongo* this, PlayState* play) {
             EnDodongo_SetupBreatheFire(this);
             this->timer = Rand_S16Offset(5, 10);
         } else {
-            s16 yawDiff2 = this->actor.yawTowardsPlayer - this->actor.shape.rot.y;
+            s16              yawDiff2 = this->actor.yawTowardsPlayer - this->actor.shape.rot.y;
             AnimationHeader* animation;
 
             this->tailSwipeSpeed = (0xFFFF - ABS(yawDiff2)) / 0xF;
@@ -746,12 +746,12 @@ void EnDodongo_UpdateQuad(EnDodongo* this, PlayState* play) {
     Vec3f sp88 = { -1000.0f, -200.0f, 1500.0f };
     Vec3f sp7C = { -1000.0f, -200.0f, -1500.0f };
     Vec3f sp70 = { 0.0f, 0.0f, 0.0f };
-    s32 pad4C[9]; // Possibly 3 more Vec3fs?
-    s32 a = 0;
-    s32 b = 1; // These indices are needed to match.
-    s32 c = 2; // Might be a way to quickly test vertex arrangements
-    s32 d = 3;
-    f32 xMod = Math_SinF((this->skelAnime.curFrame - 28.0f) * 0.08f) * 5500.0f;
+    s32   pad4C[9]; // Possibly 3 more Vec3fs?
+    s32   a = 0;
+    s32   b = 1; // These indices are needed to match.
+    s32   c = 2; // Might be a way to quickly test vertex arrangements
+    s32   d = 3;
+    f32   xMod = Math_SinF((this->skelAnime.curFrame - 28.0f) * 0.08f) * 5500.0f;
 
     sp7C.x -= xMod;
     sp94.x -= xMod;
@@ -817,7 +817,7 @@ void EnDodongo_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* 
     };
     Vec3f tailTipOffset = { 3000.0f, 0.0f, 0.0f };
     Vec3f baseOffset = { 0.0f, 0.0f, 0.0f };
-    s32 i;
+    s32   i;
     Vec3f hardTris0Vtx[3];
     Vec3f hardTris1Vtx[3];
     Vec3f hardTris2Vtx[3];
@@ -944,9 +944,9 @@ void EnDodongo_ShiftVecRadial(s16 yaw, f32 radius, Vec3f* vec) {
 
 s32 EnDodongo_AteBomb(EnDodongo* this, PlayState* play) {
     Actor* actor = play->actorCtx.actorLists[ACTORCAT_EXPLOSIVE].head;
-    f32 dx;
-    f32 dy;
-    f32 dz;
+    f32    dx;
+    f32    dy;
+    f32    dz;
 
     while (actor != NULL) {
         if ((actor->params != 0) || (actor->parent != NULL)) {

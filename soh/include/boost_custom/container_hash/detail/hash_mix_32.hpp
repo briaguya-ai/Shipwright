@@ -7,10 +7,8 @@
 #include <cstddef>
 #include <climits>
 
-namespace boost
-{
-namespace hash_detail
-{
+namespace boost {
+namespace hash_detail {
 
 // clang-format off
 // not sure how to get this to play nice, it wants to change it so
@@ -41,9 +39,8 @@ template<> struct hash_mix_impl_32<32>
 };
 // clang-format on
 
-inline uint32_t hash_mix_32( uint32_t v )
-{
-    return hash_mix_impl_32<32>::fn( v );
+inline uint32_t hash_mix_32(uint32_t v) {
+    return hash_mix_impl_32<32>::fn(v);
 }
 
 } // namespace hash_detail

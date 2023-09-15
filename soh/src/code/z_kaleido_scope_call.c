@@ -3,8 +3,8 @@
 
 void (*sKaleidoScopeUpdateFunc)(PlayState* play);
 void (*sKaleidoScopeDrawFunc)(PlayState* play);
-f32 gBossMarkScale;
-u32 D_8016139C;
+f32                gBossMarkScale;
+u32                D_8016139C;
 PauseMapMarksData* gLoadedPauseMarkDataTable;
 
 extern void KaleidoScope_Update(PlayState* play);
@@ -54,7 +54,7 @@ void KaleidoScopeCall_Destroy(PlayState* play) {
 
 void KaleidoScopeCall_Update(PlayState* play) {
     KaleidoMgrOverlay* kaleidoScopeOvl = &gKaleidoMgrOverlayTable[KALEIDO_OVL_KALEIDO_SCOPE];
-    PauseContext* pauseCtx = &play->pauseCtx;
+    PauseContext*      pauseCtx = &play->pauseCtx;
 
     if (!gSaveContext.sohStats.gameComplete &&
         (!gSaveContext.isBossRush || !gSaveContext.isBossRushPaused)) {
@@ -86,8 +86,7 @@ void KaleidoScopeCall_Update(PlayState* play) {
                 pauseCtx->state++;
             }
         } else if (pauseCtx->state != 0) {
-            if (gKaleidoMgrCurOvl != kaleidoScopeOvl) 
-            {
+            if (gKaleidoMgrCurOvl != kaleidoScopeOvl) {
                 if (gKaleidoMgrCurOvl != NULL) {
                     osSyncPrintf(VT_FGCOL(GREEN));
                     // "Kaleido area Player Forced Elimination"
@@ -105,8 +104,7 @@ void KaleidoScopeCall_Update(PlayState* play) {
                 KaleidoManager_LoadOvl(kaleidoScopeOvl);
             }
 
-            if (gKaleidoMgrCurOvl == kaleidoScopeOvl) 
-            {
+            if (gKaleidoMgrCurOvl == kaleidoScopeOvl) {
                 sKaleidoScopeUpdateFunc(play);
 
                 if ((play->pauseCtx.state == 0) && (play->pauseCtx.debugState == 0)) {
@@ -129,8 +127,7 @@ void KaleidoScopeCall_Draw(PlayState* play) {
     if (R_PAUSE_MENU_MODE >= 3) {
         if (((play->pauseCtx.state >= 4) && (play->pauseCtx.state <= 7)) ||
             ((play->pauseCtx.state >= 11) && (play->pauseCtx.state <= 18))) {
-            if (gKaleidoMgrCurOvl == kaleidoScopeOvl) 
-            {
+            if (gKaleidoMgrCurOvl == kaleidoScopeOvl) {
                 sKaleidoScopeDrawFunc(play);
             }
         }

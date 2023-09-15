@@ -24,7 +24,14 @@ const ActorInit En_Torch_InitVars = {
 };
 
 static u8 sChestContents[] = {
-    GI_RUPEE_BLUE, GI_RUPEE_RED, GI_RUPEE_GOLD, GI_BOMBS_20, GI_BOMBS_1, GI_BOMBS_1, GI_BOMBS_1, GI_BOMBS_1,
+    GI_RUPEE_BLUE,
+    GI_RUPEE_RED,
+    GI_RUPEE_GOLD,
+    GI_BOMBS_20,
+    GI_BOMBS_1,
+    GI_BOMBS_1,
+    GI_BOMBS_1,
+    GI_BOMBS_1,
 };
 
 void EnTorch_Init(Actor* thisx, PlayState* play) {

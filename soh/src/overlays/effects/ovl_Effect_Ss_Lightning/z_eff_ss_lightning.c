@@ -11,16 +11,16 @@
 #define rPrimColorG regs[1]
 #define rPrimColorB regs[2]
 #define rPrimColorA regs[3]
-#define rEnvColorR regs[4]
-#define rEnvColorG regs[5]
-#define rEnvColorB regs[6]
-#define rEnvColorA regs[7]
-#define rNumBolts regs[8]
-#define rScale regs[9]
-#define rYaw regs[10]
-#define rLifespan regs[11]
+#define rEnvColorR  regs[4]
+#define rEnvColorG  regs[5]
+#define rEnvColorB  regs[6]
+#define rEnvColorA  regs[7]
+#define rNumBolts   regs[8]
+#define rScale      regs[9]
+#define rYaw        regs[10]
+#define rLifespan   regs[11]
 
-u32 EffectSsLightning_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsLightning_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsLightning_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsLightning_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -68,20 +68,26 @@ void EffectSsLightning_NewLightning(PlayState* play, Vec3f* pos, s16 yaw, Effect
 
 void EffectSsLightning_Draw(PlayState* play, u32 index, EffectSs* this) {
     static void* lightningTextures[] = {
-        gEffLightning1Tex, gEffLightning2Tex, gEffLightning3Tex, gEffLightning4Tex,
-        gEffLightning5Tex, gEffLightning6Tex, gEffLightning7Tex, gEffLightning8Tex,
+        gEffLightning1Tex,
+        gEffLightning2Tex,
+        gEffLightning3Tex,
+        gEffLightning4Tex,
+        gEffLightning5Tex,
+        gEffLightning6Tex,
+        gEffLightning7Tex,
+        gEffLightning8Tex,
     };
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    MtxF mfResult;
-    MtxF mfTrans;
-    MtxF mfScale;
-    MtxF mfRotate;
-    MtxF mfTrans11DA0;
-    MtxF mfTrans11DA0Rotate;
-    Mtx* mtx;
-    f32 yScale;
-    s16 texIdx;
-    f32 xzScale;
+    MtxF             mfResult;
+    MtxF             mfTrans;
+    MtxF             mfScale;
+    MtxF             mfRotate;
+    MtxF             mfTrans11DA0;
+    MtxF             mfTrans11DA0Rotate;
+    Mtx*             mtx;
+    f32              yScale;
+    s16              texIdx;
+    f32              xzScale;
 
     OPEN_DISPS(gfxCtx);
 
@@ -118,10 +124,10 @@ void EffectSsLightning_Draw(PlayState* play, u32 index, EffectSs* this) {
 }
 
 void EffectSsLightning_Update(PlayState* play, u32 index, EffectSs* this) {
-    s32 pad;
+    s32   pad;
     Vec3f pos;
-    s16 yaw;
-    f32 scale;
+    s16   yaw;
+    f32   scale;
 
     if ((this->rNumBolts != 0) && ((this->life + 1) == this->rLifespan)) {
 

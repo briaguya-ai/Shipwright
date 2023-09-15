@@ -7,33 +7,72 @@
 #include "z_eff_ss_hitmark.h"
 #include "objects/gameplay_keep/gameplay_keep.h"
 
-#define rTexIdx regs[0]
-#define rType regs[1]
+#define rTexIdx     regs[0]
+#define rType       regs[1]
 #define rPrimColorR regs[2]
 #define rPrimColorG regs[3]
 #define rPrimColorB regs[4]
-#define rEnvColorR regs[5]
-#define rEnvColorG regs[6]
-#define rEnvColorB regs[7]
-#define rScale regs[8]
+#define rEnvColorR  regs[5]
+#define rEnvColorG  regs[6]
+#define rEnvColorB  regs[7]
+#define rScale      regs[8]
 
-u32 EffectSsHitMark_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsHitMark_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsHitMark_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsHitMark_Update(PlayState* play, u32 index, EffectSs* this);
 
 static Color_RGB8 sColors[] = {
-    { 255, 255, 255 }, { 255, 255, 0 }, { 255, 255, 255 }, { 255, 0, 0 },   { 255, 200, 100 }, { 200, 150, 0 },
-    { 150, 100, 0 },   { 100, 50, 0 },  { 255, 255, 255 }, { 255, 0, 0 },   { 255, 255, 0 },   { 255, 0, 0 },
-    { 255, 255, 255 }, { 0, 255, 200 }, { 255, 255, 255 }, { 150, 0, 255 },
+    { 255, 255, 255 },
+    { 255, 255, 0 },
+    { 255, 255, 255 },
+    { 255, 0, 0 },
+    { 255, 200, 100 },
+    { 200, 150, 0 },
+    { 150, 100, 0 },
+    { 100, 50, 0 },
+    { 255, 255, 255 },
+    { 255, 0, 0 },
+    { 255, 255, 0 },
+    { 255, 0, 0 },
+    { 255, 255, 255 },
+    { 0, 255, 200 },
+    { 255, 255, 255 },
+    { 150, 0, 255 },
 };
 
 static void* sTextures[] = {
-    gEffHitMark1Tex,  gEffHitMark2Tex,  gEffHitMark3Tex,  gEffHitMark4Tex,  gEffHitMark5Tex,  gEffHitMark6Tex,
-    gEffHitMark7Tex,  gEffHitMark8Tex,  gEffHitMark9Tex,  gEffHitMark10Tex, gEffHitMark11Tex, gEffHitMark12Tex,
-    gEffHitMark13Tex, gEffHitMark14Tex, gEffHitMark15Tex, gEffHitMark16Tex, gEffHitMark17Tex, gEffHitMark18Tex,
-    gEffHitMark19Tex, gEffHitMark20Tex, gEffHitMark21Tex, gEffHitMark22Tex, gEffHitMark23Tex, gEffHitMark24Tex,
-    gEffHitMark1Tex,  gEffHitMark2Tex,  gEffHitMark3Tex,  gEffHitMark4Tex,  gEffHitMark5Tex,  gEffHitMark6Tex,
-    gEffHitMark7Tex,  gEffHitMark8Tex,
+    gEffHitMark1Tex,
+    gEffHitMark2Tex,
+    gEffHitMark3Tex,
+    gEffHitMark4Tex,
+    gEffHitMark5Tex,
+    gEffHitMark6Tex,
+    gEffHitMark7Tex,
+    gEffHitMark8Tex,
+    gEffHitMark9Tex,
+    gEffHitMark10Tex,
+    gEffHitMark11Tex,
+    gEffHitMark12Tex,
+    gEffHitMark13Tex,
+    gEffHitMark14Tex,
+    gEffHitMark15Tex,
+    gEffHitMark16Tex,
+    gEffHitMark17Tex,
+    gEffHitMark18Tex,
+    gEffHitMark19Tex,
+    gEffHitMark20Tex,
+    gEffHitMark21Tex,
+    gEffHitMark22Tex,
+    gEffHitMark23Tex,
+    gEffHitMark24Tex,
+    gEffHitMark1Tex,
+    gEffHitMark2Tex,
+    gEffHitMark3Tex,
+    gEffHitMark4Tex,
+    gEffHitMark5Tex,
+    gEffHitMark6Tex,
+    gEffHitMark7Tex,
+    gEffHitMark8Tex,
 };
 
 EffectSsInit Effect_Ss_HitMark_InitVars = {
@@ -42,7 +81,7 @@ EffectSsInit Effect_Ss_HitMark_InitVars = {
 };
 
 u32 EffectSsHitMark_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx) {
-    s32 colorIdx;
+    s32                        colorIdx;
     EffectSsHitMarkInitParams* initParams = (EffectSsHitMarkInitParams*)initParamsx;
     this->pos = initParams->pos;
     this->gfx = SEGMENTED_TO_VIRTUAL(gEffHitMarkDL);
@@ -71,13 +110,13 @@ u32 EffectSsHitMark_Init(PlayState* play, u32 index, EffectSs* this, void* initP
 
 void EffectSsHitMark_Draw(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    MtxF mfTrans;
-    MtxF mfScale;
-    MtxF mfResult;
-    MtxF mfTrans11DA0;
-    Mtx* mtx;
-    f32 scale;
-    s32 pad;
+    MtxF             mfTrans;
+    MtxF             mfScale;
+    MtxF             mfResult;
+    MtxF             mfTrans11DA0;
+    Mtx*             mtx;
+    f32              scale;
+    s32              pad;
 
     OPEN_DISPS(gfxCtx);
 

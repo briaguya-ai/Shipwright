@@ -9,14 +9,14 @@
 
 #undef MESSAGE_END
 
-#define QM_WHITE 0x00
-#define QM_RED 0x41
-#define QM_GREEN 0x42
-#define QM_BLUE 0x43
-#define QM_LBLUE 0x44
-#define QM_PINK 0x45
+#define QM_WHITE  0x00
+#define QM_RED    0x41
+#define QM_GREEN  0x42
+#define QM_BLUE   0x43
+#define QM_LBLUE  0x44
+#define QM_PINK   0x45
 #define QM_YELLOW 0x46
-#define QM_BLACK 0x47
+#define QM_BLACK  0x47
 
 /**
  * @brief Encapsulates logic surrounding languages, and formatting strings for OoT's textboxes and
@@ -30,17 +30,17 @@ class CustomMessage {
     CustomMessage(std::string english_, std::string german_, std::string french_,
                   TextBoxType type_ = TEXTBOX_TYPE_BLACK, TextBoxPosition position_ = TEXTBOX_POS_BOTTOM);
 
-    const std::string& GetEnglish() const;
-    const std::string& GetFrench() const;
-    const std::string& GetGerman() const;
-    const TextBoxType& GetTextBoxType() const;
+    const std::string&     GetEnglish() const;
+    const std::string&     GetFrench() const;
+    const std::string&     GetGerman() const;
+    const TextBoxType&     GetTextBoxType() const;
     const TextBoxPosition& GetTextBoxPosition() const;
 
     CustomMessage operator+(const CustomMessage& right) const;
     CustomMessage operator+(const std::string& right) const;
-    void operator+=(const std::string& right);
-    bool operator==(const CustomMessage& right) const;
-    bool operator!=(const CustomMessage& right) const;
+    void          operator+=(const std::string& right);
+    bool          operator==(const CustomMessage& right) const;
+    bool          operator!=(const CustomMessage& right) const;
 
     /**
      * @brief Finds an instance of oldStr in each language of the CustomMessage
@@ -104,10 +104,10 @@ class CustomMessage {
     const std::string WAIT_FOR_INPUT() const;
     const std::string PLAYER_NAME() const;
 
-    std::string english = "";
-    std::string french = "";
-    std::string german = "";
-    TextBoxType type = TEXTBOX_TYPE_BLACK;
+    std::string     english = "";
+    std::string     french = "";
+    std::string     german = "";
+    TextBoxType     type = TEXTBOX_TYPE_BLACK;
     TextBoxPosition position = TEXTBOX_POS_BOTTOM;
 };
 
@@ -192,7 +192,7 @@ class CustomMessageManager {
 class MessageNotFoundException : public std::exception {
   private:
     std::string messageTableId;
-    uint16_t textId;
+    uint16_t    textId;
 
   public:
     MessageNotFoundException(std::string messageTableId_, uint16_t textId_)

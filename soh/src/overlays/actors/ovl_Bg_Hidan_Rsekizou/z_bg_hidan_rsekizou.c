@@ -116,14 +116,20 @@ static InitChainEntry sInitChain[] = {
 };
 
 static void* sFireballsTexs[] = {
-    gFireTempleFireball0Tex, gFireTempleFireball1Tex, gFireTempleFireball2Tex, gFireTempleFireball3Tex,
-    gFireTempleFireball4Tex, gFireTempleFireball5Tex, gFireTempleFireball6Tex, gFireTempleFireball7Tex,
+    gFireTempleFireball0Tex,
+    gFireTempleFireball1Tex,
+    gFireTempleFireball2Tex,
+    gFireTempleFireball3Tex,
+    gFireTempleFireball4Tex,
+    gFireTempleFireball5Tex,
+    gFireTempleFireball6Tex,
+    gFireTempleFireball7Tex,
 };
 
 void BgHidanRsekizou_Init(Actor* thisx, PlayState* play) {
     BgHidanRsekizou* this = (BgHidanRsekizou*)thisx;
-    s32 i;
-    s32 pad;
+    s32              i;
+    s32              pad;
     CollisionHeader* colHeader;
 
     colHeader = NULL;
@@ -149,11 +155,11 @@ void BgHidanRsekizou_Destroy(Actor* thisx, PlayState* play) {
 
 void BgHidanRsekizou_Update(Actor* thisx, PlayState* play) {
     BgHidanRsekizou* this = (BgHidanRsekizou*)thisx;
-    s32 i;
+    s32                    i;
     ColliderJntSphElement* sphere;
-    s32 pad;
-    f32 yawSine;
-    f32 yawCosine;
+    s32                    pad;
+    f32                    yawSine;
+    f32                    yawCosine;
 
     this->burnFrame = (this->burnFrame + 1) % 8;
 
@@ -225,8 +231,8 @@ Gfx* BgHidanRsekizou_DrawFireball(PlayState* play, BgHidanRsekizou* this, s16 fr
 
 void BgHidanRsekizou_Draw(Actor* thisx, PlayState* play) {
     BgHidanRsekizou* this = (BgHidanRsekizou*)thisx;
-    s32 i;
-    s32 pad;
+    s32  i;
+    s32  pad;
     MtxF mf;
 
     OPEN_DISPS(play->state.gfxCtx);

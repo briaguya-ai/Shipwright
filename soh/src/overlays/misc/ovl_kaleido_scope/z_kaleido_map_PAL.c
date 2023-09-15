@@ -14,45 +14,78 @@ void KaleidoScope_DrawDungeonMap(PlayState* play, GraphicsContext* gfxCtx) {
         gQuestIconDungeonMapTex,
     };
     static void* dungeonTitleTexs[] = {
-        gPauseDekuTitleENGTex, gPauseDodongoTitleENGTex,   gPauseJabuTitleENGTex,   gPauseForestTitleENGTex,
-        gPauseFireTitleENGTex, gPauseWaterTitleENGTex,     gPauseSpiritTitleENGTex, gPauseShadowTitleENGTex,
-        gPauseBotWTitleENGTex, gPauseIceCavernTitleENGTex,
+        gPauseDekuTitleENGTex,
+        gPauseDodongoTitleENGTex,
+        gPauseJabuTitleENGTex,
+        gPauseForestTitleENGTex,
+        gPauseFireTitleENGTex,
+        gPauseWaterTitleENGTex,
+        gPauseSpiritTitleENGTex,
+        gPauseShadowTitleENGTex,
+        gPauseBotWTitleENGTex,
+        gPauseIceCavernTitleENGTex,
 
-        gPauseDekuTitleGERTex, gPauseDodongoTitleGERTex,   gPauseJabuTitleGERTex,   gPauseForestTitleGERTex,
-        gPauseFireTitleGERTex, gPauseWaterTitleGERTex,     gPauseSpiritTitleGERTex, gPauseShadowTitleGERTex,
-        gPauseBotWTitleGERTex, gPauseIceCavernTitleGERTex,
+        gPauseDekuTitleGERTex,
+        gPauseDodongoTitleGERTex,
+        gPauseJabuTitleGERTex,
+        gPauseForestTitleGERTex,
+        gPauseFireTitleGERTex,
+        gPauseWaterTitleGERTex,
+        gPauseSpiritTitleGERTex,
+        gPauseShadowTitleGERTex,
+        gPauseBotWTitleGERTex,
+        gPauseIceCavernTitleGERTex,
 
-        gPauseDekuTitleFRATex, gPauseDodongoTitleFRATex,   gPauseJabuTitleFRATex,   gPauseForestTitleFRATex,
-        gPauseFireTitleFRATex, gPauseWaterTitleFRATex,     gPauseSpiritTitleFRATex, gPauseShadowTitleFRATex,
-        gPauseBotWTitleFRATex, gPauseIceCavernTitleFRATex,
+        gPauseDekuTitleFRATex,
+        gPauseDodongoTitleFRATex,
+        gPauseJabuTitleFRATex,
+        gPauseForestTitleFRATex,
+        gPauseFireTitleFRATex,
+        gPauseWaterTitleFRATex,
+        gPauseSpiritTitleFRATex,
+        gPauseShadowTitleFRATex,
+        gPauseBotWTitleFRATex,
+        gPauseIceCavernTitleFRATex,
     };
     static void* floorIconTexs[] = {
-        gDungeonMapBlankFloorButtonTex, gDungeonMap8FButtonTex, gDungeonMap7FButtonTex, gDungeonMap6FButtonTex,
-        gDungeonMap5FButtonTex,         gDungeonMap4FButtonTex, gDungeonMap3FButtonTex, gDungeonMap2FButtonTex,
-        gDungeonMap1FButtonTex,         gDungeonMapB1ButtonTex, gDungeonMapB2ButtonTex, gDungeonMapB3ButtonTex,
-        gDungeonMapB4ButtonTex,         gDungeonMapB5ButtonTex, gDungeonMapB6ButtonTex, gDungeonMapB7ButtonTex,
+        gDungeonMapBlankFloorButtonTex,
+        gDungeonMap8FButtonTex,
+        gDungeonMap7FButtonTex,
+        gDungeonMap6FButtonTex,
+        gDungeonMap5FButtonTex,
+        gDungeonMap4FButtonTex,
+        gDungeonMap3FButtonTex,
+        gDungeonMap2FButtonTex,
+        gDungeonMap1FButtonTex,
+        gDungeonMapB1ButtonTex,
+        gDungeonMapB2ButtonTex,
+        gDungeonMapB3ButtonTex,
+        gDungeonMapB4ButtonTex,
+        gDungeonMapB5ButtonTex,
+        gDungeonMapB6ButtonTex,
+        gDungeonMapB7ButtonTex,
         gDungeonMapB8ButtonTex,
     };
     static u16 mapBgPulseColors[][3] = {
         { 0 / 8, 80 / 8, 255 / 8 },
         { 0 / 8, 200 / 8, 140 / 8 },
     };
-    static s16 mapBgPulseR = 0 / 8;
-    static s16 mapBgPulseG = 200 / 8;
-    static s16 mapBgPulseB = 140 / 8;
-    static u16 mapBgPulseTimer = 20;
-    static u16 mapBgPulseStage = 0;
+    static s16        mapBgPulseR = 0 / 8;
+    static s16        mapBgPulseG = 200 / 8;
+    static s16        mapBgPulseB = 140 / 8;
+    static u16        mapBgPulseTimer = 20;
+    static u16        mapBgPulseStage = 0;
     InterfaceContext* interfaceCtx = &play->interfaceCtx;
-    PauseContext* pauseCtx = &play->pauseCtx;
-    Input* input = &play->state.input[0];
-    s16 i;
-    s16 j;
-    s16 oldCursorPoint;
-    s16 stepR;
-    s16 stepG;
-    s16 stepB;
-    u16 rgba16;
-    bool dpad = CVarGetInteger("gDpadPause", 0);
+    PauseContext*     pauseCtx = &play->pauseCtx;
+    Input*            input = &play->state.input[0];
+    s16               i;
+    s16               j;
+    s16               oldCursorPoint;
+    s16               stepR;
+    s16               stepG;
+    s16               stepB;
+    u16               rgba16;
+    bool              dpad = CVarGetInteger("gDpadPause", 0);
 
     OPEN_DISPS(gfxCtx);
 
@@ -224,7 +257,7 @@ void KaleidoScope_DrawDungeonMap(PlayState* play, GraphicsContext* gfxCtx) {
 
     gSPVertex(POLY_KAL_DISP++, &pauseCtx->mapPageVtx[68], 16, 0);
 
-    gDPLoadTextureBlock(POLY_KAL_DISP++, dungeonTitleTexs[gSaveContext.mapIndex+(10*gSaveContext.language)], G_IM_FMT_IA, G_IM_SIZ_8b, 96, 16, 0,
+    gDPLoadTextureBlock(POLY_KAL_DISP++, dungeonTitleTexs[gSaveContext.mapIndex + (10 * gSaveContext.language)], G_IM_FMT_IA, G_IM_SIZ_8b, 96, 16, 0,
                         G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD,
                         G_TX_NOLOD);
 
@@ -381,13 +414,40 @@ void KaleidoScope_DrawDungeonMap(PlayState* play, GraphicsContext* gfxCtx) {
 
 void KaleidoScope_DrawWorldMap(PlayState* play, GraphicsContext* gfxCtx) {
     static void* cloudTexs[] = {
-        gWorldMapCloud16Tex, gWorldMapCloud15Tex, gWorldMapCloud14Tex, gWorldMapCloud13Tex,
-        gWorldMapCloud12Tex, gWorldMapCloud11Tex, gWorldMapCloud10Tex, gWorldMapCloud9Tex,
-        gWorldMapCloud8Tex,  gWorldMapCloud7Tex,  gWorldMapCloud6Tex,  gWorldMapCloud5Tex,
-        gWorldMapCloud4Tex,  gWorldMapCloud3Tex,  gWorldMapCloud2Tex,  gWorldMapCloud1Tex,
+        gWorldMapCloud16Tex,
+        gWorldMapCloud15Tex,
+        gWorldMapCloud14Tex,
+        gWorldMapCloud13Tex,
+        gWorldMapCloud12Tex,
+        gWorldMapCloud11Tex,
+        gWorldMapCloud10Tex,
+        gWorldMapCloud9Tex,
+        gWorldMapCloud8Tex,
+        gWorldMapCloud7Tex,
+        gWorldMapCloud6Tex,
+        gWorldMapCloud5Tex,
+        gWorldMapCloud4Tex,
+        gWorldMapCloud3Tex,
+        gWorldMapCloud2Tex,
+        gWorldMapCloud1Tex,
     };
     static u16 cloudFlagNums[] = {
-        0x05, 0x00, 0x13, 0x0E, 0x0F, 0x01, 0x02, 0x10, 0x12, 0x03, 0x07, 0x08, 0x09, 0x0C, 0x0B, 0x06,
+        0x05,
+        0x00,
+        0x13,
+        0x0E,
+        0x0F,
+        0x01,
+        0x02,
+        0x10,
+        0x12,
+        0x03,
+        0x07,
+        0x08,
+        0x09,
+        0x0C,
+        0x0B,
+        0x06,
     };
     static s16 pointPulsePrimColor[] = { 0, 0, 255 };
     static s16 pointPrimColors[][3] = {
@@ -403,43 +463,144 @@ void KaleidoScope_DrawWorldMap(PlayState* play, GraphicsContext* gfxCtx) {
     static s16 pointPulseTimer = 20;
     static s16 D_8082A5B8[] = { 64, 64, 64, 28 };
     static s16 areaBoxPosX[] = {
-        -41, 19, 44, 40, 49, 51, -49, 83, 80, -67, 50, -109, -76, -86, -10, -6, 19, 24, 11, -17, 37, -6,
+        -41,
+        19,
+        44,
+        40,
+        49,
+        51,
+        -49,
+        83,
+        80,
+        -67,
+        50,
+        -109,
+        -76,
+        -86,
+        -10,
+        -6,
+        19,
+        24,
+        11,
+        -17,
+        37,
+        -6,
     };
     static s16 areaBoxWidths[] = {
-        96, 32, 32, 48, 48, 32, 48, 32, 32, 32, 16, 32, 32, 16, 32, 32, 32, 32, 32, 32, 16, 32,
+        96,
+        32,
+        32,
+        48,
+        48,
+        32,
+        48,
+        32,
+        32,
+        32,
+        16,
+        32,
+        32,
+        16,
+        32,
+        32,
+        32,
+        32,
+        32,
+        32,
+        16,
+        32,
     };
     static s16 areaBoxPosY[] = {
-        30, 36, 35, 26, 7, 11, -31, 30, 38, 23, 2, 42, 40, 32, 38, 50, 57, 58, 56, 12, 36, 50,
+        30,
+        36,
+        35,
+        26,
+        7,
+        11,
+        -31,
+        30,
+        38,
+        23,
+        2,
+        42,
+        40,
+        32,
+        38,
+        50,
+        57,
+        58,
+        56,
+        12,
+        36,
+        50,
     };
     static s16 areaBoxHeights[] = {
-        59, 19, 13, 19, 38, 17, 38, 17, 13, 26, 16, 26, 26, 16, 19, 17, 26, 13, 17, 17, 16, 17,
+        59,
+        19,
+        13,
+        19,
+        38,
+        17,
+        38,
+        17,
+        13,
+        26,
+        16,
+        26,
+        26,
+        16,
+        19,
+        17,
+        26,
+        13,
+        17,
+        17,
+        16,
+        17,
     };
     static void* areaBoxTexs[] = {
-        gWorldMapAreaBox7Tex, gWorldMapAreaBox1Tex, gWorldMapAreaBox4Tex, gWorldMapAreaBox6Tex, gWorldMapAreaBox2Tex,
-        gWorldMapAreaBox3Tex, gWorldMapAreaBox2Tex, gWorldMapAreaBox3Tex, gWorldMapAreaBox4Tex, gWorldMapAreaBox5Tex,
-        gWorldMapAreaBox8Tex, gWorldMapAreaBox5Tex, gWorldMapAreaBox5Tex, gWorldMapAreaBox8Tex, gWorldMapAreaBox1Tex,
-        gWorldMapAreaBox3Tex, gWorldMapAreaBox5Tex, gWorldMapAreaBox4Tex, gWorldMapAreaBox3Tex, gWorldMapAreaBox3Tex,
-        gWorldMapAreaBox8Tex, gWorldMapAreaBox3Tex,
+        gWorldMapAreaBox7Tex,
+        gWorldMapAreaBox1Tex,
+        gWorldMapAreaBox4Tex,
+        gWorldMapAreaBox6Tex,
+        gWorldMapAreaBox2Tex,
+        gWorldMapAreaBox3Tex,
+        gWorldMapAreaBox2Tex,
+        gWorldMapAreaBox3Tex,
+        gWorldMapAreaBox4Tex,
+        gWorldMapAreaBox5Tex,
+        gWorldMapAreaBox8Tex,
+        gWorldMapAreaBox5Tex,
+        gWorldMapAreaBox5Tex,
+        gWorldMapAreaBox8Tex,
+        gWorldMapAreaBox1Tex,
+        gWorldMapAreaBox3Tex,
+        gWorldMapAreaBox5Tex,
+        gWorldMapAreaBox4Tex,
+        gWorldMapAreaBox3Tex,
+        gWorldMapAreaBox3Tex,
+        gWorldMapAreaBox8Tex,
+        gWorldMapAreaBox3Tex,
     };
     static void* currentPosTitleTexs[] = {
         gPauseCurrentPositionENGTex,
         gPauseCurrentPositionGERTex,
         gPauseCurrentPositionFRATex,
     };
-    static u16 D_8082A6D4 = 0;
+    static u16    D_8082A6D4 = 0;
     PauseContext* pauseCtx = &play->pauseCtx;
-    Input* input = &play->state.input[0];
-    s16 i;
-    s16 j;
-    s16 t;
-    s16 k;
-    s16 oldCursorPoint;
-    s16 stepR;
-    s16 stepG;
-    s16 stepB;
-    bool dpad = CVarGetInteger("gDpadPause", 0);
-    u8 mirroredWorld = CVarGetInteger("gMirroredWorld", 0);
-    u8 mirrorMode = mirroredWorld ? G_TX_MIRROR : G_TX_NOMIRROR;
+    Input*        input = &play->state.input[0];
+    s16           i;
+    s16           j;
+    s16           t;
+    s16           k;
+    s16           oldCursorPoint;
+    s16           stepR;
+    s16           stepG;
+    s16           stepB;
+    bool          dpad = CVarGetInteger("gDpadPause", 0);
+    u8            mirroredWorld = CVarGetInteger("gMirroredWorld", 0);
+    u8            mirrorMode = mirroredWorld ? G_TX_MIRROR : G_TX_NOMIRROR;
 
     OPEN_DISPS(gfxCtx);
 
@@ -569,8 +730,7 @@ void KaleidoScope_DrawWorldMap(PlayState* play, GraphicsContext* gfxCtx) {
 
         gSPVertex(POLY_KAL_DISP++, &pauseCtx->mapPageVtx[220], 28, 0);
 
-        for (j = i = 0; i < 6; i++, t++, j += 4) 
-        {
+        for (j = i = 0; i < 6; i++, t++, j += 4) {
             gDPLoadMultiTile(POLY_KAL_DISP++, gWorldMapImageTex, 0, G_TX_RENDERTILE, G_IM_FMT_CI, G_IM_SIZ_8b, 216, 128,
                              0, t * 9, 216 - 1, (t + 1) * 9 - 1, 0, G_TX_WRAP | G_TX_NOMIRROR,
                              G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
@@ -588,11 +748,11 @@ void KaleidoScope_DrawWorldMap(PlayState* play, GraphicsContext* gfxCtx) {
 
         gSP1Quadrangle(POLY_KAL_DISP++, j, j + 2, j + 3, j + 1, 0);
     } else if (HREG(15) == 1) {
-        Gfx* sp1CC = POLY_KAL_DISP;
+        Gfx*  sp1CC = POLY_KAL_DISP;
         void* mapImage = gWorldMapImageTex;
 
         // gSPLoadUcodeL(sp1CC++, rspS2DEX)?
-        //gSPLoadUcodeEx(sp1CC++, OS_K0_TO_PHYSICAL(D_80113070), OS_K0_TO_PHYSICAL(D_801579A0), 0x800);
+        // gSPLoadUcodeEx(sp1CC++, OS_K0_TO_PHYSICAL(D_80113070), OS_K0_TO_PHYSICAL(D_801579A0), 0x800);
 
         func_8009638C(&sp1CC, mapImage, gWorldMapImageTLUT, 216, 128, G_IM_FMT_CI, G_IM_SIZ_8b, 0x8000, 256,
                       HREG(13) / 100.0f, HREG(14) / 100.0f);
@@ -785,7 +945,6 @@ void KaleidoScope_DrawWorldMap(PlayState* play, GraphicsContext* gfxCtx) {
                           PRIMITIVE, ENVIRONMENT, TEXEL0, ENVIRONMENT, TEXEL0, 0, PRIMITIVE, 0);
         gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, 150, 255, 255, pauseCtx->alpha);
         gDPSetEnvColor(POLY_KAL_DISP++, 0, 0, 0, 0);
-
 
         POLY_KAL_DISP = KaleidoScope_QuadTextureIA8(POLY_KAL_DISP, pauseCtx->nameSegment + 0x400, 80, 32, 4);
     }

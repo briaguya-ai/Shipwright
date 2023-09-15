@@ -145,8 +145,8 @@ void ArrowFire_Hit(ArrowFire* this, PlayState* play) {
 
 void ArrowFire_Fly(ArrowFire* this, PlayState* play) {
     EnArrow* arrow;
-    f32 distanceScaled;
-    s32 pad;
+    f32      distanceScaled;
+    s32      pad;
 
     arrow = (EnArrow*)this->actor.parent;
     if ((arrow == NULL) || (arrow->actor.update == NULL)) {
@@ -191,15 +191,15 @@ void ArrowFire_Update(Actor* thisx, PlayState* play) {
 void ArrowFire_Draw(Actor* thisx, PlayState* play2) {
     ArrowFire* this = (ArrowFire*)thisx;
     PlayState* play = play2;
-    u32 stateFrames;
-    EnArrow* arrow;
-    Actor* tranform;
+    u32        stateFrames;
+    EnArrow*   arrow;
+    Actor*     tranform;
 
-    Color_RGB8 primaryColor = {255, 200, 0};
+    Color_RGB8 primaryColor = { 255, 200, 0 };
     if (CVarGetInteger("gCosmetics.Arrows_FirePrimary.Changed", 0)) {
         primaryColor = CVarGetColor24("gCosmetics.Arrows_FirePrimary.Value", primaryColor);
     }
-    Color_RGB8 secondaryColor = {255, 0, 0};
+    Color_RGB8 secondaryColor = { 255, 0, 0 };
     if (CVarGetInteger("gCosmetics.Arrows_FireSecondary.Changed", 0)) {
         secondaryColor = CVarGetColor24("gCosmetics.Arrows_FireSecondary.Value", secondaryColor);
     }
@@ -221,11 +221,11 @@ void ArrowFire_Draw(Actor* thisx, PlayState* play2) {
         // Draw red effect over the screen when arrow hits
         if (this->unk_15C > 0) {
             POLY_XLU_DISP = Gfx_SetupDL_57(POLY_XLU_DISP);
-            gDPSetPrimColor(POLY_XLU_DISP++, 0, 0, 
-                (s32)((secondaryColor.r / 6) * this->unk_15C) & 0xFF,
-                (s32)((secondaryColor.g / 6) * this->unk_15C) & 0xFF, 
-                (s32)((secondaryColor.b / 6) * this->unk_15C) & 0xFF,
-                (s32)(150.0f * this->unk_15C) & 0xFF);
+            gDPSetPrimColor(POLY_XLU_DISP++, 0, 0,
+                            (s32)((secondaryColor.r / 6) * this->unk_15C) & 0xFF,
+                            (s32)((secondaryColor.g / 6) * this->unk_15C) & 0xFF,
+                            (s32)((secondaryColor.b / 6) * this->unk_15C) & 0xFF,
+                            (s32)(150.0f * this->unk_15C) & 0xFF);
             gDPSetAlphaDither(POLY_XLU_DISP++, G_AD_DISABLE);
             gDPSetColorDither(POLY_XLU_DISP++, G_CD_DISABLE);
             gDPFillRectangle(POLY_XLU_DISP++, 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1);

@@ -111,9 +111,9 @@ void EnButte_UpdateTransformationEffect(void) {
 
 void EnButte_DrawTransformationEffect(EnButte* this, PlayState* play) {
     static Vec3f D_809CE3C4 = { 0.0f, 0.0f, -3.0f };
-    Vec3f sp5C;
-    s32 alpha;
-    Vec3s camDir;
+    Vec3f        sp5C;
+    s32          alpha;
+    Vec3s        camDir;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -217,13 +217,13 @@ void EnButte_SetupFlyAround(EnButte* this) {
 
 void EnButte_FlyAround(EnButte* this, PlayState* play) {
     EnButteFlightParams* flightParams = &sFlyAroundParams[this->flightParamsIdx];
-    s16 yaw;
-    Player* player = GET_PLAYER(play);
-    f32 distSqFromHome;
-    f32 maxDistSqFromHome;
-    f32 minAnimSpeed;
-    f32 animSpeed;
-    s16 rotStep;
+    s16                  yaw;
+    Player*              player = GET_PLAYER(play);
+    f32                  distSqFromHome;
+    f32                  maxDistSqFromHome;
+    f32                  minAnimSpeed;
+    f32                  animSpeed;
+    s16                  rotStep;
 
     distSqFromHome = Math3D_Dist2DSq(this->actor.world.pos.x, this->actor.world.pos.z, this->actor.home.pos.x,
                                      this->actor.home.pos.z);
@@ -292,15 +292,15 @@ void EnButte_SetupFollowLink(EnButte* this) {
 }
 
 void EnButte_FollowLink(EnButte* this, PlayState* play) {
-    static s32 D_809CE410 = 1500;
+    static s32           D_809CE410 = 1500;
     EnButteFlightParams* flightParams = &sFollowLinkParams[this->flightParamsIdx];
-    Player* player = GET_PLAYER(play);
-    f32 distSqFromHome;
-    Vec3f swordTip;
-    f32 animSpeed;
-    f32 minAnimSpeed;
-    f32 distSqFromSword;
-    s16 yaw;
+    Player*              player = GET_PLAYER(play);
+    f32                  distSqFromHome;
+    Vec3f                swordTip;
+    f32                  animSpeed;
+    f32                  minAnimSpeed;
+    f32                  distSqFromSword;
+    s16                  yaw;
 
     func_809CD634(this);
     Math_SmoothStepToF(&this->actor.speedXZ, flightParams->speedXZTarget, flightParams->speedXZScale,

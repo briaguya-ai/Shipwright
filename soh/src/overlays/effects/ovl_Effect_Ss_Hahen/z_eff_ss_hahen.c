@@ -7,15 +7,15 @@
 #include "z_eff_ss_hahen.h"
 #include "objects/gameplay_keep/gameplay_keep.h"
 
-#define rPitch regs[0]
-#define rYaw regs[1]
-#define rUnused regs[2]
-#define rScale regs[3]
-#define rObjId regs[4]
+#define rPitch      regs[0]
+#define rYaw        regs[1]
+#define rUnused     regs[2]
+#define rScale      regs[3]
+#define rObjId      regs[4]
 #define rObjBankIdx regs[5]
-#define rMinLife regs[6]
+#define rMinLife    regs[6]
 
-u32 EffectSsHahen_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsHahen_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsHahen_DrawGray(PlayState* play, u32 index, EffectSs* this);
 void EffectSsHahen_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsHahen_Update(PlayState* play, u32 index, EffectSs* this);
@@ -68,8 +68,8 @@ u32 EffectSsHahen_Init(PlayState* play, u32 index, EffectSs* this, void* initPar
 
 void EffectSsHahen_Draw(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s32 pad;
-    f32 scale = this->rScale * 0.001f;
+    s32              pad;
+    f32              scale = this->rScale * 0.001f;
 
     OPEN_DISPS(gfxCtx);
 
@@ -92,8 +92,8 @@ void EffectSsHahen_Draw(PlayState* play, u32 index, EffectSs* this) {
 // in the original game this function is hardcoded to be used only by the skull pots in Shadow Temple
 void EffectSsHahen_DrawGray(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s32 pad;
-    f32 scale = this->rScale * 0.001f;
+    s32              pad;
+    f32              scale = this->rScale * 0.001f;
 
     OPEN_DISPS(gfxCtx);
 

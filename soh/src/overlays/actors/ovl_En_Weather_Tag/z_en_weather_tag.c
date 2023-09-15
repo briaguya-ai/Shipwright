@@ -130,8 +130,8 @@ void EnWeatherTag_Init(Actor* thisx, PlayState* play) {
 
 u8 WeatherTag_CheckEnableWeatherEffect(EnWeatherTag* this, PlayState* play, u8 arg2, u8 arg3, u8 arg4, u8 arg5,
                                        u16 arg6, u8 weatherMode) {
-    s32 pad;
-    u8 ret = false;
+    s32     pad;
+    u8      ret = false;
     Player* player = GET_PLAYER(play);
 
     if (Actor_WorldDistXZToActor(&player->actor, &this->actor) < WEATHER_TAG_RANGE100(this->actor.params)) {
@@ -170,8 +170,8 @@ u8 WeatherTag_CheckEnableWeatherEffect(EnWeatherTag* this, PlayState* play, u8 a
 
 u8 WeatherTag_CheckRestoreWeather(EnWeatherTag* this, PlayState* play, u8 arg2, u8 arg3, u8 arg4, u8 arg5,
                                   u16 arg6) {
-    s32 pad;
-    u8 ret = false;
+    s32     pad;
+    u8      ret = false;
     Player* player = GET_PLAYER(play);
 
     if ((WEATHER_TAG_RANGE100(this->actor.params) + 100.0f) < Actor_WorldDistXZToActor(&player->actor, &this->actor)) {

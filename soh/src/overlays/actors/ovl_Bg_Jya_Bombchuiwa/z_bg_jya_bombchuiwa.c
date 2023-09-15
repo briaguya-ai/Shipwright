@@ -97,11 +97,11 @@ void BgJyaBombchuiwa_Destroy(Actor* thisx, PlayState* play2) {
 void BgJyaBombchuiwa_Break(BgJyaBombchuiwa* this, PlayState* play) {
     Vec3f pos;
     Vec3f velocity;
-    s16 scale;
-    s16 arg5;
-    s16 arg6;
-    s16 arg7;
-    s32 i;
+    s16   scale;
+    s16   arg5;
+    s16   arg6;
+    s16   arg7;
+    s32   i;
 
     for (i = 0; i < 20; i++) {
         pos.x = Rand_ZeroOne() * 10.0f + this->actor.world.pos.x - 10.0f;

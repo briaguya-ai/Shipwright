@@ -56,12 +56,42 @@ static ColliderCylinderInit sCylinderInit = {
 };
 
 static u8 sEnergyColors[] = {
-    /* Water   prim */ 170, 255, 255, /* env */ 0,   50,  255,
-    /* Light   prim */ 255, 255, 170, /* env */ 200, 255, 0,
-    /* Fire    prim */ 255, 255, 170, /* env */ 200, 0,   0,
-    /* Shadow  prim */ 255, 170, 255, /* env */ 100, 0,   200,
-    /* Spirit  prim */ 255, 255, 170, /* env */ 255, 120, 0,
-    /* Forest  prim */ 255, 255, 170, /* env */ 0,   200, 0,
+    /* Water   prim */ 170,
+    255,
+    255,
+    /* env */ 0,
+    50,
+    255,
+    /* Light   prim */ 255,
+    255,
+    170,
+    /* env */ 200,
+    255,
+    0,
+    /* Fire    prim */ 255,
+    255,
+    170,
+    /* env */ 200,
+    0,
+    0,
+    /* Shadow  prim */ 255,
+    170,
+    255,
+    /* env */ 100,
+    0,
+    200,
+    /* Spirit  prim */ 255,
+    255,
+    170,
+    /* env */ 255,
+    120,
+    0,
+    /* Forest  prim */ 255,
+    255,
+    170,
+    /* env */ 0,
+    200,
+    0,
 };
 
 // Translates from the barrier's actor params to their corresponding randInf flags.
@@ -195,27 +225,27 @@ void DemoKekkai_Destroy(Actor* thisx, PlayState* play) {
 }
 
 Vec3f demoKekkaiVel = { 0.0f, 0.0f, 0.0f };
-void DemoKekkai_SpawnParticles(DemoKekkai* this, PlayState* play) {
-    static Vec3f accel = { 0.0f, 0.0f, 0.0f };
-    static Color_RGBA8 lightYellow = { 255, 255, 170, 0 };
-    static Color_RGBA8 darkRed = { 200, 0, 0, 0 };
-    Vec3f pos;
-    s32 i;
+void  DemoKekkai_SpawnParticles(DemoKekkai* this, PlayState* play) {
+     static Vec3f       accel = { 0.0f, 0.0f, 0.0f };
+     static Color_RGBA8 lightYellow = { 255, 255, 170, 0 };
+     static Color_RGBA8 darkRed = { 200, 0, 0, 0 };
+     Vec3f              pos;
+     s32                i;
 
-    for (i = 0; i < 85; i++) {
-        s16 roll = Rand_ZeroFloat(65535.0f);
-        s16 yaw = Rand_ZeroFloat(65535.0f);
+     for (i = 0; i < 85; i++) {
+         s16 roll = Rand_ZeroFloat(65535.0f);
+         s16 yaw = Rand_ZeroFloat(65535.0f);
 
-        demoKekkaiVel.x = Math_SinS(yaw) * Math_CosS(roll) * Rand_ZeroFloat(8.0f);
-        demoKekkaiVel.z = Math_CosS(yaw) * Math_CosS(roll) * Rand_ZeroFloat(8.0f);
-        demoKekkaiVel.y = Math_SinS(roll) * Rand_ZeroFloat(3.0f);
+         demoKekkaiVel.x = Math_SinS(yaw) * Math_CosS(roll) * Rand_ZeroFloat(8.0f);
+         demoKekkaiVel.z = Math_CosS(yaw) * Math_CosS(roll) * Rand_ZeroFloat(8.0f);
+         demoKekkaiVel.y = Math_SinS(roll) * Rand_ZeroFloat(3.0f);
 
-        pos.x = (demoKekkaiVel.x * 7.0f) + this->actor.world.pos.x;
-        pos.y = (demoKekkaiVel.y * 20.0f) + this->actor.world.pos.y + 120.0f;
-        pos.z = (demoKekkaiVel.z * 7.0f) + this->actor.world.pos.z;
+         pos.x = (demoKekkaiVel.x * 7.0f) + this->actor.world.pos.x;
+         pos.y = (demoKekkaiVel.y * 20.0f) + this->actor.world.pos.y + 120.0f;
+         pos.z = (demoKekkaiVel.z * 7.0f) + this->actor.world.pos.z;
 
-        EffectSsKiraKira_SpawnFocused(play, &pos, &demoKekkaiVel, &accel, &lightYellow, &darkRed, 3000,
-                                      (s32)Rand_ZeroFloat(40.0f) + 45);
+         EffectSsKiraKira_SpawnFocused(play, &pos, &demoKekkaiVel, &accel, &lightYellow, &darkRed, 3000,
+                                       (s32)Rand_ZeroFloat(40.0f) + 45);
     }
 }
 
@@ -267,14 +297,14 @@ void DemoKekkai_Update(Actor* thisx, PlayState* play2) {
 void DemoKekkai_TrialBarrierDispel(Actor* thisx, PlayState* play) {
     static s32 eventFlags[] = { 0xC3, 0xBC, 0xBF, 0xBE, 0xBD, 0xAD, 0xBB };
     static u16 csFrames[] = { 0, 280, 280, 280, 280, 280, 280 };
-    s32 pad;
+    s32        pad;
     DemoKekkai* this = (DemoKekkai*)thisx;
 
     if (gSaveContext.n64ddFlag) {
         Flags_SetRandomizerInf(trialParamToRandInf(thisx->params));
         // May or may not be needed. Not sure if needed for anything
         // that randoInf isn't already covering. Leaving it for safety.
-        Flags_SetEventChkInf(eventFlags[thisx->params]); 
+        Flags_SetEventChkInf(eventFlags[thisx->params]);
     }
 
     if (play->csCtx.frames == csFrames[this->actor.params]) {
@@ -335,17 +365,116 @@ void DemoKekkai_TrialBarrierIdle(Actor* thisx, PlayState* play) {
 
 void DemoKekkai_DrawTrialBarrier(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
-    s32 frames = play->gameplayFrames & 0xFFFF;
-    u8 alphaIndex[102] = {
-        1, 1, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 0, 1, 2, 2,
-        1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 0, 0, 0, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-        1, 1, 0, 0, 0, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 1, 0, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 0, 0,
+    s32        frames = play->gameplayFrames & 0xFFFF;
+    u8         alphaIndex[102] = {
+                1,
+                1,
+                0,
+                0,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                1,
+                1,
+                0,
+                0,
+                0,
+                1,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                1,
+                0,
+                0,
+                1,
+                2,
+                2,
+                1,
+                1,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                1,
+                1,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                1,
+                1,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                1,
+                0,
+                1,
+                0,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                1,
+                1,
+                2,
+                0,
+                0,
     };
     s32 colorIndex;
     DemoKekkai* this = (DemoKekkai*)thisx;
-    u8 alphas[3];
+    u8   alphas[3];
     Vtx* energyVtx = ResourceMgr_LoadVtxByName(SEGMENTED_TO_VIRTUAL(gTrialBarrierEnergyVtx));
-    s32 i;
+    s32  i;
 
     if (this->orbScale != 0.0f) {
         alphas[2] = (s32)(this->energyAlpha * 202.0f);

@@ -65,8 +65,10 @@ static ColliderJntSphInit sJntSphInit = {
 static s16 sKakeraScales[] = { 5, 8, 11, 14, 17 };
 
 static InitChainEntry sInitChain[] = {
-    ICHAIN_F32_DIV1000(gravity, -2000, ICHAIN_CONTINUE),  ICHAIN_F32_DIV1000(minVelocityY, -15000, ICHAIN_CONTINUE),
-    ICHAIN_F32(uncullZoneForward, 1000, ICHAIN_CONTINUE), ICHAIN_F32(uncullZoneScale, 500, ICHAIN_CONTINUE),
+    ICHAIN_F32_DIV1000(gravity, -2000, ICHAIN_CONTINUE),
+    ICHAIN_F32_DIV1000(minVelocityY, -15000, ICHAIN_CONTINUE),
+    ICHAIN_F32(uncullZoneForward, 1000, ICHAIN_CONTINUE),
+    ICHAIN_F32(uncullZoneScale, 500, ICHAIN_CONTINUE),
     ICHAIN_F32(uncullZoneDownward, 1000, ICHAIN_STOP),
 };
 
@@ -86,10 +88,10 @@ void BgJyaHaheniron_ColliderInit(BgJyaHaheniron* this, PlayState* play) {
 void BgJyaHaheniron_SpawnFragments(PlayState* play, Vec3f* vec1, Vec3f* vec2) {
     Vec3f vel;
     Vec3f pos;
-    s16 arg5;
-    s32 angle;
-    s32 i;
-    f32 rand1;
+    s16   arg5;
+    s32   angle;
+    s32   i;
+    f32   rand1;
 
     for (angle = 0, i = 0; i < ARRAY_COUNT(sKakeraScales); i++) {
         rand1 = Rand_ZeroOne() * 10.0f;

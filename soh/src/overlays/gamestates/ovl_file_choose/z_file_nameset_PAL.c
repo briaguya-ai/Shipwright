@@ -4,21 +4,140 @@
 #include "assets/soh_assets.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
 
-
 static s16 D_808124C0[] = {
-    0x0002, 0x0003, 0x0002, 0x0002, 0x0002, 0x0002, 0x0002, 0x0002, 0x0002, 0x0002, 0x0001, 0x0002, 0x0000, 0x0001,
-    0x0001, 0x0002, 0x0001, 0x0001, 0x0004, 0x0002, 0x0002, 0x0002, 0x0001, 0x0001, 0x0000, 0x0002, 0x0000, 0x0001,
-    0x0001, 0x0001, 0x0001, 0x0001, 0x0000, 0x0001, 0x0001, 0x0001, 0x0002, 0x0002, 0x0002, 0x0002, 0x0002, 0x0003,
-    0x0002, 0x0002, 0x0004, 0x0003, 0x0002, 0x0004, 0x0001, 0x0002, 0x0002, 0x0001, 0x0001, 0x0002, 0x0002, 0x0003,
-    0x0002, 0x0002, 0x0000, 0x0002, 0x0002, 0x0002, 0x0000, 0x0003, 0x0001, 0x0000,
+    0x0002,
+    0x0003,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0001,
+    0x0002,
+    0x0000,
+    0x0001,
+    0x0001,
+    0x0002,
+    0x0001,
+    0x0001,
+    0x0004,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0001,
+    0x0001,
+    0x0000,
+    0x0002,
+    0x0000,
+    0x0001,
+    0x0001,
+    0x0001,
+    0x0001,
+    0x0001,
+    0x0000,
+    0x0001,
+    0x0001,
+    0x0001,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0003,
+    0x0002,
+    0x0002,
+    0x0004,
+    0x0003,
+    0x0002,
+    0x0004,
+    0x0001,
+    0x0002,
+    0x0002,
+    0x0001,
+    0x0001,
+    0x0002,
+    0x0002,
+    0x0003,
+    0x0002,
+    0x0002,
+    0x0000,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0000,
+    0x0003,
+    0x0001,
+    0x0000,
 };
 
 static s16 D_80812544[] = {
-    0x0001, 0x0002, 0x0000, 0x0001, 0x0001, 0x0002, 0x0001, 0x0001, 0x0004, 0x0002, 0x0002, 0x0002, 0x0001,
-    0x0001, 0x0000, 0x0002, 0x0000, 0x0001, 0x0001, 0x0001, 0x0001, 0x0001, 0x0000, 0x0001, 0x0001, 0x0001,
-    0x0002, 0x0002, 0x0002, 0x0002, 0x0002, 0x0003, 0x0002, 0x0002, 0x0004, 0x0003, 0x0002, 0x0004, 0x0001,
-    0x0002, 0x0002, 0x0001, 0x0001, 0x0002, 0x0002, 0x0003, 0x0002, 0x0002, 0x0000, 0x0002, 0x0002, 0x0002,
-    0x0003, 0x0002, 0x0002, 0x0002, 0x0002, 0x0002, 0x0002, 0x0002, 0x0002, 0x0002, 0x0001, 0x0003,
+    0x0001,
+    0x0002,
+    0x0000,
+    0x0001,
+    0x0001,
+    0x0002,
+    0x0001,
+    0x0001,
+    0x0004,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0001,
+    0x0001,
+    0x0000,
+    0x0002,
+    0x0000,
+    0x0001,
+    0x0001,
+    0x0001,
+    0x0001,
+    0x0001,
+    0x0000,
+    0x0001,
+    0x0001,
+    0x0001,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0003,
+    0x0002,
+    0x0002,
+    0x0004,
+    0x0003,
+    0x0002,
+    0x0004,
+    0x0001,
+    0x0002,
+    0x0002,
+    0x0001,
+    0x0001,
+    0x0002,
+    0x0002,
+    0x0003,
+    0x0002,
+    0x0002,
+    0x0000,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0003,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0001,
+    0x0003,
 };
 
 void FileChoose_DrawCharacter(GraphicsContext* gfxCtx, void* texture, s16 vtx) {
@@ -98,11 +217,31 @@ static void* sBackspaceEndTextures[][2] = {
 static u16 sBackspaceEndWidths[] = { 28, 44 };
 
 static s16 D_808125EC[] = {
-    0xFFE2, 0xFFF0, 0xFFFA, 0x0004, 0x000E, 0x0018, 0x0022, 0x002C, 0x0036, 0xFFF0, 0xFFF0,
+    0xFFE2,
+    0xFFF0,
+    0xFFFA,
+    0x0004,
+    0x000E,
+    0x0018,
+    0x0022,
+    0x002C,
+    0x0036,
+    0xFFF0,
+    0xFFF0,
 };
 
 static s16 D_80812604[] = {
-    0x0048, 0x0045, 0x0045, 0x0045, 0x0045, 0x0045, 0x0045, 0x0045, 0x0045, 0x0045, 0x0045,
+    0x0048,
+    0x0045,
+    0x0045,
+    0x0045,
+    0x0045,
+    0x0045,
+    0x0045,
+    0x0045,
+    0x0045,
+    0x0045,
+    0x0045,
 };
 
 static s16 sLastCharIndex = -1;
@@ -114,12 +253,12 @@ static s16 sLastKbdX = -1;
  */
 void FileChoose_SetNameEntryVtx(GameState* thisx) {
     FileChooseContext* this = (FileChooseContext*)thisx;
-    Font* font = &this->font;
-    s16 phi_s0;
-    s16 phi_t1;
-    u8 temp;
-    s16 phi_v0;
-    char* filename = Save_GetSaveMetaInfo(this->buttonIndex)->playerName;
+    Font*      font = &this->font;
+    s16        phi_s0;
+    s16        phi_t1;
+    u8         temp;
+    s16        phi_v0;
+    char*      filename = Save_GetSaveMetaInfo(this->buttonIndex)->playerName;
     Color_RGB8 Background_Color = { this->windowColor[0], this->windowColor[1], this->windowColor[2] };
 
     OPEN_DISPS(this->state.gfxCtx);
@@ -235,9 +374,9 @@ void FileChoose_SetNameEntryVtx(GameState* thisx) {
 void FileChoose_DrawKeyboard(GameState* thisx) {
     FileChooseContext* this = (FileChooseContext*)thisx;
     Font* font = &this->font;
-    s16 i = 0;
-    s16 tmp;
-    s16 vtx = 0;
+    s16   i = 0;
+    s16   tmp;
+    s16   vtx = 0;
 
     OPEN_DISPS(this->state.gfxCtx);
 
@@ -266,13 +405,13 @@ void FileChoose_DrawKeyboard(GameState* thisx) {
 
 void FileChoose_DrawNameEntry(GameState* thisx) {
     FileChooseContext* this = (FileChooseContext*)thisx;
-    Font* font = &this->font;
-    Input* input = &this->state.input[0];
-    s16 i;
-    s16 tmp;
-    u16 dayTime;
-    s16 validName;
-    char* filename = Save_GetSaveMetaInfo(this->buttonIndex)->playerName;
+    Font*      font = &this->font;
+    Input*     input = &this->state.input[0];
+    s16        i;
+    s16        tmp;
+    u16        dayTime;
+    s16        validName;
+    char*      filename = Save_GetSaveMetaInfo(this->buttonIndex)->playerName;
     Color_RGB8 Background_Color = { this->windowColor[0], this->windowColor[1], this->windowColor[2] };
 
     OPEN_DISPS(this->state.gfxCtx);
@@ -527,8 +666,8 @@ void FileChoose_StartNameEntry(GameState* thisx) {
 void FileChoose_UpdateKeyboardCursor(GameState* thisx) {
     FileChooseContext* this = (FileChooseContext*)thisx;
     Input* input = &this->state.input[0];
-    s16 prevKbdX;
-    bool dpad = CVarGetInteger("gDpadText", 0);
+    s16    prevKbdX;
+    bool   dpad = CVarGetInteger("gDpadText", 0);
 
     this->kbdButton = 99;
 
@@ -684,7 +823,7 @@ static s8 sLastOptionButtonIndex = -1;
 void FileChoose_UpdateOptionsMenu(GameState* thisx) {
     FileChooseContext* this = (FileChooseContext*)thisx;
     Input* input = &this->state.input[0];
-    bool dpad = CVarGetInteger("gDpadText", 0);
+    bool   dpad = CVarGetInteger("gDpadText", 0);
 
     if (CHECK_BTN_ALL(input->press.button, BTN_B)) {
         Audio_PlaySoundGeneral(NA_SE_SY_FSEL_DECIDE_L, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
@@ -813,8 +952,8 @@ void FileChoose_UpdateOptionsMenu(GameState* thisx) {
 
 typedef struct {
     /* 0x00 */ void* texture[3];
-    /* 0x0C */ u16 width[3];
-    /* 0x12 */ u16 height;
+    /* 0x0C */ u16   width[3];
+    /* 0x12 */ u16   height;
 } OptionsMenuTextureInfo; // size = 0x14
 
 static OptionsMenuTextureInfo gOptionsMenuHeaders[] = {
@@ -902,9 +1041,9 @@ void FileChoose_DrawOptionsImpl(GameState* thisx) {
     static s16 cursorEnvBlue = 0;
     static s16 cursorPulseDir = 1;
     static s16 cursorFlashTimer = 20;
-    s16 cursorPrimColors[][3] = {
-        { 255, 255, 255 },
-        { 0, 255, 255 },
+    s16        cursorPrimColors[][3] = {
+               { 255, 255, 255 },
+               { 0, 255, 255 },
     };
     s16 cursorEnvColors[][3] = {
         { 0, 0, 0 },
@@ -1186,7 +1325,7 @@ void FileChoose_DrawOptionsImpl(GameState* thisx) {
         Matrix_Push();
         Matrix_Translate(0.0f, 0.3f, 0.0f, MTXMODE_APPLY);
         gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(this->state.gfxCtx),
-                G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+                  G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         gSPVertex(POLY_OPA_DISP++, gOptionsDividerChangeLangVtx, 4, 0);
         gSP1Quadrangle(POLY_OPA_DISP++, 0, 2, 3, 1, 0);
         Matrix_Pop();

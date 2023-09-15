@@ -108,9 +108,9 @@ void BgMoriIdomizu_SetupMain(BgMoriIdomizu* this) {
 }
 
 void BgMoriIdomizu_Main(BgMoriIdomizu* this, PlayState* play) {
-    s8 roomNum;
+    s8     roomNum;
     Actor* thisx = &this->actor;
-    s32 switchFlagSet;
+    s32    switchFlagSet;
 
     roomNum = play->roomCtx.curRoom.num;
     switchFlagSet = Flags_GetSwitch(play, thisx->params & 0x3F);

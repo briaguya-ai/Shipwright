@@ -8,8 +8,8 @@ void func_80110990(PlayState* play) {
 
 void func_801109B0(PlayState* play) {
     InterfaceContext* interfaceCtx = &play->interfaceCtx;
-    u32 parameterSize;
-    u8 temp;
+    u32               parameterSize;
+    u8                temp;
 
     gSaveContext.sunsSongState = SUNSSONG_INACTIVE;
     gSaveContext.unk_13E8 = gSaveContext.unk_13EA = 0;
@@ -137,7 +137,7 @@ void func_801109B0(PlayState* play) {
 
 void Message_Init(PlayState* play) {
     MessageContext* msgCtx = &play->msgCtx;
-    s32 pad;
+    s32             pad;
 
     Message_SetTables();
 

@@ -53,10 +53,18 @@ static CollisionHeader* sCollisionHeaders[] = {
 };
 
 static Gfx* sDLists[] = {
-    gBotwFakeWallsAndFloorsDL,     gBotwThreeFakeFloorsDL,        gBotwHoleTrap2DL,
-    object_haka_objects_DL_0040F0, object_haka_objects_DL_0043B0, object_haka_objects_DL_001120,
-    object_haka_objects_DL_0045A0, object_haka_objects_DL_0047F0, object_haka_objects_DL_0018F0,
-    object_haka_objects_DL_0049B0, object_haka_objects_DL_003CF0, object_haka_objects_DL_004B70,
+    gBotwFakeWallsAndFloorsDL,
+    gBotwThreeFakeFloorsDL,
+    gBotwHoleTrap2DL,
+    object_haka_objects_DL_0040F0,
+    object_haka_objects_DL_0043B0,
+    object_haka_objects_DL_001120,
+    object_haka_objects_DL_0045A0,
+    object_haka_objects_DL_0047F0,
+    object_haka_objects_DL_0018F0,
+    object_haka_objects_DL_0049B0,
+    object_haka_objects_DL_003CF0,
+    object_haka_objects_DL_004B70,
     object_haka_objects_DL_002ED0,
 };
 

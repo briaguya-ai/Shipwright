@@ -40,11 +40,26 @@ const ActorInit En_Niw_Lady_InitVars = {
 };
 
 static s16 sMissingCuccoTextIds[] = {
-    0x5036, 0x5070, 0x5072, 0x5037, 0x5038, 0x5039, 0x503A, 0x503B, 0x503D, 0x503C,
+    0x5036,
+    0x5070,
+    0x5072,
+    0x5037,
+    0x5038,
+    0x5039,
+    0x503A,
+    0x503B,
+    0x503D,
+    0x503C,
 };
 
 static s16 D_80ABB3B4[] = {
-    0x0200, 0x0400, 0x0800, 0x1000, 0x2000, 0x4000, 0x8000,
+    0x0200,
+    0x0400,
+    0x0800,
+    0x1000,
+    0x2000,
+    0x4000,
+    0x8000,
 };
 
 static ColliderCylinderInit sCylinderInit = {
@@ -202,7 +217,7 @@ void func_80ABA21C(EnNiwLady* this, PlayState* play) {
 
 void func_80ABA244(EnNiwLady* this, PlayState* play) {
     EnNiw* currentCucco;
-    s32 phi_s1;
+    s32    phi_s1;
 
     this->cuccosInPen = gSaveContext.n64ddFlag ? (7 - Randomizer_GetSettingValue(RSK_CUCCO_COUNT)) : 0;
     currentCucco = (EnNiw*)play->actorCtx.actorLists[ACTORCAT_PROP].head;
@@ -364,7 +379,7 @@ void func_80ABA778(EnNiwLady* this, PlayState* play) {
 
 void func_80ABA878(EnNiwLady* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s8 playerExchangeItemId;
+    s8      playerExchangeItemId;
 
     if ((Message_GetState(&play->msgCtx) == TEXT_STATE_NONE) ||
         (Message_GetState(&play->msgCtx) == TEXT_STATE_DONE)) {
@@ -462,7 +477,7 @@ void func_80ABAC00(EnNiwLady* this, PlayState* play) {
     if (Actor_HasParent(&this->actor, play)) {
         this->actionFunc = func_80ABAC84;
     } else {
-         if (gSaveContext.n64ddFlag) {
+        if (gSaveContext.n64ddFlag) {
             getItemId = this->getItemEntry.getItemId;
             GiveItemEntryFromActor(&this->actor, play, this->getItemEntry, 200.0f, 100.0f);
             return;

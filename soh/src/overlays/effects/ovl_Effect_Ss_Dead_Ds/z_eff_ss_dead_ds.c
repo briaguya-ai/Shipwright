@@ -7,17 +7,17 @@
 #include "z_eff_ss_dead_ds.h"
 #include "objects/gameplay_keep/gameplay_keep.h"
 
-#define rScale regs[0]
-#define rTimer regs[1]
-#define rRoll regs[2]
-#define rPitch regs[3]
-#define rYaw regs[4]
-#define rAlpha regs[5]
-#define rScaleStep regs[9]
-#define rAlphaStep regs[10]
+#define rScale      regs[0]
+#define rTimer      regs[1]
+#define rRoll       regs[2]
+#define rPitch      regs[3]
+#define rYaw        regs[4]
+#define rAlpha      regs[5]
+#define rScaleStep  regs[9]
+#define rAlphaStep  regs[10]
 #define rHalfOfLife regs[11]
 
-u32 EffectSsDeadDs_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsDeadDs_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsDeadDs_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsDeadDs_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -46,13 +46,13 @@ u32 EffectSsDeadDs_Init(PlayState* play, u32 index, EffectSs* this, void* initPa
 }
 
 void EffectSsDeadDs_Draw(PlayState* play, u32 index, EffectSs* this) {
-    s32 pad;
-    f32 scale;
-    s32 pad1;
-    s32 pad2;
-    MtxF mf;
-    f32 temp;
-    Vec3f pos;
+    s32            pad;
+    f32            scale;
+    s32            pad1;
+    s32            pad2;
+    MtxF           mf;
+    f32            temp;
+    Vec3f          pos;
     CollisionPoly* floorPoly;
 
     OPEN_DISPS(play->state.gfxCtx);

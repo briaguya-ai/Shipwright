@@ -59,7 +59,12 @@ static ColliderCylinderInit sCylinderInit = {
 };
 
 static s16 sObjectIds[6] = {
-    OBJECT_AHG, OBJECT_BOJ, OBJECT_BOJ, OBJECT_BOJ, OBJECT_BOJ, OBJECT_BOJ,
+    OBJECT_AHG,
+    OBJECT_BOJ,
+    OBJECT_BOJ,
+    OBJECT_BOJ,
+    OBJECT_BOJ,
+    OBJECT_BOJ,
 };
 
 static FlexSkeletonHeader* sSkeletons[6] = {
@@ -72,26 +77,50 @@ static FlexSkeletonHeader* sSkeletons[6] = {
 };
 
 static AnimationHeader* sAnimations[6] = {
-    &sParentDanceAnim, &sChildDanceAnim, &sChildDanceAnim, &sChildDanceAnim, &sChildDanceAnim, &sChildDanceAnim,
+    &sParentDanceAnim,
+    &sChildDanceAnim,
+    &sChildDanceAnim,
+    &sChildDanceAnim,
+    &sChildDanceAnim,
+    &sChildDanceAnim,
 };
 
 static EnSthActionFunc sRewardObtainedWaitActions[6] = {
-    EnSth_ParentRewardObtainedWait, EnSth_ChildRewardObtainedWait, EnSth_ChildRewardObtainedWait,
-    EnSth_ChildRewardObtainedWait,  EnSth_ChildRewardObtainedWait, EnSth_ChildRewardObtainedWait,
+    EnSth_ParentRewardObtainedWait,
+    EnSth_ChildRewardObtainedWait,
+    EnSth_ChildRewardObtainedWait,
+    EnSth_ChildRewardObtainedWait,
+    EnSth_ChildRewardObtainedWait,
+    EnSth_ChildRewardObtainedWait,
 };
 
 static u16 sEventFlags[6] = {
-    0, EVENTCHKINF_SKULLTULA_REWARD_10_MASK, EVENTCHKINF_SKULLTULA_REWARD_20_MASK, EVENTCHKINF_SKULLTULA_REWARD_30_MASK, EVENTCHKINF_SKULLTULA_REWARD_40_MASK, EVENTCHKINF_SKULLTULA_REWARD_50_MASK,
+    0,
+    EVENTCHKINF_SKULLTULA_REWARD_10_MASK,
+    EVENTCHKINF_SKULLTULA_REWARD_20_MASK,
+    EVENTCHKINF_SKULLTULA_REWARD_30_MASK,
+    EVENTCHKINF_SKULLTULA_REWARD_40_MASK,
+    EVENTCHKINF_SKULLTULA_REWARD_50_MASK,
 };
 
 static s16 sGetItemIds[6] = {
-    GI_RUPEE_GOLD, GI_WALLET_ADULT, GI_STONE_OF_AGONY, GI_WALLET_GIANT, GI_BOMBCHUS_10, GI_HEART_PIECE,
+    GI_RUPEE_GOLD,
+    GI_WALLET_ADULT,
+    GI_STONE_OF_AGONY,
+    GI_WALLET_GIANT,
+    GI_BOMBCHUS_10,
+    GI_HEART_PIECE,
 };
 
 static Vec3f D_80B0B49C = { 700.0f, 400.0f, 0.0f };
 
 static Color_RGB8 sTunicColors[6] = {
-    { 190, 110, 0 }, { 0, 180, 110 }, { 0, 255, 80 }, { 255, 160, 60 }, { 190, 230, 250 }, { 240, 230, 120 },
+    { 190, 110, 0 },
+    { 0, 180, 110 },
+    { 0, 255, 80 },
+    { 255, 160, 60 },
+    { 190, 230, 250 },
+    { 240, 230, 120 },
 };
 
 void EnSth_SetupAction(EnSth* this, EnSthActionFunc actionFunc) {
@@ -152,7 +181,7 @@ void EnSth_SetupShapeColliderUpdate2AndDraw(EnSth* this, PlayState* play) {
 }
 
 void EnSth_SetupAfterObjectLoaded(EnSth* this, PlayState* play) {
-    s32 pad;
+    s32  pad;
     s16* params;
 
     EnSth_SetupShapeColliderUpdate2AndDraw(this, play);
@@ -241,9 +270,9 @@ void EnSth_ParentRewardObtainedWait(EnSth* this, PlayState* play) {
 }
 
 void EnSth_GivePlayerItem(EnSth* this, PlayState* play) {
-    u16 getItemId = sGetItemIds[this->actor.params];
+    u16          getItemId = sGetItemIds[this->actor.params];
     GetItemEntry getItemEntry = (GetItemEntry)GET_ITEM_NONE;
-    
+
     if (gSaveContext.n64ddFlag) {
         switch (getItemId) {
             case GI_RUPEE_GOLD:

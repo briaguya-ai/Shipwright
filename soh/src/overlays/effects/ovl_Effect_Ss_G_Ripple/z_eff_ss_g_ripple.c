@@ -8,19 +8,19 @@
 #include "objects/gameplay_keep/gameplay_keep.h"
 
 #define rWaterBoxNum regs[0]
-#define rRadius regs[1]
-#define rRadiusMax regs[2]
-#define rPrimColorR regs[3]
-#define rPrimColorG regs[4]
-#define rPrimColorB regs[5]
-#define rPrimColorA regs[6]
-#define rEnvColorR regs[7]
-#define rEnvColorG regs[8]
-#define rEnvColorB regs[9]
-#define rEnvColorA regs[10]
-#define rLifespan regs[11]
+#define rRadius      regs[1]
+#define rRadiusMax   regs[2]
+#define rPrimColorR  regs[3]
+#define rPrimColorG  regs[4]
+#define rPrimColorB  regs[5]
+#define rPrimColorA  regs[6]
+#define rEnvColorR   regs[7]
+#define rEnvColorG   regs[8]
+#define rEnvColorB   regs[9]
+#define rEnvColorA   regs[10]
+#define rLifespan    regs[11]
 
-u32 EffectSsGRipple_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsGRipple_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsGRipple_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsGRipple_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -30,9 +30,9 @@ EffectSsInit Effect_Ss_G_Ripple_InitVars = {
 };
 
 u32 EffectSsGRipple_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx) {
-    s32 pad;
-    Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
-    WaterBox* waterBox;
+    s32                        pad;
+    Vec3f                      zeroVec = { 0.0f, 0.0f, 0.0f };
+    WaterBox*                  waterBox;
     EffectSsGRippleInitParams* initParams = (EffectSsGRippleInitParams*)initParamsx;
 
     waterBox = NULL;
@@ -61,13 +61,13 @@ u32 EffectSsGRipple_Init(PlayState* play, u32 index, EffectSs* this, void* initP
 
 void EffectSsGRipple_DrawRipple(PlayState* play, EffectSs* this, void* segment) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    f32 radius;
-    s32 pad;
-    MtxF mfTrans;
-    MtxF mfScale;
-    MtxF mfResult;
-    Mtx* mtx;
-    f32 yPos;
+    f32              radius;
+    s32              pad;
+    MtxF             mfTrans;
+    MtxF             mfScale;
+    MtxF             mfResult;
+    Mtx*             mtx;
+    f32              yPos;
 
     OPEN_DISPS(gfxCtx);
 

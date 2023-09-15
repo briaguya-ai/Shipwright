@@ -11,23 +11,23 @@
 
 #define FLAGS (ACTOR_FLAG_TARGETABLE | ACTOR_FLAG_FRIENDLY | ACTOR_FLAG_UPDATE_WHILE_CULLED)
 
-#define PART_UPPER_LEFT (1 << 0)
-#define PART_LEFT_UPPER (1 << 1)
-#define PART_LEFT_LOWER (1 << 2)
+#define PART_UPPER_LEFT  (1 << 0)
+#define PART_LEFT_UPPER  (1 << 1)
+#define PART_LEFT_LOWER  (1 << 2)
 #define PART_RIGHT_UPPER (1 << 3)
 #define PART_RIGHT_LOWER (1 << 4)
-#define PART_LOWER_LEFT (1 << 5)
+#define PART_LOWER_LEFT  (1 << 5)
 #define PART_UPPER_RIGHT (1 << 6)
 #define PART_LOWER_RIGHT (1 << 7)
-#define PART_POST_UPPER (1 << 8)
-#define PART_POST_LOWER (1 << 9)
-#define PART_POST_STAND (1 << 10)
-#define LEFT_HALF (PART_UPPER_LEFT | PART_LEFT_UPPER | PART_LEFT_LOWER | PART_LOWER_LEFT)
-#define RIGHT_HALF (PART_UPPER_RIGHT | PART_RIGHT_UPPER | PART_RIGHT_LOWER | PART_LOWER_RIGHT)
-#define UPPER_HALF (PART_POST_UPPER | PART_UPPER_RIGHT | PART_RIGHT_UPPER | PART_UPPER_LEFT | PART_LEFT_UPPER)
-#define UPPERLEFT_HALF (PART_POST_UPPER | PART_UPPER_RIGHT | PART_LEFT_LOWER | PART_UPPER_LEFT | PART_LEFT_UPPER)
-#define UPPERRIGHT_HALF (PART_POST_UPPER | PART_UPPER_RIGHT | PART_RIGHT_UPPER | PART_UPPER_LEFT | PART_RIGHT_LOWER)
-#define ALL_PARTS (LEFT_HALF | RIGHT_HALF | PART_POST_UPPER | PART_POST_LOWER)
+#define PART_POST_UPPER  (1 << 8)
+#define PART_POST_LOWER  (1 << 9)
+#define PART_POST_STAND  (1 << 10)
+#define LEFT_HALF        (PART_UPPER_LEFT | PART_LEFT_UPPER | PART_LEFT_LOWER | PART_LOWER_LEFT)
+#define RIGHT_HALF       (PART_UPPER_RIGHT | PART_RIGHT_UPPER | PART_RIGHT_LOWER | PART_LOWER_RIGHT)
+#define UPPER_HALF       (PART_POST_UPPER | PART_UPPER_RIGHT | PART_RIGHT_UPPER | PART_UPPER_LEFT | PART_LEFT_UPPER)
+#define UPPERLEFT_HALF   (PART_POST_UPPER | PART_UPPER_RIGHT | PART_LEFT_LOWER | PART_UPPER_LEFT | PART_LEFT_UPPER)
+#define UPPERRIGHT_HALF  (PART_POST_UPPER | PART_UPPER_RIGHT | PART_RIGHT_UPPER | PART_UPPER_LEFT | PART_RIGHT_LOWER)
+#define ALL_PARTS        (LEFT_HALF | RIGHT_HALF | PART_POST_UPPER | PART_POST_LOWER)
 
 typedef enum {
     ENKANBAN_SIGN,
@@ -109,8 +109,17 @@ static ColliderCylinderInit sCylinderInit = {
 };
 
 static u16 sPartFlags[] = {
-    PART_UPPER_LEFT,  PART_LEFT_UPPER,  PART_LEFT_LOWER, PART_RIGHT_UPPER, PART_RIGHT_LOWER, PART_LOWER_LEFT,
-    PART_UPPER_RIGHT, PART_LOWER_RIGHT, PART_POST_UPPER, PART_POST_LOWER,  PART_POST_STAND,
+    PART_UPPER_LEFT,
+    PART_LEFT_UPPER,
+    PART_LEFT_LOWER,
+    PART_RIGHT_UPPER,
+    PART_RIGHT_LOWER,
+    PART_LOWER_LEFT,
+    PART_UPPER_RIGHT,
+    PART_LOWER_RIGHT,
+    PART_POST_UPPER,
+    PART_POST_LOWER,
+    PART_POST_STAND,
 };
 
 static Vec3f sPieceOffsets[] = {
@@ -158,26 +167,43 @@ static Vec3f sPieceSizes[] = {
 };
 
 static u8 sCutTypes[] = {
-    /* 1H_OVER     */ CUT_VERT_L, /* 2H_OVER     */ CUT_VERT_L,
-    /* 1H_COMBO    */ CUT_DIAG_R, /* 2H_COMBO    */ CUT_DIAG_R,
-    /* 1H_LEFT     */ CUT_HORIZ,  /* 2H_LEFT     */ CUT_HORIZ,
-    /* 1H_COMBO    */ CUT_HORIZ,  /* 2H_COMBO    */ CUT_HORIZ,
-    /* 1H_RIGHT    */ CUT_HORIZ,  /* 2H_RIGHT    */ CUT_HORIZ,
-    /* 1H_COMBO    */ CUT_HORIZ,  /* 2H_COMBO    */ CUT_HORIZ,
-    /* 1H_STAB     */ CUT_POST,   /* 2H_STAB     */ CUT_POST,
-    /* 1H_COMBO    */ CUT_POST,   /* 2H_COMBO    */ CUT_POST,
-    /* FLIP_START  */ CUT_VERT_L, /* JUMP_START  */ CUT_VERT_L,
-    /* FLIP_END    */ CUT_VERT_L, /* JUMP_END    */ CUT_VERT_L,
-    /* BACK_LEFT   */ CUT_HORIZ,  /* BACK_RIGHT  */ CUT_HORIZ,
-    /* OVER_HAMMER */ CUT_POST,   /* SIDE_HAMMER */ CUT_POST,
-    /* 1H_SPIN_ATK */ CUT_POST,   /* 2H_SPIN_ATK */ CUT_POST,
-    /* 1H_BIG_SPIN */ CUT_POST,   /* 2H_BIG_SPIN */ CUT_POST,
+    /* 1H_OVER     */ CUT_VERT_L,
+    /* 2H_OVER     */ CUT_VERT_L,
+    /* 1H_COMBO    */ CUT_DIAG_R,
+    /* 2H_COMBO    */ CUT_DIAG_R,
+    /* 1H_LEFT     */ CUT_HORIZ,
+    /* 2H_LEFT     */ CUT_HORIZ,
+    /* 1H_COMBO    */ CUT_HORIZ,
+    /* 2H_COMBO    */ CUT_HORIZ,
+    /* 1H_RIGHT    */ CUT_HORIZ,
+    /* 2H_RIGHT    */ CUT_HORIZ,
+    /* 1H_COMBO    */ CUT_HORIZ,
+    /* 2H_COMBO    */ CUT_HORIZ,
+    /* 1H_STAB     */ CUT_POST,
+    /* 2H_STAB     */ CUT_POST,
+    /* 1H_COMBO    */ CUT_POST,
+    /* 2H_COMBO    */ CUT_POST,
+    /* FLIP_START  */ CUT_VERT_L,
+    /* JUMP_START  */ CUT_VERT_L,
+    /* FLIP_END    */ CUT_VERT_L,
+    /* JUMP_END    */ CUT_VERT_L,
+    /* BACK_LEFT   */ CUT_HORIZ,
+    /* BACK_RIGHT  */ CUT_HORIZ,
+    /* OVER_HAMMER */ CUT_POST,
+    /* SIDE_HAMMER */ CUT_POST,
+    /* 1H_SPIN_ATK */ CUT_POST,
+    /* 2H_SPIN_ATK */ CUT_POST,
+    /* 1H_BIG_SPIN */ CUT_POST,
+    /* 2H_BIG_SPIN */ CUT_POST,
 };
 
 static u16 sCutFlags[] = {
-    /* CUT_POST   */ ALL_PARTS,       /* CUT_VERT_L */ LEFT_HALF,
-    /* CUT_HORIZ  */ UPPER_HALF,      /* CUT_DIAG_L */ UPPERLEFT_HALF,
-    /* CUT_DIAG_R */ UPPERRIGHT_HALF, /* CUT_VERT_R */ RIGHT_HALF,
+    /* CUT_POST   */ ALL_PARTS,
+    /* CUT_VERT_L */ LEFT_HALF,
+    /* CUT_HORIZ  */ UPPER_HALF,
+    /* CUT_DIAG_L */ UPPERLEFT_HALF,
+    /* CUT_DIAG_R */ UPPERRIGHT_HALF,
+    /* CUT_VERT_R */ RIGHT_HALF,
 };
 
 void EnKanban_SetFloorRot(EnKanban* this) {
@@ -251,13 +277,13 @@ void EnKanban_Message(EnKanban* this, PlayState* play) {
 }
 
 void EnKanban_Update(Actor* thisx, PlayState* play2) {
-    u8 bounced = false;
+    u8         bounced = false;
     PlayState* play = play2;
     EnKanban* this = (EnKanban*)thisx;
     EnKanban* signpost;
     EnKanban* piece;
-    Player* player = GET_PLAYER(play);
-    Vec3f offset;
+    Player*   player = GET_PLAYER(play);
+    Vec3f     offset;
 
     this->frameCount++;
     switch (this->actionState) {
@@ -283,8 +309,8 @@ void EnKanban_Update(Actor* thisx, PlayState* play2) {
                                                       this->actor.shape.rot.y, this->actor.shape.rot.z, ENKANBAN_PIECE);
                 if (piece != NULL) {
                     ColliderInfo* hitItem = this->collider.info.acHitInfo;
-                    s16 yawDiff = this->actor.yawTowardsPlayer - this->actor.shape.rot.y;
-                    u8 i;
+                    s16           yawDiff = this->actor.yawTowardsPlayer - this->actor.shape.rot.y;
+                    u8            i;
 
                     if (hitItem->toucher.dmgFlags & 0x700) {
                         this->cutType = sCutTypes[player->meleeWeaponAnimation];
@@ -424,7 +450,7 @@ void EnKanban_Update(Actor* thisx, PlayState* play2) {
             f32 tempY;
             f32 tempZ;
             f32 tempYDistToWater;
-            u8 onGround;
+            u8  onGround;
 
             Actor_MoveForward(&this->actor);
             Actor_UpdateBgCheckInfo(play, &this->actor, 30.0f, 30.0f, 50.0f, 5);
@@ -548,8 +574,8 @@ void EnKanban_Update(Actor* thisx, PlayState* play2) {
                 this->actor.shape.rot.x += this->direction * 0x7D0;
             }
             if (bounced) {
-                s16 dustCount;
-                s16 j;
+                s16   dustCount;
+                s16   j;
                 Vec3f velocity = { 0.0f, 0.0f, 0.0f };
                 Vec3f accel;
                 Vec3f pos;
@@ -662,9 +688,9 @@ void EnKanban_Update(Actor* thisx, PlayState* play2) {
             }
             if (this->bounceX == 0) {
                 Actor* bomb = play->actorCtx.actorLists[ACTORCAT_EXPLOSIVE].head;
-                f32 dx;
-                f32 dy;
-                f32 dz;
+                f32    dx;
+                f32    dy;
+                f32    dz;
 
                 while (bomb != NULL) {
                     if (bomb->params != 1) {
@@ -763,9 +789,17 @@ void EnKanban_Update(Actor* thisx, PlayState* play2) {
 }
 
 static Gfx* sDisplayLists[] = {
-    object_kanban_DL_000CB0, object_kanban_DL_000DB8, object_kanban_DL_000E78, object_kanban_DL_000F38,
-    object_kanban_DL_000FF8, object_kanban_DL_0010B8, object_kanban_DL_0011C0, object_kanban_DL_0012C8,
-    object_kanban_DL_0013D0, object_kanban_DL_001488, object_kanban_DL_001540,
+    object_kanban_DL_000CB0,
+    object_kanban_DL_000DB8,
+    object_kanban_DL_000E78,
+    object_kanban_DL_000F38,
+    object_kanban_DL_000FF8,
+    object_kanban_DL_0010B8,
+    object_kanban_DL_0011C0,
+    object_kanban_DL_0012C8,
+    object_kanban_DL_0013D0,
+    object_kanban_DL_001488,
+    object_kanban_DL_001540,
 };
 
 #include "z_en_kanban_gfx.c"

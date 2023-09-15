@@ -38,13 +38,25 @@ void ObjectKankyo_DrawSunGraveSpark(ObjectKankyo* this, PlayState* play);
 void ObjectKankyo_DrawBeams(ObjectKankyo* this, PlayState* play);
 
 static void* sEffLightningTextures[] = {
-    gEffLightning1Tex, gEffLightning2Tex, gEffLightning3Tex, gEffLightning4Tex,
-    gEffLightning5Tex, gEffLightning6Tex, gEffLightning7Tex, gEffLightning8Tex,
+    gEffLightning1Tex,
+    gEffLightning2Tex,
+    gEffLightning3Tex,
+    gEffLightning4Tex,
+    gEffLightning5Tex,
+    gEffLightning6Tex,
+    gEffLightning7Tex,
+    gEffLightning8Tex,
 };
 
 static void* D_80BA5900[] = {
-    gEffSunGraveSpark1Tex, gEffSunGraveSpark2Tex, gEffSunGraveSpark3Tex, gEffSunGraveSpark4Tex,
-    gEffSunGraveSpark5Tex, gEffSunGraveSpark6Tex, gEffSunGraveSpark7Tex, gEffSunGraveSpark8Tex,
+    gEffSunGraveSpark1Tex,
+    gEffSunGraveSpark2Tex,
+    gEffSunGraveSpark3Tex,
+    gEffSunGraveSpark4Tex,
+    gEffSunGraveSpark5Tex,
+    gEffSunGraveSpark6Tex,
+    gEffSunGraveSpark7Tex,
+    gEffSunGraveSpark8Tex,
 };
 
 const ActorInit Object_Kankyo_InitVars = {
@@ -60,7 +72,7 @@ const ActorInit Object_Kankyo_InitVars = {
     (ActorResetFunc)ObjectKankyo_Reset,
 };
 
-u8 sKankyoIsSpawned = false;
+u8  sKankyoIsSpawned = false;
 s16 sTrailingFairies = 0;
 
 void ObjectKankyo_SetupAction(ObjectKankyo* this, ObjectKankyoActionFunc action) {
@@ -193,24 +205,24 @@ void ObjectKankyo_Snow(ObjectKankyo* this, PlayState* play) {
 
 void ObjectKankyo_Fairies(ObjectKankyo* this, PlayState* play) {
     static Vec3f sSoundPos = { 0.0f, 0.0f, 0.0f };
-    Player* player;
-    f32 dist;
-    s32 playerMoved;
-    f32 dx;
-    f32 dy;
-    f32 dz;
-    f32 viewForwardsX;
-    f32 viewForwardsY;
-    f32 viewForwardsZ;
-    f32 maxDist;
-    f32 baseX;
-    f32 baseY;
-    f32 baseZ;
-    Vec3f vec1 = { 0.0f, 0.0f, 0.0f };
-    Vec3f vec2 = { 0.0f, 0.0f, 0.0f };
-    f32 random;
-    s16 i;
-    Vec3f viewForwards;
+    Player*      player;
+    f32          dist;
+    s32          playerMoved;
+    f32          dx;
+    f32          dy;
+    f32          dz;
+    f32          viewForwardsX;
+    f32          viewForwardsY;
+    f32          viewForwardsZ;
+    f32          maxDist;
+    f32          baseX;
+    f32          baseY;
+    f32          baseZ;
+    Vec3f        vec1 = { 0.0f, 0.0f, 0.0f };
+    Vec3f        vec2 = { 0.0f, 0.0f, 0.0f };
+    f32          random;
+    s16          i;
+    Vec3f        viewForwards;
 
     player = GET_PLAYER(play);
 
@@ -515,10 +527,10 @@ void ObjectKankyo_Draw(Actor* thisx, PlayState* play) {
 void ObjectKankyo_DrawFairies(ObjectKankyo* this2, PlayState* play2) {
     ObjectKankyo* this = this2;
     PlayState* play = play2;
-    f32 alphaScale;
-    Vec3f vec1 = { 0.0f, 0.0f, 0.0f };
-    Vec3f vec2 = { 0.0f, 0.0f, 0.0f };
-    s16 i;
+    f32        alphaScale;
+    Vec3f      vec1 = { 0.0f, 0.0f, 0.0f };
+    Vec3f      vec2 = { 0.0f, 0.0f, 0.0f };
+    s16        i;
 
     if (!(play->cameraPtrs[0]->unk_14C & 0x100)) {
         OPEN_DISPS(play->state.gfxCtx);
@@ -602,20 +614,20 @@ void ObjectKankyo_DrawFairies(ObjectKankyo* this2, PlayState* play2) {
 void ObjectKankyo_DrawSnow(ObjectKankyo* this2, PlayState* play2) {
     ObjectKankyo* this = this2;
     PlayState* play = play2;
-    f32 dist;
-    f32 dx;
-    f32 dy;
-    f32 dz;
-    f32 maxDist;
-    f32 temp;
-    f32 baseX;
-    f32 baseY;
-    f32 baseZ;
-    Vec3f vec1 = { 0.0f, 0.0f, 0.0f };
-    Vec3f vec2 = { 0.0f, 0.0f, 0.0f };
-    s16 i;
-    s32 pad;
-    s32 pad2;
+    f32        dist;
+    f32        dx;
+    f32        dy;
+    f32        dz;
+    f32        maxDist;
+    f32        temp;
+    f32        baseX;
+    f32        baseY;
+    f32        baseZ;
+    Vec3f      vec1 = { 0.0f, 0.0f, 0.0f };
+    Vec3f      vec2 = { 0.0f, 0.0f, 0.0f };
+    s16        i;
+    s32        pad;
+    s32        pad2;
 
     if (!(play->cameraPtrs[0]->unk_14C & 0x100)) {
         OPEN_DISPS(play->state.gfxCtx);
@@ -827,9 +839,9 @@ void ObjectKankyo_SunGraveSpark(ObjectKankyo* this, PlayState* play) {
 void ObjectKankyo_DrawSunGraveSpark(ObjectKankyo* this2, PlayState* play2) {
     ObjectKankyo* this = this2;
     PlayState* play = play2;
-    Vec3f start;
-    Vec3f end;
-    f32 weight;
+    Vec3f      start;
+    Vec3f      end;
+    f32        weight;
 
     OPEN_DISPS(play->state.gfxCtx);
     if (play->csCtx.state != 0) {
@@ -926,20 +938,29 @@ void ObjectKankyo_Beams(ObjectKankyo* this, PlayState* play) {
 
 void ObjectKankyo_DrawBeams(ObjectKankyo* this2, PlayState* play2) {
     static Color_RGB8 sBeamPrimColors[] = {
-        { 255, 255, 170 }, { 170, 255, 255 }, { 255, 170, 255 },
-        { 255, 255, 170 }, { 255, 255, 170 }, { 255, 255, 170 },
+        { 255, 255, 170 },
+        { 170, 255, 255 },
+        { 255, 170, 255 },
+        { 255, 255, 170 },
+        { 255, 255, 170 },
+        { 255, 255, 170 },
     };
     static Color_RGB8 sBeamEnvColors[] = {
-        { 0, 200, 0 }, { 0, 50, 255 }, { 100, 0, 200 }, { 200, 0, 0 }, { 200, 255, 0 }, { 255, 120, 0 },
+        { 0, 200, 0 },
+        { 0, 50, 255 },
+        { 100, 0, 200 },
+        { 200, 0, 0 },
+        { 200, 255, 0 },
+        { 255, 120, 0 },
     };
     ObjectKankyo* this = this2;
     PlayState* play = play2;
-    s16 i;
-    f32 beamX[] = { 430.0f, 860.0f, 430.0f, -426.0f, -862.0f, -440.0f };
-    f32 beamY[] = { 551.0f, 551.0f, 551.0f, 554.0f, 551.0f, 547.0f };
-    f32 beamZ[] = { -96.0f, -840.0f, -1585.0f, -1578.0f, -840.0f, -78.0f };
-    f32 beamYaw[] = { 29.9f, 90.0f, 150.0f, 30.0f, 90.0f, -30.1f };
-    f32 beamPitch[] = { 103.4f, 103.8f, 103.6f, -103.4f, -103.5f, 103.5f };
+    s16        i;
+    f32        beamX[] = { 430.0f, 860.0f, 430.0f, -426.0f, -862.0f, -440.0f };
+    f32        beamY[] = { 551.0f, 551.0f, 551.0f, 554.0f, 551.0f, 547.0f };
+    f32        beamZ[] = { -96.0f, -840.0f, -1585.0f, -1578.0f, -840.0f, -78.0f };
+    f32        beamYaw[] = { 29.9f, 90.0f, 150.0f, 30.0f, 90.0f, -30.1f };
+    f32        beamPitch[] = { 103.4f, 103.8f, 103.6f, -103.4f, -103.5f, 103.5f };
 
     OPEN_DISPS(play->state.gfxCtx);
 

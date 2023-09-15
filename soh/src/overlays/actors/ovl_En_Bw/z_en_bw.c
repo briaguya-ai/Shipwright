@@ -189,14 +189,14 @@ void func_809CE9A8(EnBw* this) {
 
 void func_809CEA24(EnBw* this, PlayState* play) {
     CollisionPoly* sp74 = NULL;
-    Vec3f sp68;
-    u32 sp64 = 0;
-    s16 sp62;
-    s16 sp60;
-    f32 sp5C;
-    f32 sp58;
-    Player* player = GET_PLAYER(play);
-    Player* player2 = GET_PLAYER(play);
+    Vec3f          sp68;
+    u32            sp64 = 0;
+    s16            sp62;
+    s16            sp60;
+    f32            sp5C;
+    f32            sp58;
+    Player*        player = GET_PLAYER(play);
+    Player*        player2 = GET_PLAYER(play);
 
     SkelAnime_Update(&this->skelAnime);
     this->unk_244 = this->unk_250 + 0.1f;
@@ -439,7 +439,7 @@ void func_809CF8F0(EnBw* this) {
 
 void func_809CF984(EnBw* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 floorPolyType;
+    s32     floorPolyType;
 
     Math_SmoothStepToF(&this->actor.speedXZ, 0.0f, 1.0f, 0.5f, 0.0f);
     this->unk_222 += 250;
@@ -744,9 +744,9 @@ void func_809D0584(EnBw* this, PlayState* play) {
 void EnBw_Update(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
     EnBw* this = (EnBw*)thisx;
-    Vec3f velocity = { 0.0f, 0.0f, 0.0f };
-    Vec3f accel = { 0.0f, 0.0f, 0.0f };
-    s32 pad[3]; // probably an unused Vec3f
+    Vec3f       velocity = { 0.0f, 0.0f, 0.0f };
+    Vec3f       accel = { 0.0f, 0.0f, 0.0f };
+    s32         pad[3]; // probably an unused Vec3f
     Color_RGBA8 sp50 = { 255, 200, 0, 255 };
     Color_RGBA8 sp4C = { 255, 80, 0, 255 };
     Color_RGBA8 sp48 = { 0, 0, 0, 255 };
@@ -839,16 +839,22 @@ s32 EnBw_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* po
 }
 
 static Vec3f sIceOffsets[] = {
-    { 20.0f, 10.0f, 0.0f },  { -20.0f, 10.0f, 0.0f }, { 0.0f, 10.0f, -25.0f }, { 10.0f, 0.0f, 15.0f },
-    { 10.0f, 0.0f, -15.0f }, { 0.0f, 10.0f, 25.0f },  { -10.0f, 0.0f, 15.0f }, { -10.0f, 0.0f, -15.0f },
+    { 20.0f, 10.0f, 0.0f },
+    { -20.0f, 10.0f, 0.0f },
+    { 0.0f, 10.0f, -25.0f },
+    { 10.0f, 0.0f, 15.0f },
+    { 10.0f, 0.0f, -15.0f },
+    { 0.0f, 10.0f, 25.0f },
+    { -10.0f, 0.0f, 15.0f },
+    { -10.0f, 0.0f, -15.0f },
 };
 
 void EnBw_Draw(Actor* thisx, PlayState* play2) {
-    Vec3f spAC = { 0.0f, 0.0f, 0.0f };
+    Vec3f      spAC = { 0.0f, 0.0f, 0.0f };
     PlayState* play = play2;
     EnBw* this = (EnBw*)thisx;
     Vec3f icePos;
-    s32 iceIndex;
+    s32   iceIndex;
 
     OPEN_DISPS(play->state.gfxCtx);
 

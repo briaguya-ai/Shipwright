@@ -68,9 +68,18 @@ void EnWonderItem_Destroy(Actor* thisx, PlayState* play) {
 
 void EnWonderItem_DropCollectible(EnWonderItem* this, PlayState* play, s32 autoCollect) {
     static s16 dropTable[] = {
-        ITEM00_NUTS,        ITEM00_HEART_PIECE,  ITEM00_MAGIC_LARGE,   ITEM00_MAGIC_SMALL,
-        ITEM00_HEART,       ITEM00_ARROWS_SMALL, ITEM00_ARROWS_MEDIUM, ITEM00_ARROWS_LARGE,
-        ITEM00_RUPEE_GREEN, ITEM00_RUPEE_BLUE,   ITEM00_RUPEE_RED,     ITEM00_FLEXIBLE,
+        ITEM00_NUTS,
+        ITEM00_HEART_PIECE,
+        ITEM00_MAGIC_LARGE,
+        ITEM00_MAGIC_SMALL,
+        ITEM00_HEART,
+        ITEM00_ARROWS_SMALL,
+        ITEM00_ARROWS_MEDIUM,
+        ITEM00_ARROWS_LARGE,
+        ITEM00_RUPEE_GREEN,
+        ITEM00_RUPEE_BLUE,
+        ITEM00_RUPEE_RED,
+        ITEM00_FLEXIBLE,
     };
     s32 i;
     s32 randomDrop;
@@ -104,8 +113,13 @@ void EnWonderItem_DropCollectible(EnWonderItem* this, PlayState* play, s32 autoC
 
 void EnWonderItem_Init(Actor* thisx, PlayState* play) {
     static u32 collisionTypes[] = {
-        0x00000702 /* sword slash */, 0x0001F820 /* arrow */,     0x00000040 /* hammer */,   0x00000008 /* bomb */,
-        0x00000004 /* slingshot */,   0x00000010 /* boomerang */, 0x00000080 /* hookshot */,
+        0x00000702 /* sword slash */,
+        0x0001F820 /* arrow */,
+        0x00000040 /* hammer */,
+        0x00000008 /* bomb */,
+        0x00000004 /* slingshot */,
+        0x00000010 /* boomerang */,
+        0x00000080 /* hookshot */,
     };
     s32 pad;
     s16 colTypeIndex;
@@ -202,9 +216,9 @@ void EnWonderItem_Init(Actor* thisx, PlayState* play) {
 
 void EnWonderItem_MultitagFree(EnWonderItem* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 prevTagFlags = this->tagFlags;
-    s32 i;
-    s32 mask;
+    s32     prevTagFlags = this->tagFlags;
+    s32     i;
+    s32     mask;
 
     for (i = 0, mask = 1; i < this->numTagPoints; i++, mask <<= 1) {
         if (!(prevTagFlags & mask)) {
@@ -265,9 +279,9 @@ void EnWonderItem_ProximitySwitch(EnWonderItem* this, PlayState* play) {
 
 void EnWonderItem_MultitagOrdered(EnWonderItem* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 prevTagFlags = this->tagFlags;
-    s32 i;
-    s32 mask;
+    s32     prevTagFlags = this->tagFlags;
+    s32     i;
+    s32     mask;
 
     for (i = 0, mask = 1; i < this->numTagPoints; i++, mask <<= 1) {
         if (!(prevTagFlags & mask)) {
@@ -331,8 +345,45 @@ void EnWonderItem_RollDrop(EnWonderItem* this, PlayState* play) {
 
 void EnWonderItem_Update(Actor* thisx, PlayState* play) {
     static s16 debugArrowColors[] = {
-        255, 255, 0,   255, 0,   255, 0,   255, 255, 255, 0,   0, 0, 255, 0,   0, 0, 255, 128, 128,
-        128, 128, 128, 0,   128, 0,   128, 0,   128, 0,   128, 0, 0, 0,   128, 0, 0, 0,   128,
+        255,
+        255,
+        0,
+        255,
+        0,
+        255,
+        0,
+        255,
+        255,
+        255,
+        0,
+        0,
+        0,
+        255,
+        0,
+        0,
+        0,
+        255,
+        128,
+        128,
+        128,
+        128,
+        128,
+        0,
+        128,
+        0,
+        128,
+        0,
+        128,
+        0,
+        128,
+        0,
+        0,
+        0,
+        128,
+        0,
+        0,
+        0,
+        128,
     }; // These seem to be mistyped. Logically they should be s16[13][3] and be indexed as [colorIndex][i]
     s32 pad;
     EnWonderItem* this = (EnWonderItem*)thisx;

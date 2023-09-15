@@ -79,16 +79,34 @@ static ColliderCylinderInitType1 sCylinderInit = {
 };
 
 static u16 D_809F040C[] = {
-    0x10A0, 0x10A1, 0x10A2, 0x10CA, 0x10CB, 0x10CC, 0x10CD, 0x10CE, 0x10CF, 0x10DC, 0x10DD,
+    0x10A0,
+    0x10A1,
+    0x10A2,
+    0x10CA,
+    0x10CB,
+    0x10CC,
+    0x10CD,
+    0x10CE,
+    0x10CF,
+    0x10DC,
+    0x10DD,
 };
 
 // Debug text: "sells"  { "Deku Nuts",    "Deku Sticks",        "Piece of Heart",  "Deku Seeds",
 //                        "Deku Shield",  "Bombs",              "Arrows",          "Red Potion",
 //                        "Green Potion", "Deku Stick Upgrade", "Deku Nut Upgrade" }
 static char* D_809F0424[] = {
-    "デクの実売り            ", "デクの棒売り            ", "ハートの欠片売り        ", "デクの種売り            ",
-    "デクの盾売り            ", "バクダン売り            ", "矢売り                  ", "赤のくすり売り          ",
-    "緑のくすり売り          ", "デクの棒持てる数を増やす", "デクの実持てる数を増やす",
+    "デクの実売り            ",
+    "デクの棒売り            ",
+    "ハートの欠片売り        ",
+    "デクの種売り            ",
+    "デクの盾売り            ",
+    "バクダン売り            ",
+    "矢売り                  ",
+    "赤のくすり売り          ",
+    "緑のくすり売り          ",
+    "デクの棒持てる数を増やす",
+    "デクの実持てる数を増やす",
 };
 
 static DnsItemEntry D_809F0450 = { 20, 5, GI_NUTS_5_2, func_809EF5A4, func_809EFA28 };
@@ -114,8 +132,17 @@ static DnsItemEntry D_809F04E0 = { 40, 1, GI_STICK_UPGRADE_20, func_809EF70C, fu
 static DnsItemEntry D_809F04F0 = { 40, 1, GI_NUT_UPGRADE_30, func_809EF70C, func_809EFB40 };
 
 static DnsItemEntry* sItemEntries[] = {
-    &D_809F0450, &D_809F0460, &D_809F0470, &D_809F0480, &D_809F0490, &D_809F04A0,
-    &D_809F04B0, &D_809F04C0, &D_809F04D0, &D_809F04E0, &D_809F04F0,
+    &D_809F0450,
+    &D_809F0460,
+    &D_809F0470,
+    &D_809F0480,
+    &D_809F0490,
+    &D_809F04A0,
+    &D_809F04B0,
+    &D_809F04C0,
+    &D_809F04D0,
+    &D_809F04E0,
+    &D_809F04F0,
 };
 
 static InitChainEntry sInitChain[] = {
@@ -500,9 +527,9 @@ void EnDns_SetupBurrow(EnDns* this, PlayState* play) {
 }
 
 void EnDns_Burrow(EnDns* this, PlayState* play) {
-    f32 depth;
+    f32   depth;
     Vec3f initPos;
-    s32 i;
+    s32   i;
 
     depth = this->yInitPos - this->actor.world.pos.y;
     if ((this->dustTimer & 3) == 0) {

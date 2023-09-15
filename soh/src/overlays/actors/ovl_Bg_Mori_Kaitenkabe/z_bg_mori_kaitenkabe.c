@@ -87,9 +87,9 @@ void BgMoriKaitenkabe_SetupWait(BgMoriKaitenkabe* this) {
 }
 
 void BgMoriKaitenkabe_Wait(BgMoriKaitenkabe* this, PlayState* play) {
-    Vec3f push;
-    Vec3f leverArm;
-    Vec3f torque;
+    Vec3f   push;
+    Vec3f   leverArm;
+    Vec3f   torque;
     Player* player = GET_PLAYER(play);
 
     if (this->dyna.unk_150 > 0.001f) {
@@ -124,8 +124,8 @@ void BgMoriKaitenkabe_SetupRotate(BgMoriKaitenkabe* this) {
 
 void BgMoriKaitenkabe_Rotate(BgMoriKaitenkabe* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Actor* thisx = &this->dyna.actor;
-    s16 rotY;
+    Actor*  thisx = &this->dyna.actor;
+    s16     rotY;
 
     Math_StepToF(&this->rotSpeed, 0.6f, 0.02f);
     if (Math_StepToF(&this->rotYdeg, this->rotDirection * 45.0f, this->rotSpeed)) {

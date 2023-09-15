@@ -11,15 +11,15 @@
 #define rPrimColorG regs[1]
 #define rPrimColorB regs[2]
 #define rPrimColorA regs[3]
-#define rEnvColorR regs[4]
-#define rEnvColorG regs[5]
-#define rEnvColorB regs[6]
-#define rEnvColorA regs[7]
-#define rMoveDelay regs[8]
-#define rDirection regs[9]
-#define rScale regs[10]
+#define rEnvColorR  regs[4]
+#define rEnvColorG  regs[5]
+#define rEnvColorB  regs[6]
+#define rEnvColorA  regs[7]
+#define rMoveDelay  regs[8]
+#define rDirection  regs[9]
+#define rScale      regs[10]
 
-u32 EffectSsSibuki_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsSibuki_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsSibuki_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsSibuki_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -61,7 +61,7 @@ u32 EffectSsSibuki_Init(PlayState* play, u32 index, EffectSs* this, void* initPa
 
 void EffectSsSibuki_Draw(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    f32 scale = this->rScale / 100.0f;
+    f32              scale = this->rScale / 100.0f;
 
     OPEN_DISPS(gfxCtx);
 
@@ -79,9 +79,9 @@ void EffectSsSibuki_Draw(PlayState* play, u32 index, EffectSs* this) {
 }
 
 void EffectSsSibuki_Update(PlayState* play, u32 index, EffectSs* this) {
-    s32 pad[3];
-    f32 xzVelScale;
-    s16 yaw;
+    s32     pad[3];
+    f32     xzVelScale;
+    s16     yaw;
     Player* player = GET_PLAYER(play);
 
     if (this->pos.y <= player->actor.floorHeight) {

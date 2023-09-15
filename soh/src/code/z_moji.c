@@ -5,25 +5,23 @@
 #include "global.h"
 
 // OTRTODO
-u64 gMojiFontTex[] =
-{
+u64 gMojiFontTex[] = {
     0,
 };
 
-u64 gMojiFontTLUTs[4][4] =
-{
+u64 gMojiFontTLUTs[4][4] = {
     0
 };
 
 // how big to draw the characters on screen
-#define DISP_CHAR_WIDTH 8
+#define DISP_CHAR_WIDTH  8
 #define DISP_CHAR_HEIGHT 8
 
 // gMojiFontTex is a TEX_CHAR_COLS x TEX_CHAR_ROWS grid of characters,
 // each character being TEX_CHAR_WIDTH x TEX_CHAR_HEIGHT in size.
 // Each spot on the grid contains 4 characters, which are revealed by using different TLUTs.
 
-#define TEX_CHAR_WIDTH 8
+#define TEX_CHAR_WIDTH  8
 #define TEX_CHAR_HEIGHT 8
 
 #define TEX_CHAR_COLS 2
@@ -32,8 +30,8 @@ u64 gMojiFontTLUTs[4][4] =
 // A character `c = 0bRRRRRCTT` maps to row 0bRRRRR, column 0bC and TLUT 0bTT.
 #define GET_CHAR_TLUT_INDEX(c) (c & 3)
 // `/ 4` matches the `& 4` (`(c & 4) / 4` is the column the character is in)
-#define GET_TEX_CHAR_S(c) ((u16)(c & 4) * ((1 << 5) * TEX_CHAR_WIDTH / 4))
-#define GET_TEX_CHAR_T(c) ((u16)(c >> 3) * ((1 << 5) * TEX_CHAR_HEIGHT))
+#define GET_TEX_CHAR_S(c)      ((u16)(c & 4) * ((1 << 5) * TEX_CHAR_WIDTH / 4))
+#define GET_TEX_CHAR_T(c)      ((u16)(c >> 3) * ((1 << 5) * TEX_CHAR_HEIGHT))
 
 u32 sFontColorRed = 255;
 u32 sFontColorGreen = 255;

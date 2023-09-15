@@ -134,10 +134,10 @@ void ObjMure_GetSpawnPos(Vec3f* outPos, Vec3f* inPos, s32 ptn, s32 idx) {
 
 void ObjMure_SpawnActors0(ObjMure* this, PlayState* play) {
     ActorContext* ac;
-    s32 i;
-    Vec3f pos;
-    s32 pad;
-    s32 maxChildren = ObjMure_GetMaxChildSpawns(this);
+    s32           i;
+    Vec3f         pos;
+    s32           pad;
+    s32           maxChildren = ObjMure_GetMaxChildSpawns(this);
 
     for (i = 0; i < maxChildren; i++) {
         if (this->children[i] != NULL) {
@@ -179,10 +179,10 @@ void ObjMure_SpawnActors0(ObjMure* this, PlayState* play) {
 
 void ObjMure_SpawnActors1(ObjMure* this, PlayState* play) {
     ActorContext* ac = (ActorContext*)play; // fake match
-    Actor* actor = &this->actor;
-    Vec3f spawnPos;
-    s32 maxChildren = ObjMure_GetMaxChildSpawns(this);
-    s32 i;
+    Actor*        actor = &this->actor;
+    Vec3f         spawnPos;
+    s32           maxChildren = ObjMure_GetMaxChildSpawns(this);
+    s32           i;
 
     for (i = 0; i < maxChildren; i++) {
         if (this->children[i] != NULL) {
@@ -393,7 +393,11 @@ void ObjMure_GroupBehavior1(ObjMure* this, PlayState* play) {
 }
 
 static ObjMureActionFunc sTypeGroupBehaviorFunc[] = {
-    NULL, NULL, ObjMure_GroupBehavior0, ObjMure_GroupBehavior0, ObjMure_GroupBehavior1,
+    NULL,
+    NULL,
+    ObjMure_GroupBehavior0,
+    ObjMure_GroupBehavior0,
+    ObjMure_GroupBehavior1,
 };
 
 void ObjMure_ActiveState(ObjMure* this, PlayState* play) {

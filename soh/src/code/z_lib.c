@@ -306,9 +306,17 @@ void IChain_Apply_Vec3fdiv1000(u8* ptr, InitChainEntry* ichain);
 void IChain_Apply_Vec3s(u8* ptr, InitChainEntry* ichain);
 
 void (*sInitChainHandlers[])(u8* ptr, InitChainEntry* ichain) = {
-    IChain_Apply_u8,    IChain_Apply_s8,           IChain_Apply_u16,   IChain_Apply_s16,
-    IChain_Apply_u32,   IChain_Apply_s32,          IChain_Apply_f32,   IChain_Apply_f32div1000,
-    IChain_Apply_Vec3f, IChain_Apply_Vec3fdiv1000, IChain_Apply_Vec3s,
+    IChain_Apply_u8,
+    IChain_Apply_s8,
+    IChain_Apply_u16,
+    IChain_Apply_s16,
+    IChain_Apply_u32,
+    IChain_Apply_s32,
+    IChain_Apply_f32,
+    IChain_Apply_f32div1000,
+    IChain_Apply_Vec3f,
+    IChain_Apply_Vec3fdiv1000,
+    IChain_Apply_Vec3s,
 };
 
 void Actor_ProcessInitChain(Actor* actor, InitChainEntry* ichain) {
@@ -351,7 +359,7 @@ void IChain_Apply_f32div1000(u8* ptr, InitChainEntry* ichain) {
 
 void IChain_Apply_Vec3f(u8* ptr, InitChainEntry* ichain) {
     Vec3f* vec = (Vec3f*)(ptr + ichain->offset);
-    f32 val = ichain->value;
+    f32    val = ichain->value;
 
     vec->z = val;
     vec->y = val;
@@ -360,7 +368,7 @@ void IChain_Apply_Vec3f(u8* ptr, InitChainEntry* ichain) {
 
 void IChain_Apply_Vec3fdiv1000(u8* ptr, InitChainEntry* ichain) {
     Vec3f* vec = (Vec3f*)(ptr + ichain->offset);
-    f32 val;
+    f32    val;
 
     osSyncPrintf("pp=%x data=%f\n", vec, ichain->value / 1000.0f);
     val = ichain->value / 1000.0f;
@@ -372,7 +380,7 @@ void IChain_Apply_Vec3fdiv1000(u8* ptr, InitChainEntry* ichain) {
 
 void IChain_Apply_Vec3s(u8* ptr, InitChainEntry* ichain) {
     Vec3s* vec = (Vec3s*)(ptr + ichain->offset);
-    s16 val = ichain->value;
+    s16    val = ichain->value;
 
     vec->z = val;
     vec->y = val;

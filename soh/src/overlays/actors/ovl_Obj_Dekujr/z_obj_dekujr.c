@@ -86,11 +86,11 @@ void ObjDekujr_SetFinalPos(CsCmdActorAction* npcAction, Vec3f* finalPos) {
 
 void ObjDekujr_ComeUp(ObjDekujr* this, PlayState* play) {
     CsCmdActorAction* csCmdNPCAction;
-    Vec3f initPos;
-    Vec3f finalPos;
-    Vec3f velocity = { 0.0f, 0.0f, 0.0f };
-    f32 actionLength;
-    f32 gravity;
+    Vec3f             initPos;
+    Vec3f             finalPos;
+    Vec3f             velocity = { 0.0f, 0.0f, 0.0f };
+    f32               actionLength;
+    f32               gravity;
 
     if (play->csCtx.state == CS_STATE_IDLE) {
         this->unk_19C = 2;

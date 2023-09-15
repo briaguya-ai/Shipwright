@@ -65,9 +65,12 @@ static ColliderJntSphInit sJntSphInit = {
 };
 
 static InitChainEntry sInitChainClasp[] = {
-    ICHAIN_F32(uncullZoneForward, 1000, ICHAIN_CONTINUE),  ICHAIN_F32(uncullZoneScale, 400, ICHAIN_CONTINUE),
-    ICHAIN_F32(uncullZoneDownward, 1000, ICHAIN_CONTINUE), ICHAIN_U8(targetMode, 3, ICHAIN_CONTINUE),
-    ICHAIN_F32(targetArrowOffset, 40, ICHAIN_CONTINUE),    ICHAIN_VEC3F_DIV1000(scale, 1000, ICHAIN_STOP),
+    ICHAIN_F32(uncullZoneForward, 1000, ICHAIN_CONTINUE),
+    ICHAIN_F32(uncullZoneScale, 400, ICHAIN_CONTINUE),
+    ICHAIN_F32(uncullZoneDownward, 1000, ICHAIN_CONTINUE),
+    ICHAIN_U8(targetMode, 3, ICHAIN_CONTINUE),
+    ICHAIN_F32(targetArrowOffset, 40, ICHAIN_CONTINUE),
+    ICHAIN_VEC3F_DIV1000(scale, 1000, ICHAIN_STOP),
 };
 
 static InitChainEntry sInitChainLadder[] = {
@@ -79,9 +82,9 @@ static InitChainEntry sInitChainLadder[] = {
 
 void BgMoriHashigo_InitDynapoly(BgMoriHashigo* this, PlayState* play, CollisionHeader* collision,
                                 s32 moveFlag) {
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader;
-    s32 pad2;
+    s32              pad2;
 
     colHeader = NULL;
     DynaPolyActor_Init(&this->dyna, moveFlag);
@@ -108,9 +111,9 @@ void BgMoriHashigo_InitCollider(BgMoriHashigo* this, PlayState* play) {
 }
 
 s32 BgMoriHashigo_SpawnLadder(BgMoriHashigo* this, PlayState* play) {
-    f32 sn;
-    f32 cs;
-    Vec3f pos;
+    f32    sn;
+    f32    cs;
+    Vec3f  pos;
     Actor* ladder;
 
     cs = Math_CosS(this->dyna.actor.shape.rot.y);
@@ -243,7 +246,7 @@ void BgMoriHashigo_SetupLadderFall(BgMoriHashigo* this) {
 
 void BgMoriHashigo_LadderFall(BgMoriHashigo* this, PlayState* play) {
     static f32 bounceSpeed[3] = { 4.0f, 2.7f, 1.7f };
-    Actor* thisx = &this->dyna.actor;
+    Actor*     thisx = &this->dyna.actor;
 
     Actor_MoveForward(thisx);
     if ((thisx->bgCheckFlags & 1) && (thisx->velocity.y < 0.0f)) {

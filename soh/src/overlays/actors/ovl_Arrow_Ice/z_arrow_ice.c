@@ -146,8 +146,8 @@ void ArrowIce_Hit(ArrowIce* this, PlayState* play) {
 
 void ArrowIce_Fly(ArrowIce* this, PlayState* play) {
     EnArrow* arrow;
-    f32 distanceScaled;
-    s32 pad;
+    f32      distanceScaled;
+    s32      pad;
 
     arrow = (EnArrow*)this->actor.parent;
     if ((arrow == NULL) || (arrow->actor.update == NULL)) {
@@ -191,16 +191,16 @@ void ArrowIce_Update(Actor* thisx, PlayState* play) {
 
 void ArrowIce_Draw(Actor* thisx, PlayState* play) {
     ArrowIce* this = (ArrowIce*)thisx;
-    s32 pad;
-    Actor* tranform;
-    u32 stateFrames = play->state.frames;
+    s32      pad;
+    Actor*   tranform;
+    u32      stateFrames = play->state.frames;
     EnArrow* arrow = (EnArrow*)this->actor.parent;
 
-    Color_RGB8 primaryColor = {170, 255, 255};
+    Color_RGB8 primaryColor = { 170, 255, 255 };
     if (CVarGetInteger("gCosmetics.Arrows_IcePrimary.Changed", 0)) {
         primaryColor = CVarGetColor24("gCosmetics.Arrows_IcePrimary.Value", primaryColor);
     }
-    Color_RGB8 secondaryColor = {0, 0, 255};
+    Color_RGB8 secondaryColor = { 0, 0, 255 };
     if (CVarGetInteger("gCosmetics.Arrows_IceSecondary.Changed", 0)) {
         secondaryColor = CVarGetColor24("gCosmetics.Arrows_IceSecondary.Value", secondaryColor);
     }
@@ -219,11 +219,11 @@ void ArrowIce_Draw(Actor* thisx, PlayState* play) {
         // Draw blue effect over the screen when arrow hits
         if (this->unk_164 > 0) {
             POLY_XLU_DISP = Gfx_SetupDL_57(POLY_XLU_DISP);
-            gDPSetPrimColor(POLY_XLU_DISP++, 0, 0, 
-                (s32)((secondaryColor.r / 6) * this->unk_164) & 0xFF,
-                (s32)((secondaryColor.g / 6) * this->unk_164) & 0xFF, 
-                (s32)((secondaryColor.b / 6) * this->unk_164) & 0xFF,
-                (s32)(150.0f * this->unk_164) & 0xFF);
+            gDPSetPrimColor(POLY_XLU_DISP++, 0, 0,
+                            (s32)((secondaryColor.r / 6) * this->unk_164) & 0xFF,
+                            (s32)((secondaryColor.g / 6) * this->unk_164) & 0xFF,
+                            (s32)((secondaryColor.b / 6) * this->unk_164) & 0xFF,
+                            (s32)(150.0f * this->unk_164) & 0xFF);
             gDPSetAlphaDither(POLY_XLU_DISP++, G_AD_DISABLE);
             gDPSetColorDither(POLY_XLU_DISP++, G_CD_DISABLE);
             gDPFillRectangle(POLY_XLU_DISP++, 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1);

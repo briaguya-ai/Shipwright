@@ -84,7 +84,7 @@ void func_808A18FC(BgMoriElevator* this, f32 distTo) {
 
 void BgMoriElevator_Init(Actor* thisx, PlayState* play) {
     BgMoriElevator* this = (BgMoriElevator*)thisx;
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
 
     this->unk_172 = sKankyoIsSpawned;

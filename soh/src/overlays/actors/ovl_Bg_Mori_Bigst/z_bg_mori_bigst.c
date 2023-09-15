@@ -41,9 +41,12 @@ const ActorInit Bg_Mori_Bigst_InitVars = {
 };
 
 static InitChainEntry sInitChain[] = {
-    ICHAIN_F32(uncullZoneForward, 3000, ICHAIN_CONTINUE),      ICHAIN_F32(uncullZoneScale, 3000, ICHAIN_CONTINUE),
-    ICHAIN_F32(uncullZoneDownward, 3000, ICHAIN_CONTINUE),     ICHAIN_F32_DIV1000(gravity, -500, ICHAIN_CONTINUE),
-    ICHAIN_F32_DIV1000(minVelocityY, -12000, ICHAIN_CONTINUE), ICHAIN_VEC3F_DIV1000(scale, 1000, ICHAIN_STOP),
+    ICHAIN_F32(uncullZoneForward, 3000, ICHAIN_CONTINUE),
+    ICHAIN_F32(uncullZoneScale, 3000, ICHAIN_CONTINUE),
+    ICHAIN_F32(uncullZoneDownward, 3000, ICHAIN_CONTINUE),
+    ICHAIN_F32_DIV1000(gravity, -500, ICHAIN_CONTINUE),
+    ICHAIN_F32_DIV1000(minVelocityY, -12000, ICHAIN_CONTINUE),
+    ICHAIN_VEC3F_DIV1000(scale, 1000, ICHAIN_STOP),
 };
 
 void BgMoriBigst_SetupAction(BgMoriBigst* this, BgMoriBigstActionFunc actionFunc) {
@@ -51,9 +54,9 @@ void BgMoriBigst_SetupAction(BgMoriBigst* this, BgMoriBigstActionFunc actionFunc
 }
 
 void BgMoriBigst_InitDynapoly(BgMoriBigst* this, PlayState* play, CollisionHeader* collision, s32 moveFlag) {
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
-    s32 pad2;
+    s32              pad2;
 
     DynaPolyActor_Init(&this->dyna, moveFlag);
     CollisionHeader_GetVirtual(collision, &colHeader);
@@ -214,9 +217,9 @@ void BgMoriBigst_SetupStalfosPairFight(BgMoriBigst* this, PlayState* play) {
 }
 
 void BgMoriBigst_StalfosPairFight(BgMoriBigst* this, PlayState* play) {
-    if ((this->dyna.actor.home.rot.z == 0 || 
-        // Check if all enemies are defeated instead of the regular stalfos when enemy randomizer or crowd control is on.
-        (Flags_GetTempClear(play, this->dyna.actor.room) && (CVarGetInteger("gRandomizedEnemies", 0) || (CVarGetInteger("gCrowdControl", 0))))) && 
+    if ((this->dyna.actor.home.rot.z == 0 ||
+         // Check if all enemies are defeated instead of the regular stalfos when enemy randomizer or crowd control is on.
+         (Flags_GetTempClear(play, this->dyna.actor.room) && (CVarGetInteger("gRandomizedEnemies", 0) || (CVarGetInteger("gCrowdControl", 0))))) &&
         !Player_InCsMode(play)) {
         Flags_SetSwitch(play, (this->dyna.actor.params >> 8) & 0x3F);
         BgMoriBigst_SetupDone(this, play);

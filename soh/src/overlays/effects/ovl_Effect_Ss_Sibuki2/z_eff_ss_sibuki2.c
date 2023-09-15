@@ -11,14 +11,14 @@
 #define rPrimColorG regs[1]
 #define rPrimColorB regs[2]
 #define rPrimColorA regs[3]
-#define rEnvColorR regs[4]
-#define rEnvColorG regs[5]
-#define rEnvColorB regs[6]
-#define rEnvColorA regs[7]
-#define rTexIdx regs[8]
-#define rScale regs[9]
+#define rEnvColorR  regs[4]
+#define rEnvColorG  regs[5]
+#define rEnvColorB  regs[6]
+#define rEnvColorA  regs[7]
+#define rTexIdx     regs[8]
+#define rScale      regs[9]
 
-u32 EffectSsSibuki2_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsSibuki2_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsSibuki2_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsSibuki2_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -52,12 +52,18 @@ u32 EffectSsSibuki2_Init(PlayState* play, u32 index, EffectSs* this, void* initP
 
 void EffectSsSibuki2_Draw(PlayState* play, u32 index, EffectSs* this) {
     static void* bubbleTextures[] = {
-        gEffUnusedBubbles1Tex, gEffUnusedBubbles1Tex, gEffUnusedBubbles2Tex,
-        gEffUnusedBubbles3Tex, gEffUnusedBubbles4Tex, gEffUnusedBubbles5Tex,
-        gEffUnusedBubbles6Tex, gEffUnusedBubbles7Tex, gEffUnusedBubbles8Tex,
+        gEffUnusedBubbles1Tex,
+        gEffUnusedBubbles1Tex,
+        gEffUnusedBubbles2Tex,
+        gEffUnusedBubbles3Tex,
+        gEffUnusedBubbles4Tex,
+        gEffUnusedBubbles5Tex,
+        gEffUnusedBubbles6Tex,
+        gEffUnusedBubbles7Tex,
+        gEffUnusedBubbles8Tex,
     };
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    f32 scale = this->rScale / 100.0f;
+    f32              scale = this->rScale / 100.0f;
 
     OPEN_DISPS(gfxCtx);
 

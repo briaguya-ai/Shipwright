@@ -37,9 +37,9 @@ static InitChainEntry sInitChain[] = {
 
 void EnSiofuki_Init(Actor* thisx, PlayState* play) {
     EnSiofuki* this = (EnSiofuki*)thisx;
-    s32 type;
+    s32              type;
     CollisionHeader* colHeader = NULL;
-    s32 pad;
+    s32              pad;
 
     if ((thisx->room == 10) && Flags_GetSwitch(play, 0x1E)) {
         Actor_Kill(thisx);
@@ -114,13 +114,13 @@ void func_80AFBDC8(EnSiofuki* this, PlayState* play) {
 
 void func_80AFBE8C(EnSiofuki* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 dX;
-    f32 dY;
-    f32 dZ;
-    s16 angle;
-    s16 dAngle;
-    f32 dist2d;
-    f32 speedScale;
+    f32     dX;
+    f32     dY;
+    f32     dZ;
+    s16     angle;
+    s16     dAngle;
+    f32     dist2d;
+    f32     speedScale;
 
     dX = player->actor.world.pos.x - this->dyna.actor.world.pos.x;
     dY = player->actor.world.pos.y - this->dyna.actor.world.pos.y;

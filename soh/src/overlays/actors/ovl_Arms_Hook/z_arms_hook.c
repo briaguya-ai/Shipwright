@@ -85,7 +85,7 @@ void ArmsHook_Wait(ArmsHook* this, PlayState* play) {
     if (this->actor.parent == NULL) {
         Player* player = GET_PLAYER(play);
         // get correct timer length for hookshot or longshot
-        s32 length = ((player->heldItemAction == PLAYER_IA_HOOKSHOT) ? 13 : 26) * CVarGetFloat("gCheatHookshotReachMultiplier", 1.0f);
+        s32     length = ((player->heldItemAction == PLAYER_IA_HOOKSHOT) ? 13 : 26) * CVarGetFloat("gCheatHookshotReachMultiplier", 1.0f);
 
         ArmsHook_SetupAction(this, ArmsHook_Shoot);
         func_8002D9A4(&this->actor, 20.0f);
@@ -139,26 +139,26 @@ void ArmsHook_AttachHookToActor(ArmsHook* this, Actor* actor) {
 }
 
 void ArmsHook_Shoot(ArmsHook* this, PlayState* play) {
-    Player* player = GET_PLAYER(play);
-    Actor* touchedActor;
-    Actor* grabbed;
-    Vec3f bodyDistDiffVec;
-    Vec3f newPos;
-    f32 bodyDistDiff;
-    f32 phi_f16;
+    Player*        player = GET_PLAYER(play);
+    Actor*         touchedActor;
+    Actor*         grabbed;
+    Vec3f          bodyDistDiffVec;
+    Vec3f          newPos;
+    f32            bodyDistDiff;
+    f32            phi_f16;
     DynaPolyActor* dynaPolyActor;
-    f32 sp94;
-    f32 sp90;
-    s32 pad;
+    f32            sp94;
+    f32            sp90;
+    s32            pad;
     CollisionPoly* poly;
-    s32 bgId;
-    Vec3f sp78;
-    Vec3f prevFrameDiff;
-    Vec3f sp60;
-    f32 sp5C;
-    f32 sp58;
-    f32 velocity;
-    s32 pad1;
+    s32            bgId;
+    Vec3f          sp78;
+    Vec3f          prevFrameDiff;
+    Vec3f          sp60;
+    f32            sp5C;
+    f32            sp58;
+    f32            velocity;
+    s32            pad1;
 
     if ((this->actor.parent == NULL) || (!Player_HoldsHookshot(player))) {
         ArmsHook_DetachHookFromActor(this);
@@ -302,11 +302,11 @@ void ArmsHook_Draw(Actor* thisx, PlayState* play) {
     s32 pad;
     ArmsHook* this = (ArmsHook*)thisx;
     Player* player = GET_PLAYER(play);
-    Vec3f sp78;
-    Vec3f sp6C;
-    Vec3f sp60;
-    f32 sp5C;
-    f32 sp58;
+    Vec3f   sp78;
+    Vec3f   sp6C;
+    Vec3f   sp60;
+    f32     sp5C;
+    f32     sp58;
 
     if ((player->actor.draw != NULL) && (player->rightHandType == 15)) {
         OPEN_DISPS(play->state.gfxCtx);

@@ -1,6 +1,6 @@
 #include "global.h"
 
-#define SAMPLES_TO_OVERPRODUCE 0x10
+#define SAMPLES_TO_OVERPRODUCE           0x10
 #define EXTRA_BUFFERED_AI_SAMPLES_TARGET 0x80
 
 typedef enum {
@@ -21,14 +21,14 @@ typedef enum {
     CHAN_UPD_STEREO           // 14
 } ChannelUpdateType;
 
-void func_800E6300(SequenceChannel* channel, AudioCmd* arg1);
-void func_800E59AC(s32 playerIdx, s32 fadeTimer);
-void Audio_InitMesgQueues(void);
+void       func_800E6300(SequenceChannel* channel, AudioCmd* arg1);
+void       func_800E59AC(s32 playerIdx, s32 fadeTimer);
+void       Audio_InitMesgQueues(void);
 AudioTask* func_800E5000(void);
-void Audio_ProcessCmds(u32);
-void func_800E6128(SequencePlayer* seqPlayer, AudioCmd* arg1);
-void func_800E5958(s32 playerIdx, s32 fadeTimer);
-s32 func_800E66C0(s32 arg0);
+void       Audio_ProcessCmds(u32);
+void       func_800E6128(SequencePlayer* seqPlayer, AudioCmd* arg1);
+void       func_800E5958(s32 playerIdx, s32 fadeTimer);
+s32        func_800E66C0(s32 arg0);
 
 // AudioMgr_Retrace
 AudioTask* func_800E4FE0(void) {
@@ -74,19 +74,19 @@ void AudioMgr_CreateNextAudioBuffer(s16* samples, u32 num_samples) {
 AudioTask* func_800E5000(void) {
     return NULL;
 
-    static s32 sMaxAbiCmdCnt = 0x80;
+    static s32        sMaxAbiCmdCnt = 0x80;
     static AudioTask* sWaitingAudioTask = NULL;
-    u32 samplesRemainingInAi;
-    s32 abiCmdCnt;
-    s32 pad;
-    s32 j;
-    s32 sp5C;
-    s16* currAiBuffer;
-    OSTask_t* task;
-    s32 index;
-    OSMesg sp4C;
-    s32 sp48;
-    s32 i;
+    u32               samplesRemainingInAi;
+    s32               abiCmdCnt;
+    s32               pad;
+    s32               j;
+    s32               sp5C;
+    s16*              currAiBuffer;
+    OSTask_t*         task;
+    s32               index;
+    OSMesg            sp4C;
+    s32               sp48;
+    s32               i;
 
     gAudioContext.totalTaskCnt++;
     if (gAudioContext.totalTaskCnt % (gAudioContext.audioBufferParameters.specUnk4) != 0) {
@@ -233,7 +233,7 @@ AudioTask* func_800E5000(void) {
 }
 
 #define ACMD_SND_MDE ((u32)0xF0000000)
-#define ACMD_MUTE ((u32)0xF1000000)
+#define ACMD_MUTE    ((u32)0xF1000000)
 
 void func_800E5584(AudioCmd* cmd) {
     s32 i;
@@ -275,7 +275,7 @@ void func_800E5584(AudioCmd* cmd) {
         case 0xF2:
             if (cmd->asUInt == 1) {
                 for (i = 0; i < gAudioContext.numNotes; i++) {
-                    Note* note = &gAudioContext.notes[i];
+                    Note*      note = &gAudioContext.notes[i];
                     NoteSubEu* subEu = &note->noteSubEu;
                     if (subEu->bitField0.enabled && note->playbackState.unk_04 == 0) {
                         if (note->playbackState.parentLayer->channel->muteBehavior & 8) {
@@ -396,8 +396,7 @@ void Audio_QueueCmd(u32 opArgs, u32 data) {
 }
 
 void Audio_QueueCmdF32(u32 opArgs, f32 data) {
-    union
-    {
+    union {
         f32 f;
         u32 u;
     } uData = { .f = data };
@@ -422,7 +421,7 @@ void Audio_QueueCmdU16(u32 opArgs, u16 data) {
 
 s32 Audio_ScheduleProcessCmds(void) {
     static s32 D_801304E8 = 0;
-    s32 ret;
+    s32        ret;
 
     if (D_801304E8 < (u8)((gAudioContext.cmdWrPos - gAudioContext.cmdRdPos) + 0x100)) {
         D_801304E8 = (u8)((gAudioContext.cmdWrPos - gAudioContext.cmdRdPos) + 0x100);
@@ -430,7 +429,7 @@ s32 Audio_ScheduleProcessCmds(void) {
 
     ret =
         osSendMesg32(gAudioContext.cmdProcQueueP,
-                   (((gAudioContext.cmdRdPos & 0xFF) << 8) | (gAudioContext.cmdWrPos & 0xFF)), OS_MESG_NOBLOCK);
+                     (((gAudioContext.cmdRdPos & 0xFF) << 8) | (gAudioContext.cmdWrPos & 0xFF)), OS_MESG_NOBLOCK);
     if (ret != -1) {
         gAudioContext.cmdRdPos = gAudioContext.cmdWrPos;
         ret = 0;
@@ -448,8 +447,8 @@ void Audio_ResetCmdQueue(void) {
 
 void Audio_ProcessCmd(AudioCmd* cmd) {
     SequencePlayer* seqPlayer;
-    u16 phi_v0;
-    s32 i;
+    u16             phi_v0;
+    s32             i;
 
     if ((cmd->op & 0xF0) == 0xF0) {
         func_800E5584(cmd);
@@ -486,7 +485,7 @@ void Audio_ProcessCmd(AudioCmd* cmd) {
 void Audio_ProcessCmds(u32 msg) {
     static u8 curCmdRdPos = 0;
     AudioCmd* cmd;
-    u8 endPos;
+    u8        endPos;
 
     if (!gAudioContext.cmdQueueFinished) {
         curCmdRdPos = msg >> 8;
@@ -531,7 +530,7 @@ void func_800E5EA4(s32 arg0, u32* arg1, u32* arg2) {
 }
 
 s32 func_800E5EDC(void) {
-    s32 pad;
+    s32    pad;
     OSMesg sp18;
 
     if (osRecvMesg(gAudioContext.audioResetQueueP, &sp18, OS_MESG_NOBLOCK) == -1) {
@@ -551,9 +550,9 @@ void func_800E5F34(void) {
 }
 
 s32 func_800E5F88(s32 resetPreloadID) {
-    s32 resetStatus;
+    s32    resetStatus;
     OSMesg msg;
-    s32 pad;
+    s32    pad;
 
     func_800E5F34();
     resetStatus = gAudioContext.resetStatus;
@@ -584,7 +583,7 @@ void Audio_PreNMIInternal(void) {
 }
 
 s8 func_800E6070(s32 playerIdx, s32 channelIdx, s32 scriptIdx) {
-    SequencePlayer* seqPlayer = &gAudioContext.seqPlayers[playerIdx];
+    SequencePlayer*  seqPlayer = &gAudioContext.seqPlayers[playerIdx];
     SequenceChannel* channel;
     if (seqPlayer->enabled) {
         channel = seqPlayer->channels[channelIdx];
@@ -766,11 +765,11 @@ void Audio_WaitForAudioTask(void) {
 
 s32 func_800E6590(s32 playerIdx, s32 arg1, s32 arg2) {
     SequencePlayer* seqPlayer;
-    SequenceLayer* layer;
-    Note* note;
+    SequenceLayer*  layer;
+    Note*           note;
     SoundFontSound* sound;
-    s32 loopEnd;
-    s32 samplePos;
+    s32             loopEnd;
+    s32             samplePos;
 
     seqPlayer = &gAudioContext.seqPlayers[playerIdx];
     if (seqPlayer->enabled && seqPlayer->channels[arg1]->enabled) {
@@ -813,12 +812,12 @@ void func_800E66A0(void) {
 }
 
 s32 func_800E66C0(s32 arg0) {
-    s32 phi_v1;
+    s32                phi_v1;
     NotePlaybackState* temp_a2;
-    NoteSubEu* temp_a3;
-    s32 i;
-    Note* note;
-    SoundFontSound* sound;
+    NoteSubEu*         temp_a3;
+    s32                i;
+    Note*              note;
+    SoundFontSound*    sound;
 
     phi_v1 = 0;
     for (i = 0; i < gAudioContext.numNotes; i++) {

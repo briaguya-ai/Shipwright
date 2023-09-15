@@ -70,22 +70,22 @@ static f32 sStickTilt = 0.0f;
 static s16 sStickAngle = 0;
 static f32 sSwordJumpHeight = 0.0f;
 static s32 sHoldShieldTimer = 0;
-static u8 sZTargetFlag = false;
-static u8 sDeathFlag = false;
+static u8  sZTargetFlag = false;
+static u8  sDeathFlag = false;
 
 static Input sInput;
-static u8 sSwordJumpState;
+static u8    sSwordJumpState;
 static Vec3f sSpawnPoint;
-static u8 sJumpslashTimer;
-static u8 sJumpslashFlag;
-static u8 sActionState;
-static u8 sSwordJumpTimer;
-static u8 sCounterState;
-static u8 sDodgeRollState;
-static u8 sStaggerCount;
-static u8 sStaggerTimer;
-static s8 sLastSwordAnim;
-static u8 sAlpha;
+static u8    sJumpslashTimer;
+static u8    sJumpslashFlag;
+static u8    sActionState;
+static u8    sSwordJumpTimer;
+static u8    sCounterState;
+static u8    sDodgeRollState;
+static u8    sStaggerCount;
+static u8    sStaggerTimer;
+static s8    sLastSwordAnim;
+static u8    sAlpha;
 
 static DamageTable sDamageTable = {
     /* Deku nut      */ DMG_ENTRY(0, 0x1),
@@ -188,8 +188,8 @@ Actor* EnTorch2_GetAttackItem(PlayState* play, Player* this) {
 }
 
 s32 EnTorch2_SwingSword(PlayState* play, Input* input, Player* this) {
-    f32 noAttackChance = 0.0f;
-    s32 attackDelay = 7;
+    f32     noAttackChance = 0.0f;
+    s32     attackDelay = 7;
     Player* player = GET_PLAYER(play);
 
     if ((this->linearVelocity < 0.0f) || (player->linearVelocity < 0.0f)) {
@@ -236,21 +236,21 @@ void EnTorch2_Backflip(Player* this, Input* input, Actor* thisx) {
 
 void EnTorch2_Update(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
-    Player* player2 = GET_PLAYER(play2);
-    Player* player = player2;
+    Player*    player2 = GET_PLAYER(play2);
+    Player*    player = player2;
     Player* this = (Player*)thisx;
-    Input* input = &sInput;
+    Input*  input = &sInput;
     Camera* camera;
-    s16 sp66;
-    u8 staggerThreshold;
-    s8 stickY;
-    s32 pad60;
-    Actor* attackItem;
-    s16 sp5A;
-    s16 pad58;
-    u32 pad54;
-    f32 sp50;
-    s16 sp4E;
+    s16     sp66;
+    u8      staggerThreshold;
+    s8      stickY;
+    s32     pad60;
+    Actor*  attackItem;
+    s16     sp5A;
+    s16     pad58;
+    u32     pad54;
+    f32     sp50;
+    s16     sp4E;
 
     sp5A = player->actor.shape.rot.y - this->actor.shape.rot.y;
     input->cur.button = 0;
@@ -569,7 +569,7 @@ void EnTorch2_Update(Actor* thisx, PlayState* play2) {
     // Causes Dark Link to shield in place when Link is using magic attacks other than the spin attack
 
     if ((gSaveContext.magicState == 3) && (player->swordState == 0 || (player->meleeWeaponAnimation < SPIN_ATTACK_1H) ||
-                                         (player->meleeWeaponAnimation > BIG_SPIN_2H))) {
+                                           (player->meleeWeaponAnimation > BIG_SPIN_2H))) {
         sStickTilt = 0.0f;
         input->cur.stick_x = 0;
         input->cur.stick_y = 0;

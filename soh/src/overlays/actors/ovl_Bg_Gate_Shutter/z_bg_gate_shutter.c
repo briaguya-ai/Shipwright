@@ -35,7 +35,7 @@ const ActorInit Bg_Gate_Shutter_InitVars = {
 
 void BgGateShutter_Init(Actor* thisx, PlayState* play) {
     BgGateShutter* this = (BgGateShutter*)thisx;
-    s32 pad[2];
+    s32              pad[2];
     CollisionHeader* colHeader = NULL;
 
     DynaPolyActor_Init(&this->dyna, DPM_UNK);

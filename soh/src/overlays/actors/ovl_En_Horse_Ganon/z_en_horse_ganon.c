@@ -11,7 +11,7 @@
 
 typedef struct {
     /* 0x0 */ Vec3s unk_0;
-    /* 0x6 */ u8 unk_6;
+    /* 0x6 */ u8    unk_6;
 } unk_D_80A69248; // size = 0x8
 
 void EnHorseGanon_Init(Actor* thisx, PlayState* play);
@@ -37,8 +37,12 @@ const ActorInit En_Horse_Ganon_InitVars = {
 };
 
 static AnimationHeader* sAnimations[] = {
-    &gHorseGanonIdleAnim,     &gHorseGanonWhinnyAnim,    &gHorseGanonWalkingAnim,
-    &gHorseGanonTrottingAnim, &gHorseGanonGallopingAnim, &gHorseGanonRearingAnim,
+    &gHorseGanonIdleAnim,
+    &gHorseGanonWhinnyAnim,
+    &gHorseGanonWalkingAnim,
+    &gHorseGanonTrottingAnim,
+    &gHorseGanonGallopingAnim,
+    &gHorseGanonRearingAnim,
 };
 
 static f32 splaySpeeds[] = { 2.0f / 3.0f, 2.0f / 3.0f, 1.0f, 1.0f, 1.0f, 2.0f / 3.0f };
@@ -93,11 +97,20 @@ static ColliderJntSphInit sJntSphInit = {
 static CollisionCheckInfoInit sColChkInfoInit = { 10, 35, 100, MASS_HEAVY };
 
 static unk_D_80A69248 D_80A69248[] = {
-    { 0x09B8, 0x0126, 0x0E2C, 0x07 }, { 0x0C11, 0x017A, 0x1269, 0x07 }, { 0x064E, 0xFEFB, 0x1DAC, 0x07 },
-    { 0x02F2, 0xFF45, 0x244F, 0x07 }, { 0xF96E, 0xFE0C, 0x3122, 0x07 }, { 0xF328, 0xFE0C, 0x32D5, 0x07 },
-    { 0xEBEA, 0xFE5F, 0x2D6E, 0x07 }, { 0xE95E, 0xFE27, 0x2565, 0x07 }, { 0xE593, 0xFE0C, 0x20AC, 0x07 },
-    { 0xE625, 0xFE77, 0x1B07, 0x07 }, { 0xEBB7, 0x007C, 0x1539, 0x07 }, { 0xF466, 0x0002, 0x11B9, 0x07 },
-    { 0xF47B, 0xFFDD, 0x11AF, 0x07 }, { 0xF88D, 0xFFD1, 0x0BA2, 0x07 },
+    { 0x09B8, 0x0126, 0x0E2C, 0x07 },
+    { 0x0C11, 0x017A, 0x1269, 0x07 },
+    { 0x064E, 0xFEFB, 0x1DAC, 0x07 },
+    { 0x02F2, 0xFF45, 0x244F, 0x07 },
+    { 0xF96E, 0xFE0C, 0x3122, 0x07 },
+    { 0xF328, 0xFE0C, 0x32D5, 0x07 },
+    { 0xEBEA, 0xFE5F, 0x2D6E, 0x07 },
+    { 0xE95E, 0xFE27, 0x2565, 0x07 },
+    { 0xE593, 0xFE0C, 0x20AC, 0x07 },
+    { 0xE625, 0xFE77, 0x1B07, 0x07 },
+    { 0xEBB7, 0x007C, 0x1539, 0x07 },
+    { 0xF466, 0x0002, 0x11B9, 0x07 },
+    { 0xF47B, 0xFFDD, 0x11AF, 0x07 },
+    { 0xF88D, 0xFFD1, 0x0BA2, 0x07 },
 };
 
 static s32 D_80A692B8[] = { 0, 16 };
@@ -116,8 +129,8 @@ void func_80A68660(unk_D_80A69248* data, s32 index, Vec3f* vec) {
 
 void func_80A686A8(EnHorseGanon* this, PlayState* play) {
     Vec3f* tempPos;
-    Vec3f vec;
-    s16 y;
+    Vec3f  vec;
+    s16    y;
 
     func_80A68660(D_80A69248, this->unk_1EC, &vec);
     if (Math3D_Vec3f_DistXYZ(&vec, &this->actor.world.pos) <= 400.0f) {
@@ -268,11 +281,11 @@ void func_80A68DB0(EnHorseGanon* this, PlayState* play) {
 }
 
 void func_80A68E14(EnHorseGanon* this, PlayState* play) {
-    s32 pad;
+    s32            pad;
     CollisionPoly* col;
-    f32 temp_ret;
-    Vec3f v;
-    s32 temp1;
+    f32            temp_ret;
+    Vec3f          v;
+    s32            temp1;
 
     v.x = Math_SinS(this->actor.shape.rot.y) * 30.0f + this->actor.world.pos.x;
     v.y = this->actor.world.pos.y + 60.0f;

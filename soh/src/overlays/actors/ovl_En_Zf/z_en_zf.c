@@ -16,7 +16,7 @@ void EnZf_Update(Actor* thisx, PlayState* play);
 void EnZf_Draw(Actor* thisx, PlayState* play);
 void EnZf_Reset(void);
 
-s16 EnZf_FindPlatform(Vec3f* pos, s16 preferredIndex);
+s16  EnZf_FindPlatform(Vec3f* pos, s16 preferredIndex);
 void EnZf_SetupDropIn(EnZf* this);
 void EnZf_DropIn(EnZf* this, PlayState* play);
 void func_80B45384(EnZf* this);
@@ -49,14 +49,14 @@ void EnZf_CircleAroundPlayer(EnZf* this, PlayState* play);
 void EnZf_SetupDie(EnZf* this);
 void EnZf_Die(EnZf* this, PlayState* play);
 void EnZf_SetupCircleAroundPlayer(EnZf* this, f32 speed);
-s32 EnZf_DodgeRangedEngaging(PlayState* play, EnZf* this);
-s32 EnZf_DodgeRangedWaiting(PlayState* play, EnZf* this);
+s32  EnZf_DodgeRangedEngaging(PlayState* play, EnZf* this);
+s32  EnZf_DodgeRangedWaiting(PlayState* play, EnZf* this);
 
-#define PLATFORM_INDEX_DOWNSTAIRS_MIN 0
+#define PLATFORM_INDEX_DOWNSTAIRS_MIN       0
 #define PLATFORM_INDEX_DOWNSTAIRS_INNER_MAX 5
-#define PLATFORM_INDEX_DOWNSTAIRS_MAX 7
-#define PLATFORM_INDEX_UPSTAIRS_MIN (PLATFORM_INDEX_DOWNSTAIRS_MAX + 1)
-#define PLATFORM_INDEX_UPSTAIRS_INNER_MAX 15
+#define PLATFORM_INDEX_DOWNSTAIRS_MAX       7
+#define PLATFORM_INDEX_UPSTAIRS_MIN         (PLATFORM_INDEX_DOWNSTAIRS_MAX + 1)
+#define PLATFORM_INDEX_UPSTAIRS_INNER_MAX   15
 
 /**
  * Array of platform positions in Dodongo's Cavern miniboss room.
@@ -216,10 +216,10 @@ void EnZf_SetupAction(EnZf* this, EnZfActionFunc actionFunc) {
  * direction. If `dist` is 0, it defaults to a dist depending on speed direction, and params.
  */
 s32 EnZf_PrimaryFloorCheck(EnZf* this, PlayState* play, f32 dist) {
-    s16 ret;
-    s16 curBgCheckFlags;
-    f32 sin;
-    f32 cos;
+    s16   ret;
+    s16   curBgCheckFlags;
+    f32   sin;
+    f32   cos;
     Vec3f curPos;
 
     if (dist == 0.0f) {
@@ -248,10 +248,10 @@ s32 EnZf_PrimaryFloorCheck(EnZf* this, PlayState* play, f32 dist) {
  * Supplementary floor test.
  */
 s16 EnZf_SecondaryFloorCheck(EnZf* this, PlayState* play, f32 dist) {
-    s16 ret;
-    s16 curBgCheckFlags;
-    f32 sin;
-    f32 cos;
+    s16   ret;
+    s16   curBgCheckFlags;
+    f32   sin;
+    f32   cos;
     Vec3f curPos;
 
     if ((this->actor.speedXZ != 0.0f) && EnZf_PrimaryFloorCheck(this, play, this->actor.speedXZ)) {
@@ -278,9 +278,9 @@ s16 EnZf_SecondaryFloorCheck(EnZf* this, PlayState* play, f32 dist) {
 void EnZf_Init(Actor* thisx, PlayState* play) {
     s32 pad;
     EnZf* this = (EnZf*)thisx;
-    Player* player = GET_PLAYER(play);
+    Player*          player = GET_PLAYER(play);
     EffectBlureInit1 blureInit;
-    f32 posDiff;
+    f32              posDiff;
 
     Actor_ProcessInitChain(thisx, sInitChain);
     thisx->targetMode = 3;
@@ -404,18 +404,18 @@ s16 EnZf_FindPlatform(Vec3f* pos, s16 preferredIndex) {
 }
 
 s16 EnZf_FindNextPlatformAwayFromPlayer(Vec3f* pos, s16 curPlatform, s16 arg2, PlayState* play) {
-    f32 distToCurLoopPlatform;
-    f32 platformMinDist = 585.0f;
+    f32     distToCurLoopPlatform;
+    f32     platformMinDist = 585.0f;
     Player* player = GET_PLAYER(play);
-    s16 initialPlatform = curPlatform;
-    f32 playerMaxDist = 400.0f;
-    f32 smallMaxRange = 99998.0f;
-    s16 curLoopPlatform = PLATFORM_INDEX_DOWNSTAIRS_INNER_MAX; // Will never retreat to the last two
-    s16 minIndex = PLATFORM_INDEX_DOWNSTAIRS_MIN;
-    f32 largeMaxRange = 99999.0f;
-    s16 altNextPlatform = -1;
-    s16 nextPlatform = -1;
-    s16 playerPlatform = EnZf_FindPlatform(&player->actor.world.pos, initialPlatform);
+    s16     initialPlatform = curPlatform;
+    f32     playerMaxDist = 400.0f;
+    f32     smallMaxRange = 99998.0f;
+    s16     curLoopPlatform = PLATFORM_INDEX_DOWNSTAIRS_INNER_MAX; // Will never retreat to the last two
+    s16     minIndex = PLATFORM_INDEX_DOWNSTAIRS_MIN;
+    f32     largeMaxRange = 99999.0f;
+    s16     altNextPlatform = -1;
+    s16     nextPlatform = -1;
+    s16     playerPlatform = EnZf_FindPlatform(&player->actor.world.pos, initialPlatform);
 
     // Set up search constraints
     // Upstairs
@@ -477,15 +477,15 @@ s16 EnZf_FindNextPlatformAwayFromPlayer(Vec3f* pos, s16 curPlatform, s16 arg2, P
 }
 
 s16 EnZf_FindNextPlatformTowardsPlayer(Vec3f* pos, s16 curPlatform, s16 arg2, PlayState* play) {
-    s16 curLoopPlatform = PLATFORM_INDEX_DOWNSTAIRS_MAX;
-    s16 minIndex = PLATFORM_INDEX_DOWNSTAIRS_MIN;
+    s16     curLoopPlatform = PLATFORM_INDEX_DOWNSTAIRS_MAX;
+    s16     minIndex = PLATFORM_INDEX_DOWNSTAIRS_MIN;
     Player* player = GET_PLAYER(play);
-    s16 nextPlatform = EnZf_FindPlatform(&player->actor.world.pos, -1);
-    f32 minRange = 500.0f;
-    f32 smallMaxRange = 99998.0f;
-    f32 largeMaxRange = 99999.0f;
-    s16 phi_s2 = curPlatform;
-    s16 phi_s3 = arg2;
+    s16     nextPlatform = EnZf_FindPlatform(&player->actor.world.pos, -1);
+    f32     minRange = 500.0f;
+    f32     smallMaxRange = 99998.0f;
+    f32     largeMaxRange = 99999.0f;
+    s16     phi_s2 = curPlatform;
+    s16     phi_s3 = arg2;
 
     // Upstairs
     if (pos->y > 200.0f) {
@@ -528,7 +528,7 @@ s16 EnZf_FindNextPlatformTowardsPlayer(Vec3f* pos, s16 curPlatform, s16 arg2, Pl
 
 // Player not targeting this or another EnZf?
 s32 EnZf_CanAttack(PlayState* play, EnZf* this) {
-    Actor* targetedActor;
+    Actor*  targetedActor;
     Player* player = GET_PLAYER(play);
 
     if (this->actor.params >= ENZF_TYPE_LIZALFOS_MINIBOSS_A) { // miniboss
@@ -578,7 +578,7 @@ void func_80B44DC4(EnZf* this, PlayState* play) {
 }
 
 s32 EnZf_ChooseAction(PlayState* play, EnZf* this) {
-    s16 angleToWall;
+    s16    angleToWall;
     Actor* explosive;
 
     angleToWall = this->actor.wallYaw - this->actor.shape.rot.y;
@@ -699,8 +699,8 @@ void func_80B45384(EnZf* this) {
 
 void func_80B4543C(EnZf* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 pad;
-    s16 angleToPlayer = (this->actor.yawTowardsPlayer - this->headRot) - this->actor.shape.rot.y;
+    s32     pad;
+    s16     angleToPlayer = (this->actor.yawTowardsPlayer - this->headRot) - this->actor.shape.rot.y;
 
     angleToPlayer = ABS(angleToPlayer);
     SkelAnime_Update(&this->skelAnime);
@@ -767,15 +767,15 @@ void EnZf_SetupApproachPlayer(EnZf* this, PlayState* play) {
 }
 
 void EnZf_ApproachPlayer(EnZf* this, PlayState* play) {
-    s32 sp54;
-    s32 sp50;
-    s32 temp;
-    s16 temp_v1;
-    s16 sp48 = -1;
-    f32 sp44 = 350.0f;
-    f32 sp40 = 0.0f;
+    s32     sp54;
+    s32     sp50;
+    s32     temp;
+    s16     temp_v1;
+    s16     sp48 = -1;
+    f32     sp44 = 350.0f;
+    f32     sp40 = 0.0f;
     Player* player = GET_PLAYER(play);
-    s32 sp30;
+    s32     sp30;
 
     if (this->actor.params >= ENZF_TYPE_LIZALFOS_MINIBOSS_A) { // miniboss
         sp48 = EnZf_FindPlatform(&player->actor.world.pos, sp48);
@@ -967,11 +967,11 @@ void func_80B4604C(EnZf* this) {
 }
 
 void func_80B46098(EnZf* this, PlayState* play) {
-    s32 pad;
-    f32 phi_f2;
+    s32     pad;
+    f32     phi_f2;
     Player* player = GET_PLAYER(play);
-    s16 temp_v0;
-    s16 phi_v1;
+    s16     temp_v0;
+    s16     phi_v1;
 
     if (!EnZf_DodgeRangedEngaging(play, this)) {
         if ((this->actor.params != ENZF_TYPE_DINOLFOS) || !EnZf_ChooseAction(play, this)) {
@@ -1042,14 +1042,14 @@ void func_80B462E4(EnZf* this, PlayState* play) {
 }
 
 void func_80B463E4(EnZf* this, PlayState* play) {
-    s16 angleBehindPlayer;
-    s16 phi_v0_3;
-    s32 pad;
-    s32 curKeyFrame;
-    s32 prevKeyFrame;
-    s32 playSpeed;
+    s16     angleBehindPlayer;
+    s16     phi_v0_3;
+    s32     pad;
+    s32     curKeyFrame;
+    s32     prevKeyFrame;
+    s32     playSpeed;
     Player* player = GET_PLAYER(play);
-    f32 baseRange = 0.0f;
+    f32     baseRange = 0.0f;
 
     Math_SmoothStepToS(&this->actor.shape.rot.y, this->actor.yawTowardsPlayer, 1, 4000, 1);
 
@@ -1173,8 +1173,8 @@ void EnZf_SetupSlash(EnZf* this) {
 
 void EnZf_Slash(EnZf* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 rotDiff;
-    s16 yawDiff;
+    s16     rotDiff;
+    s16     yawDiff;
 
     this->actor.speedXZ = 0.0f;
 
@@ -1728,7 +1728,7 @@ void EnZf_JumpUp(EnZf* this, PlayState* play) {
 
 // Conditional setup function
 void func_80B483E4(EnZf* this, PlayState* play) {
-    s16 playerRotY;
+    s16     playerRotY;
     Player* player;
 
     if ((this->actor.params < ENZF_TYPE_LIZALFOS_MINIBOSS_A) /* not miniboss */ ||
@@ -1757,13 +1757,13 @@ void func_80B483E4(EnZf* this, PlayState* play) {
 }
 
 void EnZf_CircleAroundPlayer(EnZf* this, PlayState* play) {
-    s16 playerRot;
-    s16 phi_v0_4;
+    s16     playerRot;
+    s16     phi_v0_4;
     Player* player = GET_PLAYER(play);
-    s32 curKeyFrame;
-    s32 prevKeyFrame;
-    s32 playSpeed;
-    f32 baseRange = 0.0f;
+    s32     curKeyFrame;
+    s32     prevKeyFrame;
+    s32     playSpeed;
+    f32     baseRange = 0.0f;
 
     Math_SmoothStepToS(&this->actor.shape.rot.y, this->actor.yawTowardsPlayer, 1, 0xBB8, 1);
     playerRot = player->actor.shape.rot.y;
@@ -1924,7 +1924,7 @@ void EnZf_SetupDie(EnZf* this) {
     D_80B4A1B0 = 0;
     Audio_PlayActorSound2(&this->actor, NA_SE_EN_RIZA_DEAD);
     EnZf_SetupAction(this, EnZf_Die);
-    
+
     GameInteractor_ExecuteOnEnemyDefeat(&this->actor);
 }
 
@@ -2156,8 +2156,8 @@ void EnZf_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, 
     static Vec3f swordQuadOffset3 = { -600.0f, -3000.0f, -1000.0f };
     static Vec3f swordQuadOffset2 = { 1500.0f, -3000.0f, 0.0f };
     static Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
-    Vec3f sp54;
-    Vec3f sp48;
+    Vec3f        sp54;
+    Vec3f        sp48;
     EnZf* this = (EnZf*)thisx;
     s32 bodyPart = -1;
 
@@ -2296,9 +2296,9 @@ void EnZf_SetupCircleAroundPlayer(EnZf* this, f32 speed) {
 
 s32 EnZf_DodgeRangedEngaging(PlayState* play, EnZf* this) {
     Actor* projectileActor;
-    s16 yawToProjectile;
-    s16 phi_t0;
-    s16 phi_v1;
+    s16    yawToProjectile;
+    s16    phi_t0;
+    s16    phi_v1;
 
     projectileActor = Actor_GetProjectileActor(play, &this->actor, 600.0f);
 
@@ -2356,10 +2356,10 @@ s32 EnZf_DodgeRangedEngaging(PlayState* play, EnZf* this) {
 
 s32 EnZf_DodgeRangedWaiting(PlayState* play, EnZf* this) {
     Actor* projectileActor;
-    s16 yawToProjectile;
-    s16 phi_t0;
-    s16 sp1E;
-    s16 sp1C = 0;
+    s16    yawToProjectile;
+    s16    phi_t0;
+    s16    sp1E;
+    s16    sp1C = 0;
 
     projectileActor = Actor_GetProjectileActor(play, &this->actor, 600.0f);
     if (projectileActor != NULL) {

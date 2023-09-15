@@ -107,7 +107,7 @@ void EnOkarinaTag_Init(Actor* thisx, PlayState* play) {
 
 void func_80ABEF2C(EnOkarinaTag* this, PlayState* play) {
     Player* player;
-    u16 ocarinaSong;
+    u16     ocarinaSong;
 
     player = GET_PLAYER(play);
     this->unk_15A++;
@@ -276,7 +276,7 @@ void func_80ABF4C8(EnOkarinaTag* this, PlayState* play) {
                 // Don't start the cutscene in a rando save.
                 if (!(gSaveContext.n64ddFlag)) {
                     play->csCtx.segment = LINK_IS_ADULT ? SEGMENTED_TO_VIRTUAL(&spot02_scene_Cs_003C80)
-                                                             : SEGMENTED_TO_VIRTUAL(&spot02_scene_Cs_005020);
+                                                        : SEGMENTED_TO_VIRTUAL(&spot02_scene_Cs_005020);
                     gSaveContext.cutsceneTrigger = 1;
                 }
                 Flags_SetEventChkInf(EVENTCHKINF_DESTROYED_ROYAL_FAMILY_TOMB);

@@ -205,15 +205,15 @@ s32 func_80AA08C4(EnMa1* this, PlayState* play) {
         !Flags_GetEventChkInf(EVENTCHKINF_TALON_RETURNED_FROM_CASTLE) && !Flags_GetInfTable(INFTABLE_ENTERED_HYRULE_CASTLE)) {
         return 1;
     }
-    if ((play->sceneNum == SCENE_HYRULE_CASTLE) &&  // if we're at hyrule castle
+    if ((play->sceneNum == SCENE_HYRULE_CASTLE) &&                        // if we're at hyrule castle
         (!Flags_GetEventChkInf(EVENTCHKINF_TALON_RETURNED_FROM_CASTLE) || // and talon hasn't left
          (gSaveContext.n64ddFlag &&
-          !Randomizer_ObtainedMalonHCReward()))) { // or we're rando'd and haven't gotten malon's HC check
-        if (Flags_GetInfTable(INFTABLE_ENTERED_HYRULE_CASTLE)) {    // if we've met malon
-            return 1;                              // make her appear at the castle
-        } else {                                   // if we haven't met malon
-            Flags_SetInfTable(INFTABLE_ENTERED_HYRULE_CASTLE);     // set the flag for meeting malon
-            return 0;                              // don't make her appear at the castle
+          !Randomizer_ObtainedMalonHCReward()))) {               // or we're rando'd and haven't gotten malon's HC check
+        if (Flags_GetInfTable(INFTABLE_ENTERED_HYRULE_CASTLE)) { // if we've met malon
+            return 1;                                            // make her appear at the castle
+        } else {                                                 // if we haven't met malon
+            Flags_SetInfTable(INFTABLE_ENTERED_HYRULE_CASTLE);   // set the flag for meeting malon
+            return 0;                                            // don't make her appear at the castle
         }
     }
     // Malon asleep in her bed if Talon has left Hyrule Castle and it is nighttime.
@@ -226,7 +226,7 @@ s32 func_80AA08C4(EnMa1* this, PlayState* play) {
     }
     // If we've gotten this far, we're in Lon Lon Ranch. Spawn Malon if it is daytime, Talon has left Hyrule Castle, and
     // either we are not randomized, or we are and we have received Malon's item at Hyrule Castle.
-    if ((this->actor.shape.rot.z == 3) && IS_DAY && (Flags_GetEventChkInf(EVENTCHKINF_TALON_RETURNED_FROM_CASTLE)) && 
+    if ((this->actor.shape.rot.z == 3) && IS_DAY && (Flags_GetEventChkInf(EVENTCHKINF_TALON_RETURNED_FROM_CASTLE)) &&
         ((gSaveContext.n64ddFlag && Randomizer_ObtainedMalonHCReward()) || !gSaveContext.n64ddFlag)) {
         return 1;
     }
@@ -252,7 +252,7 @@ void EnMa1_ChangeAnim(EnMa1* this, s32 index) {
 
 void func_80AA0AF4(EnMa1* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 trackingMode;
+    s16     trackingMode;
 
     if ((this->interactInfo.talkState == NPC_TALK_STATE_IDLE) && (this->skelAnime.animation == &gMalonChildSingAnim)) {
         trackingMode = NPC_TRACKING_NONE;
@@ -308,16 +308,16 @@ void EnMa1_Init(Actor* thisx, PlayState* play) {
     this->actor.targetMode = 6;
     this->interactInfo.talkState = NPC_TALK_STATE_IDLE;
 
-   // To avoid missing a check, we want Malon to have the actionFunc for singing, but not reacting to Ocarina, if any of
-   // the following are true.
-   // 1. Talon has not left Hyrule Castle.
-   // 2. We are Randomized and have not obtained Malon's Weird Egg Check.
-   // 3. We are not Randomized and have obtained Epona's Song
+    // To avoid missing a check, we want Malon to have the actionFunc for singing, but not reacting to Ocarina, if any of
+    // the following are true.
+    // 1. Talon has not left Hyrule Castle.
+    // 2. We are Randomized and have not obtained Malon's Weird Egg Check.
+    // 3. We are not Randomized and have obtained Epona's Song
     if (!Flags_GetEventChkInf(EVENTCHKINF_TALON_RETURNED_FROM_CASTLE) || (gSaveContext.n64ddFlag && !Randomizer_ObtainedMalonHCReward()) || (CHECK_QUEST_ITEM(QUEST_SONG_EPONA) && !gSaveContext.n64ddFlag) ||
         (gSaveContext.n64ddFlag && Flags_GetTreasure(play, 0x1F))) {
         this->actionFunc = func_80AA0D88;
         EnMa1_ChangeAnim(this, ENMA1_ANIM_2);
-    // If none of the above conditions were true, set Malon up to teach Epona's Song.
+        // If none of the above conditions were true, set Malon up to teach Epona's Song.
     } else {
         if (gSaveContext.n64ddFlag) { // Skip straight to "let's sing it together" textbox in the ranch
             Flags_SetEventChkInf(EVENTCHKINF_INVITED_TO_SING_WITH_CHILD_MALON);
@@ -351,10 +351,10 @@ void func_80AA0D88(EnMa1* this, PlayState* play) {
     // disappear.
     if ((play->sceneNum == SCENE_HYRULE_CASTLE) && (!gSaveContext.n64ddFlag && Flags_GetEventChkInf(EVENTCHKINF_TALON_RETURNED_FROM_CASTLE))) {
         Actor_Kill(&this->actor);
-    // We want Malon to give the Weird Egg Check (see function below) in the following situations:
-    // 1. Talon as not left Hyrule Castle (Vanilla) OR
-    // 2. We haven't obtained Malon's Weird Egg Check (Randomizer only) OR
-    // 3. We have Epona's Song? (Vanilla only, not sure why it's here but I didn't write that one)
+        // We want Malon to give the Weird Egg Check (see function below) in the following situations:
+        // 1. Talon as not left Hyrule Castle (Vanilla) OR
+        // 2. We haven't obtained Malon's Weird Egg Check (Randomizer only) OR
+        // 3. We have Epona's Song? (Vanilla only, not sure why it's here but I didn't write that one)
     } else if ((!Flags_GetEventChkInf(EVENTCHKINF_TALON_RETURNED_FROM_CASTLE) || (gSaveContext.n64ddFlag && !Randomizer_ObtainedMalonHCReward())) || (CHECK_QUEST_ITEM(QUEST_SONG_EPONA) && !gSaveContext.n64ddFlag)) {
         if (this->interactInfo.talkState == NPC_TALK_STATE_ACTION) {
             this->actionFunc = func_80AA0EA0;
@@ -560,8 +560,8 @@ void EnMa1_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot,
 void EnMa1_Draw(Actor* thisx, PlayState* play) {
     EnMa1* this = (EnMa1*)thisx;
     Camera* camera;
-    f32 distFromCamera;
-    s32 pad;
+    f32     distFromCamera;
+    s32     pad;
 
     OPEN_DISPS(play->state.gfxCtx);
 

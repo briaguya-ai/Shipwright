@@ -71,15 +71,15 @@ void ObjComb_Break(ObjComb* this, PlayState* play) {
     Vec3f pos1;
     Vec3f pos;
     Vec3f velocity;
-    Gfx* dlist = gFieldBeehiveFragmentDL;
-    s16 scale;
-    s16 angle = 0;
-    s16 gravity;
-    u8 arg5;
-    u8 arg6;
-    f32 rand1;
-    f32 rand2;
-    s32 i;
+    Gfx*  dlist = gFieldBeehiveFragmentDL;
+    s16   scale;
+    s16   angle = 0;
+    s16   gravity;
+    u8    arg5;
+    u8    arg6;
+    f32   rand1;
+    f32   rand2;
+    s32   i;
 
     for (i = 0; i < 31; i++) {
         angle += 0x4E20;

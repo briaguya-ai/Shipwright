@@ -60,17 +60,30 @@ static InitChainEntry sInitChain[] = {
 
 static Color_RGBA8 sEffectPrimColor = { 255, 255, 127, 0 };
 static Color_RGBA8 sEffectEnvColor = { 255, 255, 255, 0 };
-static Vec3f sEffectVelocity = { 0.0f, 0.1f, 0.0f };
-static Vec3f sEffectAccel = { 0.0f, 0.01f, 0.0f };
+static Vec3f       sEffectVelocity = { 0.0f, 0.1f, 0.0f };
+static Vec3f       sEffectAccel = { 0.0f, 0.01f, 0.0f };
 
 static void* sRupeeTex[] = {
-    gRupeeGreenTex, gRupeeBlueTex, gRupeeRedTex, gRupeePinkTex, gRupeeOrangeTex,
+    gRupeeGreenTex,
+    gRupeeBlueTex,
+    gRupeeRedTex,
+    gRupeePinkTex,
+    gRupeeOrangeTex,
 };
 
 static void* sItemDropTex[] = {
-    gDropRecoveryHeartTex, gDropBombTex,       gDropArrows1Tex,   gDropArrows2Tex,
-    gDropArrows3Tex,       gDropBombTex,       gDropDekuNutTex,   gDropDekuStickTex,
-    gDropMagicLargeTex,    gDropMagicSmallTex, gDropDekuSeedsTex, gDropKeySmallTex,
+    gDropRecoveryHeartTex,
+    gDropBombTex,
+    gDropArrows1Tex,
+    gDropArrows2Tex,
+    gDropArrows3Tex,
+    gDropBombTex,
+    gDropDekuNutTex,
+    gDropDekuStickTex,
+    gDropMagicLargeTex,
+    gDropMagicSmallTex,
+    gDropDekuSeedsTex,
+    gDropKeySmallTex,
 };
 
 static u8 sItemDropIds[] = {
@@ -317,13 +330,250 @@ static u8 sItemDropIds[] = {
 };
 
 static u8 sDropQuantities[] = {
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0,
-    1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 1, 1, 3, 1, 3, 1, 1, 1, 3, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 0, 0, 0, 0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    1,
+    3,
+    3,
+    3,
+    1,
+    1,
+    3,
+    1,
+    3,
+    1,
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    3,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
 };
 
 void EnItem00_SetupAction(EnItem00* this, EnItem00ActionFunc actionFunc) {
@@ -644,7 +894,7 @@ void func_8001DFC8(EnItem00* this, PlayState* play) {
 }
 
 void func_8001E1C8(EnItem00* this, PlayState* play) {
-    f32 originalVelocity;
+    f32   originalVelocity;
     Vec3f effectPos;
 
     if (this->actor.params <= ITEM00_RUPEE_RED) {
@@ -672,9 +922,9 @@ void func_8001E1C8(EnItem00* this, PlayState* play) {
 }
 
 void func_8001E304(EnItem00* this, PlayState* play) {
-    s32 pad;
+    s32   pad;
     Vec3f pos;
-    s32 rotOffset;
+    s32   rotOffset;
 
     this->unk_15A++;
 
@@ -767,12 +1017,12 @@ void func_8001E5C8(EnItem00* this, PlayState* play) {
 void EnItem00_Update(Actor* thisx, PlayState* play) {
     static u32 D_80157D90;
     static s16 D_80157D94[1];
-    s16* params;
-    Actor* dynaActor;
-    s32 getItemId = GI_NONE;
-    s16 sp3A = 0;
-    s16 i;
-    u32* temp;
+    s16*       params;
+    Actor*     dynaActor;
+    s32        getItemId = GI_NONE;
+    s16        sp3A = 0;
+    s16        i;
+    u32*       temp;
     EnItem00* this = (EnItem00*)thisx;
     s32 pad;
 
@@ -1269,8 +1519,8 @@ void EnItem00_CustomItemsParticles(Actor* Parent, PlayState* play, GetItemEntry 
 
     static Vec3f velocity = { 0.0f, 0.0f, 0.0f };
     static Vec3f accel = { 0.0f, 0.0f, 0.0f };
-    Color_RGBA8 primColor;
-    Color_RGBA8 envColor;
+    Color_RGBA8  primColor;
+    Color_RGBA8  envColor;
     Color_RGBA8_Copy(&primColor, &mainColors[color_slot]);
     Color_RGBA8_Copy(&envColor, &flareColors[color_slot]);
     Vec3f pos;
@@ -1313,7 +1563,7 @@ void EnItem00_DrawRupee(EnItem00* this, PlayState* play) {
               G_MTX_MODELVIEW | G_MTX_LOAD);
 
     Color_RGB8 rupeeColor;
-    u8 shouldColor = 0;
+    u8         shouldColor = 0;
     switch (texIndex) {
         case 0:
             rupeeColor = CVarGetColor24("gCosmetics.Consumable_GreenRupee.Value", (Color_RGB8){ 255, 255, 255 });
@@ -1371,7 +1621,7 @@ void EnItem00_DrawCollectible(EnItem00* this, PlayState* play) {
                 Randomizer_GetItemFromKnownCheck(randoCheck, GI_NONE);
             this->randoGiEntry.getItemFrom = ITEM_FROM_FREESTANDING;
         }
-        
+
         f32 mtxScale = 10.67f;
         Matrix_Scale(mtxScale, mtxScale, mtxScale, MTXMODE_APPLY);
         EnItem00_CustomItemsParticles(&this->actor, play, this->randoGiEntry);
@@ -1422,7 +1672,7 @@ void EnItem00_DrawCollectible(EnItem00* this, PlayState* play) {
         gSPSegment(POLY_OPA_DISP++, 0x08, SEGMENTED_TO_VIRTUAL(sItemDropTex[texIndex]));
 
         gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
-                G_MTX_MODELVIEW | G_MTX_LOAD);
+                  G_MTX_MODELVIEW | G_MTX_LOAD);
         gSPDisplayList(POLY_OPA_DISP++, gItemDropDL);
 
         CLOSE_DISPS(play->state.gfxCtx);
@@ -1478,7 +1728,7 @@ void EnItem00_DrawHeartPiece(EnItem00* this, PlayState* play) {
         Gfx_SetupDL_25Xlu(play->state.gfxCtx);
         func_8002ED80(&this->actor, play, 0);
         gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
-                G_MTX_MODELVIEW | G_MTX_LOAD);
+                  G_MTX_MODELVIEW | G_MTX_LOAD);
         gSPDisplayList(POLY_XLU_DISP++, gHeartPieceInteriorDL);
 
         CLOSE_DISPS(play->state.gfxCtx);
@@ -1532,8 +1782,8 @@ s16 func_8001F404(s16 dropId) {
         }
     }
 
-    if ((CVarGetInteger("gBombchuDrops", 0) || 
-        (gSaveContext.n64ddFlag && Randomizer_GetSettingValue(RSK_ENABLE_BOMBCHU_DROPS) == 1)) &&
+    if ((CVarGetInteger("gBombchuDrops", 0) ||
+         (gSaveContext.n64ddFlag && Randomizer_GetSettingValue(RSK_ENABLE_BOMBCHU_DROPS) == 1)) &&
         (dropId == ITEM00_BOMBS_A || dropId == ITEM00_BOMBS_B || dropId == ITEM00_BOMBS_SPECIAL)) {
         dropId = EnItem00_ConvertBombDropToBombchu(dropId);
     }
@@ -1558,15 +1808,17 @@ s16 func_8001F404(s16 dropId) {
 // External functions used by other actors to drop collectibles, which usually results in spawning an En_Item00 actor.
 
 EnItem00* Item_DropCollectible(PlayState* play, Vec3f* spawnPos, s16 params) {
-    s32 pad[2];
+    s32       pad[2];
     EnItem00* spawnedActor = NULL;
-    s16 param4000 = params & 0x4000;
-    s16 param8000 = params & 0x8000;
-    s16 param3F00 = params & 0x3F00;
+    s16       param4000 = params & 0x4000;
+    s16       param8000 = params & 0x8000;
+    s16       param3F00 = params & 0x3F00;
 
     params &= 0x3FFF;
 
-    if ((params & 0x00FF) == ITEM00_HEART && CVarGetInteger("gNoHeartDrops", 0)) { return NULL; }
+    if ((params & 0x00FF) == ITEM00_HEART && CVarGetInteger("gNoHeartDrops", 0)) {
+        return NULL;
+    }
 
     if (((params & 0x00FF) == ITEM00_FLEXIBLE) && !param4000) {
         // TODO: Prevent the cast to EnItem00 here since this is a different actor (En_Elf)
@@ -1604,15 +1856,17 @@ EnItem00* Item_DropCollectible(PlayState* play, Vec3f* spawnPos, s16 params) {
 
 EnItem00* Item_DropCollectible2(PlayState* play, Vec3f* spawnPos, s16 params) {
     EnItem00* spawnedActor = NULL;
-    s32 pad;
-    s16 param4000 = params & 0x4000;
-    s16 param8000 = params & 0x8000;
-    s16 param3F00 = params & 0x3F00;
+    s32       pad;
+    s16       param4000 = params & 0x4000;
+    s16       param8000 = params & 0x8000;
+    s16       param3F00 = params & 0x3F00;
 
     params &= 0x3FFF;
 
-    if ((params & 0x00FF) == ITEM00_HEART && CVarGetInteger("gNoHeartDrops", 0)) { return NULL; }
-    
+    if ((params & 0x00FF) == ITEM00_HEART && CVarGetInteger("gNoHeartDrops", 0)) {
+        return NULL;
+    }
+
     if (((params & 0x00FF) == ITEM00_FLEXIBLE) && !param4000) {
         // TODO: Prevent the cast to EnItem00 here since this is a different actor (En_Elf)
         spawnedActor = (EnItem00*)Actor_Spawn(&play->actorCtx, play, ACTOR_EN_ELF, spawnPos->x,
@@ -1638,17 +1892,19 @@ EnItem00* Item_DropCollectible2(PlayState* play, Vec3f* spawnPos, s16 params) {
 }
 
 void Item_DropCollectibleRandom(PlayState* play, Actor* fromActor, Vec3f* spawnPos, s16 params) {
-    s32 pad;
+    s32       pad;
     EnItem00* spawnedActor;
-    s16 dropQuantity;
-    s16 param8000;
-    s16 dropTableIndex = Rand_ZeroOne() * 16.0f;
-    u8 dropId;
+    s16       dropQuantity;
+    s16       param8000;
+    s16       dropTableIndex = Rand_ZeroOne() * 16.0f;
+    u8        dropId;
 
     param8000 = params & 0x8000;
     params &= 0x7FFF;
 
-    if (CVarGetInteger("gNoRandomDrops", 0)) { return; }
+    if (CVarGetInteger("gNoRandomDrops", 0)) {
+        return;
+    }
 
     if (fromActor != NULL) {
         if (fromActor->dropFlag) {

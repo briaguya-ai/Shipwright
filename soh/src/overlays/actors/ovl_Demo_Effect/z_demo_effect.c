@@ -58,7 +58,7 @@ void DemoEffect_UpdateTimeWarpReturnFromChamberOfSages(DemoEffect* this, PlaySta
 void DemoEffect_UpdateTimeWarpPullMasterSword(DemoEffect* this, PlayState* play);
 void DemoEffect_UpdateTimeWarpTimeblock(DemoEffect* this, PlayState* play);
 
-s32 DemoEffect_CheckCsAction(DemoEffect* this, PlayState* play, s32 csActionCompareId);
+s32  DemoEffect_CheckCsAction(DemoEffect* this, PlayState* play, s32 csActionCompareId);
 void DemoEffect_InitPositionFromCsAction(DemoEffect* this, PlayState* play, s32 csActionIndex);
 void DemoEffect_MoveToCsEndpoint(DemoEffect* this, PlayState* play, s32 csActionId, s32 shouldUpdateFacing);
 void DemoEffect_MoveGetItem(DemoEffect* this, PlayState* play, s32 csActionId, f32 speed);
@@ -112,8 +112,10 @@ static s16 sEffectTypeObjects[] = {
 static u8 sTimewarpVertexSizeIndices[] = { 1, 1, 2, 0, 1, 1, 2, 0, 1, 2, 0, 2, 1, 0, 1, 0, 2, 0, 2, 2, 0 };
 
 static Color_RGB8 sJewelSparkleColors[5][2] = {
-    { { 255, 255, 255 }, { 100, 255, 0 } }, { { 255, 255, 255 }, { 200, 0, 150 } },
-    { { 255, 255, 255 }, { 0, 100, 255 } }, { { 0, 0, 0 }, { 0, 0, 0 } },
+    { { 255, 255, 255 }, { 100, 255, 0 } },
+    { { 255, 255, 255 }, { 200, 0, 150 } },
+    { { 255, 255, 255 }, { 0, 100, 255 } },
+    { { 0, 0, 0 }, { 0, 0, 0 } },
     { { 223, 0, 0 }, { 0, 0, 0 } },
 };
 
@@ -182,9 +184,9 @@ void DemoEffect_InitGetItem(DemoEffect* this) {
 void DemoEffect_Init(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
     DemoEffect* this = (DemoEffect*)thisx;
-    s32 effectType;
-    s32 lightEffect;
-    s32 objectIndex;
+    s32         effectType;
+    s32         lightEffect;
+    s32         objectIndex;
     DemoEffect* crystalLight;
     DemoEffect* lightRing;
 
@@ -574,9 +576,9 @@ void DemoEffect_UpdateCrystalLight(DemoEffect* this, PlayState* play) {
  * Spawns sparkle effects for Medals
  */
 void DemoEffect_MedalSparkle(DemoEffect* this, PlayState* play, s32 isSmallSpawner) {
-    Vec3f velocity;
-    Vec3f accel;
-    Vec3f pos;
+    Vec3f       velocity;
+    Vec3f       accel;
+    Vec3f       pos;
     Color_RGBA8 primColor;
     Color_RGBA8 envColor;
 
@@ -739,8 +741,8 @@ void DemoEffect_UpdateTimeWarpPullMasterSword(DemoEffect* this, PlayState* play)
  */
 void DemoEffect_TimewarpShrink(f32 size) {
     Vtx* vertices;
-    s32 i;
-    u8 sizes[3];
+    s32  i;
+    u8   sizes[3];
 
     // This function uses the data in obj_efc_tw offset 0x0060 to 0x01B0
     vertices = ResourceMgr_LoadVtxByName(SEGMENTED_TO_VIRTUAL(gTimeWarpVtx));
@@ -1439,10 +1441,10 @@ void DemoEffect_MoveJewelSpherical(f32 degrees, f32 frameDivisor, Vec3f startPos
 void DemoEffect_MoveJewelActivateDoorOfTime(DemoEffect* this, PlayState* play) {
     Vec3f startPos;
     Vec3f endPos;
-    f32 frameDivisor;
-    f32 degrees;
-    f32 radius;
-    s32 csActionId;
+    f32   frameDivisor;
+    f32   degrees;
+    f32   radius;
+    s32   csActionId;
 
     csActionId = this->csActionId;
     startPos.x = play->csCtx.npcActions[csActionId]->startPos.x;
@@ -1486,12 +1488,12 @@ void DemoEffect_MoveJewelActivateDoorOfTime(DemoEffect* this, PlayState* play) {
  * Spawns Sparkle Effects for the Jewel Actor.
  */
 void DemoEffect_JewelSparkle(DemoEffect* this, PlayState* play, s32 spawnerCount) {
-    Vec3f velocity;
-    Vec3f accel;
+    Vec3f       velocity;
+    Vec3f       accel;
     Color_RGBA8 primColor;
     Color_RGBA8 envColor;
     Color_RGB8* sparkleColors;
-    s32 i;
+    s32         i;
 
     velocity.y = 0.0f;
 
@@ -1553,24 +1555,24 @@ void DemoEffect_UpdateJewelAdult(DemoEffect* this, PlayState* play) {
                 } else {
                     DemoEffect_SetJewelColor(this, 0.0f);
                 }
-            break;
+                break;
             case DEMO_EFFECT_JEWEL_GORON:
                 if (CHECK_QUEST_ITEM(QUEST_GORON_RUBY)) {
                     DemoEffect_SetJewelColor(this, 1.0f);
                 } else {
                     DemoEffect_SetJewelColor(this, 0.0f);
                 }
-            break;
+                break;
             case DEMO_EFFECT_JEWEL_ZORA:
                 if (CHECK_QUEST_ITEM(QUEST_ZORA_SAPPHIRE)) {
                     DemoEffect_SetJewelColor(this, 1.0f);
                 } else {
                     DemoEffect_SetJewelColor(this, 0.0f);
                 }
-            break;
+                break;
         }
     } else {
-    DemoEffect_SetJewelColor(this, 1.0f);
+        DemoEffect_SetJewelColor(this, 1.0f);
     }
 }
 
@@ -1580,7 +1582,7 @@ void DemoEffect_UpdateJewelAdult(DemoEffect* this, PlayState* play) {
  * This also updates the Jewel's position based on different cutscenes.
  */
 void DemoEffect_UpdateJewelChild(DemoEffect* this, PlayState* play) {
-    s32 hasCmdAction;
+    s32    hasCmdAction;
     Actor* thisx = &this->actor;
 
     this->jewel.timer++;
@@ -1723,7 +1725,7 @@ s32 DemoEffect_CheckCsAction(DemoEffect* this, PlayState* play, s32 csActionComp
 void DemoEffect_DrawJewel(Actor* thisx, PlayState* play2) {
     DemoEffect* this = (DemoEffect*)thisx;
     PlayState* play = play2;
-    u32 frames = this->jewel.timer;
+    u32        frames = this->jewel.timer;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -1784,7 +1786,7 @@ void DemoEffect_DrawJewel(Actor* thisx, PlayState* play2) {
 void DemoEffect_DrawCrystalLight(Actor* thisx, PlayState* play) {
     DemoEffect* this = (DemoEffect*)thisx;
     DemoEffect* parent = (DemoEffect*)this->actor.parent;
-    u32 frames = play->gameplayFrames & 0xFFFF;
+    u32         frames = play->gameplayFrames & 0xFFFF;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -1911,7 +1913,7 @@ void DemoEffect_DrawGodLgt(Actor* thisx, PlayState* play) {
  */
 void DemoEffect_DrawLightEffect(Actor* thisx, PlayState* play) {
     DemoEffect* this = (DemoEffect*)thisx;
-    u8* alpha;
+    u8*  alpha;
     Gfx* disp;
 
     OPEN_DISPS(play->state.gfxCtx);
@@ -1994,7 +1996,7 @@ void DemoEffect_DrawLgtShower(Actor* thisx, PlayState* play) {
 void DemoEffect_DrawLightRing(Actor* thisx, PlayState* play2) {
     DemoEffect* this = (DemoEffect*)thisx;
     PlayState* play = play2;
-    u32 frames = this->lightRing.timer;
+    u32        frames = this->lightRing.timer;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -2016,9 +2018,9 @@ void DemoEffect_DrawLightRing(Actor* thisx, PlayState* play2) {
  */
 void DemoEffect_DrawTriforceSpot(Actor* thisx, PlayState* play) {
     DemoEffect* this = (DemoEffect*)thisx;
-    s32 pad;
+    s32  pad;
     Vtx* vertices = ResourceMgr_LoadVtxByName(SEGMENTED_TO_VIRTUAL(gTriforceVtx));
-    u32 frames = play->gameplayFrames;
+    u32  frames = play->gameplayFrames;
 
     OPEN_DISPS(play->state.gfxCtx);
     if (gSaveContext.entranceIndex != 0x0400 || play->csCtx.frames < 885) {
@@ -2134,7 +2136,7 @@ s32 DemoEffect_DrawTimewarpLimbs(PlayState* play, SkelAnimeCurve* skelCuve, s32 
 void DemoEffect_DrawTimeWarp(Actor* thisx, PlayState* play) {
     DemoEffect* this = (DemoEffect*)thisx;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    u8 effectType = (this->actor.params & 0x00FF);
+    u8               effectType = (this->actor.params & 0x00FF);
 
     if (effectType == DEMO_EFFECT_TIMEWARP_TIMEBLOCK_LARGE || effectType == DEMO_EFFECT_TIMEWARP_TIMEBLOCK_SMALL ||
         Flags_GetEnv(play, 1) || gSaveContext.sceneSetupIndex >= 4 || gSaveContext.entranceIndex == 0x0324) {
@@ -2167,7 +2169,7 @@ void DemoEffect_FaceToCsEndpoint(DemoEffect* this, Vec3f startPos, Vec3f endPos)
 void DemoEffect_MoveToCsEndpoint(DemoEffect* this, PlayState* play, s32 csActionId, s32 shouldUpdateFacing) {
     Vec3f startPos;
     Vec3f endPos;
-    f32 speed;
+    f32   speed;
 
     startPos.x = play->csCtx.npcActions[csActionId]->startPos.x;
     startPos.y = play->csCtx.npcActions[csActionId]->startPos.y;

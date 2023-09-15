@@ -54,7 +54,7 @@ void BgSstFloor_Destroy(BgSstFloor* thisx, PlayState* play) {
 void BgSstFloor_Update(BgSstFloor* thisx, PlayState* play) {
     s32 pad;
     BgSstFloor* this = (BgSstFloor*)thisx;
-    Player* player = GET_PLAYER(play);
+    Player*          player = GET_PLAYER(play);
     CollisionHeader* colHeader = SEGMENTED_TO_VIRTUAL(&gBongoDrumCol);
 
     colHeader = ResourceMgr_LoadColByName(colHeader);
@@ -74,8 +74,8 @@ void BgSstFloor_Update(BgSstFloor* thisx, PlayState* play) {
 
     if (this->dyna.actor.params == BONGOFLOOR_HIT) {
         Actor* item00 = play->actorCtx.actorLists[ACTORCAT_MISC].head;
-        f32 distFromRim;
-        f32 xzDist;
+        f32    distFromRim;
+        f32    xzDist;
 
         this->drumAmp = 80;
         this->dyna.actor.params = BONGOFLOOR_REST;

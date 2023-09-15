@@ -28,20 +28,49 @@ const ActorInit En_Ganon_Mant_InitVars = {
 };
 
 static s16 sTearSizesMedium[] = {
-    0, 0, 0, 1, 1, 1, 1, 1, 0, 0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
 };
 
 static s16 sTearSizesLarge[] = {
-    0, 0, 0, 0, 1, 1, 2, 2, 2, 1, 1, 0, 0, 0, 0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
 };
 
 static s16 sTearSizesSmall[] = {
-    0, 0, 0, 0, 0, 0, 0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
 };
 
 typedef struct {
     s16* tearAreaSizes;
-    s16 count;
+    s16  count;
 } TearShape; // size = 0x8
 
 /**
@@ -57,24 +86,68 @@ static TearShape sTearShapes[] = {
 
 // How much each joint is affected by backwards/forwards swaying motion
 static f32 sBackSwayCoefficients[GANON_MANT_NUM_JOINTS] = {
-    0.0f, 1.0f, 0.5f, 0.25f, 0.1f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+    0.0f,
+    1.0f,
+    0.5f,
+    0.25f,
+    0.1f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
 };
 
 static f32 D_80A24DB4[] = {
-    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
 };
 
 // How much each joint is affected by sideways swaying motion, tends to 0
 static f32 sSideSwayCoefficients[GANON_MANT_NUM_JOINTS] = {
-    0.0f, 1.0f, 0.9f, 0.8f, 0.7f, 0.6f, 0.5f, 0.4f, 0.3f, 0.2f, 0.1f, 0.0f,
+    0.0f,
+    1.0f,
+    0.9f,
+    0.8f,
+    0.7f,
+    0.6f,
+    0.5f,
+    0.4f,
+    0.3f,
+    0.2f,
+    0.1f,
+    0.0f,
 };
 
 static f32 D_80A24E00[] = {
-    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
 };
 
 static f32 sDistMultipliers[GANON_MANT_NUM_JOINTS] = {
-    0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.1f, 1.2f, 1.3f, 1.4f, 1.5f, 1.6f, 1.7f,
+    0.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.1f,
+    1.2f,
+    1.3f,
+    1.4f,
+    1.5f,
+    1.6f,
+    1.7f,
 };
 
 static f32 D_80A24E48[] = {
@@ -88,15 +161,24 @@ static f32 D_80A24E48[] = {
         (n) + GANON_MANT_NUM_JOINTS * 9, (n) + GANON_MANT_NUM_JOINTS * 10, (n) + GANON_MANT_NUM_JOINTS * 11
 
 static u16 sVerticesMap[GANON_MANT_NUM_STRANDS * GANON_MANT_NUM_JOINTS] = {
-    MAP_STRAND_TO_VTX(11), MAP_STRAND_TO_VTX(10), MAP_STRAND_TO_VTX(9), MAP_STRAND_TO_VTX(8),
-    MAP_STRAND_TO_VTX(7),  MAP_STRAND_TO_VTX(6),  MAP_STRAND_TO_VTX(5), MAP_STRAND_TO_VTX(4),
-    MAP_STRAND_TO_VTX(3),  MAP_STRAND_TO_VTX(2),  MAP_STRAND_TO_VTX(1), MAP_STRAND_TO_VTX(0),
+    MAP_STRAND_TO_VTX(11),
+    MAP_STRAND_TO_VTX(10),
+    MAP_STRAND_TO_VTX(9),
+    MAP_STRAND_TO_VTX(8),
+    MAP_STRAND_TO_VTX(7),
+    MAP_STRAND_TO_VTX(6),
+    MAP_STRAND_TO_VTX(5),
+    MAP_STRAND_TO_VTX(4),
+    MAP_STRAND_TO_VTX(3),
+    MAP_STRAND_TO_VTX(2),
+    MAP_STRAND_TO_VTX(1),
+    MAP_STRAND_TO_VTX(0),
 };
 
-#define MANT_TEX_WIDTH 32
+#define MANT_TEX_WIDTH  32
 #define MANT_TEX_HEIGHT 64
 
-static u8 sMaskTex[MANT_TEX_WIDTH * MANT_TEX_HEIGHT] = { {0} };
+static u8 sMaskTex[MANT_TEX_WIDTH * MANT_TEX_HEIGHT] = { { 0 } };
 
 #include "overlays/ovl_En_Ganon_Mant/ovl_En_Ganon_Mant.h"
 
@@ -119,19 +201,19 @@ void EnGanonMant_Destroy(Actor* thisx, PlayState* play) {
  * Randomly zeros portions of the cloak texture
  */
 void EnGanonMant_Tear(EnGanonMant* this) {
-    s32 pad;
-    s16 i;
-    s16 areaX;
-    s16 areaY;
-    s16 texIdx;
-    f32 tx = Rand_ZeroFloat(MANT_TEX_WIDTH);
-    f32 ty = Rand_ZeroFloat(MANT_TEX_HEIGHT);
-    f32 tearAngle = Rand_ZeroFloat(2 * M_PI);
-    f32 tearDirX = sinf(tearAngle);
-    f32 tearDirY = cosf(tearAngle);
+    s32        pad;
+    s16        i;
+    s16        areaX;
+    s16        areaY;
+    s16        texIdx;
+    f32        tx = Rand_ZeroFloat(MANT_TEX_WIDTH);
+    f32        ty = Rand_ZeroFloat(MANT_TEX_HEIGHT);
+    f32        tearAngle = Rand_ZeroFloat(2 * M_PI);
+    f32        tearDirX = sinf(tearAngle);
+    f32        tearDirY = cosf(tearAngle);
     TearShape* shape = &sTearShapes[(s16)Rand_ZeroFloat(ARRAY_COUNT(sTearShapes) - 0.01f)];
-    s16 count = shape->count;
-    s16* tearAreaSizes = shape->tearAreaSizes;
+    s16        count = shape->count;
+    s16*       tearAreaSizes = shape->tearAreaSizes;
 
     for (i = 0; i < count; i++) {
         if ((0 <= tx && tx < MANT_TEX_WIDTH) && (0 <= ty && ty < MANT_TEX_HEIGHT)) {
@@ -160,16 +242,16 @@ void EnGanonMant_Tear(EnGanonMant* this) {
  */
 void EnGanonMant_UpdateStrand(PlayState* play, EnGanonMant* this, Vec3f* root, Vec3f* pos, Vec3f* nextPos,
                               Vec3f* rot, Vec3f* vel, s16 strandNum) {
-    f32 xDiff;
-    f32 zDiff;
-    f32 gravity;
-    s32 pad[4];
-    f32 yaw;
-    s16 i;
-    f32 x;
-    f32 y;
-    f32 z;
-    f32 jointLength;
+    f32   xDiff;
+    f32   zDiff;
+    f32   gravity;
+    s32   pad[4];
+    f32   yaw;
+    s16   i;
+    f32   x;
+    f32   y;
+    f32   z;
+    f32   jointLength;
     Vec3f delta;
     Vec3f posStep;
     Vec3f backSwayOffset;
@@ -300,14 +382,14 @@ void EnGanonMant_UpdateStrand(PlayState* play, EnGanonMant* this, Vec3f* root, V
  * Update the cloak vertices using the current state of the strands
  */
 void EnGanonMant_UpdateVertices(EnGanonMant* this) {
-    s16 i;
-    Vtx* vtx;
-    Vtx* vertices;
+    s16         i;
+    Vtx*        vtx;
+    Vtx*        vertices;
     MantStrand* strand;
-    s16 j;
-    s16 k;
-    Vec3f up;
-    Vec3f normal;
+    s16         j;
+    s16         k;
+    Vec3f       up;
+    Vec3f       normal;
 
     if (this->frameTimer % 2 != 0) {
         vertices = SEGMENTED_TO_VIRTUAL(gMant1Vtx);
@@ -396,19 +478,19 @@ void EnGanonMant_DrawCloak(PlayState* play, EnGanonMant* this) {
 
 void EnGanonMant_Draw(Actor* thisx, PlayState* play) {
     EnGanonMant* this = (EnGanonMant*)thisx;
-    f32 xDiff;
-    f32 pitch;
-    Vec3f strandOffset;
-    Vec3f strandDivPos;
-    f32 zDiff;
-    f32 diffHalfDist;
-    f32 yDiff;
-    f32 yaw;
+    f32    xDiff;
+    f32    pitch;
+    Vec3f  strandOffset;
+    Vec3f  strandDivPos;
+    f32    zDiff;
+    f32    diffHalfDist;
+    f32    yDiff;
+    f32    yaw;
     Vec3f* rightPos;
     Vec3f* leftPos;
-    s16 strandIdx;
-    Vec3f midpoint;
-    s16 nextStrandIdx;
+    s16    strandIdx;
+    Vec3f  midpoint;
+    s16    nextStrandIdx;
 
     if (this->updateHasRun) {
         // Only run this if update has run since last draw

@@ -62,9 +62,9 @@ void EnEncount2_Init(Actor* thisx, PlayState* play) {
 }
 
 void EnEncount2_Wait(EnEncount2* this, PlayState* play) {
-    s32 pad;
-    s16 quakeIndex;
-    s16 spawnerState;
+    s32     pad;
+    s16     quakeIndex;
+    s16     spawnerState;
     Player* player = GET_PLAYER(play);
 
     spawnerState = ENCOUNT2_INACTIVE;
@@ -116,20 +116,20 @@ void EnEncount2_Wait(EnEncount2* this, PlayState* play) {
 }
 
 void EnEncount2_SpawnRocks(EnEncount2* this, PlayState* play) {
-    Player* player = GET_PLAYER(play);
+    Player*     player = GET_PLAYER(play);
     EnFireRock* spawnedRock;
-    f32 tempVec1X;
-    f32 tempVec1Y;
-    f32 tempVec1Z;
-    f32 magnitude;
-    f32 tempVec2X;
-    f32 tempVec2Y;
-    f32 tempVec2Z;
-    f32 particleScale;
-    Vec3f particlePos;
-    s16 spawnedRockType;
-    s16 spawnerState;
-    s16 maxRocks;
+    f32         tempVec1X;
+    f32         tempVec1Y;
+    f32         tempVec1Z;
+    f32         magnitude;
+    f32         tempVec2X;
+    f32         tempVec2Y;
+    f32         tempVec2Z;
+    f32         particleScale;
+    Vec3f       particlePos;
+    s16         spawnedRockType;
+    s16         spawnerState;
+    s16         maxRocks;
 
     this->envEffectsTimer++;
 
@@ -291,7 +291,7 @@ void EnEncount2_Draw(Actor* thisx, PlayState* play) {
 
 void EnEncount2_ParticleInit(EnEncount2* this, Vec3f* particlePos, f32 scale) {
     EnEncount2Particle* particle = this->particles;
-    s16 i;
+    s16                 i;
 
     for (i = 0; i < ARRAY_COUNT(this->particles); i++, particle++) {
         if (!particle->isAlive) {
@@ -311,10 +311,10 @@ void EnEncount2_ParticleInit(EnEncount2* this, Vec3f* particlePos, f32 scale) {
 }
 
 void EnEncount2_ParticleUpdate(EnEncount2* this, PlayState* play) {
-    s16 i;
+    s16                 i;
     EnEncount2Particle* particle = this->particles;
-    Player* player = GET_PLAYER(play);
-    Vec3f targetPos;
+    Player*             player = GET_PLAYER(play);
+    Vec3f               targetPos;
 
     for (i = 0; i < ARRAY_COUNT(this->particles); particle++, i++) {
         if (particle->isAlive) {
@@ -343,9 +343,9 @@ void EnEncount2_ParticleUpdate(EnEncount2* this, PlayState* play) {
 void EnEncount2_ParticleDraw(Actor* thisx, PlayState* play) {
     EnEncount2* this = (EnEncount2*)thisx;
     EnEncount2Particle* particle = this->particles;
-    GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s16 i;
-    s32 objBankIndex;
+    GraphicsContext*    gfxCtx = play->state.gfxCtx;
+    s16                 i;
+    s32                 objBankIndex;
 
     OPEN_DISPS(gfxCtx);
 

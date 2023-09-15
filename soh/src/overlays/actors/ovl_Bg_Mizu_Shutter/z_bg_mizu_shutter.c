@@ -3,7 +3,7 @@
 
 #define FLAGS ACTOR_FLAG_UPDATE_WHILE_CULLED
 
-#define SIZE_PARAM (((u16)this->dyna.actor.params >> 0xC) & 0xF)
+#define SIZE_PARAM  (((u16)this->dyna.actor.params >> 0xC) & 0xF)
 #define TIMER_PARAM (((u16)this->dyna.actor.params >> 6) & 0x3F)
 
 void BgMizuShutter_Init(BgMizuShutter* this, PlayState* play);
@@ -51,9 +51,9 @@ static InitChainEntry sInitChain[] = {
 void BgMizuShutter_Init(BgMizuShutter* thisx, PlayState* play) {
     s32 pad;
     BgMizuShutter* this = (BgMizuShutter*)thisx;
-    s32 pad2;
+    s32              pad2;
     CollisionHeader* sp30 = NULL;
-    s32 pad3;
+    s32              pad3;
 
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
     this->displayList = sDisplayLists[SIZE_PARAM];

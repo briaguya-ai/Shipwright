@@ -35,8 +35,8 @@ s32 Object_Spawn(ObjectContext* objectCtx, s16 objectId) {
 
 void Object_InitBank(PlayState* play, ObjectContext* objectCtx) {
     PlayState* play2 = play; // Needs to be a new variable to match (possibly a sub struct?)
-    size_t spaceSize;
-    s32 i;
+    size_t     spaceSize;
+    s32        i;
 
     if (play2->sceneNum == SCENE_HYRULE_FIELD) {
         spaceSize = 1024000;
@@ -78,10 +78,10 @@ void Object_InitBank(PlayState* play, ObjectContext* objectCtx) {
 }
 
 void Object_UpdateBank(ObjectContext* objectCtx) {
-    s32 i;
+    s32           i;
     ObjectStatus* status = &objectCtx->status[0];
-    RomFile* objectFile;
-    size_t size;
+    RomFile*      objectFile;
+    size_t        size;
 
     /*
     for (i = 0; i < objectCtx->num; i++) {
@@ -105,7 +105,7 @@ void Object_UpdateBank(ObjectContext* objectCtx) {
 s32 Object_GetIndex(ObjectContext* objectCtx, s16 objectId) {
     s32 i;
 
-    //return 0;
+    // return 0;
 
     for (i = 0; i < objectCtx->num; i++) {
         if (ABS(objectCtx->status[i].id) == objectId) {
@@ -125,8 +125,8 @@ s32 Object_IsLoaded(ObjectContext* objectCtx, s32 bankIndex) {
 }
 
 void func_800981B8(ObjectContext* objectCtx) {
-    s32 i;
-    s32 id;
+    s32    i;
+    s32    id;
     size_t size;
 
     for (i = 0; i < objectCtx->num; i++) {
@@ -142,9 +142,9 @@ void func_800981B8(ObjectContext* objectCtx) {
 
 void* func_800982FC(ObjectContext* objectCtx, s32 bankIndex, s16 objectId) {
     ObjectStatus* status = &objectCtx->status[bankIndex];
-    RomFile* objectFile = &gObjectTable[objectId];
-    size_t size;
-    void* nextPtr;
+    RomFile*      objectFile = &gObjectTable[objectId];
+    size_t        size;
+    void*         nextPtr;
 
     status->id = -objectId;
     status->dmaRequest.vromAddr = 0;
@@ -188,7 +188,7 @@ s32 Scene_ExecuteCommands(PlayState* play, SceneCmd* sceneCmd) {
 
 void Scene_CommandSpawnList(PlayState* play, SceneCmd* cmd) {
     ActorEntry* linkEntry = play->linkActorEntry = (ActorEntry*)SEGMENTED_TO_VIRTUAL(cmd->spawnList.segment) +
-                                                        play->setupEntranceList[play->curSpawn].spawn;
+                                                   play->setupEntranceList[play->curSpawn].spawn;
     s16 linkObjectId;
 
     play->linkAgeOnLoad = ((void)0, gSaveContext.linkAge);
@@ -252,14 +252,14 @@ void Scene_CommandMeshHeader(PlayState* play, SceneCmd* cmd) {
 }
 
 void Scene_CommandObjectList(PlayState* play, SceneCmd* cmd) {
-    s32 i;
-    s32 j;
-    s32 k;
+    s32           i;
+    s32           j;
+    s32           k;
     ObjectStatus* status;
     ObjectStatus* status2;
     ObjectStatus* firstStatus;
-    s16* objectEntry = SEGMENTED_TO_VIRTUAL(cmd->objectList.segment);
-    void* nextPtr;
+    s16*          objectEntry = SEGMENTED_TO_VIRTUAL(cmd->objectList.segment);
+    void*         nextPtr;
 
     k = 0;
     i = play->objectCtx.unk_09;
@@ -301,7 +301,7 @@ void Scene_CommandObjectList(PlayState* play, SceneCmd* cmd) {
 }
 
 void Scene_CommandLightList(PlayState* play, SceneCmd* cmd) {
-    s32 i;
+    s32        i;
     LightInfo* lightInfo = SEGMENTED_TO_VIRTUAL(cmd->lightList.segment);
 
     for (i = 0; i < cmd->lightList.num; i++) {
@@ -407,7 +407,7 @@ void Scene_CommandEchoSettings(PlayState* play, SceneCmd* cmd) {
 }
 
 void Scene_CommandAlternateHeaderList(PlayState* play, SceneCmd* cmd) {
-    s32 pad;
+    s32       pad;
     SceneCmd* altHeader;
 
     osSyncPrintf("\n[ZU]sceneset age    =[%X]", ((void)0, gSaveContext.linkAge));
@@ -496,8 +496,8 @@ void (*gSceneCmdHandlers[SCENE_CMD_ID_MAX])(PlayState*, SceneCmd*) = {
 };
 
 RomFile sNaviMsgFiles[] = {
-    ROM_FILE(text/elf_message_field/elf_message_field),
-    ROM_FILE(text/elf_message_ydan/elf_message_ydan),
+    ROM_FILE(text / elf_message_field / elf_message_field),
+    ROM_FILE(text / elf_message_ydan / elf_message_ydan),
     ROM_FILE_UNSET,
 };
 
@@ -507,7 +507,7 @@ u32 gObjectTableSize = ARRAY_COUNT(gObjectTable);
 
 // Object linker symbol declarations (used in the table below)
 #define DEFINE_OBJECT(name, _1) DECLARE_ROM_SEGMENT(name)
-#define DEFINE_OBJECT_NULL(_0, _1) 
+#define DEFINE_OBJECT_NULL(_0, _1)
 #define DEFINE_OBJECT_UNSET(_0)
 
 //#include "tables/object_table.h"
@@ -517,9 +517,9 @@ u32 gObjectTableSize = ARRAY_COUNT(gObjectTable);
 #undef DEFINE_OBJECT_UNSET
 
 // Object Table definition
-#define DEFINE_OBJECT(name, _1) ROM_FILE(name),
+#define DEFINE_OBJECT(name, _1)      ROM_FILE(name),
 #define DEFINE_OBJECT_NULL(name, _1) ROM_FILE(name),
-#define DEFINE_OBJECT_UNSET(_0) { 0, 0, "" },
+#define DEFINE_OBJECT_UNSET(_0)      { 0, 0, "" },
 
 RomFile gObjectTable[] = {
 #include "tables/object_table.h"

@@ -17,8 +17,8 @@
                             (actor)->world.pos.z))
 
 #define INGORACE_PLAYER_MOVE (1 << 0)
-#define INGORACE_SET_TIMER (1 << 1)
-#define INGORACE_INGO_MOVE (1 << 2)
+#define INGORACE_SET_TIMER   (1 << 1)
+#define INGORACE_INGO_MOVE   (1 << 2)
 
 typedef enum {
     /* 0 */ INGORACE_NO_RESULT,
@@ -27,12 +27,12 @@ typedef enum {
     /* 3 */ INGORACE_TIME_UP
 } HorseGameIngoRaceResult;
 
-#define MALONRACE_PLAYER_MOVE (1 << 0)
-#define MALONRACE_SET_TIMER (1 << 1)
-#define MALONRACE_SECOND_LAP (1 << 2)
-#define MALONRACE_BROKE_RULE (1 << 3)
-#define MALONRACE_START_SFX (1 << 4)
-#define MALONRACE_PLAYER_START (1 << 5)
+#define MALONRACE_PLAYER_MOVE    (1 << 0)
+#define MALONRACE_SET_TIMER      (1 << 1)
+#define MALONRACE_SECOND_LAP     (1 << 2)
+#define MALONRACE_BROKE_RULE     (1 << 3)
+#define MALONRACE_START_SFX      (1 << 4)
+#define MALONRACE_PLAYER_START   (1 << 5)
 #define MALONRACE_PLAYER_ON_MARK (1 << 6)
 
 typedef enum {
@@ -74,9 +74,14 @@ static f32 sRanchExit[4] = { 800.0f, 1000.0f, -2900.0f, -2700.0f };
 static Vec3f sUnusedZeroVec = { 0.0f, 0.0f, 0.0f };
 
 static Vec3f sFencePos[] = {
-    { 820.0f, -44.0f, -1655.0f }, { 1497.0f, -21.0f, -1198.0f },  { 1655.0f, -44.0f, -396.0f },
-    { 1291.0f, -44.0f, 205.0f },  { 379.0f, -21.0f, 455.0f },     { -95.0f, -21.0f, 455.0f },
-    { -939.0f, 1.0f, 455.0f },    { -1644.0f, -21.0f, -1035.0f },
+    { 820.0f, -44.0f, -1655.0f },
+    { 1497.0f, -21.0f, -1198.0f },
+    { 1655.0f, -44.0f, -396.0f },
+    { 1291.0f, -44.0f, 205.0f },
+    { 379.0f, -21.0f, 455.0f },
+    { -95.0f, -21.0f, 455.0f },
+    { -939.0f, 1.0f, 455.0f },
+    { -1644.0f, -21.0f, -1035.0f },
 };
 
 s32 EnHorseGameCheck_InitIngoRace(EnHorseGameCheckBase* base, PlayState* play) {
@@ -135,8 +140,8 @@ void EnHorseGameCheck_FinishIngoRace(EnHorseGameCheckIngoRace* this, PlayState* 
 
 s32 EnHorseGameCheck_UpdateIngoRace(EnHorseGameCheckBase* base, PlayState* play) {
     EnHorseGameCheckIngoRace* this = (EnHorseGameCheckIngoRace*)base;
-    Player* player = GET_PLAYER(play);
-    s32 i;
+    Player*  player = GET_PLAYER(play);
+    s32      i;
     EnHorse* ingoHorse;
     EnHorse* horse;
 
@@ -240,7 +245,7 @@ s32 EnHorseGameCheck_DestroyGerudoArchery(EnHorseGameCheckBase* base, PlayState*
 
 s32 EnHorseGameCheck_UpdateGerudoArchery(EnHorseGameCheckBase* base, PlayState* play) {
     EnHorseGameCheckGerudoArchery* this = (EnHorseGameCheckGerudoArchery*)base;
-    Player* player = GET_PLAYER(play);
+    Player*  player = GET_PLAYER(play);
     EnHorse* horse = (EnHorse*)player->rideActor;
 
     if (horse == NULL) {
@@ -315,8 +320,8 @@ void EnHorseGameCheck_FinishMalonRace(EnHorseGameCheckMalonRace* this, PlayState
 
 s32 EnHorseGameCheck_UpdateMalonRace(EnHorseGameCheckBase* base, PlayState* play) {
     EnHorseGameCheckMalonRace* this = (EnHorseGameCheckMalonRace*)base;
-    s32 i;
-    Player* player = GET_PLAYER(play);
+    s32      i;
+    Player*  player = GET_PLAYER(play);
     EnHorse* horse;
 
     if (!(this->raceFlags & MALONRACE_PLAYER_ON_MARK) && AT_FINISH_LINE(player->rideActor)) {
@@ -341,7 +346,7 @@ s32 EnHorseGameCheck_UpdateMalonRace(EnHorseGameCheckBase* base, PlayState* play
     this->startTimer++;
     if (this->result == MALONRACE_NO_RESULT) {
         Player* player2 = player;
-        f32 dist;
+        f32     dist;
 
         for (i = 0; i < 16; i++) {
             if ((this->lapCount == 0) && (i >= 8)) {

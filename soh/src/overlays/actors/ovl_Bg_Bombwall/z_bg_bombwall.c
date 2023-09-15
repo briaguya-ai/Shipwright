@@ -83,8 +83,8 @@ const ActorInit Bg_Bombwall_InitVars = {
 };
 
 void BgBombwall_InitDynapoly(BgBombwall* this, PlayState* play) {
-    s32 pad;
-    s32 pad2;
+    s32              pad;
+    s32              pad2;
     CollisionHeader* colHeader = NULL;
 
     DynaPolyActor_Init(&this->dyna, DPM_UNK);
@@ -111,11 +111,11 @@ static InitChainEntry sInitChain[] = {
 };
 
 void BgBombwall_Init(Actor* thisx, PlayState* play) {
-    s32 i;
-    s32 j;
+    s32   i;
+    s32   j;
     Vec3f vecs[3];
     Vec3f sp80;
-    s32 pad;
+    s32   pad;
     BgBombwall* this = (BgBombwall*)thisx;
     f32 sin = Math_SinS(this->dyna.actor.shape.rot.y);
     f32 cos = Math_CosS(this->dyna.actor.shape.rot.y);
@@ -173,19 +173,25 @@ void BgBombwall_Destroy(Actor* thisx, PlayState* play) {
 }
 
 static Vec3s D_8086F010[] = {
-    { 40, 85, 21 }, { -43, 107, 14 }, { -1, 142, 14 }, { -27, 44, 27 }, { 28, 24, 20 }, { -39, 54, 21 }, { 49, 50, 20 },
+    { 40, 85, 21 },
+    { -43, 107, 14 },
+    { -1, 142, 14 },
+    { -27, 44, 27 },
+    { 28, 24, 20 },
+    { -39, 54, 21 },
+    { 49, 50, 20 },
 };
 
 void func_8086EB5C(BgBombwall* this, PlayState* play) {
-    s16 rand;
-    s16 rand2;
-    Vec3f sp88;
-    s32 i;
-    f32 sin = Math_SinS(this->dyna.actor.shape.rot.y);
-    f32 cos = Math_CosS(this->dyna.actor.shape.rot.y);
+    s16    rand;
+    s16    rand2;
+    Vec3f  sp88;
+    s32    i;
+    f32    sin = Math_SinS(this->dyna.actor.shape.rot.y);
+    f32    cos = Math_CosS(this->dyna.actor.shape.rot.y);
     Vec3f* pos = &this->dyna.actor.world.pos;
-    f32 temp;
-    f32 new_var;
+    f32    temp;
+    f32    new_var;
 
     for (i = 0; i < 7; i++) {
         new_var = D_8086F010[i].x;

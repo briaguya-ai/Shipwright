@@ -31,19 +31,27 @@ const ActorInit En_Light_InitVars = {
 
 typedef struct {
     /* 0x00 */ Color_RGBA8 primColor;
-    /* 0x04 */ Color_RGB8 envColor;
-    /* 0x07 */ u8 scale;
+    /* 0x04 */ Color_RGB8  envColor;
+    /* 0x07 */ u8          scale;
 } FlameParams;
 
 static FlameParams D_80A9E840[] = {
-    { { 255, 200, 0, 255 }, { 255, 0, 0 }, 75 },     { { 255, 200, 0, 255 }, { 255, 0, 0 }, 75 },
-    { { 0, 170, 255, 255 }, { 0, 0, 255 }, 75 },     { { 170, 255, 0, 255 }, { 0, 150, 0 }, 75 },
-    { { 255, 200, 0, 255 }, { 255, 0, 0 }, 40 },     { { 255, 200, 0, 255 }, { 255, 0, 0 }, 75 },
-    { { 170, 255, 0, 255 }, { 0, 150, 0 }, 75 },     { { 0, 170, 255, 255 }, { 0, 0, 255 }, 75 },
-    { { 255, 0, 170, 255 }, { 200, 0, 0 }, 75 },     { { 255, 255, 170, 255 }, { 255, 50, 0 }, 75 },
-    { { 255, 255, 170, 255 }, { 255, 255, 0 }, 75 }, { { 255, 255, 170, 255 }, { 100, 255, 0 }, 75 },
-    { { 255, 170, 255, 255 }, { 255, 0, 100 }, 75 }, { { 255, 170, 255, 255 }, { 100, 0, 255 }, 75 },
-    { { 170, 255, 255, 255 }, { 0, 0, 255 }, 75 },   { { 170, 255, 255, 255 }, { 0, 150, 255 }, 75 },
+    { { 255, 200, 0, 255 }, { 255, 0, 0 }, 75 },
+    { { 255, 200, 0, 255 }, { 255, 0, 0 }, 75 },
+    { { 0, 170, 255, 255 }, { 0, 0, 255 }, 75 },
+    { { 170, 255, 0, 255 }, { 0, 150, 0 }, 75 },
+    { { 255, 200, 0, 255 }, { 255, 0, 0 }, 40 },
+    { { 255, 200, 0, 255 }, { 255, 0, 0 }, 75 },
+    { { 170, 255, 0, 255 }, { 0, 150, 0 }, 75 },
+    { { 0, 170, 255, 255 }, { 0, 0, 255 }, 75 },
+    { { 255, 0, 170, 255 }, { 200, 0, 0 }, 75 },
+    { { 255, 255, 170, 255 }, { 255, 50, 0 }, 75 },
+    { { 255, 255, 170, 255 }, { 255, 255, 0 }, 75 },
+    { { 255, 255, 170, 255 }, { 100, 255, 0 }, 75 },
+    { { 255, 170, 255, 255 }, { 255, 0, 100 }, 75 },
+    { { 255, 170, 255, 255 }, { 100, 0, 255 }, 75 },
+    { { 170, 255, 255, 255 }, { 0, 0, 255 }, 75 },
+    { { 170, 255, 255, 255 }, { 0, 150, 255 }, 75 },
 };
 
 void EnLight_Init(Actor* thisx, PlayState* play) {
@@ -89,9 +97,9 @@ void EnLight_UpdatePosRot(EnLight* this, PlayState* play) {
 }
 
 void EnLight_Update(Actor* thisx, PlayState* play) {
-    f32 intensity;
+    f32          intensity;
     FlameParams* flameParams;
-    s16 radius;
+    s16          radius;
     EnLight* this = (EnLight*)thisx;
 
     flameParams = &D_80A9E840[this->actor.params & 0xF];
@@ -108,7 +116,7 @@ void EnLight_Update(Actor* thisx, PlayState* play) {
 }
 
 void EnLight_UpdateSwitch(Actor* thisx, PlayState* play) {
-    f32 intensity;
+    f32          intensity;
     FlameParams* flameParams;
     EnLight* this = (EnLight*)thisx;
     f32 scale;
@@ -152,9 +160,9 @@ void EnLight_UpdateSwitch(Actor* thisx, PlayState* play) {
 
 void EnLight_Draw(Actor* thisx, PlayState* play) {
     EnLight* this = (EnLight*)thisx;
-    s32 pad;
+    s32          pad;
     FlameParams* flameParams;
-    Gfx* dList;
+    Gfx*         dList;
 
     flameParams = &D_80A9E840[this->actor.params & 0xF];
 

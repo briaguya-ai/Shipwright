@@ -5,12 +5,13 @@
 #ifdef __cplusplus
 extern "C"
 #endif
-void DrawColViewer();
+    void
+    DrawColViewer();
 
 typedef enum {
-  COLVIEW_DISABLED,
-  COLVIEW_SOLID,
-  COLVIEW_TRANSPARENT
+    COLVIEW_DISABLED,
+    COLVIEW_SOLID,
+    COLVIEW_TRANSPARENT
 } ColViewerRenderSetting;
 
 #ifdef __cplusplus
@@ -20,7 +21,7 @@ class ColViewerWindow : public LUS::GuiWindow {
 
     void InitElement() override;
     void DrawElement() override;
-    void UpdateElement() override {};
+    void UpdateElement() override{};
 };
 
 #endif

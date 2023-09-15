@@ -176,10 +176,10 @@ void EnAm_SetupAction(EnAm* this, EnAmActionFunc actionFunc) {
  * is no more than 20 units lower than the home position. This prevents the armos from going down steep slopes.
  */
 s32 EnAm_CanMove(EnAm* this, PlayState* play, f32 distance, s16 yaw) {
-    s16 ret;
-    s16 curBgCheckFlags;
-    f32 sin;
-    f32 cos;
+    s16   ret;
+    s16   curBgCheckFlags;
+    f32   sin;
+    f32   cos;
     Vec3f curPos;
 
     // save current position and bgCheckFlags to restore later
@@ -207,7 +207,7 @@ s32 EnAm_CanMove(EnAm* this, PlayState* play, f32 distance, s16 yaw) {
 
 void EnAm_Init(Actor* thisx, PlayState* play) {
     CollisionHeader* colHeader = NULL;
-    s32 pad;
+    s32              pad;
     EnAm* this = (EnAm*)thisx;
 
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
@@ -257,11 +257,11 @@ void EnAm_Destroy(Actor* thisx, PlayState* play) {
 void EnAm_SpawnEffects(EnAm* this, PlayState* play) {
     static Vec3f velocity = { 0.0f, -1.5f, 0.0f };
     static Vec3f accel = { 0.0f, -0.2f, 0.0f };
-    s32 i;
-    Vec3f pos;
-    Color_RGBA8 primColor = { 100, 100, 100, 0 };
-    Color_RGBA8 envColor = { 40, 40, 40, 0 };
-    s32 pad;
+    s32          i;
+    Vec3f        pos;
+    Color_RGBA8  primColor = { 100, 100, 100, 0 };
+    Color_RGBA8  envColor = { 40, 40, 40, 0 };
+    s32          pad;
 
     for (i = 4; i > 0; i--) {
         pos.x = this->dyna.actor.world.pos.x + ((Rand_ZeroOne() - 0.5f) * 65.0f);
@@ -370,10 +370,10 @@ void EnAm_SetupRicochet(EnAm* this, PlayState* play) {
 }
 
 void EnAm_Sleep(EnAm* this, PlayState* play) {
-    f32 cos;
-    s32 pad;
-    f32 rand;
-    f32 sin;
+    f32     cos;
+    s32     pad;
+    f32     rand;
+    f32     sin;
     Player* player = GET_PLAYER(play);
 
     if ((this->unk_258 != 0) ||
@@ -668,9 +668,9 @@ void EnAm_Lunge(EnAm* this, PlayState* play) {
 
 void EnAm_Statue(EnAm* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 temp158f = this->dyna.unk_158;
-    s16 moveDir = 0;
-    s32 blockSpeed = CVarGetInteger("gFasterBlockPush", 0);
+    f32     temp158f = this->dyna.unk_158;
+    s16     moveDir = 0;
+    s32     blockSpeed = CVarGetInteger("gFasterBlockPush", 0);
 
     if (this->unk_258 == 0) {
         if (this->dyna.unk_150 != 0.0f) {
@@ -701,11 +701,7 @@ void EnAm_Statue(EnAm* this, PlayState* play) {
 
         this->dyna.actor.world.rot.y = this->dyna.unk_158;
         this->dyna.actor.speedXZ = Math_SinS(this->unk_258 * 8 / (8 - blockSpeed)) * (this->dyna.unk_150 * 0.5f) +
-            (blockSpeed == 5 ? blockSpeed * (this->dyna.unk_150 * 0.5f) * 0.25681 : 
-                (blockSpeed == 4 ? blockSpeed * (this->dyna.unk_150 * 0.5f) * 0.18305 :
-                    (blockSpeed == 3 ? blockSpeed * (this->dyna.unk_150 * 0.5f) * 0.14222 :
-                        (blockSpeed == 2 ? blockSpeed * (this->dyna.unk_150 * 0.5f) * 0.11625 :
-                            (blockSpeed == 1 ? blockSpeed * (this->dyna.unk_150 * 0.5f) * 0.09828 : 0)))));
+                                   (blockSpeed == 5 ? blockSpeed * (this->dyna.unk_150 * 0.5f) * 0.25681 : (blockSpeed == 4 ? blockSpeed * (this->dyna.unk_150 * 0.5f) * 0.18305 : (blockSpeed == 3 ? blockSpeed * (this->dyna.unk_150 * 0.5f) * 0.14222 : (blockSpeed == 2 ? blockSpeed * (this->dyna.unk_150 * 0.5f) * 0.11625 : (blockSpeed == 1 ? blockSpeed * (this->dyna.unk_150 * 0.5f) * 0.09828 : 0)))));
     }
 
     if (this->dyna.actor.bgCheckFlags & 2) {
@@ -791,7 +787,7 @@ void EnAm_TransformSwordHitbox(Actor* thisx, PlayState* play) {
 }
 
 void EnAm_UpdateDamage(EnAm* this, PlayState* play) {
-    s32 pad;
+    s32   pad;
     Vec3f sparkPos;
 
     if (this->deathTimer == 0) {
@@ -838,16 +834,16 @@ void EnAm_UpdateDamage(EnAm* this, PlayState* play) {
 }
 
 void EnAm_Update(Actor* thisx, PlayState* play) {
-    static Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
+    static Vec3f       zeroVec = { 0.0f, 0.0f, 0.0f };
     static Color_RGBA8 dustPrimColor = { 150, 150, 150, 255 };
     static Color_RGBA8 dustEnvColor = { 100, 100, 100, 150 };
-    s32 pad;
+    s32                pad;
     EnAm* this = (EnAm*)thisx;
     EnBom* bomb;
-    Vec3f dustPos;
-    s32 i;
-    f32 dustPosScale;
-    s32 pad1;
+    Vec3f  dustPos;
+    s32    i;
+    f32    dustPosScale;
+    s32    pad1;
 
     if (this->dyna.actor.params != ARMOS_STATUE) {
         EnAm_UpdateDamage(this, play);
@@ -885,7 +881,7 @@ void EnAm_Update(Actor* thisx, PlayState* play) {
                     func_8002836C(play, &dustPos, &zeroVec, &zeroVec, &dustPrimColor, &dustEnvColor, 200, 45, 12);
                     dustPosScale += 60.0f;
                 }
-                
+
                 GameInteractor_ExecuteOnEnemyDefeat(thisx);
 
                 Actor_Kill(&this->dyna.actor);
@@ -947,13 +943,22 @@ void EnAm_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, 
 }
 
 static Vec3f sIcePosOffsets[] = {
-    { 20.0f, 40.0f, 0.0f },   { 10.0f, 60.0f, 10.0f },   { -10.0f, 60.0f, 10.0f }, { -20.0f, 40.0f, 0.0f },
-    { 10.0f, 60.0f, -10.0f }, { -10.0f, 60.0f, -10.0f }, { 0.0f, 40.0f, -20.0f },  { 10.0f, 20.0f, 10.0f },
-    { 10.0f, 20.0f, -10.0f }, { 0.0f, 40.0f, 20.0f },    { -10.0f, 20.0f, 10.0f }, { -10.0f, 20.0f, -10.0f },
+    { 20.0f, 40.0f, 0.0f },
+    { 10.0f, 60.0f, 10.0f },
+    { -10.0f, 60.0f, 10.0f },
+    { -20.0f, 40.0f, 0.0f },
+    { 10.0f, 60.0f, -10.0f },
+    { -10.0f, 60.0f, -10.0f },
+    { 0.0f, 40.0f, -20.0f },
+    { 10.0f, 20.0f, 10.0f },
+    { 10.0f, 20.0f, -10.0f },
+    { 0.0f, 40.0f, 20.0f },
+    { -10.0f, 20.0f, 10.0f },
+    { -10.0f, 20.0f, -10.0f },
 };
 
 void EnAm_Draw(Actor* thisx, PlayState* play) {
-    s32 pad;
+    s32   pad;
     Vec3f sp68;
     EnAm* this = (EnAm*)thisx;
 

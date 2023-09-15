@@ -9,8 +9,8 @@
 #include "objects/object_tk/object_tk.h"
 #include "soh/frame_interpolation.h"
 
-#define FLAGS (ACTOR_FLAG_TARGETABLE | ACTOR_FLAG_FRIENDLY)
-#define COLLECTFLAG_GRAVEDIGGING_HEART_PIECE 0x19
+#define FLAGS                                   (ACTOR_FLAG_TARGETABLE | ACTOR_FLAG_FRIENDLY)
+#define COLLECTFLAG_GRAVEDIGGING_HEART_PIECE    0x19
 #define ITEMGETINFFLAG_GRAVEDIGGING_HEART_PIECE 0x1000
 
 bool heartPieceSpawned;
@@ -20,7 +20,7 @@ void EnTk_Destroy(Actor* thisx, PlayState* play);
 void EnTk_Update(Actor* thisx, PlayState* play);
 void EnTk_Draw(Actor* thisx, PlayState* play);
 
-s32 EnTk_CheckNextSpot(EnTk* this, PlayState* play);
+s32  EnTk_CheckNextSpot(EnTk* this, PlayState* play);
 void EnTk_Rest(EnTk* this, PlayState* play);
 void EnTk_Walk(EnTk* this, PlayState* play);
 void EnTk_Dig(EnTk* this, PlayState* play);
@@ -39,7 +39,7 @@ const ActorInit En_Tk_InitVars = {
 };
 
 void EnTkEff_Create(EnTk* this, Vec3f* pos, Vec3f* speed, Vec3f* accel, u8 duration, f32 size, f32 growth) {
-    s16 i;
+    s16      i;
     EnTkEff* eff = this->eff;
 
     for (i = 0; i < ARRAY_COUNT(this->eff); i++) {
@@ -59,7 +59,7 @@ void EnTkEff_Create(EnTk* this, Vec3f* pos, Vec3f* speed, Vec3f* accel, u8 durat
 }
 
 void EnTkEff_Update(EnTk* this) {
-    s16 i;
+    s16      i;
     EnTkEff* eff;
 
     eff = this->eff;
@@ -85,14 +85,21 @@ void EnTkEff_Update(EnTk* this) {
 
 void EnTkEff_Draw(EnTk* this, PlayState* play) {
     static void* dustTextures[] = {
-        gDust8Tex, gDust7Tex, gDust6Tex, gDust5Tex, gDust4Tex, gDust3Tex, gDust2Tex, gDust1Tex,
+        gDust8Tex,
+        gDust7Tex,
+        gDust6Tex,
+        gDust5Tex,
+        gDust4Tex,
+        gDust3Tex,
+        gDust2Tex,
+        gDust1Tex,
     };
 
     EnTkEff* eff = this->eff;
-    s16 imageIdx;
-    s16 gfxSetup;
-    s16 alpha;
-    s16 i;
+    s16      imageIdx;
+    s16      gfxSetup;
+    s16      alpha;
+    s16      i;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -235,8 +242,8 @@ s32 EnTk_CheckFacingPlayer(EnTk* this) {
 
 s32 EnTk_CheckNextSpot(EnTk* this, PlayState* play) {
     Actor* prop;
-    f32 dxz;
-    f32 dy;
+    f32    dxz;
+    f32    dy;
 
     prop = play->actorCtx.actorLists[ACTORCAT_PROP].head;
 
@@ -306,10 +313,10 @@ f32 EnTk_Step(EnTk* this, PlayState* play) {
 }
 
 s32 EnTk_Orient(EnTk* this, PlayState* play) {
-    Path* path;
+    Path*  path;
     Vec3s* point;
-    f32 dx;
-    f32 dz;
+    f32    dx;
+    f32    dz;
 
     if (this->actor.params < 0) {
         return 1;
@@ -598,8 +605,12 @@ void EnTk_Walk(EnTk* this, PlayState* play) {
 void EnTk_Dig(EnTk* this, PlayState* play) {
     Vec3f rewardOrigin;
     Vec3f rewardPos;
-    s32 rewardParams[] = {
-        ITEM00_RUPEE_GREEN, ITEM00_RUPEE_BLUE, ITEM00_RUPEE_RED, ITEM00_RUPEE_PURPLE, ITEM00_HEART_PIECE,
+    s32   rewardParams[] = {
+          ITEM00_RUPEE_GREEN,
+          ITEM00_RUPEE_BLUE,
+          ITEM00_RUPEE_RED,
+          ITEM00_RUPEE_PURPLE,
+          ITEM00_HEART_PIECE,
     };
 
     EnTk_DigEff(this);
@@ -629,9 +640,9 @@ void EnTk_Dig(EnTk* this, PlayState* play) {
             if (gSaveContext.n64ddFlag || CVarGetInteger("gDampeWin", 0)) {
                 if (this->currentReward == 3) {
                     /*
-                    * Upgrade the purple rupee reward to the heart piece if this
-                    * is the first grand prize dig.
-                    */
+                     * Upgrade the purple rupee reward to the heart piece if this
+                     * is the first grand prize dig.
+                     */
                     if (!Flags_GetItemGetInf(ITEMGETINF_1C) && !(gSaveContext.n64ddFlag || CVarGetInteger("gDampeWin", 0))) {
                         Flags_SetItemGetInf(ITEMGETINF_1C);
                         this->currentReward = 4;
@@ -650,16 +661,16 @@ void EnTk_Dig(EnTk* this, PlayState* play) {
             } else {
                 if (this->currentReward == 3) {
                     /*
-                    * Upgrade the purple rupee reward to the heart piece if this
-                    * is the first grand prize dig.
-                    */
+                     * Upgrade the purple rupee reward to the heart piece if this
+                     * is the first grand prize dig.
+                     */
                     // If vanilla itemGetInf flag is not set, it's impossible for the new flag to be set, so return true.
                     // Otherwise if the gGravediggingTourFix is enabled and the new flag hasn't been set, return true.
                     // If true, spawn the heart piece and set the vanilla itemGetInf flag and new temp clear flag.
                     if (!heartPieceSpawned &&
                         (!(gSaveContext.itemGetInf[1] & ITEMGETINFFLAG_GRAVEDIGGING_HEART_PIECE) ||
-                        CVarGetInteger("gGravediggingTourFix", 0) &&
-                            !Flags_GetCollectible(play, COLLECTFLAG_GRAVEDIGGING_HEART_PIECE))) {
+                         CVarGetInteger("gGravediggingTourFix", 0) &&
+                             !Flags_GetCollectible(play, COLLECTFLAG_GRAVEDIGGING_HEART_PIECE))) {
                         this->currentReward = 4;
                         gSaveContext.itemGetInf[1] |= ITEMGETINFFLAG_GRAVEDIGGING_HEART_PIECE;
                         heartPieceSpawned = true;

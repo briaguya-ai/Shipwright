@@ -10,12 +10,12 @@
 //#endif
 
 #if 0
-#define size_t unsigned long
+#define size_t  unsigned long
 #define ssize_t long
 
 #endif
 
-//typedef unsigned long size_t;
-//typedef long ssize_t;
+// typedef unsigned long size_t;
+// typedef long ssize_t;
 
 #endif

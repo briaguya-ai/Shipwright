@@ -171,8 +171,8 @@ void EnGm_SetTextID(EnGm* this) {
 }
 
 void func_80A3DB04(EnGm* this, PlayState* play) {
-    f32 dx;
-    f32 dz;
+    f32     dx;
+    f32     dz;
     Player* player = GET_PLAYER(play);
 
     dx = this->talkPos.x - player->actor.world.pos.x;
@@ -196,9 +196,9 @@ void func_80A3DBF4(EnGm* this, PlayState* play) {
 }
 
 void func_80A3DC44(EnGm* this, PlayState* play) {
-    f32 dx;
-    f32 dz;
-    s32 pad;
+    f32     dx;
+    f32     dz;
+    s32     pad;
     Player* player = GET_PLAYER(play);
 
     EnGm_SetTextID(this);
@@ -217,9 +217,9 @@ void func_80A3DC44(EnGm* this, PlayState* play) {
                 Flags_SetInfTable(INFTABLE_B1);
                 if (gSaveContext.n64ddFlag && Randomizer_GetSettingValue(RSK_SHUFFLE_MERCHANTS) != RO_SHUFFLE_MERCHANTS_OFF &&
                     !Flags_GetRandomizerInf(RAND_INF_MERCHANTS_MEDIGORON)) {
-                        //Resets "Talked to Medigoron" flag in infTable to restore initial conversation state
-                        Flags_UnsetInfTable(INFTABLE_B1);
-                    }
+                    // Resets "Talked to Medigoron" flag in infTable to restore initial conversation state
+                    Flags_UnsetInfTable(INFTABLE_B1);
+                }
             case 2:
                 this->actionFunc = EnGm_ProcessChoiceIndex;
             default:
@@ -294,8 +294,7 @@ void func_80A3DF00(EnGm* this, PlayState* play) {
             GetItemEntry itemEntry = Randomizer_GetItemFromKnownCheck(RC_GC_MEDIGORON, GI_SWORD_KNIFE);
             GiveItemEntryFromActor(&this->actor, play, itemEntry, 415.0f, 10.0f);
             Flags_SetInfTable(INFTABLE_B1);
-        }
-        else {
+        } else {
             func_8002F434(&this->actor, play, GI_SWORD_KNIFE, 415.0f, 10.0f);
         }
     }

@@ -145,9 +145,9 @@ void BgMoriRakkatenjo_SetupFall(BgMoriRakkatenjo* this) {
 
 void BgMoriRakkatenjo_Fall(BgMoriRakkatenjo* this, PlayState* play) {
     static f32 bounceVel[] = { 4.0f, 1.5f, 0.4f, 0.1f };
-    s32 pad;
-    Actor* thisx = &this->dyna.actor;
-    s32 quake;
+    s32        pad;
+    Actor*     thisx = &this->dyna.actor;
+    s32        quake;
 
     Actor_MoveForward(thisx);
     if ((thisx->velocity.y < 0.0f) && (thisx->world.pos.y <= 403.0f)) {

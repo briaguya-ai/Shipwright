@@ -14,17 +14,23 @@ void ObjMakeoshihiki_Init(Actor* thisx, PlayState* play);
 void ObjMakeoshihiki_Draw(Actor* thisx, PlayState* play);
 
 const ActorInit Obj_Makeoshihiki_InitVars = {
-    ACTOR_OBJ_MAKEOSHIHIKI,       ACTORCAT_PROP,           FLAGS,
-    OBJECT_GAMEPLAY_DANGEON_KEEP, sizeof(ObjMakeoshihiki), (ActorFunc)ObjMakeoshihiki_Init,
-    (ActorFunc)Actor_Noop,        (ActorFunc)Actor_Noop,   (ActorFunc)ObjMakeoshihiki_Draw,
+    ACTOR_OBJ_MAKEOSHIHIKI,
+    ACTORCAT_PROP,
+    FLAGS,
+    OBJECT_GAMEPLAY_DANGEON_KEEP,
+    sizeof(ObjMakeoshihiki),
+    (ActorFunc)ObjMakeoshihiki_Init,
+    (ActorFunc)Actor_Noop,
+    (ActorFunc)Actor_Noop,
+    (ActorFunc)ObjMakeoshihiki_Draw,
 };
 
 typedef struct {
     /* 0x00 */ Vec3f posVecs[3];
-    /* 0x24 */ u8 unk_24[3];
-    /* 0x27 */ u8 color;
-    /* 0x28 */ u8 type;
-    /* 0x2A */ s16 rotY;
+    /* 0x24 */ u8    unk_24[3];
+    /* 0x27 */ u8    color;
+    /* 0x28 */ u8    type;
+    /* 0x2A */ s16   rotY;
 } BlockConfig; // size = 0x2C
 
 static BlockConfig sBlocks[] = {
@@ -50,8 +56,8 @@ static void (*sFlagSwitchFuncs[])(PlayState* play, s32 flag) = { Flags_UnsetSwit
 
 void ObjMakeoshihiki_Init(Actor* thisx, PlayState* play) {
     BlockConfig* block = &sBlocks[thisx->home.rot.z & 1];
-    s32 typeIdx;
-    Vec3f* spawnPos;
+    s32          typeIdx;
+    Vec3f*       spawnPos;
 
     if (!((thisx->params >> 6) & 1) && Flags_GetSwitch(play, thisx->params & 0x3F)) {
         typeIdx = 1;
@@ -82,11 +88,11 @@ void ObjMakeoshihiki_Init(Actor* thisx, PlayState* play) {
 
 void ObjMakeoshihiki_Draw(Actor* thisx, PlayState* play) {
     BlockConfig* block = &sBlocks[thisx->home.rot.z & 1];
-    s32 i;
-    s32 sfxCond1;
-    s32 sfxCond2;
-    s32 cond;
-    s32 cond2;
+    s32          i;
+    s32          sfxCond1;
+    s32          sfxCond2;
+    s32          cond;
+    s32          cond2;
 
     for (i = 0; i < 3; i++) {
         if (Math3D_Vec3fDistSq(&thisx->child->world.pos, &block->posVecs[i]) < 0.001f) {

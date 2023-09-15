@@ -51,7 +51,7 @@ void EnBomBowlPit_SetupDetectHit(EnBomBowlPit* this, PlayState* play) {
 
 void EnBomBowlPit_DetectHit(EnBomBowlPit* this, PlayState* play) {
     EnBomChu* chu;
-    Vec3f chuPosDiff;
+    Vec3f     chuPosDiff;
 
     if (play->cameraPtrs[MAIN_CAM]->setting == CAM_SET_CHU_BOWLING) {
         chu = (EnBomChu*)play->actorCtx.actorLists[ACTORCAT_EXPLOSIVE].head;
@@ -215,7 +215,7 @@ void EnBomBowlPit_WaitTillPrizeGiven(EnBomBowlPit* this, PlayState* play) {
     if (Actor_HasParent(&this->actor, play)) {
         this->actionFunc = EnBomBowlPit_Reset;
     } else {
-         if (!gSaveContext.n64ddFlag || this->getItemEntry.getItemId == GI_NONE) {
+        if (!gSaveContext.n64ddFlag || this->getItemEntry.getItemId == GI_NONE) {
             func_8002F434(&this->actor, play, this->getItemId, 2000.0f, 1000.0f);
         } else {
             GiveItemEntryFromActor(&this->actor, play, this->getItemEntry, 2000.0f, 1000.0f);
@@ -225,7 +225,7 @@ void EnBomBowlPit_WaitTillPrizeGiven(EnBomBowlPit* this, PlayState* play) {
 
 void EnBomBowlPit_Reset(EnBomBowlPit* this, PlayState* play) {
     if (((Message_GetState(&play->msgCtx) == TEXT_STATE_DONE) &&
-          Message_ShouldAdvance(play)) ||
+         Message_ShouldAdvance(play)) ||
         (gSaveContext.n64ddFlag && this->getItemId == GI_ICE_TRAP)) {
         // "Normal termination"/"completion"
         osSyncPrintf(VT_FGCOL(GREEN) "☆☆☆☆☆ 正常終了 ☆☆☆☆☆ \n" VT_RST);

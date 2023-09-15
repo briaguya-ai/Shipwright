@@ -18,7 +18,7 @@ void ObjTsubo_Draw(Actor* thisx, PlayState* play);
 
 void ObjTsubo_SpawnCollectible(ObjTsubo* this, PlayState* play);
 void ObjTsubo_ApplyGravity(ObjTsubo* this);
-s32 ObjTsubo_SnapToFloor(ObjTsubo* this, PlayState* play);
+s32  ObjTsubo_SnapToFloor(ObjTsubo* this, PlayState* play);
 void ObjTsubo_InitCollider(Actor* thisx, PlayState* play);
 void ObjTsubo_AirBreak(ObjTsubo* this, PlayState* play);
 void ObjTsubo_WaterBreak(ObjTsubo* this, PlayState* play);
@@ -78,9 +78,12 @@ static ColliderCylinderInit sCylinderInit = {
 static CollisionCheckInfoInit sColChkInfoInit[] = { 0, 12, 60, MASS_IMMOVABLE };
 
 static InitChainEntry sInitChain[] = {
-    ICHAIN_F32_DIV1000(gravity, -1200, ICHAIN_CONTINUE), ICHAIN_F32_DIV1000(minVelocityY, -20000, ICHAIN_CONTINUE),
-    ICHAIN_VEC3F_DIV1000(scale, 150, ICHAIN_CONTINUE),   ICHAIN_F32(uncullZoneForward, 900, ICHAIN_CONTINUE),
-    ICHAIN_F32(uncullZoneScale, 100, ICHAIN_CONTINUE),   ICHAIN_F32(uncullZoneDownward, 800, ICHAIN_STOP),
+    ICHAIN_F32_DIV1000(gravity, -1200, ICHAIN_CONTINUE),
+    ICHAIN_F32_DIV1000(minVelocityY, -20000, ICHAIN_CONTINUE),
+    ICHAIN_VEC3F_DIV1000(scale, 150, ICHAIN_CONTINUE),
+    ICHAIN_F32(uncullZoneForward, 900, ICHAIN_CONTINUE),
+    ICHAIN_F32(uncullZoneScale, 100, ICHAIN_CONTINUE),
+    ICHAIN_F32(uncullZoneDownward, 800, ICHAIN_STOP),
 };
 
 void ObjTsubo_SpawnCollectible(ObjTsubo* this, PlayState* play) {
@@ -101,9 +104,9 @@ void ObjTsubo_ApplyGravity(ObjTsubo* this) {
 
 s32 ObjTsubo_SnapToFloor(ObjTsubo* this, PlayState* play) {
     CollisionPoly* floorPoly;
-    Vec3f pos;
-    s32 bgID;
-    f32 floorY;
+    Vec3f          pos;
+    s32            bgID;
+    f32            floorY;
 
     pos.x = this->actor.world.pos.x;
     pos.y = this->actor.world.pos.y + 20.0f;
@@ -155,15 +158,15 @@ void ObjTsubo_Destroy(Actor* thisx, PlayState* play2) {
 }
 
 void ObjTsubo_AirBreak(ObjTsubo* this, PlayState* play) {
-    s32 pad;
-    f32 rand;
-    s16 angle;
+    s32   pad;
+    f32   rand;
+    s16   angle;
     Vec3f pos;
     Vec3f velocity;
-    f32 sins;
-    f32 coss;
-    s32 arg5;
-    s32 i;
+    f32   sins;
+    f32   coss;
+    s32   arg5;
+    s32   i;
 
     for (i = 0, angle = 0; i < 15; i++, angle += 0x4E20) {
         sins = Math_SinS(angle);
@@ -192,12 +195,12 @@ void ObjTsubo_AirBreak(ObjTsubo* this, PlayState* play) {
 }
 
 void ObjTsubo_WaterBreak(ObjTsubo* this, PlayState* play) {
-    s32 pad[2];
-    s16 angle;
+    s32   pad[2];
+    s16   angle;
     Vec3f pos = this->actor.world.pos;
     Vec3f velocity;
-    s32 phi_s0;
-    s32 i;
+    s32   phi_s0;
+    s32   i;
 
     pos.y += this->actor.yDistToWater;
     EffectSsGSplash_Spawn(play, &pos, NULL, NULL, 0, 400);

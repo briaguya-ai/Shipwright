@@ -98,7 +98,7 @@ void func_80ACDDE8(EnPart* this, PlayState* play) {
 }
 
 void func_80ACE13C(EnPart* this, PlayState* play) {
-    s32 i;
+    s32   i;
     Vec3f pos;
     Vec3f velocity = { 0.0f, 0.0f, 0.0f };
     Vec3f accel = { 0.0f, 0.0f, 0.0f };
@@ -237,7 +237,11 @@ void func_80ACE7E8(EnPart* this, PlayState* play) {
 
 void EnPart_Update(Actor* thisx, PlayState* play) {
     static EnPartActionFunc sActionFuncs[] = {
-        func_80ACDDE8, func_80ACE13C, func_80ACE5B8, func_80ACE5C8, func_80ACE7E8,
+        func_80ACDDE8,
+        func_80ACE13C,
+        func_80ACE5B8,
+        func_80ACE5C8,
+        func_80ACE7E8,
     };
 
     EnPart* this = (EnPart*)thisx;

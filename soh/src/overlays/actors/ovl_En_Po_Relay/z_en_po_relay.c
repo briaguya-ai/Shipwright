@@ -24,13 +24,34 @@ void EnPoRelay_DisappearAndReward(EnPoRelay* this, PlayState* play);
 void EnPoRelay_SetupIdle(EnPoRelay* this);
 
 static Vec3s D_80AD8C30[] = {
-    { 0xFFC4, 0xFDEE, 0xF47A }, { 0x0186, 0xFE0C, 0xF47A }, { 0x0186, 0xFE0C, 0xF0F6 }, { 0x00D2, 0xFDEE, 0xF0F6 },
-    { 0x00D2, 0xFD9E, 0xEEDA }, { 0x023A, 0xFDC6, 0xEEDA }, { 0x023A, 0xFDC6, 0xED18 }, { 0x00D2, 0xFDC6, 0xED18 },
-    { 0x00D2, 0xFDC6, 0xEBCE }, { 0x00D2, 0xFDC6, 0xEAA2 }, { 0x023A, 0xFDC6, 0xEAA2 }, { 0x023A, 0xFDC6, 0xEBB0 },
-    { 0x04EC, 0xFD9E, 0xEBB0 }, { 0x0672, 0xFD62, 0xED18 }, { 0x0672, 0xFD30, 0xEE80 }, { 0x07DA, 0xFD26, 0xEE80 },
-    { 0x07DA, 0xFD26, 0xEF70 }, { 0x07DA, 0xFD26, 0xF204 }, { 0x0672, 0xFD44, 0xF204 }, { 0x0672, 0xFD6C, 0xF3C6 },
-    { 0x088E, 0xFD6C, 0xF3C6 }, { 0x088E, 0xFDB2, 0xF5E2 }, { 0x099C, 0xFDD0, 0xF5E2 }, { 0x0B54, 0xFE66, 0xF772 },
-    { 0x0B4E, 0xFE66, 0xF87E }, { 0x0B4A, 0xFE66, 0xF97A }, { 0x0B4A, 0xFE98, 0xF9FC }, { 0x0BAE, 0xFE98, 0xF9FC },
+    { 0xFFC4, 0xFDEE, 0xF47A },
+    { 0x0186, 0xFE0C, 0xF47A },
+    { 0x0186, 0xFE0C, 0xF0F6 },
+    { 0x00D2, 0xFDEE, 0xF0F6 },
+    { 0x00D2, 0xFD9E, 0xEEDA },
+    { 0x023A, 0xFDC6, 0xEEDA },
+    { 0x023A, 0xFDC6, 0xED18 },
+    { 0x00D2, 0xFDC6, 0xED18 },
+    { 0x00D2, 0xFDC6, 0xEBCE },
+    { 0x00D2, 0xFDC6, 0xEAA2 },
+    { 0x023A, 0xFDC6, 0xEAA2 },
+    { 0x023A, 0xFDC6, 0xEBB0 },
+    { 0x04EC, 0xFD9E, 0xEBB0 },
+    { 0x0672, 0xFD62, 0xED18 },
+    { 0x0672, 0xFD30, 0xEE80 },
+    { 0x07DA, 0xFD26, 0xEE80 },
+    { 0x07DA, 0xFD26, 0xEF70 },
+    { 0x07DA, 0xFD26, 0xF204 },
+    { 0x0672, 0xFD44, 0xF204 },
+    { 0x0672, 0xFD6C, 0xF3C6 },
+    { 0x088E, 0xFD6C, 0xF3C6 },
+    { 0x088E, 0xFDB2, 0xF5E2 },
+    { 0x099C, 0xFDD0, 0xF5E2 },
+    { 0x0B54, 0xFE66, 0xF772 },
+    { 0x0B4E, 0xFE66, 0xF87E },
+    { 0x0B4A, 0xFE66, 0xF97A },
+    { 0x0B4A, 0xFE98, 0xF9FC },
+    { 0x0BAE, 0xFE98, 0xF9FC },
 };
 
 const ActorInit En_Po_Relay_InitVars = {
@@ -188,9 +209,9 @@ void EnPoRelay_Talk(EnPoRelay* this, PlayState* play) {
 
 void EnPoRelay_Race(EnPoRelay* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Vec3f vec;
-    f32 speed;
-    f32 multiplier;
+    Vec3f   vec;
+    f32     speed;
+    f32     multiplier;
 
     if (this->actionTimer != 0) {
         this->actionTimer--;
@@ -207,7 +228,7 @@ void EnPoRelay_Race(EnPoRelay* this, PlayState* play) {
                 multiplier = 0.0f;
             }
             speed = 30.0f * multiplier;
-            
+
             Actor_Spawn(&play->actorCtx, play, ACTOR_EN_HONOTRAP,
                         Math_CosS(this->unk_19A) * speed + this->actor.world.pos.x, this->actor.world.pos.y,
                         Math_SinS(this->unk_19A) * speed + this->actor.world.pos.z, 0,
@@ -295,10 +316,10 @@ void EnPoRelay_Talk2(EnPoRelay* this, PlayState* play) {
 
 void EnPoRelay_DisappearAndReward(EnPoRelay* this, PlayState* play) {
     Vec3f vec;
-    f32 multiplier;
-    s32 pad;
+    f32   multiplier;
+    s32   pad;
     Vec3f sp60;
-    s32 pad1;
+    s32   pad1;
 
     this->actionTimer++;
     if (this->actionTimer < 8) {
@@ -331,7 +352,7 @@ void EnPoRelay_DisappearAndReward(EnPoRelay* this, PlayState* play) {
         }
     }
     if (Math_StepToF(&this->actor.scale.x, 0.0f, 0.001f) != 0) {
-        if(!gSaveContext.n64ddFlag) {
+        if (!gSaveContext.n64ddFlag) {
             if (this->hookshotSlotFull != 0) {
                 sp60.x = this->actor.world.pos.x;
                 sp60.y = this->actor.floorHeight;
@@ -347,7 +368,7 @@ void EnPoRelay_DisappearAndReward(EnPoRelay* this, PlayState* play) {
             } else {
                 Flags_SetTempClear(play, 4);
                 HIGH_SCORE(HS_DAMPE_RACE) = gSaveContext.timer1Value;
-            }            
+            }
         } else {
             sp60.x = this->actor.world.pos.x;
             sp60.y = this->actor.floorHeight;
@@ -403,7 +424,7 @@ void EnPoRelay_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* 
     EnPoRelay* this = (EnPoRelay*)thisx;
 
     if (limbIndex == 14) {
-        f32 rand;
+        f32   rand;
         Vec3f vec;
 
         OPEN_DISPS(play->state.gfxCtx);

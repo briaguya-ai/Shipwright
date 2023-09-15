@@ -146,9 +146,9 @@ void BgPoSyokudai_Update(Actor* thisx, PlayState* play) {
 void BgPoSyokudai_Draw(Actor* thisx, PlayState* play) {
     BgPoSyokudai* this = (BgPoSyokudai*)thisx;
     f32 lightBrightness;
-    u8 red;
-    u8 green;
-    u8 blue;
+    u8  red;
+    u8  green;
+    u8  blue;
 
     OPEN_DISPS(play->state.gfxCtx);
 

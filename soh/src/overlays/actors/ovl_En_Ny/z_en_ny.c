@@ -290,7 +290,7 @@ void func_80ABD11C(EnNy* this, PlayState* play) {
 }
 
 s32 EnNy_CollisionCheck(EnNy* this, PlayState* play) {
-    u8 sp3F;
+    u8    sp3F;
     Vec3f effectPos;
 
     sp3F = 0;
@@ -412,8 +412,8 @@ void EnNy_Update(Actor* thisx, PlayState* play) {
 }
 
 void EnNy_SetupDie(EnNy* this, PlayState* play) {
-    s32 effectScale;
-    s32 i;
+    s32   effectScale;
+    s32   i;
     Vec3f effectPos;
     Vec3f effectVelocity = { 0.0f, 0.0f, 0.0f };
     Vec3f effectAccel = { 0.0f, 0.1f, 0.0f };
@@ -497,8 +497,8 @@ void EnNy_UpdateDeath(Actor* thisx, PlayState* play) {
 void EnNy_UpdateUnused(Actor* thisx, PlayState* play2) {
     EnNy* this = (EnNy*)thisx;
     PlayState* play = play2;
-    f32 sp3C;
-    f32 temp_f0;
+    f32        sp3C;
+    f32        temp_f0;
 
     sp3C = this->unk_1E0 - 0.25f;
     this->timer++;
@@ -552,9 +552,9 @@ void EnNy_Draw(Actor* thisx, PlayState* play) {
     }
     CLOSE_DISPS(play->state.gfxCtx);
     if (this->unk_1CA != 0) {
-        Vec3f tempVec;
+        Vec3f  tempVec;
         Vec3f* fireOffset;
-        s16 temp;
+        s16    temp;
 
         temp = this->unk_1CA - 1;
         this->actor.colorFilterTimer++;
@@ -571,8 +571,8 @@ void EnNy_Draw(Actor* thisx, PlayState* play) {
 void EnNy_DrawDeathEffect(Actor* thisx, PlayState* play) {
     EnNy* this = (EnNy*)thisx;
     Vec3f* temp;
-    f32 scale;
-    s32 i;
+    f32    scale;
+    s32    i;
 
     OPEN_DISPS(play->state.gfxCtx);
     Gfx_SetupDL_25Opa(play->state.gfxCtx);
@@ -594,9 +594,9 @@ void EnNy_DrawDeathEffect(Actor* thisx, PlayState* play) {
     }
     CLOSE_DISPS(play->state.gfxCtx);
     if (this->unk_1CA != 0) {
-        Vec3f tempVec;
+        Vec3f  tempVec;
         Vec3f* fireOffset;
-        s16 fireOffsetIndex;
+        s16    fireOffsetIndex;
 
         fireOffsetIndex = this->unk_1CA - 1;
         this->actor.colorFilterTimer++;

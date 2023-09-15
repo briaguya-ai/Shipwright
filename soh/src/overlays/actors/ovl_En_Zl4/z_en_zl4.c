@@ -335,8 +335,8 @@ void EnZl4_GetActionStartPos(CsCmdActorAction* action, Vec3f* vec) {
 
 s32 EnZl4_SetupFromLegendCs(EnZl4* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Actor* playerx = &GET_PLAYER(play)->actor;
-    s16 rotY;
+    Actor*  playerx = &GET_PLAYER(play)->actor;
+    s16     rotY;
 
     func_8002DF54(play, &this->actor, 8);
     playerx->world.pos = this->actor.world.pos;
@@ -445,10 +445,10 @@ void EnZl4_ReverseAnimation(EnZl4* this) {
 
 s32 EnZl4_CsWaitForPlayer(EnZl4* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Actor* playerx = &GET_PLAYER(play)->actor;
-    s16 rotY;
-    s16 yawDiff;
-    s16 absYawDiff;
+    Actor*  playerx = &GET_PLAYER(play)->actor;
+    s16     rotY;
+    s16     yawDiff;
+    s16     absYawDiff;
 
     if (!Actor_ProcessTalkRequest(&this->actor, play)) {
         yawDiff = (f32)this->actor.yawTowardsPlayer - this->actor.shape.rot.y;
@@ -959,7 +959,7 @@ s32 EnZl4_CsLookWindow(EnZl4* this, PlayState* play) {
 
 s32 EnZl4_CsWarnAboutGanon(EnZl4* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 rotY;
+    s16     rotY;
 
     switch (this->talkState) {
         case 0:
@@ -1225,7 +1225,7 @@ void EnZl4_Idle(EnZl4* this, PlayState* play) {
     Npc_UpdateTalking(play, &this->actor, &this->interactInfo.talkState, this->collider.dim.radius + 60.0f,
                       EnZl4_GetText, func_80B5B9B0);
     func_80B5BB78(this, play);
-    
+
     if (gSaveContext.n64ddFlag) {
         GivePlayerRandoRewardZeldaChild(this, play, RC_HC_ZELDAS_LETTER);
         return;
@@ -1233,10 +1233,10 @@ void EnZl4_Idle(EnZl4* this, PlayState* play) {
 }
 
 void EnZl4_TheEnd(EnZl4* this, PlayState* play) {
-    s32 animIndex[] = { ZL4_ANIM_0, ZL4_ANIM_0, ZL4_ANIM_0,  ZL4_ANIM_0,  ZL4_ANIM_0,
-                        ZL4_ANIM_0, ZL4_ANIM_0, ZL4_ANIM_26, ZL4_ANIM_21, ZL4_ANIM_3 };
+    s32               animIndex[] = { ZL4_ANIM_0, ZL4_ANIM_0, ZL4_ANIM_0, ZL4_ANIM_0, ZL4_ANIM_0,
+                                      ZL4_ANIM_0, ZL4_ANIM_0, ZL4_ANIM_26, ZL4_ANIM_21, ZL4_ANIM_3 };
     CsCmdActorAction* npcAction;
-    Vec3f pos;
+    Vec3f             pos;
 
     if (SkelAnime_Update(&this->skelAnime) && (this->skelAnime.animation == &gChildZeldaAnim_010DF8)) {
         Animation_ChangeByInfo(&this->skelAnime, sAnimationInfo, ZL4_ANIM_4);
@@ -1318,8 +1318,13 @@ void EnZl4_Draw(Actor* thisx, PlayState* play) {
     void* mouthTex[] = { gChildZeldaMouthNeutralTex, gChildZeldaMouthHappyTex, gChildZeldaMouthWorriedTex,
                          gChildZeldaMouthSurprisedTex };
     void* eyeTex[] = {
-        gChildZeldaEyeOpenTex,   gChildZeldaEyeBlinkTex, gChildZeldaEyeShutTex, gChildZeldaEyeWideTex,
-        gChildZeldaEyeSquintTex, gChildZeldaEyeOutTex,   gChildZeldaEyeInTex,
+        gChildZeldaEyeOpenTex,
+        gChildZeldaEyeBlinkTex,
+        gChildZeldaEyeShutTex,
+        gChildZeldaEyeWideTex,
+        gChildZeldaEyeSquintTex,
+        gChildZeldaEyeOutTex,
+        gChildZeldaEyeInTex,
     };
 
     OPEN_DISPS(play->state.gfxCtx);

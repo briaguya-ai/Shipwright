@@ -91,7 +91,7 @@ void EnPoDesert_Destroy(Actor* thisx, PlayState* play) {
 }
 
 void EnPoDesert_SetNextPathPoint(EnPoDesert* this, PlayState* play) {
-    Path* path = &play->setupPathList[this->actor.params];
+    Path*  path = &play->setupPathList[this->actor.params];
     Vec3s* pathPoint;
 
     Animation_MorphToLoop(&this->skelAnime, &gPoeFieldDisappearAnim, -6.0f);
@@ -229,9 +229,9 @@ void EnPoDesert_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s*
     static Vec3f baseLightPos = { 0.0f, 1400.0f, 0.0f };
 
     EnPoDesert* this = (EnPoDesert*)thisx;
-    f32 rand;
+    f32         rand;
     Color_RGBA8 color;
-    Vec3f lightPos;
+    Vec3f       lightPos;
 
     if (limbIndex == 7) {
         Matrix_MultVec3f(&baseLightPos, &lightPos);

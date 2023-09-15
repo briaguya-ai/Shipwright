@@ -39,8 +39,11 @@ static InitChainEntry sInitChain[] = {
 };
 
 static Gfx* D_808AC510[] = {
-    gKakarikoPotionShopSignDL,   gKakarikoShootingGallerySignDL, gKakarikoBazaarSignDL,
-    gKakarikoConstructionSiteDL, gKakarikoShootingGalleryDL,
+    gKakarikoPotionShopSignDL,
+    gKakarikoShootingGallerySignDL,
+    gKakarikoBazaarSignDL,
+    gKakarikoConstructionSiteDL,
+    gKakarikoShootingGalleryDL,
 };
 
 void BgSpot01Objects2_Init(Actor* thisx, PlayState* play) {
@@ -88,9 +91,9 @@ s32 func_808AC22C(Path* pathList, Vec3f* pos, s32 path, s32 waypoint) {
 
 void func_808AC2BC(BgSpot01Objects2* this, PlayState* play) {
     CollisionHeader* colHeader = NULL;
-    Actor* thisx = &this->dyna.actor;
-    s32 pad;
-    Vec3f position;
+    Actor*           thisx = &this->dyna.actor;
+    s32              pad;
+    Vec3f            position;
 
     if (Object_IsLoaded(&play->objectCtx, this->objBankIndex)) {
         // "---- Successful bank switching!!"

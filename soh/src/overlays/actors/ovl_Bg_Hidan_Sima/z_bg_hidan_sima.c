@@ -77,15 +77,21 @@ static InitChainEntry sInitChain[] = {
 };
 
 static void* sFireballsTexs[] = {
-    gFireTempleFireball0Tex, gFireTempleFireball1Tex, gFireTempleFireball2Tex, gFireTempleFireball3Tex,
-    gFireTempleFireball4Tex, gFireTempleFireball5Tex, gFireTempleFireball6Tex, gFireTempleFireball7Tex,
+    gFireTempleFireball0Tex,
+    gFireTempleFireball1Tex,
+    gFireTempleFireball2Tex,
+    gFireTempleFireball3Tex,
+    gFireTempleFireball4Tex,
+    gFireTempleFireball5Tex,
+    gFireTempleFireball6Tex,
+    gFireTempleFireball7Tex,
 };
 
 void BgHidanSima_Init(Actor* thisx, PlayState* play) {
     BgHidanSima* this = (BgHidanSima*)thisx;
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
-    s32 i;
+    s32              i;
 
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
     DynaPolyActor_Init(&this->dyna, DPM_PLAYER);
@@ -194,9 +200,9 @@ void func_8088E7A8(BgHidanSima* this, PlayState* play) {
 
 void func_8088E90C(BgHidanSima* this) {
     ColliderJntSphElement* elem;
-    s32 i;
-    f32 cos = Math_CosS(this->dyna.actor.world.rot.y + 0x8000);
-    f32 sin = Math_SinS(this->dyna.actor.world.rot.y + 0x8000);
+    s32                    i;
+    f32                    cos = Math_CosS(this->dyna.actor.world.rot.y + 0x8000);
+    f32                    sin = Math_SinS(this->dyna.actor.world.rot.y + 0x8000);
 
     for (i = 0; i < 2; i++) {
         elem = &this->collider.elements[i];
@@ -227,12 +233,12 @@ void BgHidanSima_Update(Actor* thisx, PlayState* play) {
 
 Gfx* func_8088EB54(PlayState* play, BgHidanSima* this, Gfx* gfx) {
     MtxF mtxF;
-    s32 phi_s5;
-    s32 s3;
-    s32 v0;
-    f32 cos;
-    f32 sin;
-    s32 pad[2];
+    s32  phi_s5;
+    s32  s3;
+    s32  v0;
+    f32  cos;
+    f32  sin;
+    s32  pad[2];
 
     Matrix_MtxFCopy(&mtxF, &gMtxFClear);
     cos = Math_CosS(this->dyna.actor.world.rot.y + 0x8000);

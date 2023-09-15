@@ -11,7 +11,7 @@
 #include <stdlib.h>
 
 typedef struct {
-    /* 0x00 */ u8 flag;
+    /* 0x00 */ u8  flag;
     /* 0x02 */ u16 textId;
 } TextTriggerEntry; // size = 0x04
 
@@ -33,9 +33,9 @@ s16 sBootData[PLAYER_BOOTS_MAX][17] = {
 
 // Used to map action params to model groups
 u8 sActionModelGroups[] = {
-    3,  15, 10, 2,  2,  5,  10, 11, 6,  6, 6, 6, 6, 6, 6, 6, 9, 9, 7, 7, 8, 3, 3, 6, 3, 3, 3, 3, 12, 13, 14, 14, 14, 14,
-    14, 14, 14, 14, 14, 14, 14, 14, 14, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,  3,  3,  3,  3,   3,
-    3,   3,  3,  3,  3,  3,  3,  3
+    3, 15, 10, 2, 2, 5, 10, 11, 6, 6, 6, 6, 6, 6, 6, 6, 9, 9, 7, 7, 8, 3, 3, 6, 3, 3, 3, 3, 12, 13, 14, 14, 14, 14,
+    14, 14, 14, 14, 14, 14, 14, 14, 14, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+    3, 3, 3, 3, 3, 3, 3, 3
 };
 
 TextTriggerEntry sTextTriggers[] = {
@@ -47,10 +47,22 @@ TextTriggerEntry sTextTriggers[] = {
 
 // Used to map model groups to model types for [animation, left hand, right hand, sheath, waist]
 u8 gPlayerModelTypes[][5] = {
-    { 2, 0, 10, 16, 20 }, { 1, 2, 9, 19, 20 },  { 1, 2, 10, 17, 20 }, { 0, 0, 8, 18, 20 },
-    { 0, 0, 8, 18, 20 },  { 3, 4, 9, 19, 20 },  { 4, 1, 11, 18, 20 }, { 5, 0, 8, 18, 20 },
-    { 0, 6, 8, 18, 20 },  { 4, 0, 15, 18, 20 }, { 3, 1, 9, 18, 20 },  { 3, 5, 9, 18, 20 },
-    { 0, 0, 13, 18, 20 }, { 0, 0, 14, 18, 20 }, { 0, 7, 8, 18, 20 },  { 0, 2, 8, 19, 20 },
+    { 2, 0, 10, 16, 20 },
+    { 1, 2, 9, 19, 20 },
+    { 1, 2, 10, 17, 20 },
+    { 0, 0, 8, 18, 20 },
+    { 0, 0, 8, 18, 20 },
+    { 3, 4, 9, 19, 20 },
+    { 4, 1, 11, 18, 20 },
+    { 5, 0, 8, 18, 20 },
+    { 0, 6, 8, 18, 20 },
+    { 4, 0, 15, 18, 20 },
+    { 3, 1, 9, 18, 20 },
+    { 3, 5, 9, 18, 20 },
+    { 0, 0, 13, 18, 20 },
+    { 0, 0, 14, 18, 20 },
+    { 0, 7, 8, 18, 20 },
+    { 0, 2, 8, 19, 20 },
 };
 
 Gfx* D_80125CE8[] = {
@@ -73,18 +85,30 @@ Gfx* D_80125CE8[] = {
 };
 
 Gfx* D_80125D28[] = {
-    gLinkAdultMasterSwordAndSheathNearDL,       gLinkChildSwordAndSheathNearDL,
-    gLinkAdultMasterSwordAndSheathFarDL,        gLinkChildSwordAndSheathFarDL,
-    gLinkAdultMasterSwordAndSheathNearDL,       gLinkChildDekuShieldSwordAndSheathNearDL,
-    gLinkAdultMasterSwordAndSheathFarDL,        gLinkChildDekuShieldSwordAndSheathFarDL,
-    gLinkAdultHylianShieldSwordAndSheathNearDL, gLinkChildHylianShieldSwordAndSheathNearDL,
-    gLinkAdultHylianShieldSwordAndSheathFarDL,  gLinkChildHylianShieldSwordAndSheathFarDL,
-    gLinkAdultMirrorShieldSwordAndSheathNearDL, gLinkChildSwordAndSheathNearDL,
-    gLinkAdultMirrorShieldSwordAndSheathFarDL,  gLinkChildSwordAndSheathFarDL,
-    NULL,                                       NULL,
-    NULL,                                       NULL,
-    NULL,                                       gLinkChildDekuShieldWithMatrixDL,
-    NULL,                                       gLinkChildDekuShieldWithMatrixDL,
+    gLinkAdultMasterSwordAndSheathNearDL,
+    gLinkChildSwordAndSheathNearDL,
+    gLinkAdultMasterSwordAndSheathFarDL,
+    gLinkChildSwordAndSheathFarDL,
+    gLinkAdultMasterSwordAndSheathNearDL,
+    gLinkChildDekuShieldSwordAndSheathNearDL,
+    gLinkAdultMasterSwordAndSheathFarDL,
+    gLinkChildDekuShieldSwordAndSheathFarDL,
+    gLinkAdultHylianShieldSwordAndSheathNearDL,
+    gLinkChildHylianShieldSwordAndSheathNearDL,
+    gLinkAdultHylianShieldSwordAndSheathFarDL,
+    gLinkChildHylianShieldSwordAndSheathFarDL,
+    gLinkAdultMirrorShieldSwordAndSheathNearDL,
+    gLinkChildSwordAndSheathNearDL,
+    gLinkAdultMirrorShieldSwordAndSheathFarDL,
+    gLinkChildSwordAndSheathFarDL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    gLinkChildDekuShieldWithMatrixDL,
+    NULL,
+    gLinkChildDekuShieldWithMatrixDL,
 };
 
 Gfx* D_80125D88[] = {
@@ -115,10 +139,14 @@ Gfx* D_80125D88[] = {
 };
 
 Gfx* D_80125DE8[] = {
-    gLinkAdultLeftHandHoldingBgsNearDL,          gLinkChildLeftHandHoldingMasterSwordDL,
-    gLinkAdultLeftHandHoldingBgsFarDL,           gLinkChildLeftHandHoldingMasterSwordDL,
-    gLinkAdultHandHoldingBrokenGiantsKnifeDL,    gLinkChildLeftHandHoldingMasterSwordDL,
-    gLinkAdultHandHoldingBrokenGiantsKnifeFarDL, gLinkChildLeftHandHoldingMasterSwordDL,
+    gLinkAdultLeftHandHoldingBgsNearDL,
+    gLinkChildLeftHandHoldingMasterSwordDL,
+    gLinkAdultLeftHandHoldingBgsFarDL,
+    gLinkChildLeftHandHoldingMasterSwordDL,
+    gLinkAdultHandHoldingBrokenGiantsKnifeDL,
+    gLinkChildLeftHandHoldingMasterSwordDL,
+    gLinkAdultHandHoldingBrokenGiantsKnifeFarDL,
+    gLinkChildLeftHandHoldingMasterSwordDL,
 };
 
 Gfx* D_80125E08[] = {
@@ -267,9 +295,27 @@ Gfx* sHoldingFirstPersonWeaponDLs[] = {
 
 // Indexed by model types (left hand, right hand, sheath or waist)
 Gfx** sPlayerDListGroups[] = {
-    D_80125E08, D_80125E18, D_80125E38, D_80125E28, D_80125DE8, D_80125EE8, D_80125EF8,
-    D_80125F08, D_80125E48, D_80125E58, D_80125CE8, D_80125E68, D_80125EA8, D_80125EB8,
-    D_80125EC8, D_80125ED8, D_80125E78, D_80125E88, D_80125D28, D_80125D88, D_80125E98,
+    D_80125E08,
+    D_80125E18,
+    D_80125E38,
+    D_80125E28,
+    D_80125DE8,
+    D_80125EE8,
+    D_80125EF8,
+    D_80125F08,
+    D_80125E48,
+    D_80125E58,
+    D_80125CE8,
+    D_80125E68,
+    D_80125EA8,
+    D_80125EB8,
+    D_80125EC8,
+    D_80125ED8,
+    D_80125E78,
+    D_80125E88,
+    D_80125D28,
+    D_80125D88,
+    D_80125E98,
 };
 
 Gfx gCullBackDList[] = {
@@ -283,13 +329,13 @@ Gfx gCullFrontDList[] = {
 };
 
 Vec3f* D_80160000;
-s32 sDListsLodOffset;
-Vec3f sGetItemRefPos;
-s32 D_80160014;
-s32 D_80160018;
+s32    sDListsLodOffset;
+Vec3f  sGetItemRefPos;
+s32    D_80160014;
+s32    D_80160018;
 
 void Player_SetBootData(PlayState* play, Player* this) {
-    s32 currentBoots;
+    s32  currentBoots;
     s16* bootRegs;
 
     REG(27) = 2000;
@@ -372,7 +418,8 @@ void Player_SetModelsForHoldingShield(Player* this) {
     if ((this->stateFlags1 & 0x400000) &&
         ((this->itemAction < 0) || (this->itemAction == this->heldItemAction))) {
         if ((CVarGetInteger("gShieldTwoHanded", 0) && (this->heldItemAction != PLAYER_IA_STICK) ||
-            !Player_HoldsTwoHandedWeapon(this)) && !Player_IsChildWithHylianShield(this)) {
+             !Player_HoldsTwoHandedWeapon(this)) &&
+            !Player_IsChildWithHylianShield(this)) {
             this->rightHandType = 10;
             this->rightHandDLists = &sPlayerDListGroups[10][gSaveContext.linkAge];
             if (this->sheathType == 18) {
@@ -391,7 +438,7 @@ void Player_SetModels(Player* this, s32 modelGroup) {
     // Left hand
     this->leftHandType = gPlayerModelTypes[modelGroup][1];
     this->leftHandDLists = &sPlayerDListGroups[this->leftHandType][gSaveContext.linkAge];
-    
+
     // Right hand
     this->rightHandType = gPlayerModelTypes[modelGroup][2];
     this->rightHandDLists = &sPlayerDListGroups[this->rightHandType][gSaveContext.linkAge];
@@ -495,7 +542,7 @@ s32 func_8008EF44(PlayState* play, s32 ammo) {
 s32 Player_IsBurningStickInRange(PlayState* play, Vec3f* pos, f32 xzRange, f32 yRange) {
     Player* this = GET_PLAYER(play);
     Vec3f diff;
-    s32 pad;
+    s32   pad;
 
     if ((this->heldItemAction == PLAYER_IA_STICK) && (this->unk_860 != 0)) {
         Math_Vec3f_Diff(&this->meleeWeaponInfo[0].tip, pos, &diff);
@@ -558,7 +605,7 @@ s32 Player_HoldsHookshot(Player* this) {
 }
 
 s32 Player_HoldsBow(Player* this) {
-    switch(this->heldItemAction){
+    switch (this->heldItemAction) {
         case PLAYER_IA_BOW:
         case PLAYER_IA_BOW_FIRE:
         case PLAYER_IA_BOW_ICE:
@@ -650,7 +697,7 @@ return_neg:
 s32 func_8008F2F8(PlayState* play) {
     Player* this = GET_PLAYER(play);
     TextTriggerEntry* triggerEntry;
-    s32 var;
+    s32               var;
 
     if (play->roomCtx.curRoom.behaviorType2 == ROOM_BEHAVIOR_TYPE2_3) { // Room is hot
         var = 0;
@@ -680,8 +727,22 @@ s32 func_8008F2F8(PlayState* play) {
 }
 
 u8 sEyeMouthIndexes[][2] = {
-    { 0, 0 }, { 1, 0 }, { 2, 0 }, { 0, 0 }, { 1, 0 }, { 2, 0 }, { 4, 0 }, { 5, 1 },
-    { 7, 2 }, { 0, 2 }, { 3, 0 }, { 4, 0 }, { 2, 2 }, { 1, 1 }, { 0, 2 }, { 0, 0 },
+    { 0, 0 },
+    { 1, 0 },
+    { 2, 0 },
+    { 0, 0 },
+    { 1, 0 },
+    { 2, 0 },
+    { 4, 0 },
+    { 5, 1 },
+    { 7, 2 },
+    { 0, 2 },
+    { 3, 0 },
+    { 4, 0 },
+    { 2, 2 },
+    { 1, 1 },
+    { 0, 2 },
+    { 0, 0 },
 };
 
 /**
@@ -692,7 +753,7 @@ u8 sEyeMouthIndexes[][2] = {
  */
 
 #if defined(MODDING) || defined(_MSC_VER) || defined(__GNUC__)
-//TODO: Formatting
+// TODO: Formatting
 void* sEyeTextures[2][8] = {
     { gLinkAdultEyesOpenTex, gLinkAdultEyesHalfTex, gLinkAdultEyesClosedfTex, gLinkAdultEyesRollLeftTex,
       gLinkAdultEyesRollRightTex, gLinkAdultEyesShockTex, gLinkAdultEyesUnk1Tex, gLinkAdultEyesUnk2Tex },
@@ -702,8 +763,14 @@ void* sEyeTextures[2][8] = {
 
 #else
 void* sEyeTextures[] = {
-    gLinkAdultEyesOpenTex,      gLinkAdultEyesHalfTex,  gLinkAdultEyesClosedfTex, gLinkAdultEyesRollLeftTex,
-    gLinkAdultEyesRollRightTex, gLinkAdultEyesShockTex, gLinkAdultEyesUnk1Tex,    gLinkAdultEyesUnk2Tex,
+    gLinkAdultEyesOpenTex,
+    gLinkAdultEyesHalfTex,
+    gLinkAdultEyesClosedfTex,
+    gLinkAdultEyesRollLeftTex,
+    gLinkAdultEyesRollRightTex,
+    gLinkAdultEyesShockTex,
+    gLinkAdultEyesUnk1Tex,
+    gLinkAdultEyesUnk2Tex,
 };
 #endif
 
@@ -751,8 +818,8 @@ void func_8008F470(PlayState* play, void** skeleton, Vec3s* jointTable, s32 dLis
                    s32 boots, s32 face, OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw,
                    void* data) {
     Color_RGB8* color;
-    s32 eyeIndex = (jointTable[22].x & 0xF) - 1;
-    s32 mouthIndex = (jointTable[22].x >> 4) - 1;
+    s32         eyeIndex = (jointTable[22].x & 0xF) - 1;
+    s32         mouthIndex = (jointTable[22].x >> 4) - 1;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -864,27 +931,27 @@ Vec3f D_80126070 = { 0.0f, -300.0f, 0.0f };
 
 void func_8008F87C(PlayState* play, Player* this, SkelAnime* skelAnime, Vec3f* pos, Vec3s* rot,
                    s32 thighLimbIndex, s32 shinLimbIndex, s32 footLimbIndex) {
-    Vec3f spA4;
-    Vec3f sp98;
-    Vec3f footprintPos;
+    Vec3f          spA4;
+    Vec3f          sp98;
+    Vec3f          footprintPos;
     CollisionPoly* sp88;
-    s32 sp84;
-    f32 sp80;
-    f32 sp7C;
-    f32 sp78;
-    f32 sp74;
-    f32 sp70;
-    f32 sp6C;
-    f32 sp68;
-    f32 sp64;
-    f32 sp60;
-    f32 sp5C;
-    f32 sp58;
-    f32 sp54;
-    f32 sp50;
-    s16 temp1;
-    s16 temp2;
-    s32 temp3;
+    s32            sp84;
+    f32            sp80;
+    f32            sp7C;
+    f32            sp78;
+    f32            sp74;
+    f32            sp70;
+    f32            sp6C;
+    f32            sp68;
+    f32            sp64;
+    f32            sp60;
+    f32            sp5C;
+    f32            sp58;
+    f32            sp54;
+    f32            sp50;
+    s16            temp1;
+    s16            temp2;
+    s32            temp3;
 
     if ((this->actor.scale.y >= 0.0f) && !(this->stateFlags1 & 0x80) &&
         (Player_ActionToMagicSpell(this, this->itemAction) < 0)) {
@@ -1039,8 +1106,7 @@ s32 func_8008FCC8(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s
 s32 func_80090014(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx) {
     Player* this = (Player*)thisx;
 
-    if (!func_8008FCC8(play, limbIndex, dList, pos, rot, thisx)) 
-    {
+    if (!func_8008FCC8(play, limbIndex, dList, pos, rot, thisx)) {
         if (limbIndex == PLAYER_LIMB_L_HAND) {
             Gfx** dLists = this->leftHandDLists;
 
@@ -1086,9 +1152,8 @@ s32 func_80090014(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s
                 *dList = NULL;
             }
 
-
         } else if (limbIndex == PLAYER_LIMB_WAIST) {
-            
+
             if (!Player_IsCustomLinkModel()) {
                 *dList = ResourceMgr_LoadGfxByName(
                     this->waistDLists[sDListsLodOffset]); // NOTE: This needs to be disabled when using custom
@@ -1302,7 +1367,7 @@ void Player_DrawGetItemImpl(PlayState* play, Player* this, Vec3f* refPos, s32 dr
 }
 
 void Player_DrawGetItem(PlayState* play, Player* this) {
-    //if (!this->giObjectLoading || !osRecvMesg(&this->giObjectLoadQueue, NULL, OS_MESG_NOBLOCK)) // OTRTODO: Do something about osRecvMesg here...
+    // if (!this->giObjectLoading || !osRecvMesg(&this->giObjectLoadQueue, NULL, OS_MESG_NOBLOCK)) // OTRTODO: Do something about osRecvMesg here...
     {
         this->giObjectLoading = false;
         Player_DrawGetItemImpl(play, this, &sGetItemRefPos, ABS(this->unk_862));
@@ -1326,14 +1391,14 @@ void func_80090A28(Player* this, Vec3f* vecs) {
 }
 
 void Player_DrawHookshotReticle(PlayState* play, Player* this, f32 hookshotRange) {
-    static Vec3f D_801260C8 = { -500.0f, -100.0f, 0.0f };
+    static Vec3f   D_801260C8 = { -500.0f, -100.0f, 0.0f };
     CollisionPoly* colPoly;
-    s32 bgId;
-    Vec3f hookshotStart;
-    Vec3f hookshotEnd;
-    Vec3f firstHit;
-    Vec3f sp68;
-    f32 sp64;
+    s32            bgId;
+    Vec3f          hookshotStart;
+    Vec3f          hookshotEnd;
+    Vec3f          firstHit;
+    Vec3f          sp68;
+    f32            sp64;
 
     D_801260C8.z = 0.0f;
     Matrix_MultVec3f(&D_801260C8, &hookshotStart);
@@ -1376,19 +1441,39 @@ void Player_DrawHookshotReticle(PlayState* play, Player* this, f32 hookshotRange
 Vec3f D_801260D4 = { 1100.0f, -700.0f, 0.0f };
 
 f32 sSwordLengths[] = {
-    0.0f, 4000.0f, 3000.0f, 5500.0f, 0.0f, 2500.0f,
+    0.0f,
+    4000.0f,
+    3000.0f,
+    5500.0f,
+    0.0f,
+    2500.0f,
 };
 
 f32 sSwordTypes[] = {
-    0, 5, 4, 6, 0, 8,
+    0,
+    5,
+    4,
+    6,
+    0,
+    8,
 };
 
 Gfx* sBottleDLists[] = { gLinkAdultBottleDL, gLinkChildBottleDL };
 
 Color_RGB8 sBottleColors[] = {
-    { 255, 255, 255 }, { 80, 80, 255 },   { 255, 100, 255 }, { 0, 0, 255 }, { 255, 0, 255 },
-    { 255, 0, 255 },   { 200, 200, 100 }, { 255, 0, 0 },     { 0, 0, 255 }, { 0, 255, 0 },
-    { 255, 255, 255 }, { 255, 255, 255 }, { 80, 80, 255 },
+    { 255, 255, 255 },
+    { 80, 80, 255 },
+    { 255, 100, 255 },
+    { 0, 0, 255 },
+    { 255, 0, 255 },
+    { 255, 0, 255 },
+    { 200, 200, 100 },
+    { 255, 0, 0 },
+    { 0, 0, 255 },
+    { 0, 255, 0 },
+    { 255, 255, 255 },
+    { 255, 255, 255 },
+    { 80, 80, 255 },
 };
 
 Vec3f D_80126128 = { 398.0f, 1419.0f, 244.0f };
@@ -1436,7 +1521,7 @@ void func_80090D20(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void
     }
 
     if (limbIndex == PLAYER_LIMB_L_HAND) {
-        MtxF sp14C;
+        MtxF   sp14C;
         Actor* hookedActor;
 
         Math_Vec3f_Copy(&this->leftHandPos, D_80160000);
@@ -1523,7 +1608,7 @@ void func_80090D20(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void
             Matrix_Get(&this->shieldMf);
         } else if ((this->rightHandType == 11) || (this->rightHandType == 12)) {
             s32 stringModelToUse = gSaveContext.linkAge;
-            if(CVarGetInteger("gBowSlingShotAmmoFix", 0)){
+            if (CVarGetInteger("gBowSlingShotAmmoFix", 0)) {
                 stringModelToUse = Player_HoldsSlingshot(this);
             }
             BowStringData* stringData = &sBowStringData[stringModelToUse];
@@ -1535,7 +1620,7 @@ void func_80090D20(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void
 
             if ((this->stateFlags1 & 0x200) && (this->unk_860 >= 0) && (this->unk_834 <= 10)) {
                 Vec3f sp90;
-                f32 distXYZ;
+                f32   distXYZ;
 
                 Matrix_MultVec3f(&D_8012602C, &sp90);
                 distXYZ = Math_Vec3f_DistXYZ(D_80160000, &sp90);
@@ -1578,7 +1663,7 @@ void func_80090D20(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void
 
                 if (heldActor != NULL) {
                     MtxF sp44;
-                    s32 pad;
+                    s32  pad;
 
                     Matrix_MultVec3f(&D_80126190, &heldActor->world.pos);
                     Matrix_RotateZYX(0, -0x4000, -0x4000, MTXMODE_APPLY);
@@ -1592,15 +1677,14 @@ void func_80090D20(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void
                             play, this, ((this->heldItemAction == PLAYER_IA_HOOKSHOT) ? 38600.0f : 77600.0f) * CVarGetFloat("gCheatHookshotReachMultiplier", 1.0f));
                     }
                 }
-            } else if (CVarGetInteger("gBowReticle", 0) && (
-                        (this->heldItemAction == PLAYER_IA_BOW_FIRE) ||
-                        (this->heldItemAction == PLAYER_IA_BOW_ICE) ||
-                        (this->heldItemAction == PLAYER_IA_BOW_LIGHT) ||
-                        (this->heldItemAction == PLAYER_IA_BOW) ||
-                        (this->heldItemAction == PLAYER_IA_SLINGSHOT))) {
+            } else if (CVarGetInteger("gBowReticle", 0) && ((this->heldItemAction == PLAYER_IA_BOW_FIRE) ||
+                                                            (this->heldItemAction == PLAYER_IA_BOW_ICE) ||
+                                                            (this->heldItemAction == PLAYER_IA_BOW_LIGHT) ||
+                                                            (this->heldItemAction == PLAYER_IA_BOW) ||
+                                                            (this->heldItemAction == PLAYER_IA_SLINGSHOT))) {
                 if (heldActor != NULL) {
                     MtxF sp44;
-                    s32 pad;
+                    s32  pad;
 
                     Matrix_RotateZYX(0, -15216, -17496, MTXMODE_APPLY);
                     Matrix_Get(&sp44);
@@ -1647,9 +1731,9 @@ void func_80090D20(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void
 }
 
 u32 func_80091738(PlayState* play, u8* segment, SkelAnime* skelAnime) {
-    s16 linkObjectId = gLinkObjectIds[gSaveContext.linkAge];
+    s16    linkObjectId = gLinkObjectIds[gSaveContext.linkAge];
     size_t size;
-    void* ptr;
+    void*  ptr;
 
     size = gObjectTable[OBJECT_GAMEPLAY_KEEP].vromEnd - gObjectTable[OBJECT_GAMEPLAY_KEEP].vromStart;
     ptr = segment + 0x3800;
@@ -1673,11 +1757,11 @@ u32 func_80091738(PlayState* play, u8* segment, SkelAnime* skelAnime) {
 u8 D_801261F8[] = { 2, 2, 5 };
 
 s32 func_80091880(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* arg) {
-    u8* ptr = arg;
-    u8 modelGroup = D_801261F8[ptr[0] > 0 ? ptr[0] - 1 : 0];
-    s32 type;
-    s32 dListOffset = 0;
-    Gfx** dLists;
+    u8*    ptr = arg;
+    u8     modelGroup = D_801261F8[ptr[0] > 0 ? ptr[0] - 1 : 0];
+    s32    type;
+    s32    dListOffset = 0;
+    Gfx**  dLists;
     size_t ptrSize = sizeof(uint32_t);
 
     if ((modelGroup == 2) && !LINK_IS_ADULT && (ptr[1] == 2)) {
@@ -1705,12 +1789,12 @@ s32 func_80091880(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s
         if ((type == 18) || (type == 19)) {
             dListOffset = ptr[1] * ptrSize;
         } else if (type == 16 && CVarGetInteger("gPauseLiveLink", 0)) {
-            //if (ptr[0] == 1)
-                //dListOffset = 4;
+            // if (ptr[0] == 1)
+            // dListOffset = 4;
         }
     } else if (limbIndex == PLAYER_LIMB_WAIST) {
         type = gPlayerModelTypes[modelGroup][4];
-        
+
         if (Player_IsCustomLinkModel()) {
             return 0;
         }
@@ -1729,7 +1813,7 @@ void DemoEffect_DrawTriforceSpot(Actor* thisx, PlayState* play);
 
 void Pause_DrawTriforceSpot(PlayState* play, s32 showLightColumn) {
     static DemoEffect triforce;
-    static s16 rotation = 0;
+    static s16        rotation = 0;
 
     triforce.triforceSpot.crystalLightOpacity = 244;
     triforce.triforceSpot.triforceSpotOpacity = 249;
@@ -1744,16 +1828,16 @@ void Pause_DrawTriforceSpot(PlayState* play, s32 showLightColumn) {
 void func_80091A24(PlayState* play, void* seg04, void* seg06, SkelAnime* skelAnime, Vec3f* pos, Vec3s* rot,
                    f32 scale, s32 sword, s32 tunic, s32 shield, s32 boots, s32 width, s32 height, Vec3f* eye, Vec3f* at,
                    f32 fovy, void* img1, void* img2) {
-    static Vp viewport = { 128, 224, 511, 0, 128, 224, 511, 0 };
+    static Vp      viewport = { 128, 224, 511, 0, 128, 224, 511, 0 };
     static Lights1 lights1 = gdSPDefLights1(80, 80, 80, 255, 255, 255, 84, 84, 172);
-    static Vec3f lightDir = { 89.8f, 0.0f, 89.8f };
-    u8 sp12C[2];
-    Gfx* opaRef;
-    Gfx* xluRef;
-    Gfx* kalRef;
-    u16 perspNorm;
-    Mtx* perspMtx = Graph_Alloc(play->state.gfxCtx, sizeof(Mtx));
-    Mtx* lookAtMtx = Graph_Alloc(play->state.gfxCtx, sizeof(Mtx));
+    static Vec3f   lightDir = { 89.8f, 0.0f, 89.8f };
+    u8             sp12C[2];
+    Gfx*           opaRef;
+    Gfx*           xluRef;
+    Gfx*           kalRef;
+    u16            perspNorm;
+    Mtx*           perspMtx = Graph_Alloc(play->state.gfxCtx, sizeof(Mtx));
+    Mtx*           lookAtMtx = Graph_Alloc(play->state.gfxCtx, sizeof(Mtx));
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -1808,10 +1892,10 @@ void func_80091A24(PlayState* play, void* seg04, void* seg06, SkelAnime* skelAni
     func_8008F470(play, skelAnime->skeleton, skelAnime->jointTable, skelAnime->dListCount, 0, tunic, boots, 0,
                   func_80091880, NULL, &sp12C);
 
-     if (CVarGetInteger("gPauseTriforce", 0)) {
+    if (CVarGetInteger("gPauseTriforce", 0)) {
 
         Matrix_SetTranslateRotateYXZ(pos->x - (LINK_AGE_IN_YEARS == YEARS_ADULT ? 25 : 0),
-                                      pos->y + 280 + (LINK_AGE_IN_YEARS == YEARS_ADULT ? 48 : 0), pos->z, rot);
+                                     pos->y + 280 + (LINK_AGE_IN_YEARS == YEARS_ADULT ? 48 : 0), pos->z, rot);
         Matrix_Scale(scale * (CVarGetInteger("gMirroredWorld", 0) ? -1 : 1), scale * 1, scale * 1, MTXMODE_APPLY);
 
         Gfx* ohNo = POLY_XLU_DISP;
@@ -1828,21 +1912,21 @@ void func_80091A24(PlayState* play, void* seg04, void* seg06, SkelAnime* skelAni
     CLOSE_DISPS(play->state.gfxCtx);
 }
 
-uintptr_t SelectedAnim = 0; // Current Animaiton on the menu
-s16 EquipedStance; // Link's current mode (Two handed, One handed...)
-s16 FrameCountSinceLastAnim = 0; // Time since last animation
-s16 MinFrameCount; // Frame to wait before checking if we need to change the animation
+uintptr_t SelectedAnim = 0;            // Current Animaiton on the menu
+s16       EquipedStance;               // Link's current mode (Two handed, One handed...)
+s16       FrameCountSinceLastAnim = 0; // Time since last animation
+s16       MinFrameCount;               // Frame to wait before checking if we need to change the animation
 
 void func_8009214C(PlayState* play, u8* segment, SkelAnime* skelAnime, Vec3f* pos, Vec3s* rot, f32 scale,
                    s32 sword, s32 tunic, s32 shield, s32 boots) {
     Input* p1Input = &play->state.input[0];
-    Vec3f eye = { 0.0f, 0.0f, -400.0f };
-    Vec3f at = { 0.0f, 0.0f, 0.0f };
+    Vec3f  eye = { 0.0f, 0.0f, -400.0f };
+    Vec3f  at = { 0.0f, 0.0f, 0.0f };
     Vec3s* destTable;
     Vec3s* srcTable;
-    s32 i;
-    bool canswitchrnd = false;
-    s16 SelectedMode = CVarGetInteger("gPauseLiveLink", 0);
+    s32    i;
+    bool   canswitchrnd = false;
+    s16    SelectedMode = CVarGetInteger("gPauseLiveLink", 0);
     MinFrameCount = CVarGetInteger("gMinFrameCount", 200);
 
     gSegments[4] = VIRTUAL_TO_PHYSICAL(segment + 0x3800);
@@ -1851,20 +1935,20 @@ void func_8009214C(PlayState* play, u8* segment, SkelAnime* skelAnime, Vec3f* po
     uintptr_t* PauseMenuAnimSet[15][4] = {
         { 0, 0, 0, 0 }, // 0 = none
         // IDLE               // Two Handed       // No shield        // Kid Hylian Shield
-        { gPlayerAnim_link_normal_wait, gPlayerAnim_link_fighter_wait_long, gPlayerAnim_link_normal_wait_free, gPlayerAnim_link_normal_wait_free }, // Idle
-        { gPlayerAnim_link_normal_waitF_typeA_20f, gPlayerAnim_link_normal_waitF_typeA_20f, gPlayerAnim_link_normal_waitF_typeA_20f, gPlayerAnim_link_normal_waitF_typeA_20f }, // Idle look around
-        { gPlayerAnim_link_waitF_itemA_20f, gPlayerAnim_link_waitF_itemA_20f, gPlayerAnim_link_waitF_itemA_20f, gPlayerAnim_link_waitF_itemA_20f }, // Idle Belt
-        { gPlayerAnim_link_wait_itemC_20f, gPlayerAnim_link_wait_itemC_20f, gPlayerAnim_link_wait_itemC_20f, gPlayerAnim_link_wait_itemC_20f }, // Idle shield adjust
-        { gPlayerAnim_link_wait_itemD1_20f, gPlayerAnim_link_wait_itemD2_20f, gPlayerAnim_link_wait_itemD1_20f, gPlayerAnim_link_wait_itemD1_20f }, // Idle test sword
-        { gPlayerAnim_link_waitF_typeD_20f, gPlayerAnim_link_waitF_typeD_20f, gPlayerAnim_link_waitF_typeD_20f, gPlayerAnim_link_waitF_typeD_20f }, // Idle yawn
-        { gPlayerAnim_link_anchor_waitR, gPlayerAnim_link_fighter_waitR_long, gPlayerAnim_link_anchor_waitR, gPlayerAnim_link_anchor_waitR }, // Battle Stance
-        { gPlayerAnim_link_normal_walk_free, gPlayerAnim_link_fighter_walk_long, gPlayerAnim_link_normal_walk_free, gPlayerAnim_link_normal_walk_free }, // Walking (No shield)
-        { gPlayerAnim_link_normal_walk, gPlayerAnim_link_fighter_walk_long, gPlayerAnim_link_normal_walk, gPlayerAnim_link_normal_walk }, // Walking (Holding shield)
-        { gPlayerAnim_link_normal_run, gPlayerAnim_link_fighter_run_long, gPlayerAnim_link_normal_run, gPlayerAnim_link_normal_run }, // Running (No shield)
-        { gPlayerAnim_link_normal_run_free, gPlayerAnim_link_fighter_run_long, gPlayerAnim_link_normal_run_free, gPlayerAnim_link_normal_run_free }, // Running (Holding shield)
-        { gPlayerAnim_link_normal_talk_free_wait, gPlayerAnim_link_normal_talk_free_wait, gPlayerAnim_link_normal_talk_free_wait, gPlayerAnim_link_normal_talk_free_wait }, // Hand on hip
+        { gPlayerAnim_link_normal_wait, gPlayerAnim_link_fighter_wait_long, gPlayerAnim_link_normal_wait_free, gPlayerAnim_link_normal_wait_free },                                  // Idle
+        { gPlayerAnim_link_normal_waitF_typeA_20f, gPlayerAnim_link_normal_waitF_typeA_20f, gPlayerAnim_link_normal_waitF_typeA_20f, gPlayerAnim_link_normal_waitF_typeA_20f },      // Idle look around
+        { gPlayerAnim_link_waitF_itemA_20f, gPlayerAnim_link_waitF_itemA_20f, gPlayerAnim_link_waitF_itemA_20f, gPlayerAnim_link_waitF_itemA_20f },                                  // Idle Belt
+        { gPlayerAnim_link_wait_itemC_20f, gPlayerAnim_link_wait_itemC_20f, gPlayerAnim_link_wait_itemC_20f, gPlayerAnim_link_wait_itemC_20f },                                      // Idle shield adjust
+        { gPlayerAnim_link_wait_itemD1_20f, gPlayerAnim_link_wait_itemD2_20f, gPlayerAnim_link_wait_itemD1_20f, gPlayerAnim_link_wait_itemD1_20f },                                  // Idle test sword
+        { gPlayerAnim_link_waitF_typeD_20f, gPlayerAnim_link_waitF_typeD_20f, gPlayerAnim_link_waitF_typeD_20f, gPlayerAnim_link_waitF_typeD_20f },                                  // Idle yawn
+        { gPlayerAnim_link_anchor_waitR, gPlayerAnim_link_fighter_waitR_long, gPlayerAnim_link_anchor_waitR, gPlayerAnim_link_anchor_waitR },                                        // Battle Stance
+        { gPlayerAnim_link_normal_walk_free, gPlayerAnim_link_fighter_walk_long, gPlayerAnim_link_normal_walk_free, gPlayerAnim_link_normal_walk_free },                             // Walking (No shield)
+        { gPlayerAnim_link_normal_walk, gPlayerAnim_link_fighter_walk_long, gPlayerAnim_link_normal_walk, gPlayerAnim_link_normal_walk },                                            // Walking (Holding shield)
+        { gPlayerAnim_link_normal_run, gPlayerAnim_link_fighter_run_long, gPlayerAnim_link_normal_run, gPlayerAnim_link_normal_run },                                                // Running (No shield)
+        { gPlayerAnim_link_normal_run_free, gPlayerAnim_link_fighter_run_long, gPlayerAnim_link_normal_run_free, gPlayerAnim_link_normal_run_free },                                 // Running (Holding shield)
+        { gPlayerAnim_link_normal_talk_free_wait, gPlayerAnim_link_normal_talk_free_wait, gPlayerAnim_link_normal_talk_free_wait, gPlayerAnim_link_normal_talk_free_wait },          // Hand on hip
         { gPlayerAnim_link_fighter_power_kiru_wait, gPlayerAnim_link_fighter_Lpower_kiru_wait, gPlayerAnim_link_fighter_power_kiru_wait, gPlayerAnim_link_fighter_power_kiru_wait }, // Spin Charge
-        { gPlayerAnim_link_demo_look_hand_wait, gPlayerAnim_link_demo_look_hand_wait, gPlayerAnim_link_demo_look_hand_wait, gPlayerAnim_link_demo_look_hand_wait }, // Look at hand
+        { gPlayerAnim_link_demo_look_hand_wait, gPlayerAnim_link_demo_look_hand_wait, gPlayerAnim_link_demo_look_hand_wait, gPlayerAnim_link_demo_look_hand_wait },                  // Look at hand
     };
     s16 AnimArraySize = ARRAY_COUNT(PauseMenuAnimSet);
 
@@ -1945,47 +2029,47 @@ void func_8009214C(PlayState* play, u8* segment, SkelAnime* skelAnime, Vec3f* po
                 }
                 if (FrameCountSinceLastAnim >= SwitchAtFrame) {
                     LastAnim = SelectedAnim;
-                    if (LastAnim==1) {
-                        if ((CUR_EQUIP_VALUE(EQUIP_SWORD)!=PLAYER_SWORD_NONE) && (CUR_EQUIP_VALUE(EQUIP_SHIELD)!= PLAYER_SHIELD_NONE)) { // if the player has a sword and shield equipped
-                            if ((LINK_AGE_IN_YEARS == YEARS_ADULT) || (CUR_EQUIP_VALUE(EQUIP_SHIELD) == PLAYER_SHIELD_DEKU)) { // if he's an adult or a kid with the deku shield
-                                SelectedAnim = (rand() % (6 - 2 + 1)) + 2; // select any 5 animations that aren't the default standing anim
-                            } else { //else if he's a child with a shield that isn't the deku shield
-                                s16 randval = (rand() % (5 - 2 + 1)) + 2; // 4 animations
-                                if (randval==4) { //if its the shield anim
-                                    SelectedAnim==6; // set to yawn anim
+                    if (LastAnim == 1) {
+                        if ((CUR_EQUIP_VALUE(EQUIP_SWORD) != PLAYER_SWORD_NONE) && (CUR_EQUIP_VALUE(EQUIP_SHIELD) != PLAYER_SHIELD_NONE)) { // if the player has a sword and shield equipped
+                            if ((LINK_AGE_IN_YEARS == YEARS_ADULT) || (CUR_EQUIP_VALUE(EQUIP_SHIELD) == PLAYER_SHIELD_DEKU)) {              // if he's an adult or a kid with the deku shield
+                                SelectedAnim = (rand() % (6 - 2 + 1)) + 2;                                                                  // select any 5 animations that aren't the default standing anim
+                            } else {                                                                                                        // else if he's a child with a shield that isn't the deku shield
+                                s16 randval = (rand() % (5 - 2 + 1)) + 2;                                                                   // 4 animations
+                                if (randval == 4) {                                                                                         // if its the shield anim
+                                    SelectedAnim == 6;                                                                                      // set to yawn anim
                                 } else {
-                                    SelectedAnim=randval;
+                                    SelectedAnim = randval;
                                 }
                             }
-                        } else if ((CUR_EQUIP_VALUE(EQUIP_SWORD) != PLAYER_SWORD_NONE) && (CUR_EQUIP_VALUE(EQUIP_SHIELD)==PLAYER_SHIELD_NONE)) { // if the player has a sword equipped but no shield
-                            s16 randval = (rand() % (5 - 2 + 1)) + 2; // 4 animations
-                            if (randval==4) { //if its the shield anim
-                                SelectedAnim==6; // set to yawn anim
+                        } else if ((CUR_EQUIP_VALUE(EQUIP_SWORD) != PLAYER_SWORD_NONE) && (CUR_EQUIP_VALUE(EQUIP_SHIELD) == PLAYER_SHIELD_NONE)) { // if the player has a sword equipped but no shield
+                            s16 randval = (rand() % (5 - 2 + 1)) + 2;                                                                              // 4 animations
+                            if (randval == 4) {                                                                                                    // if its the shield anim
+                                SelectedAnim == 6;                                                                                                 // set to yawn anim
                             } else {
-                                SelectedAnim=randval;
+                                SelectedAnim = randval;
                             }
-                        } else if ((CUR_EQUIP_VALUE(EQUIP_SWORD) == PLAYER_SWORD_NONE) && (CUR_EQUIP_VALUE(EQUIP_SHIELD)!=PLAYER_SHIELD_NONE)) { //if the player has a shield equipped but no sword
-                            if ((LINK_AGE_IN_YEARS == YEARS_ADULT) || (CUR_EQUIP_VALUE(EQUIP_SHIELD) == PLAYER_SHIELD_DEKU)) {// if he's an adult or a kid with the deku shield
-                            s16 randval = (rand() % (5 - 2 + 1)) + 2; // 4 animations
-                            if (randval==5) { //if its the sword anim
-                                SelectedAnim==6; // set to yawn anim
-                            } else {
-                                SelectedAnim=randval;
-                            }
+                        } else if ((CUR_EQUIP_VALUE(EQUIP_SWORD) == PLAYER_SWORD_NONE) && (CUR_EQUIP_VALUE(EQUIP_SHIELD) != PLAYER_SHIELD_NONE)) { // if the player has a shield equipped but no sword
+                            if ((LINK_AGE_IN_YEARS == YEARS_ADULT) || (CUR_EQUIP_VALUE(EQUIP_SHIELD) == PLAYER_SHIELD_DEKU)) {                     // if he's an adult or a kid with the deku shield
+                                s16 randval = (rand() % (5 - 2 + 1)) + 2;                                                                          // 4 animations
+                                if (randval == 5) {                                                                                                // if its the sword anim
+                                    SelectedAnim == 6;                                                                                             // set to yawn anim
+                                } else {
+                                    SelectedAnim = randval;
+                                }
                             } else {
                                 s16 randval = (rand() % (4 - 2 + 1)) + 2; // 3 animations
-                                if (randval==4) { //if its the shield anim
-                                    SelectedAnim==6; // set to yawn anim
+                                if (randval == 4) {                       // if its the shield anim
+                                    SelectedAnim == 6;                    // set to yawn anim
                                 } else {
-                                    SelectedAnim=randval;
+                                    SelectedAnim = randval;
                                 }
-                            } 
-                        } else if ((CUR_EQUIP_VALUE(EQUIP_SWORD) == PLAYER_SWORD_NONE) && (CUR_EQUIP_VALUE(EQUIP_SHIELD)==PLAYER_SHIELD_NONE)) { // if the player has no sword or shield equipped
-                            s16 randval = (rand() % (4 - 2 + 1)) + 2; // 3 animations
-                            if (randval==4) { //if its the shield anim
-                                SelectedAnim==6; // set to yawn anim
+                            }
+                        } else if ((CUR_EQUIP_VALUE(EQUIP_SWORD) == PLAYER_SWORD_NONE) && (CUR_EQUIP_VALUE(EQUIP_SHIELD) == PLAYER_SHIELD_NONE)) { // if the player has no sword or shield equipped
+                            s16 randval = (rand() % (4 - 2 + 1)) + 2;                                                                              // 3 animations
+                            if (randval == 4) {                                                                                                    // if its the shield anim
+                                SelectedAnim == 6;                                                                                                 // set to yawn anim
                             } else {
-                                SelectedAnim=randval;
+                                SelectedAnim = randval;
                             }
                         }
                     } else {
@@ -2023,7 +2107,7 @@ void func_8009214C(PlayState* play, u8* segment, SkelAnime* skelAnime, Vec3f* po
 
         anim = PauseMenuAnimSet[SelectedAnim][EquipedStance];
 
-        //anim = gPlayerAnim_link_wait_itemD2_20f; // Use for biggoron sword?
+        // anim = gPlayerAnim_link_wait_itemD2_20f; // Use for biggoron sword?
 
         if (CVarGetInteger("gPauseTriforce", 0)) {
             anim = gPlayerAnim_link_magic_kaze2;
@@ -2066,7 +2150,6 @@ void func_8009214C(PlayState* play, u8* segment, SkelAnime* skelAnime, Vec3f* po
             *destTable++ = *srcTable++;
         }
     }
-
 
     func_80091A24(play, segment + 0x3800, segment + 0x8800, skelAnime, pos, rot, scale, sword, tunic, shield,
                   boots, 64, 112, &eye, &at, 60.0f, play->state.gfxCtx->curFrameBuffer,

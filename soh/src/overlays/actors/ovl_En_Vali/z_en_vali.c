@@ -295,11 +295,11 @@ void EnVali_SetupReturnToLurk(EnVali* this) {
 void EnVali_DischargeLightning(EnVali* this, PlayState* play) {
     static Color_RGBA8 primColor = { 255, 255, 255, 255 };
     static Color_RGBA8 envColor = { 200, 255, 255, 255 };
-    Vec3f pos;
-    s32 i;
-    f32 cos;
-    f32 sin;
-    s16 yaw;
+    Vec3f              pos;
+    s32                i;
+    f32                cos;
+    f32                sin;
+    s16                yaw;
 
     for (i = 0; i < 4; i++) {
         cos = -Math_CosS(Camera_GetCamDirYaw(GET_ACTIVE_CAM(play)));
@@ -417,9 +417,9 @@ void EnVali_Burnt(EnVali* this, PlayState* play) {
 void EnVali_DivideAndDie(EnVali* this, PlayState* play) {
     static Vec3f velocity = { 0.0f, 0.0f, 0.0f };
     static Vec3f accel = { 0.0f, 0.0f, 0.0f };
-    s16 scale;
-    Vec3f pos;
-    s32 i;
+    s16          scale;
+    Vec3f        pos;
+    s32          i;
 
     if (this->timer != 0) {
         this->timer--;
@@ -468,8 +468,8 @@ void EnVali_Stunned(EnVali* this, PlayState* play) {
 
 void EnVali_Frozen(EnVali* this, PlayState* play) {
     Vec3f pos;
-    s32 temp_v0;
-    s32 temp_v1;
+    s32   temp_v0;
+    s32   temp_v1;
 
     if (this->timer != 0) {
         this->timer--;
@@ -708,8 +708,8 @@ s32 EnVali_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* 
 void EnVali_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void* thisx, Gfx** gfx) {
     static Vec3f D_80B28970 = { 3000.0f, 0.0f, 0.0f };
     static Vec3f D_80B2897C = { -1000.0f, 0.0f, 0.0f };
-    Vec3f sp3C;
-    Vec3f sp30;
+    Vec3f        sp3C;
+    Vec3f        sp30;
     EnVali* this = (EnVali*)thisx;
 
     if (this->actionFunc == EnVali_FloatIdle) {
@@ -729,10 +729,10 @@ void EnVali_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot
 }
 
 void EnVali_DrawBody(EnVali* this, PlayState* play) {
-    MtxF mtx;
-    f32 cos;
-    f32 sin;
-    f32 curFrame;
+    MtxF  mtx;
+    f32   cos;
+    f32   sin;
+    f32   curFrame;
     Vec3f scale = { 1.0f, 1.0f, 1.0f };
 
     OPEN_DISPS(play->state.gfxCtx);

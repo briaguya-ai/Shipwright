@@ -170,36 +170,36 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 0, ICHAIN_STOP),
 };
 
-static s8 sEnvType;
-static u8 sGroundBlastType;
+static s8      sEnvType;
+static u8      sGroundBlastType;
 static BossTw* sKotakePtr;
 static BossTw* sKoumePtr;
 static BossTw* sTwinrovaPtr;
-static u8 sShieldFireCharge;
-static u8 sShieldIceCharge;
-static f32 D_8094C854;
-static f32 D_8094C858;
-static u8 sTwinrovaBlastType;
-static u8 sFixedBlastType;
-static u8 sFixedBlatSeq;
-static u8 sFreezeState;
-static Vec3f sShieldHitPos;
-static s16 sShieldHitYaw;
-static u8 sBeamDivertTimer;
-static u8 D_8094C86F;
-static u8 D_8094C870;
-static s16 D_8094C872;
-static s16 D_8094C874;
-static s16 D_8094C876;
-static u8 D_8094C878;
-static s16 D_8094C87A;
-static s16 D_8094C87C;
-static u8 D_8094C87E;
-BossTwEffect sTwEffects[150];
+static u8      sShieldFireCharge;
+static u8      sShieldIceCharge;
+static f32     D_8094C854;
+static f32     D_8094C858;
+static u8      sTwinrovaBlastType;
+static u8      sFixedBlastType;
+static u8      sFixedBlatSeq;
+static u8      sFreezeState;
+static Vec3f   sShieldHitPos;
+static s16     sShieldHitYaw;
+static u8      sBeamDivertTimer;
+static u8      D_8094C86F;
+static u8      D_8094C870;
+static s16     D_8094C872;
+static s16     D_8094C874;
+static s16     D_8094C876;
+static u8      D_8094C878;
+static s16     D_8094C87A;
+static s16     D_8094C87C;
+static u8      D_8094C87E;
+BossTwEffect   sTwEffects[150];
 
 void BossTw_AddDotEffect(PlayState* play, Vec3f* initalPos, Vec3f* initalSpeed, Vec3f* accel, f32 scale,
                          s16 args, s16 countLimit) {
-    s16 i;
+    s16           i;
     BossTwEffect* eff;
 
     for (i = 0, eff = play->specialEffects; i < countLimit; i++, eff++) {
@@ -219,7 +219,7 @@ void BossTw_AddDotEffect(PlayState* play, Vec3f* initalPos, Vec3f* initalSpeed, 
 
 void BossTw_AddDmgCloud(PlayState* play, s16 type, Vec3f* initialPos, Vec3f* initalSpeed, Vec3f* accel,
                         f32 scale, s16 alpha, s16 args, s16 countLimit) {
-    s16 i;
+    s16           i;
     BossTwEffect* eff;
 
     for (i = 0, eff = play->specialEffects; i < countLimit; i++, eff++) {
@@ -239,7 +239,7 @@ void BossTw_AddDmgCloud(PlayState* play, s16 type, Vec3f* initialPos, Vec3f* ini
 
 void BossTw_AddRingEffect(PlayState* play, Vec3f* initalPos, f32 scale, f32 arg3, s16 alpha, s16 args,
                           s16 arg6, s16 arg7) {
-    s16 i;
+    s16           i;
     BossTwEffect* eff;
 
     for (i = 0, eff = play->specialEffects; i < arg7; i++, eff++) {
@@ -262,7 +262,7 @@ void BossTw_AddRingEffect(PlayState* play, Vec3f* initalPos, f32 scale, f32 arg3
 
 void BossTw_AddPlayerFreezeEffect(PlayState* play, Actor* target) {
     BossTwEffect* eff;
-    s16 i;
+    s16           i;
 
     for (eff = play->specialEffects, i = 0; i < ARRAY_COUNT(sTwEffects); i++, eff++) {
         if (eff->type == TWEFF_NONE) {
@@ -286,7 +286,7 @@ void BossTw_AddPlayerFreezeEffect(PlayState* play, Actor* target) {
 
 void BossTw_AddFlameEffect(PlayState* play, Vec3f* initalPos, Vec3f* initalSpeed, Vec3f* accel, f32 scale,
                            s16 args) {
-    s16 i;
+    s16           i;
     BossTwEffect* eff;
 
     for (i = 0, eff = play->specialEffects; i < ARRAY_COUNT(sTwEffects); i++, eff++) {
@@ -306,7 +306,7 @@ void BossTw_AddFlameEffect(PlayState* play, Vec3f* initalPos, Vec3f* initalSpeed
 }
 
 void BossTw_AddMergeFlameEffect(PlayState* play, Vec3f* initialPos, f32 scale, f32 dist, s16 args) {
-    s16 i;
+    s16           i;
     BossTwEffect* eff;
 
     for (i = 0, eff = play->specialEffects; i < ARRAY_COUNT(sTwEffects); i++, eff++) {
@@ -329,7 +329,7 @@ void BossTw_AddMergeFlameEffect(PlayState* play, Vec3f* initialPos, f32 scale, f
 
 void BossTw_AddShieldBlastEffect(PlayState* play, Vec3f* initalPos, Vec3f* initalSpeed, Vec3f* accel,
                                  f32 scale, f32 arg5, s16 alpha, s16 args) {
-    s16 i;
+    s16           i;
     BossTwEffect* eff;
 
     for (i = 0, eff = play->specialEffects; i < ARRAY_COUNT(sTwEffects); i++, eff++) {
@@ -350,10 +350,10 @@ void BossTw_AddShieldBlastEffect(PlayState* play, Vec3f* initalPos, Vec3f* inita
 }
 
 void BossTw_AddShieldDeflectEffect(PlayState* play, f32 arg1, s16 arg2) {
-    s16 i;
-    s16 j;
+    s16           i;
+    s16           j;
     BossTwEffect* eff;
-    Player* player = GET_PLAYER(play);
+    Player*       player = GET_PLAYER(play);
 
     sShieldHitPos = player->bodyPartsPos[15];
     sShieldHitYaw = player->actor.shape.rot.y;
@@ -380,10 +380,10 @@ void BossTw_AddShieldDeflectEffect(PlayState* play, f32 arg1, s16 arg2) {
 }
 
 void BossTw_AddShieldHitEffect(PlayState* play, f32 arg1, s16 arg2) {
-    s16 i;
-    s16 j;
+    s16           i;
+    s16           j;
     BossTwEffect* eff;
-    Player* player = GET_PLAYER(play);
+    Player*       player = GET_PLAYER(play);
 
     sShieldHitPos = player->bodyPartsPos[15];
     sShieldHitYaw = player->actor.shape.rot.y;
@@ -696,10 +696,10 @@ void BossTw_SetupShootBeam(BossTw* this, PlayState* play) {
 
 void BossTw_SpawnGroundBlast(BossTw* this, PlayState* play, s16 blastType) {
     BossTw* groundBlast;
-    s16 i;
-    Vec3f pos;
-    Vec3f velocity;
-    Vec3f accel;
+    s16     i;
+    Vec3f   pos;
+    Vec3f   velocity;
+    Vec3f   accel;
 
     for (i = 0; i < ARRAY_COUNT(sTwEffects); i++) {
         velocity.x = Rand_CenteredFloat(20.0f);
@@ -753,10 +753,10 @@ void BossTw_SpawnGroundBlast(BossTw* this, PlayState* play, s16 blastType) {
 }
 
 s32 BossTw_BeamHitPlayerCheck(BossTw* this, PlayState* play) {
-    Vec3f offset;
-    Vec3f beamDistFromPlayer;
+    Vec3f   offset;
+    Vec3f   beamDistFromPlayer;
     Player* player = GET_PLAYER(play);
-    s16 i;
+    s16     i;
 
     offset.x = player->actor.world.pos.x - this->beamOrigin.x;
     offset.y = player->actor.world.pos.y - this->beamOrigin.y;
@@ -799,8 +799,8 @@ s32 BossTw_BeamHitPlayerCheck(BossTw* this, PlayState* play) {
  * and returns 2 if the beam will be diverted backwards
  */
 s32 BossTw_CheckBeamReflection(BossTw* this, PlayState* play) {
-    Vec3f offset;
-    Vec3f vec;
+    Vec3f   offset;
+    Vec3f   vec;
     Player* player = GET_PLAYER(play);
 
     if (player->stateFlags1 & 0x400000 &&
@@ -927,16 +927,16 @@ f32 BossTw_GetFloorY(Vec3f* pos) {
 }
 
 void BossTw_ShootBeam(BossTw* this, PlayState* play) {
-    s16 i;
-    f32 xDiff;
-    f32 yDiff;
-    f32 zDiff;
-    f32 floorY;
-    Vec3f sp130;
-    Vec3s sp128;
+    s16     i;
+    f32     xDiff;
+    f32     yDiff;
+    f32     zDiff;
+    f32     floorY;
+    Vec3f   sp130;
+    Vec3s   sp128;
     Player* player = GET_PLAYER(play);
     BossTw* otherTw = (BossTw*)this->actor.parent;
-    Input* input = &play->state.input[0];
+    Input*  input = &play->state.input[0];
 
     Math_ApproachF(&this->actor.world.pos.y, 400.0f, 0.05f, this->actor.speedXZ);
     Math_ApproachF(&this->actor.speedXZ, 5.0f, 1.0f, 0.25f);
@@ -1457,9 +1457,9 @@ void BossTw_TwinrovaSetupMergeCS(BossTw* this, PlayState* play) {
 }
 
 void BossTw_TwinrovaMergeCS(BossTw* this, PlayState* play) {
-    s16 i;
-    Vec3f spB0;
-    Vec3f spA4;
+    s16     i;
+    Vec3f   spB0;
+    Vec3f   spA4;
     Player* player = GET_PLAYER(play);
 
     switch (this->csState2) {
@@ -1564,8 +1564,8 @@ void BossTw_TwinrovaMergeCS(BossTw* this, PlayState* play) {
 
                 for (i = 0; i < 4; i++) {
                     Vec3f pos;
-                    f32 yOffset;
-                    f32 xScale;
+                    f32   yOffset;
+                    f32   xScale;
 
                     xScale = sKoumePtr->actor.scale.x * 3000.0f;
                     yOffset = Rand_CenteredFloat(xScale * 2.0f);
@@ -1736,10 +1736,10 @@ void BossTw_TwinrovaSetupIntroCS(BossTw* this, PlayState* play) {
 }
 
 void BossTw_TwinrovaIntroCS(BossTw* this, PlayState* play) {
-    u8 updateCam = 0;
-    s16 i;
-    Vec3f sp90;
-    Vec3f sp84;
+    u8      updateCam = 0;
+    s16     i;
+    Vec3f   sp90;
+    Vec3f   sp84;
     Player* player = GET_PLAYER(play);
 
     if (this->csSfxTimer > 220 && this->csSfxTimer < 630) {
@@ -2354,9 +2354,9 @@ void BossTw_DeathCSMsgSfx(BossTw* this, PlayState* play) {
     s32 pad3;
     s16 msgId2;
     s16 msgId1;
-    u8 kotakeAnim;
-    u8 koumeAnim;
-    u8 sp35;
+    u8  kotakeAnim;
+    u8  koumeAnim;
+    u8  sp35;
 
     msgId2 = 0;
     msgId1 = 0;
@@ -2372,7 +2372,7 @@ void BossTw_DeathCSMsgSfx(BossTw* this, PlayState* play) {
     if (this->work[CS_TIMER_2] == 80) {
         koumeAnim = 1;
     }
-    
+
     if (this->work[CS_TIMER_2] == 80) {
         msgId2 = 0x604B;
         sp35 = 50;
@@ -2586,8 +2586,8 @@ void BossTw_DeathCSMsgSfx(BossTw* this, PlayState* play) {
 }
 
 void BossTw_TwinrovaDeathCS(BossTw* this, PlayState* play) {
-    s16 i;
-    Vec3f spD0;
+    s16     i;
+    Vec3f   spD0;
     Player* player = GET_PLAYER(play);
     Camera* mainCam = Play_GetCamera(play, MAIN_CAM);
 
@@ -2714,7 +2714,7 @@ void BossTw_TwinrovaDeathCS(BossTw* this, PlayState* play) {
                 Vec3f pos;
                 Vec3f velocity;
                 Vec3f accel = { 0.0f, 0.0f, 0.0f };
-                s32 zero = 0;
+                s32   zero = 0;
 
                 for (i = 0; i < 50; i++) {
                     velocity.x = Rand_CenteredFloat(3.0f);
@@ -2821,18 +2821,30 @@ void BossTw_TwinrovaDeathCS(BossTw* this, PlayState* play) {
 }
 
 static s16 D_8094A900[] = {
-    0, 1, 2, 2, 1,
+    0,
+    1,
+    2,
+    2,
+    1,
 };
 
 static s16 D_8094A90C[] = {
-    0, 1, 2, 2, 2, 2, 2, 2, 1,
+    0,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
 };
 
 void BossTw_Update(Actor* thisx, PlayState* play) {
     BossTw* this = (BossTw*)thisx;
     Player* player = GET_PLAYER(play);
-    s16 i;
-    s32 pad;
+    s16     i;
+    s32     pad;
 
     this->collider.base.colType = COLTYPE_HIT3;
     Math_ApproachF(&this->fogR, play->lightCtx.fogColor[0], 1.0f, 10.0f);
@@ -2950,7 +2962,7 @@ void BossTw_Update(Actor* thisx, PlayState* play) {
 }
 
 void BossTw_TwinrovaUpdate(Actor* thisx, PlayState* play2) {
-    s16 i;
+    s16        i;
     PlayState* play = play2;
     BossTw* this = (BossTw*)thisx;
     Player* player = GET_PLAYER(play);
@@ -3081,8 +3093,8 @@ void BossTw_TwinrovaUpdate(Actor* thisx, PlayState* play2) {
                 if (info->toucher.dmgFlags & (DMG_SLINGSHOT | DMG_ARROW)) {}
             }
         } else if (this->collider.base.acFlags & AC_HIT) {
-            u8 damage;
-            u8 swordDamage;
+            u8            damage;
+            u8            swordDamage;
             ColliderInfo* info = this->collider.info.acHitInfo;
 
             this->collider.base.acFlags &= ~AC_HIT;
@@ -3191,8 +3203,11 @@ void BossTw_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot
     static Vec3f D_8094A944 = { 0.0f, 0.0f, 0.0f };
     static Vec3f D_8094A950 = { 0.0f, 2000.0f, -2000.0f };
     static Vec3f D_8094A95C[] = {
-        { 0.0f, 0.0f, -10000.0f }, { 0.0f, 0.0f, -8000.0f },  { 0.0f, 0.0f, -9000.0f },
-        { 0.0f, 0.0f, -11000.0f }, { 0.0f, 0.0f, -12000.0f },
+        { 0.0f, 0.0f, -10000.0f },
+        { 0.0f, 0.0f, -8000.0f },
+        { 0.0f, 0.0f, -9000.0f },
+        { 0.0f, 0.0f, -11000.0f },
+        { 0.0f, 0.0f, -12000.0f },
     };
     BossTw* this = (BossTw*)thisx;
 
@@ -3472,7 +3487,7 @@ static void* sEyeTextures[] = {
 
 void BossTw_Draw(Actor* thisx, PlayState* play2) {
     static Vec3f D_8094A9A4 = { 0.0f, 200.0f, 2000.0f };
-    PlayState* play = play2;
+    PlayState*   play = play2;
     BossTw* this = (BossTw*)thisx;
     Player* player = GET_PLAYER(play);
 
@@ -3662,10 +3677,10 @@ void BossTw_TwinrovaPostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Ve
 }
 
 void BossTw_ShieldChargeDraw(BossTw* this, PlayState* play) {
-    s32 pad;
+    s32     pad;
     Player* player = GET_PLAYER(play);
-    s16 temp_t0;
-    s16 temp_a0;
+    s16     temp_t0;
+    s16     temp_a0;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -3852,7 +3867,7 @@ void func_80944C50(BossTw* this, PlayState* play) {
 
 void BossTw_TwinrovaDraw(Actor* thisx, PlayState* play2) {
     static Vec3f D_8094A9EC = { 0.0f, 200.0f, 2000.0f };
-    PlayState* play = play2;
+    PlayState*   play = play2;
     BossTw* this = (BossTw*)thisx;
 
     OPEN_DISPS(play->state.gfxCtx);
@@ -3891,11 +3906,11 @@ void BossTw_TwinrovaDraw(Actor* thisx, PlayState* play2) {
 }
 
 void BossTw_BlastFire(BossTw* this, PlayState* play) {
-    s16 i;
-    f32 xDiff;
-    f32 yDiff;
-    f32 zDiff;
-    f32 distXZ;
+    s16     i;
+    f32     xDiff;
+    f32     yDiff;
+    f32     zDiff;
+    f32     distXZ;
     Player* player = GET_PLAYER(play);
     Player* player2 = player;
 
@@ -3931,7 +3946,7 @@ void BossTw_BlastFire(BossTw* this, PlayState* play) {
                         Vec3f velocity;
                         Vec3f velDir;
                         Vec3s blastDir;
-                        s16 alpha;
+                        s16   alpha;
 
                         this->actor.world.pos = player2->bodyPartsPos[15];
                         this->actor.world.pos.y = -2000.0f;
@@ -4082,11 +4097,11 @@ void BossTw_BlastFire(BossTw* this, PlayState* play) {
 }
 
 void BossTw_BlastIce(BossTw* this, PlayState* play) {
-    s16 i;
-    f32 xDiff;
-    f32 yDiff;
-    f32 zDiff;
-    f32 xzDist;
+    s16     i;
+    f32     xDiff;
+    f32     yDiff;
+    f32     zDiff;
+    f32     xzDist;
     Player* player = GET_PLAYER(play);
     Player* player2 = player;
 
@@ -4121,7 +4136,7 @@ void BossTw_BlastIce(BossTw* this, PlayState* play) {
                         Vec3f velocity;
                         Vec3f spF4;
                         Vec3s reflDir;
-                        s16 alpha;
+                        s16   alpha;
 
                         this->actor.world.pos = player2->bodyPartsPos[15];
                         this->actor.world.pos.y = -2000.0f;
@@ -4230,7 +4245,7 @@ void BossTw_BlastIce(BossTw* this, PlayState* play) {
                 Audio_PlayActorSound2(&this->actor, NA_SE_EV_ICE_FREEZE - SFX_FLAG);
 
                 if (this->timers[0] > (sTwinrovaPtr->actionFunc == BossTw_Wait ? 70 : 20)) {
-                    s32 pad;
+                    s32   pad;
                     Vec3f pos;
                     Vec3f velocity;
                     Vec3f accel;
@@ -4306,8 +4321,8 @@ void BossTw_BlastIce(BossTw* this, PlayState* play) {
 }
 
 s32 BossTw_BlastShieldCheck(BossTw* this, PlayState* play) {
-    Player* player = GET_PLAYER(play);
-    s32 ret = false;
+    Player*       player = GET_PLAYER(play);
+    s32           ret = false;
     ColliderInfo* info;
 
     if (this->csState1 == 1) {
@@ -4377,7 +4392,7 @@ s32 BossTw_BlastShieldCheck(BossTw* this, PlayState* play) {
 void BossTw_BlastUpdate(Actor* thisx, PlayState* play) {
     BossTw* this = (BossTw*)thisx;
     ColliderCylinder* collider;
-    s16 i;
+    s16               i;
 
     this->work[CS_TIMER_1]++;
     this->work[CS_TIMER_2]++;
@@ -4449,7 +4464,7 @@ void BossTw_BlastDraw(Actor* thisx, PlayState* play2) {
                 gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
                           G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
                 gSPDisplayList(POLY_XLU_DISP++, SEGMENTED_TO_VIRTUAL(gTwinrovaFireDL));
-                
+
                 FrameInterpolation_RecordCloseChild();
             }
             break;
@@ -4555,28 +4570,34 @@ void BossTw_DrawDeathBall(Actor* thisx, PlayState* play2) {
 
 void BossTw_UpdateEffects(PlayState* play) {
     static Color_RGB8 sDotColors[] = {
-        { 255, 128, 0 },   { 255, 0, 0 },     { 255, 255, 0 },   { 255, 0, 0 },
-        { 100, 100, 100 }, { 255, 255, 255 }, { 150, 150, 150 }, { 255, 255, 255 },
+        { 255, 128, 0 },
+        { 255, 0, 0 },
+        { 255, 255, 0 },
+        { 255, 0, 0 },
+        { 100, 100, 100 },
+        { 255, 255, 255 },
+        { 150, 150, 150 },
+        { 255, 255, 255 },
     };
-    Vec3f sp11C;
+    Vec3f         sp11C;
     BossTwEffect* eff = play->specialEffects;
-    Player* player = GET_PLAYER(play);
-    u8 sp113 = 0;
-    s16 i;
-    s16 j;
-    s16 colorIdx;
-    Vec3f off;
-    Vec3f spF4;
-    Vec3f spE8;
-    Vec3f spDC;
-    Vec3f spD0;
-    f32 phi_f22;
-    Vec3f spC0;
-    Vec3f spB4;
-    Vec3f spA8;
-    s16 spA6;
-    f32 phi_f0;
-    Actor* unk44;
+    Player*       player = GET_PLAYER(play);
+    u8            sp113 = 0;
+    s16           i;
+    s16           j;
+    s16           colorIdx;
+    Vec3f         off;
+    Vec3f         spF4;
+    Vec3f         spE8;
+    Vec3f         spDC;
+    Vec3f         spD0;
+    f32           phi_f22;
+    Vec3f         spC0;
+    Vec3f         spB4;
+    Vec3f         spA8;
+    s16           spA6;
+    f32           phi_f0;
+    Actor*        unk44;
 
     for (i = 0; i < ARRAY_COUNT(sTwEffects); i++) {
         if (eff->type != 0) {
@@ -4894,14 +4915,14 @@ f32 BossTw_RandZeroOne(void) {
 }
 
 void BossTw_DrawEffects(PlayState* play) {
-    u8 sp18F = 0;
-    s16 i;
-    s16 j;
-    s32 pad;
-    Player* player = GET_PLAYER(play);
-    s16 phi_s4;
-    BossTwEffect* currentEffect = play->specialEffects;
-    BossTwEffect* effectHead;
+    u8               sp18F = 0;
+    s16              i;
+    s16              j;
+    s32              pad;
+    Player*          player = GET_PLAYER(play);
+    s16              phi_s4;
+    BossTwEffect*    currentEffect = play->specialEffects;
+    BossTwEffect*    effectHead;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
 
     effectHead = currentEffect;
@@ -4955,7 +4976,7 @@ void BossTw_DrawEffects(PlayState* play) {
             gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(gfxCtx),
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(POLY_XLU_DISP++, SEGMENTED_TO_VIRTUAL(gTwinrovaIceModelDL));
-            
+
             FrameInterpolation_RecordCloseChild();
         }
         currentEffect++;
@@ -4984,7 +5005,7 @@ void BossTw_DrawEffects(PlayState* play) {
             gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(gfxCtx),
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(POLY_XLU_DISP++, SEGMENTED_TO_VIRTUAL(gTwinrovaFireDL));
-            
+
             FrameInterpolation_RecordCloseChild();
         }
 
@@ -5045,7 +5066,7 @@ void BossTw_DrawEffects(PlayState* play) {
 
     for (i = 0; i < ARRAY_COUNT(sTwEffects); i++) {
         Actor* actor;
-        Vec3f off;
+        Vec3f  off;
 
         if (currentEffect->type == TWEFF_PLYR_FRZ) {
             FrameInterpolation_RecordOpenChild(currentEffect, currentEffect->epoch);
@@ -5198,9 +5219,9 @@ void BossTw_TwinrovaSetupShootBlast(BossTw* this, PlayState* play) {
 
 void BossTw_TwinrovaShootBlast(BossTw* this, PlayState* play) {
     BossTw* twMagic;
-    Vec3f* magicSpawnPos;
-    s32 magicParams;
-    s16 i;
+    Vec3f*  magicSpawnPos;
+    s32     magicParams;
+    s16     i;
 
     SkelAnime_Update(&this->skelAnime);
 
@@ -5384,10 +5405,10 @@ void BossTw_TwinrovaGetUp(BossTw* this, PlayState* play) {
 }
 
 void BossTw_TwinrovaSetupFly(BossTw* this, PlayState* play) {
-    f32 xDiff;
-    f32 zDiff;
-    f32 yDiff;
-    f32 xzDist;
+    f32     xDiff;
+    f32     zDiff;
+    f32     yDiff;
+    f32     xzDist;
     Player* player = GET_PLAYER(play);
 
     do {

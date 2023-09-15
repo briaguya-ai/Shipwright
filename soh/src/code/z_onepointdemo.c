@@ -4,7 +4,7 @@
 
 static s16 sDisableAttention = false;
 static s16 sUnused = -1;
-s32 sPrevFrameCs1100 = -4096;
+s32        sPrevFrameCs1100 = -4096;
 
 #include "z_onepointdemo_data.inc"
 
@@ -32,8 +32,8 @@ void OnePointCutscene_Vec3sToVec3f(Vec3f* src, Vec3s* dst) {
 }
 
 s32 OnePointCutscene_BgCheckLineTest(CollisionContext* colCtx, Vec3f* vec1, Vec3f* vec2) {
-    Vec3f posResult;
-    s32 bgId;
+    Vec3f          posResult;
+    s32            bgId;
     CollisionPoly* outPoly = NULL;
 
     return BgCheck_CameraLineTest1(colCtx, vec1, vec2, &posResult, &outPoly, true, true, true, false, &bgId);
@@ -41,7 +41,7 @@ s32 OnePointCutscene_BgCheckLineTest(CollisionContext* colCtx, Vec3f* vec1, Vec3
 
 f32 OnePointCutscene_RaycastFloor(CollisionContext* colCtx, Vec3f* pos) {
     CollisionPoly* outPoly;
-    s32 bgId;
+    s32            bgId;
 
     return BgCheck_EntityRaycastFloor3(colCtx, &outPoly, &bgId, pos);
 }
@@ -57,17 +57,17 @@ void OnePointCutscene_SetCsCamPoints(Camera* camera, s16 actionParameters, s16 i
 }
 
 s32 OnePointCutscene_SetInfo(PlayState* play, s16 camIdx, s16 csId, Actor* actor, s16 timer) {
-    Camera* csCam = play->cameraPtrs[camIdx];
-    Camera* childCam = play->cameraPtrs[csCam->childCamIdx];
-    Camera* mainCam = play->cameraPtrs[MAIN_CAM];
-    Player* player = mainCam->player;
-    VecSph spD0;
-    s32 i;
-    Vec3f spC0;
-    Vec3f spB4;
-    PosRot spA0;
-    PosRot sp8C;
-    f32 tempRand;
+    Camera*            csCam = play->cameraPtrs[camIdx];
+    Camera*            childCam = play->cameraPtrs[csCam->childCamIdx];
+    Camera*            mainCam = play->cameraPtrs[MAIN_CAM];
+    Player*            player = mainCam->player;
+    VecSph             spD0;
+    s32                i;
+    Vec3f              spC0;
+    Vec3f              spB4;
+    PosRot             spA0;
+    PosRot             sp8C;
+    f32                tempRand;
     Unique9OnePointCs* csInfo = ONEPOINT_CS_INFO(csCam);
 
     switch (csId) {
@@ -1125,7 +1125,7 @@ s16 OnePointCutscene_SetAsChild(PlayState* play, s16 newCamIdx, s16 parentCamIdx
  */
 s32 OnePointCutscene_RemoveCamera(PlayState* play, s16 camIdx) {
     Camera* camera = play->cameraPtrs[camIdx];
-    s32 nextCamIdx;
+    s32     nextCamIdx;
 
     if (camera->thisIdx == CHILD_CAM(camera)->parentCamIdx) {
         CHILD_CAM(camera)->parentCamIdx = camera->parentCamIdx;
@@ -1142,9 +1142,9 @@ s32 OnePointCutscene_RemoveCamera(PlayState* play, s16 camIdx) {
 }
 
 #define vChildCamIdx temp2
-#define vCsStatus temp1
-#define vCurCamIdx temp2
-#define vNextCamIdx temp1
+#define vCsStatus    temp1
+#define vCurCamIdx   temp2
+#define vNextCamIdx  temp1
 
 /**
  * Creates a cutscene subcamera with the specified ID, duration, and targeted actor. The camera is placed into the
@@ -1152,9 +1152,9 @@ s32 OnePointCutscene_RemoveCamera(PlayState* play, s16 camIdx) {
  * queue.
  */
 s16 OnePointCutscene_Init(PlayState* play, s16 csId, s16 timer, Actor* actor, s16 parentCamIdx) {
-    s16 temp1;
-    s16 temp2;
-    s16 csCamIdx;
+    s16     temp1;
+    s16     temp2;
+    s16     csCamIdx;
     Camera* csCam;
 
     if (parentCamIdx == SUBCAM_ACTIVE) {
@@ -1243,19 +1243,19 @@ s16 OnePointCutscene_EndCutscene(PlayState* play, s16 camIdx) {
     return camIdx;
 }
 
-#define vTargetCat temp1
-#define vParentCamIdx temp1
+#define vTargetCat     temp1
+#define vParentCamIdx  temp1
 #define vLastHigherCat temp2
-#define vCsCamIdx temp2
+#define vCsCamIdx      temp2
 
 /**
  *  Adds an attention cutscene to the cutscene queue.
  */
 s32 OnePointCutscene_Attention(PlayState* play, Actor* actor) {
     Camera* parentCam;
-    s32 temp1;
-    s32 temp2;
-    s32 timer;
+    s32     temp1;
+    s32     temp2;
+    s32     timer;
 
     if (sDisableAttention) {
         osSyncPrintf(VT_COL(YELLOW, BLACK) "actor attention demo camera: canceled by other camera\n" VT_RST);

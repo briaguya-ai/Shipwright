@@ -296,15 +296,15 @@ void func_80A4ED34(EnGs* this, PlayState* play) {
     static Color_RGBA8 flashRed = { 255, 50, 50, 0 };
     static Color_RGBA8 flashBlue = { 50, 50, 255, 0 };
     static Color_RGBA8 baseWhite = { 255, 255, 255, 0 };
-    static Vec3f dustAccel = { 0.0f, -0.3f, 0.0f };
+    static Vec3f       dustAccel = { 0.0f, -0.3f, 0.0f };
     static Color_RGBA8 dustPrim = { 200, 200, 200, 128 };
     static Color_RGBA8 dustEnv = { 100, 100, 100, 0 };
-    static Vec3f bomb2Velocity = { 0.0f, 0.0f, 0.0f };
-    static Vec3f bomb2Accel = { 0.0f, 0.0f, 0.0f };
-    u8 i;
-    Vec3f dustPos;
-    Vec3f dustVelocity;
-    Vec3f bomb2Pos;
+    static Vec3f       bomb2Velocity = { 0.0f, 0.0f, 0.0f };
+    static Vec3f       bomb2Accel = { 0.0f, 0.0f, 0.0f };
+    u8                 i;
+    Vec3f              dustPos;
+    Vec3f              dustVelocity;
+    Vec3f              bomb2Pos;
 
     if (this->unk_19F == 0) {
         this->unk_200 = 40;
@@ -506,7 +506,7 @@ void func_80A4F734(EnGs* this, PlayState* play) {
 void func_80A4F77C(EnGs* this) {
     static Vec3s D_80A4FE34 = { 0, 0, 0 };
     static Vec3f D_80A4FE3C = { 1.0f, 1.0f, 1.0f };
-    s32 i;
+    s32          i;
 
     for (i = 0; i < 3; i++) {
         this->unk_1A0[i] = D_80A4FE34;
@@ -595,7 +595,7 @@ void EnGs_Draw(Actor* thisx, PlayState* play) {
                             this->flashColor.a);
         } else {
             if (CVarGetInteger("gCosmetics.World_GossipStone.Changed", 0)) {
-                Color_RGB8 color = CVarGetColor24("gCosmetics.World_GossipStone.Value", (Color_RGB8){255, 255, 255});
+                Color_RGB8 color = CVarGetColor24("gCosmetics.World_GossipStone.Value", (Color_RGB8){ 255, 255, 255 });
                 gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, color.r, color.g, color.b, 255);
             } else {
                 gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, 255, 255, 255, 255);

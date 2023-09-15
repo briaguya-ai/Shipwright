@@ -20,12 +20,20 @@ void EnExRuppy_WaitInGame(EnExRuppy* this, PlayState* play);
 void EnExRuppy_Kill(EnExRuppy* this, PlayState* play);
 
 static s16 sEnExRuppyCollectibleTypes[] = {
-    ITEM00_RUPEE_GREEN, ITEM00_RUPEE_BLUE, ITEM00_RUPEE_RED, ITEM00_RUPEE_ORANGE, ITEM00_RUPEE_PURPLE,
+    ITEM00_RUPEE_GREEN,
+    ITEM00_RUPEE_BLUE,
+    ITEM00_RUPEE_RED,
+    ITEM00_RUPEE_ORANGE,
+    ITEM00_RUPEE_PURPLE,
 };
 
 // Unused, as the function sets these directly
 static s16 sRupeeValues[] = {
-    1, 5, 20, 500, 50,
+    1,
+    5,
+    20,
+    500,
+    50,
 };
 
 const ActorInit En_Ex_Ruppy_InitVars = {
@@ -44,9 +52,9 @@ const ActorInit En_Ex_Ruppy_InitVars = {
 void EnExRuppy_Init(Actor* thisx, PlayState* play) {
     EnExRuppy* this = (EnExRuppy*)thisx;
     EnDivingGame* divingGame;
-    f32 temp1;
-    f32 temp2;
-    s16 temp3;
+    f32           temp1;
+    f32           temp2;
+    s16           temp3;
 
     this->type = this->actor.params;
     // "Index"
@@ -167,14 +175,14 @@ void EnExRuppy_Destroy(Actor* thisx, PlayState* play) {
 void EnExRuppy_SpawnSparkles(EnExRuppy* this, PlayState* play, s16 numSparkles, s32 movementType) {
     static Vec3f velocities[] = { { 0.0f, 0.1f, 0.0f }, { 0.0f, 0.0f, 0.0f } };
     static Vec3f accelerations[] = { { 0.0f, 0.01f, 0.0f }, { 0.0f, 0.0f, 0.0f } };
-    Vec3f pos;
-    Vec3f velocity;
-    Vec3f accel;
-    Color_RGBA8 primColor;
-    Color_RGBA8 envColor;
-    s32 i;
-    s16 scale;
-    s16 life;
+    Vec3f        pos;
+    Vec3f        velocity;
+    Vec3f        accel;
+    Color_RGBA8  primColor;
+    Color_RGBA8  envColor;
+    s32          i;
+    s16          scale;
+    s16          life;
 
     if (numSparkles < 1) {
         numSparkles = 1;
@@ -226,7 +234,7 @@ void EnExRuppy_DropIntoWater(EnExRuppy* this, PlayState* play) {
 
 void EnExRuppy_EnterWater(EnExRuppy* this, PlayState* play) {
     EnDivingGame* divingGame = (EnDivingGame*)this->actor.parent;
-    f32 temp_f2;
+    f32           temp_f2;
 
     if ((divingGame != NULL) && (divingGame->actor.update != NULL) && (divingGame->unk_2A2 == 2)) {
         this->invisible = false;
@@ -247,8 +255,8 @@ void EnExRuppy_EnterWater(EnExRuppy* this, PlayState* play) {
 
 void EnExRuppy_Sink(EnExRuppy* this, PlayState* play) {
     EnDivingGame* divingGame;
-    Vec3f pos;
-    s32 pad;
+    Vec3f         pos;
+    s32           pad;
 
     if ((this->actor.bgCheckFlags & 0x20) && (this->actor.yDistToWater > 15.0f)) {
         pos = this->actor.world.pos;
@@ -268,9 +276,9 @@ void EnExRuppy_Sink(EnExRuppy* this, PlayState* play) {
 
 void EnExRuppy_WaitInGame(EnExRuppy* this, PlayState* play) {
     EnDivingGame* divingGame;
-    Vec3f D_80A0B388 = { 0.0f, 0.1f, 0.0f };
-    Vec3f D_80A0B394 = { 0.0f, 0.0f, 0.0f };
-    f32 localConst = 30.0f;
+    Vec3f         D_80A0B388 = { 0.0f, 0.1f, 0.0f };
+    Vec3f         D_80A0B394 = { 0.0f, 0.0f, 0.0f };
+    f32           localConst = 30.0f;
 
     if (this->timer == 0) {
         this->timer = 10;
@@ -304,17 +312,17 @@ void EnExRuppy_Kill(EnExRuppy* this, PlayState* play) {
 
 typedef struct {
     /* 0x000 */ Actor actor;
-    /* 0x14C */ char unk_14C[0x11A];
-    /* 0x226 */ s16 unk_226;
+    /* 0x14C */ char  unk_14C[0x11A];
+    /* 0x226 */ s16   unk_226;
 } EnExRuppyParentActor; // Unclear what actor was intended to spawn this.
 
 void EnExRuppy_WaitToBlowUp(EnExRuppy* this, PlayState* play) {
     EnExRuppyParentActor* parent;
-    Vec3f accel = { 0.0f, 0.1f, 0.0f };
-    Vec3f velocity = { 0.0f, 0.0f, 0.0f };
-    f32 distToBlowUp = 50.0f;
-    s16 explosionScale;
-    s16 explosionScaleStep;
+    Vec3f                 accel = { 0.0f, 0.1f, 0.0f };
+    Vec3f                 velocity = { 0.0f, 0.0f, 0.0f };
+    f32                   distToBlowUp = 50.0f;
+    s16                   explosionScale;
+    s16                   explosionScaleStep;
 
     if (this->type == 2) {
         distToBlowUp = 30.0f;
@@ -376,11 +384,19 @@ void EnExRuppy_Update(Actor* thisx, PlayState* play) {
 
 void EnExRuppy_Draw(Actor* thisx, PlayState* play) {
     static void* rupeeTextures[] = {
-        gRupeeGreenTex, gRupeeBlueTex, gRupeeRedTex, gRupeePinkTex, gRupeeOrangeTex,
+        gRupeeGreenTex,
+        gRupeeBlueTex,
+        gRupeeRedTex,
+        gRupeePinkTex,
+        gRupeeOrangeTex,
     };
     // The pink/orange rupee textures are authentically reversed, so the GID models should be gold/purple respectively
     static void* rupeeTexturesNew[] = {
-        GID_RUPEE_GREEN, GID_RUPEE_BLUE, GID_RUPEE_RED, GID_RUPEE_GOLD, GID_RUPEE_PURPLE,
+        GID_RUPEE_GREEN,
+        GID_RUPEE_BLUE,
+        GID_RUPEE_RED,
+        GID_RUPEE_GOLD,
+        GID_RUPEE_PURPLE,
     };
     s32 pad;
     EnExRuppy* this = (EnExRuppy*)thisx;
@@ -395,7 +411,7 @@ void EnExRuppy_Draw(Actor* thisx, PlayState* play) {
             GetItem_Draw(play, rupeeTexturesNew[this->colorIdx]);
         } else {
             Color_RGB8 rupeeColor;
-            u8 shouldColor = 0;
+            u8         shouldColor = 0;
             switch (this->colorIdx) {
                 case 0:
                     rupeeColor = CVarGetColor24("gCosmetics.Consumable_GreenRupee.Value", (Color_RGB8){ 255, 255, 255 });

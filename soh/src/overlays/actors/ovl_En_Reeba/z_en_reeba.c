@@ -167,9 +167,9 @@ void EnReeba_Destroy(Actor* thisx, PlayState* play) {
 }
 
 void func_80AE4F40(EnReeba* this, PlayState* play) {
-    f32 frames = Animation_GetLastFrame(&object_reeba_Anim_0001E4);
+    f32     frames = Animation_GetLastFrame(&object_reeba_Anim_0001E4);
     Player* player = GET_PLAYER(play);
-    s16 playerSpeed;
+    s16     playerSpeed;
 
     Animation_Change(&this->skelanime, &object_reeba_Anim_0001E4, 2.0f, 0.0f, frames, ANIMMODE_LOOP, -10.0f);
 
@@ -196,7 +196,7 @@ void func_80AE4F40(EnReeba* this, PlayState* play) {
 
 void func_80AE5054(EnReeba* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 playerLinearVel;
+    f32     playerLinearVel;
 
     SkelAnime_Update(&this->skelanime);
 
@@ -389,7 +389,7 @@ void func_80AE58EC(EnReeba* this, PlayState* play) {
 
 void func_80AE5938(EnReeba* this, PlayState* play) {
     Vec3f pos;
-    f32 scale;
+    f32   scale;
 
     if (this->unk_278 != 0) {
         if (this->actor.speedXZ < 0.0f) {
@@ -423,7 +423,7 @@ void func_80AE5938(EnReeba* this, PlayState* play) {
 
 void func_80AE5A9C(EnReeba* this, PlayState* play) {
     Vec3f pos;
-    f32 scale;
+    f32   scale;
 
     if (this->unk_278 != 0) {
         if ((this->unk_27E == 2) && ((this->unk_278 & 0xF) == 0)) {

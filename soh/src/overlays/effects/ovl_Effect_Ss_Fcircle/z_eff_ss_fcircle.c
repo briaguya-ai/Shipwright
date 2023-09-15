@@ -10,10 +10,10 @@
 #define rUnused regs[3] // probably supposed to be an alpha
 #define rRadius regs[8]
 #define rHeight regs[9]
-#define rYaw regs[10]
-#define rScale regs[11]
+#define rYaw    regs[10]
+#define rScale  regs[11]
 
-u32 EffectSsFcircle_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsFcircle_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsFcircle_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsFcircle_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -44,10 +44,10 @@ u32 EffectSsFcircle_Init(PlayState* play, u32 index, EffectSs* this, void* initP
 
 void EffectSsFcircle_Draw(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s32 pad;
-    f32 yScale;
-    f32 xzScale;
-    f32 scale;
+    s32              pad;
+    f32              yScale;
+    f32              xzScale;
+    f32              scale;
 
     OPEN_DISPS(gfxCtx);
 

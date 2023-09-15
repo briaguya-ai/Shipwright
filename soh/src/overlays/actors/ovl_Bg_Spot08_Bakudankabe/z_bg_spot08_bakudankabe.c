@@ -102,12 +102,12 @@ void func_808B02D0(BgSpot08Bakudankabe* this, PlayState* play) {
 }
 
 void func_808B0324(BgSpot08Bakudankabe* this, PlayState* play) {
-    s32 pad[2];
-    s32 i;
+    s32   pad[2];
+    s32   i;
     Vec3f burstDepthY;
     Vec3f burstDepthX;
-    f32 sinY;
-    f32 cosY;
+    f32   sinY;
+    f32   cosY;
 
     sinY = Math_SinS(this->dyna.actor.shape.rot.y);
     cosY = Math_CosS(this->dyna.actor.shape.rot.y);
@@ -159,7 +159,7 @@ void func_808B0324(BgSpot08Bakudankabe* this, PlayState* play) {
 
 void BgSpot08Bakudankabe_Init(Actor* thisx, PlayState* play) {
     BgSpot08Bakudankabe* this = (BgSpot08Bakudankabe*)thisx;
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
 
     DynaPolyActor_Init(&this->dyna, DPM_UNK);

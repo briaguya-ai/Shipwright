@@ -57,15 +57,27 @@ static ColliderCylinderInit sCylinderInit = {
 };
 
 static s16 sObjectIDs[] = {
-    OBJECT_DEKUNUTS, OBJECT_HINTNUTS, OBJECT_SHOPNUTS, OBJECT_DNS, OBJECT_DNK,
+    OBJECT_DEKUNUTS,
+    OBJECT_HINTNUTS,
+    OBJECT_SHOPNUTS,
+    OBJECT_DNS,
+    OBJECT_DNK,
 };
 
 static Gfx* sDListsNew[] = {
-    gGiNutDL, gGiNutDL, gGiNutDL, gGiNutDL, gGiNutDL,
+    gGiNutDL,
+    gGiNutDL,
+    gGiNutDL,
+    gGiNutDL,
+    gGiNutDL,
 };
 
 static Gfx* sDLists[] = {
-    gDekuNutsDekuNutDL, gHintNutsNutDL, gBusinessScrubDekuNutDL, gDntJijiNutDL, gDntStageNutDL,
+    gDekuNutsDekuNutDL,
+    gHintNutsNutDL,
+    gBusinessScrubDekuNutDL,
+    gDntJijiNutDL,
+    gDntStageNutDL,
 };
 
 void EnNutsball_Init(Actor* thisx, PlayState* play) {
@@ -107,8 +119,8 @@ void func_80ABBB34(EnNutsball* this, PlayState* play) {
 
 void func_80ABBBA8(EnNutsball* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Vec3s sp4C;
-    Vec3f sp40;
+    Vec3s   sp4C;
+    Vec3f   sp40;
 
     this->timer--;
 
@@ -154,7 +166,7 @@ void func_80ABBBA8(EnNutsball* this, PlayState* play) {
 void EnNutsball_Update(Actor* thisx, PlayState* play) {
     EnNutsball* this = (EnNutsball*)thisx;
     Player* player = GET_PLAYER(play);
-    s32 pad;
+    s32     pad;
 
     if (!(player->stateFlags1 & 0x300000C0) || (this->actionFunc == func_80ABBB34)) {
         this->actionFunc(this, play);
@@ -179,21 +191,21 @@ void EnNutsball_Draw(Actor* thisx, PlayState* play) {
     if (CVarGetInteger("gNewDrops", 0) != 0) {
         Gfx_SetupDL_25Opa(play->state.gfxCtx);
         gSPSegment(POLY_OPA_DISP++, 0x08,
-                Gfx_TwoTexScroll(play->state.gfxCtx, 0, 1 * (play->state.frames * 6),
+                   Gfx_TwoTexScroll(play->state.gfxCtx, 0, 1 * (play->state.frames * 6),
                                     1 * (play->state.frames * 6), 32, 32, 1, 1 * (play->state.frames * 6),
                                     1 * (play->state.frames * 6), 32, 32));
-        Matrix_Scale(25.0f,25.0f,25.0f,MTXMODE_APPLY);
+        Matrix_Scale(25.0f, 25.0f, 25.0f, MTXMODE_APPLY);
         Matrix_RotateX(thisx->home.rot.z * 9.58738e-05f, MTXMODE_APPLY);
         gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
-                G_MTX_MODELVIEW | G_MTX_LOAD);
+                  G_MTX_MODELVIEW | G_MTX_LOAD);
         gSPDisplayList(POLY_OPA_DISP++, sDListsNew[thisx->params]);
     } else {
         Gfx_SetupDL_25Opa(play->state.gfxCtx);
         Matrix_Mult(&play->billboardMtxF, MTXMODE_APPLY);
-        
+
         Matrix_RotateZ(thisx->home.rot.z * 9.58738e-05f, MTXMODE_APPLY);
         gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
-                G_MTX_MODELVIEW | G_MTX_LOAD);
+                  G_MTX_MODELVIEW | G_MTX_LOAD);
         gSPDisplayList(POLY_OPA_DISP++, sDLists[thisx->params]);
     }
 

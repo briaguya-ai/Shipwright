@@ -262,36 +262,106 @@ static u8 sClearPixelTex32[32 * 32] = { { 0 } };
 
 // indexed by limb (where the root limb is 1)
 static u8 sDeadLimbLifetime[] = {
-    0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
     30, // tail end/last part
     40, // tail 2nd to last part
-    0,  0, 0, 0, 0, 0, 0, 0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
     10, // back of right claw/hand
     15, // front of right claw/hand
     21, // part of right arm (inner)
-    0,  0,
+    0,
+    0,
     25, // part of right arm (shell)
-    0,  0,
+    0,
+    0,
     31, // part of right arm (shell on shoulder)
     35, // part of right arm (shoulder)
-    0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
     43, // end of left antenna
     48, // middle of left antenna
     53, // start of left antenna
-    0,  0, 0, 0,
+    0,
+    0,
+    0,
+    0,
     42, // end of right antenna
     45, // middle of right antenna
     53, // start of right antenna
-    0,  0, 0, 0, 0, 0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
     11, // back of left claw/hand
     15, // front of left claw/hand
     21, // part of left arm (inner)
-    0,  0,
+    0,
+    0,
     25, // part of left arm (shell)
-    0,  0,
+    0,
+    0,
     30, // part of left arm (shell on shoulder)
     35, // part of left arm (shoulder)
-    0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
 };
 
 /**
@@ -585,11 +655,11 @@ void BossGoma_UpdateCeilingMovement(BossGoma* this, PlayState* play, f32 dz, f32
     static Vec3f velInit = { 0.0f, 0.0f, 0.0f };
     static Vec3f accelInit = { 0.0f, -0.5f, 0.0f };
     static Vec3f roomCenter = { -150.0f, 0.0f, -350.0f };
-    Vec3f* basePos = NULL;
-    s16 i;
-    Vec3f vel;
-    Vec3f accel;
-    Vec3f pos;
+    Vec3f*       basePos = NULL;
+    s16          i;
+    Vec3f        vel;
+    Vec3f        accel;
+    Vec3f        pos;
 
     roomCenter.z += dz; // dz is always 0
     SkelAnime_Update(&this->skelanime);
@@ -671,7 +741,7 @@ void BossGoma_SetupEncounterState4(BossGoma* this, PlayState* play) {
 void BossGoma_Encounter(BossGoma* this, PlayState* play) {
     Camera* cam;
     Player* player = GET_PLAYER(play);
-    s32 pad[2];
+    s32     pad[2];
 
     Math_ApproachZeroF(&this->actor.speedXZ, 0.5f, 2.0f);
 
@@ -980,20 +1050,20 @@ void BossGoma_Encounter(BossGoma* this, PlayState* play) {
  */
 void BossGoma_Defeated(BossGoma* this, PlayState* play) {
     static Vec3f roomCenter = { -150.0f, 0.0f, -350.0f };
-    f32 dx;
-    f32 dz;
-    s16 j;
-    Vec3f vel1 = { 0.0f, 0.0f, 0.0f };
-    Vec3f accel1 = { 0.0f, 1.0f, 0.0f };
-    Color_RGBA8 color1 = { 255, 255, 255, 255 };
-    Color_RGBA8 color2 = { 0, 100, 255, 255 };
-    Vec3f vel2 = { 0.0f, 0.0f, 0.0f };
-    Vec3f accel2 = { 0.0f, -0.5f, 0.0f };
-    Vec3f pos;
-    Camera* camera;
-    Player* player = GET_PLAYER(play);
-    Vec3f childPos;
-    s16 i;
+    f32          dx;
+    f32          dz;
+    s16          j;
+    Vec3f        vel1 = { 0.0f, 0.0f, 0.0f };
+    Vec3f        accel1 = { 0.0f, 1.0f, 0.0f };
+    Color_RGBA8  color1 = { 255, 255, 255, 255 };
+    Color_RGBA8  color2 = { 0, 100, 255, 255 };
+    Vec3f        vel2 = { 0.0f, 0.0f, 0.0f };
+    Vec3f        accel2 = { 0.0f, -0.5f, 0.0f };
+    Vec3f        pos;
+    Camera*      camera;
+    Player*      player = GET_PLAYER(play);
+    Vec3f        childPos;
+    s16          i;
 
     SkelAnime_Update(&this->skelanime);
     Math_ApproachS(&this->actor.shape.rot.x, 0, 2, 0xBB8);
@@ -1820,7 +1890,7 @@ void BossGoma_UpdateHit(BossGoma* this, PlayState* play) {
         this->invincibilityFrames--;
     } else {
         ColliderInfo* acHitInfo = this->collider.elements[0].info.acHitInfo;
-        s32 damage;
+        s32           damage;
 
         if (this->eyeClosedTimer == 0 && this->actionFunc != BossGoma_CeilingSpawnGohmas &&
             (this->collider.elements[0].info.bumperFlags & BUMP_HIT)) {
@@ -1869,12 +1939,20 @@ void BossGoma_UpdateHit(BossGoma* this, PlayState* play) {
 
 void BossGoma_UpdateMainEnvColor(BossGoma* this) {
     static f32 colors1[][3] = {
-        { 255.0f, 17.0f, 0.0f },  { 0.0f, 255.0f, 170.0f }, { 50.0f, 50.0f, 50.0f },
-        { 0.0f, 255.0f, 170.0f }, { 0.0f, 255.0f, 170.0f }, { 0.0f, 255.0f, 170.0f },
+        { 255.0f, 17.0f, 0.0f },
+        { 0.0f, 255.0f, 170.0f },
+        { 50.0f, 50.0f, 50.0f },
+        { 0.0f, 255.0f, 170.0f },
+        { 0.0f, 255.0f, 170.0f },
+        { 0.0f, 255.0f, 170.0f },
     };
     static f32 colors2[][3] = {
-        { 255.0f, 17.0f, 0.0f },  { 0.0f, 255.0f, 170.0f }, { 50.0f, 50.0f, 50.0f },
-        { 0.0f, 255.0f, 170.0f }, { 0.0f, 0.0f, 255.0f },   { 255.0f, 17.0f, 0.0f },
+        { 255.0f, 17.0f, 0.0f },
+        { 0.0f, 255.0f, 170.0f },
+        { 50.0f, 50.0f, 50.0f },
+        { 0.0f, 255.0f, 170.0f },
+        { 0.0f, 0.0f, 255.0f },
+        { 255.0f, 17.0f, 0.0f },
     };
 
     if (this->visualState == VISUALSTATE_DEFAULT && this->frameCount & 0x10) {
@@ -1900,8 +1978,12 @@ void BossGoma_UpdateMainEnvColor(BossGoma* this) {
 
 void BossGoma_UpdateEyeEnvColor(BossGoma* this) {
     static f32 targetEyeEnvColors[][3] = {
-        { 255.0f, 17.0f, 0.0f },  { 255.0f, 255.0f, 255.0f }, { 50.0f, 50.0f, 50.0f },
-        { 0.0f, 255.0f, 170.0f }, { 0.0f, 255.0f, 170.0f },   { 0.0f, 255.0f, 170.0f },
+        { 255.0f, 17.0f, 0.0f },
+        { 255.0f, 255.0f, 255.0f },
+        { 50.0f, 50.0f, 50.0f },
+        { 0.0f, 255.0f, 170.0f },
+        { 0.0f, 255.0f, 170.0f },
+        { 0.0f, 255.0f, 170.0f },
     };
 
     Math_ApproachF(&this->eyeEnvColor[0], targetEyeEnvColors[this->visualState][0], 0.5f, 20.0f);
@@ -2058,11 +2140,11 @@ void BossGoma_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* r
     static Vec3f clawBackLocalPos = { 0.0f, 0.0f, 0.0f };
     static Vec3f focusEyeLocalPos = { 0.0f, 300.0f, 2650.0f }; // in the center of the surface of the lens
     static Vec3f zero = { 0.0f, 0.0f, 0.0f };
-    Vec3f childPos;
-    Vec3s childRot;
-    EnGoma* babyGohma;
+    Vec3f        childPos;
+    Vec3s        childRot;
+    EnGoma*      babyGohma;
     BossGoma* this = (BossGoma*)thisx;
-    s32 pad;
+    s32  pad;
     MtxF mtx;
 
     if (limbIndex == BOSSGOMA_LIMB_TAIL4) { // tail end/last part

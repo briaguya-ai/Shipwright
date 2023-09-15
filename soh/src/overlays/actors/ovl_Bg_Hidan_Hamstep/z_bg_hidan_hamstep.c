@@ -21,7 +21,11 @@ void func_80888A58(BgHidanHamstep* this, PlayState* play);
 void BgHidanHamstep_DoNothing(BgHidanHamstep* this, PlayState* play);
 
 static f32 sYPosOffsets[] = {
-    -20.0f, -120.0f, -220.0f, -320.0f, -420.0f,
+    -20.0f,
+    -120.0f,
+    -220.0f,
+    -320.0f,
+    -420.0f,
 };
 
 static ColliderTrisElementInit sTrisElementsInit[2] = {
@@ -76,7 +80,11 @@ const ActorInit Bg_Hidan_Hamstep_InitVars = {
 };
 
 static BgHidanHamstepActionFunc sActionFuncs[] = {
-    func_808887C4, func_80888860, func_808889B8, func_80888A58, BgHidanHamstep_DoNothing,
+    func_808887C4,
+    func_80888860,
+    func_808889B8,
+    func_80888A58,
+    BgHidanHamstep_DoNothing,
 };
 
 static InitChainEntry sInitChain[] = {
@@ -84,9 +92,17 @@ static InitChainEntry sInitChain[] = {
 };
 
 static f32 sEffectPositions[][2] = {
-    { -100.0f, 40.0f },  { 100.0f, 40.0f }, { -100.0f, 0.0f },   { 100.0f, 0.0f },
-    { -100.0f, -40.0f }, { 100.0f, 40.0f }, { -100.0f, -80.0f }, { -50.0f, -80.0f },
-    { 0.0f, -80.0f },    { 50.0f, -80.0f }, { 100.0f, -80.0f },
+    { -100.0f, 40.0f },
+    { 100.0f, 40.0f },
+    { -100.0f, 0.0f },
+    { 100.0f, 0.0f },
+    { -100.0f, -40.0f },
+    { 100.0f, 40.0f },
+    { -100.0f, -80.0f },
+    { -50.0f, -80.0f },
+    { 0.0f, -80.0f },
+    { 50.0f, -80.0f },
+    { 100.0f, -80.0f },
 };
 
 void BgHidanHamstep_SetupAction(BgHidanHamstep* this, s32 action) {
@@ -96,12 +112,12 @@ void BgHidanHamstep_SetupAction(BgHidanHamstep* this, s32 action) {
 
 s32 BgHidanHamstep_SpawnChildren(BgHidanHamstep* this, PlayState* play2) {
     BgHidanHamstep* step = this;
-    s32 i;
-    Vec3f pos;
-    f32 sin;
-    f32 cos;
-    s16 params;
-    PlayState* play = play2;
+    s32             i;
+    Vec3f           pos;
+    f32             sin;
+    f32             cos;
+    s16             params;
+    PlayState*      play = play2;
 
     pos = pos; // Required to match
     pos.y = this->dyna.actor.home.pos.y - 100.0f;
@@ -128,12 +144,12 @@ s32 BgHidanHamstep_SpawnChildren(BgHidanHamstep* this, PlayState* play2) {
 
 void BgHidanHamstep_Init(Actor* thisx, PlayState* play) {
     BgHidanHamstep* this = (BgHidanHamstep*)thisx;
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
-    Vec3f sp48[3];
-    s32 i;
-    s32 i2;
-    BgHidanHamstep* step;
+    Vec3f            sp48[3];
+    s32              i;
+    s32              i2;
+    BgHidanHamstep*  step;
 
     DynaPolyActor_Init(&this->dyna, DPM_PLAYER);
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
@@ -208,9 +224,9 @@ void BgHidanHamstep_Destroy(Actor* thisx, PlayState* play) {
 
 void func_808884C8(BgHidanHamstep* step, PlayState* play) {
     Vec3f pos = step->dyna.actor.world.pos;
-    s32 i;
-    f32 sin;
-    f32 cos;
+    s32   i;
+    f32   sin;
+    f32   cos;
 
     pos.y -= 20.0f;
 
@@ -262,7 +278,7 @@ void func_80888694(BgHidanHamstep* this, BgHidanHamstep* parent) {
 
 void func_80888734(BgHidanHamstep* this) {
     BgHidanHamstep* parent = (BgHidanHamstep*)this->dyna.actor.parent;
-    f32 frameDivisor = R_UPDATE_RATE * 0.5f;
+    f32             frameDivisor = R_UPDATE_RATE * 0.5f;
 
     if (parent != NULL) {
         this->dyna.actor.velocity.y = parent->dyna.actor.velocity.y;
@@ -306,7 +322,6 @@ void func_80888860(BgHidanHamstep* this, PlayState* play) {
         } else {
             this->dyna.actor.velocity.y *= -0.24f;
 
-
             if (this->unk_244 == 1) {
                 quakeIndex = Quake_Add(GET_ACTIVE_CAM(play), 3);
                 Quake_SetSpeed(quakeIndex, -15536);
@@ -322,7 +337,7 @@ void func_80888860(BgHidanHamstep* this, PlayState* play) {
 }
 
 void func_808889B8(BgHidanHamstep* this, PlayState* play) {
-    s32 pad;
+    s32             pad;
     BgHidanHamstep* parent = (BgHidanHamstep*)this->dyna.actor.parent;
 
     func_80888734(this);
@@ -363,7 +378,6 @@ void func_80888A58(BgHidanHamstep* this, PlayState* play) {
             BgHidanHamstep_SetupAction(this, 3);
         } else {
             this->dyna.actor.velocity.y *= -0.24f;
-
 
             if (this->unk_244 == 1) {
                 quakeIndex = Quake_Add(GET_ACTIVE_CAM(play), 3);

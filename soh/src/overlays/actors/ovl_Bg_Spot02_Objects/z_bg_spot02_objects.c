@@ -25,10 +25,18 @@ void func_808ACC34(BgSpot02Objects* this, PlayState* play);
 void func_808AD3D4(BgSpot02Objects* this, PlayState* play);
 
 static void* D_808AD850[] = {
-    object_spot02_objects_Tex_0096B0, object_spot02_objects_Tex_00A2B0, object_spot02_objects_Tex_00AEB0,
-    object_spot02_objects_Tex_00BAB0, object_spot02_objects_Tex_00C6B0, object_spot02_objects_Tex_00D2B0,
-    object_spot02_objects_Tex_00DEB0, object_spot02_objects_Tex_00EAB0, object_spot02_objects_Tex_00F6B0,
-    object_spot02_objects_Tex_0102B0, object_spot02_objects_Tex_010EB0, object_spot02_objects_Tex_011AB0,
+    object_spot02_objects_Tex_0096B0,
+    object_spot02_objects_Tex_00A2B0,
+    object_spot02_objects_Tex_00AEB0,
+    object_spot02_objects_Tex_00BAB0,
+    object_spot02_objects_Tex_00C6B0,
+    object_spot02_objects_Tex_00D2B0,
+    object_spot02_objects_Tex_00DEB0,
+    object_spot02_objects_Tex_00EAB0,
+    object_spot02_objects_Tex_00F6B0,
+    object_spot02_objects_Tex_0102B0,
+    object_spot02_objects_Tex_010EB0,
+    object_spot02_objects_Tex_011AB0,
 };
 
 const ActorInit Bg_Spot02_Objects_InitVars = {
@@ -127,7 +135,7 @@ void func_808AC8FC(BgSpot02Objects* this, PlayState* play) {
 
 void func_808AC908(BgSpot02Objects* this, PlayState* play) {
     static Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
-    Vec3f pos;
+    Vec3f        pos;
 
     // We want to do most of the same things in rando, but we're not in a cutscene and the flag for
     // destroying the royal tombstone is already set.
@@ -167,7 +175,7 @@ void func_808ACA08(BgSpot02Objects* this, PlayState* play) {
     if (this->timer == 20) {
         this->dyna.actor.draw = NULL;
         EffectSsHahen_SpawnBurst(play, &this->dyna.actor.world.pos, 30.0f, 0, 25, 5, 40, OBJECT_SPOT02_OBJECTS,
-                                    20, object_spot02_objects_DL_012D30);
+                                 20, object_spot02_objects_DL_012D30);
     } else if (this->timer == 0) {
         Actor_Kill(&this->dyna.actor);
     }
@@ -242,12 +250,12 @@ void func_808ACCB8(Actor* thisx, PlayState* play) {
     BgSpot02Objects* this = (BgSpot02Objects*)thisx;
     f32 rate;
     s32 pad;
-    u8 redPrim;
-    u8 greenPrim;
-    u8 bluePrim;
-    u8 redEnv;
-    u8 greenEnv;
-    u8 blueEnv;
+    u8  redPrim;
+    u8  greenPrim;
+    u8  bluePrim;
+    u8  redEnv;
+    u8  greenEnv;
+    u8  blueEnv;
 
     OPEN_DISPS(play->state.gfxCtx);
 

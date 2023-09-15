@@ -11,23 +11,23 @@
 
 #define BEGIN_MOVE_OUT 65535.0f
 
-#define DIR_FWD 0
-#define DIR_LEFT 0x4000
-#define DIR_BACK -0x8000
+#define DIR_FWD   0
+#define DIR_LEFT  0x4000
+#define DIR_BACK  -0x8000
 #define DIR_RIGHT -0x4000
 
 // Linear motion
 #define vLinearVel upperParams
-#define vContinue genericVar2
+#define vContinue  genericVar2
 
 // Circular motion
 #define vAngularVel upperParams
 #define vAngularPos genericVar1
-#define vRadius genericVar2
+#define vRadius     genericVar2
 
 // Four-way motion
 #define vClosestDirection genericVar1 // relative to spike trap's facing angle if moving out, absolute if moving in
-#define vMovementMetric genericVar2
+#define vMovementMetric   genericVar2
 
 void EnTrap_Init(Actor* thisx, PlayState* play);
 void EnTrap_Destroy(Actor* thisx, PlayState* play);
@@ -122,19 +122,19 @@ void EnTrap_Destroy(Actor* thisx, PlayState* play) {
 
 void EnTrap_Update(Actor* thisx, PlayState* play) {
     EnTrap* this = (EnTrap*)thisx;
-    Vec3f posTemp;
-    s16 angleToKnockPlayer;
-    s16 angleToCollidedActor;
-    s16 touchingActor;
-    s16 blockedOnReturn;
-    s32 pad;
-    s16 angleToWall;
-    Vec3f icePos;
-    Vec3f posAhead;
-    Vec3f colPoint;         // unused return value from function
-    CollisionPoly* colPoly; // unused return value from function
-    s32 bgId;               // unused return value from function
-    f32 temp_cond;
+    Vec3f          posTemp;
+    s16            angleToKnockPlayer;
+    s16            angleToCollidedActor;
+    s16            touchingActor;
+    s16            blockedOnReturn;
+    s32            pad;
+    s16            angleToWall;
+    Vec3f          icePos;
+    Vec3f          posAhead;
+    Vec3f          colPoint; // unused return value from function
+    CollisionPoly* colPoly;  // unused return value from function
+    s32            bgId;     // unused return value from function
+    f32            temp_cond;
 
     touchingActor = false;
     blockedOnReturn = false;

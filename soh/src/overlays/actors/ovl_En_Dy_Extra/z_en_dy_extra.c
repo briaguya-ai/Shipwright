@@ -91,14 +91,14 @@ void EnDyExtra_Update(Actor* thisx, PlayState* play) {
 void EnDyExtra_Draw(Actor* thisx, PlayState* play) {
     static Color_RGBA8 primColors[] = { { 255, 255, 170, 255 }, { 255, 255, 170, 255 } };
     static Color_RGBA8 envColors[] = { { 255, 100, 255, 255 }, { 100, 255, 255, 255 } };
-    static u8 D_809FFC50[] = { 0x02, 0x01, 0x01, 0x02, 0x00, 0x00, 0x02, 0x01, 0x00, 0x02, 0x01, 0x00, 0x02,
-                               0x01, 0x00, 0x02, 0x01, 0x00, 0x02, 0x01, 0x00, 0x02, 0x01, 0x00, 0x01, 0x02 };
+    static u8          D_809FFC50[] = { 0x02, 0x01, 0x01, 0x02, 0x00, 0x00, 0x02, 0x01, 0x00, 0x02, 0x01, 0x00, 0x02,
+                                        0x01, 0x00, 0x02, 0x01, 0x00, 0x02, 0x01, 0x00, 0x02, 0x01, 0x00, 0x01, 0x02 };
     EnDyExtra* this = (EnDyExtra*)thisx;
-    s32 pad;
+    s32              pad;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    Vtx* vertices = ResourceMgr_LoadVtxByName(SEGMENTED_TO_VIRTUAL(gGreatFairySpiralBeamVtx));
-    s32 i;
-    u8 unk[3];
+    Vtx*             vertices = ResourceMgr_LoadVtxByName(SEGMENTED_TO_VIRTUAL(gGreatFairySpiralBeamVtx));
+    s32              i;
+    u8               unk[3];
 
     unk[0] = 0.0f;
     unk[1] = (s8)(this->unk_158 * 240.0f);

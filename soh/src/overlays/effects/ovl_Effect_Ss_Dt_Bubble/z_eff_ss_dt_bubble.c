@@ -11,15 +11,15 @@
 #define rPrimColorG regs[1]
 #define rPrimColorB regs[2]
 #define rPrimColorA regs[3]
-#define rEnvColorR regs[4]
-#define rEnvColorG regs[5]
-#define rEnvColorB regs[6]
-#define rEnvColorA regs[7]
-#define rRandXZ regs[8]
-#define rScale regs[9]
-#define rLifespan regs[10]
+#define rEnvColorR  regs[4]
+#define rEnvColorG  regs[5]
+#define rEnvColorB  regs[6]
+#define rEnvColorA  regs[7]
+#define rRandXZ     regs[8]
+#define rScale      regs[9]
+#define rLifespan   regs[10]
 
-u32 EffectSsDtBubble_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsDtBubble_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsDtBubble_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsDtBubble_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -74,7 +74,7 @@ u32 EffectSsDtBubble_Init(PlayState* play, u32 index, EffectSs* this, void* init
 
 void EffectSsDtBubble_Draw(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    f32 scale;
+    f32              scale;
 
     OPEN_DISPS(gfxCtx);
 

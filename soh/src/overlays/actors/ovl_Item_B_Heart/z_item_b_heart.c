@@ -84,7 +84,7 @@ void func_80B85264(ItemBHeart* this, PlayState* play) {
 void ItemBHeart_Draw(Actor* thisx, PlayState* play) {
     ItemBHeart* this = (ItemBHeart*)thisx;
     Actor* actorIt;
-    u8 flag = false;
+    u8     flag = false;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -99,8 +99,8 @@ void ItemBHeart_Draw(Actor* thisx, PlayState* play) {
     }
 
     if (gSaveContext.n64ddFlag) {
-        GetItemEntry_Draw(play, Randomizer_GetItemFromActor(this->actor.id, 
-            play->sceneNum,this->actor.params, GI_HEART_CONTAINER_2));
+        GetItemEntry_Draw(play, Randomizer_GetItemFromActor(this->actor.id,
+                                                            play->sceneNum, this->actor.params, GI_HEART_CONTAINER_2));
     } else {
         if (flag) {
             Gfx_SetupDL_25Xlu(play->state.gfxCtx);

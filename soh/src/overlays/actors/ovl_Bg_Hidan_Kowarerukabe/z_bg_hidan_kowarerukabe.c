@@ -74,9 +74,9 @@ void BgHidanKowarerukabe_InitDynaPoly(BgHidanKowarerukabe* this, PlayState* play
         &gFireTempleBombableWallCol,
         &gFireTempleLargeBombableWallCol,
     };
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
-    s32 pad2;
+    s32              pad2;
 
     if (collisionHeaders[this->dyna.actor.params & 0xFF] != NULL) {
         DynaPolyActor_Init(&this->dyna, DPM_UNK);
@@ -90,7 +90,7 @@ void BgHidanKowarerukabe_InitDynaPoly(BgHidanKowarerukabe* this, PlayState* play
 void BgHidanKowarerukabe_InitColliderSphere(BgHidanKowarerukabe* this, PlayState* play) {
     static s16 sphereRadii[] = { 80, 45, 80 };
     static s16 sphereYPositions[] = { 0, 500, 500 };
-    s32 pad;
+    s32        pad;
 
     Collider_InitJntSph(play, &this->collider);
     Collider_SetJntSph(play, &this->collider, &this->dyna.actor, &sJntSphInit, this->colliderItems);
@@ -146,7 +146,7 @@ void BgHidanKowarerukabe_Destroy(Actor* thisx, PlayState* play) {
 }
 
 void BgHidanKowarerukabe_SpawnDust(BgHidanKowarerukabe* this, PlayState* play) {
-    s32 pad;
+    s32   pad;
     Vec3f pos;
 
     pos = this->dyna.actor.world.pos;
@@ -162,17 +162,17 @@ void BgHidanKowarerukabe_SpawnDust(BgHidanKowarerukabe* this, PlayState* play) {
 }
 
 void BgHidanKowarerukabe_FloorBreak(BgHidanKowarerukabe* this, PlayState* play) {
-    s32 i;
-    s32 j;
-    Vec3f velocity;
-    Vec3f pos;
-    s16 arg5;
+    s32    i;
+    s32    j;
+    Vec3f  velocity;
+    Vec3f  pos;
+    s16    arg5;
     Actor* thisx = &this->dyna.actor;
-    f32 sin = Math_SinS(thisx->shape.rot.y);
-    f32 cos = Math_CosS(thisx->shape.rot.y);
-    f32 tmp1;
-    f32 tmp2;
-    s16 arg9;
+    f32    sin = Math_SinS(thisx->shape.rot.y);
+    f32    cos = Math_CosS(thisx->shape.rot.y);
+    f32    tmp1;
+    f32    tmp2;
+    s16    arg9;
 
     pos.y = thisx->world.pos.y + 10.0f;
 
@@ -202,17 +202,17 @@ void BgHidanKowarerukabe_FloorBreak(BgHidanKowarerukabe* this, PlayState* play) 
 }
 
 void func_8088A67C(BgHidanKowarerukabe* this, PlayState* play) {
-    s32 i;
-    s32 j;
-    Vec3f velocity;
-    Vec3f pos;
-    s16 arg5;
+    s32    i;
+    s32    j;
+    Vec3f  velocity;
+    Vec3f  pos;
+    s16    arg5;
     Actor* thisx = &this->dyna.actor;
-    f32 sin = Math_SinS(thisx->shape.rot.y);
-    f32 cos = Math_CosS(thisx->shape.rot.y);
-    f32 tmp1;
-    f32 tmp2;
-    s16 arg9;
+    f32    sin = Math_SinS(thisx->shape.rot.y);
+    f32    cos = Math_CosS(thisx->shape.rot.y);
+    f32    tmp1;
+    f32    tmp2;
+    s16    arg9;
 
     for (i = 0; i < 5; i++) {
         pos.y = (20 * i) + thisx->world.pos.y;
@@ -243,17 +243,17 @@ void func_8088A67C(BgHidanKowarerukabe* this, PlayState* play) {
 }
 
 void BgHidanKowarerukabe_LargeWallBreak(BgHidanKowarerukabe* this, PlayState* play) {
-    s32 i;
-    s32 j;
-    Vec3f velocity;
-    Vec3f pos;
-    s16 arg5;
+    s32    i;
+    s32    j;
+    Vec3f  velocity;
+    Vec3f  pos;
+    s16    arg5;
     Actor* thisx = &this->dyna.actor;
-    f32 sin = Math_SinS(thisx->shape.rot.y);
-    f32 cos = Math_CosS(thisx->shape.rot.y);
-    f32 tmp1;
-    f32 tmp2;
-    s16 arg9;
+    f32    sin = Math_SinS(thisx->shape.rot.y);
+    f32    cos = Math_CosS(thisx->shape.rot.y);
+    f32    tmp1;
+    f32    tmp2;
+    s16    arg9;
 
     for (i = 0; i < 5; i++) {
         pos.y = (24 * i) + thisx->world.pos.y;

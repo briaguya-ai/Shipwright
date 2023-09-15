@@ -14,7 +14,7 @@ void ElfMsg2_Destroy(Actor* thisx, PlayState* play);
 void ElfMsg2_Update(Actor* thisx, PlayState* play);
 void ElfMsg2_Draw(Actor* thisx, PlayState* play);
 
-s32 ElfMsg2_GetMessageId(ElfMsg2* this);
+s32  ElfMsg2_GetMessageId(ElfMsg2* this);
 void ElfMsg2_WaitUntilActivated(ElfMsg2* this, PlayState* play);
 void ElfMsg2_WaitForTextRead(ElfMsg2* this, PlayState* play);
 
@@ -168,5 +168,5 @@ void ElfMsg2_Draw(Actor* thisx, PlayState* play) {
     gSPDisplayList(POLY_XLU_DISP++, sCubeDL);
 
     CLOSE_DISPS(play->state.gfxCtx);
-    #endif
+#endif
 }

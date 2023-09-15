@@ -11,17 +11,17 @@
 #define rPrimColorG regs[1]
 #define rPrimColorB regs[2]
 #define rPrimColorA regs[3]
-#define rEnvColorR regs[4]
-#define rEnvColorG regs[5]
-#define rEnvColorB regs[6]
-#define rEnvColorA regs[7]
-#define rTexIdx regs[8] // this reg is also used to set specific colors in the fire update function
-#define rScale regs[9]
-#define rScaleStep regs[10]
-#define rDrawFlags regs[11]
-#define rLifespan regs[12]
+#define rEnvColorR  regs[4]
+#define rEnvColorG  regs[5]
+#define rEnvColorB  regs[6]
+#define rEnvColorA  regs[7]
+#define rTexIdx     regs[8] // this reg is also used to set specific colors in the fire update function
+#define rScale      regs[9]
+#define rScaleStep  regs[10]
+#define rDrawFlags  regs[11]
+#define rLifespan   regs[12]
 
-u32 EffectSsDust_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsDust_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsDust_Update(PlayState* play, u32 index, EffectSs* this);
 void EffectSsBlast_UpdateFire(PlayState* play, u32 index, EffectSs* this);
 void EffectSsDust_Draw(PlayState* play, u32 index, EffectSs* this);
@@ -37,7 +37,7 @@ static EffectSsUpdateFunc sUpdateFuncs[] = {
 };
 
 u32 EffectSsDust_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx) {
-    s32 randColorOffset;
+    s32                     randColorOffset;
     EffectSsDustInitParams* initParams = (EffectSsDustInitParams*)initParamsx;
 
     Math_Vec3f_Copy(&this->pos, &initParams->pos);
@@ -78,16 +78,23 @@ u32 EffectSsDust_Init(PlayState* play, u32 index, EffectSs* this, void* initPara
 
 void EffectSsDust_Draw(PlayState* play, u32 index, EffectSs* this) {
     static void* dustTextures[] = {
-        gDust1Tex, gDust2Tex, gDust3Tex, gDust4Tex, gDust5Tex, gDust6Tex, gDust7Tex, gDust8Tex,
+        gDust1Tex,
+        gDust2Tex,
+        gDust3Tex,
+        gDust4Tex,
+        gDust5Tex,
+        gDust6Tex,
+        gDust7Tex,
+        gDust8Tex,
     };
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    MtxF mfTrans;
-    MtxF mfScale;
-    MtxF mfResult;
-    MtxF mfTrans11DA0;
-    s32 pad;
-    Mtx* mtx;
-    f32 scale;
+    MtxF             mfTrans;
+    MtxF             mfScale;
+    MtxF             mfResult;
+    MtxF             mfTrans11DA0;
+    s32              pad;
+    Mtx*             mtx;
+    f32              scale;
 
     OPEN_DISPS(gfxCtx);
 

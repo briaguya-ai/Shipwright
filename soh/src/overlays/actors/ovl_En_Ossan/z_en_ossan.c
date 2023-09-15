@@ -96,8 +96,8 @@ void EnOssan_Blink(EnOssan* this);
 
 u16 EnOssan_SetupHelloDialog(EnOssan* this);
 
-s32 EnOssan_TakeItemOffShelf(EnOssan* this);
-s32 EnOssan_ReturnItemToShelf(EnOssan* this);
+s32  EnOssan_TakeItemOffShelf(EnOssan* this);
+s32  EnOssan_ReturnItemToShelf(EnOssan* this);
 void EnOssan_ResetItemPosition(EnOssan* this);
 void EnOssan_SetStateGiveDiscountDialog(PlayState* play, EnOssan* this);
 
@@ -180,14 +180,31 @@ static s16 sShopkeeperObjectIds[][3] = {
 };
 
 static EnOssanTalkOwnerFunc sShopkeeperTalkOwner[] = {
-    EnOssan_TalkKokiriShopkeeper,       EnOssan_TalkKakarikoPotionShopkeeper, EnOssan_TalkBombchuShopkeeper,
-    EnOssan_TalkMarketPotionShopkeeper, EnOssan_TalkBazaarShopkeeper,         EnOssan_TalkDefaultShopkeeper,
-    EnOssan_TalkDefaultShopkeeper,      EnOssan_TalkZoraShopkeeper,           EnOssan_TalkGoronShopkeeper,
-    EnOssan_TalkDefaultShopkeeper,      EnOssan_TalkHappyMaskShopkeeper,
+    EnOssan_TalkKokiriShopkeeper,
+    EnOssan_TalkKakarikoPotionShopkeeper,
+    EnOssan_TalkBombchuShopkeeper,
+    EnOssan_TalkMarketPotionShopkeeper,
+    EnOssan_TalkBazaarShopkeeper,
+    EnOssan_TalkDefaultShopkeeper,
+    EnOssan_TalkDefaultShopkeeper,
+    EnOssan_TalkZoraShopkeeper,
+    EnOssan_TalkGoronShopkeeper,
+    EnOssan_TalkDefaultShopkeeper,
+    EnOssan_TalkHappyMaskShopkeeper,
 };
 
 static f32 sShopkeeperScale[] = {
-    0.01f, 0.011f, 0.0105f, 0.011f, 0.01f, 0.01f, 0.01f, 0.01f, 0.01f, 0.01f, 0.01f,
+    0.01f,
+    0.011f,
+    0.0105f,
+    0.011f,
+    0.01f,
+    0.01f,
+    0.01f,
+    0.01f,
+    0.01f,
+    0.01f,
+    0.01f,
 };
 
 typedef struct {
@@ -298,19 +315,56 @@ ShopItem sShopkeeperStores[][8] = {
       { SI_SPOOKY_MASK, -80, 76, -3 } },
 };
 static EnOssanGetGirlAParamsFunc sShopItemReplaceFunc[] = {
-    ShopItemDisp_Default,   ShopItemDisp_Default,    ShopItemDisp_Default, ShopItemDisp_Default,
-    ShopItemDisp_Default,   ShopItemDisp_Default,    ShopItemDisp_Default, ShopItemDisp_Default,
-    ShopItemDisp_Default,   ShopItemDisp_Default,    ShopItemDisp_Default, ShopItemDisp_Default,
-    ShopItemDisp_Default,   ShopItemDisp_Default,    ShopItemDisp_Default, ShopItemDisp_Default,
-    ShopItemDisp_Default,   ShopItemDisp_Default,    ShopItemDisp_Default, ShopItemDisp_Default,
-    ShopItemDisp_Default,   ShopItemDisp_Default,    ShopItemDisp_Default, ShopItemDisp_Default,
-    ShopItemDisp_Default,   ShopItemDisp_Default,    ShopItemDisp_Default, ShopItemDisp_Default,
-    ShopItemDisp_Default,   ShopItemDisp_Default,    ShopItemDisp_Default, ShopItemDisp_SpookyMask,
-    ShopItemDisp_SkullMask, ShopItemDisp_BunnyHood,  ShopItemDisp_Default, ShopItemDisp_ZoraMask,
-    ShopItemDisp_GoronMask, ShopItemDisp_GerudoMask, ShopItemDisp_Default, ShopItemDisp_Default,
-    ShopItemDisp_Default,   ShopItemDisp_Default,    ShopItemDisp_Default, ShopItemDisp_Default,
-    ShopItemDisp_Default,   ShopItemDisp_Default,    ShopItemDisp_Default, ShopItemDisp_Default,
-    ShopItemDisp_Default,   ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_SpookyMask,
+    ShopItemDisp_SkullMask,
+    ShopItemDisp_BunnyHood,
+    ShopItemDisp_Default,
+    ShopItemDisp_ZoraMask,
+    ShopItemDisp_GoronMask,
+    ShopItemDisp_GerudoMask,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
+    ShopItemDisp_Default,
 };
 
 static InitChainEntry sInitChain[] = {
@@ -322,16 +376,31 @@ static InitChainEntry sInitChain[] = {
 static Vec3f sSelectedItemPosition[] = { { 17.0f, 58.0f, 30.0f }, { -17.0f, 58.0f, 30.0f } };
 
 static EnOssanInitFunc sInitFuncs[] = {
-    EnOssan_InitKokiriShopkeeper, EnOssan_InitPotionShopkeeper,    EnOssan_InitBombchuShopkeeper,
-    EnOssan_InitPotionShopkeeper, EnOssan_InitBazaarShopkeeper,    EnOssan_InitBazaarShopkeeper,
-    EnOssan_InitBazaarShopkeeper, EnOssan_InitZoraShopkeeper,      EnOssan_InitGoronShopkeeper,
-    EnOssan_InitBazaarShopkeeper, EnOssan_InitHappyMaskShopkeeper,
+    EnOssan_InitKokiriShopkeeper,
+    EnOssan_InitPotionShopkeeper,
+    EnOssan_InitBombchuShopkeeper,
+    EnOssan_InitPotionShopkeeper,
+    EnOssan_InitBazaarShopkeeper,
+    EnOssan_InitBazaarShopkeeper,
+    EnOssan_InitBazaarShopkeeper,
+    EnOssan_InitZoraShopkeeper,
+    EnOssan_InitGoronShopkeeper,
+    EnOssan_InitBazaarShopkeeper,
+    EnOssan_InitHappyMaskShopkeeper,
 };
 
 static Vec3f sShopkeeperPositionOffsets[] = {
-    { 0.0f, 0.0f, 33.0f }, { 0.0f, 0.0f, 31.0f }, { 0.0f, 0.0f, 31.0f }, { 0.0f, 0.0f, 31.0f },
-    { 0.0f, 0.0f, 0.0f },  { 0.0f, 0.0f, 0.0f },  { 0.0f, 0.0f, 0.0f },  { 0.0f, 0.0f, 36.0f },
-    { 0.0f, 0.0f, 15.0f }, { 0.0f, 0.0f, 0.0f },  { 0.0f, 0.0f, 26.0f },
+    { 0.0f, 0.0f, 33.0f },
+    { 0.0f, 0.0f, 31.0f },
+    { 0.0f, 0.0f, 31.0f },
+    { 0.0f, 0.0f, 31.0f },
+    { 0.0f, 0.0f, 0.0f },
+    { 0.0f, 0.0f, 0.0f },
+    { 0.0f, 0.0f, 0.0f },
+    { 0.0f, 0.0f, 36.0f },
+    { 0.0f, 0.0f, 15.0f },
+    { 0.0f, 0.0f, 0.0f },
+    { 0.0f, 0.0f, 26.0f },
 };
 
 static EnOssanStateFunc sStateFunc[] = {
@@ -422,8 +491,8 @@ s16 ShopItemDisp_GerudoMask(s16 v) {
 
 void EnOssan_SpawnItemsOnShelves(EnOssan* this, PlayState* play, ShopItem* shopItems) {
     EnTana* shelves;
-    s16 itemParams;
-    s32 i;
+    s16     itemParams;
+    s32     i;
 
     for (i = 0; i < 8; i++, shopItems++) {
         if (shopItems->shopItemIndex < 0) {
@@ -459,7 +528,7 @@ void EnOssan_SpawnItemsOnShelves(EnOssan* this, PlayState* play, ShopItem* shopI
 }
 
 void EnOssan_UpdateShopOfferings(EnOssan* this, PlayState* play) {
-    s32 i;
+    s32       i;
     ShopItem* storeItems;
     ShopItem* shopItem;
 
@@ -587,7 +656,7 @@ s32 EnOssan_TryGetObjBankIndexes(EnOssan* this, PlayState* play, s16* objectIds)
 
 void EnOssan_Init(Actor* thisx, PlayState* play) {
     EnOssan* this = (EnOssan*)thisx;
-    s32 pad;
+    s32  pad;
     s16* objectIds;
 
     if (this->actor.params == OSSAN_TYPE_TALON && (LINK_AGE_IN_YEARS != YEARS_CHILD)) {
@@ -605,9 +674,9 @@ void EnOssan_Init(Actor* thisx, PlayState* play) {
     }
 
     // If you haven't given Zelda's Letter to the Kakariko Guard
-    // or are rando'd and haven't gotten gotten the letter from zelda yet 
-    if (this->actor.params == OSSAN_TYPE_MASK && (!Flags_GetInfTable(INFTABLE_SHOWED_ZELDAS_LETTER_TO_GATE_GUARD) || 
-        (gSaveContext.n64ddFlag && !Flags_GetEventChkInf(EVENTCHKINF_OBTAINED_ZELDAS_LETTER)))) {
+    // or are rando'd and haven't gotten gotten the letter from zelda yet
+    if (this->actor.params == OSSAN_TYPE_MASK && (!Flags_GetInfTable(INFTABLE_SHOWED_ZELDAS_LETTER_TO_GATE_GUARD) ||
+                                                  (gSaveContext.n64ddFlag && !Flags_GetEventChkInf(EVENTCHKINF_OBTAINED_ZELDAS_LETTER)))) {
         Actor_Kill(&this->actor);
         return;
     }
@@ -771,8 +840,8 @@ void EnOssan_State_Idle(EnOssan* this, PlayState* play, Player* player) {
 
 void EnOssan_UpdateJoystickInputState(PlayState* play, EnOssan* this) {
     Input* input = &play->state.input[0];
-    s8 stickX = input->rel.stick_x;
-    s8 stickY = input->rel.stick_y;
+    s8     stickX = input->rel.stick_x;
+    s8     stickY = input->rel.stick_y;
 
     if (CVarGetInteger("gMirroredWorld", 0)) {
         stickX = -input->rel.stick_x;
@@ -979,8 +1048,8 @@ s32 EnOssan_FacingShopkeeperDialogResult(EnOssan* this, PlayState* play) {
 
 void EnOssan_State_FacingShopkeeper(EnOssan* this, PlayState* play, Player* player) {
     Input* input = &play->state.input[0];
-    u8 nextIndex;
-    bool dpad = CVarGetInteger("gDpadText", 0);
+    u8     nextIndex;
+    bool   dpad = CVarGetInteger("gDpadText", 0);
 
     if ((Message_GetState(&play->msgCtx) == TEXT_STATE_CHOICE) &&
         !EnOssan_TestEndInteraction(this, play, &play->state.input[0])) {
@@ -1065,9 +1134,9 @@ void EnOssan_State_LookToRightShelf(EnOssan* this, PlayState* play, Player* play
 
 void EnOssan_CursorUpDown(EnOssan* this, PlayState* play) {
     Input* input = &play->state.input[0];
-    u8 curTemp = this->cursorIndex;
-    u8 curScanTemp;
-    bool dpad = CVarGetInteger("gDpadText", 0);
+    u8     curTemp = this->cursorIndex;
+    u8     curScanTemp;
+    bool   dpad = CVarGetInteger("gDpadText", 0);
 
     if ((this->stickAccumY < 0) || (dpad && CHECK_BTN_ALL(input->press.button, BTN_DDOWN))) {
         curTemp &= 0xFE;
@@ -1215,12 +1284,12 @@ s32 EnOssan_HasPlayerSelectedItem(PlayState* play, EnOssan* this, Input* input) 
 
 void EnOssan_State_BrowseLeftShelf(EnOssan* this, PlayState* play, Player* player) {
     Input* input = &play->state.input[0];
-    s32 a;
-    s32 b;
-    u8 prevIndex = this->cursorIndex;
-    s32 c;
-    s32 d;
-    bool dpad = CVarGetInteger("gDpadText", 0);
+    s32    a;
+    s32    b;
+    u8     prevIndex = this->cursorIndex;
+    s32    c;
+    s32    d;
+    bool   dpad = CVarGetInteger("gDpadText", 0);
 
     if (!EnOssan_ReturnItemToShelf(this)) {
         osSyncPrintf("%s[%d]:" VT_FGCOL(GREEN) "ズーム中！！" VT_RST "\n", __FILE__, __LINE__);
@@ -1285,10 +1354,10 @@ void EnOssan_State_BrowseLeftShelf(EnOssan* this, PlayState* play, Player* playe
 
 void EnOssan_State_BrowseRightShelf(EnOssan* this, PlayState* play, Player* player) {
     Input* input = &play->state.input[0];
-    s32 pad[2];
-    u8 prevIndex;
-    u8 nextIndex;
-    bool dpad = CVarGetInteger("gDpadText", 0);
+    s32    pad[2];
+    u8     prevIndex;
+    u8     nextIndex;
+    bool   dpad = CVarGetInteger("gDpadText", 0);
 
     prevIndex = this->cursorIndex;
     if (!EnOssan_ReturnItemToShelf(this)) {
@@ -1654,7 +1723,7 @@ void EnOssan_State_SelectBombs(EnOssan* this, PlayState* play, Player* player) {
 }
 
 void EnOssan_State_SelectMaskItem(EnOssan* this, PlayState* play, Player* player) {
-    u8 talkState = Message_GetState(&play->msgCtx);
+    u8       talkState = Message_GetState(&play->msgCtx);
     EnGirlA* item = this->shelfSlots[this->cursorIndex];
 
     if (!EnOssan_TakeItemOffShelf(this)) {
@@ -1747,10 +1816,10 @@ void EnOssan_State_GiveItemWithFanfare(EnOssan* this, PlayState* play, Player* p
 }
 
 void EnOssan_State_ItemPurchased(EnOssan* this, PlayState* play, Player* player) {
-    EnGirlA* item;
-    EnGirlA* itemTemp;
+    EnGirlA*         item;
+    EnGirlA*         itemTemp;
     ShopItemIdentity shopItemIdentity = Randomizer_IdentifyShopItem(play->sceneNum, this->cursorIndex);
-    GetItemEntry getItemEntry;
+    GetItemEntry     getItemEntry;
     if (shopItemIdentity.randomizerCheck != RC_UNKNOWN_CHECK) {
         getItemEntry = Randomizer_GetItemFromKnownCheck(shopItemIdentity.randomizerCheck, shopItemIdentity.ogItemId);
     } else {
@@ -1794,7 +1863,7 @@ void EnOssan_State_ItemPurchased(EnOssan* this, PlayState* play, Player* player)
 
 void EnOssan_State_ContinueShoppingPrompt(EnOssan* this, PlayState* play, Player* player) {
     EnGirlA* selectedItem;
-    u8 talkState = Message_GetState(&play->msgCtx);
+    u8       talkState = Message_GetState(&play->msgCtx);
 
     if (talkState == TEXT_STATE_CHOICE) {
         if (Message_ShouldAdvance(play)) {
@@ -1890,13 +1959,13 @@ void EnOssan_State_GiveDiscountDialog(EnOssan* this, PlayState* play, Player* pl
 }
 
 void EnOssan_PositionSelectedItem(EnOssan* this) {
-    EnGirlA* item;
-    u8 i;
-    u8 i2;
+    EnGirlA*  item;
+    u8        i;
+    u8        i2;
     ShopItem* shopItem;
-    f32 tx;
-    f32 ty;
-    f32 tz;
+    f32       tx;
+    f32       ty;
+    f32       tz;
 
     i = this->cursorIndex;
     shopItem = &sShopkeeperStores[this->actor.params][i];
@@ -1947,7 +2016,7 @@ s32 EnOssan_ReturnItemToShelf(EnOssan* this) {
 
 void EnOssan_UpdateItemSelectedProperty(EnOssan* this) {
     EnGirlA** temp_a1 = this->shelfSlots;
-    s32 i;
+    s32       i;
 
     for (i = 0; i < 8; i++) {
         if (temp_a1[0] != NULL) {

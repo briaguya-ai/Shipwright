@@ -78,7 +78,7 @@ s16 sBgDodoagoFirstExplosiveFlag = false;
 
 u8 sBgDodoagoDisableBombCatcher;
 
-//static u8 sUnused[90]; // unknown length
+// static u8 sUnused[90]; // unknown length
 
 s32 sBgDodoagoTimer;
 
@@ -87,12 +87,12 @@ void BgDodoago_SetupAction(BgDodoago* this, BgDodoagoActionFunc actionFunc) {
 }
 
 void BgDodoago_SpawnSparkles(Vec3f* meanPos, PlayState* play) {
-    Vec3f pos;
-    Color_RGBA8 primColor = { 100, 100, 100, 0 };
-    Color_RGBA8 envColor = { 40, 40, 40, 0 };
+    Vec3f        pos;
+    Color_RGBA8  primColor = { 100, 100, 100, 0 };
+    Color_RGBA8  envColor = { 40, 40, 40, 0 };
     static Vec3f velocity = { 0.0f, -1.5f, 0.0f };
     static Vec3f acceleration = { 0.0f, -0.2f, 0.0f };
-    s32 i;
+    s32          i;
 
     for (i = 4; i > 0; i--) {
         pos.x = Rand_CenteredFloat(20.0f) + meanPos->x;
@@ -111,7 +111,7 @@ static InitChainEntry sInitChain[] = {
 
 void BgDodoago_Init(Actor* thisx, PlayState* play) {
     BgDodoago* this = (BgDodoago*)thisx;
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
 
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
@@ -203,10 +203,17 @@ void BgDodoago_WaitExplosives(BgDodoago* this, PlayState* play) {
 void BgDodoago_OpenJaw(BgDodoago* this, PlayState* play) {
     Vec3f pos;
     Vec3f dustOffsets[] = {
-        { 0.0f, -200.0f, 430.0f },   { 20.0f, -200.0f, 420.0f }, { -20.0f, -200.0f, 420.0f },
-        { 40.0, -200.0f, 380.0f },   { -40.0, -200.0f, 380.0f }, { 50.0, -200.0f, 350.0f },
-        { -50.0f, -200.0f, 350.0f }, { 60.0f, -200.0f, 320.0f }, { -60.0f, -200.0f, 320.0f },
-        { 70.0f, -200.0f, 290.0f },  { -70.0, -200.0f, 290.0f },
+        { 0.0f, -200.0f, 430.0f },
+        { 20.0f, -200.0f, 420.0f },
+        { -20.0f, -200.0f, 420.0f },
+        { 40.0, -200.0f, 380.0f },
+        { -40.0, -200.0f, 380.0f },
+        { 50.0, -200.0f, 350.0f },
+        { -50.0f, -200.0f, 350.0f },
+        { 60.0f, -200.0f, 320.0f },
+        { -60.0f, -200.0f, 320.0f },
+        { 70.0f, -200.0f, 290.0f },
+        { -70.0, -200.0f, 290.0f },
     };
     s32 i;
 

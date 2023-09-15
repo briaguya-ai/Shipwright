@@ -222,9 +222,9 @@ void func_809CB354(EnBrob* this, PlayState* play) {
 
 void func_809CB458(EnBrob* this, PlayState* play) {
     Vec3f pos;
-    f32 dist1;
-    f32 dist2;
-    s32 i;
+    f32   dist1;
+    f32   dist2;
+    s32   i;
 
     SkelAnime_Update(&this->skelAnime);
     if (Animation_OnFrame(&this->skelAnime, 0) && (this->timer != 0)) {

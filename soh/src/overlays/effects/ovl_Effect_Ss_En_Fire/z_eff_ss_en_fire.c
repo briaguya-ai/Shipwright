@@ -8,17 +8,17 @@
 #include "objects/gameplay_keep/gameplay_keep.h"
 
 #define rScaleMax regs[0]
-#define rScale regs[1]
+#define rScale    regs[1]
 #define rLifespan regs[2]
-#define rUnused regs[3]
-#define rPitch regs[4]
-#define rYaw regs[5]
-#define rReg6 regs[6]
+#define rUnused   regs[3]
+#define rPitch    regs[4]
+#define rYaw      regs[5]
+#define rReg6     regs[6]
 #define rBodyPart regs[7]
-#define rFlags regs[8]
-#define rScroll regs[9]
+#define rFlags    regs[8]
+#define rScroll   regs[9]
 
-u32 EffectSsEnFire_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsEnFire_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsEnFire_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsEnFire_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -29,7 +29,7 @@ EffectSsInit Effect_Ss_En_Fire_InitVars = {
 
 u32 EffectSsEnFire_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx) {
     EffectSsEnFireInitParams* initParams = (EffectSsEnFireInitParams*)initParamsx;
-    Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
+    Vec3f                     zeroVec = { 0.0f, 0.0f, 0.0f };
 
     this->pos = initParams->pos;
     this->velocity = this->accel = zeroVec;
@@ -65,10 +65,10 @@ u32 EffectSsEnFire_Init(PlayState* play, u32 index, EffectSs* this, void* initPa
 
 void EffectSsEnFire_Draw(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    f32 scale;
-    s16 camYaw;
-    s32 pad[3];
-    s16 redGreen;
+    f32              scale;
+    s16              camYaw;
+    s32              pad[3];
+    s16              redGreen;
 
     OPEN_DISPS(gfxCtx);
 

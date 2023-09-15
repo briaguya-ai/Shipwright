@@ -16,7 +16,7 @@ void EnToryo_Update(Actor* thisx, PlayState* play);
 void EnToryo_Draw(Actor* thisx, PlayState* play);
 
 void func_80B20914(EnToryo* this, PlayState* play);
-s32 EnToryo_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx);
+s32  EnToryo_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx);
 void EnToryo_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void* thisx);
 
 const ActorInit En_Toryo_InitVars = {
@@ -143,9 +143,9 @@ void EnToryo_Destroy(Actor* thisx, PlayState* play) {
 }
 
 s32 func_80B203D8(EnToryo* this, PlayState* play) {
-    s32 pad;
+    s32     pad;
     Player* player = GET_PLAYER(play);
-    s32 ret = 1;
+    s32     ret = 1;
 
     switch (Message_GetState(&play->msgCtx)) {
         case TEXT_STATE_NONE:
@@ -216,9 +216,9 @@ s32 func_80B203D8(EnToryo* this, PlayState* play) {
 }
 
 s32 func_80B205CC(EnToryo* this, PlayState* play) {
-    s32 pad;
+    s32     pad;
     Player* player = GET_PLAYER(play);
-    s32 ret = 5;
+    s32     ret = 5;
 
     switch (Message_GetState(&play->msgCtx)) {
         case TEXT_STATE_NONE:
@@ -288,8 +288,8 @@ s32 func_80B206A0(EnToryo* this, PlayState* play) {
 
 void func_80B20768(EnToryo* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 sp32;
-    s16 sp30;
+    s16     sp32;
+    s16     sp30;
 
     // Animation Count should be no more than 1 to guarantee putaway is complete after giving the saw
     // As this is vanilla behavior, it only applies with the Fix toggle or Skip Text enabled.
@@ -364,8 +364,8 @@ void func_80B20914(EnToryo* this, PlayState* play) {
 void EnToryo_Update(Actor* thisx, PlayState* play) {
     EnToryo* this = (EnToryo*)thisx;
     ColliderCylinder* collider = &this->collider;
-    Player* player = GET_PLAYER(play);
-    f32 rot;
+    Player*           player = GET_PLAYER(play);
+    f32               rot;
 
     Collider_UpdateCylinder(thisx, collider);
     CollisionCheck_SetOC(play, &play->colChkCtx, (Collider*)collider);

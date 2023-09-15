@@ -32,141 +32,165 @@ typedef struct {
 } IconSize;
 
 typedef struct {
-    Sprite sprite;
-    Color_RGBA8 color;
-    u8 item;
+    Sprite       sprite;
+    Color_RGBA8  color;
+    u8           item;
     IconPosition pos;
-    IconSize size;
+    IconSize     size;
 } ItemData;
 
-#define CREATE_SPRITE_24(iconTex, spriteId) { iconTex, 24, 24, G_IM_FMT_RGBA, G_IM_SIZ_32b, spriteId }, {0xFF, 0xFF, 0xFF, 0xFF}
-#define CREATE_SPRITE_32(iconTex, spriteId) { iconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b, spriteId }, {0xFF, 0xFF, 0xFF, 0xFF}
-#define CREATE_SPRITE_SONG(colorR, colorG, colorB) { dgSongNoteTex, 16, 24, G_IM_FMT_IA, G_IM_SIZ_8b, 100 }, {colorR, colorG, colorB, 0xFF}
-#define CREATE_SPRITE_RUPEE(colorR, colorG, colorB) { dgRupeeCounterIconTex, 16, 16, G_IM_FMT_IA, G_IM_SIZ_8b, 102 }, {colorR, colorG, colorB, 0xFF}
-#define CREATE_SPRITE_SKULL { dgDungeonMapSkullTex, 16, 16, G_IM_FMT_RGBA, G_IM_SIZ_16b, 104 }, {0xFF, 0xFF, 0xFF, 0xFF}
-#define CREATE_SPRITE_COUNTER_DIGIT(i) { dgAmmoDigit##i##Tex, 8, 8, G_IM_FMT_IA, G_IM_SIZ_8b, 105+i }
+#define CREATE_SPRITE_24(iconTex, spriteId)                       \
+    { iconTex, 24, 24, G_IM_FMT_RGBA, G_IM_SIZ_32b, spriteId }, { \
+        0xFF, 0xFF, 0xFF, 0xFF                                    \
+    }
+#define CREATE_SPRITE_32(iconTex, spriteId)                       \
+    { iconTex, 32, 32, G_IM_FMT_RGBA, G_IM_SIZ_32b, spriteId }, { \
+        0xFF, 0xFF, 0xFF, 0xFF                                    \
+    }
+#define CREATE_SPRITE_SONG(colorR, colorG, colorB)              \
+    { dgSongNoteTex, 16, 24, G_IM_FMT_IA, G_IM_SIZ_8b, 100 }, { \
+        colorR, colorG, colorB, 0xFF                            \
+    }
+#define CREATE_SPRITE_RUPEE(colorR, colorG, colorB)                     \
+    { dgRupeeCounterIconTex, 16, 16, G_IM_FMT_IA, G_IM_SIZ_8b, 102 }, { \
+        colorR, colorG, colorB, 0xFF                                    \
+    }
+#define CREATE_SPRITE_SKULL                                               \
+    { dgDungeonMapSkullTex, 16, 16, G_IM_FMT_RGBA, G_IM_SIZ_16b, 104 }, { \
+        0xFF, 0xFF, 0xFF, 0xFF                                            \
+    }
+#define CREATE_SPRITE_COUNTER_DIGIT(i) \
+    { dgAmmoDigit##i##Tex, 8, 8, G_IM_FMT_IA, G_IM_SIZ_8b, 105 + i }
 
-#define ICON_SIZE 12
+#define ICON_SIZE    12
 #define COUNTER_SIZE 16
-#define SONG_WIDTH 8
-#define SONG_HEIGHT 12
+#define SONG_WIDTH   8
+#define SONG_HEIGHT  12
 
 #define LEFT_OFFSET (int)0x37
 #define TOP_OFFSET  (int)0x5C
 
 #define COUNTER_DIGITS_LEFT_OFFSET COUNTER_SIZE / 2 - 3
-#define COUNTER_DIGITS_TOP_OFFSET COUNTER_SIZE - 3
+#define COUNTER_DIGITS_TOP_OFFSET  COUNTER_SIZE - 3
 
-#define SIZE_NORMAL {ICON_SIZE, ICON_SIZE}
-#define SIZE_COUNTER {COUNTER_SIZE, COUNTER_SIZE}
-#define SIZE_SONG {SONG_WIDTH, SONG_HEIGHT}
+#define SIZE_NORMAL \
+    { ICON_SIZE, ICON_SIZE }
+#define SIZE_COUNTER \
+    { COUNTER_SIZE, COUNTER_SIZE }
+#define SIZE_SONG \
+    { SONG_WIDTH, SONG_HEIGHT }
 
-#define INV_IC_POS(x, y) {0x4E + ICON_SIZE * x, 0x00 + ICON_SIZE * y}
-#define EQP_IC_POS(x, y) {0x7E + ICON_SIZE * x, 0x2A + ICON_SIZE * y}
-#define SNG_IC_POS(x, y) {0x49 + SONG_WIDTH * x, 0x45 + SONG_HEIGHT * y}
-#define UPG_IC_POS(x, y) {0x5A + ICON_SIZE * x, 0x2A + ICON_SIZE * y}
-#define STN_IC_POS(i) {0x29 + ICON_SIZE * i, 0x31}
+#define INV_IC_POS(x, y) \
+    { 0x4E + ICON_SIZE *x, 0x00 + ICON_SIZE *y }
+#define EQP_IC_POS(x, y) \
+    { 0x7E + ICON_SIZE *x, 0x2A + ICON_SIZE *y }
+#define SNG_IC_POS(x, y) \
+    { 0x49 + SONG_WIDTH *x, 0x45 + SONG_HEIGHT *y }
+#define UPG_IC_POS(x, y) \
+    { 0x5A + ICON_SIZE *x, 0x2A + ICON_SIZE *y }
+#define STN_IC_POS(i) \
+    { 0x29 + ICON_SIZE *i, 0x31 }
 
 static ItemData itemData[88] = {
-    {CREATE_SPRITE_32(dgItemIconDekuStickTex, 1),          ITEM_STICK,            INV_IC_POS(0, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconDekuNutTex, 0),            ITEM_NUT,              INV_IC_POS(1, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconBombTex, 2),               ITEM_BOMB,             INV_IC_POS(2, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconBowTex, 3),                ITEM_BOW,              INV_IC_POS(3, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconArrowFireTex, 4),          ITEM_ARROW_FIRE,       INV_IC_POS(4, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconDinsFireTex, 5),           ITEM_DINS_FIRE,        INV_IC_POS(5, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconBottleEmptyTex, 20),       ITEM_BOTTLE,           INV_IC_POS(6, 0), SIZE_NORMAL},
+    { CREATE_SPRITE_32(dgItemIconDekuStickTex, 1), ITEM_STICK, INV_IC_POS(0, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconDekuNutTex, 0), ITEM_NUT, INV_IC_POS(1, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconBombTex, 2), ITEM_BOMB, INV_IC_POS(2, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconBowTex, 3), ITEM_BOW, INV_IC_POS(3, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconArrowFireTex, 4), ITEM_ARROW_FIRE, INV_IC_POS(4, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconDinsFireTex, 5), ITEM_DINS_FIRE, INV_IC_POS(5, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconBottleEmptyTex, 20), ITEM_BOTTLE, INV_IC_POS(6, 0), SIZE_NORMAL },
 
-    {CREATE_SPRITE_32(dgItemIconSlingshotTex, 6),          ITEM_SLINGSHOT,        INV_IC_POS(0, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconOcarinaFairyTex, 7),       ITEM_OCARINA_FAIRY,    INV_IC_POS(1, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconOcarinaOfTimeTex, 7),      ITEM_OCARINA_TIME,     INV_IC_POS(1, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconBombchuTex, 9),            ITEM_BOMBCHU,          INV_IC_POS(2, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconHookshotTex, 10),          ITEM_HOOKSHOT,         INV_IC_POS(3, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconLongshotTex, 10),          ITEM_LONGSHOT,         INV_IC_POS(3, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconArrowIceTex, 12),          ITEM_ARROW_ICE,        INV_IC_POS(4, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconFaroresWindTex, 13),       ITEM_FARORES_WIND,     INV_IC_POS(5, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconWeirdEggTex, 37),          ITEM_WEIRD_EGG,        INV_IC_POS(6, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconChickenTex, 37),           ITEM_CHICKEN,          INV_IC_POS(6, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconZeldasLetterTex, 37),      ITEM_LETTER_ZELDA,     INV_IC_POS(6, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconMaskKeatonTex, 37),        ITEM_MASK_KEATON,      INV_IC_POS(6, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconMaskSkullTex, 37),         ITEM_MASK_SKULL,       INV_IC_POS(6, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconMaskSpookyTex, 37),        ITEM_MASK_SPOOKY,      INV_IC_POS(6, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconMaskBunnyHoodTex, 37),     ITEM_MASK_BUNNY,       INV_IC_POS(6, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconMaskGoronTex, 37),         ITEM_MASK_GORON,       INV_IC_POS(6, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconMaskZoraTex, 37),          ITEM_MASK_ZORA,        INV_IC_POS(6, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconMaskGerudoTex, 37),        ITEM_MASK_GERUDO,      INV_IC_POS(6, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconMaskTruthTex, 37),         ITEM_MASK_TRUTH,       INV_IC_POS(6, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconSoldOutTex, 37),           ITEM_SOLD_OUT,         INV_IC_POS(6, 1), SIZE_NORMAL},
-    
-    {CREATE_SPRITE_32(dgItemIconBoomerangTex, 14),         ITEM_BOOMERANG,        INV_IC_POS(0, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconLensOfTruthTex, 15),       ITEM_LENS,             INV_IC_POS(1, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconMagicBeanTex, 16),         ITEM_BEAN,             INV_IC_POS(2, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconHammerTex, 17),            ITEM_HAMMER,           INV_IC_POS(3, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconArrowLightTex, 18),        ITEM_ARROW_LIGHT,      INV_IC_POS(4, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconNayrusLoveTex, 19),        ITEM_NAYRUS_LOVE,      INV_IC_POS(5, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconPocketEggTex, 53),         ITEM_POCKET_EGG,       INV_IC_POS(6, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconPocketCuccoTex, 53),       ITEM_POCKET_CUCCO,     INV_IC_POS(6, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconCojiroTex, 53),            ITEM_COJIRO,           INV_IC_POS(6, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconOddMushroomTex, 53),       ITEM_ODD_MUSHROOM,     INV_IC_POS(6, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconOddPotionTex, 53),         ITEM_ODD_POTION,       INV_IC_POS(6, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconPoachersSawTex, 53),       ITEM_SAW,              INV_IC_POS(6, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconBrokenGoronsSwordTex, 53), ITEM_SWORD_BROKEN,     INV_IC_POS(6, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconPrescriptionTex, 53),      ITEM_PRESCRIPTION,     INV_IC_POS(6, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconEyeballFrogTex, 53),       ITEM_FROG,             INV_IC_POS(6, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconEyeDropsTex, 53),          ITEM_EYEDROPS,         INV_IC_POS(6, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconClaimCheckTex, 53),        ITEM_CLAIM_CHECK,      INV_IC_POS(6, 2), SIZE_NORMAL},
-    
-    {CREATE_SPRITE_32(dgItemIconSwordKokiriTex, 54),       ITEM_SWORD_KOKIRI,     EQP_IC_POS(0, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconSwordMasterTex, 55),       ITEM_SWORD_MASTER,     EQP_IC_POS(1, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconSwordBiggoronTex, 56),     ITEM_SWORD_BGS,        EQP_IC_POS(2, 0), SIZE_NORMAL},
-    
-    {CREATE_SPRITE_32(dgItemIconShieldDekuTex, 57),        ITEM_SHIELD_DEKU,      EQP_IC_POS(0, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconShieldHylianTex, 58),      ITEM_SHIELD_HYLIAN,    EQP_IC_POS(1, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconShieldMirrorTex, 59),      ITEM_SHIELD_MIRROR,    EQP_IC_POS(2, 1), SIZE_NORMAL},
-    
-    {CREATE_SPRITE_32(dgItemIconTunicKokiriTex, 60),       ITEM_TUNIC_KOKIRI,     EQP_IC_POS(0, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconTunicGoronTex, 61),        ITEM_TUNIC_GORON,      EQP_IC_POS(1, 2), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconTunicZoraTex, 62),         ITEM_TUNIC_ZORA,       EQP_IC_POS(2, 2), SIZE_NORMAL},
-    
-    {CREATE_SPRITE_32(dgItemIconBootsKokiriTex, 63),       ITEM_BOOTS_KOKIRI,     EQP_IC_POS(0, 3), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconBootsIronTex, 64),         ITEM_BOOTS_IRON,       EQP_IC_POS(1, 3), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconBootsHoverTex, 65),        ITEM_BOOTS_HOVER,      EQP_IC_POS(2, 3), SIZE_NORMAL},
+    { CREATE_SPRITE_32(dgItemIconSlingshotTex, 6), ITEM_SLINGSHOT, INV_IC_POS(0, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconOcarinaFairyTex, 7), ITEM_OCARINA_FAIRY, INV_IC_POS(1, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconOcarinaOfTimeTex, 7), ITEM_OCARINA_TIME, INV_IC_POS(1, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconBombchuTex, 9), ITEM_BOMBCHU, INV_IC_POS(2, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconHookshotTex, 10), ITEM_HOOKSHOT, INV_IC_POS(3, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconLongshotTex, 10), ITEM_LONGSHOT, INV_IC_POS(3, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconArrowIceTex, 12), ITEM_ARROW_ICE, INV_IC_POS(4, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconFaroresWindTex, 13), ITEM_FARORES_WIND, INV_IC_POS(5, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconWeirdEggTex, 37), ITEM_WEIRD_EGG, INV_IC_POS(6, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconChickenTex, 37), ITEM_CHICKEN, INV_IC_POS(6, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconZeldasLetterTex, 37), ITEM_LETTER_ZELDA, INV_IC_POS(6, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconMaskKeatonTex, 37), ITEM_MASK_KEATON, INV_IC_POS(6, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconMaskSkullTex, 37), ITEM_MASK_SKULL, INV_IC_POS(6, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconMaskSpookyTex, 37), ITEM_MASK_SPOOKY, INV_IC_POS(6, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconMaskBunnyHoodTex, 37), ITEM_MASK_BUNNY, INV_IC_POS(6, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconMaskGoronTex, 37), ITEM_MASK_GORON, INV_IC_POS(6, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconMaskZoraTex, 37), ITEM_MASK_ZORA, INV_IC_POS(6, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconMaskGerudoTex, 37), ITEM_MASK_GERUDO, INV_IC_POS(6, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconMaskTruthTex, 37), ITEM_MASK_TRUTH, INV_IC_POS(6, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconSoldOutTex, 37), ITEM_SOLD_OUT, INV_IC_POS(6, 1), SIZE_NORMAL },
 
-    {CREATE_SPRITE_24(dgQuestIconKokiriEmeraldTex, 87),    ITEM_KOKIRI_EMERALD,   STN_IC_POS(-1),   SIZE_NORMAL},
-    {CREATE_SPRITE_24(dgQuestIconGoronRubyTex, 88),        ITEM_GORON_RUBY,       STN_IC_POS(0),    SIZE_NORMAL},
-    {CREATE_SPRITE_24(dgQuestIconZoraSapphireTex, 89),     ITEM_ZORA_SAPPHIRE,    STN_IC_POS(1),    SIZE_NORMAL},
-    
-    {CREATE_SPRITE_24(dgQuestIconMedallionForestTex, 81),  ITEM_MEDALLION_FOREST, {0x37, 0x0A},     SIZE_NORMAL},
-    {CREATE_SPRITE_24(dgQuestIconMedallionFireTex, 82),    ITEM_MEDALLION_FIRE,   {0x37, 0x1A},     SIZE_NORMAL},
-    {CREATE_SPRITE_24(dgQuestIconMedallionWaterTex, 83),   ITEM_MEDALLION_WATER,  {0x29, 0x22},     SIZE_NORMAL},
-    {CREATE_SPRITE_24(dgQuestIconMedallionSpiritTex, 84),  ITEM_MEDALLION_SPIRIT, {0x1B, 0x1A},     SIZE_NORMAL},
-    {CREATE_SPRITE_24(dgQuestIconMedallionShadowTex, 85),  ITEM_MEDALLION_SHADOW, {0x1B, 0x0A},     SIZE_NORMAL},
-    {CREATE_SPRITE_24(dgQuestIconMedallionLightTex, 86),   ITEM_MEDALLION_LIGHT,  {0x29, 0x02},     SIZE_NORMAL},
+    { CREATE_SPRITE_32(dgItemIconBoomerangTex, 14), ITEM_BOOMERANG, INV_IC_POS(0, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconLensOfTruthTex, 15), ITEM_LENS, INV_IC_POS(1, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconMagicBeanTex, 16), ITEM_BEAN, INV_IC_POS(2, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconHammerTex, 17), ITEM_HAMMER, INV_IC_POS(3, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconArrowLightTex, 18), ITEM_ARROW_LIGHT, INV_IC_POS(4, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconNayrusLoveTex, 19), ITEM_NAYRUS_LOVE, INV_IC_POS(5, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconPocketEggTex, 53), ITEM_POCKET_EGG, INV_IC_POS(6, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconPocketCuccoTex, 53), ITEM_POCKET_CUCCO, INV_IC_POS(6, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconCojiroTex, 53), ITEM_COJIRO, INV_IC_POS(6, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconOddMushroomTex, 53), ITEM_ODD_MUSHROOM, INV_IC_POS(6, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconOddPotionTex, 53), ITEM_ODD_POTION, INV_IC_POS(6, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconPoachersSawTex, 53), ITEM_SAW, INV_IC_POS(6, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconBrokenGoronsSwordTex, 53), ITEM_SWORD_BROKEN, INV_IC_POS(6, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconPrescriptionTex, 53), ITEM_PRESCRIPTION, INV_IC_POS(6, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconEyeballFrogTex, 53), ITEM_FROG, INV_IC_POS(6, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconEyeDropsTex, 53), ITEM_EYEDROPS, INV_IC_POS(6, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconClaimCheckTex, 53), ITEM_CLAIM_CHECK, INV_IC_POS(6, 2), SIZE_NORMAL },
 
-    {CREATE_SPRITE_32(dgItemIconGoronsBraceletTex, 71),    ITEM_BRACELET,         UPG_IC_POS(0, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconSilverGauntletsTex, 71),   ITEM_GAUNTLETS_SILVER, UPG_IC_POS(0, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconGoldenGauntletsTex, 71),   ITEM_GAUNTLETS_GOLD,   UPG_IC_POS(0, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconScaleSilverTex, 74),       ITEM_SCALE_SILVER,     UPG_IC_POS(1, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_32(dgItemIconScaleGoldenTex, 74),       ITEM_SCALE_GOLDEN,     UPG_IC_POS(1, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_24(dgQuestIconMagicJarSmallTex, 97),    ITEM_SINGLE_MAGIC,     UPG_IC_POS(2, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_24(dgQuestIconMagicJarBigTex, 97),      ITEM_DOUBLE_MAGIC,     UPG_IC_POS(2, 0), SIZE_NORMAL},
-    {CREATE_SPRITE_RUPEE(0xC8, 0xFF, 0x64),                ITEM_RUPEE_GREEN,      UPG_IC_POS(0, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_24(dgQuestIconGerudosCardTex, 91),      ITEM_GERUDO_CARD,      UPG_IC_POS(1, 1), SIZE_NORMAL},
-    {CREATE_SPRITE_24(dgQuestIconStoneOfAgonyTex, 90),     ITEM_STONE_OF_AGONY,   UPG_IC_POS(2, 1), SIZE_NORMAL},
+    { CREATE_SPRITE_32(dgItemIconSwordKokiriTex, 54), ITEM_SWORD_KOKIRI, EQP_IC_POS(0, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconSwordMasterTex, 55), ITEM_SWORD_MASTER, EQP_IC_POS(1, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconSwordBiggoronTex, 56), ITEM_SWORD_BGS, EQP_IC_POS(2, 0), SIZE_NORMAL },
 
-    {CREATE_SPRITE_SONG(224, 107, 255),                    ITEM_SONG_LULLABY,     SNG_IC_POS(0, 0), SIZE_SONG},
-    {CREATE_SPRITE_SONG(255, 195, 60),                     ITEM_SONG_EPONA,       SNG_IC_POS(1, 0), SIZE_SONG},
-    {CREATE_SPRITE_SONG(127, 255, 137),                    ITEM_SONG_SARIA,       SNG_IC_POS(2, 0), SIZE_SONG},
-    {CREATE_SPRITE_SONG(255, 255, 60),                     ITEM_SONG_SUN,         SNG_IC_POS(3, 0), SIZE_SONG},
-    {CREATE_SPRITE_SONG(119, 236, 255),                    ITEM_SONG_TIME,        SNG_IC_POS(4, 0), SIZE_SONG},
-    {CREATE_SPRITE_SONG(165, 165, 165),                    ITEM_SONG_STORMS,      SNG_IC_POS(5, 0), SIZE_SONG},
-    {CREATE_SPRITE_SONG(150, 255, 100),                    ITEM_SONG_MINUET,      SNG_IC_POS(0, 1), SIZE_SONG},
-    {CREATE_SPRITE_SONG(255, 80,  40),                     ITEM_SONG_BOLERO,      SNG_IC_POS(1, 1), SIZE_SONG},
-    {CREATE_SPRITE_SONG(100, 150, 255),                    ITEM_SONG_SERENADE,    SNG_IC_POS(2, 1), SIZE_SONG},
-    {CREATE_SPRITE_SONG(255, 160, 0),                      ITEM_SONG_REQUIEM,     SNG_IC_POS(3, 1), SIZE_SONG},
-    {CREATE_SPRITE_SONG(255, 100, 255),                    ITEM_SONG_NOCTURNE,    SNG_IC_POS(4, 1), SIZE_SONG},
-    {CREATE_SPRITE_SONG(255, 240, 100),                    ITEM_SONG_PRELUDE,     SNG_IC_POS(5, 1), SIZE_SONG},
+    { CREATE_SPRITE_32(dgItemIconShieldDekuTex, 57), ITEM_SHIELD_DEKU, EQP_IC_POS(0, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconShieldHylianTex, 58), ITEM_SHIELD_HYLIAN, EQP_IC_POS(1, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconShieldMirrorTex, 59), ITEM_SHIELD_MIRROR, EQP_IC_POS(2, 1), SIZE_NORMAL },
 
-    {CREATE_SPRITE_24(dgQuestIconHeartContainerTex, 101),  ITEM_DOUBLE_DEFENSE,   {0x05, -0x04},    SIZE_COUNTER},
+    { CREATE_SPRITE_32(dgItemIconTunicKokiriTex, 60), ITEM_TUNIC_KOKIRI, EQP_IC_POS(0, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconTunicGoronTex, 61), ITEM_TUNIC_GORON, EQP_IC_POS(1, 2), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconTunicZoraTex, 62), ITEM_TUNIC_ZORA, EQP_IC_POS(2, 2), SIZE_NORMAL },
+
+    { CREATE_SPRITE_32(dgItemIconBootsKokiriTex, 63), ITEM_BOOTS_KOKIRI, EQP_IC_POS(0, 3), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconBootsIronTex, 64), ITEM_BOOTS_IRON, EQP_IC_POS(1, 3), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconBootsHoverTex, 65), ITEM_BOOTS_HOVER, EQP_IC_POS(2, 3), SIZE_NORMAL },
+
+    { CREATE_SPRITE_24(dgQuestIconKokiriEmeraldTex, 87), ITEM_KOKIRI_EMERALD, STN_IC_POS(-1), SIZE_NORMAL },
+    { CREATE_SPRITE_24(dgQuestIconGoronRubyTex, 88), ITEM_GORON_RUBY, STN_IC_POS(0), SIZE_NORMAL },
+    { CREATE_SPRITE_24(dgQuestIconZoraSapphireTex, 89), ITEM_ZORA_SAPPHIRE, STN_IC_POS(1), SIZE_NORMAL },
+
+    { CREATE_SPRITE_24(dgQuestIconMedallionForestTex, 81), ITEM_MEDALLION_FOREST, { 0x37, 0x0A }, SIZE_NORMAL },
+    { CREATE_SPRITE_24(dgQuestIconMedallionFireTex, 82), ITEM_MEDALLION_FIRE, { 0x37, 0x1A }, SIZE_NORMAL },
+    { CREATE_SPRITE_24(dgQuestIconMedallionWaterTex, 83), ITEM_MEDALLION_WATER, { 0x29, 0x22 }, SIZE_NORMAL },
+    { CREATE_SPRITE_24(dgQuestIconMedallionSpiritTex, 84), ITEM_MEDALLION_SPIRIT, { 0x1B, 0x1A }, SIZE_NORMAL },
+    { CREATE_SPRITE_24(dgQuestIconMedallionShadowTex, 85), ITEM_MEDALLION_SHADOW, { 0x1B, 0x0A }, SIZE_NORMAL },
+    { CREATE_SPRITE_24(dgQuestIconMedallionLightTex, 86), ITEM_MEDALLION_LIGHT, { 0x29, 0x02 }, SIZE_NORMAL },
+
+    { CREATE_SPRITE_32(dgItemIconGoronsBraceletTex, 71), ITEM_BRACELET, UPG_IC_POS(0, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconSilverGauntletsTex, 71), ITEM_GAUNTLETS_SILVER, UPG_IC_POS(0, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconGoldenGauntletsTex, 71), ITEM_GAUNTLETS_GOLD, UPG_IC_POS(0, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconScaleSilverTex, 74), ITEM_SCALE_SILVER, UPG_IC_POS(1, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_32(dgItemIconScaleGoldenTex, 74), ITEM_SCALE_GOLDEN, UPG_IC_POS(1, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_24(dgQuestIconMagicJarSmallTex, 97), ITEM_SINGLE_MAGIC, UPG_IC_POS(2, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_24(dgQuestIconMagicJarBigTex, 97), ITEM_DOUBLE_MAGIC, UPG_IC_POS(2, 0), SIZE_NORMAL },
+    { CREATE_SPRITE_RUPEE(0xC8, 0xFF, 0x64), ITEM_RUPEE_GREEN, UPG_IC_POS(0, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_24(dgQuestIconGerudosCardTex, 91), ITEM_GERUDO_CARD, UPG_IC_POS(1, 1), SIZE_NORMAL },
+    { CREATE_SPRITE_24(dgQuestIconStoneOfAgonyTex, 90), ITEM_STONE_OF_AGONY, UPG_IC_POS(2, 1), SIZE_NORMAL },
+
+    { CREATE_SPRITE_SONG(224, 107, 255), ITEM_SONG_LULLABY, SNG_IC_POS(0, 0), SIZE_SONG },
+    { CREATE_SPRITE_SONG(255, 195, 60), ITEM_SONG_EPONA, SNG_IC_POS(1, 0), SIZE_SONG },
+    { CREATE_SPRITE_SONG(127, 255, 137), ITEM_SONG_SARIA, SNG_IC_POS(2, 0), SIZE_SONG },
+    { CREATE_SPRITE_SONG(255, 255, 60), ITEM_SONG_SUN, SNG_IC_POS(3, 0), SIZE_SONG },
+    { CREATE_SPRITE_SONG(119, 236, 255), ITEM_SONG_TIME, SNG_IC_POS(4, 0), SIZE_SONG },
+    { CREATE_SPRITE_SONG(165, 165, 165), ITEM_SONG_STORMS, SNG_IC_POS(5, 0), SIZE_SONG },
+    { CREATE_SPRITE_SONG(150, 255, 100), ITEM_SONG_MINUET, SNG_IC_POS(0, 1), SIZE_SONG },
+    { CREATE_SPRITE_SONG(255, 80, 40), ITEM_SONG_BOLERO, SNG_IC_POS(1, 1), SIZE_SONG },
+    { CREATE_SPRITE_SONG(100, 150, 255), ITEM_SONG_SERENADE, SNG_IC_POS(2, 1), SIZE_SONG },
+    { CREATE_SPRITE_SONG(255, 160, 0), ITEM_SONG_REQUIEM, SNG_IC_POS(3, 1), SIZE_SONG },
+    { CREATE_SPRITE_SONG(255, 100, 255), ITEM_SONG_NOCTURNE, SNG_IC_POS(4, 1), SIZE_SONG },
+    { CREATE_SPRITE_SONG(255, 240, 100), ITEM_SONG_PRELUDE, SNG_IC_POS(5, 1), SIZE_SONG },
+
+    { CREATE_SPRITE_24(dgQuestIconHeartContainerTex, 101), ITEM_DOUBLE_DEFENSE, { 0x05, -0x04 }, SIZE_COUNTER },
 };
 
 static u8 color_product(u8 c1, u8 c2) {
@@ -175,7 +199,7 @@ static u8 color_product(u8 c1, u8 c2) {
     return (u8)div255;
 }
 
-static const Color_RGBA8 DIM = {0x40, 0x40, 0x40, 0x90};
+static const Color_RGBA8 DIM = { 0x40, 0x40, 0x40, 0x90 };
 
 void SpriteLoad(FileChooseContext* this, Sprite* sprite);
 void SpriteDraw(FileChooseContext* this, Sprite* sprite, int left, int top, int width, int height);
@@ -248,7 +272,7 @@ u8 HasItem(s16 fileIndex, u8 item) {
         return Save_GetSaveMetaInfo(fileIndex)->isDoubleDefenseAcquired;
     }
 
-    //greg
+    // greg
     if (item == ITEM_RUPEE_GREEN) {
         return Save_GetSaveMetaInfo(fileIndex)->gregFound;
     }
@@ -257,7 +281,7 @@ u8 HasItem(s16 fileIndex, u8 item) {
 }
 
 u8 ShouldRenderItem(s16 fileIndex, u8 item) {
-    //strength
+    // strength
     if (item == ITEM_BRACELET && (HasItem(fileIndex, ITEM_GAUNTLETS_SILVER) || HasItem(fileIndex, ITEM_GAUNTLETS_GOLD))) {
         return 0;
     }
@@ -270,7 +294,7 @@ u8 ShouldRenderItem(s16 fileIndex, u8 item) {
         return 0;
     }
 
-    //magic
+    // magic
     if (item == ITEM_SINGLE_MAGIC && HasItem(fileIndex, ITEM_DOUBLE_MAGIC)) {
         return 0;
     }
@@ -279,7 +303,7 @@ u8 ShouldRenderItem(s16 fileIndex, u8 item) {
         return 0;
     }
 
-    //scales
+    // scales
     if (item == ITEM_SCALE_SILVER && HasItem(fileIndex, ITEM_SCALE_GOLDEN)) {
         return 0;
     }
@@ -288,7 +312,7 @@ u8 ShouldRenderItem(s16 fileIndex, u8 item) {
         return 0;
     }
 
-    //hookshot/longshot
+    // hookshot/longshot
     if (item == ITEM_HOOKSHOT && HasItem(fileIndex, ITEM_LONGSHOT)) {
         return 0;
     }
@@ -297,7 +321,7 @@ u8 ShouldRenderItem(s16 fileIndex, u8 item) {
         return 0;
     }
 
-    //ocarinas
+    // ocarinas
     if (item == ITEM_OCARINA_FAIRY && HasItem(fileIndex, ITEM_OCARINA_TIME)) {
         return 0;
     }
@@ -306,7 +330,7 @@ u8 ShouldRenderItem(s16 fileIndex, u8 item) {
         return 0;
     }
 
-    //trade child
+    // trade child
     if (item == ITEM_WEIRD_EGG && !HasItem(fileIndex, ITEM_WEIRD_EGG)) {
         return 0;
     }
@@ -321,20 +345,17 @@ u8 ShouldRenderItem(s16 fileIndex, u8 item) {
 
     if (
         item == ITEM_MASK_KEATON &&
-        (
-            HasItem(fileIndex, ITEM_WEIRD_EGG) ||
-            HasItem(fileIndex, ITEM_CHICKEN) ||
-            HasItem(fileIndex, ITEM_LETTER_ZELDA) ||
-            HasItem(fileIndex, ITEM_MASK_SKULL) ||
-            HasItem(fileIndex, ITEM_MASK_SPOOKY) ||
-            HasItem(fileIndex, ITEM_MASK_BUNNY) ||
-            HasItem(fileIndex, ITEM_MASK_GORON) ||
-            HasItem(fileIndex, ITEM_MASK_ZORA) ||
-            HasItem(fileIndex, ITEM_MASK_GERUDO) ||
-            HasItem(fileIndex, ITEM_MASK_TRUTH) ||
-            HasItem(fileIndex, ITEM_SOLD_OUT)
-        )
-    ) {
+        (HasItem(fileIndex, ITEM_WEIRD_EGG) ||
+         HasItem(fileIndex, ITEM_CHICKEN) ||
+         HasItem(fileIndex, ITEM_LETTER_ZELDA) ||
+         HasItem(fileIndex, ITEM_MASK_SKULL) ||
+         HasItem(fileIndex, ITEM_MASK_SPOOKY) ||
+         HasItem(fileIndex, ITEM_MASK_BUNNY) ||
+         HasItem(fileIndex, ITEM_MASK_GORON) ||
+         HasItem(fileIndex, ITEM_MASK_ZORA) ||
+         HasItem(fileIndex, ITEM_MASK_GERUDO) ||
+         HasItem(fileIndex, ITEM_MASK_TRUTH) ||
+         HasItem(fileIndex, ITEM_SOLD_OUT))) {
         return 0;
     }
 
@@ -370,61 +391,58 @@ u8 ShouldRenderItem(s16 fileIndex, u8 item) {
         return 0;
     }
 
-    //trade adult
+    // trade adult
     if (
         item == ITEM_POCKET_EGG &&
-        (
-            HasItem(fileIndex, ITEM_POCKET_CUCCO) ||
-            HasItem(fileIndex, ITEM_COJIRO) ||
-            HasItem(fileIndex, ITEM_ODD_MUSHROOM) ||
-            HasItem(fileIndex, ITEM_ODD_POTION) ||
-            HasItem(fileIndex, ITEM_SAW) ||
-            HasItem(fileIndex, ITEM_SWORD_BROKEN) ||
-            HasItem(fileIndex, ITEM_PRESCRIPTION) ||
-            HasItem(fileIndex, ITEM_FROG) ||
-            HasItem(fileIndex, ITEM_EYEDROPS) ||
-            HasItem(fileIndex, ITEM_CLAIM_CHECK)
-        )
-    ) {
+        (HasItem(fileIndex, ITEM_POCKET_CUCCO) ||
+         HasItem(fileIndex, ITEM_COJIRO) ||
+         HasItem(fileIndex, ITEM_ODD_MUSHROOM) ||
+         HasItem(fileIndex, ITEM_ODD_POTION) ||
+         HasItem(fileIndex, ITEM_SAW) ||
+         HasItem(fileIndex, ITEM_SWORD_BROKEN) ||
+         HasItem(fileIndex, ITEM_PRESCRIPTION) ||
+         HasItem(fileIndex, ITEM_FROG) ||
+         HasItem(fileIndex, ITEM_EYEDROPS) ||
+         HasItem(fileIndex, ITEM_CLAIM_CHECK))) {
         return 0;
     }
 
     if (item == ITEM_POCKET_CUCCO && !HasItem(fileIndex, ITEM_POCKET_CUCCO)) {
         return 0;
     }
-    
+
     if (item == ITEM_COJIRO && !HasItem(fileIndex, ITEM_COJIRO)) {
         return 0;
     }
-    
+
     if (item == ITEM_ODD_MUSHROOM && !HasItem(fileIndex, ITEM_ODD_MUSHROOM)) {
         return 0;
     }
-    
+
     if (item == ITEM_ODD_POTION && !HasItem(fileIndex, ITEM_ODD_POTION)) {
         return 0;
     }
-    
+
     if (item == ITEM_SAW && !HasItem(fileIndex, ITEM_SAW)) {
         return 0;
     }
-    
+
     if (item == ITEM_SWORD_BROKEN && !HasItem(fileIndex, ITEM_SWORD_BROKEN)) {
         return 0;
     }
-    
+
     if (item == ITEM_PRESCRIPTION && !HasItem(fileIndex, ITEM_PRESCRIPTION)) {
         return 0;
     }
-    
+
     if (item == ITEM_FROG && !HasItem(fileIndex, ITEM_FROG)) {
         return 0;
     }
-    
+
     if (item == ITEM_EYEDROPS && !HasItem(fileIndex, ITEM_EYEDROPS)) {
         return 0;
     }
-    
+
     if (item == ITEM_CLAIM_CHECK && !HasItem(fileIndex, ITEM_CLAIM_CHECK)) {
         return 0;
     }
@@ -433,7 +451,7 @@ u8 ShouldRenderItem(s16 fileIndex, u8 item) {
         return 0;
     }
 
-    //greg
+    // greg
     if (item == ITEM_RUPEE_GREEN) {
         return Save_GetSaveMetaInfo(fileIndex)->randoSave;
     }
@@ -455,7 +473,7 @@ static void DrawItems(FileChooseContext* this, s16 fileIndex, u8 alpha) {
             } else {
                 gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, color_product(data->color.r, DIM.r), color_product(data->color.g, DIM.g), color_product(data->color.b, DIM.b), color_product(color_product(data->color.a, DIM.a), alpha));
             }
-        
+
             SpriteLoad(this, &(data->sprite));
             SpriteDraw(this, &(data->sprite), LEFT_OFFSET + data->pos.left, TOP_OFFSET + data->pos.top, data->size.width, data->size.height);
         }
@@ -476,21 +494,21 @@ typedef enum {
 } CounterID;
 
 typedef struct {
-    Sprite sprite;
-    Color_RGBA8 color;
-    u8 id;
+    Sprite       sprite;
+    Color_RGBA8  color;
+    u8           id;
     IconPosition pos;
-    IconSize size;
+    IconSize     size;
 } CounterData;
 
 static CounterData counterData[7] = {
-    {CREATE_SPRITE_24(dgQuestIconHeartContainerTex, 101), COUNTER_HEALTH,        {0x05, 0x00}, SIZE_COUNTER},
-    {CREATE_SPRITE_RUPEE(0xC8, 0xFF, 0x64),               COUNTER_WALLET_CHILD,  {0x05, 0x15}, SIZE_COUNTER},
-    {CREATE_SPRITE_RUPEE(0x82, 0x82, 0xFF),               COUNTER_WALLET_ADULT,  {0x05, 0x15}, SIZE_COUNTER},
-    {CREATE_SPRITE_RUPEE(0xFF, 0x64, 0x64),               COUNTER_WALLET_GIANT,  {0x05, 0x15}, SIZE_COUNTER},
-    {CREATE_SPRITE_RUPEE(0xFF, 0x5A, 0xFF),               COUNTER_WALLET_TYCOON, {0x05, 0x15}, SIZE_COUNTER},
-    {CREATE_SPRITE_24(dgQuestIconGoldSkulltulaTex, 103),  COUNTER_SKULLTULLAS,   {0x05, 0x2A}, SIZE_COUNTER},
-    {CREATE_SPRITE_SKULL,                                 COUNTER_DEATHS,        {0x48, 0x2A}, SIZE_COUNTER},
+    { CREATE_SPRITE_24(dgQuestIconHeartContainerTex, 101), COUNTER_HEALTH, { 0x05, 0x00 }, SIZE_COUNTER },
+    { CREATE_SPRITE_RUPEE(0xC8, 0xFF, 0x64), COUNTER_WALLET_CHILD, { 0x05, 0x15 }, SIZE_COUNTER },
+    { CREATE_SPRITE_RUPEE(0x82, 0x82, 0xFF), COUNTER_WALLET_ADULT, { 0x05, 0x15 }, SIZE_COUNTER },
+    { CREATE_SPRITE_RUPEE(0xFF, 0x64, 0x64), COUNTER_WALLET_GIANT, { 0x05, 0x15 }, SIZE_COUNTER },
+    { CREATE_SPRITE_RUPEE(0xFF, 0x5A, 0xFF), COUNTER_WALLET_TYCOON, { 0x05, 0x15 }, SIZE_COUNTER },
+    { CREATE_SPRITE_24(dgQuestIconGoldSkulltulaTex, 103), COUNTER_SKULLTULLAS, { 0x05, 0x2A }, SIZE_COUNTER },
+    { CREATE_SPRITE_SKULL, COUNTER_DEATHS, { 0x48, 0x2A }, SIZE_COUNTER },
 };
 
 static Sprite counterDigitSprites[10] = {
@@ -527,7 +545,7 @@ u8 ShouldRenderCounter(s16 fileIndex, u8 counterId) {
 }
 
 u16 GetCurrentCounterValue(s16 fileIndex, u8 counter) {
-    //one heart is 16 healthCapacity
+    // one heart is 16 healthCapacity
     if (counter == COUNTER_HEALTH) {
         return Save_GetSaveMetaInfo(fileIndex)->healthCapacity / 16;
     }
@@ -588,7 +606,7 @@ void DrawCounterValue(FileChooseContext* this, s16 fileIndex, u8 alpha, CounterD
     currentValue = GetCurrentCounterValue(fileIndex, data->id);
     maxValue = GetMaxCounterValue(fileIndex, data->id);
 
-    //to prevent crashes if you use the save editor
+    // to prevent crashes if you use the save editor
     if (currentValue > 999) {
         currentValue = 999;
     }
@@ -647,7 +665,7 @@ static void DrawCounters(FileChooseContext* this, s16 fileIndex, u8 alpha) {
 
         if (ShouldRenderCounter(fileIndex, data->id)) {
             gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, data->color.r, data->color.g, data->color.b, color_product(data->color.a, alpha));
-        
+
             SpriteLoad(this, &(data->sprite));
             SpriteDraw(this, &(data->sprite), LEFT_OFFSET + data->pos.left, TOP_OFFSET + data->pos.top, data->size.width, data->size.height);
 
@@ -678,7 +696,7 @@ u8 hasRandomizerQuest() {
 }
 
 void FileChoose_DrawTextureI8(GraphicsContext* gfxCtx, const void* texture, s16 texWidth, s16 texHeight, s16 rectLeft, s16 rectTop,
-                         s16 rectWidth, s16 rectHeight, s16 dsdx, s16 dtdy) {
+                              s16 rectWidth, s16 rectHeight, s16 dsdx, s16 dtdy) {
     OPEN_DISPS(gfxCtx);
     gDPLoadTextureBlock(POLY_OPA_DISP++, texture, G_IM_FMT_I, G_IM_SIZ_8b, texWidth, texHeight, 0, G_TX_NOMIRROR | G_TX_WRAP,
                         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
@@ -704,22 +722,22 @@ void FileChoose_DrawImageRGBA32(GraphicsContext* gfxCtx, s16 centerX, s16 center
 
     rectLeft = centerX - (width / 2);
     rectTop = centerY - (height / 2);
-    
+
     gDPSetTileCustom(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_32b, width, height, 0, G_TX_NOMIRROR | G_TX_CLAMP,
                      G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
-    
+
     gDPSetTextureImage(POLY_OPA_DISP++, G_IM_FMT_RGBA, G_IM_SIZ_32b, width, source);
-    
+
     gDPLoadSync(POLY_OPA_DISP++);
     gDPLoadTile(POLY_OPA_DISP++, G_TX_LOADTILE, 0, 0, (width - 1) << 2, (height - 1) << 2);
-    
+
     gSPTextureRectangle(POLY_OPA_DISP++, rectLeft << 2, rectTop << 2, (rectLeft + (s32)width) << 2,
                         (rectTop + height) << 2, G_TX_RENDERTILE, 0, 0, 1 << 10, 1 << 10);
     CLOSE_DISPS(gfxCtx);
 }
 
 void FileChoose_DrawTextRec(GraphicsContext* gfxCtx, s32 r, s32 g, s32 b, s32 a, f32 x, f32 y, f32 z, s32 s, s32 t,
-                         f32 dx, f32 dy) {
+                            f32 dx, f32 dy) {
     f32 unk;
     s32 ulx, uly, lrx, lry;
     f32 w, h;
@@ -796,8 +814,7 @@ void FileChoose_SetView(FileChooseContext* this, f32 eyeX, f32 eyeY, f32 eyeZ) {
     func_800AAA50(&this->view, 0x7F);
 }
 
-Gfx* FileChoose_QuadTextureIA8(Gfx* gfx, void* texture, s16 width, s16 height, s16 point)
-{
+Gfx* FileChoose_QuadTextureIA8(Gfx* gfx, void* texture, s16 width, s16 height, s16 point) {
     gDPLoadTextureBlock(gfx++, texture, G_IM_FMT_IA, G_IM_SIZ_8b, width, height, 0, G_TX_NOMIRROR | G_TX_WRAP,
                         G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
 
@@ -961,7 +978,7 @@ void DrawSeedHashSprites(FileChooseContext* this) {
 
     // Draw icons on the main menu, when a rando file is selected, and when quest selection is set to rando
     if ((this->configMode == CM_MAIN_MENU &&
-        (this->selectMode != SM_CONFIRM_FILE || Save_GetSaveMetaInfo(this->selectedFileIndex)->randoSave == 1)) ||
+         (this->selectMode != SM_CONFIRM_FILE || Save_GetSaveMetaInfo(this->selectedFileIndex)->randoSave == 1)) ||
         (this->configMode == CM_QUEST_MENU && this->questType[this->buttonIndex] == FS_QUEST_RANDOMIZER)) {
 
         if (this->fileInfoAlpha[this->selectedFileIndex] > 0) {
@@ -974,7 +991,7 @@ void DrawSeedHashSprites(FileChooseContext* this) {
                 if (Save_GetSaveMetaInfo(this->selectedFileIndex)->randoSave == 1) {
                     SpriteLoad(this, GetSeedTexture(Save_GetSaveMetaInfo(this->selectedFileIndex)->seedHash[i]));
                     SpriteDraw(this, GetSeedTexture(Save_GetSaveMetaInfo(this->selectedFileIndex)->seedHash[i]),
-                                xStart + (40 * i), 10, 24, 24);
+                               xStart + (40 * i), 10, 24, 24);
                 }
             }
         }
@@ -1006,49 +1023,49 @@ u8 generating;
 
 void FileChoose_UpdateRandomizer() {
     if (CVarGetInteger("gRandoGenerating", 0) != 0 && generating == 0) {
-            generating = 1;
-            func_800F5E18(SEQ_PLAYER_BGM_MAIN, NA_BGM_HORSE, 0, 7, 1);
-            return;
+        generating = 1;
+        func_800F5E18(SEQ_PLAYER_BGM_MAIN, NA_BGM_HORSE, 0, 7, 1);
+        return;
     } else if (CVarGetInteger("gRandoGenerating", 0) == 0 && generating) {
-            if (SpoilerFileExists(CVarGetString("gSpoilerLog", ""))) {
-                Audio_PlayFanfare(NA_BGM_HORSE_GOAL);
-            } else {
-                func_80078884(NA_SE_SY_OCARINA_ERROR);
-            }
-            func_800F5E18(SEQ_PLAYER_BGM_MAIN, NA_BGM_FILE_SELECT, 0, 7, 1);
-            generating = 0;
-            return;
+        if (SpoilerFileExists(CVarGetString("gSpoilerLog", ""))) {
+            Audio_PlayFanfare(NA_BGM_HORSE_GOAL);
+        } else {
+            func_80078884(NA_SE_SY_OCARINA_ERROR);
+        }
+        func_800F5E18(SEQ_PLAYER_BGM_MAIN, NA_BGM_FILE_SELECT, 0, 7, 1);
+        generating = 0;
+        return;
     } else if (generating) {
-            return;
+        return;
     }
 
     if (!SpoilerFileExists(CVarGetString("gSpoilerLog", ""))) {
-            CVarSetString("gSpoilerLog", "");
-            fileSelectSpoilerFileLoaded = false;
+        CVarSetString("gSpoilerLog", "");
+        fileSelectSpoilerFileLoaded = false;
     }
 
     if ((CVarGetInteger("gNewFileDropped", 0) != 0) || (CVarGetInteger("gNewSeedGenerated", 0) != 0) ||
         (!fileSelectSpoilerFileLoaded && SpoilerFileExists(CVarGetString("gSpoilerLog", "")))) {
-            if (CVarGetInteger("gNewFileDropped", 0) != 0) {
+        if (CVarGetInteger("gNewFileDropped", 0) != 0) {
             CVarSetString("gSpoilerLog", CVarGetString("gDroppedFile", "None"));
-            }
-            bool silent = true;
-            if ((CVarGetInteger("gNewFileDropped", 0) != 0) || (CVarGetInteger("gNewSeedGenerated", 0) != 0)) {
+        }
+        bool silent = true;
+        if ((CVarGetInteger("gNewFileDropped", 0) != 0) || (CVarGetInteger("gNewSeedGenerated", 0) != 0)) {
             silent = false;
-            }
-            CVarSetInteger("gNewSeedGenerated", 0);
-            CVarSetInteger("gNewFileDropped", 0);
-            CVarSetString("gDroppedFile", "");
-            fileSelectSpoilerFileLoaded = false;
-            const char* fileLoc = CVarGetString("gSpoilerLog", "");
-            Randomizer_LoadSettings(fileLoc);
-            Randomizer_LoadHintLocations(fileLoc);
-            Randomizer_LoadRequiredTrials(fileLoc);
-            Randomizer_LoadItemLocations(fileLoc, silent);
-            Randomizer_LoadMerchantMessages(fileLoc);
-            Randomizer_LoadMasterQuestDungeons(fileLoc);
-            Randomizer_LoadEntranceOverrides(fileLoc, silent);
-            fileSelectSpoilerFileLoaded = true;
+        }
+        CVarSetInteger("gNewSeedGenerated", 0);
+        CVarSetInteger("gNewFileDropped", 0);
+        CVarSetString("gDroppedFile", "");
+        fileSelectSpoilerFileLoaded = false;
+        const char* fileLoc = CVarGetString("gSpoilerLog", "");
+        Randomizer_LoadSettings(fileLoc);
+        Randomizer_LoadHintLocations(fileLoc);
+        Randomizer_LoadRequiredTrials(fileLoc);
+        Randomizer_LoadItemLocations(fileLoc, silent);
+        Randomizer_LoadMerchantMessages(fileLoc);
+        Randomizer_LoadMasterQuestDungeons(fileLoc);
+        Randomizer_LoadEntranceOverrides(fileLoc, silent);
+        fileSelectSpoilerFileLoaded = true;
     }
 }
 
@@ -1067,7 +1084,7 @@ void FileChoose_UpdateMainMenu(GameState* thisx) {
     static u8 linkName[] = { 0x15, 0x2C, 0x31, 0x2E, 0x3E, 0x3E, 0x3E, 0x3E };
     FileChooseContext* this = (FileChooseContext*)thisx;
     Input* input = &this->state.input[0];
-    bool dpad = CVarGetInteger("gDpadText", 0);
+    bool   dpad = CVarGetInteger("gDpadText", 0);
 
     FileChoose_UpdateRandomizer();
 
@@ -1078,10 +1095,9 @@ void FileChoose_UpdateMainMenu(GameState* thisx) {
                 this->prevConfigMode = this->configMode;
                 this->configMode = CM_ROTATE_TO_QUEST_MENU;
                 this->logoAlpha = 0;
-            } else if(!FileChoose_IsSaveCompatible(Save_GetSaveMetaInfo(this->buttonIndex))) {
+            } else if (!FileChoose_IsSaveCompatible(Save_GetSaveMetaInfo(this->buttonIndex))) {
                 Audio_PlaySoundGeneral(NA_SE_SY_FSEL_ERROR, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
-            }  
-            else {
+            } else {
                 Audio_PlaySoundGeneral(NA_SE_SY_FSEL_DECIDE_L, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
                 this->actionTimer = 8;
                 this->selectMode = SM_FADE_MAIN_TO_SELECT;
@@ -1255,16 +1271,16 @@ void FileChoose_UpdateQuestMenu(GameState* thisx) {
     FileChoose_UpdateStickDirectionPromptAnim(thisx);
     FileChooseContext* this = (FileChooseContext*)thisx;
     Input* input = &this->state.input[0];
-    s8 i = 0;
-    bool dpad = CVarGetInteger("gDpadText", 0);
+    s8     i = 0;
+    bool   dpad = CVarGetInteger("gDpadText", 0);
 
     FileChoose_UpdateRandomizer();
 
     if (ABS(this->stickRelX) > 30 || (dpad && CHECK_BTN_ANY(input->press.button, BTN_DLEFT | BTN_DRIGHT))) {
         if (this->stickRelX > 30 || (dpad && CHECK_BTN_ANY(input->press.button, BTN_DRIGHT))) {
             this->questType[this->buttonIndex] += 1;
-            while ((this->questType[this->buttonIndex] == FS_QUEST_MASTER && !ResourceMgr_GameHasMasterQuest()) || 
-                (this->questType[this->buttonIndex] == FS_QUEST_RANDOMIZER && !hasRandomizerQuest())) {
+            while ((this->questType[this->buttonIndex] == FS_QUEST_MASTER && !ResourceMgr_GameHasMasterQuest()) ||
+                   (this->questType[this->buttonIndex] == FS_QUEST_RANDOMIZER && !hasRandomizerQuest())) {
                 // If Master Quest is selected without a Master Quest OTR present or when Randomizer Quest is
                 // selected without a loaded Randomizer seed, skip past it.
                 this->questType[this->buttonIndex] += 1;
@@ -1272,7 +1288,7 @@ void FileChoose_UpdateQuestMenu(GameState* thisx) {
         } else if (this->stickRelX < -30 || (dpad && CHECK_BTN_ANY(input->press.button, BTN_DLEFT))) {
             this->questType[this->buttonIndex] -= 1;
             while ((this->questType[this->buttonIndex] == FS_QUEST_MASTER && !ResourceMgr_GameHasMasterQuest()) ||
-                (this->questType[this->buttonIndex] == FS_QUEST_RANDOMIZER && !hasRandomizerQuest())) {
+                   (this->questType[this->buttonIndex] == FS_QUEST_RANDOMIZER && !hasRandomizerQuest())) {
                 // If Master Quest is selected without a Master Quest OTR present or when Randomizer Quest is
                 // selected without a loaded Randomizer seed, skip past it.
                 this->questType[this->buttonIndex] -= 1;
@@ -1338,7 +1354,7 @@ void FileChoose_UpdateBossRushMenu(GameState* thisx) {
     FileChoose_UpdateStickDirectionPromptAnim(thisx);
     FileChooseContext* this = (FileChooseContext*)thisx;
     Input* input = &this->state.input[0];
-    bool dpad = CVarGetInteger("gDpadText", 0);
+    bool   dpad = CVarGetInteger("gDpadText", 0);
 
     // Fade in elements after opening Boss Rush options menu
     this->bossRushUIAlpha += 25;
@@ -1351,7 +1367,7 @@ void FileChoose_UpdateBossRushMenu(GameState* thisx) {
     if (this->bossRushArrowOffset >= 30) {
         this->bossRushArrowOffset = 0;
     }
-    
+
     // Move menu selection up or down.
     if (ABS(this->stickRelY) > 30 || (dpad && CHECK_BTN_ANY(input->press.button, BTN_DDOWN | BTN_DUP))) {
         // Move down
@@ -1538,31 +1554,56 @@ void FileChoose_RotateToBossRush(GameState* thisx) {
 }
 
 static void (*gConfigModeUpdateFuncs[])(GameState*) = {
-    FileChoose_StartFadeIn,        FileChoose_FinishFadeIn,
-    FileChoose_UpdateMainMenu,     FileChoose_SetupCopySource,
-    FileChoose_SelectCopySource,   FileChoose_SetupCopyDest1,
-    FileChoose_SetupCopyDest2,     FileChoose_SelectCopyDest,
-    FileChoose_ExitToCopySource1,  FileChoose_ExitToCopySource2,
-    FileChoose_SetupCopyConfirm1,  FileChoose_SetupCopyConfirm2,
-    FileChoose_CopyConfirm,        FileChoose_ReturnToCopyDest,
-    FileChoose_CopyAnim1,          FileChoose_CopyAnim2,
-    FileChoose_CopyAnim3,          FileChoose_CopyAnim4,
-    FileChoose_CopyAnim5,          FileChoose_ExitCopyToMain,
-    FileChoose_SetupEraseSelect,   FileChoose_EraseSelect,
-    FileChoose_SetupEraseConfirm1, FileChoose_SetupEraseConfirm2,
-    FileChoose_EraseConfirm,       FileChoose_ExitToEraseSelect1,
-    FileChoose_ExitToEraseSelect2, FileChoose_EraseAnim1,
-    FileChoose_EraseAnim2,         FileChoose_EraseAnim3,
-    FileChoose_ExitEraseToMain,    FileChoose_UnusedCM31,
-    FileChoose_RotateToNameEntry,  FileChoose_UpdateKeyboardCursor,
-    FileChoose_StartNameEntry,     FileChoose_RotateToMain,
-    FileChoose_RotateToOptions,    FileChoose_UpdateOptionsMenu,
-    FileChoose_StartOptions,       FileChoose_RotateToMain,
-    FileChoose_UnusedCMDelay,      FileChoose_RotateToQuest,
-    FileChoose_UpdateQuestMenu,    FileChoose_StartQuestMenu,
-    FileChoose_RotateToMain,       FileChoose_RotateToQuest,
-    FileChoose_RotateToBossRush,   FileChoose_UpdateBossRushMenu,
-    FileChoose_StartBossRushMenu,  FileChoose_RotateToQuest,
+    FileChoose_StartFadeIn,
+    FileChoose_FinishFadeIn,
+    FileChoose_UpdateMainMenu,
+    FileChoose_SetupCopySource,
+    FileChoose_SelectCopySource,
+    FileChoose_SetupCopyDest1,
+    FileChoose_SetupCopyDest2,
+    FileChoose_SelectCopyDest,
+    FileChoose_ExitToCopySource1,
+    FileChoose_ExitToCopySource2,
+    FileChoose_SetupCopyConfirm1,
+    FileChoose_SetupCopyConfirm2,
+    FileChoose_CopyConfirm,
+    FileChoose_ReturnToCopyDest,
+    FileChoose_CopyAnim1,
+    FileChoose_CopyAnim2,
+    FileChoose_CopyAnim3,
+    FileChoose_CopyAnim4,
+    FileChoose_CopyAnim5,
+    FileChoose_ExitCopyToMain,
+    FileChoose_SetupEraseSelect,
+    FileChoose_EraseSelect,
+    FileChoose_SetupEraseConfirm1,
+    FileChoose_SetupEraseConfirm2,
+    FileChoose_EraseConfirm,
+    FileChoose_ExitToEraseSelect1,
+    FileChoose_ExitToEraseSelect2,
+    FileChoose_EraseAnim1,
+    FileChoose_EraseAnim2,
+    FileChoose_EraseAnim3,
+    FileChoose_ExitEraseToMain,
+    FileChoose_UnusedCM31,
+    FileChoose_RotateToNameEntry,
+    FileChoose_UpdateKeyboardCursor,
+    FileChoose_StartNameEntry,
+    FileChoose_RotateToMain,
+    FileChoose_RotateToOptions,
+    FileChoose_UpdateOptionsMenu,
+    FileChoose_StartOptions,
+    FileChoose_RotateToMain,
+    FileChoose_UnusedCMDelay,
+    FileChoose_RotateToQuest,
+    FileChoose_UpdateQuestMenu,
+    FileChoose_StartQuestMenu,
+    FileChoose_RotateToMain,
+    FileChoose_RotateToQuest,
+    FileChoose_RotateToBossRush,
+    FileChoose_UpdateBossRushMenu,
+    FileChoose_StartBossRushMenu,
+    FileChoose_RotateToQuest,
 };
 
 /**
@@ -1582,7 +1623,8 @@ void FileChoose_PulsateCursor(GameState* thisx) {
         this->highlightColor[3] += alphaStep;
     }
 
-    XREG(35)--;
+    XREG(35)
+    --;
 
     if (XREG(35) == 0) {
         this->highlightColor[3] = cursorAlphaTargets[this->highlightPulseDir];
@@ -1935,40 +1977,46 @@ void FileChoose_SetWindowContentVtx(GameState* thisx) {
 static u16 D_8081284C[] = { 0x007C, 0x0124, 0x01CC };
 
 static void* sQuestItemTextures[] = {
-    gFileSelKokiriEmeraldTex,   gFileSelGoronRubyTex,       gFileSelZoraSapphireTex,
-    gFileSelForestMedallionTex, gFileSelFireMedallionTex,   gFileSelWaterMedallionTex,
-    gFileSelSpiritMedallionTex, gFileSelShadowMedallionTex, gFileSelLightMedallionTex,
+    gFileSelKokiriEmeraldTex,
+    gFileSelGoronRubyTex,
+    gFileSelZoraSapphireTex,
+    gFileSelForestMedallionTex,
+    gFileSelFireMedallionTex,
+    gFileSelWaterMedallionTex,
+    gFileSelSpiritMedallionTex,
+    gFileSelShadowMedallionTex,
+    gFileSelLightMedallionTex,
 };
 
-static s16 sQuestItemRed[] = { 255, 255, 255, 0, 255, 0, 255, 200, 200 };
-static s16 sQuestItemGreen[] = { 255, 255, 255, 255, 60, 100, 130, 50, 200 };
-static s16 sQuestItemBlue[] = { 255, 255, 255, 0, 0, 255, 0, 255, 0 };
-static s16 sQuestItemFlags[] = { 0x0012, 0x0013, 0x0014, 0x0000, 0x0001, 0x0002, 0x0003, 0x0004, 0x0005 };
-static s16 sNamePrimColors[2][3] = { { 255, 255, 255 }, { 100, 100, 100 } };
+static s16   sQuestItemRed[] = { 255, 255, 255, 0, 255, 0, 255, 200, 200 };
+static s16   sQuestItemGreen[] = { 255, 255, 255, 255, 60, 100, 130, 50, 200 };
+static s16   sQuestItemBlue[] = { 255, 255, 255, 0, 0, 255, 0, 255, 0 };
+static s16   sQuestItemFlags[] = { 0x0012, 0x0013, 0x0014, 0x0000, 0x0001, 0x0002, 0x0003, 0x0004, 0x0005 };
+static s16   sNamePrimColors[2][3] = { { 255, 255, 255 }, { 100, 100, 100 } };
 static void* sHeartTextures[] = { gHeartFullTex, gDefenseHeartFullTex };
 
 void FileChoose_DrawFileInfo(GameState* thisx, s16 fileIndex, s16 isActive) {
     FileChooseContext* this = (FileChooseContext*)thisx;
     Font* sp54 = &this->font;
-    s32 heartType;
-    s16 i;
-    s16 vtxOffset;
-    s16 j;
-    s16 deathCountSplit[3];
+    s32   heartType;
+    s16   i;
+    s16   vtxOffset;
+    s16   j;
+    s16   deathCountSplit[3];
 
-    Color_RGB8 heartColor = {HEARTS_PRIM_R, HEARTS_PRIM_G, HEARTS_PRIM_B};
+    Color_RGB8 heartColor = { HEARTS_PRIM_R, HEARTS_PRIM_G, HEARTS_PRIM_B };
     if (CVarGetInteger("gCosmetics.Consumable_Hearts.Changed", 0)) {
         heartColor = CVarGetColor24("gCosmetics.Consumable_Hearts.Value", heartColor);
     }
-    Color_RGB8 heartBorder = {HEARTS_ENV_R, HEARTS_ENV_G, HEARTS_ENV_B};
+    Color_RGB8 heartBorder = { HEARTS_ENV_R, HEARTS_ENV_G, HEARTS_ENV_B };
     if (CVarGetInteger("gCosmetics.Consumable_HeartBorder.Changed", 0)) {
         heartBorder = CVarGetColor24("gCosmetics.Consumable_HeartBorder.Value", heartBorder);
     }
-    Color_RGB8 ddColor = {HEARTS_DD_ENV_R, HEARTS_DD_ENV_G, HEARTS_DD_ENV_B};
+    Color_RGB8 ddColor = { HEARTS_DD_ENV_R, HEARTS_DD_ENV_G, HEARTS_DD_ENV_B };
     if (CVarGetInteger("gCosmetics.Consumable_DDHearts.Changed", 0)) {
         ddColor = CVarGetColor24("gCosmetics.Consumable_DDHearts.Value", ddColor);
     }
-    Color_RGB8 ddBorder = {HEARTS_DD_PRIM_R, HEARTS_DD_PRIM_G, HEARTS_DD_PRIM_B};
+    Color_RGB8 ddBorder = { HEARTS_DD_PRIM_R, HEARTS_DD_PRIM_G, HEARTS_DD_PRIM_B };
     if (CVarGetInteger("gCosmetics.Consumable_DDHeartBorder.Changed", 0)) {
         ddBorder = CVarGetColor24("gCosmetics.Consumable_DDHeartBorder.Value", ddBorder);
     }
@@ -2074,8 +2122,11 @@ void FileChoose_DrawFileInfo(GameState* thisx, s16 fileIndex, s16 isActive) {
 }
 
 static void* sFileInfoBoxTextures[] = {
-    gFileSelFileInfoBox1Tex, gFileSelFileInfoBox2Tex, gFileSelFileInfoBox3Tex,
-    gFileSelFileInfoBox4Tex, gFileSelFileInfoBox5Tex,
+    gFileSelFileInfoBox1Tex,
+    gFileSelFileInfoBox2Tex,
+    gFileSelFileInfoBox3Tex,
+    gFileSelFileInfoBox4Tex,
+    gFileSelFileInfoBox5Tex,
 };
 
 static void* sTitleLabels[3][9] = {
@@ -2147,15 +2198,15 @@ const char* FileChoose_GetBossRushOptionsTitleTexName(Language lang) {
  */
 void FileChoose_DrawWindowContents(GameState* thisx) {
     FileChooseContext* this = (FileChooseContext*)thisx;
-    s16 fileIndex;
-    s16 temp;
-    s16 i;
-    s16 quadVtxIndex;
-    s16 isActive;
-    s16 pad;
+    s16   fileIndex;
+    s16   temp;
+    s16   i;
+    s16   quadVtxIndex;
+    s16   isActive;
+    s16   pad;
     char* tex;
 
-    switch (this->configMode) { 
+    switch (this->configMode) {
         case CM_QUEST_MENU:
         case CM_ROTATE_TO_NAME_ENTRY:
         case CM_START_QUEST_MENU:
@@ -2189,7 +2240,7 @@ void FileChoose_DrawWindowContents(GameState* thisx) {
     gSP1Quadrangle(POLY_OPA_DISP++, 0, 2, 3, 1, 0);
 
     // draw next title label
-    if ((this->configMode == CM_QUEST_MENU) || (this->configMode == CM_START_QUEST_MENU) || 
+    if ((this->configMode == CM_QUEST_MENU) || (this->configMode == CM_START_QUEST_MENU) ||
         this->configMode == CM_NAME_ENTRY_TO_QUEST_MENU) {
         // draw control stick prompts.
         Gfx_SetupDL_39Opa(this->state.gfxCtx);
@@ -2198,24 +2249,24 @@ void FileChoose_DrawWindowContents(GameState* thisx) {
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, 4, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
         FileChoose_DrawTextRec(this->state.gfxCtx, this->stickLeftPrompt.arrowColorR,
-                                this->stickLeftPrompt.arrowColorG, this->stickLeftPrompt.arrowColorB,
-                                this->stickLeftPrompt.arrowColorA, this->stickLeftPrompt.arrowTexX,
-                                this->stickLeftPrompt.arrowTexY, this->stickLeftPrompt.z, 0, 0, -1.0f, 1.0f);
+                               this->stickLeftPrompt.arrowColorG, this->stickLeftPrompt.arrowColorB,
+                               this->stickLeftPrompt.arrowColorA, this->stickLeftPrompt.arrowTexX,
+                               this->stickLeftPrompt.arrowTexY, this->stickLeftPrompt.z, 0, 0, -1.0f, 1.0f);
         FileChoose_DrawTextRec(this->state.gfxCtx, this->stickRightPrompt.arrowColorR,
-                                this->stickRightPrompt.arrowColorG, this->stickRightPrompt.arrowColorB,
-                                this->stickRightPrompt.arrowColorA, this->stickRightPrompt.arrowTexX,
-                                this->stickRightPrompt.arrowTexY, this->stickRightPrompt.z, 0, 0, 1.0f, 1.0f);
+                               this->stickRightPrompt.arrowColorG, this->stickRightPrompt.arrowColorB,
+                               this->stickRightPrompt.arrowColorA, this->stickRightPrompt.arrowTexX,
+                               this->stickRightPrompt.arrowTexY, this->stickRightPrompt.z, 0, 0, 1.0f, 1.0f);
         gDPLoadTextureBlock(POLY_OPA_DISP++, gControlStickTex, G_IM_FMT_IA, G_IM_SIZ_8b, 16, 16, 0,
                             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, 4, G_TX_NOMASK, G_TX_NOLOD,
                             G_TX_NOLOD);
         FileChoose_DrawTextRec(this->state.gfxCtx, this->stickLeftPrompt.stickColorR,
-                                this->stickLeftPrompt.stickColorG, this->stickLeftPrompt.stickColorB,
-                                this->stickLeftPrompt.stickColorA, this->stickLeftPrompt.stickTexX,
-                                this->stickLeftPrompt.stickTexY, this->stickLeftPrompt.z, 0, 0, -1.0f, 1.0f);
+                               this->stickLeftPrompt.stickColorG, this->stickLeftPrompt.stickColorB,
+                               this->stickLeftPrompt.stickColorA, this->stickLeftPrompt.stickTexX,
+                               this->stickLeftPrompt.stickTexY, this->stickLeftPrompt.z, 0, 0, -1.0f, 1.0f);
         FileChoose_DrawTextRec(this->state.gfxCtx, this->stickRightPrompt.stickColorR,
-                                this->stickRightPrompt.stickColorG, this->stickRightPrompt.stickColorB,
-                                this->stickRightPrompt.stickColorA, this->stickRightPrompt.stickTexX,
-                                this->stickRightPrompt.stickTexY, this->stickRightPrompt.z, 0, 0, 1.0f, 1.0f);
+                               this->stickRightPrompt.stickColorG, this->stickRightPrompt.stickColorB,
+                               this->stickRightPrompt.stickColorA, this->stickRightPrompt.stickTexX,
+                               this->stickRightPrompt.stickTexY, this->stickRightPrompt.z, 0, 0, 1.0f, 1.0f);
         switch (this->questType[this->buttonIndex]) {
             case FS_QUEST_NORMAL:
             default:
@@ -2232,7 +2283,7 @@ void FileChoose_DrawWindowContents(GameState* thisx) {
                 FileChoose_DrawImageRGBA32(this->state.gfxCtx, 160, 135, gTitleZeldaShieldLogoMQTex, 160, 160);
                 FileChoose_DrawImageRGBA32(this->state.gfxCtx, 182, 180, gTitleMasterQuestSubtitleTex, 128, 32);
                 break;
-            
+
             case FS_QUEST_RANDOMIZER:
                 DrawSeedHashSprites(this);
                 gDPSetPrimColor(POLY_OPA_DISP++, 0, 0, 255, 255, 255, this->logoAlpha);
@@ -2285,12 +2336,12 @@ void FileChoose_DrawWindowContents(GameState* thisx) {
             uint16_t textYOffset = (i - listOffset) * 16;
 
             // Option name.
-            Interface_DrawTextLine(this->state.gfxCtx, BossRush_GetSettingName(i, gSaveContext.language), 
-                65, (87 + textYOffset), 255, 255, 80, textAlpha, 0.8f, true);
+            Interface_DrawTextLine(this->state.gfxCtx, BossRush_GetSettingName(i, gSaveContext.language),
+                                   65, (87 + textYOffset), 255, 255, 80, textAlpha, 0.8f, true);
 
             // Selected choice for option.
-            uint16_t finalKerning = Interface_DrawTextLine(this->state.gfxCtx, BossRush_GetSettingChoiceName(i, gSaveContext.bossRushOptions[i], gSaveContext.language), 
-                165, (87 + textYOffset), 255, 255, 255, textAlpha, 0.8f, true);
+            uint16_t finalKerning = Interface_DrawTextLine(this->state.gfxCtx, BossRush_GetSettingChoiceName(i, gSaveContext.bossRushOptions[i], gSaveContext.language),
+                                                           165, (87 + textYOffset), 255, 255, 255, textAlpha, 0.8f, true);
 
             // Draw arrows around selected option.
             if (this->bossRushIndex == i) {
@@ -2335,8 +2386,8 @@ void FileChoose_DrawWindowContents(GameState* thisx) {
                 gSPVertex(POLY_OPA_DISP++, &this->windowContentVtx[68], 4, 0);
 
                 gDPLoadTextureBlock(POLY_OPA_DISP++, gFileSelNameBoxTex, G_IM_FMT_IA, G_IM_SIZ_16b, 108, 16, 0,
-                                G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
-                                G_TX_NOLOD, G_TX_NOLOD);
+                                    G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
+                                    G_TX_NOLOD, G_TX_NOLOD);
                 gSP1Quadrangle(POLY_OPA_DISP++, 0, 2, 3, 1, 0);
             } else {
                 gSPVertex(POLY_OPA_DISP++, &this->windowContentVtx[temp], 20, 0);
@@ -2559,7 +2610,7 @@ void FileChoose_ConfigModeDraw(GameState* thisx) {
         Matrix_Scale(0.78f, 0.78f, 0.78f, MTXMODE_APPLY);
 
         if (this->windowRot != 0) {
-            if (this->configMode == CM_ROTATE_TO_QUEST_MENU || 
+            if (this->configMode == CM_ROTATE_TO_QUEST_MENU ||
                 (this->configMode >= CM_MAIN_TO_OPTIONS && this->configMode <= CM_OPTIONS_TO_MAIN) ||
                 this->configMode == CM_QUEST_TO_MAIN) {
                 Matrix_RotateX(this->windowRot / 100.0f, MTXMODE_APPLY);
@@ -2643,7 +2694,7 @@ void FileChoose_ConfigModeDraw(GameState* thisx) {
     }
 
     // draw quest menu
-    if ((this->configMode == CM_QUEST_MENU) || (this->configMode == CM_ROTATE_TO_QUEST_MENU) || 
+    if ((this->configMode == CM_QUEST_MENU) || (this->configMode == CM_ROTATE_TO_QUEST_MENU) ||
         (this->configMode == CM_ROTATE_TO_NAME_ENTRY) || this->configMode == CM_QUEST_TO_MAIN ||
         this->configMode == CM_NAME_ENTRY_TO_QUEST_MENU || this->configMode == CM_ROTATE_TO_BOSS_RUSH_MENU) {
         // window
@@ -2800,7 +2851,7 @@ void FileChoose_FadeInFileInfo(GameState* thisx) {
 void FileChoose_ConfirmFile(GameState* thisx) {
     FileChooseContext* this = (FileChooseContext*)thisx;
     Input* input = &this->state.input[0];
-    bool dpad = CVarGetInteger("gDpadText", 0);
+    bool   dpad = CVarGetInteger("gDpadText", 0);
 
     if (CHECK_BTN_ALL(input->press.button, BTN_START) || (CHECK_BTN_ALL(input->press.button, BTN_A))) {
         if (this->confirmButtonIndex == FS_BTN_CONFIRM_YES) {
@@ -3003,8 +3054,7 @@ void FileChoose_LoadGame(GameState* thisx) {
     gSaveContext.naviTimer = 0;
 
     // SWORDLESS LINK IS BACK BABY
-    if (CVarGetInteger("gSwordlessLink", 0) != 0)
-    {
+    if (CVarGetInteger("gSwordlessLink", 0) != 0) {
         if ((gSaveContext.equips.buttonItems[0] != ITEM_SWORD_KOKIRI) &&
             (gSaveContext.equips.buttonItems[0] != ITEM_SWORD_MASTER) &&
             (gSaveContext.equips.buttonItems[0] != ITEM_SWORD_BGS) &&
@@ -3025,8 +3075,8 @@ void FileChoose_LoadGame(GameState* thisx) {
         // When remeber save location is on, set save warp if the save was in an a grotto, or
         // the entrance index is -1 from shuffle overwarld spawn
         if (Randomizer_GetSettingValue(RSK_SHUFFLE_ENTRANCES) && ((!CVarGetInteger("gRememberSaveLocation", 0) ||
-            gSaveContext.savedSceneNum == SCENE_FAIRYS_FOUNTAIN || gSaveContext.savedSceneNum == SCENE_GROTTOS) ||
-            (CVarGetInteger("gRememberSaveLocation", 0) && Randomizer_GetSettingValue(RSK_SHUFFLE_OVERWORLD_SPAWNS) && gSaveContext.entranceIndex == -1))) {
+                                                                   gSaveContext.savedSceneNum == SCENE_FAIRYS_FOUNTAIN || gSaveContext.savedSceneNum == SCENE_GROTTOS) ||
+                                                                  (CVarGetInteger("gRememberSaveLocation", 0) && Randomizer_GetSettingValue(RSK_SHUFFLE_OVERWORLD_SPAWNS) && gSaveContext.entranceIndex == -1))) {
             Entrance_SetSavewarpEntrance();
         }
     }
@@ -3035,8 +3085,14 @@ void FileChoose_LoadGame(GameState* thisx) {
 }
 
 static void (*gSelectModeUpdateFuncs[])(GameState*) = {
-    FileChoose_FadeMainToSelect, FileChoose_MoveSelectedFileToTop,  FileChoose_FadeInFileInfo, FileChoose_ConfirmFile,
-    FileChoose_FadeOutFileInfo,  FileChoose_MoveSelectedFileToSlot, FileChoose_FadeOut,        FileChoose_LoadGame,
+    FileChoose_FadeMainToSelect,
+    FileChoose_MoveSelectedFileToTop,
+    FileChoose_FadeInFileInfo,
+    FileChoose_ConfirmFile,
+    FileChoose_FadeOutFileInfo,
+    FileChoose_MoveSelectedFileToSlot,
+    FileChoose_FadeOut,
+    FileChoose_LoadGame,
 };
 
 void FileChoose_SelectModeUpdate(GameState* thisx) {
@@ -3130,7 +3186,7 @@ void FileChoose_DrawRandoSaveWarning(GameState* thisx) {
         if (Save_GetSaveMetaInfo(fileIndex)->randoSave == 1 &&
             this->menuMode == FS_MENU_MODE_SELECT &&
             (gBuildVersionMajor != Save_GetSaveMetaInfo(fileIndex)->buildVersionMajor ||
-            gBuildVersionMinor != Save_GetSaveMetaInfo(fileIndex)->buildVersionMinor)) {
+             gBuildVersionMinor != Save_GetSaveMetaInfo(fileIndex)->buildVersionMinor)) {
 
             // Use file info alpha to match fading
             u8 textAlpha = this->fileInfoAlpha[fileIndex];
@@ -3567,7 +3623,7 @@ void FileChoose_Destroy(GameState* thisx) {
 void FileChoose_Init(GameState* thisx) {
     FileChooseContext* this = (FileChooseContext*)thisx;
     size_t size = (u32)_title_staticSegmentRomEnd - (u32)_title_staticSegmentRomStart;
-    s32 pad;
+    s32    pad;
     this->logoAlpha = 0;
     this->questType[0] = MIN_QUEST;
     this->questType[1] = MIN_QUEST;

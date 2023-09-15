@@ -46,11 +46,29 @@ static ColliderCylinderInitType1 sCylinderInit = {
 };
 
 static s16 sPrices[] = {
-    10, 20, 30, 40, 50, 60, 70, 80, 90, 100,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
 };
 
 static u16 sOfferTextIDs[] = {
-    0x405E, 0x405F, 0x4060, 0x4061, 0x4062, 0x4063, 0x4064, 0x4065, 0x4066, 0x4067,
+    0x405E,
+    0x405F,
+    0x4060,
+    0x4061,
+    0x4062,
+    0x4063,
+    0x4064,
+    0x4065,
+    0x4066,
+    0x4067,
 };
 
 static InitChainEntry sInitChain[] = {
@@ -135,8 +153,8 @@ void EnMs_Talk(EnMs* this, PlayState* play) {
                     return;
                 }
                 if (gSaveContext.n64ddFlag && Randomizer_GetSettingValue(RSK_SHUFFLE_MAGIC_BEANS)) {
-                    GiveItemEntryFromActor(&this->actor, play, 
-                        Randomizer_GetItemFromKnownCheck(RC_ZR_MAGIC_BEAN_SALESMAN, GI_BEAN), 90.0f, 10.0f);
+                    GiveItemEntryFromActor(&this->actor, play,
+                                           Randomizer_GetItemFromKnownCheck(RC_ZR_MAGIC_BEAN_SALESMAN, GI_BEAN), 90.0f, 10.0f);
                 } else {
                     func_8002F434(&this->actor, play, GI_BEAN, 90.0f, 10.0f);
                 }

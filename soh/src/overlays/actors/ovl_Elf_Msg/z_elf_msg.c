@@ -119,7 +119,7 @@ s32 ElfMsg_GetMessageId(ElfMsg* this) {
 
 void ElfMsg_CallNaviCuboid(ElfMsg* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    EnElf* navi = (EnElf*)player->naviActor;
+    EnElf*  navi = (EnElf*)player->naviActor;
 
     if ((fabsf(player->actor.world.pos.x - this->actor.world.pos.x) < (100.0f * this->actor.scale.x)) &&
         (this->actor.world.pos.y <= player->actor.world.pos.y) &&
@@ -136,7 +136,7 @@ s32 ElfMsg_WithinXZDistance(Vec3f* pos1, Vec3f* pos2, f32 distance) {
 
 void ElfMsg_CallNaviCylinder(ElfMsg* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    EnElf* navi = (EnElf*)player->naviActor;
+    EnElf*  navi = (EnElf*)player->naviActor;
 
     // This fixes a crash when using a grotto exit when you never properly entered
     if (navi == NULL)
@@ -172,8 +172,7 @@ void ElfMsg_Update(Actor* thisx, PlayState* play) {
 #include "overlays/ovl_Elf_Msg/ovl_Elf_Msg.h"
 #endif
 
-void ElfMsg_Draw(Actor* thisx, PlayState* play) 
-{
+void ElfMsg_Draw(Actor* thisx, PlayState* play) {
 #ifdef ZELDA_DEBUG
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -199,5 +198,5 @@ void ElfMsg_Draw(Actor* thisx, PlayState* play)
     }
 
     CLOSE_DISPS(play->state.gfxCtx);
-    #endif
+#endif
 }

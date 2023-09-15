@@ -96,16 +96,16 @@ void BgJyaIronobj_InitCylinder(BgJyaIronobj* this, PlayState* play) {
  * Spawns particles for the destroyed pillar
  */
 void BgJyaIronobj_SpawnPillarParticles(BgJyaIronobj* this, PlayState* play, EnIk* enIk) {
-    s32 i;
-    s32 j;
-    s16 unkArg5;
-    f32 temp_f22;
+    s32   i;
+    s32   j;
+    s16   unkArg5;
+    f32   temp_f22;
     Vec3f pos;
     Vec3f vel;
-    f32 coss;
-    s16 rotY;
-    f32 sins;
-    s32 pad[2];
+    f32   coss;
+    s16   rotY;
+    f32   sins;
+    s32   pad[2];
 
     if (enIk->unk_2FF <= 0 || enIk->unk_2FF >= 4) {
         osSyncPrintf("Error 攻撃方法が分からない(%s %d)\n", __FILE__, __LINE__, enIk->unk_2FF);
@@ -159,16 +159,16 @@ void BgJyaIronobj_SpawnPillarParticles(BgJyaIronobj* this, PlayState* play, EnIk
  * Spawns particles for the destroyed throne
  */
 void BgJyaIronobj_SpawnThoneParticles(BgJyaIronobj* this, PlayState* play, EnIk* enIk) {
-    s32 i;
-    s32 j;
-    s16 unkArg5;
-    f32 temp_f22;
+    s32   i;
+    s32   j;
+    s16   unkArg5;
+    f32   temp_f22;
     Vec3f pos;
     Vec3f vel;
-    f32 coss;
-    s16 rotY;
-    f32 sins;
-    s32 pad[2];
+    f32   coss;
+    s16   rotY;
+    f32   sins;
+    s32   pad[2];
 
     if (enIk->unk_2FF <= 0 || enIk->unk_2FF >= 4) {
         osSyncPrintf("Error 攻撃方法が分からない(%s %d)\n", __FILE__, __LINE__, enIk->unk_2FF);
@@ -216,7 +216,7 @@ void BgJyaIronobj_SpawnThoneParticles(BgJyaIronobj* this, PlayState* play, EnIk*
 
 void BgJyaIronobj_Init(Actor* thisx, PlayState* play) {
     BgJyaIronobj* this = (BgJyaIronobj*)thisx;
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
 
     DynaPolyActor_Init(&this->dyna, 0);
@@ -240,9 +240,9 @@ void func_808992D8(BgJyaIronobj* this) {
 
 void func_808992E8(BgJyaIronobj* this, PlayState* play) {
     static BgJyaIronobjIkFunc particleFunc[] = { BgJyaIronobj_SpawnPillarParticles, BgJyaIronobj_SpawnThoneParticles };
-    Actor* actor;
-    Vec3f dropPos;
-    s32 i;
+    Actor*                    actor;
+    Vec3f                     dropPos;
+    s32                       i;
 
     if (this->colCylinder.base.acFlags & AC_HIT) {
         actor = this->colCylinder.base.ac;

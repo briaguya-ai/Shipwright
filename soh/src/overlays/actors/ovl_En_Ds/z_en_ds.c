@@ -254,7 +254,7 @@ void EnDs_OfferBluePotion(EnDs* this, PlayState* play) {
 
 void EnDs_Wait(EnDs* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 yawDiff;
+    s16     yawDiff;
 
     if (Actor_ProcessTalkRequest(&this->actor, play)) {
         if (func_8002F368(play) == EXCH_ITEM_ODD_MUSHROOM) {

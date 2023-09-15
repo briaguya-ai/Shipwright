@@ -32,8 +32,8 @@ void EnZo_Dive(EnZo* this, PlayState* play);
 
 void EnZo_Ripple(EnZo* this, Vec3f* pos, f32 scale, f32 targetScale, u8 alpha) {
     EnZoEffect* effect;
-    Vec3f vec = { 0.0f, 0.0f, 0.0f };
-    s16 i;
+    Vec3f       vec = { 0.0f, 0.0f, 0.0f };
+    s16         i;
 
     effect = this->effects;
     for (i = 0; i < ARRAY_COUNT(this->effects); i++) {
@@ -52,10 +52,10 @@ void EnZo_Ripple(EnZo* this, Vec3f* pos, f32 scale, f32 targetScale, u8 alpha) {
 
 void EnZo_Bubble(EnZo* this, Vec3f* pos) {
     EnZoEffect* effect;
-    Vec3f vec = { 0.0f, 0.0f, 0.0f };
-    Vec3f vel = { 0.0f, 1.0f, 0.0f };
-    s16 i;
-    f32 waterSurface;
+    Vec3f       vec = { 0.0f, 0.0f, 0.0f };
+    Vec3f       vel = { 0.0f, 1.0f, 0.0f };
+    s16         i;
+    f32         waterSurface;
 
     effect = this->effects;
     for (i = 0; i < ARRAY_COUNT(this->effects); i++) {
@@ -77,8 +77,8 @@ void EnZo_Bubble(EnZo* this, Vec3f* pos) {
 
 void EnZo_Splash(EnZo* this, Vec3f* pos, Vec3f* vel, f32 scale) {
     EnZoEffect* effect;
-    Vec3f accel = { 0.0f, -1.0f, 0.0f };
-    s16 i;
+    Vec3f       accel = { 0.0f, -1.0f, 0.0f };
+    s16         i;
 
     effect = this->effects;
     for (i = 0; i < ARRAY_COUNT(this->effects); i++) {
@@ -98,7 +98,7 @@ void EnZo_Splash(EnZo* this, Vec3f* pos, Vec3f* vel, f32 scale) {
 
 void EnZo_UpdateRipples(EnZo* this) {
     EnZoEffect* effect = this->effects;
-    s16 i;
+    s16         i;
 
     for (i = 0; i < ARRAY_COUNT(this->effects); i++) {
         if (effect->type == ENZO_EFFECT_RIPPLE) {
@@ -119,8 +119,8 @@ void EnZo_UpdateRipples(EnZo* this) {
 
 void EnZo_UpdateBubbles(EnZo* this) {
     EnZoEffect* effect;
-    f32 waterSurface;
-    s16 i;
+    f32         waterSurface;
+    s16         i;
 
     effect = this->effects;
     for (i = 0; i < ARRAY_COUNT(this->effects); i++) {
@@ -143,8 +143,8 @@ void EnZo_UpdateBubbles(EnZo* this) {
 
 void EnZo_UpdateSplashes(EnZo* this) {
     EnZoEffect* effect;
-    f32 waterSurface;
-    s16 i;
+    f32         waterSurface;
+    s16         i;
 
     effect = this->effects;
     for (i = 0; i < ARRAY_COUNT(this->effects); i++) {
@@ -174,8 +174,8 @@ void EnZo_UpdateSplashes(EnZo* this) {
 
 void EnZo_DrawRipples(EnZo* this, PlayState* play) {
     EnZoEffect* effect;
-    s16 i;
-    u8 setup;
+    s16         i;
+    u8          setup;
 
     effect = this->effects;
     OPEN_DISPS(play->state.gfxCtx);
@@ -206,8 +206,8 @@ void EnZo_DrawRipples(EnZo* this, PlayState* play) {
 
 void EnZo_DrawBubbles(EnZo* this, PlayState* play) {
     EnZoEffect* effect = this->effects;
-    s16 i;
-    u8 setup;
+    s16         i;
+    u8          setup;
 
     OPEN_DISPS(play->state.gfxCtx);
     setup = false;
@@ -240,8 +240,8 @@ void EnZo_DrawBubbles(EnZo* this, PlayState* play) {
 
 void EnZo_DrawSplashes(EnZo* this, PlayState* play) {
     EnZoEffect* effect;
-    s16 i;
-    u8 setup;
+    s16         i;
+    u8          setup;
 
     effect = this->effects;
     OPEN_DISPS(play->state.gfxCtx);
@@ -341,7 +341,7 @@ static AnimationInfo sAnimationInfo[] = {
 void EnZo_SpawnSplashes(EnZo* this) {
     Vec3f pos;
     Vec3f vel;
-    s32 i;
+    s32   i;
 
     // Convert 20 particles into splashes (all of them since there are only 15)
     for (i = 0; i < 20; i++) {
@@ -527,9 +527,9 @@ void EnZo_Dialog(EnZo* this, PlayState* play) {
 
 s32 EnZo_PlayerInProximity(EnZo* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Vec3f surfacePos;
-    f32 yDist;
-    f32 hDist;
+    Vec3f   surfacePos;
+    f32     yDist;
+    f32     hDist;
 
     surfacePos.x = this->actor.world.pos.x;
     surfacePos.y = this->actor.world.pos.y + this->actor.yDistToWater;
@@ -728,7 +728,7 @@ void EnZo_Dive(EnZo* this, PlayState* play) {
 
 void EnZo_Update(Actor* thisx, PlayState* play) {
     EnZo* this = (EnZo*)thisx;
-    u32 pad;
+    u32   pad;
     Vec3f pos;
 
     if ((s32)this->alpha != 0) {

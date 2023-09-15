@@ -184,7 +184,7 @@ static Vec3f D_80AE1B60 = { 0.0f, 3.0f, 0.0f };
 static Vec3f D_80AE1B6C = { 0.0f, 0.0f, 0.0f };
 
 void EnPoh_Init(Actor* thisx, PlayState* play) {
-    s32 pad;
+    s32       pad;
     EnItem00* collectible;
     EnPoh* this = (EnPoh*)thisx;
 
@@ -520,7 +520,7 @@ void EnPoh_Idle(EnPoh* this, PlayState* play) {
 
 void func_80ADEC9C(EnPoh* this, PlayState* play) {
     Player* player;
-    s16 facingDiff;
+    s16     facingDiff;
 
     player = GET_PLAYER(play);
     SkelAnime_Update(&this->skelAnime);
@@ -606,10 +606,10 @@ void EnPoh_ComposerAppear(EnPoh* this, PlayState* play) {
 
 void func_80ADF15C(EnPoh* this, PlayState* play) {
     Vec3f vec;
-    f32 multiplier;
-    f32 newScale;
-    s32 pad;
-    s32 pad1;
+    f32   multiplier;
+    f32   newScale;
+    s32   pad;
+    s32   pad1;
 
     this->unk_198++;
     if (this->unk_198 < 8) {
@@ -991,9 +991,9 @@ void func_80AE089C(EnPoh* this) {
 
 void EnPoh_UpdateLiving(Actor* thisx, PlayState* play) {
     EnPoh* this = (EnPoh*)thisx;
-    s32 pad;
+    s32   pad;
     Vec3f vec;
-    s32 sp38;
+    s32   sp38;
 
     if (this->colliderSph.base.atFlags & AT_HIT) {
         this->colliderSph.base.atFlags &= ~AT_HIT;
@@ -1182,7 +1182,7 @@ void EnPoh_DrawSoul(Actor* thisx, PlayState* play) {
         gSPDisplayList(POLY_OPA_DISP++, this->info->lanternDisplayList);
         if (this->infoIdx == EN_POH_INFO_COMPOSER) {
             Color_RGBA8* envColor = (this->actor.params == EN_POH_SHARP) ? &D_80AE1B4C : &D_80AE1B50;
-            s32 pad;
+            s32          pad;
 
             gSPDisplayList(POLY_OPA_DISP++, gPoeComposerLanternBottomDL);
             gDPPipeSync(POLY_OPA_DISP++);

@@ -14,7 +14,7 @@ void EnAni_Destroy(Actor* thisx, PlayState* play);
 void EnAni_Update(Actor* thisx, PlayState* play);
 void EnAni_Draw(Actor* thisx, PlayState* play);
 
-s32 EnAni_SetText(EnAni* this, PlayState* play, u16 textId);
+s32  EnAni_SetText(EnAni* this, PlayState* play, u16 textId);
 void func_809B04F0(EnAni* this, PlayState* play);
 void func_809B0524(EnAni* this, PlayState* play);
 void func_809B0558(EnAni* this, PlayState* play);

@@ -577,7 +577,7 @@ void func_80B15034(EnTa* this, PlayState* play) {
 
 s32 func_80B150AC(EnTa* this, PlayState* play, s32 idx) {
     Player* player = GET_PLAYER(play);
-    Actor* interactRangeActor;
+    Actor*  interactRangeActor;
 
     if (player->stateFlags1 & 0x800) {
         interactRangeActor = player->interactRangeActor;

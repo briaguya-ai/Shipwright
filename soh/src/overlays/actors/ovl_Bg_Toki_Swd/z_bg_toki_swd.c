@@ -134,7 +134,7 @@ void func_808BAF40(BgTokiSwd* this, PlayState* play) {
             BgTokiSwd_SetupAction(this, func_808BB0AC);
         } else {
             Player* player = GET_PLAYER(play);
-            if (Actor_IsFacingPlayer(&this->actor, 0x2000) && 
+            if (Actor_IsFacingPlayer(&this->actor, 0x2000) &&
                 (!gSaveContext.n64ddFlag || (gSaveContext.n64ddFlag && player->getItemId == GI_NONE))) {
                 func_8002F580(&this->actor, play);
             }

@@ -91,9 +91,9 @@ void BgMizuWater_SetWaterBoxesHeight(WaterBox* waterBoxes, s16 height) {
 
 void BgMizuWater_Init(Actor* thisx, PlayState* play) {
     BgMizuWater* this = (BgMizuWater*)thisx;
-    f32 initialActorY;
+    f32       initialActorY;
     WaterBox* waterBoxes;
-    s32 waterLevelActionIndex;
+    s32       waterLevelActionIndex;
 
     waterBoxes = play->colCtx.colHeader->waterBoxes;
     this->type = this->actor.params & 0xFF;
@@ -212,9 +212,9 @@ void BgMizuWater_WaitForAction(BgMizuWater* this, PlayState* play) {
 }
 
 void BgMizuWater_ChangeWaterLevel(BgMizuWater* this, PlayState* play) {
-    s32 pad;
-    s16 prevSwitchFlag;
-    s32 waterLevelActionIndex;
+    s32       pad;
+    s16       prevSwitchFlag;
+    s32       waterLevelActionIndex;
     WaterBox* waterBoxes;
 
     waterBoxes = play->colCtx.colHeader->waterBoxes;

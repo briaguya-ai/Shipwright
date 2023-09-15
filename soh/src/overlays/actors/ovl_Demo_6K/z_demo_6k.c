@@ -20,7 +20,6 @@ void Demo6K_Destroy(Actor* thisx, PlayState* play);
 void Demo6K_Update(Actor* thisx, PlayState* play);
 void Demo6K_Reset(void);
 
-
 void func_80966DB0(Demo6K* this, PlayState* play);
 void func_80966E04(Demo6K* this, PlayState* play);
 void func_80966E98(Demo6K* this, PlayState* play);
@@ -55,13 +54,34 @@ const ActorInit Demo_6K_InitVars = {
 };
 
 static s16 sObjectIds[] = {
-    OBJECT_GAMEPLAY_KEEP, OBJECT_DEMO_6K,       OBJECT_DEMO_6K,       OBJECT_GAMEPLAY_KEEP, OBJECT_GAMEPLAY_KEEP,
-    OBJECT_GAMEPLAY_KEEP, OBJECT_GAMEPLAY_KEEP, OBJECT_GAMEPLAY_KEEP, OBJECT_GAMEPLAY_KEEP, OBJECT_GAMEPLAY_KEEP,
-    OBJECT_GAMEPLAY_KEEP, OBJECT_GAMEPLAY_KEEP, OBJECT_GND_MAGIC,     OBJECT_GAMEPLAY_KEEP, OBJECT_GAMEPLAY_KEEP,
-    OBJECT_GAMEPLAY_KEEP, OBJECT_GAMEPLAY_KEEP, OBJECT_GAMEPLAY_KEEP, OBJECT_GAMEPLAY_KEEP, OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_DEMO_6K,
+    OBJECT_DEMO_6K,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GND_MAGIC,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
+    OBJECT_GAMEPLAY_KEEP,
 };
 static Color_RGB8 sEnvColors[] = {
-    { 255, 50, 0 }, { 0, 200, 0 }, { 200, 255, 0 }, { 200, 50, 255 }, { 255, 150, 0 }, { 0, 150, 255 },
+    { 255, 50, 0 },
+    { 0, 200, 0 },
+    { 200, 255, 0 },
+    { 200, 50, 255 },
+    { 255, 150, 0 },
+    { 0, 150, 255 },
 };
 static f32 D_8096930C[] = { 1.0f, 1.04f, 1.0f, 0.96f };
 static f32 D_8096931C[] = { 1.1f, 1.0f, 0.9f, 0.8f };
@@ -283,7 +303,7 @@ void func_809670AC(Demo6K* this, PlayState* play) {
 
 void func_8096712C(Demo6K* this, PlayState* play) {
     static u16 D_8096932C[] = { 275, 275, 275, 275, 275, 275 };
-    u32 frames = play->state.frames;
+    u32        frames = play->state.frames;
 
     if (this->actor.scale.x < 0.1f) {
         this->actor.scale.x += 0.0017f;
@@ -310,41 +330,41 @@ void func_8096712C(Demo6K* this, PlayState* play) {
 }
 
 Vec3f sDemo6kVelocity = { 0.0f, 0.0f, 0.0f };
-void func_80967244(Demo6K* this, PlayState* play) {
-    static Vec3f accel = { 0.0f, 0.0f, 0.0f };
-    static Color_RGBA8 primColor = { 255, 255, 255, 0 };
-    static Color_RGBA8 envColor = { 255, 150, 0, 0 };
-    Vec3f pos;
-    s16 rand1;
-    s16 rand2;
-    s32 scale;
+void  func_80967244(Demo6K* this, PlayState* play) {
+     static Vec3f       accel = { 0.0f, 0.0f, 0.0f };
+     static Color_RGBA8 primColor = { 255, 255, 255, 0 };
+     static Color_RGBA8 envColor = { 255, 150, 0, 0 };
+     Vec3f              pos;
+     s16                rand1;
+     s16                rand2;
+     s32                scale;
 
-    pos.x = this->actor.world.pos.x;
-    pos.y = this->actor.world.pos.y;
-    pos.z = this->actor.world.pos.z;
+     pos.x = this->actor.world.pos.x;
+     pos.y = this->actor.world.pos.y;
+     pos.z = this->actor.world.pos.z;
 
-    rand1 = Rand_ZeroFloat(0xFFFF);
-    rand2 = Rand_ZeroFloat(0xFFFF);
+     rand1 = Rand_ZeroFloat(0xFFFF);
+     rand2 = Rand_ZeroFloat(0xFFFF);
 
-    sDemo6kVelocity.x = Math_SinS(rand2) * Math_CosS(rand1) * 20.0f;
-    sDemo6kVelocity.z = Math_CosS(rand2) * Math_CosS(rand1) * 20.0f;
-    sDemo6kVelocity.y = Math_SinS(rand1) * 20.0f;
+     sDemo6kVelocity.x = Math_SinS(rand2) * Math_CosS(rand1) * 20.0f;
+     sDemo6kVelocity.z = Math_CosS(rand2) * Math_CosS(rand1) * 20.0f;
+     sDemo6kVelocity.y = Math_SinS(rand1) * 20.0f;
 
-    accel.y = 0.0f;
+     accel.y = 0.0f;
 
-    envColor.r = sEnvColors[this->unk_293].r;
-    envColor.g = sEnvColors[this->unk_293].g;
-    envColor.b = sEnvColors[this->unk_293].b;
+     envColor.r = sEnvColors[this->unk_293].r;
+     envColor.g = sEnvColors[this->unk_293].g;
+     envColor.b = sEnvColors[this->unk_293].b;
 
-    if (play->sceneNum == SCENE_TEMPLE_OF_TIME) {
-        scale = 6000;
+     if (play->sceneNum == SCENE_TEMPLE_OF_TIME) {
+         scale = 6000;
     } else if (play->csCtx.frames < 419) {
-        scale = 6000;
+         scale = 6000;
     } else {
-        scale = 18000;
+         scale = 18000;
     }
 
-    EffectSsKiraKira_SpawnFocused(play, &pos, &sDemo6kVelocity, &accel, &primColor, &envColor, scale, 20);
+     EffectSsKiraKira_SpawnFocused(play, &pos, &sDemo6kVelocity, &accel, &primColor, &envColor, scale, 20);
 }
 
 void func_80967410(Demo6K* this, PlayState* play) {
@@ -402,13 +422,13 @@ void func_809674E0(Demo6K* this, PlayState* play) {
 }
 
 void func_809676A4(Demo6K* this, PlayState* play) {
-    static Vec3f velocity = { 0.0f, 0.0f, 0.0f };
-    static Vec3f accel = { 0.0f, 0.0f, 0.0f };
+    static Vec3f       velocity = { 0.0f, 0.0f, 0.0f };
+    static Vec3f       accel = { 0.0f, 0.0f, 0.0f };
     static Color_RGBA8 primColor = { 255, 255, 255, 0 };
     static Color_RGBA8 envColor = { 255, 150, 0, 0 };
-    Vec3f pos;
-    f32 temp = this->actor.scale.x * 500.0f;
-    s32 i;
+    Vec3f              pos;
+    f32                temp = this->actor.scale.x * 500.0f;
+    s32                i;
 
     for (i = 0; i < 8; i++) {
         pos.x = this->actor.world.pos.x + Rand_CenteredFloat(temp);
@@ -487,12 +507,12 @@ void func_80967AD0(Demo6K* this, PlayState* play) {
 }
 
 void func_80967BF8(Player* player, PlayState* play) {
-    static Vec3f velocity = { 0.0f, 0.0f, 0.0f };
-    static Vec3f accel = { 0.0f, 0.0f, 0.0f };
+    static Vec3f       velocity = { 0.0f, 0.0f, 0.0f };
+    static Vec3f       accel = { 0.0f, 0.0f, 0.0f };
     static Color_RGBA8 primColor = { 255, 255, 255, 0 };
     static Color_RGBA8 envColor = { 255, 200, 0, 0 };
-    Vec3f pos;
-    s32 i;
+    Vec3f              pos;
+    s32                i;
 
     for (i = 0; i < 150; i++) {
         pos.x = Rand_CenteredFloat(15.0f) + player->actor.world.pos.x;
@@ -574,19 +594,22 @@ void func_80967FFC(Actor* thisx, PlayState* play) {
                                 0x7FFF - ((timer1 * 8) & 0x7FFF), 16, 32));
 
     {
-        s32 i;
-        s32 pad;
+        s32        i;
+        s32        pad;
         Color_RGB8 colors[6][2] = {
-            { { 255, 170, 255 }, { 255, 0, 100 } }, { { 255, 255, 170 }, { 0, 255, 0 } },
-            { { 255, 255, 170 }, { 255, 255, 0 } }, { { 255, 170, 255 }, { 50, 0, 255 } },
-            { { 255, 255, 170 }, { 255, 100, 0 } }, { { 170, 255, 255 }, { 0, 100, 255 } },
+            { { 255, 170, 255 }, { 255, 0, 100 } },
+            { { 255, 255, 170 }, { 0, 255, 0 } },
+            { { 255, 255, 170 }, { 255, 255, 0 } },
+            { { 255, 170, 255 }, { 50, 0, 255 } },
+            { { 255, 255, 170 }, { 255, 100, 0 } },
+            { { 170, 255, 255 }, { 0, 100, 255 } },
         };
 
         Matrix_RotateZ(-M_PI / 2, MTXMODE_APPLY);
 
         for (i = 0; i < 6; i++) {
             FrameInterpolation_RecordOpenChild("Demo6K 80967FFC", i);
-    
+
             Matrix_RotateZ(M_PI / 3, MTXMODE_APPLY);
             gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
@@ -608,13 +631,13 @@ void func_80967FFC(Actor* thisx, PlayState* play) {
 void func_80968298(Actor* thisx, PlayState* play) {
     static u8 skipIndices[] = { 6, 7, 11, 16, 20, 24, 28, 33, 35, 41, 45, 50, 57, 58, 62, 255 };
     Demo6K* this = (Demo6K*)thisx;
-    s32 pad;
-    u32 timer1 = this->timer1;
-    f32 scale = this->unk_164 * this->unk_168;
+    s32  pad;
+    u32  timer1 = this->timer1;
+    f32  scale = this->unk_164 * this->unk_168;
     Vtx* vertices = ResourceMgr_LoadVtxByName(SEGMENTED_TO_VIRTUAL(object_demo_6kVtx_0035E0));
-    s32 i;
-    s32 i2;
-    u8 alpha;
+    s32  i;
+    s32  i2;
+    u8   alpha;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -657,7 +680,7 @@ void func_80968298(Actor* thisx, PlayState* play) {
 
 void func_8096865C(Actor* thisx, PlayState* play) {
     Demo6K* this = (Demo6K*)thisx;
-    s32 pad;
+    s32  pad;
     Gfx* displayList;
 
     OPEN_DISPS(play->state.gfxCtx);
@@ -692,8 +715,8 @@ void func_8096865C(Actor* thisx, PlayState* play) {
 void func_809688C4(Actor* thisx, PlayState* play2) {
     Demo6K* this = (Demo6K*)thisx;
     PlayState* play = play2;
-    u32 frames = play->state.frames;
-    s32 i;
+    u32        frames = play->state.frames;
+    s32        i;
 
     if ((i = (play->csCtx.state != CS_STATE_IDLE) && (play->csCtx.npcActions[1] != NULL)) &&
         (play->csCtx.npcActions[1]->action != 1)) {
@@ -733,8 +756,8 @@ void func_80968B70(Actor* thisx, PlayState* play) {
     s32 pad;
     Demo6K* this = (Demo6K*)thisx;
     u32 timer2 = this->timer2;
-    u8 primColor[4];
-    u8 envColor[3];
+    u8  primColor[4];
+    u8  envColor[3];
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -780,9 +803,9 @@ void func_80968FB0(Actor* thisx, PlayState* play) {
     static u8 D_809693CC[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 7, 6, 5, 4, 3, 2, 1 };
     Demo6K* this = (Demo6K*)thisx;
     Gfx* displayList = Graph_Alloc(play->state.gfxCtx, 4 * sizeof(Gfx));
-    u16 frames = play->gameplayFrames;
-    f32 scaleFactor;
-    s32 pad;
+    u16  frames = play->gameplayFrames;
+    f32  scaleFactor;
+    s32  pad;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -804,9 +827,9 @@ void func_80968FB0(Actor* thisx, PlayState* play) {
 }
 
 void func_809691BC(Demo6K* this, PlayState* play, s32 params) {
-    Vec3f startPos;
-    Vec3f endPos;
-    f32 temp;
+    Vec3f             startPos;
+    Vec3f             endPos;
+    f32               temp;
     CsCmdActorAction* csAction = play->csCtx.npcActions[params];
 
     startPos.x = csAction->startPos.x;

@@ -377,14 +377,14 @@ DrawItemTableEntry sDrawItemTable[] = {
     { GetItem_DrawJewelGoron, { gGiGoronRubyGemDL, gGiGoronRubySettingDL } },
     { GetItem_DrawJewelZora, { gGiZoraSapphireGemDL, gGiZoraSapphireSettingDL } },
 
-    { GetItem_DrawGenericMusicNote, { gGiSongNoteDL } }, //Generic
+    { GetItem_DrawGenericMusicNote, { gGiSongNoteDL } }, // Generic
 
-    { GetItem_DrawGenericMusicNote, { gGiSongNoteDL } }, //Zelda's  Lullaby
-    { GetItem_DrawGenericMusicNote, { gGiSongNoteDL } }, //Epona's song
-    { GetItem_DrawGenericMusicNote, { gGiSongNoteDL } }, //Saria's song
-    { GetItem_DrawGenericMusicNote, { gGiSongNoteDL } }, //Sun's song
-    { GetItem_DrawGenericMusicNote, { gGiSongNoteDL } }, //Song of time
-    { GetItem_DrawGenericMusicNote, { gGiSongNoteDL } } //Song of storms
+    { GetItem_DrawGenericMusicNote, { gGiSongNoteDL } }, // Zelda's  Lullaby
+    { GetItem_DrawGenericMusicNote, { gGiSongNoteDL } }, // Epona's song
+    { GetItem_DrawGenericMusicNote, { gGiSongNoteDL } }, // Saria's song
+    { GetItem_DrawGenericMusicNote, { gGiSongNoteDL } }, // Sun's song
+    { GetItem_DrawGenericMusicNote, { gGiSongNoteDL } }, // Song of time
+    { GetItem_DrawGenericMusicNote, { gGiSongNoteDL } }  // Song of storms
 };
 
 /**
@@ -758,7 +758,7 @@ void GetItem_DrawRecoveryHeart(PlayState* play, s16 drawId) {
     gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
               G_MTX_MODELVIEW | G_MTX_LOAD);
     if (CVarGetInteger("gCosmetics.Consumable_Hearts.Changed", 0)) {
-        Color_RGB8 color = CVarGetColor24("gCosmetics.Consumable_Hearts.Value", (Color_RGB8) { 255, 70, 50 });
+        Color_RGB8 color = CVarGetColor24("gCosmetics.Consumable_Hearts.Value", (Color_RGB8){ 255, 70, 50 });
         gDPSetGrayscaleColor(POLY_XLU_DISP++, color.r, color.g, color.b, 255);
         gSPGrayscale(POLY_XLU_DISP++, true);
     }
@@ -818,21 +818,21 @@ void GetItem_DrawOpa0Xlu1(PlayState* play, s16 drawId) {
 }
 
 void GetItem_DrawGenericMusicNote(PlayState* play, s16 drawId) {
-    s32 pad;
-    s16 color_slot = drawId-120; //0 = generic 
+    s32  pad;
+    s16  color_slot = drawId - 120; // 0 = generic
     s16* colors[7][3] = {
-        {255,255,255},  //Generic Song (full white)
-        {109, 73,143},  //Lullaby
-        {217,110, 48},  //Epona
-        { 62,109, 23},  //Saria
-        {237,231, 62},  //Sun
-        { 98,177,211},  //Time
-        {146,146,146}   //Storms
+        { 255, 255, 255 }, // Generic Song (full white)
+        { 109, 73, 143 },  // Lullaby
+        { 217, 110, 48 },  // Epona
+        { 62, 109, 23 },   // Saria
+        { 237, 231, 62 },  // Sun
+        { 98, 177, 211 },  // Time
+        { 146, 146, 146 }  // Storms
     };
 
     OPEN_DISPS(play->state.gfxCtx);
 
-    gSPMatrix(POLY_XLU_DISP++, Matrix_NewMtx(play->state.gfxCtx,  __FILE__, __LINE__), G_MTX_MODELVIEW | G_MTX_LOAD);
+    gSPMatrix(POLY_XLU_DISP++, Matrix_NewMtx(play->state.gfxCtx, __FILE__, __LINE__), G_MTX_MODELVIEW | G_MTX_LOAD);
     gDPSetGrayscaleColor(POLY_XLU_DISP++, colors[color_slot][0], colors[color_slot][1], colors[color_slot][2], 255);
     gSPGrayscale(POLY_XLU_DISP++, true);
     Gfx_SetupDL_25Opa(play->state.gfxCtx);

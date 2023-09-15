@@ -119,9 +119,9 @@ void OceffSpot_GrowCylinder(OceffSpot* this, PlayState* play) {
 
 void OceffSpot_Update(Actor* thisx, PlayState* play) {
     OceffSpot* this = (OceffSpot*)thisx;
-    s32 pad;
+    s32     pad;
     Player* player = GET_PLAYER(play);
-    f32 temp;
+    f32     temp;
 
     temp = (1.0f - cosf(this->unk_174 * M_PI)) * 0.5f;
     this->actionFunc(this, play);

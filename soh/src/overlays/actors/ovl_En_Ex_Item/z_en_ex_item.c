@@ -397,7 +397,7 @@ void EnExItem_TargetPrizeApproach(EnExItem* this, PlayState* play) {
         }
     } else {
         GetItemEntry getItemEntry = (GetItemEntry)GET_ITEM_NONE;
-        s32 getItemId;
+        s32          getItemId;
 
         this->actor.draw = NULL;
         func_8002DF54(play, NULL, 7);
@@ -434,7 +434,6 @@ void EnExItem_TargetPrizeGive(EnExItem* this, PlayState* play) {
             GetItemEntry getItemEntry = Randomizer_GetItemFromKnownCheck(RC_LW_TARGET_IN_WOODS, GI_BULLET_BAG_50);
             GiveItemEntryFromActor(&this->actor, play, getItemEntry, 2000.0f, 1000.0f);
         }
-
     }
 }
 

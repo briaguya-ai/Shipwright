@@ -69,7 +69,7 @@ const ActorInit Bg_Dy_Yoseizo_InitVars = {
 };
 
 void GivePlayerRandoRewardGreatFairy(BgDyYoseizo* this, PlayState* play) {
-    Player* player = GET_PLAYER(play);
+    Player*      player = GET_PLAYER(play);
     GetItemEntry getItemEntry = Randomizer_GetItemFromActor(this->actor.id, play->sceneNum, this->fountainType + 1, GI_NONE);
 
     if (this->actor.parent == GET_PLAYER(play) && !Flags_GetTreasure(play, this->fountainType + 1) &&
@@ -115,26 +115,40 @@ void BgDyYoseizo_Destroy(Actor* thisx, PlayState* play) {
 }
 
 static Color_RGB8 sParticlePrimColors[] = {
-    { 255, 255, 255 }, { 255, 255, 100 }, { 100, 255, 100 }, { 255, 100, 100 }, { 255, 255, 170 },
-    { 255, 255, 100 }, { 100, 255, 100 }, { 255, 100, 100 }, { 255, 255, 170 },
+    { 255, 255, 255 },
+    { 255, 255, 100 },
+    { 100, 255, 100 },
+    { 255, 100, 100 },
+    { 255, 255, 170 },
+    { 255, 255, 100 },
+    { 100, 255, 100 },
+    { 255, 100, 100 },
+    { 255, 255, 170 },
 };
 
 static Color_RGB8 sParticleEnvColors[] = {
-    { 155, 255, 255 }, { 255, 255, 100 }, { 100, 255, 100 }, { 255, 100, 100 }, { 255, 100, 255 },
-    { 255, 255, 100 }, { 100, 255, 100 }, { 255, 100, 100 }, { 100, 255, 255 },
+    { 155, 255, 255 },
+    { 255, 255, 100 },
+    { 100, 255, 100 },
+    { 255, 100, 100 },
+    { 255, 100, 255 },
+    { 255, 255, 100 },
+    { 100, 255, 100 },
+    { 255, 100, 100 },
+    { 100, 255, 255 },
 };
 
 void BgDyYoseizo_SpawnParticles(BgDyYoseizo* this, PlayState* play, s16 type) {
-    Vec3f particleInitVelocity = { 0.0f, 0.0f, 0.0f };
-    Vec3f particleAccel;
-    Vec3f particleInitPos;
+    Vec3f      particleInitVelocity = { 0.0f, 0.0f, 0.0f };
+    Vec3f      particleAccel;
+    Vec3f      particleInitPos;
     Color_RGB8 particlePrimColor;
     Color_RGB8 particleEnvColor;
-    f32 spawnPosVariation;
-    s32 particleType;
-    f32 particleScale;
-    s32 i;
-    s16 particleLife;
+    f32        spawnPosVariation;
+    s32        particleType;
+    f32        particleScale;
+    s32        i;
+    s16        particleLife;
 
     if (!(this->scale < 0.01f)) {
         spawnPosVariation = this->scale * 3500.0f;
@@ -199,16 +213,16 @@ void BgDyYoseizo_CheckMagicAcquired(BgDyYoseizo* this, PlayState* play) {
     if (Flags_GetSwitch(play, 0x38)) {
         play->msgCtx.ocarinaMode = OCARINA_MODE_04;
 
-        if(gSaveContext.n64ddFlag) {
+        if (gSaveContext.n64ddFlag) {
             gSaveContext.healthAccumulator = 0x140;
             Magic_Fill(play);
-            if(Flags_GetTreasure(play, this->fountainType + 1)) {
+            if (Flags_GetTreasure(play, this->fountainType + 1)) {
                 Actor_Kill(&this->actor);
             } else {
                 GivePlayerRandoRewardGreatFairy(this, play);
             }
             return;
-        } 
+        }
 
         if (play->sceneNum == SCENE_GREAT_FAIRYS_FOUNTAIN_MAGIC) {
             if (!gSaveContext.isMagicAcquired && (this->fountainType != FAIRY_UPGRADE_MAGIC)) {
@@ -447,9 +461,9 @@ void BgDyYoseizo_SetupHealPlayer_NoReward(BgDyYoseizo* this, PlayState* play) {
 
 void BgDyYoseizo_HealPlayer_NoReward(BgDyYoseizo* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 curFrame = this->skelAnime.curFrame;
-    Vec3f beamPos;
-    s16 beamParams;
+    f32     curFrame = this->skelAnime.curFrame;
+    Vec3f   beamPos;
+    s16     beamParams;
 
     if (this->animationChanged) {
         this->bobTimer = this->skelAnime.curFrame * 1300.0f;
@@ -686,11 +700,11 @@ static s16 sItemGetFlags[] = { 0x100, 0x200, 0x400 };
 static u8 sItemIds[] = { ITEM_FARORES_WIND, ITEM_DINS_FIRE, ITEM_NAYRUS_LOVE };
 
 void BgDyYoseizo_Give_Reward(BgDyYoseizo* this, PlayState* play) {
-    f32 curFrame = this->skelAnime.curFrame;
+    f32     curFrame = this->skelAnime.curFrame;
     Player* player = GET_PLAYER(play);
-    s16 actionIndex;
-    s16 demoEffectParams;
-    Vec3f itemPos;
+    s16     actionIndex;
+    s16     demoEffectParams;
+    Vec3f   itemPos;
 
     if (this->animationChanged) {
         this->bobTimer = this->skelAnime.curFrame * 1400.0f;
@@ -944,7 +958,7 @@ void BgDyYoseizo_Draw(Actor* thisx, PlayState* play) {
 void BgDyYoseizo_ParticleInit(BgDyYoseizo* this, Vec3f* initPos, Vec3f* initVelocity, Vec3f* accel,
                               Color_RGB8* primColor, Color_RGB8* envColor, f32 scale, s16 life, s16 type) {
     BgDyYoseizoParticle* particle;
-    s16 i;
+    s16                  i;
 
     particle = this->particles;
 
@@ -971,12 +985,12 @@ void BgDyYoseizo_ParticleInit(BgDyYoseizo* this, Vec3f* initPos, Vec3f* initVelo
 
 void BgDyYoseizo_ParticleUpdate(BgDyYoseizo* this, PlayState* play) {
     BgDyYoseizoParticle* particle = this->particles;
-    Player* player = GET_PLAYER(play);
-    Vec3f sp94;
-    Vec3f sp88;
-    f32 goalPitch;
-    f32 goalYaw;
-    s16 i = 0;
+    Player*              player = GET_PLAYER(play);
+    Vec3f                sp94;
+    Vec3f                sp88;
+    f32                  goalPitch;
+    f32                  goalYaw;
+    s16                  i = 0;
 
     for (i = 0; i < 200; i++, particle++) {
         if (particle->alive != 0) {
@@ -1034,17 +1048,17 @@ void BgDyYoseizo_ParticleUpdate(BgDyYoseizo* this, PlayState* play) {
 }
 
 void BgDyYoseizo_ParticleDraw(BgDyYoseizo* this, PlayState* play) {
-    GraphicsContext* gfxCtx = play->state.gfxCtx;
-    u8 phi_s3 = 0;
+    GraphicsContext*     gfxCtx = play->state.gfxCtx;
+    u8                   phi_s3 = 0;
     BgDyYoseizoParticle* particle = this->particles;
-    s16 i;
+    s16                  i;
 
     OPEN_DISPS(gfxCtx);
     Gfx_SetupDL_25Xlu(play->state.gfxCtx);
 
     for (i = 0; i < 200; i++, particle++) {
         FrameInterpolation_RecordOpenChild(particle, particle->epoch);
-        
+
         if (particle->alive == 1) {
             if (phi_s3 == 0) {
                 gSPDisplayList(POLY_XLU_DISP++, SEGMENTED_TO_VIRTUAL(gGreatFairyParticleMaterialDL));
@@ -1066,7 +1080,7 @@ void BgDyYoseizo_ParticleDraw(BgDyYoseizo* this, PlayState* play) {
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(POLY_XLU_DISP++, SEGMENTED_TO_VIRTUAL(gGreatFairyParticleModelDL));
         }
-        
+
         FrameInterpolation_RecordCloseChild();
     }
 

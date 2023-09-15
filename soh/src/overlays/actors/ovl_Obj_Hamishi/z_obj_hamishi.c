@@ -50,7 +50,15 @@ static ColliderCylinderInit sCylinderInit = {
 static CollisionCheckInfoInit sColChkInfoInit = { 0, 12, 60, MASS_IMMOVABLE };
 
 static s16 sEffectScales[] = {
-    145, 135, 115, 85, 75, 53, 45, 40, 35,
+    145,
+    135,
+    115,
+    85,
+    75,
+    53,
+    45,
+    40,
+    35,
 };
 
 static InitChainEntry sInitChain[] = {
@@ -92,15 +100,15 @@ void ObjHamishi_Shake(ObjHamishi* this) {
 }
 
 void ObjHamishi_Break(ObjHamishi* this, PlayState* play) {
-    s32 pad;
+    s32   pad;
     Vec3f velocity;
     Vec3f pos;
-    s16 phi_s0 = 1000;
-    s16 gravity;
-    s16 phi_v0;
-    f32 temp_f20;
-    f32 temp_f22;
-    s32 i;
+    s16   phi_s0 = 1000;
+    s16   gravity;
+    s16   phi_v0;
+    f32   temp_f20;
+    f32   temp_f22;
+    s32   i;
 
     for (i = 0; i < ARRAY_COUNT(sEffectScales); i++) {
         phi_s0 += 20000;

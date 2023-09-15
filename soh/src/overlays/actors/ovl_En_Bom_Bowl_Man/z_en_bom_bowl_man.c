@@ -48,13 +48,13 @@ const ActorInit En_Bom_Bowl_Man_InitVars = {
 };
 
 void EnBomBowlMan_Init(Actor* thisx, PlayState* play2) {
-    static f32 cuccoColliderDims[][3] = { { 16.0f, 46.0f, 0.0f }, { 36.0f, 56.0f, 0.0f } };
+    static f32   cuccoColliderDims[][3] = { { 16.0f, 46.0f, 0.0f }, { 36.0f, 56.0f, 0.0f } };
     static Vec3f cuccoSpawnPos[] = { { 60, -60, -430 }, { 0, -120, -620 } };
-    static f32 cuccoScales[] = { 0.01f, 0.03f };
+    static f32   cuccoScales[] = { 0.01f, 0.03f };
     EnBomBowlMan* this = (EnBomBowlMan*)thisx;
     EnSyatekiNiw* cucco;
-    s32 i;
-    PlayState* play = play2;
+    s32           i;
+    PlayState*    play = play2;
 
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawCircle, 30.0f);
     SkelAnime_InitFlex(play, &this->skelAnime, &gChuGirlSkel, &gChuGirlNoddingOffAnim, this->jointTable,
@@ -69,7 +69,7 @@ void EnBomBowlMan_Init(Actor* thisx, PlayState* play2) {
     Actor_SetScale(&this->actor, 0.013f);
 
     for (i = 0; i < 2; i++) {
-        if(CVarGetInteger("gCustomizeBombchuBowling", 0) && CVarGetInteger(i == 0 ? "gBombchuBowlingNoSmallCucco" : "gBombchuBowlingNoBigCucco", 0)) {
+        if (CVarGetInteger("gCustomizeBombchuBowling", 0) && CVarGetInteger(i == 0 ? "gBombchuBowlingNoSmallCucco" : "gBombchuBowlingNoBigCucco", 0)) {
             continue;
         }
 
@@ -327,10 +327,9 @@ void EnBomBowlMan_HandlePlayChoice(EnBomBowlMan* this, PlayState* play) {
                     Rupees_ChangeBy(-30);
                     this->minigamePlayStatus = 1;
                     this->wallStatus[0] = this->wallStatus[1] = 0;
-                    if(CVarGetInteger("gCustomizeBombchuBowling", 0)) {
+                    if (CVarGetInteger("gCustomizeBombchuBowling", 0)) {
                         play->bombchuBowlingStatus = CVarGetInteger("gBombchuBowlingAmmunition", 10);
-                    }
-                    else {
+                    } else {
                         play->bombchuBowlingStatus = 10;
                     }
                     Flags_SetSwitch(play, 0x38);
@@ -411,7 +410,11 @@ void EnBomBowMan_SetupChooseShowPrize(EnBomBowlMan* this, PlayState* play) {
 }
 
 static Vec3f sPrizePosOffset[] = {
-    { 0.0f, 22.0f, 0.0f }, { 0.0f, 22.0f, 0.0f }, { 0.0f, 8.0f, 0.0f }, { 0.0f, 9.0f, 0.0f }, { 0.0f, -2.0f, 0.0f },
+    { 0.0f, 22.0f, 0.0f },
+    { 0.0f, 22.0f, 0.0f },
+    { 0.0f, 8.0f, 0.0f },
+    { 0.0f, 9.0f, 0.0f },
+    { 0.0f, -2.0f, 0.0f },
 };
 
 static s16 sPrizeRot[] = { 0x4268, 0x4268, -0x03E8, 0x0000, 0x4268, 0x0000 };

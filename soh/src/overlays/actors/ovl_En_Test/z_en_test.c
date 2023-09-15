@@ -244,8 +244,10 @@ static DamageTable sDamageTable = {
 };
 
 static InitChainEntry sInitChain[] = {
-    ICHAIN_S8(naviEnemyId, 0x1B, ICHAIN_CONTINUE),    ICHAIN_F32(targetArrowOffset, 500, ICHAIN_CONTINUE),
-    ICHAIN_VEC3F_DIV1000(scale, 15, ICHAIN_CONTINUE), ICHAIN_F32(scale.y, 0, ICHAIN_CONTINUE),
+    ICHAIN_S8(naviEnemyId, 0x1B, ICHAIN_CONTINUE),
+    ICHAIN_F32(targetArrowOffset, 500, ICHAIN_CONTINUE),
+    ICHAIN_VEC3F_DIV1000(scale, 15, ICHAIN_CONTINUE),
+    ICHAIN_F32(scale.y, 0, ICHAIN_CONTINUE),
     ICHAIN_F32_DIV1000(gravity, -1500, ICHAIN_STOP),
 };
 
@@ -362,9 +364,9 @@ void EnTest_ChooseRandomAction(EnTest* this, PlayState* play) {
 }
 
 void EnTest_ChooseAction(EnTest* this, PlayState* play) {
-    s32 pad;
+    s32     pad;
     Player* player = GET_PLAYER(play);
-    s16 yawDiff = player->actor.shape.rot.y - this->actor.shape.rot.y;
+    s16     yawDiff = player->actor.shape.rot.y - this->actor.shape.rot.y;
 
     yawDiff = ABS(yawDiff);
 
@@ -489,7 +491,7 @@ void EnTest_SetupIdle(EnTest* this) {
 
 void EnTest_Idle(EnTest* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 yawDiff;
+    s16     yawDiff;
 
     SkelAnime_Update(&this->skelAnime);
 
@@ -569,15 +571,15 @@ void EnTest_SetupWalkAndBlock(EnTest* this) {
 }
 
 void EnTest_WalkAndBlock(EnTest* this, PlayState* play) {
-    s32 pad;
-    f32 checkDist = 0.0f;
-    s32 pad1;
-    s32 prevFrame;
-    s32 temp_f16;
-    f32 playSpeed;
+    s32     pad;
+    f32     checkDist = 0.0f;
+    s32     pad1;
+    s32     prevFrame;
+    s32     temp_f16;
+    f32     playSpeed;
     Player* player = GET_PLAYER(play);
-    s32 absPlaySpeed;
-    s16 yawDiff;
+    s32     absPlaySpeed;
+    s16     yawDiff;
 
     if (!EnTest_ReactToProjectile(play, this)) {
         this->timer++;
@@ -792,15 +794,15 @@ void func_80860EC0(EnTest* this) {
 
 // a variation of sidestep
 void func_80860F84(EnTest* this, PlayState* play) {
-    s16 playerYaw180;
-    s32 pad;
-    s32 prevFrame;
-    s32 temp_f16;
-    s16 yawDiff;
+    s16     playerYaw180;
+    s32     pad;
+    s32     prevFrame;
+    s32     temp_f16;
+    s16     yawDiff;
     Player* player = GET_PLAYER(play);
-    f32 checkDist = 0.0f;
-    s16 newYaw;
-    s32 absPlaySpeed;
+    f32     checkDist = 0.0f;
+    s16     newYaw;
+    s32     absPlaySpeed;
 
     if (!EnTest_ReactToProjectile(play, this)) {
         Math_SmoothStepToS(&this->actor.shape.rot.y, this->actor.yawTowardsPlayer, 1, 0xFA0, 1);
@@ -944,7 +946,7 @@ void EnTest_SetupSlashDownEnd(EnTest* this) {
 
 void EnTest_SlashDownEnd(EnTest* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 yawDiff;
+    s16     yawDiff;
 
     if (SkelAnime_Update(&this->skelAnime)) {
         if (this->swordCollider.base.atFlags & AT_HIT) {
@@ -1362,15 +1364,15 @@ void func_808627C4(EnTest* this, PlayState* play) {
 
 // a variation of sidestep
 void func_808628C8(EnTest* this, PlayState* play) {
-    s32 pad;
+    s32     pad;
     Player* player = GET_PLAYER(play);
-    s32 pad1;
-    s32 prevFrame;
-    s32 temp_f16;
-    s32 pad2;
-    f32 checkDist = 0.0f;
-    s16 newYaw;
-    f32 absPlaySpeed;
+    s32     pad1;
+    s32     prevFrame;
+    s32     temp_f16;
+    s32     pad2;
+    f32     checkDist = 0.0f;
+    s16     newYaw;
+    f32     absPlaySpeed;
 
     Math_SmoothStepToS(&this->actor.shape.rot.y, this->actor.yawTowardsPlayer, 1, 0xFA0, 1);
 
@@ -1861,11 +1863,11 @@ void EnTest_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot
     static Vec3f unused5 = { -3000.0f, -1100.0f, 800.0f };
     static Vec3f unused6 = { 1900.0f, -1100.0f, 800.0f };
     static Vec3f unused7 = { 1900.0f, 1900.0f, 800.0f };
-    s32 bodyPart = -1;
-    Vec3f sp70;
-    Vec3f sp64;
+    s32          bodyPart = -1;
+    Vec3f        sp70;
+    Vec3f        sp64;
     EnTest* this = (EnTest*)thisx;
-    s32 pad;
+    s32   pad;
     Vec3f sp50;
 
     BodyBreak_SetInfo(&this->bodyBreak, limbIndex, 0, 60, 60, dList, BODYBREAK_OBJECT_DEFAULT);
@@ -1991,10 +1993,10 @@ void func_80864158(EnTest* this, f32 xzSpeed) {
  */
 s32 EnTest_ReactToProjectile(PlayState* play, EnTest* this) {
     Actor* projectileActor;
-    s16 yawToProjectile;
-    s16 wallYawDiff;
-    s16 touchingWall;
-    s16 directionFlag;
+    s16    yawToProjectile;
+    s16    wallYawDiff;
+    s16    touchingWall;
+    s16    directionFlag;
 
     projectileActor = Actor_GetProjectileActor(play, &this->actor, 300.0f);
 

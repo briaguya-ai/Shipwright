@@ -200,12 +200,11 @@ void EnBom_Explode(EnBom* this, PlayState* play) {
     }
 
     if (CVarGetInteger("gStaticExplosionRadius", 0)) {
-        //72 is the maximum radius of an OoT bomb explosion
+        // 72 is the maximum radius of an OoT bomb explosion
         this->explosionCollider.elements[0].dim.worldSphere.radius = 72;
     } else {
         this->explosionCollider.elements[0].dim.worldSphere.radius += this->actor.shape.rot.z + 8;
     }
-        
 
     if (this->actor.params == BOMB_EXPLOSION) {
         CollisionCheck_SetAT(play, &play->colChkCtx, &this->explosionCollider.base);
@@ -250,14 +249,14 @@ void EnBom_Explode(EnBom* this, PlayState* play) {
 }
 
 void EnBom_Update(Actor* thisx, PlayState* play2) {
-    Vec3f effVelocity = { 0.0f, 0.0f, 0.0f };
-    Vec3f bomb2Accel = { 0.0f, 0.1f, 0.0f };
-    Vec3f effAccel = { 0.0f, 0.0f, 0.0f };
-    Vec3f effPos;
-    Vec3f dustAccel = { 0.0f, 0.6f, 0.0f };
+    Vec3f       effVelocity = { 0.0f, 0.0f, 0.0f };
+    Vec3f       bomb2Accel = { 0.0f, 0.1f, 0.0f };
+    Vec3f       effAccel = { 0.0f, 0.0f, 0.0f };
+    Vec3f       effPos;
+    Vec3f       dustAccel = { 0.0f, 0.6f, 0.0f };
     Color_RGBA8 dustColor = { 255, 255, 255, 255 };
-    s32 pad;
-    PlayState* play = play2;
+    s32         pad;
+    PlayState*  play = play2;
     EnBom* this = (EnBom*)thisx;
 
     thisx->gravity = -1.2f;

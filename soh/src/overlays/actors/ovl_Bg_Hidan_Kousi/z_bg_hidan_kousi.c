@@ -65,7 +65,7 @@ void BgHidanKousi_SetupAction(BgHidanKousi* this, BgHidanKousiActionFunc actionF
 
 void BgHidanKousi_Init(Actor* thisx, PlayState* play) {
     BgHidanKousi* this = (BgHidanKousi*)thisx;
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
 
     DynaPolyActor_Init(&this->dyna, DPM_UNK);
@@ -95,10 +95,10 @@ void BgHidanKousi_Destroy(Actor* thisx, PlayState* play) {
 }
 
 void func_80889ACC(BgHidanKousi* this) {
-    s32 pad[2];
+    s32    pad[2];
     Vec3s* rot = &this->dyna.actor.world.rot;
-    f32 temp1 = D_80889E40[this->dyna.actor.params & 0xFF] * Math_SinS(rot->y);
-    f32 temp2 = D_80889E40[this->dyna.actor.params & 0xFF] * Math_CosS(rot->y);
+    f32    temp1 = D_80889E40[this->dyna.actor.params & 0xFF] * Math_SinS(rot->y);
+    f32    temp2 = D_80889E40[this->dyna.actor.params & 0xFF] * Math_CosS(rot->y);
 
     this->dyna.actor.world.pos.x = this->dyna.actor.home.pos.x + temp1;
     this->dyna.actor.world.pos.z = this->dyna.actor.home.pos.z + temp2;

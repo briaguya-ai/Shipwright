@@ -118,10 +118,10 @@ static InitChainEntry sInitChain[] = {
 
 void EnOkuta_Init(Actor* thisx, PlayState* play) {
     EnOkuta* this = (EnOkuta*)thisx;
-    s32 pad;
+    s32       pad;
     WaterBox* outWaterBox;
-    f32 ySurface;
-    s32 sp30;
+    f32       ySurface;
+    s32       sp30;
 
     Actor_ProcessInitChain(thisx, sInitChain);
     this->numShots = (thisx->params >> 8) & 0xFF;
@@ -179,7 +179,7 @@ void EnOkuta_SpawnBubbles(EnOkuta* this, PlayState* play) {
 }
 
 void EnOkuta_SpawnDust(Vec3f* pos, Vec3f* velocity, s16 scaleStep, PlayState* play) {
-    static Vec3f accel = { 0.0f, 0.0f, 0.0f };
+    static Vec3f       accel = { 0.0f, 0.0f, 0.0f };
     static Color_RGBA8 primColor = { 255, 255, 255, 255 };
     static Color_RGBA8 envColor = { 150, 150, 150, 255 };
 
@@ -270,8 +270,8 @@ void EnOkuta_SetupFreeze(EnOkuta* this) {
 void EnOkuta_SpawnProjectile(EnOkuta* this, PlayState* play) {
     Vec3f pos;
     Vec3f velocity;
-    f32 sin = Math_SinS(this->actor.shape.rot.y);
-    f32 cos = Math_CosS(this->actor.shape.rot.y);
+    f32   sin = Math_SinS(this->actor.shape.rot.y);
+    f32   cos = Math_CosS(this->actor.shape.rot.y);
 
     pos.x = this->actor.world.pos.x + (25.0f * sin);
     pos.y = this->actor.world.pos.y - 6.0f;
@@ -405,12 +405,12 @@ void EnOkuta_WaitToDie(EnOkuta* this, PlayState* play) {
 }
 
 void EnOkuta_Die(EnOkuta* this, PlayState* play) {
-    static Vec3f accel = { 0.0f, -0.5f, 0.0f };
+    static Vec3f       accel = { 0.0f, -0.5f, 0.0f };
     static Color_RGBA8 primColor = { 255, 255, 255, 255 };
     static Color_RGBA8 envColor = { 150, 150, 150, 0 };
-    Vec3f velocity;
-    Vec3f pos;
-    s32 i;
+    Vec3f              velocity;
+    Vec3f              pos;
+    s32                i;
 
     if (SkelAnime_Update(&this->skelAnime)) {
         this->timer++;
@@ -455,7 +455,7 @@ void EnOkuta_Die(EnOkuta* this, PlayState* play) {
 
 void EnOkuta_Freeze(EnOkuta* this, PlayState* play) {
     Vec3f pos;
-    s16 temp_v1;
+    s16   temp_v1;
 
     if (this->timer != 0) {
         this->timer--;
@@ -475,9 +475,9 @@ void EnOkuta_Freeze(EnOkuta* this, PlayState* play) {
 }
 
 void EnOkuta_ProjectileFly(EnOkuta* this, PlayState* play) {
-    Vec3f pos;
+    Vec3f   pos;
     Player* player = GET_PLAYER(play);
-    Vec3s sp40;
+    Vec3s   sp40;
 
     this->timer--;
     if (this->timer == 0) {
@@ -508,17 +508,25 @@ void EnOkuta_ProjectileFly(EnOkuta* this, PlayState* play) {
             pos.z = this->actor.world.pos.z;
             if (CVarGetInteger("gNewDrops", 0) != 0) {
                 static s16 sEffectScales[] = {
-                    145, 135, 115, 85, 75, 53, 45, 40, 35,
+                    145,
+                    135,
+                    115,
+                    85,
+                    75,
+                    53,
+                    45,
+                    40,
+                    35,
                 };
-                s32 pad;
+                s32   pad;
                 Vec3f velocity;
                 Vec3f pos;
-                s16 phi_s0 = 500;
-                s16 gravity;
-                s16 phi_v0;
-                f32 temp_f20;
-                f32 temp_f22;
-                s32 i;
+                s16   phi_s0 = 500;
+                s16   gravity;
+                s16   phi_v0;
+                f32   temp_f20;
+                f32   temp_f22;
+                s32   i;
                 for (s16 i = 0; i < ARRAY_COUNT(sEffectScales); i++) {
                     phi_s0 += 10000;
 
@@ -544,7 +552,7 @@ void EnOkuta_ProjectileFly(EnOkuta* this, PlayState* play) {
                         gravity = -320;
                     }
                     EffectSsKakera_Spawn(play, &pos, &velocity, &this->actor.world.pos, gravity, phi_v0, 30, 5, 0,
-                                        sEffectScales[i]/5, 3, 0, 70, 1, OBJECT_GAMEPLAY_FIELD_KEEP, gSilverRockFragmentsDL);
+                                         sEffectScales[i] / 5, 3, 0, 70, 1, OBJECT_GAMEPLAY_FIELD_KEEP, gSilverRockFragmentsDL);
                 }
             } else {
                 EffectSsHahen_SpawnBurst(play, &pos, 6.0f, 0, 1, 2, 15, 7, 10, gOctorokProjectileDL);
@@ -623,11 +631,11 @@ void EnOkuta_ColliderCheck(EnOkuta* this, PlayState* play) {
 void EnOkuta_Update(Actor* thisx, PlayState* play2) {
     EnOkuta* this = (EnOkuta*)thisx;
     PlayState* play = play2;
-    Player* player = GET_PLAYER(play);
-    WaterBox* outWaterBox;
-    f32 ySurface;
-    Vec3f sp38;
-    s32 sp34;
+    Player*    player = GET_PLAYER(play);
+    WaterBox*  outWaterBox;
+    f32        ySurface;
+    Vec3f      sp38;
+    s32        sp34;
 
     if (!(player->stateFlags1 & 0x300000C0)) {
         if (this->actor.params == 0) {
@@ -730,9 +738,9 @@ s32 EnOkuta_GetSnoutScale(EnOkuta* this, f32 curFrame, Vec3f* scale) {
 s32 EnOkuta_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot,
                              void* thisx) {
     EnOkuta* this = (EnOkuta*)thisx;
-    f32 curFrame = this->skelAnime.curFrame;
+    f32   curFrame = this->skelAnime.curFrame;
     Vec3f scale;
-    s32 doScale = false;
+    s32   doScale = false;
 
     if (this->actionFunc == EnOkuta_Die) {
         curFrame += this->timer;
@@ -766,19 +774,19 @@ void EnOkuta_Draw(Actor* thisx, PlayState* play) {
         if (CVarGetInteger("gNewDrops", 0) != 0) {
             Gfx_SetupDL_25Opa(play->state.gfxCtx);
             gSPSegment(POLY_OPA_DISP++, 0x08,
-                    Gfx_TwoTexScroll(play->state.gfxCtx, 0, 1 * (play->state.frames * 6),
+                       Gfx_TwoTexScroll(play->state.gfxCtx, 0, 1 * (play->state.frames * 6),
                                         1 * (play->state.frames * 6), 32, 32, 1, 1 * (play->state.frames * 6),
                                         1 * (play->state.frames * 6), 32, 32));
-            Matrix_Scale(7.0f,7.0f,7.0f,MTXMODE_APPLY);
+            Matrix_Scale(7.0f, 7.0f, 7.0f, MTXMODE_APPLY);
             Matrix_RotateX(thisx->home.rot.z * (M_PI / 0x8000), MTXMODE_APPLY);
             gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
-                    G_MTX_MODELVIEW | G_MTX_LOAD);
+                      G_MTX_MODELVIEW | G_MTX_LOAD);
             gSPDisplayList(POLY_OPA_DISP++, gSilverRockDL);
         } else {
             Matrix_Mult(&play->billboardMtxF, MTXMODE_APPLY);
             Matrix_RotateZ(this->actor.home.rot.z * (M_PI / 0x8000), MTXMODE_APPLY);
             gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
-                    G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+                      G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(POLY_OPA_DISP++, gOctorokProjectileDL);
         }
 

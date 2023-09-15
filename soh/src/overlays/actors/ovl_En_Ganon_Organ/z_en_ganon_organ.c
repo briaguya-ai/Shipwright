@@ -27,7 +27,7 @@ const ActorInit En_Ganon_Organ_InitVars = {
     NULL,
 };
 
-//static u64 sForceAlignment = 0;
+// static u64 sForceAlignment = 0;
 
 #include "overlays/ovl_En_Ganon_Organ/ovl_En_Ganon_Organ.h"
 

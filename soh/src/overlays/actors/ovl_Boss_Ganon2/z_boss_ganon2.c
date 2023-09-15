@@ -70,7 +70,6 @@ Vec3f D_80910608[4];
 
 s8 D_80910638;
 
-
 void BossGanon2_InitRand(s32 seedInit0, s32 seedInit1, s32 seedInit2) {
     sBossGanon2Seed1 = seedInit0;
     sBossGanon2Seed2 = seedInit1;
@@ -134,7 +133,7 @@ void func_808FD210(PlayState* play, Vec3f* arg1) {
 
 void func_808FD27C(PlayState* play, Vec3f* position, Vec3f* velocity, f32 scale) {
     BossGanon2Effect* effect = play->specialEffects;
-    s16 i;
+    s16               i;
 
     for (i = 0; i < ARRAY_COUNT(sBossGanon2Particles); i++, effect++) {
         if (effect->type == 0) {
@@ -205,12 +204,12 @@ void func_808FD5C4(BossGanon2* this, PlayState* play) {
 }
 
 void func_808FD5F4(BossGanon2* this, PlayState* play) {
-    s16 pad;
-    u8 sp8D;
+    s16     pad;
+    u8      sp8D;
     Player* player;
-    s32 objectIdx;
-    s32 zero = 0;
-    s32 pad2;
+    s32     objectIdx;
+    s32     zero = 0;
+    s32     pad2;
 
     sp8D = false;
     player = GET_PLAYER(play);
@@ -226,7 +225,7 @@ void func_808FD5F4(BossGanon2* this, PlayState* play) {
                 Play_ChangeCameraStatus(play, MAIN_CAM, CAM_STAT_WAIT);
                 Play_ChangeCameraStatus(play, this->unk_39E, CAM_STAT_ACTIVE);
                 sBossGanon2Zelda = (EnZl3*)Actor_SpawnAsChild(&play->actorCtx, &this->actor, play, ACTOR_EN_ZL3, 970.0f,
-                                                    1086.0f, -200.0f, 0, 0, 0, 1);
+                                                              1086.0f, -200.0f, 0, 0, 0, 1);
                 sBossGanon2Zelda->unk_3C8 = 0;
                 sBossGanon2Zelda->actor.world.pos.x = 970.0f;
                 sBossGanon2Zelda->actor.world.pos.y = 1086.0f;
@@ -711,7 +710,7 @@ void func_808FD5F4(BossGanon2* this, PlayState* play) {
                 BossGanon2_SetObjectSegment(this, play, OBJECT_GANON2, false);
                 TitleCard_InitBossName(play, &play->actorCtx.titleCtx,
                                        SEGMENTED_TO_VIRTUAL(gGanonTitleCardENGTex), 160, 180, 128, 40, true);
-                                       //It has translation but they are all the same. they all say "GANON" only
+                // It has translation but they are all the same. they all say "GANON" only
             }
             this->unk_3A4.x = ((this->actor.world.pos.x + 500.0f) - 350.0f) + 100.0f;
             this->unk_3A4.y = this->actor.world.pos.y;
@@ -949,7 +948,7 @@ void func_808FF898(BossGanon2* this, PlayState* play) {
                     if (SQ(this->unk_218.x - gj->dyna.actor.world.pos.x) +
                             SQ(this->unk_218.z - gj->dyna.actor.world.pos.z) <
                         SQ(100.0f)) {
-                        s32 pad;
+                        s32   pad;
                         Vec3f sp28;
 
                         Matrix_RotateY(((this->actor.shape.rot.y / (f32)0x8000) * M_PI) + 0.5f, MTXMODE_NEW);
@@ -1311,15 +1310,15 @@ void func_80900818(BossGanon2* this, PlayState* play) {
 }
 
 void func_80900890(BossGanon2* this, PlayState* play) {
-    Vec3f sp5C;
-    Vec3f sp50;
+    Vec3f   sp5C;
+    Vec3f   sp50;
     Camera* sp4C;
     Player* player;
     Camera* temp_v0;
     Camera* temp_v0_2;
-    s32 pad;
-    f32 temp_f12;
-    f32 temp_f2;
+    s32     pad;
+    f32     temp_f12;
+    f32     temp_f2;
 
     sp4C = Play_GetCamera(play, MAIN_CAM);
     player = GET_PLAYER(play);
@@ -1479,7 +1478,7 @@ void func_8090109C(BossGanon2* this, PlayState* play) {
     static Color_RGBA8 sPrimColor = { 0, 120, 0, 255 };
     static Color_RGBA8 sEnvColor = { 0, 120, 0, 255 };
 
-    if(CVarGetInteger("gRedGanonBlood", 0)) {
+    if (CVarGetInteger("gRedGanonBlood", 0)) {
         sPrimColor.r = 120;
         sPrimColor.g = 0;
 
@@ -1508,12 +1507,12 @@ void func_8090109C(BossGanon2* this, PlayState* play) {
 
 void func_8090120C(BossGanon2* this, PlayState* play) {
     Player* player;
-    f32 temp_f14;
-    f32 temp_f12;
+    f32     temp_f14;
+    f32     temp_f12;
     Camera* temp_v0_2;
-    s16 temp_a0_2;
-    f32 phi_f0;
-    s32 phi_a1;
+    s16     temp_a0_2;
+    f32     phi_f0;
+    s32     phi_a1;
 
     player = GET_PLAYER(play);
     this->csTimer++;
@@ -1878,11 +1877,11 @@ void func_8090120C(BossGanon2* this, PlayState* play) {
 
 void func_80902348(BossGanon2* this, PlayState* play) {
     Player* player;
-    f32 temp_f2;
-    f32 temp_f12;
-    s16 i;
-    s16 j;
-    s16 phi_v0_2;
+    f32     temp_f2;
+    f32     temp_f12;
+    s16     i;
+    s16     j;
+    s16     phi_v0_2;
 
     if (this->unk_316 == 0) {
         for (i = 0; i < ARRAY_COUNT(this->unk_864); i++) {
@@ -1923,10 +1922,10 @@ void func_80902348(BossGanon2* this, PlayState* play) {
 }
 
 void func_80902524(BossGanon2* this, PlayState* play) {
-    s8 temp_v0_4;
+    s8            temp_v0_4;
     ColliderInfo* acHitInfo;
-    s16 i;
-    u8 phi_v1_2;
+    s16           i;
+    u8            phi_v1_2;
 
     osSyncPrintf("this->no_hit_time %d\n", this->unk_316);
     if (this->unk_316 != 0 || ((this->unk_334 == 0) && (this->actionFunc == func_80900890))) {
@@ -2003,14 +2002,14 @@ void func_80902524(BossGanon2* this, PlayState* play) {
 
 void BossGanon2_Update(Actor* thisx, PlayState* play) {
     BossGanon2* this = (BossGanon2*)thisx;
-    s32 pad;
-    s16 i;
-    f32 phi_f2;
-    u16 i2;
+    s32   pad;
+    s16   i;
+    f32   phi_f2;
+    u16   i2;
     Vec3f sp58;
     Vec3f sp4C;
-    f32 angle;
-    f32 sp44;
+    f32   angle;
+    f32   sp44;
 
     if ((this->unk_337 == 0) || (this->unk_337 == 2)) {
         BossGanon2_SetObjectSegment(this, play, OBJECT_GANON_ANIME3, false);
@@ -2239,25 +2238,25 @@ void BossGanon2_Update(Actor* thisx, PlayState* play) {
 }
 
 void func_809034E4(Vec3f* arg0, Vec3f* arg1) {
-    Vtx* vtx;
+    Vtx*  vtx;
     Vec3f sp2D0;
-    s16 temp_s1;
-    s16 temp_a1;
-    s16 sp2CA;
-    s16 sp2C8;
-    s16 i;
-    u8 phi_s2;
-    u8 temp_s4;
-    u8 temp_s4_2;
-    f32 temp_f12;
+    s16   temp_s1;
+    s16   temp_a1;
+    s16   sp2CA;
+    s16   sp2C8;
+    s16   i;
+    u8    phi_s2;
+    u8    temp_s4;
+    u8    temp_s4_2;
+    f32   temp_f12;
     Vec3f temp_f20;
     Vec3f temp_f2;
     Vec3f temp_f22;
-    f32 sp294;
-    f32 phi_f30;
-    f32 temp_f28;
-    f32 temp_f26;
-    s32 pad[3];
+    f32   sp294;
+    f32   phi_f30;
+    f32   temp_f28;
+    f32   temp_f26;
+    s32   pad[3];
     Vec3f sp18C[20];
     Vec3f sp9C[20];
 
@@ -2681,7 +2680,7 @@ void func_80904D88(BossGanon2* this, PlayState* play) {
             gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(POLY_XLU_DISP++, gGanonLightOrbModelDL);
-            
+
             FrameInterpolation_RecordCloseChild();
         }
     }
@@ -2718,7 +2717,7 @@ void func_80904FC8(BossGanon2* this, PlayState* play) {
 
 void func_8090523C(BossGanon2* this, PlayState* play) {
     Player* player;
-    f32 phi_f20;
+    f32     phi_f20;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -2749,7 +2748,7 @@ void func_8090523C(BossGanon2* this, PlayState* play) {
             gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(POLY_XLU_DISP++, SEGMENTED_TO_VIRTUAL(gGanonLightOrbModelDL));
-            
+
             FrameInterpolation_RecordCloseChild();
         }
     }
@@ -2882,11 +2881,11 @@ void BossGanon2_Draw(Actor* thisx, PlayState* play) {
 }
 
 void func_80905DA8(BossGanon2* this, PlayState* play) {
-    s32 pad[5];
-    Player* player = GET_PLAYER(play);
+    s32               pad[5];
+    Player*           player = GET_PLAYER(play);
     BossGanon2Effect* effect = play->specialEffects;
-    Vec3f sp78;
-    s16 i;
+    Vec3f             sp78;
+    s16               i;
 
     for (i = 0; i < ARRAY_COUNT(sBossGanon2Particles); i++, effect++) {
         if (effect->type != 0) {
@@ -2944,10 +2943,10 @@ void func_80905DA8(BossGanon2* this, PlayState* play) {
 }
 
 void func_809060E8(PlayState* play) {
-    s16 alpha;
-    u8 usingObjectGEff = false;
+    s16               alpha;
+    u8                usingObjectGEff = false;
     BossGanon2Effect* effect;
-    s16 i;
+    s16               i;
     BossGanon2Effect* effects;
 
     effects = effect = play->specialEffects;
@@ -2961,8 +2960,8 @@ void func_809060E8(PlayState* play) {
             FrameInterpolation_RecordOpenChild("Ganon 809060E8 0", i);
 
             Vec3f spA0;
-            f32 temp_f0;
-            f32 angle;
+            f32   temp_f0;
+            f32   angle;
 
             Gfx_SetupDL_25Xlu(play->state.gfxCtx);
             spA0.x = play->envCtx.dirLight1.params.dir.x;
@@ -2993,7 +2992,7 @@ void func_809060E8(PlayState* play) {
             gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(POLY_XLU_DISP++, gGanonMasterSwordShadowDL);
-            
+
             FrameInterpolation_RecordCloseChild();
         }
     }
@@ -3016,7 +3015,7 @@ void func_809060E8(PlayState* play) {
             gSPMatrix(POLY_OPA_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(POLY_OPA_DISP++, gGanonRubbleDL);
-            
+
             FrameInterpolation_RecordCloseChild();
         }
     }
@@ -3025,16 +3024,16 @@ void func_809060E8(PlayState* play) {
 }
 
 void func_80906538(BossGanon2* this, u8* shadowTexture, f32 arg2) {
-    s16 temp_t0;
-    s16 temp_v0;
-    s16 temp_a3;
-    s16 phi_v1;
-    s16 phi_a1;
-    s16 i;
-    f32 lerpx;
-    s16 j;
-    f32 lerpy;
-    f32 lerpz;
+    s16   temp_t0;
+    s16   temp_v0;
+    s16   temp_a3;
+    s16   phi_v1;
+    s16   phi_a1;
+    s16   i;
+    f32   lerpx;
+    s16   j;
+    f32   lerpy;
+    f32   lerpz;
     Vec3f sp70;
     Vec3f sp64;
 
@@ -3102,7 +3101,7 @@ void func_80906538(BossGanon2* this, u8* shadowTexture, f32 arg2) {
 }
 
 void BossGanon2_GenShadowTexture(void* shadowTexture, BossGanon2* this, PlayState* play) {
-    s16 i;
+    s16  i;
     u32* p = shadowTexture;
 
     for (i = 0; i < 1024; i++, p++) {
@@ -3117,9 +3116,9 @@ void BossGanon2_GenShadowTexture(void* shadowTexture, BossGanon2* this, PlayStat
 }
 
 void BossGanon2_DrawShadowTexture(void* shadowTexture, BossGanon2* this, PlayState* play) {
-    s32 pad;
+    s32              pad;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s16 alpha;
+    s16              alpha;
 
     OPEN_DISPS(gfxCtx);
 

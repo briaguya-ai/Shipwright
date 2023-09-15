@@ -16,8 +16,8 @@ void BgZg_Update(Actor* thisx, PlayState* play);
 void BgZg_Draw(Actor* thisx, PlayState* play);
 
 void func_808C0C50(BgZg* this);
-s32 func_808C0C98(BgZg* this, PlayState* play);
-s32 func_808C0CC8(BgZg* this);
+s32  func_808C0C98(BgZg* this, PlayState* play);
+s32  func_808C0CC8(BgZg* this);
 void func_808C0CD4(BgZg* this, PlayState* play);
 void func_808C0D08(BgZg* this, PlayState* play);
 void func_808C0EEC(BgZg* this, PlayState* play);

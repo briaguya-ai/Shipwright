@@ -31,9 +31,9 @@ const ActorInit Bg_Jya_Bigmirror_InitVars = {
 
 typedef struct {
     /* 0x00 */ Vec3f pos;
-    /* 0x0C */ s16 params;
-    /* 0x0E */ s16 solvedRotY;
-    /* 0x10 */ s16 initRotY;
+    /* 0x0C */ s16   params;
+    /* 0x0E */ s16   solvedRotY;
+    /* 0x10 */ s16   initRotY;
 } BigMirrorDataEntry; // size = 0x14
 
 static BigMirrorDataEntry sCobraSpawnData[] = {
@@ -59,8 +59,8 @@ void BgJyaBigmirror_HandleCobra(Actor* thisx, PlayState* play) {
     static u8 cobraPuzzleFlags[] = { BIGMIR_PUZZLE_COBRA1_SOLVED, BIGMIR_PUZZLE_COBRA2_SOLVED };
     BgJyaBigmirror* this = (BgJyaBigmirror*)thisx;
     BigMirrorDataEntry* curSpawnData;
-    BigmirrorCobra* curCobraInfo;
-    s32 i;
+    BigmirrorCobra*     curCobraInfo;
+    s32                 i;
 
     if (this->puzzleFlags & (BIGMIR_PUZZLE_IN_1ST_TOP_ROOM | BIGMIR_PUZZLE_IN_2ND_TOP_ROOM)) {
         for (i = 0; i < 2; i++) {
@@ -118,7 +118,7 @@ void BgJyaBigmirror_SetBombiwaFlag(Actor* thisx, PlayState* play) {
 }
 
 void BgJyaBigmirror_HandleMirRay(Actor* thisx, PlayState* play) {
-    static s16 sMirRayParamss[] = { 0x0005, 0x0007, 0x0008 };
+    static s16   sMirRayParamss[] = { 0x0005, 0x0007, 0x0008 };
     static Vec3f sMirRayPoss[] = {
         { 60.0f, 1802.0f, -1102.0f },
         { -560.0f, 1800.0f, -310.0f },

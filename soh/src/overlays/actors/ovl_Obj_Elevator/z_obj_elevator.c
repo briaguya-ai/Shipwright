@@ -45,10 +45,10 @@ void ObjElevator_SetupAction(ObjElevator* this, ObjElevatorActionFunc actionFunc
 }
 
 void func_80B92B08(ObjElevator* this, PlayState* play, CollisionHeader* collision, s32 flag) {
-    s16 pad1;
+    s16              pad1;
     CollisionHeader* colHeader = NULL;
-    s16 pad2;
-    Actor* thisx = &this->dyna.actor;
+    s16              pad2;
+    Actor*           thisx = &this->dyna.actor;
 
     DynaPolyActor_Init(&this->dyna, flag);
     CollisionHeader_GetVirtual(collision, &colHeader);
@@ -83,7 +83,7 @@ void func_80B92C5C(ObjElevator* this) {
 }
 
 void func_80B92C80(ObjElevator* this, PlayState* play) {
-    f32 sub;
+    f32    sub;
     Actor* thisx = &this->dyna.actor;
 
     if ((this->dyna.unk_160 & 2) && !(this->unk_170 & 2)) {

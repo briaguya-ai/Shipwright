@@ -41,7 +41,7 @@ void BgSpot01Idosoko_Init(Actor* thisx, PlayState* play) {
     s32 pad;
     BgSpot01Idosoko* this = (BgSpot01Idosoko*)thisx;
     CollisionHeader* colHeader = NULL;
-    s32 pad2;
+    s32              pad2;
 
     DynaPolyActor_Init(&this->dyna, DPM_PLAYER);
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
@@ -50,8 +50,8 @@ void BgSpot01Idosoko_Init(Actor* thisx, PlayState* play) {
     // If dungeon entrance randomizer is on, remove the well stone as adult Link when
     // child Link has drained the water to the well
     if (!LINK_IS_ADULT || (gSaveContext.n64ddFlag &&
-        Randomizer_GetSettingValue(RSK_SHUFFLE_DUNGEON_ENTRANCES) != RO_DUNGEON_ENTRANCE_SHUFFLE_OFF &&
-        Flags_GetEventChkInf(EVENTCHKINF_DRAINED_WELL_IN_KAKARIKO))) {
+                           Randomizer_GetSettingValue(RSK_SHUFFLE_DUNGEON_ENTRANCES) != RO_DUNGEON_ENTRANCE_SHUFFLE_OFF &&
+                           Flags_GetEventChkInf(EVENTCHKINF_DRAINED_WELL_IN_KAKARIKO))) {
         Actor_Kill(&this->dyna.actor);
     } else {
         BgSpot01Idosoko_SetupAction(this, func_808ABF54);

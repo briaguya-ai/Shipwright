@@ -23,7 +23,8 @@ class SceneFactoryV0 : public ResourceVersionFactory {
   public:
     void ParseFileBinary(std::shared_ptr<BinaryReader> reader, std::shared_ptr<IResource> resource) override;
     void ParseSceneCommands(std::shared_ptr<Scene> scene, std::shared_ptr<BinaryReader> reader);
-protected:
+
+  protected:
     std::shared_ptr<ISceneCommand> ParseSceneCommand(std::shared_ptr<Scene> scene, std::shared_ptr<BinaryReader> reader, uint32_t index);
 };
 }; // namespace LUS

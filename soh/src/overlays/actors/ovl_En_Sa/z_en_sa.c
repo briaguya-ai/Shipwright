@@ -67,7 +67,11 @@ static ColliderCylinderInit sCylinderInit = {
 };
 
 static CollisionCheckInfoInit2 sColChkInfoInit = {
-    0, 0, 0, 0, MASS_IMMOVABLE,
+    0,
+    0,
+    0,
+    0,
+    MASS_IMMOVABLE,
 };
 
 typedef enum {
@@ -403,7 +407,7 @@ s32 func_80AF5DFC(EnSa* this, PlayState* play) {
 
 void func_80AF5F34(EnSa* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 trackingMode = NPC_TRACKING_PLAYER_AUTO_TURN;
+    s16     trackingMode = NPC_TRACKING_PLAYER_AUTO_TURN;
 
     if (play->sceneNum == SCENE_KOKIRI_FOREST) {
         trackingMode = (this->actionFunc == func_80AF68E4) ? NPC_TRACKING_NONE : NPC_TRACKING_FULL_BODY;
@@ -645,13 +649,13 @@ void func_80AF683C(EnSa* this, PlayState* play) {
 }
 
 void func_80AF68E4(EnSa* this, PlayState* play) {
-    s16 phi_v0;
-    Vec3f startPos;
-    Vec3f endPos;
-    Vec3f D_80AF7448 = { 0.0f, 0.0f, 0.0f };
+    s16               phi_v0;
+    Vec3f             startPos;
+    Vec3f             endPos;
+    Vec3f             D_80AF7448 = { 0.0f, 0.0f, 0.0f };
     CsCmdActorAction* csAction;
-    f32 temp_f0;
-    f32 gravity;
+    f32               temp_f0;
+    f32               gravity;
 
     if ((gSaveContext.cutsceneTrigger != 1) && (play->csCtx.state == CS_STATE_IDLE)) {
         this->actionFunc = func_80AF6B20;
@@ -680,7 +684,7 @@ void func_80AF68E4(EnSa* this, PlayState* play) {
             EnSa_ChangeAnim(this, csAction->action);
             this->unk_210 = csAction->action;
         }
-        //if (phi_v0) {}
+        // if (phi_v0) {}
         if (csAction->action == 3) {
             if (this->unk_20C == 0) {
                 phi_v0 = 0;
@@ -749,8 +753,7 @@ void EnSa_Update(Actor* thisx, PlayState* play) {
     if (this->actionFunc != func_80AF68E4) {
         if (CVarGetInteger("gDisableKokiriDrawDistance", 0) != 0) {
             this->alpha = func_80034DD4(&this->actor, play, this->alpha, 32767);
-        }
-        else {
+        } else {
             this->alpha = func_80034DD4(&this->actor, play, this->alpha, 400.0f);
         }
     } else {
@@ -780,7 +783,7 @@ void EnSa_Update(Actor* thisx, PlayState* play) {
 s32 EnSa_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx,
                           Gfx** gfx) {
     EnSa* this = (EnSa*)thisx;
-    s32 pad;
+    s32   pad;
     Vec3s sp18;
 
     if (limbIndex == 16) {
@@ -815,11 +818,18 @@ void EnSa_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, 
 
 void EnSa_Draw(Actor* thisx, PlayState* play) {
     static void* mouthTextures[] = {
-        gSariaMouthClosed2Tex,  gSariaMouthSmilingOpenTex, gSariaMouthFrowningTex,
-        gSariaMouthSuprisedTex, gSariaMouthClosedTex,
+        gSariaMouthClosed2Tex,
+        gSariaMouthSmilingOpenTex,
+        gSariaMouthFrowningTex,
+        gSariaMouthSuprisedTex,
+        gSariaMouthClosedTex,
     };
     static void* eyeTextures[] = {
-        gSariaEyeOpenTex, gSariaEyeHalfTex, gSariaEyeClosedTex, gSariaEyeSuprisedTex, gSariaEyeSadTex,
+        gSariaEyeOpenTex,
+        gSariaEyeHalfTex,
+        gSariaEyeClosedTex,
+        gSariaEyeSuprisedTex,
+        gSariaEyeSadTex,
     };
     EnSa* this = (EnSa*)thisx;
 

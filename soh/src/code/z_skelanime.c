@@ -24,9 +24,9 @@ static u32 sAnimQueueFlags;
 void SkelAnime_DrawLimbLod(PlayState* play, s32 limbIndex, void** skeleton, Vec3s* jointTable,
                            OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* arg, s32 lod) {
     LodLimb* limb;
-    Gfx* dList;
-    Vec3f pos;
-    Vec3s rot;
+    Gfx*     dList;
+    Vec3f    pos;
+    Vec3s    rot;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -73,10 +73,10 @@ void SkelAnime_DrawLimbLod(PlayState* play, s32 limbIndex, void** skeleton, Vec3
 void SkelAnime_DrawLod(PlayState* play, void** skeleton, Vec3s* jointTable,
                        OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* arg, s32 lod) {
     LodLimb* rootLimb;
-    s32 pad;
-    Gfx* dList;
-    Vec3f pos;
-    Vec3s rot;
+    s32      pad;
+    Gfx*     dList;
+    Vec3f    pos;
+    Vec3s    rot;
 
     if (skeleton == NULL) {
         osSyncPrintf(VT_FGCOL(RED));
@@ -126,10 +126,10 @@ void SkelAnime_DrawFlexLimbLod(PlayState* play, s32 limbIndex, void** skeleton, 
                                OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* arg, s32 lod,
                                Mtx** mtx) {
     LodLimb* limb;
-    Gfx* newDList;
-    Gfx* limbDList;
-    Vec3f pos;
-    Vec3s rot;
+    Gfx*     newDList;
+    Gfx*     limbDList;
+    Vec3f    pos;
+    Vec3s    rot;
 
     Matrix_Push();
 
@@ -184,12 +184,12 @@ void SkelAnime_DrawFlexLimbLod(PlayState* play, s32 limbIndex, void** skeleton, 
 void SkelAnime_DrawFlexLod(PlayState* play, void** skeleton, Vec3s* jointTable, s32 dListCount,
                            OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* arg, s32 lod) {
     LodLimb* rootLimb;
-    s32 pad;
-    Gfx* newDList;
-    Gfx* limbDList;
-    Vec3f pos;
-    Vec3s rot;
-    Mtx* mtx = Graph_Alloc(play->state.gfxCtx, dListCount * sizeof(Mtx));
+    s32      pad;
+    Gfx*     newDList;
+    Gfx*     limbDList;
+    Vec3f    pos;
+    Vec3s    rot;
+    Mtx*     mtx = Graph_Alloc(play->state.gfxCtx, dListCount * sizeof(Mtx));
 
     if (skeleton == NULL) {
         osSyncPrintf(VT_FGCOL(RED));
@@ -245,9 +245,9 @@ void SkelAnime_DrawFlexLod(PlayState* play, void** skeleton, Vec3s* jointTable, 
 void SkelAnime_DrawLimbOpa(PlayState* play, s32 limbIndex, void** skeleton, Vec3s* jointTable,
                            OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* arg) {
     StandardLimb* limb;
-    Gfx* dList;
-    Vec3f pos;
-    Vec3s rot;
+    Gfx*          dList;
+    Vec3f         pos;
+    Vec3s         rot;
 
     OPEN_DISPS(play->state.gfxCtx);
     Matrix_Push();
@@ -290,10 +290,10 @@ void SkelAnime_DrawLimbOpa(PlayState* play, s32 limbIndex, void** skeleton, Vec3
 void SkelAnime_DrawOpa(PlayState* play, void** skeleton, Vec3s* jointTable,
                        OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* arg) {
     StandardLimb* rootLimb;
-    s32 pad;
-    Gfx* dList;
-    Vec3f pos;
-    Vec3s rot;
+    s32           pad;
+    Gfx*          dList;
+    Vec3f         pos;
+    Vec3s         rot;
 
     if (skeleton == NULL) {
         osSyncPrintf(VT_FGCOL(RED));
@@ -342,10 +342,10 @@ void SkelAnime_DrawFlexLimbOpa(PlayState* play, s32 limbIndex, void** skeleton, 
                                OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* arg,
                                Mtx** limbMatricies) {
     StandardLimb* limb;
-    Gfx* newDList;
-    Gfx* limbDList;
-    Vec3f pos;
-    Vec3s rot;
+    Gfx*          newDList;
+    Gfx*          limbDList;
+    Vec3f         pos;
+    Vec3s         rot;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -400,12 +400,12 @@ void SkelAnime_DrawFlexLimbOpa(PlayState* play, s32 limbIndex, void** skeleton, 
 void SkelAnime_DrawFlexOpa(PlayState* play, void** skeleton, Vec3s* jointTable, s32 dListCount,
                            OverrideLimbDrawOpa overrideLimbDraw, PostLimbDrawOpa postLimbDraw, void* arg) {
     StandardLimb* rootLimb;
-    s32 pad;
-    Gfx* newDList;
-    Gfx* limbDList;
-    Vec3f pos;
-    Vec3s rot;
-    Mtx* mtx = Graph_Alloc(play->state.gfxCtx, dListCount * sizeof(Mtx));
+    s32           pad;
+    Gfx*          newDList;
+    Gfx*          limbDList;
+    Vec3f         pos;
+    Vec3s         rot;
+    Mtx*          mtx = Graph_Alloc(play->state.gfxCtx, dListCount * sizeof(Mtx));
 
     if (skeleton == NULL) {
         osSyncPrintf(VT_FGCOL(RED));
@@ -466,12 +466,12 @@ void SkelAnime_GetFrameData(AnimationHeader* animation, s32 frame, s32 limbCount
         animation = ResourceMgr_LoadAnimByName(animation);
 
     AnimationHeader* animHeader = SEGMENTED_TO_VIRTUAL(animation);
-    JointIndex* jointIndices = SEGMENTED_TO_VIRTUAL(animHeader->jointIndices);
-    s16* frameData = SEGMENTED_TO_VIRTUAL(animHeader->frameData);
-    s16* staticData = &frameData[0];
-    s16* dynamicData = &frameData[frame];
-    u16 staticIndexMax = animHeader->staticIndexMax;
-    s32 i;
+    JointIndex*      jointIndices = SEGMENTED_TO_VIRTUAL(animHeader->jointIndices);
+    s16*             frameData = SEGMENTED_TO_VIRTUAL(animHeader->frameData);
+    s16*             staticData = &frameData[0];
+    s16*             dynamicData = &frameData[frame];
+    u16              staticIndexMax = animHeader->staticIndexMax;
+    s32              i;
 
     for (i = 0; i < limbCount; i++, frameTable++, jointIndices++) {
         if ((frameTable == NULL) || (jointIndices == NULL) || (dynamicData == NULL) || (staticData == NULL)) {
@@ -513,9 +513,9 @@ s16 Animation_GetLastFrame(void* animation) {
 Gfx* SkelAnime_DrawLimb(PlayState* play, s32 limbIndex, void** skeleton, Vec3s* jointTable,
                         OverrideLimbDraw overrideLimbDraw, PostLimbDraw postLimbDraw, void* arg, Gfx* gfx) {
     StandardLimb* limb;
-    Gfx* dList;
-    Vec3f pos;
-    Vec3s rot;
+    Gfx*          dList;
+    Vec3f         pos;
+    Vec3s         rot;
 
     Matrix_Push();
 
@@ -563,10 +563,10 @@ Gfx* SkelAnime_DrawLimb(PlayState* play, s32 limbIndex, void** skeleton, Vec3s* 
 Gfx* SkelAnime_Draw(PlayState* play, void** skeleton, Vec3s* jointTable, OverrideLimbDraw overrideLimbDraw,
                     PostLimbDraw postLimbDraw, void* arg, Gfx* gfx) {
     StandardLimb* rootLimb;
-    s32 pad;
-    Gfx* dList;
-    Vec3f pos;
-    Vec3s rot;
+    s32           pad;
+    Gfx*          dList;
+    Vec3f         pos;
+    Vec3s         rot;
 
     if (skeleton == NULL) {
         osSyncPrintf(VT_FGCOL(RED));
@@ -617,10 +617,10 @@ Gfx* SkelAnime_DrawFlexLimb(PlayState* play, s32 limbIndex, void** skeleton, Vec
                             OverrideLimbDraw overrideLimbDraw, PostLimbDraw postLimbDraw, void* arg, Mtx** mtx,
                             Gfx* gfx) {
     StandardLimb* limb;
-    Gfx* newDList;
-    Gfx* limbDList;
-    Vec3f pos;
-    Vec3s rot;
+    Gfx*          newDList;
+    Gfx*          limbDList;
+    Vec3f         pos;
+    Vec3s         rot;
 
     Matrix_Push();
 
@@ -671,12 +671,12 @@ Gfx* SkelAnime_DrawFlexLimb(PlayState* play, s32 limbIndex, void** skeleton, Vec
 Gfx* SkelAnime_DrawFlex(PlayState* play, void** skeleton, Vec3s* jointTable, s32 dListCount,
                         OverrideLimbDraw overrideLimbDraw, PostLimbDraw postLimbDraw, void* arg, Gfx* gfx) {
     StandardLimb* rootLimb;
-    s32 pad;
-    Gfx* newDList;
-    Gfx* limbDList;
-    Vec3f pos;
-    Vec3s rot;
-    Mtx* mtx = Graph_Alloc(play->state.gfxCtx, dListCount * sizeof(*mtx));
+    s32           pad;
+    Gfx*          newDList;
+    Gfx*          limbDList;
+    Vec3f         pos;
+    Vec3s         rot;
+    Mtx*          mtx = Graph_Alloc(play->state.gfxCtx, dListCount * sizeof(*mtx));
 
     if (skeleton == NULL) {
         osSyncPrintf(VT_FGCOL(RED));
@@ -729,12 +729,12 @@ Gfx* SkelAnime_DrawFlex(PlayState* play, void** skeleton, Vec3s* jointTable, s32
  */
 s32 SkelAnime_GetFrameDataLegacy(LegacyAnimationHeader* animation, s32 frame, Vec3s* frameTable) {
     LegacyAnimationHeader* animHeader = SEGMENTED_TO_VIRTUAL(animation);
-    s32 limbCount = animHeader->limbCount;
-    JointKey* key = SEGMENTED_TO_VIRTUAL(animHeader->jointKey);
-    s16* frameData = SEGMENTED_TO_VIRTUAL(animHeader->frameData);
-    s16* staticData = &frameData[0];
-    s16* dynamicData = &frameData[frame];
-    s32 i;
+    s32                    limbCount = animHeader->limbCount;
+    JointKey*              key = SEGMENTED_TO_VIRTUAL(animHeader->jointKey);
+    s16*                   frameData = SEGMENTED_TO_VIRTUAL(animHeader->frameData);
+    s16*                   staticData = &frameData[0];
+    s16*                   dynamicData = &frameData[frame];
+    s32                    i;
 
     frameTable->x = frame < key->xMax ? dynamicData[key->x] : staticData[key->x];
     frameTable->y = frame < key->yMax ? dynamicData[key->y] : staticData[key->y];
@@ -831,7 +831,7 @@ void AnimationContext_DisableQueue(PlayState* play) {
 
 AnimationEntry* AnimationContext_AddEntry(AnimationContext* animationCtx, AnimationType type) {
     AnimationEntry* entry;
-    s16 index = animationCtx->animationCount;
+    s16             index = animationCtx->animationCount;
 
     if (index >= ANIMATION_ENTRY_MAX) {
         return NULL;
@@ -856,13 +856,12 @@ void AnimationContext_SetLoadFrame(PlayState* play, LinkAnimationHeader* animati
 
     AnimationEntry* entry = AnimationContext_AddEntry(&play->animationCtx, ANIMENTRY_LOADFRAME);
 
-    if (entry != NULL)
-    {
+    if (entry != NULL) {
         if (ResourceMgr_OTRSigCheck(animation) != 0)
             animation = ResourceMgr_LoadAnimByName(animation);
 
         LinkAnimationHeader* linkAnimHeader = SEGMENTED_TO_VIRTUAL(animation);
-        Vec3s* ram = frameTable;
+        Vec3s*               ram = frameTable;
 
         osCreateMesgQueue(&entry->data.load.msgQueue, &entry->data.load.msg, 1);
 
@@ -870,7 +869,7 @@ void AnimationContext_SetLoadFrame(PlayState* play, LinkAnimationHeader* animati
 
         snprintf(animPath, sizeof(animPath), "misc/link_animetion/gPlayerAnimData_%06X", (((uintptr_t)linkAnimHeader->segment - 0x07000000)));
 
-        //printf("Streaming %s, seg = %08X\n", animPath, linkAnimHeader->segment);
+        // printf("Streaming %s, seg = %08X\n", animPath, linkAnimHeader->segment);
 
         s16* animData = ResourceMgr_LoadPlayerAnimByName(animPath);
 
@@ -883,11 +882,10 @@ void AnimationContext_SetLoadFrame(PlayState* play, LinkAnimationHeader* animati
             ramPtr[i] = i * 7;
         }*/
 
-
-        //DmaMgr_SendRequest2(&entry->data.load.req, ram,
-                            //LINK_ANIMATION_OFFSET(linkAnimHeader->segment, ((sizeof(Vec3s) * limbCount + 2) * frame)),
-                            //sizeof(Vec3s) * limbCount + 2, 0, &entry->data.load.msgQueue, NULL, __FILE__,
-                            //__LINE__);
+        // DmaMgr_SendRequest2(&entry->data.load.req, ram,
+        // LINK_ANIMATION_OFFSET(linkAnimHeader->segment, ((sizeof(Vec3s) * limbCount + 2) * frame)),
+        // sizeof(Vec3s) * limbCount + 2, 0, &entry->data.load.msgQueue, NULL, __FILE__,
+        //__LINE__);
     }
 }
 
@@ -981,7 +979,7 @@ void AnimationContext_CopyAll(PlayState* play, AnimationEntryData* data) {
     if (!(entry->queueFlag & sDisableAnimQueueFlags)) {
         Vec3s* dst = entry->dst;
         Vec3s* src = entry->src;
-        s32 i;
+        s32    i;
 
         for (i = 0; i < entry->vecCount; i++) {
             *dst++ = *src++;
@@ -1009,8 +1007,8 @@ void AnimationContext_CopyTrue(PlayState* play, AnimationEntryData* data) {
     if (!(entry->queueFlag & sDisableAnimQueueFlags)) {
         Vec3s* dst = entry->dst;
         Vec3s* src = entry->src;
-        u8* copyFlag = entry->copyFlag;
-        s32 i;
+        u8*    copyFlag = entry->copyFlag;
+        s32    i;
 
         for (i = 0; i < entry->vecCount; i++, dst++, src++) {
             if (*copyFlag++) {
@@ -1029,8 +1027,8 @@ void AnimationContext_CopyFalse(PlayState* play, AnimationEntryData* data) {
     if (!(entry->queueFlag & sDisableAnimQueueFlags)) {
         Vec3s* dst = entry->dst;
         Vec3s* src = entry->src;
-        u8* copyFlag = entry->copyFlag;
-        s32 i;
+        u8*    copyFlag = entry->copyFlag;
+        s32    i;
 
         for (i = 0; i < entry->vecCount; i++, dst++, src++) {
             if (!(*copyFlag++)) {
@@ -1045,8 +1043,8 @@ void AnimationContext_CopyFalse(PlayState* play, AnimationEntryData* data) {
  */
 void AnimationContext_MoveActor(PlayState* play, AnimationEntryData* data) {
     AnimEntryMoveActor* entry = &data->move;
-    Actor* actor = entry->actor;
-    Vec3f diff;
+    Actor*              actor = entry->actor;
+    Vec3f               diff;
 
     SkelAnime_UpdateTranslation(entry->skelAnime, &diff, actor->shape.rot.y);
     actor->world.pos.x += diff.x * actor->scale.x;
@@ -1059,8 +1057,12 @@ void AnimationContext_MoveActor(PlayState* play, AnimationEntryData* data) {
  */
 void AnimationContext_Update(PlayState* play, AnimationContext* animationCtx) {
     static AnimationEntryCallback animFuncs[] = {
-        AnimationContext_LoadFrame, AnimationContext_CopyAll,   AnimationContext_Interp,
-        AnimationContext_CopyTrue,  AnimationContext_CopyFalse, AnimationContext_MoveActor,
+        AnimationContext_LoadFrame,
+        AnimationContext_CopyAll,
+        AnimationContext_Interp,
+        AnimationContext_CopyTrue,
+        AnimationContext_CopyFalse,
+        AnimationContext_MoveActor,
     };
     AnimationEntry* entry;
 
@@ -1083,9 +1085,9 @@ void SkelAnime_InitLink(PlayState* play, SkelAnime* skelAnime, FlexSkeletonHeade
         skeletonHeaderSeg = ResourceMgr_LoadSkeletonByName(skeletonHeaderSeg, skelAnime);
 
     FlexSkeletonHeader* skeletonHeader = SEGMENTED_TO_VIRTUAL(skeletonHeaderSeg);
-    s32 headerJointCount = skeletonHeader->sh.limbCount;
-    s32 limbCount;
-    size_t allocSize;
+    s32                 headerJointCount = skeletonHeader->sh.limbCount;
+    s32                 limbCount;
+    size_t              allocSize;
 
     skelAnime->initFlags = flags;
     limbCount = (flags & 2) ? headerJointCount : 1;

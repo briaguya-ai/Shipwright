@@ -41,7 +41,7 @@ void BgPushbox_Init(Actor* thisx, PlayState* play) {
     s32 pad;
     BgPushbox* this = (BgPushbox*)thisx;
     CollisionHeader* colHeader = NULL;
-    s32 pad2;
+    s32              pad2;
 
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
     DynaPolyActor_Init(&this->dyna, DPM_UNK);

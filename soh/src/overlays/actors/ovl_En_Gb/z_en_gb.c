@@ -152,11 +152,11 @@ void func_80A2F180(EnGb* this) {
 
 void EnGb_Init(Actor* thisx, PlayState* play) {
     EnGb* this = (EnGb*)thisx;
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
-    s32 i;
-    f32 rand;
-    Vec3f focusOffset;
+    s32              i;
+    f32              rand;
+    Vec3f            focusOffset;
 
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
     DynaPolyActor_Init(&this->dyna, DPM_UNK);
@@ -229,7 +229,7 @@ void EnGb_Destroy(Actor* thisx, PlayState* play) {
 }
 
 void func_80A2F608(EnGb* this) {
-    s32 i;
+    s32   i;
     Vec3f sp48;
     Vec3f sp3C;
 
@@ -411,8 +411,8 @@ void func_80A2FC70(EnGb* this, PlayState* play) {
 void EnGb_Update(Actor* thisx, PlayState* play2) {
     EnGb* this = (EnGb*)thisx;
     PlayState* play = play2;
-    s32 i;
-    f32 rand;
+    s32        i;
+    f32        rand;
 
     this->frameTimer++;
     SkelAnime_Update(&this->skelAnime);

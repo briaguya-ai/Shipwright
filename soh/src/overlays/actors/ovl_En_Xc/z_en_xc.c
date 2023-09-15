@@ -64,7 +64,7 @@ void EnXc_InitCollider(Actor* thisx, PlayState* play) {
 void EnXc_UpdateCollider(Actor* thisx, PlayState* play) {
     EnXc* this = (EnXc*)thisx;
     Collider* colliderBase = &this->collider.base;
-    s32 pad[3];
+    s32       pad[3];
 
     Collider_UpdateCylinder(thisx, &this->collider);
     CollisionCheck_SetOC(play, &play->colChkCtx, colliderBase);
@@ -87,7 +87,7 @@ void EnXc_CalculateHeadTurn(EnXc* this, PlayState* play) {
 }
 
 void EnXc_SetEyePattern(EnXc* this) {
-    s32 pad[3];
+    s32  pad[3];
     s16* blinkTimer = &this->blinkTimer;
     s16* eyePattern = &this->eyeIdx;
 
@@ -102,12 +102,12 @@ void EnXc_SetEyePattern(EnXc* this) {
 }
 
 void EnXc_SpawnNut(EnXc* this, PlayState* play) {
-    s32 pad;
+    s32    pad;
     Vec3f* pos = &this->actor.world.pos;
-    s16 angle = this->actor.shape.rot.y;
-    f32 x = (Math_SinS(angle) * 30.0f) + pos->x;
-    f32 y = pos->y + 3.0f;
-    f32 z = (Math_CosS(angle) * 30.0f) + pos->z;
+    s16    angle = this->actor.shape.rot.y;
+    f32    x = (Math_SinS(angle) * 30.0f) + pos->x;
+    f32    y = pos->y + 3.0f;
+    f32    z = (Math_CosS(angle) * 30.0f) + pos->z;
 
     Actor_Spawn(&play->actorCtx, play, ACTOR_EN_ARROW, x, y, z, 0xFA0, this->actor.shape.rot.y, 0,
                 ARROW_CS_NUT, true);
@@ -150,7 +150,7 @@ s32 EnXc_CsActionsAreNotEqual(EnXc* this, PlayState* play, u16 action, s32 npcAc
 
 void func_80B3C588(EnXc* this, PlayState* play, u32 npcActionIdx) {
     CsCmdActorAction* csCmdNPCAction = EnXc_GetCsCmd(play, npcActionIdx);
-    Actor* thisx = &this->actor;
+    Actor*            thisx = &this->actor;
 
     if (csCmdNPCAction != NULL) {
         thisx->world.pos.x = csCmdNPCAction->startPos.x;
@@ -164,14 +164,14 @@ void func_80B3C588(EnXc* this, PlayState* play, u32 npcActionIdx) {
 
 void func_80B3C620(EnXc* this, PlayState* play, s32 npcActionIdx) {
     CsCmdActorAction* npcAction = EnXc_GetCsCmd(play, npcActionIdx);
-    Vec3f* xcPos = &this->actor.world.pos;
-    f32 startX;
-    f32 startY;
-    f32 startZ;
-    f32 endX;
-    f32 endY;
-    f32 endZ;
-    f32 unk;
+    Vec3f*            xcPos = &this->actor.world.pos;
+    f32               startX;
+    f32               startY;
+    f32               startZ;
+    f32               endX;
+    f32               endY;
+    f32               endZ;
+    f32               unk;
 
     if (npcAction != NULL) {
         unk =
@@ -189,12 +189,12 @@ void func_80B3C620(EnXc* this, PlayState* play, s32 npcActionIdx) {
 }
 
 void EnXc_ChangeAnimation(EnXc* this, AnimationHeader* animation, u8 mode, f32 morphFrames, s32 reverseFlag) {
-    s32 pad[2];
+    s32              pad[2];
     AnimationHeader* animationSeg = SEGMENTED_TO_VIRTUAL(animation);
-    f32 frameCount = Animation_GetLastFrame(&animationSeg->common);
-    f32 playbackSpeed;
-    f32 startFrame;
-    f32 endFrame;
+    f32              frameCount = Animation_GetLastFrame(&animationSeg->common);
+    f32              playbackSpeed;
+    f32              startFrame;
+    f32              endFrame;
 
     if (!reverseFlag) {
         startFrame = 0.0f;
@@ -310,7 +310,7 @@ void GivePlayerRandoRewardSheikSong(EnXc* sheik, PlayState* play, RandomizerChec
 s32 EnXc_MinuetCS(EnXc* this, PlayState* play) {
     if (this->actor.params == SHEIK_TYPE_MINUET) {
         Player* player = GET_PLAYER(play);
-        f32 z = player->actor.world.pos.z;
+        f32     z = player->actor.world.pos.z;
 
         if (z < -2225.0f) {
             if (!Play_InCsMode(play)) {
@@ -385,7 +385,7 @@ void EnXc_SetupSerenadeAction(EnXc* this, PlayState* play) {
 s32 EnXc_SerenadeCS(EnXc* this, PlayState* play) {
     if (this->actor.params == SHEIK_TYPE_SERENADE) {
         Player* player = GET_PLAYER(play);
-        s32 stateFlags = player->stateFlags1;
+        s32     stateFlags = player->stateFlags1;
 
         if (((CHECK_OWNED_EQUIP(EQUIP_BOOTS, 1) && !gSaveContext.n64ddFlag) ||
              (Flags_GetTreasure(play, 2) && gSaveContext.n64ddFlag)) &&
@@ -458,14 +458,14 @@ void EnXc_SetLandingSFX(EnXc* this, PlayState* play) {
 
 void EnXc_SetColossusAppearSFX(EnXc* this, PlayState* play) {
     static Vec3f sXyzDist;
-    s16 sceneNum;
+    s16          sceneNum;
 
     if (gSaveContext.sceneSetupIndex == 4) {
         sceneNum = play->sceneNum;
         if (sceneNum == SCENE_DESERT_COLOSSUS) {
             CutsceneContext* csCtx = &play->csCtx;
-            u16 frameCount = csCtx->frames;
-            f32 wDest[2];
+            u16              frameCount = csCtx->frames;
+            f32              wDest[2];
 
             if (frameCount == 119) {
                 Vec3f pos = { -611.0f, 728.0f, -2.0f };
@@ -474,7 +474,7 @@ void EnXc_SetColossusAppearSFX(EnXc* this, PlayState* play) {
                 func_80078914(&sXyzDist, NA_SE_EV_JUMP_CONC);
             } else if (frameCount == 164) {
                 Vec3f pos = { -1069.0f, 38.0f, 0.0f };
-                s32 pad;
+                s32   pad;
 
                 SkinMatrix_Vec3fMtxFMultXYZW(&play->viewProjectionMtxF, &pos, &sXyzDist, wDest);
                 func_80078914(&sXyzDist, NA_SE_PL_WALK_CONCRETE);
@@ -493,21 +493,21 @@ void func_80B3D118(PlayState* play) {
 
 static Vec3f D_80B42DA0;
 
-s32 D_80B41D90 = 0;
+s32  D_80B41D90 = 0;
 void EnXc_SetColossusWindSFX(PlayState* play) {
     if (gSaveContext.sceneSetupIndex == 4) {
         static Vec3f sPos = { 0.0f, 0.0f, 0.0f };
-        static f32 sMaxSpeed = 0.0f;
+        static f32   sMaxSpeed = 0.0f;
         static Vec3f D_80B42DB0;
-        s32 pad;
-        s16 sceneNum = play->sceneNum;
+        s32          pad;
+        s16          sceneNum = play->sceneNum;
 
         if (sceneNum == SCENE_DESERT_COLOSSUS) {
             CutsceneContext* csCtx = &play->csCtx;
-            u16 frameCount = csCtx->frames;
+            u16              frameCount = csCtx->frames;
 
             if ((frameCount >= 120) && (frameCount < 164)) {
-                s32 pad;
+                s32    pad;
                 Vec3f* eye = &play->view.eye;
 
                 if (D_80B41D90 != 0) {
@@ -530,14 +530,14 @@ void EnXc_SetColossusWindSFX(PlayState* play) {
     }
 }
 
-s32 sEnXcFlameSpawned = false;
+s32  sEnXcFlameSpawned = false;
 void EnXc_SpawnFlame(EnXc* this, PlayState* play) {
 
     if (!sEnXcFlameSpawned) {
         CsCmdActorAction* npcAction = EnXc_GetCsCmd(play, 0);
-        f32 xPos = npcAction->startPos.x;
-        f32 yPos = npcAction->startPos.y;
-        f32 zPos = npcAction->startPos.z;
+        f32               xPos = npcAction->startPos.x;
+        f32               yPos = npcAction->startPos.y;
+        f32               zPos = npcAction->startPos.z;
 
         this->flameActor = Actor_Spawn(&play->actorCtx, play, ACTOR_EN_LIGHT, xPos, yPos, zPos, 0, 0, 0, 5, true);
         sEnXcFlameSpawned = true;
@@ -545,7 +545,7 @@ void EnXc_SpawnFlame(EnXc* this, PlayState* play) {
 }
 
 void EnXc_SetupFlamePos(EnXc* this, PlayState* play) {
-    Vec3f* attachedPos;
+    Vec3f*            attachedPos;
     CsCmdActorAction* npcAction = EnXc_GetCsCmd(play, 0);
 
     if (this->flameActor != NULL) {
@@ -565,7 +565,7 @@ void EnXc_DestroyFlame(EnXc* this) {
     Actor_Kill(&this->actor);
 }
 
-s32 D_80B41DA8 = 1;
+s32  D_80B41DA8 = 1;
 void EnXc_InitFlame(EnXc* this, PlayState* play) {
     s32 pad;
     s16 sceneNum = play->sceneNum;
@@ -593,9 +593,9 @@ void EnXc_InitFlame(EnXc* this, PlayState* play) {
 }
 
 void func_80B3D48C(EnXc* this, PlayState* play) {
-    CutsceneContext* csCtx = &play->csCtx;
+    CutsceneContext*  csCtx = &play->csCtx;
     CsCmdActorAction* linkAction = csCtx->linkAction;
-    s16 yaw;
+    s16               yaw;
 
     if (linkAction != NULL) {
         yaw = linkAction->urot.y + 0x8000;
@@ -608,7 +608,7 @@ void func_80B3D48C(EnXc* this, PlayState* play) {
 }
 
 AnimationHeader* EnXc_GetCurrentHarpAnim(PlayState* play, s32 index) {
-    AnimationHeader* animation = &gSheikPlayingHarp5Anim;
+    AnimationHeader*  animation = &gSheikPlayingHarp5Anim;
     CsCmdActorAction* npcAction = EnXc_GetCsCmd(play, index);
 
     if (npcAction != NULL) {
@@ -630,7 +630,7 @@ AnimationHeader* EnXc_GetCurrentHarpAnim(PlayState* play, s32 index) {
 }
 
 void EnXc_CalcXZAccel(EnXc* this) {
-    f32 timer = this->timer;
+    f32  timer = this->timer;
     f32* speedXZ = &this->actor.speedXZ;
 
     if (timer < 9.0f) {
@@ -649,7 +649,7 @@ void func_80B3D644(EnXc* this) {
 }
 
 void EnXc_CalcXZSpeed(EnXc* this) {
-    f32 timer = this->timer;
+    f32  timer = this->timer;
     f32* speedXZ = &this->actor.speedXZ;
 
     if (timer < 3.0f) {
@@ -679,17 +679,17 @@ void func_80B3D750(EnXc* this, PlayState* play) {
 }
 
 void EnXc_SetupFallFromSkyAction(EnXc* this, PlayState* play) {
-    s32 pad;
+    s32              pad;
     CutsceneContext* csCtx = &play->csCtx;
 
     if (csCtx->state != 0) {
         CsCmdActorAction* npcAction = csCtx->npcActions[4];
 
         if (npcAction && npcAction->action == 2) {
-            s32 pad;
-            Vec3f* pos = &this->actor.world.pos;
+            s32        pad;
+            Vec3f*     pos = &this->actor.world.pos;
             SkelAnime* skelAnime = &this->skelAnime;
-            f32 frameCount = Animation_GetLastFrame(&gSheikFallingFromSkyAnim);
+            f32        frameCount = Animation_GetLastFrame(&gSheikFallingFromSkyAnim);
 
             this->action = SHEIK_ACTION_GRACEFUL_FALL;
             this->drawMode = SHEIK_DRAW_DEFAULT;
@@ -709,7 +709,7 @@ void EnXc_SetupFallFromSkyAction(EnXc* this, PlayState* play) {
 void func_80B3D8A4(EnXc* this, PlayState* play, s32 animFinished) {
     if (animFinished) {
         SkelAnime* skelAnime = &this->skelAnime;
-        f32 frameCount = Animation_GetLastFrame(&gSheikWalkingAnim);
+        f32        frameCount = Animation_GetLastFrame(&gSheikWalkingAnim);
 
         Animation_Change(skelAnime, &gSheikWalkingAnim, 1.0f, 0.0f, frameCount, ANIMMODE_LOOP, -8.0f);
 
@@ -736,7 +736,7 @@ void EnXc_SetupWalkAction(EnXc* this) {
 
 void EnXc_SetupHaltAction(EnXc* this) {
     SkelAnime* skelAnime = &this->skelAnime;
-    f32 xzDistToPlayer = this->actor.xzDistToPlayer;
+    f32        xzDistToPlayer = this->actor.xzDistToPlayer;
 
     if (xzDistToPlayer <= (kREG(3) + 95.0f)) {
         f32 frameCount = Animation_GetLastFrame(&gSheikIdleAnim);
@@ -759,7 +759,7 @@ void EnXc_SetupStoppedAction(EnXc* this) {
 
 void func_80B3DAF0(EnXc* this, PlayState* play) {
     CsCmdActorAction* npcAction = EnXc_GetCsCmd(play, 4);
-    u16 action;
+    u16               action;
 
     if (npcAction &&
         (action = npcAction->action, action == 3 || action == 11 || action == 12 || action == 13 || action == 23)) {
@@ -774,7 +774,7 @@ void func_80B3DAF0(EnXc* this, PlayState* play) {
 
 void EnXc_SetupInitialHarpAction(EnXc* this, s32 animFinished) {
     SkelAnime* skelAnime;
-    f32 frameCount;
+    f32        frameCount;
 
     if (animFinished) {
         skelAnime = &this->skelAnime;
@@ -786,10 +786,10 @@ void EnXc_SetupInitialHarpAction(EnXc* this, s32 animFinished) {
 }
 
 void EnXc_SetupPlayingHarpAction(EnXc* this, PlayState* play, s32 animFinished) {
-    s32 pad;
-    SkelAnime* skelAnime;
+    s32              pad;
+    SkelAnime*       skelAnime;
     AnimationHeader* animation;
-    f32 frameCount;
+    f32              frameCount;
 
     if (animFinished) {
         skelAnime = &this->skelAnime;
@@ -1117,12 +1117,12 @@ s32 EnXc_HarpOverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f
 
 void EnXc_DrawPullingOutHarp(Actor* thisx, PlayState* play) {
     EnXc* this = (EnXc*)thisx;
-    s32 pad;
-    s16 eyePattern = this->eyeIdx;
-    void* eyeTexture = sEyeTextures[eyePattern];
-    SkelAnime* skelAnime = &this->skelAnime;
+    s32              pad;
+    s16              eyePattern = this->eyeIdx;
+    void*            eyeTexture = sEyeTextures[eyePattern];
+    SkelAnime*       skelAnime = &this->skelAnime;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s32 pad2;
+    s32              pad2;
 
     OPEN_DISPS(gfxCtx);
     gSPSegment(POLY_OPA_DISP++, 0x08, SEGMENTED_TO_VIRTUAL(eyeTexture));
@@ -1139,12 +1139,12 @@ void EnXc_DrawPullingOutHarp(Actor* thisx, PlayState* play) {
 
 void EnXc_DrawHarp(Actor* thisx, PlayState* play) {
     EnXc* this = (EnXc*)thisx;
-    s32 pad;
-    s16 eyePattern = this->eyeIdx;
-    void* eyeTexture = sEyeTextures[eyePattern];
-    SkelAnime* skelAnime = &this->skelAnime;
+    s32              pad;
+    s16              eyePattern = this->eyeIdx;
+    void*            eyeTexture = sEyeTextures[eyePattern];
+    SkelAnime*       skelAnime = &this->skelAnime;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s32 pad2;
+    s32              pad2;
 
     OPEN_DISPS(gfxCtx);
 
@@ -1175,8 +1175,8 @@ void func_80B3EC0C(EnXc* this, PlayState* play) {
         CsCmdActorAction* npcAction = csCtx->npcActions[4];
 
         if ((npcAction != NULL) && (npcAction->action != 1)) {
-            PosRot* posRot = &this->actor.world;
-            Vec3i* startPos = &npcAction->startPos;
+            PosRot*     posRot = &this->actor.world;
+            Vec3i*      startPos = &npcAction->startPos;
             ActorShape* shape = &this->actor.shape;
 
             posRot->pos.x = startPos->x;
@@ -1440,7 +1440,7 @@ void EnXc_LakeHyliaDive(PlayState* play) {
 
 void func_80B3F534(PlayState* play) {
     CutsceneContext* csCtx = &play->csCtx;
-    u16 frameCount = csCtx->frames;
+    u16              frameCount = csCtx->frames;
 
     if (frameCount == 310) {
         Actor_Spawn(&play->actorCtx, play, ACTOR_DOOR_WARP1, -1044.0f, -1243.0f, 7458.0f, 0, 0, 0,
@@ -1448,7 +1448,7 @@ void func_80B3F534(PlayState* play) {
     }
 }
 
-s32 D_80B41DAC = 1;
+s32  D_80B41DAC = 1;
 void func_80B3F59C(EnXc* this, PlayState* play) {
     CsCmdActorAction* npcAction = EnXc_GetCsCmd(play, 0);
 
@@ -1579,11 +1579,11 @@ void EnXc_PlayTriforceSFX(Actor* thisx, PlayState* play) {
     EnXc* this = (EnXc*)thisx;
 
     if (this->unk_2A8) {
-        s32 pad;
+        s32   pad;
         Vec3f src;
         Vec3f pos;
         Vec3f sp1C = { 0.0f, 0.0f, 0.0f };
-        f32 wDest;
+        f32   wDest;
 
         Matrix_MultVec3f(&sp1C, &src);
         SkinMatrix_Vec3fMtxFMultXYZW(&play->viewProjectionMtxF, &src, &pos, &wDest);
@@ -1660,9 +1660,9 @@ void func_80B3FF0C(EnXc* this, PlayState* play) {
             CsCmdActorAction* npcAction = play->csCtx.npcActions[4];
 
             if (npcAction != NULL) {
-                PosRot* posRot = &this->actor.world;
+                PosRot*     posRot = &this->actor.world;
                 ActorShape* shape = &this->actor.shape;
-                Vec3i* startPos = &npcAction->startPos;
+                Vec3i*      startPos = &npcAction->startPos;
 
                 posRot->pos.x = startPos->x;
                 posRot->pos.y = startPos->y;
@@ -1752,12 +1752,12 @@ void EnXc_TriforcePostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3
 
 void EnXc_DrawTriforce(Actor* thisx, PlayState* play) {
     EnXc* this = (EnXc*)thisx;
-    s32 pad;
-    s16 eyeIdx = this->eyeIdx;
-    void* eyeTexture = sEyeTextures[eyeIdx];
-    SkelAnime* skelAnime = &this->skelAnime;
+    s32              pad;
+    s16              eyeIdx = this->eyeIdx;
+    void*            eyeTexture = sEyeTextures[eyeIdx];
+    SkelAnime*       skelAnime = &this->skelAnime;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s32 pad2;
+    s32              pad2;
 
     OPEN_DISPS(gfxCtx);
     if (this->unk_2BC != 0) {
@@ -1833,10 +1833,10 @@ void func_80B406F8(Actor* thisx) {
 }
 
 void EnXc_SetupIdleInNocturne(EnXc* this, PlayState* play) {
-    s32 pad;
+    s32         pad;
     ActorShape* actorShape = &this->actor.shape;
-    SkelAnime* skelAnime = &this->skelAnime;
-    f32 frameCount = Animation_GetLastFrame(&gSheikIdleAnim);
+    SkelAnime*  skelAnime = &this->skelAnime;
+    f32         frameCount = Animation_GetLastFrame(&gSheikIdleAnim);
 
     func_80B3C9DC(this);
     func_80B3C588(this, play, 4);
@@ -1849,7 +1849,7 @@ void EnXc_SetupIdleInNocturne(EnXc* this, PlayState* play) {
 void EnXc_SetupDefenseStance(Actor* thisx) {
     EnXc* this = (EnXc*)thisx;
     SkelAnime* skelAnime = &this->skelAnime;
-    f32 frameCount = Animation_GetLastFrame(&gSheikDefenseStanceAnim);
+    f32        frameCount = Animation_GetLastFrame(&gSheikDefenseStanceAnim);
 
     Animation_Change(skelAnime, &gSheikDefenseStanceAnim, 1.0f, 0.0f, frameCount, ANIMMODE_ONCE, -8.0f);
     this->action = SHEIK_ACTION_DEFENSE_STANCE;
@@ -1857,9 +1857,9 @@ void EnXc_SetupDefenseStance(Actor* thisx) {
 }
 
 void EnXc_SetupContortions(EnXc* this, PlayState* play) {
-    s32 pad;
+    s32        pad;
     SkelAnime* skelAnime = &this->skelAnime;
-    f32 frameCount = Animation_GetLastFrame(&gSheikIdleAnim);
+    f32        frameCount = Animation_GetLastFrame(&gSheikIdleAnim);
 
     Animation_Change(skelAnime, &gSheikIdleAnim, 1.0f, 0.0f, frameCount, ANIMMODE_LOOP, 0.0f);
     func_80B3C588(this, play, 4);
@@ -1872,9 +1872,9 @@ void EnXc_SetupContortions(EnXc* this, PlayState* play) {
 }
 
 void EnXc_SetupFallInNocturne(EnXc* this, PlayState* play) {
-    s32 pad;
+    s32        pad;
     SkelAnime* skelAnime = &this->skelAnime;
-    f32 frameCount = Animation_GetLastFrame(&gSheikIdleAnim);
+    f32        frameCount = Animation_GetLastFrame(&gSheikIdleAnim);
 
     Animation_Change(skelAnime, &gSheikIdleAnim, 1.0f, 0.0f, frameCount, ANIMMODE_LOOP, 0.0f);
     func_80B3C588(this, play, 4);
@@ -2178,7 +2178,7 @@ void EnXc_KillInNocturneCS(EnXc* this, PlayState* play) {
 
 void EnXc_DrawSquintingEyes(Actor* thisx, PlayState* play) {
     EnXc* this = (EnXc*)thisx;
-    SkelAnime* skelAnime = &this->skelAnime;
+    SkelAnime*       skelAnime = &this->skelAnime;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
 
     OPEN_DISPS(gfxCtx);
@@ -2444,9 +2444,9 @@ void EnXc_DrawNothing(Actor* thisx, PlayState* play) {
 void EnXc_DrawDefault(Actor* thisx, PlayState* play) {
     s32 pad;
     EnXc* this = (EnXc*)thisx;
-    s16 eyeIdx = this->eyeIdx;
-    void* eyeSegment = sEyeTextures[eyeIdx];
-    SkelAnime* skelAnime = &this->skelAnime;
+    s16              eyeIdx = this->eyeIdx;
+    void*            eyeSegment = sEyeTextures[eyeIdx];
+    SkelAnime*       skelAnime = &this->skelAnime;
     GraphicsContext* localGfxCtx = play->state.gfxCtx;
     GraphicsContext* gfxCtx = localGfxCtx;
 
@@ -2461,8 +2461,12 @@ void EnXc_DrawDefault(Actor* thisx, PlayState* play) {
 }
 
 static EnXcDrawFunc sDrawFuncs[] = {
-    EnXc_DrawNothing, EnXc_DrawDefault,  EnXc_DrawPullingOutHarp,
-    EnXc_DrawHarp,    EnXc_DrawTriforce, EnXc_DrawSquintingEyes,
+    EnXc_DrawNothing,
+    EnXc_DrawDefault,
+    EnXc_DrawPullingOutHarp,
+    EnXc_DrawHarp,
+    EnXc_DrawTriforce,
+    EnXc_DrawSquintingEyes,
 };
 
 void EnXc_Draw(Actor* thisx, PlayState* play) {

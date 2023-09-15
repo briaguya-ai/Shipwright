@@ -70,7 +70,7 @@ static InitChainEntry sInitChain[] = {
 
 void BgHidanRock_Init(Actor* thisx, PlayState* play) {
     BgHidanRock* this = (BgHidanRock*)thisx;
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
 
     Actor_ProcessInitChain(thisx, sInitChain);
@@ -120,11 +120,11 @@ void func_8088B24C(BgHidanRock* this) {
     this->actionFunc = func_8088B990;
 }
 
-f32 D_8088BFC0 = 0.0f;
+f32  D_8088BFC0 = 0.0f;
 void func_8088B268(BgHidanRock* this, PlayState* play) {
-    f32 sp2C;
-    s32 temp_v1;
-    s32 frame;
+    f32     sp2C;
+    s32     temp_v1;
+    s32     frame;
     Player* player = GET_PLAYER(play);
 
     if (this->dyna.unk_150 != 0.0f) {
@@ -346,9 +346,14 @@ void BgHidanRock_Update(Actor* thisx, PlayState* play) {
 }
 
 static void* sVerticalFlamesTexs[] = {
-    gFireTempleBigVerticalFlame0Tex, gFireTempleBigVerticalFlame1Tex, gFireTempleBigVerticalFlame2Tex,
-    gFireTempleBigVerticalFlame3Tex, gFireTempleBigVerticalFlame4Tex, gFireTempleBigVerticalFlame5Tex,
-    gFireTempleBigVerticalFlame6Tex, gFireTempleBigVerticalFlame7Tex,
+    gFireTempleBigVerticalFlame0Tex,
+    gFireTempleBigVerticalFlame1Tex,
+    gFireTempleBigVerticalFlame2Tex,
+    gFireTempleBigVerticalFlame3Tex,
+    gFireTempleBigVerticalFlame4Tex,
+    gFireTempleBigVerticalFlame5Tex,
+    gFireTempleBigVerticalFlame6Tex,
+    gFireTempleBigVerticalFlame7Tex,
 };
 
 void func_8088BC40(PlayState* play, BgHidanRock* this) {

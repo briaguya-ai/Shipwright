@@ -52,10 +52,10 @@ void Collider_DrawRedPoly(GraphicsContext* gfxCtx, Vec3f* vA, Vec3f* vB, Vec3f* 
 void Collider_DrawPoly(GraphicsContext* gfxCtx, Vec3f* vA, Vec3f* vB, Vec3f* vC, u8 r, u8 g, u8 b) {
     Vtx* vtxTbl;
     Vtx* vtx;
-    f32 nx;
-    f32 ny;
-    f32 nz;
-    f32 originDist;
+    f32  nx;
+    f32  ny;
+    f32  nz;
+    f32  originDist;
 
     OPEN_DISPS(gfxCtx);
 
@@ -104,7 +104,16 @@ void Collider_DrawPoly(GraphicsContext* gfxCtx, Vec3f* vA, Vec3f* vB, Vec3f* vC,
 
 s32 Collider_InitBase(PlayState* play, Collider* collider) {
     static Collider init = {
-        NULL, NULL, NULL, NULL, AT_NONE, AC_NONE, OC1_NONE, OC2_NONE, COLTYPE_HIT3, COLSHAPE_INVALID,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        AT_NONE,
+        AC_NONE,
+        OC1_NONE,
+        OC2_NONE,
+        COLTYPE_HIT3,
+        COLSHAPE_INVALID,
     };
 
     *collider = init;
@@ -210,11 +219,16 @@ s32 Collider_SetBump(PlayState* play, ColliderBump* bump, ColliderBumpInit* init
 
 s32 Collider_InitInfo(PlayState* play, ColliderInfo* info) {
     static ColliderInfo init = {
-        { 0, 0, 0 },   { 0xFFCFFFFF, 0, 0, { 0, 0, 0 } },
-        ELEMTYPE_UNK0, TOUCH_NONE,
-        BUMP_NONE,     OCELEM_NONE,
-        NULL,          NULL,
-        NULL,          NULL,
+        { 0, 0, 0 },
+        { 0xFFCFFFFF, 0, 0, { 0, 0, 0 } },
+        ELEMTYPE_UNK0,
+        TOUCH_NONE,
+        BUMP_NONE,
+        OCELEM_NONE,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
     };
 
     *info = init;
@@ -364,7 +378,7 @@ s32 Collider_DestroyJntSph(PlayState* play, ColliderJntSph* collider) {
  * the element array. Uses default OC2_TYPE_1 and COLTYPE_HIT0. Unused.
  */
 s32 Collider_SetJntSphToActor(PlayState* play, ColliderJntSph* dest, ColliderJntSphInitToActor* src) {
-    ColliderJntSphElement* destElem;
+    ColliderJntSphElement*     destElem;
     ColliderJntSphElementInit* srcElem;
 
     Collider_SetBaseToActor(play, &dest->base, &src->base);
@@ -393,7 +407,7 @@ s32 Collider_SetJntSphToActor(PlayState* play, ColliderJntSph* dest, ColliderJnt
  */
 s32 Collider_SetJntSphAllocType1(PlayState* play, ColliderJntSph* dest, Actor* actor,
                                  ColliderJntSphInitType1* src) {
-    ColliderJntSphElement* destElem;
+    ColliderJntSphElement*     destElem;
     ColliderJntSphElementInit* srcElem;
 
     Collider_SetBaseType1(play, &dest->base, actor, &src->base);
@@ -421,7 +435,7 @@ s32 Collider_SetJntSphAllocType1(PlayState* play, ColliderJntSph* dest, Actor* a
  * Unused.
  */
 s32 Collider_SetJntSphAlloc(PlayState* play, ColliderJntSph* dest, Actor* actor, ColliderJntSphInit* src) {
-    ColliderJntSphElement* destElem;
+    ColliderJntSphElement*     destElem;
     ColliderJntSphElementInit* srcElem;
 
     Collider_SetBase(play, &dest->base, actor, &src->base);
@@ -448,7 +462,7 @@ s32 Collider_SetJntSphAlloc(PlayState* play, ColliderJntSph* dest, Actor* actor,
  */
 s32 Collider_SetJntSph(PlayState* play, ColliderJntSph* dest, Actor* actor, ColliderJntSphInit* src,
                        ColliderJntSphElement* elements) {
-    ColliderJntSphElement* destElem;
+    ColliderJntSphElement*     destElem;
     ColliderJntSphElementInit* srcElem;
 
     Collider_SetBase(play, &dest->base, actor, &src->base);
@@ -469,7 +483,7 @@ s32 Collider_SetJntSph(PlayState* play, ColliderJntSph* dest, Actor* actor, Coll
  */
 s32 Collider_ResetJntSphAT(PlayState* play, Collider* collider) {
     ColliderJntSphElement* element;
-    ColliderJntSph* jntSph = (ColliderJntSph*)collider;
+    ColliderJntSph*        jntSph = (ColliderJntSph*)collider;
 
     Collider_ResetATBase(play, &jntSph->base);
 
@@ -484,7 +498,7 @@ s32 Collider_ResetJntSphAT(PlayState* play, Collider* collider) {
  */
 s32 Collider_ResetJntSphAC(PlayState* play, Collider* collider) {
     ColliderJntSphElement* element;
-    ColliderJntSph* jntSph = (ColliderJntSph*)collider;
+    ColliderJntSph*        jntSph = (ColliderJntSph*)collider;
 
     Collider_ResetACBase(play, &jntSph->base);
 
@@ -499,7 +513,7 @@ s32 Collider_ResetJntSphAC(PlayState* play, Collider* collider) {
  */
 s32 Collider_ResetJntSphOC(PlayState* play, Collider* collider) {
     ColliderJntSphElement* element;
-    ColliderJntSph* jntSph = (ColliderJntSph*)collider;
+    ColliderJntSph*        jntSph = (ColliderJntSph*)collider;
 
     Collider_ResetOCBase(play, &jntSph->base);
 
@@ -629,10 +643,10 @@ s32 Collider_DestroyTrisElementDim(PlayState* play, TriNorm* dim) {
 s32 Collider_SetTrisElementDim(PlayState* play, TriNorm* dest, ColliderTrisElementDimInit* src) {
     Vec3f* destVtx;
     Vec3f* srcVtx;
-    f32 nx;
-    f32 ny;
-    f32 nz;
-    f32 originDist;
+    f32    nx;
+    f32    ny;
+    f32    nz;
+    f32    originDist;
 
     for (destVtx = dest->vtx, srcVtx = src->vtx; destVtx < dest->vtx + 3; destVtx++, srcVtx++) {
         *destVtx = *srcVtx;
@@ -731,7 +745,7 @@ s32 Collider_DestroyTris(PlayState* play, ColliderTris* tris) {
  * Unused.
  */
 s32 Collider_SetTrisAllocType1(PlayState* play, ColliderTris* dest, Actor* actor, ColliderTrisInitType1* src) {
-    ColliderTrisElement* destElem;
+    ColliderTrisElement*     destElem;
     ColliderTrisElementInit* srcElem;
 
     Collider_SetBaseType1(play, &dest->base, actor, &src->base);
@@ -757,7 +771,7 @@ s32 Collider_SetTrisAllocType1(PlayState* play, ColliderTris* dest, Actor* actor
  * Unused
  */
 s32 Collider_SetTrisAlloc(PlayState* play, ColliderTris* dest, Actor* actor, ColliderTrisInit* src) {
-    ColliderTrisElement* destElem;
+    ColliderTrisElement*     destElem;
     ColliderTrisElementInit* srcElem;
 
     Collider_SetBase(play, &dest->base, actor, &src->base);
@@ -785,7 +799,7 @@ s32 Collider_SetTrisAlloc(PlayState* play, ColliderTris* dest, Actor* actor, Col
  */
 s32 Collider_SetTris(PlayState* play, ColliderTris* dest, Actor* actor, ColliderTrisInit* src,
                      ColliderTrisElement* elements) {
-    ColliderTrisElement* destElem;
+    ColliderTrisElement*     destElem;
     ColliderTrisElementInit* srcElem;
 
     Collider_SetBase(play, &dest->base, actor, &src->base);
@@ -806,7 +820,7 @@ s32 Collider_SetTris(PlayState* play, ColliderTris* dest, Actor* actor, Collider
  */
 s32 Collider_ResetTrisAT(PlayState* play, Collider* collider) {
     ColliderTrisElement* element;
-    ColliderTris* tris = (ColliderTris*)collider;
+    ColliderTris*        tris = (ColliderTris*)collider;
 
     Collider_ResetATBase(play, &tris->base);
     for (element = tris->elements; element < tris->elements + tris->count; element++) {
@@ -820,7 +834,7 @@ s32 Collider_ResetTrisAT(PlayState* play, Collider* collider) {
  */
 s32 Collider_ResetTrisAC(PlayState* play, Collider* collider) {
     ColliderTrisElement* element;
-    ColliderTris* tris = (ColliderTris*)collider;
+    ColliderTris*        tris = (ColliderTris*)collider;
 
     Collider_ResetACBase(play, &tris->base);
     for (element = tris->elements; element < tris->elements + tris->count; element++) {
@@ -834,7 +848,7 @@ s32 Collider_ResetTrisAC(PlayState* play, Collider* collider) {
  */
 s32 Collider_ResetTrisOC(PlayState* play, Collider* collider) {
     ColliderTrisElement* element;
-    ColliderTris* tris = (ColliderTris*)collider;
+    ColliderTris*        tris = (ColliderTris*)collider;
 
     Collider_ResetOCBase(play, &tris->base);
     for (element = tris->elements; element < tris->elements + tris->count; element++) {
@@ -961,7 +975,7 @@ s32 Collider_ResetQuadOC(PlayState* play, Collider* collider) {
  * otherwise returns false. Used on player AT colliders to prevent multiple collisions from registering.
  */
 s32 Collider_QuadSetNearestAC(PlayState* play, ColliderQuad* quad, Vec3f* hitPos) {
-    f32 acDist;
+    f32   acDist;
     Vec3f dcMid;
 
     if (!(quad->info.toucherFlags & TOUCH_NEAREST)) {
@@ -1050,7 +1064,7 @@ void CollisionCheck_DestroyContext(PlayState* play, CollisionCheckContext* colCh
  */
 void CollisionCheck_ClearContext(PlayState* play, CollisionCheckContext* colChkCtx) {
     Collider** col;
-    OcLine** line;
+    OcLine**   line;
 
     if (!(colChkCtx->sacFlags & 1)) {
         colChkCtx->colATCount = 0;
@@ -1094,11 +1108,11 @@ void CollisionCheck_DisableSAC(PlayState* play, CollisionCheckContext* colChkCtx
  * Math3D_DrawSphere and Math3D_DrawCylinder are noops, so JntSph and Cylinder are not drawn.
  */
 void Collider_Draw(PlayState* play, Collider* collider) {
-    ColliderJntSph* jntSph;
+    ColliderJntSph*   jntSph;
     ColliderCylinder* cylinder;
-    ColliderTris* tris;
-    ColliderQuad* quad;
-    s32 i;
+    ColliderTris*     tris;
+    ColliderQuad*     quad;
+    s32               i;
 
     if (collider == NULL) {
         return;
@@ -1135,7 +1149,7 @@ void Collider_Draw(PlayState* play, Collider* collider) {
  */
 void CollisionCheck_DrawCollision(PlayState* play, CollisionCheckContext* colChkCtx) {
     Collider* collider;
-    s32 i;
+    s32       i;
 
     if (AREG(15)) {
         if (AREG(21)) {
@@ -1473,7 +1487,7 @@ void CollisionCheck_NoBlood(PlayState* play, Collider* collider, Vec3f* v) {
  */
 void CollisionCheck_BlueBlood(PlayState* play, Collider* collider, Vec3f* v) {
     static EffectSparkInit D_8015D8A0;
-    s32 effectIndex;
+    s32                    effectIndex;
 
     D_8015D8A0.position.x = v->x;
     D_8015D8A0.position.y = v->y;
@@ -1526,7 +1540,7 @@ void CollisionCheck_BlueBlood(PlayState* play, Collider* collider, Vec3f* v) {
  */
 void CollisionCheck_GreenBlood(PlayState* play, Collider* collider, Vec3f* v) {
     static EffectSparkInit D_8015DD68;
-    s32 effectIndex;
+    s32                    effectIndex;
 
     D_8015DD68.position.x = v->x;
     D_8015DD68.position.y = v->y;
@@ -1661,14 +1675,28 @@ s32 CollisionCheck_SwordHitAudio(Collider* at, ColliderInfo* acInfo) {
 }
 
 static ColChkBloodFunc sBloodFuncs[] = {
-    CollisionCheck_NoBlood,    CollisionCheck_BlueBlood, CollisionCheck_GreenBlood,
-    CollisionCheck_WaterBurst, CollisionCheck_RedBlood,  CollisionCheck_RedBloodUnused,
+    CollisionCheck_NoBlood,
+    CollisionCheck_BlueBlood,
+    CollisionCheck_GreenBlood,
+    CollisionCheck_WaterBurst,
+    CollisionCheck_RedBlood,
+    CollisionCheck_RedBloodUnused,
 };
 static HitInfo sHitInfo[] = {
-    { BLOOD_BLUE, HIT_WHITE }, { BLOOD_NONE, HIT_DUST },  { BLOOD_GREEN, HIT_DUST },  { BLOOD_NONE, HIT_WHITE },
-    { BLOOD_WATER, HIT_NONE }, { BLOOD_NONE, HIT_RED },   { BLOOD_GREEN, HIT_WHITE }, { BLOOD_RED, HIT_WHITE },
-    { BLOOD_BLUE, HIT_RED },   { BLOOD_NONE, HIT_SOLID }, { BLOOD_NONE, HIT_NONE },   { BLOOD_NONE, HIT_SOLID },
-    { BLOOD_NONE, HIT_SOLID }, { BLOOD_NONE, HIT_WOOD },
+    { BLOOD_BLUE, HIT_WHITE },
+    { BLOOD_NONE, HIT_DUST },
+    { BLOOD_GREEN, HIT_DUST },
+    { BLOOD_NONE, HIT_WHITE },
+    { BLOOD_WATER, HIT_NONE },
+    { BLOOD_NONE, HIT_RED },
+    { BLOOD_GREEN, HIT_WHITE },
+    { BLOOD_RED, HIT_WHITE },
+    { BLOOD_BLUE, HIT_RED },
+    { BLOOD_NONE, HIT_SOLID },
+    { BLOOD_NONE, HIT_NONE },
+    { BLOOD_NONE, HIT_SOLID },
+    { BLOOD_NONE, HIT_SOLID },
+    { BLOOD_NONE, HIT_WOOD },
 };
 
 /**
@@ -1764,12 +1792,12 @@ s32 CollisionCheck_SetATvsAC(PlayState* play, Collider* at, ColliderInfo* atInfo
  */
 void CollisionCheck_AC_JntSphVsJntSph(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                       Collider* colAC) {
-    ColliderJntSph* at = (ColliderJntSph*)colAT;
+    ColliderJntSph*        at = (ColliderJntSph*)colAT;
     ColliderJntSphElement* atItem;
-    ColliderJntSph* ac = (ColliderJntSph*)colAC;
+    ColliderJntSph*        ac = (ColliderJntSph*)colAC;
     ColliderJntSphElement* acElem;
-    f32 overlapSize;
-    f32 centerDist;
+    f32                    overlapSize;
+    f32                    centerDist;
 
     if (at->count > 0 && at->elements != NULL && ac->count > 0 && ac->elements != NULL) {
         for (atItem = at->elements; atItem < at->elements + at->count; atItem++) {
@@ -1785,7 +1813,7 @@ void CollisionCheck_AC_JntSphVsJntSph(PlayState* play, CollisionCheckContext* co
                 }
                 if (Math3D_SphVsSphOverlapCenter(&atItem->dim.worldSphere, &acElem->dim.worldSphere, &overlapSize,
                                                  &centerDist) == 1) {
-                    f32 acToHit;
+                    f32   acToHit;
                     Vec3f hitPos;
                     Vec3f atPos;
                     Vec3f acPos;
@@ -1820,11 +1848,11 @@ void CollisionCheck_AC_JntSphVsJntSph(PlayState* play, CollisionCheckContext* co
  */
 void CollisionCheck_AC_JntSphVsCyl(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                    Collider* colAC) {
-    ColliderJntSph* at = (ColliderJntSph*)colAT;
+    ColliderJntSph*        at = (ColliderJntSph*)colAT;
     ColliderJntSphElement* atItem;
-    ColliderCylinder* ac = (ColliderCylinder*)colAC;
-    f32 overlapSize;
-    f32 centerDist;
+    ColliderCylinder*      ac = (ColliderCylinder*)colAC;
+    f32                    overlapSize;
+    f32                    centerDist;
 
     if (at->count > 0 && at->elements != NULL && ac->dim.radius > 0 && ac->dim.height > 0) {
         if (CollisionCheck_SkipBump(&ac->info) == 1) {
@@ -1841,7 +1869,7 @@ void CollisionCheck_AC_JntSphVsCyl(PlayState* play, CollisionCheckContext* colCh
                 Vec3f hitPos;
                 Vec3f atPos;
                 Vec3f acPos;
-                f32 acToHit;
+                f32   acToHit;
 
                 atPos.x = atItem->dim.worldSphere.center.x;
                 atPos.y = atItem->dim.worldSphere.center.y;
@@ -1874,10 +1902,10 @@ void CollisionCheck_AC_JntSphVsCyl(PlayState* play, CollisionCheckContext* colCh
  */
 void CollisionCheck_AC_CylVsJntSph(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                    Collider* colAC) {
-    ColliderCylinder* at = (ColliderCylinder*)colAT;
-    ColliderJntSph* ac = (ColliderJntSph*)colAC;
-    f32 overlapSize;
-    f32 centerDist;
+    ColliderCylinder*      at = (ColliderCylinder*)colAT;
+    ColliderJntSph*        ac = (ColliderJntSph*)colAC;
+    f32                    overlapSize;
+    f32                    centerDist;
     ColliderJntSphElement* acElem;
 
     if (ac->count > 0 && ac->elements != NULL && at->dim.radius > 0 && at->dim.height > 0) {
@@ -1895,7 +1923,7 @@ void CollisionCheck_AC_CylVsJntSph(PlayState* play, CollisionCheckContext* colCh
                 Vec3f hitPos;
                 Vec3f atPos;
                 Vec3f acPos;
-                f32 acToHit;
+                f32   acToHit;
 
                 atPos.x = at->dim.pos.x;
                 atPos.y = at->dim.pos.y;
@@ -1930,11 +1958,11 @@ void CollisionCheck_AC_CylVsJntSph(PlayState* play, CollisionCheckContext* colCh
  */
 void CollisionCheck_AC_JntSphVsTris(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                     Collider* colAC) {
-    ColliderJntSph* at = (ColliderJntSph*)colAT;
+    ColliderJntSph*        at = (ColliderJntSph*)colAT;
     ColliderJntSphElement* atSph;
-    ColliderTris* ac = (ColliderTris*)colAC;
-    ColliderTrisElement* acTri;
-    Vec3f hitPos;
+    ColliderTris*          ac = (ColliderTris*)colAC;
+    ColliderTrisElement*   acTri;
+    Vec3f                  hitPos;
 
     if (at->count > 0 && at->elements != NULL && ac->count > 0 && ac->elements != NULL) {
         for (atSph = at->elements; atSph < at->elements + at->count; atSph++) {
@@ -1972,11 +2000,11 @@ void CollisionCheck_AC_JntSphVsTris(PlayState* play, CollisionCheckContext* colC
  */
 void CollisionCheck_AC_TrisVsJntSph(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                     Collider* colAC) {
-    ColliderTris* at = (ColliderTris*)colAT;
-    ColliderTrisElement* atItem;
-    ColliderJntSph* ac = (ColliderJntSph*)colAC;
+    ColliderTris*          at = (ColliderTris*)colAT;
+    ColliderTrisElement*   atItem;
+    ColliderJntSph*        ac = (ColliderJntSph*)colAC;
     ColliderJntSphElement* acElem;
-    Vec3f hitPos;
+    Vec3f                  hitPos;
 
     if (ac->count > 0 && ac->elements != NULL && at->count > 0 && at->elements != NULL) {
         for (acElem = ac->elements; acElem < ac->elements + ac->count; acElem++) {
@@ -2014,11 +2042,11 @@ void CollisionCheck_AC_TrisVsJntSph(PlayState* play, CollisionCheckContext* colC
  */
 void CollisionCheck_AC_JntSphVsQuad(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                     Collider* colAC) {
-    static TriNorm D_8015E230;
-    static TriNorm D_8015E268;
-    ColliderJntSph* at = (ColliderJntSph*)colAT;
-    ColliderQuad* ac = (ColliderQuad*)colAC;
-    Vec3f hitPos;
+    static TriNorm         D_8015E230;
+    static TriNorm         D_8015E268;
+    ColliderJntSph*        at = (ColliderJntSph*)colAT;
+    ColliderQuad*          ac = (ColliderQuad*)colAC;
+    Vec3f                  hitPos;
     ColliderJntSphElement* atItem;
 
     if (at->count > 0 && at->elements != NULL) {
@@ -2058,11 +2086,11 @@ void CollisionCheck_AC_JntSphVsQuad(PlayState* play, CollisionCheckContext* colC
  */
 void CollisionCheck_AC_QuadVsJntSph(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                     Collider* colAC) {
-    static TriNorm D_8015E2A0;
-    static TriNorm D_8015E2D8;
-    ColliderJntSph* ac = (ColliderJntSph*)colAC;
-    Vec3f hitPos;
-    ColliderQuad* at = (ColliderQuad*)colAT;
+    static TriNorm         D_8015E2A0;
+    static TriNorm         D_8015E2D8;
+    ColliderJntSph*        ac = (ColliderJntSph*)colAC;
+    Vec3f                  hitPos;
+    ColliderQuad*          at = (ColliderQuad*)colAT;
     ColliderJntSphElement* acElem;
 
     if (ac->count > 0 && ac->elements != NULL) {
@@ -2112,9 +2140,9 @@ void CollisionCheck_AC_CylVsCyl(PlayState* play, CollisionCheckContext* colChkCt
                                 Collider* colAC) {
     ColliderCylinder* at = (ColliderCylinder*)colAT;
     ColliderCylinder* ac = (ColliderCylinder*)colAC;
-    f32 deadSpace;
-    f32 centerDistXZ;
-    Vec3f hitPos;
+    f32               deadSpace;
+    f32               centerDistXZ;
+    Vec3f             hitPos;
 
     if (at->dim.radius > 0 && at->dim.height > 0 && ac->dim.radius > 0 && ac->dim.height > 0) {
         if (CollisionCheck_SkipBump(&ac->info) == 1) {
@@ -2129,7 +2157,7 @@ void CollisionCheck_AC_CylVsCyl(PlayState* play, CollisionCheckContext* colChkCt
         if (Math3D_CylOutsideCylDist(&at->dim, &ac->dim, &deadSpace, &centerDistXZ) == 1) {
             Vec3f atPos;
             Vec3f acPos;
-            f32 acToHit;
+            f32   acToHit;
 
             Math_Vec3s_ToVec3f(&atPos, &at->dim.pos);
             Math_Vec3s_ToVec3f(&acPos, &ac->dim.pos);
@@ -2151,10 +2179,10 @@ void CollisionCheck_AC_CylVsCyl(PlayState* play, CollisionCheckContext* colChkCt
  */
 void CollisionCheck_AC_CylVsTris(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                  Collider* colAC) {
-    ColliderCylinder* at = (ColliderCylinder*)colAT;
-    ColliderTris* ac = (ColliderTris*)colAC;
+    ColliderCylinder*    at = (ColliderCylinder*)colAT;
+    ColliderTris*        ac = (ColliderTris*)colAC;
     ColliderTrisElement* acElem;
-    Vec3f hitPos;
+    Vec3f                hitPos;
 
     if (at->dim.radius > 0 && at->dim.height > 0 && ac->count > 0 && ac->elements != NULL) {
         if (CollisionCheck_SkipTouch(&at->info) == 1) {
@@ -2189,12 +2217,12 @@ void CollisionCheck_AC_CylVsTris(PlayState* play, CollisionCheckContext* colChkC
  */
 void CollisionCheck_AC_TrisVsCyl(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                  Collider* colAC) {
-    static Vec3f D_8015E310;
-    ColliderTris* at = (ColliderTris*)colAT;
+    static Vec3f         D_8015E310;
+    ColliderTris*        at = (ColliderTris*)colAT;
     ColliderTrisElement* atItem;
-    ColliderCylinder* ac = (ColliderCylinder*)colAC;
-    Vec3f atPos;
-    Vec3f acPos;
+    ColliderCylinder*    ac = (ColliderCylinder*)colAC;
+    Vec3f                atPos;
+    Vec3f                acPos;
 
     if (ac->dim.radius > 0 && ac->dim.height > 0 && at->count > 0 && at->elements != NULL) {
         if (CollisionCheck_SkipBump(&ac->info) == 1) {
@@ -2226,11 +2254,11 @@ void CollisionCheck_AC_TrisVsCyl(PlayState* play, CollisionCheckContext* colChkC
  */
 void CollisionCheck_AC_CylVsQuad(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                  Collider* colAC) {
-    static TriNorm D_8015E320;
-    static TriNorm D_8015E358;
-    static Vec3f D_8015E390;
+    static TriNorm    D_8015E320;
+    static TriNorm    D_8015E358;
+    static Vec3f      D_8015E390;
     ColliderCylinder* at = (ColliderCylinder*)colAT;
-    ColliderQuad* ac = (ColliderQuad*)colAC;
+    ColliderQuad*     ac = (ColliderQuad*)colAC;
 
     if (at->dim.height > 0 && at->dim.radius > 0) {
         if (CollisionCheck_SkipTouch(&at->info) == 1 || CollisionCheck_SkipBump(&ac->info) == 1) {
@@ -2273,10 +2301,10 @@ static s8 sBssDummy1;
  */
 void CollisionCheck_AC_QuadVsCyl(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                  Collider* colAC) {
-    static TriNorm D_8015E3A0;
-    static TriNorm D_8015E3D8;
-    static Vec3f D_8015E410;
-    ColliderQuad* at = (ColliderQuad*)colAT;
+    static TriNorm    D_8015E3A0;
+    static TriNorm    D_8015E3D8;
+    static Vec3f      D_8015E410;
+    ColliderQuad*     at = (ColliderQuad*)colAT;
     ColliderCylinder* ac = (ColliderCylinder*)colAC;
 
     if (ac->dim.height > 0 && ac->dim.radius > 0) {
@@ -2328,10 +2356,10 @@ static s8 sBssDummy6;
  */
 void CollisionCheck_AC_TrisVsTris(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                   Collider* colAC) {
-    static Vec3f D_8015E420;
-    ColliderTris* at = (ColliderTris*)colAT;
+    static Vec3f         D_8015E420;
+    ColliderTris*        at = (ColliderTris*)colAT;
     ColliderTrisElement* atItem;
-    ColliderTris* ac = (ColliderTris*)colAC;
+    ColliderTris*        ac = (ColliderTris*)colAC;
     ColliderTrisElement* acElem;
 
     if (ac->count > 0 && ac->elements != NULL && at->count > 0 && at->elements != NULL) {
@@ -2375,12 +2403,12 @@ static s8 sBssDummy10;
  */
 void CollisionCheck_AC_TrisVsQuad(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                   Collider* colAC) {
-    static Vec3f D_8015E430;
-    static TriNorm D_8015E440;
-    static TriNorm D_8015E478;
-    ColliderTris* at = (ColliderTris*)colAT;
+    static Vec3f         D_8015E430;
+    static TriNorm       D_8015E440;
+    static TriNorm       D_8015E478;
+    ColliderTris*        at = (ColliderTris*)colAT;
     ColliderTrisElement* atItem;
-    ColliderQuad* ac = (ColliderQuad*)colAC;
+    ColliderQuad*        ac = (ColliderQuad*)colAC;
 
     if (at->count > 0 && at->elements != NULL) {
         if (CollisionCheck_SkipBump(&ac->info) == 1) {
@@ -2419,11 +2447,11 @@ void CollisionCheck_AC_TrisVsQuad(PlayState* play, CollisionCheckContext* colChk
  */
 void CollisionCheck_AC_QuadVsTris(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                   Collider* colAC) {
-    static Vec3f D_8015E4B0;
-    static TriNorm D_8015E4C0;
-    static TriNorm D_8015E4F8;
-    ColliderQuad* at = (ColliderQuad*)colAT;
-    ColliderTris* ac = (ColliderTris*)colAC;
+    static Vec3f         D_8015E4B0;
+    static TriNorm       D_8015E4C0;
+    static TriNorm       D_8015E4F8;
+    ColliderQuad*        at = (ColliderQuad*)colAT;
+    ColliderTris*        ac = (ColliderTris*)colAC;
     ColliderTrisElement* acElem;
 
     if (ac->count > 0 && ac->elements != NULL) {
@@ -2469,12 +2497,12 @@ void CollisionCheck_AC_QuadVsTris(PlayState* play, CollisionCheckContext* colChk
 void CollisionCheck_AC_QuadVsQuad(PlayState* play, CollisionCheckContext* colChkCtx, Collider* colAT,
                                   Collider* colAC) {
     static TriNorm D_8015E530[2];
-    static Vec3f D_8015E598;
+    static Vec3f   D_8015E598;
     static TriNorm D_8015E5A8[2];
-    ColliderQuad* at = (ColliderQuad*)colAT;
-    ColliderQuad* ac = (ColliderQuad*)colAC;
-    s32 i;
-    s32 j;
+    ColliderQuad*  at = (ColliderQuad*)colAT;
+    ColliderQuad*  ac = (ColliderQuad*)colAC;
+    s32            i;
+    s32            j;
 
     if (CollisionCheck_SkipTouch(&at->info) == 1) {
         return;
@@ -2523,9 +2551,9 @@ void CollisionCheck_AC_QuadVsQuad(PlayState* play, CollisionCheckContext* colChk
  * Sets a ColliderJntSph's hit effects
  */
 void CollisionCheck_SetJntSphHitFX(PlayState* play, CollisionCheckContext* colChkCtx, Collider* collider) {
-    ColliderJntSph* jntSph = (ColliderJntSph*)collider;
+    ColliderJntSph*        jntSph = (ColliderJntSph*)collider;
     ColliderJntSphElement* element;
-    Vec3f hitPos;
+    Vec3f                  hitPos;
 
     for (element = jntSph->elements; element < jntSph->elements + jntSph->count; element++) {
         if ((element->info.bumperFlags & BUMP_DRAW_HITMARK) && (element->info.acHitInfo != NULL) &&
@@ -2544,7 +2572,7 @@ void CollisionCheck_SetJntSphHitFX(PlayState* play, CollisionCheckContext* colCh
  */
 void CollisionCheck_SetCylHitFX(PlayState* play, CollisionCheckContext* colChkCtx, Collider* collider) {
     ColliderCylinder* cylinder = (ColliderCylinder*)collider;
-    Vec3f hitPos;
+    Vec3f             hitPos;
 
     if ((cylinder->info.bumperFlags & BUMP_DRAW_HITMARK) && (cylinder->info.acHitInfo != NULL) &&
         !(cylinder->info.acHitInfo->toucherFlags & TOUCH_DREW_HITMARK)) {
@@ -2559,9 +2587,9 @@ void CollisionCheck_SetCylHitFX(PlayState* play, CollisionCheckContext* colChkCt
  * Sets a ColliderTris's hit effects
  */
 void CollisionCheck_SetTrisHitFX(PlayState* play, CollisionCheckContext* colChkCtx, Collider* collider) {
-    ColliderTris* tris = (ColliderTris*)collider;
+    ColliderTris*        tris = (ColliderTris*)collider;
     ColliderTrisElement* element;
-    Vec3f hitPos;
+    Vec3f                hitPos;
 
     for (element = tris->elements; element < tris->elements + tris->count; element++) {
         if ((element->info.bumperFlags & BUMP_DRAW_HITMARK) && (element->info.acHitInfo != NULL) &&
@@ -2580,7 +2608,7 @@ void CollisionCheck_SetTrisHitFX(PlayState* play, CollisionCheckContext* colChkC
  */
 void CollisionCheck_SetQuadHitFX(PlayState* play, CollisionCheckContext* colChkCtx, Collider* collider) {
     ColliderQuad* quad = (ColliderQuad*)collider;
-    Vec3f hitPos;
+    Vec3f         hitPos;
 
     if ((quad->info.bumperFlags & BUMP_DRAW_HITMARK) && (quad->info.acHitInfo != NULL) &&
         !(quad->info.acHitInfo->toucherFlags & TOUCH_DREW_HITMARK)) {
@@ -2694,20 +2722,20 @@ s32 CollisionCheck_GetMassType(u8 mass) {
  */
 void CollisionCheck_SetOCvsOC(Collider* left, ColliderInfo* leftInfo, Vec3f* leftPos, Collider* right,
                               ColliderInfo* rightInfo, Vec3f* rightPos, f32 overlap) {
-    f32 pad;
-    f32 leftDispRatio;
-    f32 rightDispRatio;
-    f32 xzDist;
-    f32 leftMass;
-    f32 rightMass;
-    f32 totalMass;
-    f32 inverseTotalMass;
-    f32 xDelta;
-    f32 zDelta;
+    f32    pad;
+    f32    leftDispRatio;
+    f32    rightDispRatio;
+    f32    xzDist;
+    f32    leftMass;
+    f32    rightMass;
+    f32    totalMass;
+    f32    inverseTotalMass;
+    f32    xDelta;
+    f32    zDelta;
     Actor* leftActor = left->actor;
     Actor* rightActor = right->actor;
-    s32 leftMassType;
-    s32 rightMassType;
+    s32    leftMassType;
+    s32    rightMassType;
 
     left->ocFlags1 |= OC1_HIT;
     left->oc = rightActor;
@@ -2787,11 +2815,11 @@ void CollisionCheck_SetOCvsOC(Collider* left, ColliderInfo* leftInfo, Vec3f* lef
  */
 void CollisionCheck_OC_JntSphVsJntSph(PlayState* play, CollisionCheckContext* colChkCtx, Collider* l,
                                       Collider* r) {
-    ColliderJntSph* left = (ColliderJntSph*)l;
+    ColliderJntSph*        left = (ColliderJntSph*)l;
     ColliderJntSphElement* leftElem;
-    ColliderJntSph* right = (ColliderJntSph*)r;
+    ColliderJntSph*        right = (ColliderJntSph*)r;
     ColliderJntSphElement* rightElem;
-    f32 overlap;
+    f32                    overlap;
 
     if (left->count > 0 && left->elements != NULL && right->count > 0 && right->elements != NULL) {
         for (leftElem = left->elements; leftElem < left->elements + left->count; leftElem++) {
@@ -2821,10 +2849,10 @@ void CollisionCheck_OC_JntSphVsJntSph(PlayState* play, CollisionCheckContext* co
  */
 void CollisionCheck_OC_JntSphVsCyl(PlayState* play, CollisionCheckContext* colChkCtx, Collider* l,
                                    Collider* r) {
-    ColliderJntSph* left = (ColliderJntSph*)l;
+    ColliderJntSph*        left = (ColliderJntSph*)l;
     ColliderJntSphElement* leftElem;
-    ColliderCylinder* right = (ColliderCylinder*)r;
-    f32 overlap;
+    ColliderCylinder*      right = (ColliderCylinder*)r;
+    f32                    overlap;
 
     if (left->count > 0 && left->elements != NULL) {
         if ((right->base.ocFlags1 & OC1_ON) && (right->info.ocElemFlags & OCELEM_ON)) {
@@ -2860,7 +2888,7 @@ void CollisionCheck_OC_CylVsJntSph(PlayState* play, CollisionCheckContext* colCh
 void CollisionCheck_OC_CylVsCyl(PlayState* play, CollisionCheckContext* colChkCtx, Collider* l, Collider* r) {
     ColliderCylinder* left = (ColliderCylinder*)l;
     ColliderCylinder* right = (ColliderCylinder*)r;
-    f32 deadSpace;
+    f32               deadSpace;
 
     if ((left->base.ocFlags1 & OC1_ON) && (right->base.ocFlags1 & OC1_ON)) {
         if ((left->info.ocElemFlags & OCELEM_ON) && (right->info.ocElemFlags & OCELEM_ON)) {
@@ -2920,8 +2948,8 @@ static ColChkVsFunc sOCVsFuncs[4][4] = {
  * cannot collide with OC2_UNK2, nor can two colliders that share an actor.
  */
 void CollisionCheck_OC(PlayState* play, CollisionCheckContext* colChkCtx) {
-    Collider** left;
-    Collider** right;
+    Collider**   left;
+    Collider**   right;
     ColChkVsFunc vsFunc;
 
     for (left = colChkCtx->colOC; left < colChkCtx->colOC + colChkCtx->colOCCount; left++) {
@@ -2949,7 +2977,17 @@ void CollisionCheck_OC(PlayState* play, CollisionCheckContext* colChkCtx) {
  */
 void CollisionCheck_InitInfo(CollisionCheckInfo* info) {
     static CollisionCheckInfo init = {
-        NULL, { 0.0f, 0.0f, 0.0f }, 10, 10, 0, 50, 8, 0, 0, 0, 0,
+        NULL,
+        { 0.0f, 0.0f, 0.0f },
+        10,
+        10,
+        0,
+        50,
+        8,
+        0,
+        0,
+        0,
+        0,
     };
 
     *info = init;
@@ -3014,7 +3052,7 @@ void CollisionCheck_SetInfoGetDamageTable(CollisionCheckInfo* info, s32 index, C
 void CollisionCheck_ApplyDamage(PlayState* play, CollisionCheckContext* colChkCtx, Collider* collider,
                                 ColliderInfo* info) {
     DamageTable* tbl;
-    f32 damage;
+    f32          damage;
 
     if (collider->actor == NULL || !(collider->acFlags & AC_HIT)) {
         return;
@@ -3057,7 +3095,7 @@ void CollisionCheck_ApplyDamage(PlayState* play, CollisionCheckContext* colChkCt
  */
 void CollisionCheck_ApplyDamageJntSph(PlayState* play, CollisionCheckContext* colChkCtx, Collider* collider) {
     ColliderJntSph* jntSph = (ColliderJntSph*)collider;
-    s32 i;
+    s32             i;
 
     if (jntSph->count > 0 && jntSph->elements != NULL) {
         for (i = 0; i < jntSph->count; i++) {
@@ -3079,7 +3117,7 @@ void CollisionCheck_ApplyDamageCyl(PlayState* play, CollisionCheckContext* colCh
  */
 void CollisionCheck_ApplyDamageTris(PlayState* play, CollisionCheckContext* colChkCtx, Collider* collider) {
     ColliderTris* tris = (ColliderTris*)collider;
-    s32 i;
+    s32           i;
 
     for (i = 0; i < tris->count; i++) {
         CollisionCheck_ApplyDamage(play, colChkCtx, collider, &tris->elements[i].info);
@@ -3126,9 +3164,9 @@ void CollisionCheck_Damage(PlayState* play, CollisionCheckContext* colChkCtx) {
  */
 s32 CollisionCheck_LineOC_JntSph(PlayState* play, CollisionCheckContext* colChkCtx, Collider* collider,
                                  Vec3f* a, Vec3f* b) {
-    static Linef D_8015E610;
+    static Linef    D_8015E610;
     ColliderJntSph* jntSph = (ColliderJntSph*)collider;
-    s32 i;
+    s32             i;
 
     for (i = 0; i < jntSph->count; i++) {
         ColliderJntSphElement* element = &jntSph->elements[i];
@@ -3150,8 +3188,8 @@ s32 CollisionCheck_LineOC_JntSph(PlayState* play, CollisionCheckContext* colChkC
  */
 s32 CollisionCheck_LineOC_Cyl(PlayState* play, CollisionCheckContext* colChkCtx, Collider* collider, Vec3f* a,
                               Vec3f* b) {
-    static Vec3f D_8015E628;
-    static Vec3f D_8015E638;
+    static Vec3f      D_8015E628;
+    static Vec3f      D_8015E638;
     ColliderCylinder* cylinder = (ColliderCylinder*)collider;
 
     if (!(cylinder->info.ocElemFlags & OCELEM_ON)) {
@@ -3177,10 +3215,10 @@ static ColChkLineFunc sOCLineCheckFuncs[4] = {
 s32 CollisionCheck_LineOC(PlayState* play, CollisionCheckContext* colChkCtx, Vec3f* a, Vec3f* b,
                           Actor** exclusions, s32 numExclusions) {
     ColChkLineFunc lineCheck;
-    Collider** col;
-    s32 i;
-    s32 exclude;
-    s32 result = 0;
+    Collider**     col;
+    s32            i;
+    s32            exclude;
+    s32            result = 0;
 
     for (col = colChkCtx->colOC; col < colChkCtx->colOC + colChkCtx->colOCCount; col++) {
         if (CollisionCheck_SkipOC(*col) == 1) {
@@ -3261,10 +3299,10 @@ void Collider_SetQuadVertices(ColliderQuad* collider, Vec3f* a, Vec3f* b, Vec3f*
  */
 void Collider_SetTrisVertices(ColliderTris* collider, s32 index, Vec3f* a, Vec3f* b, Vec3f* c) {
     ColliderTrisElement* element = &collider->elements[index];
-    f32 nx;
-    f32 ny;
-    f32 nz;
-    f32 originDist;
+    f32                  nx;
+    f32                  ny;
+    f32                  nz;
+    f32                  originDist;
 
     Math_Vec3f_Copy(&element->dim.vtx[0], a);
     Math_Vec3f_Copy(&element->dim.vtx[1], b);
@@ -3300,7 +3338,7 @@ static s8 sBssDummy14;
 void Collider_UpdateSpheres(s32 limb, ColliderJntSph* collider) {
     static Vec3f D_8015E648;
     static Vec3f D_8015CF00; // bss ordering changes here
-    s32 i;
+    s32          i;
 
     for (i = 0; i < collider->count; i++) {
         if (limb == collider->elements[i].dim.limb) {
@@ -3323,7 +3361,7 @@ void Collider_UpdateSpheres(s32 limb, ColliderJntSph* collider) {
  */
 void CollisionCheck_SpawnRedBlood(PlayState* play, Vec3f* v) {
     static EffectSparkInit D_8015CF10;
-    s32 effectIndex;
+    s32                    effectIndex;
 
     D_8015CF10.position.x = v->x;
     D_8015CF10.position.y = v->y;
@@ -3376,7 +3414,7 @@ void CollisionCheck_SpawnRedBlood(PlayState* play, Vec3f* v) {
  */
 void CollisionCheck_SpawnWaterDroplets(PlayState* play, Vec3f* v) {
     static EffectSparkInit D_8015D3D8;
-    s32 effectIndex;
+    s32                    effectIndex;
 
     D_8015D3D8.position.x = v->x;
     D_8015D3D8.position.y = v->y;
@@ -3522,18 +3560,18 @@ s32 CollisionCheck_CylSideVsLineSeg(f32 radius, f32 height, f32 offset, Vec3f* a
     Vec3f actorToItem;
     Vec3f actorToItemProj;
     Vec3f itemStep;
-    f32 frac1;
-    f32 frac2;
-    u32 intersect2;
-    u32 intersect1;
-    u32 test1;
-    u32 test2;
-    f32 radSqDiff;
-    f32 actorDotItemXZ;
-    f32 zero = 0.0f;
-    f32 closeDist;
-    s32 pad1;
-    s32 pad2;
+    f32   frac1;
+    f32   frac2;
+    u32   intersect2;
+    u32   intersect1;
+    u32   test1;
+    u32   test2;
+    f32   radSqDiff;
+    f32   actorDotItemXZ;
+    f32   zero = 0.0f;
+    f32   closeDist;
+    s32   pad1;
+    s32   pad2;
 
     actorToItem.x = itemPos->x - actorPos->x;
     actorToItem.y = itemPos->y - actorPos->y - offset;

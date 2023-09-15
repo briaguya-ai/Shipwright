@@ -427,7 +427,7 @@ void EnDekunuts_BeStunned(EnDekunuts* this, PlayState* play) {
 void EnDekunuts_Die(EnDekunuts* this, PlayState* play) {
     static Vec3f effectVelAndAccel = { 0.0f, 0.0f, 0.0f };
 
-    s32 pad;
+    s32   pad;
     Vec3f effectPos;
 
     if (SkelAnime_Update(&this->skelAnime)) {

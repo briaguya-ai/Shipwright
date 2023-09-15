@@ -114,7 +114,7 @@ void EnDivingGame_Destroy(Actor* thisx, PlayState* play) {
 
 void EnDivingGame_SpawnRuppy(EnDivingGame* this, PlayState* play) {
     EnExRuppy* rupee;
-    Vec3f rupeePos;
+    Vec3f      rupeePos;
 
     rupeePos.x = (Rand_ZeroOne() - 0.5f) * 30.0f + this->actor.world.pos.x;
     rupeePos.y = (Rand_ZeroOne() - 0.5f) * 20.0f + (this->actor.world.pos.y + 30.0f);
@@ -495,7 +495,7 @@ void EnDivingGame_Update(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
     EnDivingGame* this = (EnDivingGame*)thisx;
     Player* player = GET_PLAYER(play);
-    Vec3f pos;
+    Vec3f   pos;
 
     if (this->csCameraTimer != 0) {
         this->csCameraTimer--;

@@ -243,10 +243,10 @@ void func_80AAD014(EnMk* this, PlayState* play) {
 }
 
 void EnMk_Wait(EnMk* this, PlayState* play) {
-    s16 angle;
-    s32 swimFlag;
+    s16     angle;
+    s32     swimFlag;
     Player* player = GET_PLAYER(play);
-    s32 playerExchangeItem;
+    s32     playerExchangeItem;
 
     if (Actor_ProcessTalkRequest(&this->actor, play)) {
         playerExchangeItem = func_8002F368(play);
@@ -316,10 +316,10 @@ void EnMk_Wait(EnMk* this, PlayState* play) {
 
 void EnMk_Update(Actor* thisx, PlayState* play) {
     EnMk* this = (EnMk*)thisx;
-    s32 pad;
-    Vec3s vec;
+    s32     pad;
+    Vec3s   vec;
     Player* player;
-    s16 swimFlag;
+    s16     swimFlag;
 
     Collider_UpdateCylinder(&this->actor, &this->collider);
     CollisionCheck_SetOC(play, &play->colChkCtx, &this->collider.base);

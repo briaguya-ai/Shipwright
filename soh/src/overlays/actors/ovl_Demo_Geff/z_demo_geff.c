@@ -24,12 +24,27 @@ void func_809784D4(DemoGeff* this, PlayState* play);
 void func_80978344(DemoGeff* this, PlayState* play);
 
 static s16 sObjectIDs[] = {
-    OBJECT_GEFF, OBJECT_GEFF, OBJECT_GEFF, OBJECT_GEFF, OBJECT_GEFF, OBJECT_GEFF, OBJECT_GEFF, OBJECT_GEFF, OBJECT_GEFF,
+    OBJECT_GEFF,
+    OBJECT_GEFF,
+    OBJECT_GEFF,
+    OBJECT_GEFF,
+    OBJECT_GEFF,
+    OBJECT_GEFF,
+    OBJECT_GEFF,
+    OBJECT_GEFF,
+    OBJECT_GEFF,
 };
 
 static DemoGeffInitFunc sInitFuncs[] = {
-    func_80978030, func_80978030, func_80978030, func_80978030, func_80978030,
-    func_80978030, func_80978030, func_80978030, func_80978030,
+    func_80978030,
+    func_80978030,
+    func_80978030,
+    func_80978030,
+    func_80978030,
+    func_80978030,
+    func_80978030,
+    func_80978030,
+    func_80978030,
 };
 
 static DemoGeffActionFunc sActionFuncs[] = {
@@ -86,8 +101,8 @@ void func_80977EA8(PlayState* play, Gfx* dlist) {
 }
 
 void func_80977F80(DemoGeff* this, PlayState* play) {
-    s32 pad[2];
-    s32 objBankIndex = this->objBankIndex;
+    s32              pad[2];
+    s32              objBankIndex = this->objBankIndex;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
 
     OPEN_DISPS(gfxCtx);
@@ -128,7 +143,7 @@ void func_80978030(DemoGeff* this, PlayState* play) {
 }
 
 void func_809781FC(DemoGeff* this, PlayState* play) {
-    s32 targetParams = 2;
+    s32    targetParams = 2;
     Actor* propIt;
 
     if (this->demoGt == NULL) {
@@ -152,7 +167,7 @@ void func_809781FC(DemoGeff* this, PlayState* play) {
 
 void func_809782A0(DemoGeff* this, PlayState* play) {
     DemoGt* demoGt = this->demoGt;
-    s16 params = this->actor.params;
+    s16     params = this->actor.params;
 
     if (demoGt != NULL && (params != 6) && (params != 7) && (params != 8)) {
         this->actor.world.pos.x = demoGt->dyna.actor.world.pos.x + this->deltaPosX;
@@ -172,7 +187,7 @@ void func_80978344(DemoGeff* this, PlayState* play) {
 }
 
 void func_80978370(DemoGeff* this, PlayState* play) {
-    s16 params = this->actor.params;
+    s16              params = this->actor.params;
     DemoGeffInitFunc initFunc = sInitFuncs[params];
     if (initFunc == NULL) {
         osSyncPrintf(VT_FGCOL(RED) " Demo_Geff_main_init:初期化処理がおかしいarg_data = %d!\n" VT_RST, params);
@@ -184,11 +199,11 @@ void func_80978370(DemoGeff* this, PlayState* play) {
 
 void func_809783D4(DemoGeff* this, PlayState* play) {
     ObjectContext* objCtx = &play->objectCtx;
-    Actor* thisx = &this->actor;
-    s32 params = thisx->params;
-    s16 objectId = sObjectIDs[params];
-    s32 objBankIndex = Object_GetIndex(objCtx, objectId);
-    s32 pad;
+    Actor*         thisx = &this->actor;
+    s32            params = thisx->params;
+    s16            objectId = sObjectIDs[params];
+    s32            objBankIndex = Object_GetIndex(objCtx, objectId);
+    s32            pad;
 
     if (objBankIndex < 0) {
         osSyncPrintf(VT_FGCOL(RED) "Demo_Geff_main_bank:バンクを読めない arg_data = %d!\n" VT_RST, params);

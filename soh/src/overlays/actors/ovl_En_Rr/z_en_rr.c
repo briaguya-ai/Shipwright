@@ -13,9 +13,9 @@
 #define FLAGS (ACTOR_FLAG_TARGETABLE | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_UPDATE_WHILE_CULLED | ACTOR_FLAG_DRAW_WHILE_CULLED | ACTOR_FLAG_DRAGGED_BY_HOOKSHOT)
 
 #define RR_MESSAGE_SHIELD (1 << 0)
-#define RR_MESSAGE_TUNIC (1 << 1)
-#define RR_MOUTH 4
-#define RR_BASE 0
+#define RR_MESSAGE_TUNIC  (1 << 1)
+#define RR_MOUTH          4
+#define RR_BASE           0
 
 typedef enum {
     /* 0 */ REACH_NONE,
@@ -81,7 +81,12 @@ const ActorInit En_Rr_InitVars = {
 
 static char* sDropNames[] = {
     // "type 7", "small magic jar", "arrow", "fairy", "20 rupees", "50 rupees"
-    "タイプ７  ", "魔法の壷小", "矢        ", "妖精      ", "20ルピー  ", "50ルピー  ",
+    "タイプ７  ",
+    "魔法の壷小",
+    "矢        ",
+    "妖精      ",
+    "20ルピー  ",
+    "50ルピー  ",
 };
 
 static ColliderCylinderInitType1 sCylinderInit1 = {
@@ -215,7 +220,7 @@ void EnRr_SetSpeed(EnRr* this, f32 speed) {
 
 void EnRr_SetupReach(EnRr* this) {
     static f32 segmentHeights[] = { 0.0f, 500.0f, 750.0f, 1000.0f, 1000.0f };
-    s32 i;
+    s32        i;
 
     this->reachState = 1;
     this->actionTimer = 20;
@@ -287,8 +292,8 @@ u8 EnRr_GetMessage(u8 shield, u8 tunic) {
 
 void EnRr_SetupReleasePlayer(EnRr* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    u8 shield;
-    u8 tunic;
+    u8      shield;
+    u8      tunic;
 
     this->actor.flags |= ACTOR_FLAG_TARGETABLE;
     this->hasPlayer = false;
@@ -414,7 +419,7 @@ void EnRr_SetupStunned(EnRr* this) {
 }
 
 void EnRr_CollisionCheck(EnRr* this, PlayState* play) {
-    Vec3f hitPos;
+    Vec3f   hitPos;
     Player* player = GET_PLAYER(play);
 
     if (this->collider2.base.acFlags & AC_HIT) {
@@ -842,10 +847,10 @@ static Vec3f sEffectOffsets[] = {
 };
 
 void EnRr_Draw(Actor* thisx, PlayState* play) {
-    s32 pad;
+    s32   pad;
     Vec3f zeroVec;
     EnRr* this = (EnRr*)thisx;
-    s32 i;
+    s32  i;
     Mtx* segMtx = Graph_Alloc(play->state.gfxCtx, 4 * sizeof(Mtx));
 
     OPEN_DISPS(play->state.gfxCtx);
@@ -886,7 +891,7 @@ void EnRr_Draw(Actor* thisx, PlayState* play) {
     CLOSE_DISPS(play->state.gfxCtx);
     if (this->effectTimer != 0) {
         Vec3f effectPos;
-        s16 effectTimer = this->effectTimer - 1;
+        s16   effectTimer = this->effectTimer - 1;
 
         this->actor.colorFilterTimer++;
         if ((effectTimer & 1) == 0) {

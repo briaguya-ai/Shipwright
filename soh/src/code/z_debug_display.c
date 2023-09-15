@@ -3,9 +3,9 @@
 #include "soh/Enhancements/game-interactor/GameInteractor.h"
 
 typedef struct {
-    /* 0x00 */ s16 drawType;  // indicates which draw function to use when displaying the object
-    /* 0x04 */ void* drawArg; // segment address (display list or texture) passed to the draw function when called
-} DebugDispObjectInfo;        // size = 0x8
+    /* 0x00 */ s16   drawType; // indicates which draw function to use when displaying the object
+    /* 0x04 */ void* drawArg;  // segment address (display list or texture) passed to the draw function when called
+} DebugDispObjectInfo;         // size = 0x8
 
 typedef void (*DebugDispObject_DrawFunc)(DebugDispObject*, void*, PlayState*);
 
@@ -18,8 +18,12 @@ static DebugDispObject_DrawFunc sDebugObjectDrawFuncTable[] = {
 };
 
 static DebugDispObjectInfo sDebugObjectInfoTable[] = {
-    { 0, gDebugCircleTex }, { 0, gDebugCrossTex }, { 0, gDebugBallTex },
-    { 0, gDebugCursorTex }, { 1, gDebugArrowDL },  { 1, gDebugCameraDL },
+    { 0, gDebugCircleTex },
+    { 0, gDebugCrossTex },
+    { 0, gDebugBallTex },
+    { 0, gDebugCursorTex },
+    { 1, gDebugArrowDL },
+    { 1, gDebugCameraDL },
 };
 
 static Lights1 sDebugObjectLights = gdSPDefLights1(0x80, 0x80, 0x80, 0xFF, 0xFF, 0xFF, 0x49, 0x49, 0x49);
@@ -61,7 +65,7 @@ DebugDispObject* DebugDisplay_AddObject(f32 posX, f32 posY, f32 posZ, s16 rotX, 
 }
 
 void DebugDisplay_DrawObjects(PlayState* play) {
-    DebugDispObject* dispObj = sDebugObjectListHead;
+    DebugDispObject*     dispObj = sDebugObjectListHead;
     DebugDispObjectInfo* objInfo;
 
     while (dispObj != NULL) {

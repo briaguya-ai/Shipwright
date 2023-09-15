@@ -212,16 +212,16 @@ void EnTr_FlyKidnapCutscene(EnTr* this, PlayState* play) {
 }
 
 void func_80B23254(EnTr* this, PlayState* play, s32 arg2, f32 arg3, f32 scale) {
-    Vec3f pos;
-    Vec3f velocity;
-    Vec3f accel;
-    Vec3f sp58;
+    Vec3f        pos;
+    Vec3f        velocity;
+    Vec3f        accel;
+    Vec3f        sp58;
     Color_RGBA8* primColor;
     Color_RGBA8* envColor;
-    Vec3f cameraEye = GET_ACTIVE_CAM(play)->eye;
-    s16 yaw = Math_Vec3f_Yaw(&cameraEye, &this->actor.world.pos);
-    s16 reversePitch = -Math_Vec3f_Pitch(&cameraEye, &this->actor.world.pos);
-    f32 sp3C;
+    Vec3f        cameraEye = GET_ACTIVE_CAM(play)->eye;
+    s16          yaw = Math_Vec3f_Yaw(&cameraEye, &this->actor.world.pos);
+    s16          reversePitch = -Math_Vec3f_Pitch(&cameraEye, &this->actor.world.pos);
+    f32          sp3C;
 
     accel.x = accel.z = 0.0f;
     sp3C = Math_SinS(yaw);
@@ -459,9 +459,9 @@ f32 func_80B23FDC(PlayState* play, s32 actionIndex) {
 void func_80B24038(EnTr* this, PlayState* play, s32 actionIndex) {
     Vec3f startPos;
     Vec3f endPos;
-    f32 temp_f0;
-    f32 temp_f0_2;
-    f32 phi_f12;
+    f32   temp_f0;
+    f32   temp_f0_2;
+    f32   phi_f12;
 
     startPos.x = play->csCtx.npcActions[actionIndex]->startPos.x;
     startPos.y = play->csCtx.npcActions[actionIndex]->startPos.y;

@@ -6,7 +6,7 @@
 #include "soh/Enhancements/randomizer/savefile.h"
 
 #define NUM_DUNGEONS 8
-#define NUM_COWS 10
+#define NUM_COWS     10
 
 void Save_LoadFile(void);
 
@@ -47,8 +47,22 @@ void Sram_InitBossRushSave(void) {
  */
 void Sram_OpenSave() {
     static s16 dungeonEntrances[] = {
-        0x0000, 0x0004, 0x0028, 0x0169, 0x0165, 0x0010, 0x0082, 0x0037,
-        0x0098, 0x0088, 0x041B, 0x0008, 0x0486, 0x0467, 0x0179, 0x056C,
+        0x0000,
+        0x0004,
+        0x0028,
+        0x0169,
+        0x0165,
+        0x0010,
+        0x0082,
+        0x0037,
+        0x0098,
+        0x0088,
+        0x041B,
+        0x0008,
+        0x0486,
+        0x0467,
+        0x0179,
+        0x056C,
     };
     u16 i;
     u16 j;
@@ -194,10 +208,10 @@ void Sram_OpenSave() {
 }
 
 void Sram_InitSave(FileChooseContext* fileChooseCtx) {
-    u16 offset;
-    u16 j;
+    u16  offset;
+    u16  j;
     u16* ptr;
-    u16 checksum;
+    u16  checksum;
 
     if (fileChooseCtx->buttonIndex != 0 || !CVarGetInteger("gDebugEnabled", 0)) {
         Sram_InitNewSave();

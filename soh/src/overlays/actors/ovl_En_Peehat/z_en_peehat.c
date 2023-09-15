@@ -7,7 +7,7 @@
 #define FLAGS (ACTOR_FLAG_TARGETABLE | ACTOR_FLAG_HOSTILE | ACTOR_FLAG_UPDATE_WHILE_CULLED | ACTOR_FLAG_PLAY_HIT_SFX)
 
 #define GROUND_HOVER_HEIGHT 75.0f
-#define MAX_LARVA 3
+#define MAX_LARVA           3
 
 void EnPeehat_Init(Actor* thisx, PlayState* play);
 void EnPeehat_Destroy(Actor* thisx, PlayState* play);
@@ -265,8 +265,8 @@ void EnPeehat_SpawnDust(PlayState* play, EnPeehat* this, Vec3f* pos, f32 arg3, s
     Vec3f dustPos;
     Vec3f dustVel = { 0.0f, 8.0f, 0.0f };
     Vec3f dustAccel = { 0.0f, -1.5f, 0.0f };
-    f32 rot; // radians
-    s32 pScale;
+    f32   rot; // radians
+    s32   pScale;
 
     rot = (Rand_ZeroOne() - 0.5f) * 6.28f;
     dustPos.y = this->actor.floorHeight;
@@ -578,7 +578,7 @@ void EnPeehat_Larva_StateSeekPlayer(EnPeehat* this, PlayState* play) {
             this->unk_2D4 = 40;
         } else if (this->colCylinder.base.acFlags & AC_HIT || this->actor.bgCheckFlags & 1) {
             Vec3f zeroVec = { 0, 0, 0 };
-            s32 i;
+            s32   i;
             for (i = 4; i >= 0; i--) {
                 Vec3f pos;
                 pos.x = Rand_CenteredFloat(20.0f) + this->actor.world.pos.x;
@@ -663,7 +663,7 @@ void EnPeehat_Ground_SetStateHover(EnPeehat* this) {
 }
 
 void EnPeehat_Ground_StateHover(EnPeehat* this, PlayState* play) {
-    f32 cos;
+    f32     cos;
     Player* player = GET_PLAYER(play);
 
     // hover but don't gain altitude
@@ -709,8 +709,8 @@ void EnPeehat_Ground_SetStateReturnHome(EnPeehat* this) {
 }
 
 void EnPeehat_Ground_StateReturnHome(EnPeehat* this, PlayState* play) {
-    f32 cos;
-    s16 yRot;
+    f32     cos;
+    s16     yRot;
     Player* player;
 
     player = GET_PLAYER(play);
@@ -755,7 +755,7 @@ void EnPeehat_StateAttackRecoil(EnPeehat* this, PlayState* play) {
         // Is PEAHAT_TYPE_LARVA
         if (this->actor.params > 0) {
             Vec3f zeroVec = { 0, 0, 0 };
-            s32 i;
+            s32   i;
             for (i = 4; i >= 0; i--) {
                 Vec3f pos;
                 pos.x = Rand_CenteredFloat(20.0f) + this->actor.world.pos.x;
@@ -867,7 +867,7 @@ void EnPeehat_SetStateExplode(EnPeehat* this) {
 
 void EnPeehat_StateExplode(EnPeehat* this, PlayState* play) {
     EnBom* bomb;
-    s32 pad[2];
+    s32    pad[2];
 
     if (this->animTimer == 5) {
         bomb = (EnBom*)Actor_Spawn(&play->actorCtx, play, ACTOR_EN_BOM, this->actor.world.pos.x,
@@ -913,7 +913,7 @@ void EnPeehat_Adult_CollisionCheck(EnPeehat* this, PlayState* play) {
 
         if (this->actor.colChkInfo.damageEffect == PEAHAT_DMG_EFF_FIRE) {
             Vec3f pos;
-            s32 i;
+            s32   i;
             for (i = 4; i >= 0; i--) {
                 pos.x = Rand_CenteredFloat(20.0f) + this->actor.world.pos.x;
                 pos.y = Rand_ZeroOne() * 25.0f + this->actor.world.pos.y;
@@ -930,7 +930,7 @@ void EnPeehat_Adult_CollisionCheck(EnPeehat* this, PlayState* play) {
 
 void EnPeehat_Update(Actor* thisx, PlayState* play) {
     EnPeehat* this = (EnPeehat*)thisx;
-    s32 i;
+    s32     i;
     Player* player = GET_PLAYER(play);
 
     // If Adult Peahat
@@ -991,10 +991,10 @@ void EnPeehat_Update(Actor* thisx, PlayState* play) {
         // if PEAHAT_TYPE_GROUNDED
         if (thisx->params < 0 && (thisx->flags & ACTOR_FLAG_ACTIVE)) {
             for (i = 1; i >= 0; i--) {
-                Vec3f posResult;
+                Vec3f          posResult;
                 CollisionPoly* poly = NULL;
-                s32 bgId;
-                Vec3f* posB = &this->bladeTip[i];
+                s32            bgId;
+                Vec3f*         posB = &this->bladeTip[i];
 
                 if (BgCheck_EntityLineTest1(&play->colCtx, &thisx->world.pos, posB, &posResult, &poly, true, true,
                                             false, true, &bgId) == true) {

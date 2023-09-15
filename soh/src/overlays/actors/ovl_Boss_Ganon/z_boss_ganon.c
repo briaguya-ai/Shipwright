@@ -29,7 +29,6 @@ void func_808E324C(Actor* thisx, PlayState* play); // draw
 void BossGanon_LightBall_Draw(Actor* thisx, PlayState* play);
 void BossGanon_Reset(void);
 
-
 void BossGanon_SetupIntroCutscene(BossGanon* this, PlayState* play);
 void BossGanon_SetupTowerCutscene(BossGanon* this, PlayState* play);
 void BossGanon_IntroCutscene(BossGanon* this, PlayState* play);
@@ -106,7 +105,7 @@ static ColliderCylinderInit sLightBallCylinderInit = {
     { 20, 30, -15, { 0, 0, 0 } },
 };
 
-static u8 D_808E4C58[] = { 0, 12, 10, 12, 14, 16, 12, 14, 16, 12, 14, 16, 12, 14, 16, 10, 16, 14 };
+static u8    D_808E4C58[] = { 0, 12, 10, 12, 14, 16, 12, 14, 16, 12, 14, 16, 12, 14, 16, 10, 16, 14 };
 static Vec3f sZeroVec = { 0.0f, 0.0f, 0.0f };
 
 EnGanonMant* sBossGanonCape;
@@ -121,13 +120,13 @@ EnZl3* sBossGanonZelda;
 
 GanondorfEffect sBossGanonEffectBuf[200];
 
-static u8 sWindowShatterTex[2048] = { {0} };
+static u8 sWindowShatterTex[2048] = { { 0 } };
 
 void BossGanonEff_SpawnWindowShard(PlayState* play, Vec3f* pos, Vec3f* velocity, f32 scale) {
     static Color_RGB8 shardColors[] = { { 255, 175, 85 }, { 155, 205, 155 }, { 155, 125, 55 } };
-    s16 i;
-    GanondorfEffect* eff = play->specialEffects;
-    Color_RGB8* color;
+    s16               i;
+    GanondorfEffect*  eff = play->specialEffects;
+    Color_RGB8*       color;
 
     for (i = 0; i < 200; i++, eff++) {
         if (eff->type == GDF_EFF_NONE) {
@@ -152,7 +151,7 @@ void BossGanonEff_SpawnWindowShard(PlayState* play, Vec3f* pos, Vec3f* velocity,
 
 void BossGanonEff_SpawnSparkle(PlayState* play, Vec3f* pos, Vec3f* velocity, Vec3f* accel, f32 scale,
                                s16 arg6) {
-    s16 i;
+    s16              i;
     GanondorfEffect* eff = play->specialEffects;
 
     for (i = 0; i < 150; i++, eff++) {
@@ -173,7 +172,7 @@ void BossGanonEff_SpawnSparkle(PlayState* play, Vec3f* pos, Vec3f* velocity, Vec
 
 void BossGanonEff_SpawnLightRay(PlayState* play, Vec3f* pos, Vec3f* velocity, Vec3f* accel, f32 scale,
                                 f32 arg5, s16 arg6) {
-    s16 i;
+    s16              i;
     GanondorfEffect* eff = play->specialEffects;
 
     for (i = 0; i < 150; i++, eff++) {
@@ -197,7 +196,7 @@ void BossGanonEff_SpawnLightRay(PlayState* play, Vec3f* pos, Vec3f* velocity, Ve
 }
 
 void BossGanonEff_SpawnShock(PlayState* play, f32 scale, s16 shockType) {
-    s16 i;
+    s16              i;
     GanondorfEffect* eff = play->specialEffects;
 
     for (i = 0; i < 75; i++, eff++) {
@@ -217,7 +216,7 @@ void BossGanonEff_SpawnShock(PlayState* play, f32 scale, s16 shockType) {
 }
 
 void BossGanonEff_SpawnLightning(PlayState* play, f32 scale, f32 arg2, f32 arg3) {
-    s16 i;
+    s16              i;
     GanondorfEffect* eff = play->specialEffects;
 
     for (i = 0; i < 150; i++, eff++) {
@@ -237,7 +236,7 @@ void BossGanonEff_SpawnLightning(PlayState* play, f32 scale, f32 arg2, f32 arg3)
 }
 
 void BossGanonEff_SpawnDustDark(PlayState* play, Vec3f* pos, f32 scale, f32 arg3) {
-    s16 i;
+    s16              i;
     GanondorfEffect* eff = play->specialEffects;
 
     for (i = 0; i < 150; i++, eff++) {
@@ -273,7 +272,7 @@ void BossGanonEff_SpawnDustLight(PlayState* play, Vec3f* pos, f32 scale, f32 arg
 }
 
 void BossGanonEff_SpawnShockwave(PlayState* play, Vec3f* pos, f32 scale, f32 arg3) {
-    s16 i;
+    s16              i;
     GanondorfEffect* eff = play->specialEffects;
 
     for (i = 0; i < 150; i++, eff++) {
@@ -295,7 +294,7 @@ void BossGanonEff_SpawnShockwave(PlayState* play, Vec3f* pos, f32 scale, f32 arg
 }
 
 void BossGanonEff_SpawnBlackDot(PlayState* play, Vec3f* pos, f32 scale) {
-    s16 i;
+    s16              i;
     GanondorfEffect* eff = play->specialEffects;
 
     for (i = 0; i < 150; i++, eff++) {
@@ -334,13 +333,13 @@ static InitChainEntry sInitChain[] = {
 };
 
 void BossGanon_Init(Actor* thisx, PlayState* play2) {
-    s16 i;
+    s16        i;
     PlayState* play = play2;
     BossGanon* this = (BossGanon*)thisx;
-    s32 cond;
-    f32 xDistFromPlayer;
-    f32 yDistFromPlayer;
-    f32 zDistFromPlayer;
+    s32     cond;
+    f32     xDistFromPlayer;
+    f32     yDistFromPlayer;
+    f32     zDistFromPlayer;
     Player* player = GET_PLAYER(play);
 
     if (thisx->params < 0x64) {
@@ -379,7 +378,7 @@ void BossGanon_Init(Actor* thisx, PlayState* play2) {
         }
 
         sBossGanonCape = (EnGanonMant*)Actor_SpawnAsChild(&play->actorCtx, thisx, play, ACTOR_EN_GANON_MANT, 0.0f,
-                                                 0.0f, 0.0f, 0, 0, 0, 1);
+                                                          0.0f, 0.0f, 0, 0, 0, 1);
         Actor_ChangeCategory(play, &play->actorCtx, thisx, ACTORCAT_BOSS);
     } else {
         thisx->flags &= ~ACTOR_FLAG_TARGETABLE;
@@ -532,11 +531,11 @@ void BossGanon_SetIntroCsCamera(BossGanon* this, u8 camPosIndex) {
 }
 
 void BossGanon_IntroCutscene(BossGanon* this, PlayState* play) {
-    u8 moveCam = false;
+    u8      moveCam = false;
     Player* player = GET_PLAYER(play);
-    s32 pad;
-    f32 sin;
-    f32 cos;
+    s32     pad;
+    f32     sin;
+    f32     cos;
     Camera* mainCam;
 
     gSegments[6] = VIRTUAL_TO_PHYSICAL(play->objectCtx.status[this->animBankIndex].segment);
@@ -590,7 +589,7 @@ void BossGanon_IntroCutscene(BossGanon* this, PlayState* play) {
                 BossGanon_SetIntroCsCamera(this, 0);
                 this->csState = 1;
                 sBossGanonZelda = (EnZl3*)Actor_SpawnAsChild(&play->actorCtx, &this->actor, play, ACTOR_EN_ZL3, 0.0f,
-                                                    220.0f, -150.0f, 0, 0, 0, 0x2000);
+                                                             220.0f, -150.0f, 0, 0, 0, 0x2000);
             }
 
             Actor_SpawnAsChild(&play->actorCtx, &this->actor, play, ACTOR_EN_GANON_ORGAN, 0.0f, 0.0f, 0.0f, 0,
@@ -1240,7 +1239,7 @@ void BossGanon_DeathAndTowerCutscene(BossGanon* this, PlayState* play) {
     static Color_RGBA8 bloodPrimColor = { 0, 120, 0, 255 };
     static Color_RGBA8 bloodEnvColor = { 0, 120, 0, 255 };
 
-    if(CVarGetInteger("gRedGanonBlood", 0)) {
+    if (CVarGetInteger("gRedGanonBlood", 0)) {
         bloodPrimColor.r = 120;
         bloodPrimColor.g = 0;
 
@@ -1248,16 +1247,16 @@ void BossGanon_DeathAndTowerCutscene(BossGanon* this, PlayState* play) {
         bloodEnvColor.g = 0;
     }
 
-    s16 i;
-    u8 moveCam = false;
+    s16     i;
+    u8      moveCam = false;
     Player* player = GET_PLAYER(play);
-    s16 pad;
-    Vec3f sp98;
-    Vec3f sp8C;
-    Vec3f sp80;
-    Vec3f sp74;
+    s16     pad;
+    Vec3f   sp98;
+    Vec3f   sp8C;
+    Vec3f   sp80;
+    Vec3f   sp74;
     Camera* mainCam;
-    Vec3f sp64;
+    Vec3f   sp64;
 
     gSegments[6] = VIRTUAL_TO_PHYSICAL(play->objectCtx.status[this->animBankIndex].segment);
 
@@ -1542,8 +1541,7 @@ void BossGanon_DeathAndTowerCutscene(BossGanon* this, PlayState* play) {
                 if ((gSaveContext.n64ddFlag && Randomizer_GetSettingValue(RSK_SKIP_TOWER_ESCAPE) || gSaveContext.isBossRush)) {
                     Flags_SetEventChkInf(EVENTCHKINF_WATCHED_GANONS_CASTLE_COLLAPSE_CAUGHT_BY_GERUDO);
                     play->nextEntranceIndex = 0x517;
-                }
-                else {
+                } else {
                     play->nextEntranceIndex = 0x43F;
                 }
                 play->fadeTransition = 5;
@@ -1560,7 +1558,7 @@ void BossGanon_DeathAndTowerCutscene(BossGanon* this, PlayState* play) {
             this->fwork[1] = Animation_GetLastFrame(&gGanondorfDefeatedStartAnim);
             this->skelAnime.playSpeed = 0.0f;
             sBossGanonZelda = (EnZl3*)Actor_SpawnAsChild(&play->actorCtx, &this->actor, play, ACTOR_EN_ZL3, 0.0f,
-                                                6000.0f, 0.0f, 0, 0, 0, 0x2000);
+                                                         6000.0f, 0.0f, 0, 0, 0, 0x2000);
 
             if (!gSaveContext.n64ddFlag && !gSaveContext.isBossRush) {
                 this->csState = 101;
@@ -1909,10 +1907,10 @@ void BossGanon_SetupPoundFloor(BossGanon* this, PlayState* play) {
 }
 
 void BossGanon_PoundFloor(BossGanon* this, PlayState* play) {
-    s16 i;
-    f32 heightTarget;
-    f32 targetPosX;
-    f32 targetPosZ;
+    s16   i;
+    f32   heightTarget;
+    f32   targetPosX;
+    f32   targetPosZ;
     Vec3f sp6C;
     Vec3f sp60;
     Vec3f sp54;
@@ -2048,13 +2046,13 @@ void BossGanon_SetupChargeBigMagic(BossGanon* this, PlayState* play) {
 }
 
 void BossGanon_ChargeBigMagic(BossGanon* this, PlayState* play) {
-    s32 pad;
-    f32 targetPosX;
-    f32 targetPosZ;
+    s32   pad;
+    f32   targetPosX;
+    f32   targetPosZ;
     Vec3f sp80;
     Vec3f sp74;
     Vec3f sp68;
-    s16 i;
+    s16   i;
 
     SkelAnime_Update(&this->skelAnime);
 
@@ -2261,9 +2259,9 @@ void BossGanon_SetupWait(BossGanon* this, PlayState* play) {
 }
 
 void BossGanon_Wait(BossGanon* this, PlayState* play) {
-    f32 sin;
-    s32 pad;
-    f32 cos;
+    f32     sin;
+    s32     pad;
+    f32     cos;
     Player* player = GET_PLAYER(play);
 
     this->legSwayEnabled = true;
@@ -2371,8 +2369,8 @@ void BossGanon_SetupPlayTennis(BossGanon* this, PlayState* play) {
 
 void BossGanon_PlayTennis(BossGanon* this, PlayState* play) {
     static AnimationHeader* volleyAnims[] = { &gGanondorfVolleyLeftAnim, &gGanondorfVolleyRightAnim };
-    static s16 capeRightArmDurations[] = { 26, 20 };
-    s16 rand;
+    static s16              capeRightArmDurations[] = { 26, 20 };
+    s16                     rand;
 
     SkelAnime_Update(&this->skelAnime);
     Math_ApproachZeroF(&this->handLightBallScale, 1.0f, 0.2f);
@@ -2500,7 +2498,7 @@ void BossGanon_SetupHitByLightBall(BossGanon* this, PlayState* play) {
 }
 
 void BossGanon_HitByLightBall(BossGanon* this, PlayState* play) {
-    s16 i;
+    s16   i;
     Vec3f sp50;
 
     SkelAnime_Update(&this->skelAnime);
@@ -2583,7 +2581,7 @@ void BossGanon_SetupVulnerable(BossGanon* this, PlayState* play) {
 }
 
 void BossGanon_Vulnerable(BossGanon* this, PlayState* play) {
-    s16 i;
+    s16   i;
     Vec3f sp40;
 
     if (this->timers[3] == 0) {
@@ -2755,8 +2753,8 @@ void BossGanon_Damaged(BossGanon* this, PlayState* play) {
 }
 
 void BossGanon_UpdateDamage(BossGanon* this, PlayState* play) {
-    s16 i;
-    s16 j;
+    s16           i;
+    s16           j;
     ColliderInfo* acHitInfo;
 
     if (this->collider.base.acFlags & 2) {
@@ -2773,10 +2771,10 @@ void BossGanon_UpdateDamage(BossGanon* this, PlayState* play) {
             }
         } else if ((this->actionFunc == BossGanon_Vulnerable) && (this->unk_1C2 >= 3)) {
             if (!(acHitInfo->toucher.dmgFlags & 0x80)) {
-                u8 hitWithSword = false;
-                u8 damage;
+                u8    hitWithSword = false;
+                u8    damage;
                 Vec3f sp50;
-                u32 flags;
+                u32   flags;
 
                 for (i = 0; i < 30; i++) {
                     sp50.x = Rand_CenteredFloat(20.0f);
@@ -2836,35 +2834,49 @@ void BossGanon_UpdateDamage(BossGanon* this, PlayState* play) {
 }
 
 static f32 D_808E4D44[] = {
-    1.0f, 3.0f, 0.0f, 7.0f, 13.0f, 4.0f, 6.0f, 11.0f, 5.0f, 2.0f, 8.0f, 14.0f, 10.0f, 12.0f, 9.0f,
+    1.0f,
+    3.0f,
+    0.0f,
+    7.0f,
+    13.0f,
+    4.0f,
+    6.0f,
+    11.0f,
+    5.0f,
+    2.0f,
+    8.0f,
+    14.0f,
+    10.0f,
+    12.0f,
+    9.0f,
 };
 
 void BossGanon_Update(Actor* thisx, PlayState* play2) {
     BossGanon* this = (BossGanon*)thisx;
-    PlayState* play = play2;
-    f32 legRotX;
-    f32 legRotY;
-    f32 legRotZ;
-    Player* player = GET_PLAYER(play);
-    s16 i;
-    f32 sin;
-    f32 cos;
-    Vec3f shardPos;
-    Vec3f shardVel;
-    Vec3f spE8;
-    s16 i2;
-    s16 j;
-    Vec3f spD8;
-    Vec3f platformCheckPos;
-    Actor* explosive;
-    Vec3f spBC;
-    Vec3f spB0;
-    Vec3f platCheckPosBomb;
-    Actor* prop;
+    PlayState*     play = play2;
+    f32            legRotX;
+    f32            legRotY;
+    f32            legRotZ;
+    Player*        player = GET_PLAYER(play);
+    s16            i;
+    f32            sin;
+    f32            cos;
+    Vec3f          shardPos;
+    Vec3f          shardVel;
+    Vec3f          spE8;
+    s16            i2;
+    s16            j;
+    Vec3f          spD8;
+    Vec3f          platformCheckPos;
+    Actor*         explosive;
+    Vec3f          spBC;
+    Vec3f          spB0;
+    Vec3f          platCheckPosBomb;
+    Actor*         prop;
     BgGanonOtyuka* platform;
-    f32 targetLensFlareScale;
-    f32 xOffset;
-    f32 zOffset;
+    f32            targetLensFlareScale;
+    f32            xOffset;
+    f32            zOffset;
 
     if ((this->actionFunc != BossGanon_IntroCutscene) && (this->actionFunc != BossGanon_DeathAndTowerCutscene)) {
         BossGanon_SetAnimationObject(this, play, OBJECT_GANON_ANIME1);
@@ -3316,7 +3328,36 @@ s32 BossGanon_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3
 
 void BossGanon_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void* thisx) {
     static s8 bodyPartLimbMap[] = {
-        -1, -1, 1, -1, 3, 4, 5, -1, 6, 7, 8, -1, -1, -1, -1, -1, -1, -1, -1, 2, 12, 13, 14, 9, 10, 11, -1, -1, -1, -1,
+        -1,
+        -1,
+        1,
+        -1,
+        3,
+        4,
+        5,
+        -1,
+        6,
+        7,
+        8,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        2,
+        12,
+        13,
+        14,
+        9,
+        10,
+        11,
+        -1,
+        -1,
+        -1,
+        -1,
     };
     static Vec3f D_808E4DA0 = { -500.0f, 200.0f, -300.0f };
     static Vec3f D_808E4DAC = { -500.0f, 200.0f, 300.0f };
@@ -3325,7 +3366,7 @@ void BossGanon_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* 
     static Vec3f D_808E4DD0 = { 0.0f, 0.0f, 0.0f };
     static Vec3f D_808E4DDC = { 1300.0f, 0.0f, 0.0f };
     static Vec3f D_808E4DE8 = { 600.0f, 420.0f, 100.0f };
-    s8 bodyPart;
+    s8           bodyPart;
     BossGanon* this = (BossGanon*)thisx;
 
     bodyPart = bodyPartLimbMap[limbIndex];
@@ -3414,9 +3455,9 @@ f32 BossGanon_RandZeroOne(void) {
 }
 
 void BossGanon_DrawShock(BossGanon* this, PlayState* play) {
-    s32 pad;
+    s32              pad;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s16 i;
+    s16              i;
 
     OPEN_DISPS(gfxCtx);
 
@@ -3440,7 +3481,7 @@ void BossGanon_DrawShock(BossGanon* this, PlayState* play) {
                 gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(gfxCtx),
                           G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
                 gSPDisplayList(POLY_XLU_DISP++, gGanondorfSquareDL);
-                
+
                 FrameInterpolation_RecordCloseChild();
             }
         } else {
@@ -3478,9 +3519,9 @@ void BossGanon_DrawShock(BossGanon* this, PlayState* play) {
 }
 
 void BossGanon_DrawHandLightBall(BossGanon* this, PlayState* play) {
-    s32 pad;
+    s32              pad;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s32 alpha;
+    s32              alpha;
 
     OPEN_DISPS(gfxCtx);
 
@@ -3518,10 +3559,10 @@ void BossGanon_DrawHandLightBall(BossGanon* this, PlayState* play) {
 }
 
 void BossGanon_DrawBigMagicCharge(BossGanon* this, PlayState* play) {
-    s32 pad;
-    f32 yRot;
+    s32              pad;
+    f32              yRot;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s16 i;
+    s16              i;
 
     OPEN_DISPS(gfxCtx);
 
@@ -3699,19 +3740,19 @@ void func_808E0254(BossGanon* this, u8* tex, f32 arg2) {
     static s16 D_808E4E10[] = { 2, 3, 4, 4, 4, 4, 3, 2 };
     static s16 D_808E4E20[] = { 2, 4, 5, 5, 6, 6, 6, 6, 5, 5, 4, 2 };
     static s16 D_808E4E38[] = { 1, -1, 1, 1, 3, 4, 1, 6, 7, 2, 9, 10, 2, 12, 13 };
-    static u8 D_808E4E58[] = { 3, 2, 2, 1, 3, 3, 1, 3, 3, 1, 0, 3, 1, 0, 3 };
-    s16 baseX;
-    s16 index;
-    s16 i;
-    s16 baseY;
-    s16 x;
-    s16 addY;
-    f32 lerpX;
-    s16 y;
-    f32 lerpY;
-    f32 lerpZ;
-    Vec3f sp68;
-    Vec3f sp5C;
+    static u8  D_808E4E58[] = { 3, 2, 2, 1, 3, 3, 1, 3, 3, 1, 0, 3, 1, 0, 3 };
+    s16        baseX;
+    s16        index;
+    s16        i;
+    s16        baseY;
+    s16        x;
+    s16        addY;
+    f32        lerpX;
+    s16        y;
+    f32        lerpY;
+    f32        lerpZ;
+    Vec3f      sp68;
+    Vec3f      sp5C;
 
     for (i = 0; i < 15; i++) {
         if (arg2 == 0.0f || (y = D_808E4E38[i]) >= 0) {
@@ -3779,17 +3820,17 @@ void func_808E0254(BossGanon* this, u8* tex, f32 arg2) {
 }
 
 void BossGanon_GenShadowTexture(u8* tex, BossGanon* this, PlayState* play) {
-    s16 addY;
-    s16 baseX;
-    s16 baseY;
-    s16 i;
-    s16 j;
-    s16 y;
-    s16 x;
-    s16 index;
+    s16   addY;
+    s16   baseX;
+    s16   baseY;
+    s16   i;
+    s16   j;
+    s16   y;
+    s16   x;
+    s16   index;
     Vec3f sp7C;
     Vec3f sp70;
-    s32* ptr = (s32*)tex;
+    s32*  ptr = (s32*)tex;
 
     for (i = 0; i < 64 * 64 / 4; i++, ptr++) {
         *ptr = 0;
@@ -3839,8 +3880,8 @@ void BossGanon_GenShadowTexture(u8* tex, BossGanon* this, PlayState* play) {
 }
 
 void BossGanon_DrawShadowTexture(void* tex, BossGanon* this, PlayState* play) {
-    s32 pad;
-    f32 zOffset;
+    s32              pad;
+    f32              zOffset;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
 
     OPEN_DISPS(gfxCtx);
@@ -3930,9 +3971,9 @@ s32 BossGanon_CheckFallingPlatforms(BossGanon* this, PlayState* play, Vec3f* che
             prop = prop->next;
         } else {
             BgGanonOtyuka* platform = (BgGanonOtyuka*)prop;
-            f32 xDiff = platform->dyna.actor.world.pos.x - checkPos->x;
-            f32 yDiff = platform->dyna.actor.world.pos.y - checkPos->y;
-            f32 zDiff = platform->dyna.actor.world.pos.z - checkPos->z;
+            f32            xDiff = platform->dyna.actor.world.pos.x - checkPos->x;
+            f32            yDiff = platform->dyna.actor.world.pos.y - checkPos->y;
+            f32            zDiff = platform->dyna.actor.world.pos.z - checkPos->z;
 
             if ((fabsf(xDiff) < 60.0f) && (yDiff < 20.0f) && (yDiff > -20.0f) && (fabsf(zDiff) < 60.0f)) {
                 platform->isFalling = true;
@@ -3949,25 +3990,25 @@ s32 BossGanon_CheckFallingPlatforms(BossGanon* this, PlayState* play, Vec3f* che
 }
 
 void BossGanon_LightBall_Update(Actor* thisx, PlayState* play2) {
-    u8 hitWithBottle;
-    s16 i;
-    s16 spBA = 0;
+    u8    hitWithBottle;
+    s16   i;
+    s16   spBA = 0;
     Vec3f spAC;
     Vec3f spA0;
     Vec3f sp94;
     BossGanon* this = (BossGanon*)thisx;
     PlayState* play = play2;
-    f32 xDistFromLink;
-    f32 yDistFromLink;
-    f32 zDistFromLink;
-    f32 minReflectDist;
-    f32 xDistFromGanondorf;
-    f32 yDistFromGanondorf;
-    f32 zDistFromGanondorf;
-    Player* player = GET_PLAYER(play);
-    s32 pad;
+    f32        xDistFromLink;
+    f32        yDistFromLink;
+    f32        zDistFromLink;
+    f32        minReflectDist;
+    f32        xDistFromGanondorf;
+    f32        yDistFromGanondorf;
+    f32        zDistFromGanondorf;
+    Player*    player = GET_PLAYER(play);
+    s32        pad;
     BossGanon* ganondorf = (BossGanon*)this->actor.parent;
-    s32 pad1;
+    s32        pad1;
 
     this->unk_1A2++;
     ganondorf->envLightMode = 1;
@@ -4274,14 +4315,14 @@ void func_808E1EB4(Actor* thisx, PlayState* play2) {
     BossGanon* this = (BossGanon*)thisx;
     PlayState* play = play2;
     BossGanon* dorf = (BossGanon*)this->actor.parent;
-    f32 xDiff;
-    f32 yDiff;
-    f32 zDiff;
-    f32 xzDist;
-    s16 xRotTarget;
-    s16 yRotTarget;
-    Vec3f vel;
-    Vec3f accel;
+    f32        xDiff;
+    f32        yDiff;
+    f32        zDiff;
+    f32        xzDist;
+    s16        xRotTarget;
+    s16        yRotTarget;
+    Vec3f      vel;
+    Vec3f      accel;
 
     this->unk_1A2++;
     dorf->envLightMode = 1;
@@ -4369,8 +4410,8 @@ void func_808E1EB4(Actor* thisx, PlayState* play2) {
 void func_808E229C(Actor* thisx, PlayState* play2) {
     BossGanon* this = (BossGanon*)thisx;
     PlayState* play = play2;
-    s16 i;
-    s32 temp;
+    s16        i;
+    s32        temp;
 
     OPEN_DISPS(play->state.gfxCtx);
     Gfx_SetupDL_25Xlu(play->state.gfxCtx);
@@ -4394,7 +4435,7 @@ void func_808E229C(Actor* thisx, PlayState* play2) {
 }
 
 void func_808E2544(Actor* thisx, PlayState* play) {
-    u8 numEffects = 0;
+    u8  numEffects = 0;
     s16 xRot;
     f32 xDiff;
     f32 yDiff;
@@ -4405,11 +4446,11 @@ void func_808E2544(Actor* thisx, PlayState* play) {
     s16 i;
     s16 sp80;
     BossGanon* this = (BossGanon*)thisx;
-    BossGanon* dorf = (BossGanon*)this->actor.parent;
-    s32 pad;
-    Player* player = GET_PLAYER(play);
+    BossGanon*    dorf = (BossGanon*)this->actor.parent;
+    s32           pad;
+    Player*       player = GET_PLAYER(play);
     ColliderInfo* acHitInfo;
-    Vec3f sp60;
+    Vec3f         sp60;
 
     this->unk_1A2++;
     Actor_SetScale(&this->actor, 0.01f);
@@ -4640,16 +4681,25 @@ void func_808E2544(Actor* thisx, PlayState* play) {
 }
 
 static Gfx* sBigMagicLightStreakDLists[] = {
-    gGanondorfLightStreak12DL, gGanondorfLightStreak11DL, gGanondorfLightStreak10DL, gGanondorfLightStreak9DL,
-    gGanondorfLightStreak8DL,  gGanondorfLightStreak7DL,  gGanondorfLightStreak6DL,  gGanondorfLightStreak5DL,
-    gGanondorfLightStreak4DL,  gGanondorfLightStreak3DL,  gGanondorfLightStreak2DL,  gGanondorfLightStreak1DL,
+    gGanondorfLightStreak12DL,
+    gGanondorfLightStreak11DL,
+    gGanondorfLightStreak10DL,
+    gGanondorfLightStreak9DL,
+    gGanondorfLightStreak8DL,
+    gGanondorfLightStreak7DL,
+    gGanondorfLightStreak6DL,
+    gGanondorfLightStreak5DL,
+    gGanondorfLightStreak4DL,
+    gGanondorfLightStreak3DL,
+    gGanondorfLightStreak2DL,
+    gGanondorfLightStreak1DL,
 };
 
 void func_808E324C(Actor* thisx, PlayState* play) {
     BossGanon* this = (BossGanon*)thisx;
     Mtx* mtx;
-    s16 i;
-    s32 temp;
+    s16  i;
+    s32  temp;
 
     mtx = Graph_Alloc(play->state.gfxCtx, 12 * sizeof(Mtx));
 
@@ -4687,20 +4737,20 @@ void func_808E324C(Actor* thisx, PlayState* play) {
 }
 
 void BossGanon_UpdateEffects(PlayState* play) {
-    Player* player = GET_PLAYER(play);
+    Player*          player = GET_PLAYER(play);
     GanondorfEffect* eff = play->specialEffects;
-    s16 i;
-    s32 pad;
-    f32 xDiff;
-    f32 yDiff;
-    f32 zDiff;
-    f32 yRot;
-    f32 xRot;
-    Vec3f spA0;
-    s16 bodyPart;
-    f32 distToPlayer;
-    s32 pad2;
-    s32 pad3;
+    s16              i;
+    s32              pad;
+    f32              xDiff;
+    f32              yDiff;
+    f32              zDiff;
+    f32              yRot;
+    f32              xRot;
+    Vec3f            spA0;
+    s16              bodyPart;
+    f32              distToPlayer;
+    s32              pad2;
+    s32              pad3;
 
     spA0.x = 0.0f;
     spA0.y = 0.0f;
@@ -4886,26 +4936,122 @@ void BossGanon_UpdateEffects(PlayState* play) {
 }
 
 static void* sLightningTextures[] = {
-    gGanondorfLightning1Tex,  gGanondorfLightning1Tex,  gGanondorfLightning2Tex,  gGanondorfLightning3Tex, gGanondorfLightning4Tex,
-    gGanondorfLightning5Tex,  gGanondorfLightning6Tex,  gGanondorfLightning7Tex,  gGanondorfLightning8Tex, gGanondorfLightning9Tex,
-    gGanondorfLightning10Tex, gGanondorfLightning11Tex, gGanondorfLightning12Tex,
+    gGanondorfLightning1Tex,
+    gGanondorfLightning1Tex,
+    gGanondorfLightning2Tex,
+    gGanondorfLightning3Tex,
+    gGanondorfLightning4Tex,
+    gGanondorfLightning5Tex,
+    gGanondorfLightning6Tex,
+    gGanondorfLightning7Tex,
+    gGanondorfLightning8Tex,
+    gGanondorfLightning9Tex,
+    gGanondorfLightning10Tex,
+    gGanondorfLightning11Tex,
+    gGanondorfLightning12Tex,
 };
 
 static u8 sLightningPrimColors[] = {
-    0,   0,   0,   255, 255, 255, 231, 250, 231, 208, 245, 208, 185, 240, 185, 162, 235, 162, 139, 230,
-    139, 115, 225, 115, 92,  220, 92,  69,  215, 69,  46,  210, 46,  23,  205, 23,  0,   200, 0,
+    0,
+    0,
+    0,
+    255,
+    255,
+    255,
+    231,
+    250,
+    231,
+    208,
+    245,
+    208,
+    185,
+    240,
+    185,
+    162,
+    235,
+    162,
+    139,
+    230,
+    139,
+    115,
+    225,
+    115,
+    92,
+    220,
+    92,
+    69,
+    215,
+    69,
+    46,
+    210,
+    46,
+    23,
+    205,
+    23,
+    0,
+    200,
+    0,
 };
 
 static u8 sLightningEnvColors[] = {
-    0,   0,   0,   255, 255, 0,   240, 231, 23,  226, 208, 46,  212, 185, 69,  198, 162, 92,
-    184, 139, 115, 170, 115, 139, 156, 92,  162, 142, 69,  185, 128, 46,  208, 114, 23,  231,
-    100, 0,   255, 0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+    0,
+    0,
+    0,
+    255,
+    255,
+    0,
+    240,
+    231,
+    23,
+    226,
+    208,
+    46,
+    212,
+    185,
+    69,
+    198,
+    162,
+    92,
+    184,
+    139,
+    115,
+    170,
+    115,
+    139,
+    156,
+    92,
+    162,
+    142,
+    69,
+    185,
+    128,
+    46,
+    208,
+    114,
+    23,
+    231,
+    100,
+    0,
+    255,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
 };
 
 void BossGanon_DrawEffects(PlayState* play) {
-    u8 flag = 0;
-    s16 i;
-    s32 pad;
+    u8               flag = 0;
+    s16              i;
+    s32              pad;
     GraphicsContext* gfxCtx = play->state.gfxCtx;
     GanondorfEffect* eff = play->specialEffects;
     GanondorfEffect* effFirst = eff;

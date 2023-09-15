@@ -65,7 +65,11 @@ static ColliderJntSphInit sJntSphInit = {
 };
 
 static CollisionCheckInfoInit2 sColChkInfoInit2 = {
-    1, 2, 25, 25, MASS_IMMOVABLE,
+    1,
+    2,
+    25,
+    25,
+    MASS_IMMOVABLE,
 };
 
 static Vec3f sEffectAccel = { 0.0f, -0.5f, 0.0f };
@@ -123,7 +127,7 @@ void EnBubble_DamagePlayer(EnBubble* this, PlayState* play) {
 }
 
 s32 EnBubble_Explosion(EnBubble* this, PlayState* play) {
-    u32 i;
+    u32   i;
     Vec3f effectAccel;
     Vec3f effectVel;
     Vec3f effectPos;
@@ -200,15 +204,15 @@ void EnBubble_Vec3fNormalize(Vec3f* vec) {
 
 void EnBubble_Fly(EnBubble* this, PlayState* play) {
     CollisionPoly* sp94;
-    Actor* bumpActor;
-    Vec3f sp84;
-    Vec3f sp78;
-    Vec3f sp6C;
-    Vec3f sp60;
-    Vec3f sp54;
-    f32 bounceSpeed;
-    s32 bgId;
-    u8 bounceCount;
+    Actor*         bumpActor;
+    Vec3f          sp84;
+    Vec3f          sp78;
+    Vec3f          sp6C;
+    Vec3f          sp60;
+    Vec3f          sp54;
+    f32            bounceSpeed;
+    s32            bgId;
+    u8             bounceCount;
 
     if (this->colliderSphere.elements[1].info.bumperFlags & BUMP_HIT) {
         bumpActor = this->colliderSphere.base.ac;
@@ -315,8 +319,8 @@ u32 EnBubble_DetectPop(EnBubble* this, PlayState* play) {
 
 void func_809CC774(EnBubble* this) {
     ColliderJntSphElementDim* dim;
-    Vec3f src;
-    Vec3f dest;
+    Vec3f                     src;
+    Vec3f                     dest;
 
     dim = &this->colliderSphere.elements[0].dim;
     src.x = dim->modelSphere.center.x;

@@ -61,9 +61,15 @@ static s16 sResultValues[3][2] = {
 };
 
 static Vec3f sScrubPos[] = {
-    { 3810.0f, -20.0f, 1010.0f }, { 3890.0f, -20.0f, 990.0f }, { 3730.0f, -20.0f, 950.0f },
-    { 3840.0f, -20.0f, 930.0f },  { 3910.0f, -20.0f, 870.0f }, { 3780.0f, -20.0f, 860.0f },
-    { 3710.0f, -20.0f, 840.0f },  { 3860.0f, -20.0f, 790.0f }, { 3750.0f, -20.0f, 750.0f },
+    { 3810.0f, -20.0f, 1010.0f },
+    { 3890.0f, -20.0f, 990.0f },
+    { 3730.0f, -20.0f, 950.0f },
+    { 3840.0f, -20.0f, 930.0f },
+    { 3910.0f, -20.0f, 870.0f },
+    { 3780.0f, -20.0f, 860.0f },
+    { 3710.0f, -20.0f, 840.0f },
+    { 3860.0f, -20.0f, 790.0f },
+    { 3750.0f, -20.0f, 750.0f },
 };
 
 void EnDntDemo_Destroy(Actor* thisx, PlayState* play) {
@@ -109,7 +115,7 @@ void EnDntDemo_Judge(EnDntDemo* this, PlayState* play) {
     s16 rand9;
     s16 maskIdx;
     s16 resultIdx;
-    u8 ignore;
+    u8  ignore;
     s32 i;
 
     if (this->leaderSignal != DNT_SIGNAL_NONE) {
@@ -306,9 +312,9 @@ void EnDntDemo_Results(EnDntDemo* this, PlayState* play) {
         this->actionFunc = EnDntDemo_Prize;
     } else if (this->prize == DNT_PRIZE_STICK) {
         for (i = 0; i < 9; i++) {
-            s16 offsetAngle = -this->leader->actor.shape.rot.y;
+            s16   offsetAngle = -this->leader->actor.shape.rot.y;
             Vec3f leaderPos = this->leader->actor.world.pos;
-            f32 offsetDist;
+            f32   offsetDist;
 
             if (!(i & 1)) {
                 offsetAngle -= 0x59D8;

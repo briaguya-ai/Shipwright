@@ -179,7 +179,7 @@ void EnFhgFire_Destroy(Actor* thisx, PlayState* play) {
 
 void EnFhgFire_LightningStrike(EnFhgFire* this, PlayState* play) {
     Camera* camera = Play_GetCamera(play, 0);
-    s16 i;
+    s16     i;
 
     switch (this->work[FHGFIRE_FIRE_MODE]) {
         case STRIKE_INIT:
@@ -283,7 +283,7 @@ void EnFhgFire_LightningTrail(EnFhgFire* this, PlayState* play) {
 
 void EnFhgFire_LightningShock(EnFhgFire* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Vec3f pos;
+    Vec3f   pos;
 
     if (this->collider.base.atFlags & AT_HIT) {
         this->collider.base.atFlags &= ~AT_HIT;
@@ -375,7 +375,7 @@ void EnFhgFire_LightningBurst(EnFhgFire* this, PlayState* play) {
 
 void EnFhgFire_SpearLight(EnFhgFire* this, PlayState* play) {
     BossGanondrof* bossGnd;
-    s16 i;
+    s16            i;
 
     osSyncPrintf("yari hikari 1\n");
     bossGnd = (BossGanondrof*)this->actor.parent;
@@ -413,15 +413,15 @@ void EnFhgFire_SpearLight(EnFhgFire* this, PlayState* play) {
 }
 
 void EnFhgFire_EnergyBall(EnFhgFire* this, PlayState* play) {
-    f32 dxL;
-    f32 dyL;
-    f32 dzL;
-    f32 dxzL;
-    f32 dxPG;
-    f32 dyPG;
-    f32 dzPG;
-    u8 killMode = BALL_FIZZLE;
-    u8 canBottleReflect1;
+    f32     dxL;
+    f32     dyL;
+    f32     dzL;
+    f32     dxzL;
+    f32     dxPG;
+    f32     dyPG;
+    f32     dzPG;
+    u8      killMode = BALL_FIZZLE;
+    u8      canBottleReflect1;
     Player* player = GET_PLAYER(play);
 
     if (this->work[FHGFIRE_KILL_TIMER] != 0) {
@@ -431,7 +431,7 @@ void EnFhgFire_EnergyBall(EnFhgFire* this, PlayState* play) {
             return;
         }
     } else {
-        s32 canBottleReflect2;
+        s32            canBottleReflect2;
         BossGanondrof* bossGnd = (BossGanondrof*)this->actor.parent;
 
         dxPG = bossGnd->targetPos.x - this->actor.world.pos.x;
@@ -449,8 +449,8 @@ void EnFhgFire_EnergyBall(EnFhgFire* this, PlayState* play) {
         }
         this->actor.shape.rot.z += (s16)(Rand_ZeroOne() * 0x4E20) + 0x4000;
         {
-            u8 lightBallColor1 = FHGFLASH_LIGHTBALL_GREEN;
-            s16 i1;
+            u8    lightBallColor1 = FHGFLASH_LIGHTBALL_GREEN;
+            s16   i1;
             Vec3f spD4;
             Vec3f spC8 = { 0.0f, 0.0f, 0.0f };
             Vec3f spBC = { 0.0f, 0.0f, 0.0f };
@@ -478,11 +478,11 @@ void EnFhgFire_EnergyBall(EnFhgFire* this, PlayState* play) {
                         : false;
                 if ((this->collider.base.acFlags & AC_HIT) || canBottleReflect1) {
                     ColliderInfo* hurtbox = this->collider.info.acHitInfo;
-                    s16 i2;
-                    Vec3f spA8;
-                    Vec3f sp9C = { 0.0f, -0.5f, 0.0f };
-                    s16 angleModX;
-                    s16 angleModY;
+                    s16           i2;
+                    Vec3f         spA8;
+                    Vec3f         sp9C = { 0.0f, -0.5f, 0.0f };
+                    s16           angleModX;
+                    s16           angleModY;
 
                     for (i2 = 0; i2 < 30; i2++) {
                         spA8.x = Rand_CenteredFloat(20.0f);
@@ -564,7 +564,7 @@ void EnFhgFire_EnergyBall(EnFhgFire* this, PlayState* play) {
                 break;
             case FHGFIRE_LIGHT_REFLECT:
                 if (this->work[FHGFIRE_TIMER] == 0) {
-                    s16 i3;
+                    s16   i3;
                     Vec3f sp88;
                     Vec3f sp7C = { 0.0f, -0.5f, 0.0f };
 
@@ -590,8 +590,8 @@ void EnFhgFire_EnergyBall(EnFhgFire* this, PlayState* play) {
         if (this->work[FHGFIRE_FX_TIMER] == 0) {
             Actor_UpdateBgCheckInfo(play, &this->actor, 50.0f, 50.0f, 100.0f, 7);
             if ((this->actor.bgCheckFlags & 0x19) || killMode) {
-                u8 lightBallColor2 = FHGFLASH_LIGHTBALL_GREEN;
-                s16 i4;
+                u8    lightBallColor2 = FHGFLASH_LIGHTBALL_GREEN;
+                s16   i4;
                 Vec3f sp6C;
                 Vec3f sp60 = { 0.0f, -1.0f, 0.0f };
 
@@ -638,7 +638,7 @@ void EnFhgFire_EnergyBall(EnFhgFire* this, PlayState* play) {
 
 void EnFhgFire_PhantomWarp(EnFhgFire* this, PlayState* play) {
     EnfHG* horse = (EnfHG*)this->actor.parent;
-    f32 scrollDirection;
+    f32    scrollDirection;
 
     this->fwork[FHGFIRE_WARP_TEX_1_X] += 25.0f * this->fwork[FHGFIRE_WARP_TEX_SPEED];
     this->fwork[FHGFIRE_WARP_TEX_1_Y] -= 40.0f * this->fwork[FHGFIRE_WARP_TEX_SPEED];
@@ -693,7 +693,14 @@ void EnFhgFire_Update(Actor* thisx, PlayState* play) {
 }
 
 static void* sDustTextures[] = {
-    gDust1Tex, gDust2Tex, gDust3Tex, gDust4Tex, gDust5Tex, gDust6Tex, gDust7Tex, gDust8Tex,
+    gDust1Tex,
+    gDust2Tex,
+    gDust3Tex,
+    gDust4Tex,
+    gDust5Tex,
+    gDust6Tex,
+    gDust7Tex,
+    gDust8Tex,
 };
 
 void EnFhgFire_Draw(Actor* thisx, PlayState* play) {

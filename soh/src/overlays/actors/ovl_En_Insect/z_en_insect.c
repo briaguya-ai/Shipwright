@@ -94,9 +94,9 @@ f32 EnInsect_XZDistanceSquared(Vec3f* v1, Vec3f* v2) {
 }
 
 s32 EnInsect_InBottleRange(EnInsect* this, PlayState* play) {
-    s32 pad;
+    s32     pad;
     Player* player = GET_PLAYER(play);
-    Vec3f pos;
+    Vec3f   pos;
 
     if (this->actor.xzDistToPlayer < 32.0f) {
         pos.x = Math_SinS(this->actor.yawTowardsPlayer + 0x8000) * 16.0f + player->actor.world.pos.x;
@@ -125,9 +125,9 @@ void func_80A7BF58(EnInsect* this) {
  */
 s32 EnInsect_FoundNearbySoil(EnInsect* this, PlayState* play) {
     Actor* currentActor;
-    f32 currentDistance;
-    f32 bestDistance;
-    s32 ret;
+    f32    currentDistance;
+    f32    bestDistance;
+    s32    ret;
 
     ret = 0;
     currentActor = play->actorCtx.actorLists[ACTORCAT_ITEMACTION].head;
@@ -167,9 +167,9 @@ void func_80A7C058(EnInsect* this) {
 void EnInsect_Init(Actor* thisx, PlayState* play2) {
     EnInsect* this = (EnInsect*)thisx;
     PlayState* play = play2;
-    f32 rand;
-    s16 temp_s2;
-    s32 count;
+    f32        rand;
+    s16        temp_s2;
+    s32        count;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
     func_80A7BE20(this);
@@ -410,8 +410,8 @@ void func_80A7CBC8(EnInsect* this) {
 void func_80A7CC3C(EnInsect* this, PlayState* play) {
     static Vec3f accel = { 0.0f, 0.0f, 0.0f };
     static Vec3f unused = { 0.0f, 0.0f, 0.0f };
-    s32 pad[2];
-    Vec3f velocity;
+    s32          pad[2];
+    Vec3f        velocity;
 
     Math_SmoothStepToF(&this->actor.speedXZ, 0.0f, 0.1f, 0.5f, 0.0f);
     Math_StepToS(&this->actor.shape.rot.x, 10922, 352);
@@ -450,13 +450,13 @@ void func_80A7CE60(EnInsect* this) {
 }
 
 void func_80A7CEC0(EnInsect* this, PlayState* play) {
-    f32 temp_f0;
-    s16 temp_v1;
-    s16 pad;
-    s16 sp4E;
+    f32   temp_f0;
+    s16   temp_v1;
+    s16   pad;
+    s16   sp4E;
     Vec3f sp40;
-    s32 phi_v0;
-    s32 phi_v0_2;
+    s32   phi_v0;
+    s32   phi_v0_2;
 
     sp4E = this->actor.params & 3;
 
@@ -566,16 +566,16 @@ void func_80A7D39C(EnInsect* this) {
 }
 
 void func_80A7D460(EnInsect* this, PlayState* play) {
-    s32 temp_a0;
-    s32 sp50;
-    f32 phi_f0;
+    s32       temp_a0;
+    s32       sp50;
+    f32       phi_f0;
     EnInsect* thisTemp = this;
-    s32 temp_a1;
-    f32 sp40;
-    f32 phi_f2;
-    s16 sp3A;
-    s16 sp38;
-    f32 sp34;
+    s32       temp_a1;
+    f32       sp40;
+    f32       phi_f2;
+    s16       sp3A;
+    s16       sp38;
+    f32       sp34;
 
     sp50 = 0;
     sp3A = this->actor.params & 3;

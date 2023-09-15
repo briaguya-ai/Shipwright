@@ -21,95 +21,280 @@
 #include "soh/Enhancements/cosmetics/cosmeticsTypes.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
 
-
 static void* sEquipmentFRATexs[] = {
-    gPauseEquipment00FRATex, gPauseEquipment01Tex, gPauseEquipment02Tex, gPauseEquipment03Tex, gPauseEquipment04Tex,
-    gPauseEquipment10FRATex, gPauseEquipment11Tex, gPauseEquipment12Tex, gPauseEquipment13Tex, gPauseEquipment14Tex,
-    gPauseEquipment20FRATex, gPauseEquipment21Tex, gPauseEquipment22Tex, gPauseEquipment23Tex, gPauseEquipment24Tex,
+    gPauseEquipment00FRATex,
+    gPauseEquipment01Tex,
+    gPauseEquipment02Tex,
+    gPauseEquipment03Tex,
+    gPauseEquipment04Tex,
+    gPauseEquipment10FRATex,
+    gPauseEquipment11Tex,
+    gPauseEquipment12Tex,
+    gPauseEquipment13Tex,
+    gPauseEquipment14Tex,
+    gPauseEquipment20FRATex,
+    gPauseEquipment21Tex,
+    gPauseEquipment22Tex,
+    gPauseEquipment23Tex,
+    gPauseEquipment24Tex,
 };
 static void* sSelectItemFRATexs[] = {
-    gPauseSelectItem00FRATex, gPauseSelectItem01Tex,    gPauseSelectItem02Tex,    gPauseSelectItem03Tex,
-    gPauseSelectItem04Tex,    gPauseSelectItem10FRATex, gPauseSelectItem11Tex,    gPauseSelectItem12Tex,
-    gPauseSelectItem13Tex,    gPauseSelectItem14Tex,    gPauseSelectItem20FRATex, gPauseSelectItem21Tex,
-    gPauseSelectItem22Tex,    gPauseSelectItem23Tex,    gPauseSelectItem24Tex,
+    gPauseSelectItem00FRATex,
+    gPauseSelectItem01Tex,
+    gPauseSelectItem02Tex,
+    gPauseSelectItem03Tex,
+    gPauseSelectItem04Tex,
+    gPauseSelectItem10FRATex,
+    gPauseSelectItem11Tex,
+    gPauseSelectItem12Tex,
+    gPauseSelectItem13Tex,
+    gPauseSelectItem14Tex,
+    gPauseSelectItem20FRATex,
+    gPauseSelectItem21Tex,
+    gPauseSelectItem22Tex,
+    gPauseSelectItem23Tex,
+    gPauseSelectItem24Tex,
 };
 static void* sMapFRATexs[] = {
-    gPauseMap00Tex,    gPauseMap01Tex, gPauseMap02Tex, gPauseMap03Tex, gPauseMap04Tex,
-    gPauseMap10FRATex, gPauseMap11Tex, gPauseMap12Tex, gPauseMap13Tex, gPauseMap14Tex,
-    gPauseMap20Tex,    gPauseMap21Tex, gPauseMap22Tex, gPauseMap23Tex, gPauseMap24Tex,
+    gPauseMap00Tex,
+    gPauseMap01Tex,
+    gPauseMap02Tex,
+    gPauseMap03Tex,
+    gPauseMap04Tex,
+    gPauseMap10FRATex,
+    gPauseMap11Tex,
+    gPauseMap12Tex,
+    gPauseMap13Tex,
+    gPauseMap14Tex,
+    gPauseMap20Tex,
+    gPauseMap21Tex,
+    gPauseMap22Tex,
+    gPauseMap23Tex,
+    gPauseMap24Tex,
 };
 static void* sQuestStatusFRATexs[] = {
-    gPauseQuestStatus00Tex, gPauseQuestStatus01Tex,    gPauseQuestStatus02Tex, gPauseQuestStatus03Tex,
-    gPauseQuestStatus04Tex, gPauseQuestStatus10FRATex, gPauseQuestStatus11Tex, gPauseQuestStatus12Tex,
-    gPauseQuestStatus13Tex, gPauseQuestStatus14Tex,    gPauseQuestStatus20Tex, gPauseQuestStatus21Tex,
-    gPauseQuestStatus22Tex, gPauseQuestStatus23Tex,    gPauseQuestStatus24Tex,
+    gPauseQuestStatus00Tex,
+    gPauseQuestStatus01Tex,
+    gPauseQuestStatus02Tex,
+    gPauseQuestStatus03Tex,
+    gPauseQuestStatus04Tex,
+    gPauseQuestStatus10FRATex,
+    gPauseQuestStatus11Tex,
+    gPauseQuestStatus12Tex,
+    gPauseQuestStatus13Tex,
+    gPauseQuestStatus14Tex,
+    gPauseQuestStatus20Tex,
+    gPauseQuestStatus21Tex,
+    gPauseQuestStatus22Tex,
+    gPauseQuestStatus23Tex,
+    gPauseQuestStatus24Tex,
 };
 static void* sSaveFRATexs[] = {
-    gPauseSave00FRATex, gPauseSave01Tex, gPauseSave02Tex, gPauseSave03Tex, gPauseSave04Tex,
-    gPauseSave10FRATex, gPauseSave11Tex, gPauseSave12Tex, gPauseSave13Tex, gPauseSave14Tex,
-    gPauseSave20FRATex, gPauseSave21Tex, gPauseSave22Tex, gPauseSave23Tex, gPauseSave24Tex,
+    gPauseSave00FRATex,
+    gPauseSave01Tex,
+    gPauseSave02Tex,
+    gPauseSave03Tex,
+    gPauseSave04Tex,
+    gPauseSave10FRATex,
+    gPauseSave11Tex,
+    gPauseSave12Tex,
+    gPauseSave13Tex,
+    gPauseSave14Tex,
+    gPauseSave20FRATex,
+    gPauseSave21Tex,
+    gPauseSave22Tex,
+    gPauseSave23Tex,
+    gPauseSave24Tex,
 };
 
 static void* sEquipmentGERTexs[] = {
-    gPauseEquipment00GERTex, gPauseEquipment01Tex, gPauseEquipment02Tex, gPauseEquipment03Tex, gPauseEquipment04Tex,
-    gPauseEquipment10GERTex, gPauseEquipment11Tex, gPauseEquipment12Tex, gPauseEquipment13Tex, gPauseEquipment14Tex,
-    gPauseEquipment20GERTex, gPauseEquipment21Tex, gPauseEquipment22Tex, gPauseEquipment23Tex, gPauseEquipment24Tex,
+    gPauseEquipment00GERTex,
+    gPauseEquipment01Tex,
+    gPauseEquipment02Tex,
+    gPauseEquipment03Tex,
+    gPauseEquipment04Tex,
+    gPauseEquipment10GERTex,
+    gPauseEquipment11Tex,
+    gPauseEquipment12Tex,
+    gPauseEquipment13Tex,
+    gPauseEquipment14Tex,
+    gPauseEquipment20GERTex,
+    gPauseEquipment21Tex,
+    gPauseEquipment22Tex,
+    gPauseEquipment23Tex,
+    gPauseEquipment24Tex,
 };
 static void* sSelectItemGERTexs[] = {
-    gPauseSelectItem00GERTex, gPauseSelectItem01Tex,    gPauseSelectItem02Tex,    gPauseSelectItem03Tex,
-    gPauseSelectItem04Tex,    gPauseSelectItem10GERTex, gPauseSelectItem11Tex,    gPauseSelectItem12Tex,
-    gPauseSelectItem13Tex,    gPauseSelectItem14Tex,    gPauseSelectItem20GERTex, gPauseSelectItem21Tex,
-    gPauseSelectItem22Tex,    gPauseSelectItem23Tex,    gPauseSelectItem24Tex,
+    gPauseSelectItem00GERTex,
+    gPauseSelectItem01Tex,
+    gPauseSelectItem02Tex,
+    gPauseSelectItem03Tex,
+    gPauseSelectItem04Tex,
+    gPauseSelectItem10GERTex,
+    gPauseSelectItem11Tex,
+    gPauseSelectItem12Tex,
+    gPauseSelectItem13Tex,
+    gPauseSelectItem14Tex,
+    gPauseSelectItem20GERTex,
+    gPauseSelectItem21Tex,
+    gPauseSelectItem22Tex,
+    gPauseSelectItem23Tex,
+    gPauseSelectItem24Tex,
 };
 static void* sMapGERTexs[] = {
-    gPauseMap00Tex,    gPauseMap01Tex, gPauseMap02Tex, gPauseMap03Tex, gPauseMap04Tex,
-    gPauseMap10GERTex, gPauseMap11Tex, gPauseMap12Tex, gPauseMap13Tex, gPauseMap14Tex,
-    gPauseMap20Tex,    gPauseMap21Tex, gPauseMap22Tex, gPauseMap23Tex, gPauseMap24Tex,
+    gPauseMap00Tex,
+    gPauseMap01Tex,
+    gPauseMap02Tex,
+    gPauseMap03Tex,
+    gPauseMap04Tex,
+    gPauseMap10GERTex,
+    gPauseMap11Tex,
+    gPauseMap12Tex,
+    gPauseMap13Tex,
+    gPauseMap14Tex,
+    gPauseMap20Tex,
+    gPauseMap21Tex,
+    gPauseMap22Tex,
+    gPauseMap23Tex,
+    gPauseMap24Tex,
 };
 static void* sQuestStatusGERTexs[] = {
-    gPauseQuestStatus00Tex, gPauseQuestStatus01Tex,    gPauseQuestStatus02Tex, gPauseQuestStatus03Tex,
-    gPauseQuestStatus04Tex, gPauseQuestStatus10GERTex, gPauseQuestStatus11Tex, gPauseQuestStatus12Tex,
-    gPauseQuestStatus13Tex, gPauseQuestStatus14Tex,    gPauseQuestStatus20Tex, gPauseQuestStatus21Tex,
-    gPauseQuestStatus22Tex, gPauseQuestStatus23Tex,    gPauseQuestStatus24Tex,
+    gPauseQuestStatus00Tex,
+    gPauseQuestStatus01Tex,
+    gPauseQuestStatus02Tex,
+    gPauseQuestStatus03Tex,
+    gPauseQuestStatus04Tex,
+    gPauseQuestStatus10GERTex,
+    gPauseQuestStatus11Tex,
+    gPauseQuestStatus12Tex,
+    gPauseQuestStatus13Tex,
+    gPauseQuestStatus14Tex,
+    gPauseQuestStatus20Tex,
+    gPauseQuestStatus21Tex,
+    gPauseQuestStatus22Tex,
+    gPauseQuestStatus23Tex,
+    gPauseQuestStatus24Tex,
 };
 static void* sSaveGERTexs[] = {
-    gPauseSave00Tex,    gPauseSave01Tex, gPauseSave02Tex, gPauseSave03Tex, gPauseSave04Tex,
-    gPauseSave10GERTex, gPauseSave11Tex, gPauseSave12Tex, gPauseSave13Tex, gPauseSave14Tex,
-    gPauseSave20GERTex, gPauseSave21Tex, gPauseSave22Tex, gPauseSave23Tex, gPauseSave24Tex,
+    gPauseSave00Tex,
+    gPauseSave01Tex,
+    gPauseSave02Tex,
+    gPauseSave03Tex,
+    gPauseSave04Tex,
+    gPauseSave10GERTex,
+    gPauseSave11Tex,
+    gPauseSave12Tex,
+    gPauseSave13Tex,
+    gPauseSave14Tex,
+    gPauseSave20GERTex,
+    gPauseSave21Tex,
+    gPauseSave22Tex,
+    gPauseSave23Tex,
+    gPauseSave24Tex,
 };
 
 static void* sEquipmentENGTexs[] = {
-    gPauseEquipment00Tex,    gPauseEquipment01Tex, gPauseEquipment02Tex, gPauseEquipment03Tex, gPauseEquipment04Tex,
-    gPauseEquipment10ENGTex, gPauseEquipment11Tex, gPauseEquipment12Tex, gPauseEquipment13Tex, gPauseEquipment14Tex,
-    gPauseEquipment20Tex,    gPauseEquipment21Tex, gPauseEquipment22Tex, gPauseEquipment23Tex, gPauseEquipment24Tex,
+    gPauseEquipment00Tex,
+    gPauseEquipment01Tex,
+    gPauseEquipment02Tex,
+    gPauseEquipment03Tex,
+    gPauseEquipment04Tex,
+    gPauseEquipment10ENGTex,
+    gPauseEquipment11Tex,
+    gPauseEquipment12Tex,
+    gPauseEquipment13Tex,
+    gPauseEquipment14Tex,
+    gPauseEquipment20Tex,
+    gPauseEquipment21Tex,
+    gPauseEquipment22Tex,
+    gPauseEquipment23Tex,
+    gPauseEquipment24Tex,
 };
 static void* sSelectItemENGTexs[] = {
-    gPauseSelectItem00ENGTex, gPauseSelectItem01Tex,    gPauseSelectItem02Tex,    gPauseSelectItem03Tex,
-    gPauseSelectItem04Tex,    gPauseSelectItem10ENGTex, gPauseSelectItem11Tex,    gPauseSelectItem12Tex,
-    gPauseSelectItem13Tex,    gPauseSelectItem14Tex,    gPauseSelectItem20ENGTex, gPauseSelectItem21Tex,
-    gPauseSelectItem22Tex,    gPauseSelectItem23Tex,    gPauseSelectItem24Tex,
+    gPauseSelectItem00ENGTex,
+    gPauseSelectItem01Tex,
+    gPauseSelectItem02Tex,
+    gPauseSelectItem03Tex,
+    gPauseSelectItem04Tex,
+    gPauseSelectItem10ENGTex,
+    gPauseSelectItem11Tex,
+    gPauseSelectItem12Tex,
+    gPauseSelectItem13Tex,
+    gPauseSelectItem14Tex,
+    gPauseSelectItem20ENGTex,
+    gPauseSelectItem21Tex,
+    gPauseSelectItem22Tex,
+    gPauseSelectItem23Tex,
+    gPauseSelectItem24Tex,
 };
 static void* sMapENGTexs[] = {
-    gPauseMap00Tex,    gPauseMap01Tex, gPauseMap02Tex, gPauseMap03Tex, gPauseMap04Tex,
-    gPauseMap10ENGTex, gPauseMap11Tex, gPauseMap12Tex, gPauseMap13Tex, gPauseMap14Tex,
-    gPauseMap20Tex,    gPauseMap21Tex, gPauseMap22Tex, gPauseMap23Tex, gPauseMap24Tex,
+    gPauseMap00Tex,
+    gPauseMap01Tex,
+    gPauseMap02Tex,
+    gPauseMap03Tex,
+    gPauseMap04Tex,
+    gPauseMap10ENGTex,
+    gPauseMap11Tex,
+    gPauseMap12Tex,
+    gPauseMap13Tex,
+    gPauseMap14Tex,
+    gPauseMap20Tex,
+    gPauseMap21Tex,
+    gPauseMap22Tex,
+    gPauseMap23Tex,
+    gPauseMap24Tex,
 };
 static void* sQuestStatusENGTexs[] = {
-    gPauseQuestStatus00ENGTex, gPauseQuestStatus01Tex,    gPauseQuestStatus02Tex,    gPauseQuestStatus03Tex,
-    gPauseQuestStatus04Tex,    gPauseQuestStatus10ENGTex, gPauseQuestStatus11Tex,    gPauseQuestStatus12Tex,
-    gPauseQuestStatus13Tex,    gPauseQuestStatus14Tex,    gPauseQuestStatus20ENGTex, gPauseQuestStatus21Tex,
-    gPauseQuestStatus22Tex,    gPauseQuestStatus23Tex,    gPauseQuestStatus24Tex,
+    gPauseQuestStatus00ENGTex,
+    gPauseQuestStatus01Tex,
+    gPauseQuestStatus02Tex,
+    gPauseQuestStatus03Tex,
+    gPauseQuestStatus04Tex,
+    gPauseQuestStatus10ENGTex,
+    gPauseQuestStatus11Tex,
+    gPauseQuestStatus12Tex,
+    gPauseQuestStatus13Tex,
+    gPauseQuestStatus14Tex,
+    gPauseQuestStatus20ENGTex,
+    gPauseQuestStatus21Tex,
+    gPauseQuestStatus22Tex,
+    gPauseQuestStatus23Tex,
+    gPauseQuestStatus24Tex,
 };
 static void* sSaveENGTexs[] = {
-    gPauseSave00Tex,    gPauseSave01Tex, gPauseSave02Tex, gPauseSave03Tex, gPauseSave04Tex,
-    gPauseSave10ENGTex, gPauseSave11Tex, gPauseSave12Tex, gPauseSave13Tex, gPauseSave14Tex,
-    gPauseSave20Tex,    gPauseSave21Tex, gPauseSave22Tex, gPauseSave23Tex, gPauseSave24Tex,
+    gPauseSave00Tex,
+    gPauseSave01Tex,
+    gPauseSave02Tex,
+    gPauseSave03Tex,
+    gPauseSave04Tex,
+    gPauseSave10ENGTex,
+    gPauseSave11Tex,
+    gPauseSave12Tex,
+    gPauseSave13Tex,
+    gPauseSave14Tex,
+    gPauseSave20Tex,
+    gPauseSave21Tex,
+    gPauseSave22Tex,
+    gPauseSave23Tex,
+    gPauseSave24Tex,
 };
 
 static void* sGameOverTexs[] = {
-    gPauseSave00Tex,     gPauseSave01Tex, gPauseSave02Tex, gPauseSave03Tex, gPauseSave04Tex,
-    gPauseGameOver10Tex, gPauseSave11Tex, gPauseSave12Tex, gPauseSave13Tex, gPauseSave14Tex,
-    gPauseSave20Tex,     gPauseSave21Tex, gPauseSave22Tex, gPauseSave23Tex, gPauseSave24Tex,
+    gPauseSave00Tex,
+    gPauseSave01Tex,
+    gPauseSave02Tex,
+    gPauseSave03Tex,
+    gPauseSave04Tex,
+    gPauseGameOver10Tex,
+    gPauseSave11Tex,
+    gPauseSave12Tex,
+    gPauseSave13Tex,
+    gPauseSave14Tex,
+    gPauseSave20Tex,
+    gPauseSave21Tex,
+    gPauseSave22Tex,
+    gPauseSave23Tex,
+    gPauseSave24Tex,
 };
 
 static void* sDungeonMapTexs[] = {
@@ -213,8 +398,7 @@ static void* sSaveTexs[] = {
     sSaveFRATexs,
 };
 
-static void* iconNameTextures[] =
-{
+static void* iconNameTextures[] = {
     gDekuStickItemNameENGTex,
     gDekuNutItemNameENGTex,
     gBombItemNameENGTex,
@@ -587,8 +771,7 @@ static void* iconNameTextures[] =
     gBiggoronsSwordItemNameFRATex,
 };
 
-static void* mapNameTextures[] =
-{
+static void* mapNameTextures[] = {
     gHauntedWastelandPointNameENGTex,
     gGerudosFortressPointNameENGTex,
     gGerudoValleyPointNameENGTex,
@@ -694,11 +877,73 @@ static void* mapNameTextures[] =
 };
 
 s16 D_8082AAEC[] = {
-    32, 112, 32, 48, 32, 32, 32, 48, 32, 64, 32, 48, 48, 48, 48, 64, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 80, 64,
+    32,
+    112,
+    32,
+    48,
+    32,
+    32,
+    32,
+    48,
+    32,
+    64,
+    32,
+    48,
+    48,
+    48,
+    48,
+    64,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    80,
+    64,
 };
 
 s16 D_8082AB2C[] = {
-    24, 72, 13, 22, 19, 20, 19, 27, 14, 26, 22, 21, 49, 32, 45, 60, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 16, 32, 8,
+    24,
+    72,
+    13,
+    22,
+    19,
+    20,
+    19,
+    27,
+    14,
+    26,
+    22,
+    21,
+    49,
+    32,
+    45,
+    60,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    16,
+    32,
+    8,
 };
 
 static u8 D_8082AB6C[][ARRAY_COUNT(gSaveContext.buttonStatus)] = {
@@ -722,19 +967,63 @@ static s16 D_8082ABA4 = 0;
 static s16 sInDungeonScene = false;
 
 static f32 D_8082ABAC[] = {
-    -4.0f, 4.0f, 4.0f, 4.0f, 4.0f, -4.0f, -4.0f, -4.0f,
+    -4.0f,
+    4.0f,
+    4.0f,
+    4.0f,
+    4.0f,
+    -4.0f,
+    -4.0f,
+    -4.0f,
 };
 
 static f32 D_8082ABCC[] = {
-    -4.0f, -4.0f, -4.0f, 4.0f, 4.0f, 4.0f, 4.0f, -4.0f,
+    -4.0f,
+    -4.0f,
+    -4.0f,
+    4.0f,
+    4.0f,
+    4.0f,
+    4.0f,
+    -4.0f,
 };
 
 static u16 D_8082ABEC[] = {
-    PAUSE_MAP, PAUSE_EQUIP, PAUSE_QUEST, PAUSE_ITEM, PAUSE_EQUIP, PAUSE_MAP, PAUSE_ITEM, PAUSE_QUEST,
+    PAUSE_MAP,
+    PAUSE_EQUIP,
+    PAUSE_QUEST,
+    PAUSE_ITEM,
+    PAUSE_EQUIP,
+    PAUSE_MAP,
+    PAUSE_ITEM,
+    PAUSE_QUEST,
 };
 
 u8 gSlotAgeReqs[] = {
-    1, 9, 9, 0, 0, 9, 1, 9, 9, 0, 0, 9, 1, 9, 1, 0, 0, 9, 9, 9, 9, 9, 0, 1,
+    1,
+    9,
+    9,
+    0,
+    0,
+    9,
+    1,
+    9,
+    9,
+    0,
+    0,
+    9,
+    1,
+    9,
+    1,
+    0,
+    0,
+    9,
+    9,
+    9,
+    9,
+    9,
+    0,
+    1,
 };
 
 u8 gEquipAgeReqs[][4] = {
@@ -745,14 +1034,117 @@ u8 gEquipAgeReqs[][4] = {
 };
 
 u8 gItemAgeReqs[] = {
-    1, 9, 9, 0, 0, 9, 1, 9, 9, 9, 0, 0, 0, 9, 1, 9, 1, 0, 0, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
-    9, 9, 9, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 1, 0, 0, 1, 9, 0, 9, 0, 0, 9, 0, 0, 1, 1, 1, 0, 0, 0, 9, 9, 9, 1, 0, 0, 9, 9, 0,
+    1,
+    9,
+    9,
+    0,
+    0,
+    9,
+    1,
+    9,
+    9,
+    9,
+    0,
+    0,
+    0,
+    9,
+    1,
+    9,
+    1,
+    0,
+    0,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    9,
+    0,
+    9,
+    0,
+    0,
+    9,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    9,
+    9,
+    9,
+    1,
+    0,
+    0,
+    9,
+    9,
+    0,
 };
 
 u8 gAreaGsFlags[] = {
-    0x0F, 0x1F, 0x0F, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0x07, 0x07, 0x03,
-    0x0F, 0x07, 0x0F, 0x0F, 0xFF, 0xFF, 0xFF, 0x1F, 0x0F, 0x03, 0x0F,
+    0x0F,
+    0x1F,
+    0x0F,
+    0x1F,
+    0x1F,
+    0x1F,
+    0x1F,
+    0x1F,
+    0x07,
+    0x07,
+    0x03,
+    0x0F,
+    0x07,
+    0x0F,
+    0x0F,
+    0xFF,
+    0xFF,
+    0xFF,
+    0x1F,
+    0x0F,
+    0x03,
+    0x0F,
 };
 
 static void* sCursorTexs[] = {
@@ -768,12 +1160,12 @@ static Color_RGB8 sCursorColors[3] = {
     { 0, 50, 255 },
 };
 
-const Color_RGB8 Cursor_ABTN_ori = {0, 255, 50};
-const Color_RGB8 Cursor_ABTNN64_ori = {0, 50, 255};
-const Color_RGB8 Cursor_CBTN_ori = {255, 255, 0};
-const Color_RGB8 Cursor_StartBTN_ori = {255, 255, 255};
-Color_RGB8 Cursor_ABTN;
-Color_RGB8 Cursor_CBTN;
+const Color_RGB8 Cursor_ABTN_ori = { 0, 255, 50 };
+const Color_RGB8 Cursor_ABTNN64_ori = { 0, 50, 255 };
+const Color_RGB8 Cursor_CBTN_ori = { 255, 255, 0 };
+const Color_RGB8 Cursor_StartBTN_ori = { 255, 255, 255 };
+Color_RGB8       Cursor_ABTN;
+Color_RGB8       Cursor_CBTN;
 
 static void* sSavePromptTexs[] = {
     gPauseSavePromptENGTex,
@@ -799,10 +1191,10 @@ static void* sPromptChoiceTexs[][2] = {
     { gPauseYesFRATex, gPauseNoFRATex },
 };
 
-static u8 sButtonStatusSave[ARRAY_COUNT(gSaveContext.buttonStatus)];
+static u8        sButtonStatusSave[ARRAY_COUNT(gSaveContext.buttonStatus)];
 static PreRender sPlayerPreRender;
-static void* sPreRenderCvg;
-extern int fbTest;
+static void*     sPreRenderCvg;
+extern int       fbTest;
 
 void KaleidoScope_ProcessPlayerPreRender(void) {
     PreRender_Calc(&sPlayerPreRender);
@@ -879,8 +1271,8 @@ void KaleidoScope_DrawQuadTextureRGBA32(GraphicsContext* gfxCtx, void* texture, 
 
 void KaleidoScope_SetDefaultCursor(PlayState* play) {
     PauseContext* pauseCtx = &play->pauseCtx;
-    s16 s;
-    s16 i;
+    s16           s;
+    s16           i;
     gSelectingMask = false;
 
     switch (pauseCtx->pageIndex) {
@@ -997,7 +1389,7 @@ void KaleidoScope_HandlePageToggles(PauseContext* pauseCtx, Input* input) {
 
 void KaleidoScope_DrawCursor(PlayState* play, u16 pageIndex) {
     PauseContext* pauseCtx = &play->pauseCtx;
-    u16 temp;
+    u16           temp;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -1080,8 +1472,18 @@ Gfx* KaleidoScope_DrawPageSections(Gfx* gfx, Vtx* vertices, void** textures) {
 
 void KaleidoScope_DrawPages(PlayState* play, GraphicsContext* gfxCtx) {
     static Color_RGB8 D_8082ACF4[12] = {
-        { 0, 0, 0 }, { 0, 0, 0 },     { 0, 0, 0 },    { 0, 0, 0 }, { 255, 255, 0 }, { 0, 0, 0 },
-        { 0, 0, 0 }, { 255, 255, 0 }, { 0, 50, 255 }, { 0, 0, 0 }, { 0, 0, 0 },     { 0, 50, 255 },
+        { 0, 0, 0 },
+        { 0, 0, 0 },
+        { 0, 0, 0 },
+        { 0, 0, 0 },
+        { 255, 255, 0 },
+        { 0, 0, 0 },
+        { 0, 0, 0 },
+        { 255, 255, 0 },
+        { 0, 50, 255 },
+        { 0, 0, 0 },
+        { 0, 0, 0 },
+        { 0, 50, 255 },
     };
     Color_RGB8 aButtonColor = { 100, 100, 255 };
     if (CVarGetInteger("gCosmetics.Hud_AButton.Changed", 0)) {
@@ -1099,17 +1501,17 @@ void KaleidoScope_DrawPages(PlayState* play, GraphicsContext* gfxCtx) {
         D_8082ACF4[7] = CVarGetColor24("gCosmetics.Hud_CButtons.Value", D_8082ACF4[7]);
     }
 
-    static s16 D_8082AD3C = 20;
-    static s16 D_8082AD40 = 0;
-    static s16 D_8082AD44 = 0;
-    static s16 D_8082AD48 = 0;
-    static s16 D_8082AD4C = 0;
-    static s16 D_8082AD50 = 0;
+    static s16    D_8082AD3C = 20;
+    static s16    D_8082AD40 = 0;
+    static s16    D_8082AD44 = 0;
+    static s16    D_8082AD48 = 0;
+    static s16    D_8082AD4C = 0;
+    static s16    D_8082AD50 = 0;
     PauseContext* pauseCtx = &play->pauseCtx;
-    Input* input = &play->state.input[0];
-    s16 stepR;
-    s16 stepG;
-    s16 stepB;
+    Input*        input = &play->state.input[0];
+    s16           stepR;
+    s16           stepG;
+    s16           stepB;
 
     FrameInterpolation_RecordOpenChild(NULL, pauseCtx->state + pauseCtx->pageIndex * 100);
     OPEN_DISPS(gfxCtx);
@@ -1474,7 +1876,7 @@ void KaleidoScope_DrawPages(PlayState* play, GraphicsContext* gfxCtx) {
 
             gDPSetCombineLERP(POLY_KAL_DISP++, 1, 0, PRIMITIVE, 0, TEXEL0, 0, PRIMITIVE, 0, 1, 0, PRIMITIVE, 0, TEXEL0,
                               0, PRIMITIVE, 0);
-            gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, aButtonColor.r, aButtonColor.g, aButtonColor.b, VREG(61)); //Save prompt cursor colour
+            gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, aButtonColor.r, aButtonColor.g, aButtonColor.b, VREG(61)); // Save prompt cursor colour
 
             if (pauseCtx->promptChoice == 0) {
                 gSPDisplayList(POLY_KAL_DISP++, gPromptCursorLeftDL);
@@ -1502,7 +1904,7 @@ void KaleidoScope_DrawPages(PlayState* play, GraphicsContext* gfxCtx) {
 
                 gDPSetCombineLERP(POLY_KAL_DISP++, 1, 0, PRIMITIVE, 0, TEXEL0, 0, PRIMITIVE, 0, 1, 0, PRIMITIVE, 0,
                                   TEXEL0, 0, PRIMITIVE, 0);
-                gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, aButtonColor.r, aButtonColor.g, aButtonColor.b, VREG(61)); //Continue prompt cursor colour
+                gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, aButtonColor.r, aButtonColor.g, aButtonColor.b, VREG(61)); // Continue prompt cursor colour
 
                 if (pauseCtx->promptChoice == 0) {
                     gSPDisplayList(POLY_KAL_DISP++, gPromptCursorLeftDL);
@@ -1550,7 +1952,7 @@ void KaleidoScope_DrawInfoPanel(PlayState* play) {
         aButtonColor = (Color_RGB8){ 0, 255, 100 };
     }
 
-    Color_RGB8 cButtonsColor = {255, 160, 0};
+    Color_RGB8 cButtonsColor = { 255, 160, 0 };
     if (CVarGetInteger("gCosmetics.Hud_CButtons.Changed", 0)) {
         cButtonsColor = CVarGetColor24("gCosmetics.Hud_CButtons.Value", cButtonsColor);
     }
@@ -1608,23 +2010,53 @@ void KaleidoScope_DrawInfoPanel(PlayState* play) {
     static s16 D_8082AE00 = 20;
     static s16 D_8082AE04 = 0;
     static s16 D_8082AE08[] = {
-        10, 16, 16, 17, 12, 13, 18, 17, 17, 19, 13, 21, 20, 21, 14, 15, 15, 15, 11, 14,
+        10,
+        16,
+        16,
+        17,
+        12,
+        13,
+        18,
+        17,
+        17,
+        19,
+        13,
+        21,
+        20,
+        21,
+        14,
+        15,
+        15,
+        15,
+        11,
+        14,
     };
     static s16 D_8082AE30[] = {
-        21, 20, 19, 18, 11, 14, 10, 15, 16, 13, 12, 17,
+        21,
+        20,
+        19,
+        18,
+        11,
+        14,
+        10,
+        15,
+        16,
+        13,
+        12,
+        17,
     };
-    static s16 D_808321A0;
-    static s16 D_808321A2;
-    static s16 D_808321A4;
-    static s16 D_808321A6;
+    static s16    D_808321A0;
+    static s16    D_808321A2;
+    static s16    D_808321A4;
+    static s16    D_808321A6;
     PauseContext* pauseCtx = &play->pauseCtx;
-    s16 stepR;
-    s16 stepG;
-    s16 stepB;
-    s16 stepA;
-    s16 temp;
-    s16 i;
-    s16 j;
+    s16           stepR;
+    s16           stepG;
+    s16           stepB;
+    s16           stepA;
+    s16           temp;
+    s16           i;
+    s16           j;
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -1765,23 +2197,23 @@ void KaleidoScope_DrawInfoPanel(PlayState* play) {
     if ((pauseCtx->cursorSpecialPos == PAUSE_CURSOR_PAGE_LEFT) && (pauseCtx->unk_1E4 == 0)) {
         gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, D_808321A0, D_808321A2, D_808321A4, D_808321A6);
     } else {
-      if (CVarGetInteger("gUniformLR", 0) != 0) {
-        gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, 180, 210, 255, 255);
-      }
+        if (CVarGetInteger("gUniformLR", 0) != 0) {
+            gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, 180, 210, 255, 255);
+        }
     }
 
     gSPDisplayList(POLY_KAL_DISP++, gLButtonIconDL);
 
-    if (CVarGetInteger("gUniformLR", 0) == 0) { //Restore the misplace gDPSetPrimColor
-      gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, 180, 210, 255, 255);
+    if (CVarGetInteger("gUniformLR", 0) == 0) { // Restore the misplace gDPSetPrimColor
+        gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, 180, 210, 255, 255);
     }
 
     if ((pauseCtx->cursorSpecialPos == PAUSE_CURSOR_PAGE_RIGHT) && (pauseCtx->unk_1E4 == 0)) {
         gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, D_808321A0, D_808321A2, D_808321A4, D_808321A6);
     } else {
-      if (CVarGetInteger("gUniformLR", 0) != 0) {
-        gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, 180, 210, 255, 255);
-      }
+        if (CVarGetInteger("gUniformLR", 0) != 0) {
+            gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, 180, 210, 255, 255);
+        }
     }
 
     gSPDisplayList(POLY_KAL_DISP++, gRButtonIconDL);
@@ -1897,7 +2329,7 @@ void KaleidoScope_DrawInfoPanel(PlayState* play) {
             pauseCtx->infoPanelVtx[21].v.tc[0] = pauseCtx->infoPanelVtx[23].v.tc[0] = D_8082ADE0[gSaveContext.language]
                                                                                       << 5;
             gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, aButtonColor.r, aButtonColor.g, aButtonColor.b, 255);
-            //gSPDisplayList(POLY_KAL_DISP++, gAButtonIconDL);//This is changed to load the texture only so we can prim color it.
+            // gSPDisplayList(POLY_KAL_DISP++, gAButtonIconDL);//This is changed to load the texture only so we can prim color it.
             gDPLoadTextureBlock(POLY_KAL_DISP++, gABtnSymbolTex, G_IM_FMT_IA, G_IM_SIZ_8b, 24, 16, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, 4, 4, G_TX_NOLOD, G_TX_NOLOD);
             gSP1Quadrangle(POLY_KAL_DISP++, 0, 2, 3, 1, 0);
 
@@ -1956,30 +2388,30 @@ void KaleidoScope_DrawInfoPanel(PlayState* play) {
                 } else { // French
                     PosX = 98;
                 }
-                s16 PosY = 200 - pauseCtx->infoPanelOffsetY; //General Pos of C button icon
-                s16 icon_w = 46; // Original texture size
+                s16 PosY = 200 - pauseCtx->infoPanelOffsetY; // General Pos of C button icon
+                s16 icon_w = 46;                             // Original texture size
                 s16 icon_h = 16;
                 s32 icon_x_offset;
-                s16 icon_w_crop = 17.0f; //Left
-                int height = icon_h * 1.0f; //Adjust Height with scale
-                int width = icon_w * 1.0f; //Adjust Width with scale
-                int width_crop = icon_w_crop * 1.0f; //Adjust Width with scale
+                s16 icon_w_crop = 17.0f;             // Left
+                int height = icon_h * 1.0f;          // Adjust Height with scale
+                int width = icon_w * 1.0f;           // Adjust Width with scale
+                int width_crop = icon_w_crop * 1.0f; // Adjust Width with scale
                 int height_factor = (1 << 10) * icon_h / height;
                 int width_factor = (1 << 10) * icon_w / width;
                 gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, cButtonsColor.r, cButtonsColor.g, cButtonsColor.b, 255);
-                for (s16 i=0; i < 3; i++) {
+                for (s16 i = 0; i < 3; i++) {
                     if (i == 0) {
-                        icon_x_offset = width_crop*3-3;
+                        icon_x_offset = width_crop * 3 - 3;
                         gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, cRightButtonColor.r, cRightButtonColor.g, cRightButtonColor.b, 255);
                     } else if (i == 1) {
-                        icon_x_offset = width_crop*2-3;
+                        icon_x_offset = width_crop * 2 - 3;
                         gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, cDownButtonColor.r, cDownButtonColor.g, cDownButtonColor.b, 255);
                     } else if (i == 2) {
                         icon_x_offset = width_crop;
                         gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, cLeftButtonColor.r, cLeftButtonColor.g, cLeftButtonColor.b, 255);
                     }
                     gDPLoadTextureBlock(POLY_KAL_DISP++, gCBtnSymbolsTex, G_IM_FMT_IA, G_IM_SIZ_8b, icon_w, icon_h, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
-                    //gSPScisTextureRectangle(POLY_KAL_DISP++,PosX << 2, PosY << 2, (PosX + icon_x_offset) << 2, (PosY + height) << 2, G_TX_RENDERTILE, 0, 0, width_factor, height_factor);
+                    // gSPScisTextureRectangle(POLY_KAL_DISP++,PosX << 2, PosY << 2, (PosX + icon_x_offset) << 2, (PosY + height) << 2, G_TX_RENDERTILE, 0, 0, width_factor, height_factor);
                     gSPWideTextureRectangle(POLY_KAL_DISP++, PosX << 2, PosY << 2, (PosX + icon_x_offset) << 2, (PosY + height) << 2, G_TX_WRAP, 0, 0, width_factor, height_factor);
                 }
                 gDPPipeSync(POLY_KAL_DISP++);
@@ -2014,7 +2446,7 @@ void KaleidoScope_DrawInfoPanel(PlayState* play) {
                         D_8082ADE8[gSaveContext.language] << 5;
 
                     gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, aButtonColor.r, aButtonColor.g, aButtonColor.b, 255);
-                    //gSPDisplayList(POLY_KAL_DISP++, gAButtonIconDL);
+                    // gSPDisplayList(POLY_KAL_DISP++, gAButtonIconDL);
                     gDPLoadTextureBlock(POLY_KAL_DISP++, gABtnSymbolTex, G_IM_FMT_IA, G_IM_SIZ_8b, 24, 16, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, 4, 4, G_TX_NOLOD, G_TX_NOLOD);
                     gSP1Quadrangle(POLY_KAL_DISP++, 0, 2, 3, 1, 0);
 
@@ -2042,11 +2474,11 @@ void KaleidoScope_DrawInfoPanel(PlayState* play) {
                 pauseCtx->infoPanelVtx[21].v.tc[0] = pauseCtx->infoPanelVtx[23].v.tc[0] =
                     D_8082ADD8[gSaveContext.language] << 5;
 
-                 if (!(CHECK_OWNED_EQUIP(pauseCtx->cursorY[PAUSE_EQUIP], pauseCtx->cursorX[PAUSE_EQUIP] - 1)) && (pauseCtx->pageIndex == PAUSE_EQUIP) && (pauseCtx->cursorX[PAUSE_EQUIP] != 0)) {
+                if (!(CHECK_OWNED_EQUIP(pauseCtx->cursorY[PAUSE_EQUIP], pauseCtx->cursorX[PAUSE_EQUIP] - 1)) && (pauseCtx->pageIndex == PAUSE_EQUIP) && (pauseCtx->cursorX[PAUSE_EQUIP] != 0)) {
                     return;
-                 }
+                }
 
-                //gSPDisplayList(POLY_KAL_DISP++, gAButtonIconDL);
+                // gSPDisplayList(POLY_KAL_DISP++, gAButtonIconDL);
                 gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, aButtonColor.r, aButtonColor.g, aButtonColor.b, 255);
                 gDPLoadTextureBlock(POLY_KAL_DISP++, gABtnSymbolTex, G_IM_FMT_IA, G_IM_SIZ_8b, 24, 16, 0, G_TX_NOMIRROR | G_TX_CLAMP, G_TX_NOMIRROR | G_TX_CLAMP, 4, 4, G_TX_NOLOD, G_TX_NOLOD);
                 gSP1Quadrangle(POLY_KAL_DISP++, 0, 2, 3, 1, 0);
@@ -2065,8 +2497,8 @@ void KaleidoScope_DrawInfoPanel(PlayState* play) {
 
 void KaleidoScope_UpdateNamePanel(PlayState* play) {
     PauseContext* pauseCtx = &play->pauseCtx;
-    u16 sp2A;
-    bool pauseAnyCursor = (CVarGetInteger("gPauseAnyCursor", 0) == PAUSE_ANY_CURSOR_RANDO_ONLY && gSaveContext.n64ddFlag) ||
+    u16           sp2A;
+    bool          pauseAnyCursor = (CVarGetInteger("gPauseAnyCursor", 0) == PAUSE_ANY_CURSOR_RANDO_ONLY && gSaveContext.n64ddFlag) ||
                           (CVarGetInteger("gPauseAnyCursor", 0) == PAUSE_ANY_CURSOR_ALWAYS_ON);
 
     if ((pauseCtx->namedItem != pauseCtx->cursorItem[pauseCtx->pageIndex]) ||
@@ -2078,8 +2510,8 @@ void KaleidoScope_UpdateNamePanel(PlayState* play) {
         osCreateMesgQueue(&pauseCtx->loadQueue, &pauseCtx->loadMsg, 1);
 
         if (pauseAnyCursor &&
-        ((pauseCtx->pageIndex == PAUSE_EQUIP && pauseCtx->cursorX[PAUSE_EQUIP] != 0 && !CHECK_OWNED_EQUIP(pauseCtx->cursorY[PAUSE_EQUIP], pauseCtx->cursorX[PAUSE_EQUIP] - 1)) ||
-        (pauseCtx->pageIndex == PAUSE_ITEM && gSaveContext.inventory.items[pauseCtx->cursorPoint[PAUSE_ITEM]] == ITEM_NONE))) {
+            ((pauseCtx->pageIndex == PAUSE_EQUIP && pauseCtx->cursorX[PAUSE_EQUIP] != 0 && !CHECK_OWNED_EQUIP(pauseCtx->cursorY[PAUSE_EQUIP], pauseCtx->cursorX[PAUSE_EQUIP] - 1)) ||
+             (pauseCtx->pageIndex == PAUSE_ITEM && gSaveContext.inventory.items[pauseCtx->cursorPoint[PAUSE_ITEM]] == ITEM_NONE))) {
             pauseCtx->namedItem = PAUSE_ITEM_NONE;
         }
 
@@ -2133,8 +2565,8 @@ void KaleidoScope_UpdateNamePanel(PlayState* play) {
 
 void func_808237B4(PlayState* play, Input* input) {
     PauseContext* pauseCtx = &play->pauseCtx;
-    s32 cond = false;
-    s32 mode;
+    s32           cond = false;
+    s32           mode;
 
     if (ZREG(13) && !CHECK_BTN_ALL(input->press.button, BTN_L)) {
         cond = true;
@@ -2180,16 +2612,28 @@ void KaleidoScope_SetView(PauseContext* pauseCtx, f32 x, f32 y, f32 z) {
 }
 
 static u8 D_8082AE48[][4] = {
-    { 10, 70, 70, 10 },   { 10, 90, 90, 10 },   { 80, 140, 140, 80 },
-    { 80, 120, 120, 80 }, { 80, 140, 140, 80 }, { 50, 110, 110, 50 },
+    { 10, 70, 70, 10 },
+    { 10, 90, 90, 10 },
+    { 80, 140, 140, 80 },
+    { 80, 120, 120, 80 },
+    { 80, 140, 140, 80 },
+    { 50, 110, 110, 50 },
 };
 static u8 D_8082AE60[][4] = {
-    { 50, 100, 100, 50 }, { 50, 100, 100, 50 }, { 40, 60, 60, 40 },
-    { 80, 120, 120, 80 }, { 40, 60, 60, 40 },   { 50, 110, 110, 50 },
+    { 50, 100, 100, 50 },
+    { 50, 100, 100, 50 },
+    { 40, 60, 60, 40 },
+    { 80, 120, 120, 80 },
+    { 40, 60, 60, 40 },
+    { 50, 110, 110, 50 },
 };
 static u8 D_8082AE78[][4] = {
-    { 80, 130, 130, 80 }, { 40, 60, 60, 40 }, { 30, 60, 60, 30 },
-    { 50, 70, 70, 50 },   { 30, 60, 60, 30 }, { 50, 110, 110, 50 },
+    { 80, 130, 130, 80 },
+    { 40, 60, 60, 40 },
+    { 30, 60, 60, 30 },
+    { 50, 70, 70, 50 },
+    { 30, 60, 60, 30 },
+    { 50, 110, 110, 50 },
 };
 
 static s16 D_8082AE90[] = {
@@ -2201,20 +2645,70 @@ static s16 D_8082AE94[] = {
     0x0000,
 };
 static s16 D_8082AE98[] = {
-    0xFFDC, 0x000C, 0xFFEE, 0x0046, 0x0046, 0x0046, 0xFFA8, 0xFFA8, 0xFFA8,
-    0xFFA8, 0xFFA8, 0xFFA8, 0xFFA8, 0xFFA8, 0xFF96, 0xFFC2, 0xFFD8, 0x0000,
+    0xFFDC,
+    0x000C,
+    0xFFEE,
+    0x0046,
+    0x0046,
+    0x0046,
+    0xFFA8,
+    0xFFA8,
+    0xFFA8,
+    0xFFA8,
+    0xFFA8,
+    0xFFA8,
+    0xFFA8,
+    0xFFA8,
+    0xFF96,
+    0xFFC2,
+    0xFFD8,
+    0x0000,
 };
 static s16 D_8082AEBC[] = {
     0x0000,
     0x0000,
 };
 static s16 D_8082AEC0[] = {
-    0x002F, 0xFFCF, 0xFFEF, 0xFFF1, 0xFFF7, 0x0018, 0x002B, 0x000E, 0x0009, 0x0026, 0x0052,
-    0x0047, 0xFFB4, 0xFFA9, 0xFF94, 0xFFCA, 0xFFA3, 0xFFBD, 0xFFC8, 0xFFDF, 0xFFF6, 0x0001,
-    0x000E, 0x0018, 0x0023, 0x003A, 0x004A, 0x0059, 0x0000, 0xFFC6, 0x0013, 0x001C,
+    0x002F,
+    0xFFCF,
+    0xFFEF,
+    0xFFF1,
+    0xFFF7,
+    0x0018,
+    0x002B,
+    0x000E,
+    0x0009,
+    0x0026,
+    0x0052,
+    0x0047,
+    0xFFB4,
+    0xFFA9,
+    0xFF94,
+    0xFFCA,
+    0xFFA3,
+    0xFFBD,
+    0xFFC8,
+    0xFFDF,
+    0xFFF6,
+    0x0001,
+    0x000E,
+    0x0018,
+    0x0023,
+    0x003A,
+    0x004A,
+    0x0059,
+    0x0000,
+    0xFFC6,
+    0x0013,
+    0x001C,
 };
 static s16 D_8082AF00[] = {
-    0xFFB4, 0xFFC6, 0x000A, 0xFFC6, 0x000A, 0x0000,
+    0xFFB4,
+    0xFFC6,
+    0x000A,
+    0xFFC6,
+    0x000A,
+    0x0000,
 };
 static s16 D_8082AF0C[] = {
     0x0000,
@@ -2225,15 +2719,36 @@ static s16 D_8082AF10[] = {
     0x0000,
 };
 static s16 D_8082AF14[] = {
-    0x0030, 0x0030, 0x0060, 0x0018, 0x0018, 0x0018, 0x0018, 0x0018, 0x0018,
-    0x0018, 0x0018, 0x0018, 0x0018, 0x0018, 0x0010, 0x0010, 0x0018, 0x0000,
+    0x0030,
+    0x0030,
+    0x0060,
+    0x0018,
+    0x0018,
+    0x0018,
+    0x0018,
+    0x0018,
+    0x0018,
+    0x0018,
+    0x0018,
+    0x0018,
+    0x0018,
+    0x0018,
+    0x0010,
+    0x0010,
+    0x0018,
+    0x0000,
 };
 static s16 D_8082AF38[] = {
     0x0000,
     0x0000,
 };
 static s16 D_8082AF3C[] = {
-    0x0098, 0x0030, 0x0030, 0x0030, 0x0030, 0x0000,
+    0x0098,
+    0x0030,
+    0x0030,
+    0x0030,
+    0x0030,
+    0x0000,
 };
 static s16 D_8082AF48[] = {
     0x0000,
@@ -2244,20 +2759,70 @@ static s16 D_8082AF4C[] = {
     0x0000,
 };
 static s16 D_8082AF50[] = {
-    0x001C, 0x001C, 0x002E, 0x001C, 0xFFFE, 0xFFE0, 0x0032, 0x0024, 0x0016,
-    0x0008, 0xFFFA, 0xFFEC, 0xFFDE, 0xFFD0, 0x0012, 0x0012, 0x0032, 0x0000,
+    0x001C,
+    0x001C,
+    0x002E,
+    0x001C,
+    0xFFFE,
+    0xFFE0,
+    0x0032,
+    0x0024,
+    0x0016,
+    0x0008,
+    0xFFFA,
+    0xFFEC,
+    0xFFDE,
+    0xFFD0,
+    0x0012,
+    0x0012,
+    0x0032,
+    0x0000,
 };
 static s16 D_8082AF74[] = {
     0x0000,
     0x0000,
 };
 static s16 D_8082AF78[] = {
-    0x000F, 0x0028, 0x000B, 0x002D, 0x0034, 0x0025, 0x0024, 0x0039, 0x0036, 0x0021, 0x001F,
-    0x002D, 0x0020, 0x002A, 0x0031, 0xFFF6, 0x001F, 0x001B, 0x000F, 0xFFCF, 0x0008, 0x0026,
-    0x0007, 0x002F, 0x001E, 0x0001, 0xFFF7, 0x0019, 0x0000, 0x0001, 0xFFE0, 0xFFE6,
+    0x000F,
+    0x0028,
+    0x000B,
+    0x002D,
+    0x0034,
+    0x0025,
+    0x0024,
+    0x0039,
+    0x0036,
+    0x0021,
+    0x001F,
+    0x002D,
+    0x0020,
+    0x002A,
+    0x0031,
+    0xFFF6,
+    0x001F,
+    0x001B,
+    0x000F,
+    0xFFCF,
+    0x0008,
+    0x0026,
+    0x0007,
+    0x002F,
+    0x001E,
+    0x0001,
+    0xFFF7,
+    0x0019,
+    0x0000,
+    0x0001,
+    0xFFE0,
+    0xFFE6,
 };
 static s16 D_8082AFB8[] = {
-    0x0024, 0x000A, 0x000A, 0xFFFA, 0xFFFA, 0x0000,
+    0x0024,
+    0x000A,
+    0x000A,
+    0xFFFA,
+    0xFFFA,
+    0x0000,
 };
 static s16 D_8082AFC4[] = {
     0x0000,
@@ -2268,68 +2833,189 @@ static s16 D_8082AFC8[] = {
     0x0000,
 };
 static s16 D_8082AFCC[] = {
-    0x0055, 0x0055, 0x0010, 0x0018, 0x0018, 0x0018, 0x0010, 0x0010, 0x0010,
-    0x0010, 0x0010, 0x0010, 0x0010, 0x0010, 0x0010, 0x0010, 0x0018, 0x0000,
+    0x0055,
+    0x0055,
+    0x0010,
+    0x0018,
+    0x0018,
+    0x0018,
+    0x0010,
+    0x0010,
+    0x0010,
+    0x0010,
+    0x0010,
+    0x0010,
+    0x0010,
+    0x0010,
+    0x0010,
+    0x0010,
+    0x0018,
+    0x0000,
 };
 static s16 D_8082AFF0[] = {
     0x0000,
     0x0000,
 };
 static s16 D_8082AFF4[] = {
-    0x0010, 0x0030, 0x0030, 0x0010, 0x0010, 0x0000,
+    0x0010,
+    0x0030,
+    0x0030,
+    0x0010,
+    0x0010,
+    0x0000,
 };
 
 static s16* D_8082B000[] = {
-    D_8082AE90, D_8082AE94, D_8082AE98, D_8082AEBC, D_8082AEC0, D_8082AF00,
+    D_8082AE90,
+    D_8082AE94,
+    D_8082AE98,
+    D_8082AEBC,
+    D_8082AEC0,
+    D_8082AF00,
 };
 
 static s16* D_8082B018[] = {
-    D_8082AF0C, D_8082AF10, D_8082AF14, D_8082AF38, D_8082AAEC, D_8082AF3C,
+    D_8082AF0C,
+    D_8082AF10,
+    D_8082AF14,
+    D_8082AF38,
+    D_8082AAEC,
+    D_8082AF3C,
 };
 
 static s16* D_8082B030[] = {
-    D_8082AF48, D_8082AF4C, D_8082AF50, D_8082AF74, D_8082AF78, D_8082AFB8,
+    D_8082AF48,
+    D_8082AF4C,
+    D_8082AF50,
+    D_8082AF74,
+    D_8082AF78,
+    D_8082AFB8,
 };
 
 static s16* D_8082B048[] = {
-    D_8082AFC4, D_8082AFC8, D_8082AFCC, D_8082AFF0, D_8082AB2C, D_8082AFF4,
+    D_8082AFC4,
+    D_8082AFC8,
+    D_8082AFCC,
+    D_8082AFF0,
+    D_8082AB2C,
+    D_8082AFF4,
 };
 
 static s16 D_8082B060[] = {
-    0xFFC6, 0x000B, 0x001E, 0x001E, 0x000F, 0x0026, 0xFFC2, 0x003C, 0x003D, 0xFFB2, 0xFED4,
-    0xFFAA, 0xFFBF, 0xFED4, 0xFED4, 0xFFEB, 0x000E, 0x000D, 0x0014, 0xFFDE, 0xFED4, 0x0000,
+    0xFFC6,
+    0x000B,
+    0x001E,
+    0x001E,
+    0x000F,
+    0x0026,
+    0xFFC2,
+    0x003C,
+    0x003D,
+    0xFFB2,
+    0xFED4,
+    0xFFAA,
+    0xFFBF,
+    0xFED4,
+    0xFED4,
+    0xFFEB,
+    0x000E,
+    0x000D,
+    0x0014,
+    0xFFDE,
+    0xFED4,
+    0x0000,
 };
 
 static s16 D_8082B08C[] = {
-    0x0059, 0x0014, 0x000E, 0x0023, 0x0020, 0x0011, 0x0032, 0x0010, 0x0015, 0x0014, 0xFFFF,
-    0x0020, 0x0010, 0xFFFF, 0xFFFF, 0x0013, 0x0013, 0x0015, 0x0010, 0x0014, 0xFFFF, 0x0000,
+    0x0059,
+    0x0014,
+    0x000E,
+    0x0023,
+    0x0020,
+    0x0011,
+    0x0032,
+    0x0010,
+    0x0015,
+    0x0014,
+    0xFFFF,
+    0x0020,
+    0x0010,
+    0xFFFF,
+    0xFFFF,
+    0x0013,
+    0x0013,
+    0x0015,
+    0x0010,
+    0x0014,
+    0xFFFF,
+    0x0000,
 };
 
 static s16 D_8082B0B8[] = {
-    0x0001, 0x000F, 0x0014, 0x0009, 0xFFE2, 0xFFEF, 0xFFDE, 0x000F, 0x001E, 0x0001, 0xFED4,
-    0x002A, 0x0007, 0xFED4, 0xFED4, 0x0018, 0x0024, 0x0035, 0x0025, 0xFFF3, 0xFED4, 0x0000,
+    0x0001,
+    0x000F,
+    0x0014,
+    0x0009,
+    0xFFE2,
+    0xFFEF,
+    0xFFDE,
+    0x000F,
+    0x001E,
+    0x0001,
+    0xFED4,
+    0x002A,
+    0x0007,
+    0xFED4,
+    0xFED4,
+    0x0018,
+    0x0024,
+    0x0035,
+    0x0025,
+    0xFFF3,
+    0xFED4,
+    0x0000,
 };
 
 static s16 D_8082B0E4[] = {
-    0x0024, 0x000F, 0x0010, 0x0017, 0x0017, 0x0010, 0x0018, 0x000D, 0x0011, 0x0012, 0x0001,
-    0x0019, 0x000D, 0x0001, 0x0001, 0x000D, 0x0015, 0x000F, 0x000D, 0x000C, 0x0001, 0x0000,
+    0x0024,
+    0x000F,
+    0x0010,
+    0x0017,
+    0x0017,
+    0x0010,
+    0x0018,
+    0x000D,
+    0x0011,
+    0x0012,
+    0x0001,
+    0x0019,
+    0x000D,
+    0x0001,
+    0x0001,
+    0x000D,
+    0x0015,
+    0x000F,
+    0x000D,
+    0x000C,
+    0x0001,
+    0x0000,
 };
 
 s16 func_80823A0C(PlayState* play, Vtx* vtx, s16 arg2, s16 arg3) {
-    static s16 D_8082B110 = 0;
-    static s16 D_8082B114 = 1;
-    static s16 D_8082B118 = 0;
+    static s16    D_8082B110 = 0;
+    static s16    D_8082B114 = 1;
+    static s16    D_8082B118 = 0;
     PauseContext* pauseCtx = &play->pauseCtx;
-    s16* ptr1;
-    s16* ptr2;
-    s16* ptr3;
-    s16* ptr4;
-    s16 phi_s2;
-    s16 phi_t0;
-    s16 phi_a1;
-    s16 phi_a2;
-    s16 phi_t3;
-    s16 phi_t1;
+    s16*          ptr1;
+    s16*          ptr2;
+    s16*          ptr3;
+    s16*          ptr4;
+    s16           phi_s2;
+    s16           phi_t0;
+    s16           phi_a1;
+    s16           phi_a2;
+    s16           phi_t3;
+    s16           phi_t1;
 
     phi_t0 = -200;
 
@@ -2493,29 +3179,163 @@ static s16 D_8082B12C[] = { -114, 12, 44, 76 };
 static u8 D_8082B134[] = { 1, 5, 9, 13 };
 
 static s16 D_8082B138[] = {
-    74,  74,  46,  18,  18,  46,   -108, -90,  -72, -54, -36, -18, -108, -90, -72, -54,
-    -36, -18, 20,  46,  72,  -110, -86,  -110, -54, -98, -86, -74, -62,  -50, -38, -26,
-    -14, -98, -86, -74, -62, -50,  -38,  -26,  -14, -88, -81, -72, -90,  -83, -74,
+    74,
+    74,
+    46,
+    18,
+    18,
+    46,
+    -108,
+    -90,
+    -72,
+    -54,
+    -36,
+    -18,
+    -108,
+    -90,
+    -72,
+    -54,
+    -36,
+    -18,
+    20,
+    46,
+    72,
+    -110,
+    -86,
+    -110,
+    -54,
+    -98,
+    -86,
+    -74,
+    -62,
+    -50,
+    -38,
+    -26,
+    -14,
+    -98,
+    -86,
+    -74,
+    -62,
+    -50,
+    -38,
+    -26,
+    -14,
+    -88,
+    -81,
+    -72,
+    -90,
+    -83,
+    -74,
 };
 
 static s16 D_8082B198[] = {
-    38, 6,   -12, 6,   38,  56,  -20, -20, -20, -20, -20, -20, 2,   2,   2,   2,   2,   2,  -46, -46, -46, 58, 58, 34,
-    58, -52, -52, -52, -52, -52, -52, -52, -52, -52, -52, -52, -52, -52, -52, -52, -52, 34, 34,  34,  36,  36, 36,
+    38,
+    6,
+    -12,
+    6,
+    38,
+    56,
+    -20,
+    -20,
+    -20,
+    -20,
+    -20,
+    -20,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    -46,
+    -46,
+    -46,
+    58,
+    58,
+    34,
+    58,
+    -52,
+    -52,
+    -52,
+    -52,
+    -52,
+    -52,
+    -52,
+    -52,
+    -52,
+    -52,
+    -52,
+    -52,
+    -52,
+    -52,
+    -52,
+    -52,
+    34,
+    34,
+    34,
+    36,
+    36,
+    36,
 };
 
 static s16 D_8082B1F8[] = {
-    24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
-    48, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    48,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
 };
 
 void KaleidoScope_InitVertices(PlayState* play, GraphicsContext* gfxCtx) {
     PauseContext* pauseCtx = &play->pauseCtx;
-    s16 phi_t1;
-    s16 phi_t2;
-    s16 phi_t2_2;
-    s16 phi_t3;
-    s16 phi_t4;
-    s16 phi_t5;
+    s16           phi_t1;
+    s16           phi_t2;
+    s16           phi_t2_2;
+    s16           phi_t3;
+    s16           phi_t4;
+    s16           phi_t5;
 
     pauseCtx->offsetY = 0;
 
@@ -3001,8 +3821,8 @@ void KaleidoScope_DrawGameOver(PlayState* play) {
 }
 
 void KaleidoScope_Draw(PlayState* play) {
-    Input* input = &play->state.input[0];
-    PauseContext* pauseCtx = &play->pauseCtx;
+    Input*            input = &play->state.input[0];
+    PauseContext*     pauseCtx = &play->pauseCtx;
     InterfaceContext* interfaceCtx = &play->interfaceCtx;
 
     OPEN_DISPS(play->state.gfxCtx);
@@ -3010,16 +3830,15 @@ void KaleidoScope_Draw(PlayState* play) {
     pauseCtx->stickRelX = input->rel.stick_x;
     pauseCtx->stickRelY = input->rel.stick_y;
 
-    //gSPSegment(POLY_KAL_DISP++, 0x02, interfaceCtx->parameterSegment);
+    // gSPSegment(POLY_KAL_DISP++, 0x02, interfaceCtx->parameterSegment);
     gSPSegment(POLY_KAL_DISP++, 0x07, pauseCtx->playerSegment);
-    //gSPSegment(POLY_KAL_DISP++, 0x08, pauseCtx->iconItemSegment);
-    //gSPSegment(POLY_KAL_DISP++, 0x09, pauseCtx->iconItem24Segment);
+    // gSPSegment(POLY_KAL_DISP++, 0x08, pauseCtx->iconItemSegment);
+    // gSPSegment(POLY_KAL_DISP++, 0x09, pauseCtx->iconItem24Segment);
     gSPSegment(POLY_KAL_DISP++, 0x0A, pauseCtx->nameSegment);
-    //gSPSegment(POLY_KAL_DISP++, 0x0C, pauseCtx->iconItemAltSegment);
-    //gSPSegment(POLY_KAL_DISP++, 0x0D, pauseCtx->iconItemLangSegment);
+    // gSPSegment(POLY_KAL_DISP++, 0x0C, pauseCtx->iconItemAltSegment);
+    // gSPSegment(POLY_KAL_DISP++, 0x0D, pauseCtx->iconItemLangSegment);
 
-    if (pauseCtx->debugState == 0)
-    {
+    if (pauseCtx->debugState == 0) {
         KaleidoScope_SetView(pauseCtx, pauseCtx->eye.x, pauseCtx->eye.y, pauseCtx->eye.z);
 
         Gfx_SetupDL_42Kal(play->state.gfxCtx);
@@ -3058,8 +3877,7 @@ void KaleidoScope_Draw(PlayState* play) {
     CLOSE_DISPS(play->state.gfxCtx);
 }
 
-uint32_t _bswap32(uint32_t a)
-{
+uint32_t _bswap32(uint32_t a) {
     a = ((a & 0x000000FF) << 24) |
         ((a & 0x0000FF00) << 8) |
         ((a & 0x00FF0000) >> 8) |
@@ -3198,7 +4016,7 @@ void KaleidoScope_LoadDungeonMap(PlayState* play) {
 }
 
 void KaleidoScope_UpdateDungeonMap(PlayState* play) {
-    PauseContext* pauseCtx = &play->pauseCtx;
+    PauseContext*     pauseCtx = &play->pauseCtx;
     InterfaceContext* interfaceCtx = &play->interfaceCtx;
 
     osSyncPrintf("ＭＡＰ ＤＭＡ = %d\n", play->interfaceCtx.mapPaletteIndex);
@@ -3221,26 +4039,25 @@ void KaleidoScope_UpdateDungeonMap(PlayState* play) {
     }
 }
 
-void KaleidoScope_Update(PlayState* play)
-{
-    static s16 D_8082B258 = 0;
-    static s16 D_8082B25C = 10;
-    static s16 D_8082B260 = 0;
-    PauseContext* pauseCtx = &play->pauseCtx;
+void KaleidoScope_Update(PlayState* play) {
+    static s16        D_8082B258 = 0;
+    static s16        D_8082B25C = 10;
+    static s16        D_8082B260 = 0;
+    PauseContext*     pauseCtx = &play->pauseCtx;
     InterfaceContext* interfaceCtx = &play->interfaceCtx;
-    GameOverContext* gameOverCtx = &play->gameOverCtx;
-    Player* player = GET_PLAYER(play);
-    Input* input = &play->state.input[0];
-    size_t size = 0;
-    size_t size0 = 0;
-    size_t size1 = 0;
-    size_t size2 = 0;
-    u16 i = 0;
-    s16 stepR;
-    s16 stepG;
-    s16 stepB;
-    s16 stepA;
-    s32 pad;
+    GameOverContext*  gameOverCtx = &play->gameOverCtx;
+    Player*           player = GET_PLAYER(play);
+    Input*            input = &play->state.input[0];
+    size_t            size = 0;
+    size_t            size0 = 0;
+    size_t            size1 = 0;
+    size_t            size2 = 0;
+    u16               i = 0;
+    s16               stepR;
+    s16               stepG;
+    s16               stepB;
+    s16               stepA;
+    s32               pad;
 
     if ((R_PAUSE_MENU_MODE >= 3) && (((pauseCtx->state >= 4) && (pauseCtx->state <= 7)) ||
                                      ((pauseCtx->state >= 0xA) && (pauseCtx->state <= 0x12)))) {
@@ -3291,12 +4108,12 @@ void KaleidoScope_Update(PlayState* play)
             pauseCtx->iconItem24Segment = (void*)(((uintptr_t)pauseCtx->iconItemSegment + size0 + 0xF) & ~0xF);
 
 #if 1
-            //size = (uintptr_t)_icon_item_24_staticSegmentRomEnd - (uintptr_t)_icon_item_24_staticSegmentRomStart;
-            //osSyncPrintf("icon_item24 size=%x\n", size);
-            //DmaMgr_SendRequest1(pauseCtx->iconItem24Segment, (uintptr_t)_icon_item_24_staticSegmentRomStart, size,
-                                //__FILE__, __LINE__);
+            // size = (uintptr_t)_icon_item_24_staticSegmentRomEnd - (uintptr_t)_icon_item_24_staticSegmentRomStart;
+            // osSyncPrintf("icon_item24 size=%x\n", size);
+            // DmaMgr_SendRequest1(pauseCtx->iconItem24Segment, (uintptr_t)_icon_item_24_staticSegmentRomStart, size,
+            //__FILE__, __LINE__);
 
-            //pauseCtx->iconItemAltSegment = (void*)(((uintptr_t)pauseCtx->iconItem24Segment + size + 0xF) & ~0xF);
+            // pauseCtx->iconItemAltSegment = (void*)(((uintptr_t)pauseCtx->iconItem24Segment + size + 0xF) & ~0xF);
 #endif
 
             switch (play->sceneNum) {
@@ -3320,10 +4137,10 @@ void KaleidoScope_Update(PlayState* play)
                 case SCENE_SHADOW_TEMPLE_BOSS:
 #if 1
                     sInDungeonScene = true;
-                    //size2 = (uintptr_t)_icon_item_dungeon_staticSegmentRomEnd - (uintptr_t)_icon_item_dungeon_staticSegmentRomStart;
-                    //osSyncPrintf("icon_item_dungeon dungeon-size2=%x\n", size2);
-                    //DmaMgr_SendRequest1(pauseCtx->iconItemAltSegment, (uintptr_t)_icon_item_dungeon_staticSegmentRomStart,
-                                        //size2, __FILE__, __LINE__);
+                    // size2 = (uintptr_t)_icon_item_dungeon_staticSegmentRomEnd - (uintptr_t)_icon_item_dungeon_staticSegmentRomStart;
+                    // osSyncPrintf("icon_item_dungeon dungeon-size2=%x\n", size2);
+                    // DmaMgr_SendRequest1(pauseCtx->iconItemAltSegment, (uintptr_t)_icon_item_dungeon_staticSegmentRomStart,
+                    // size2, __FILE__, __LINE__);
 #endif
 
                     interfaceCtx->mapPalette[28] = 6;
@@ -3334,37 +4151,37 @@ void KaleidoScope_Update(PlayState* play)
                 default:
 #if 1
                     sInDungeonScene = false;
-                    //size2 = (uintptr_t)_icon_item_field_staticSegmentRomEnd - (uintptr_t)_icon_item_field_staticSegmentRomStart;
-                    //osSyncPrintf("icon_item_field field-size2=%x\n", size2);
-                    //DmaMgr_SendRequest1(pauseCtx->iconItemAltSegment, (uintptr_t)_icon_item_field_staticSegmentRomStart,
-                                        //size2, __FILE__, __LINE__);
+                    // size2 = (uintptr_t)_icon_item_field_staticSegmentRomEnd - (uintptr_t)_icon_item_field_staticSegmentRomStart;
+                    // osSyncPrintf("icon_item_field field-size2=%x\n", size2);
+                    // DmaMgr_SendRequest1(pauseCtx->iconItemAltSegment, (uintptr_t)_icon_item_field_staticSegmentRomStart,
+                    // size2, __FILE__, __LINE__);
 #endif
                     break;
             }
 
-            // OTRTODO: LANGUAGE SUPPORT
+                // OTRTODO: LANGUAGE SUPPORT
 #if 1
-            //pauseCtx->iconItemLangSegment = (void*)(((uintptr_t)pauseCtx->iconItemAltSegment + size2 + 0xF) & ~0xF);
+            // pauseCtx->iconItemLangSegment = (void*)(((uintptr_t)pauseCtx->iconItemAltSegment + size2 + 0xF) & ~0xF);
 
             if (gSaveContext.language == LANGUAGE_ENG) {
-                //size = (uintptr_t)_icon_item_nes_staticSegmentRomEnd - (uintptr_t)_icon_item_nes_staticSegmentRomStart;
-                //osSyncPrintf("icon_item_dungeon dungeon-size=%x\n", size);
-                //DmaMgr_SendRequest1(pauseCtx->iconItemLangSegment, _icon_item_nes_staticSegmentRomStart, size,
-                                    //__FILE__, __LINE__);
+                // size = (uintptr_t)_icon_item_nes_staticSegmentRomEnd - (uintptr_t)_icon_item_nes_staticSegmentRomStart;
+                // osSyncPrintf("icon_item_dungeon dungeon-size=%x\n", size);
+                // DmaMgr_SendRequest1(pauseCtx->iconItemLangSegment, _icon_item_nes_staticSegmentRomStart, size,
+                //__FILE__, __LINE__);
             } else if (gSaveContext.language == LANGUAGE_GER) {
-                //size = (uintptr_t)_icon_item_ger_staticSegmentRomEnd - (uintptr_t)_icon_item_ger_staticSegmentRomStart;
-                //osSyncPrintf("icon_item_dungeon dungeon-size=%x\n", size);
-                //DmaMgr_SendRequest1(pauseCtx->iconItemLangSegment, (uintptr_t)_icon_item_ger_staticSegmentRomStart, size,
-                                    //__FILE__, __LINE__);
+                // size = (uintptr_t)_icon_item_ger_staticSegmentRomEnd - (uintptr_t)_icon_item_ger_staticSegmentRomStart;
+                // osSyncPrintf("icon_item_dungeon dungeon-size=%x\n", size);
+                // DmaMgr_SendRequest1(pauseCtx->iconItemLangSegment, (uintptr_t)_icon_item_ger_staticSegmentRomStart, size,
+                //__FILE__, __LINE__);
             } else {
-                //size = (uintptr_t)_icon_item_fra_staticSegmentRomEnd - (uintptr_t)_icon_item_fra_staticSegmentRomStart;
-                //osSyncPrintf("icon_item_dungeon dungeon-size=%x\n", size);
-                //DmaMgr_SendRequest1(pauseCtx->iconItemLangSegment, (uintptr_t)_icon_item_fra_staticSegmentRomStart, size,
-                                    //__FILE__, __LINE__);
+                // size = (uintptr_t)_icon_item_fra_staticSegmentRomEnd - (uintptr_t)_icon_item_fra_staticSegmentRomStart;
+                // osSyncPrintf("icon_item_dungeon dungeon-size=%x\n", size);
+                // DmaMgr_SendRequest1(pauseCtx->iconItemLangSegment, (uintptr_t)_icon_item_fra_staticSegmentRomStart, size,
+                //__FILE__, __LINE__);
             }
 #endif
 
-            //pauseCtx->nameSegment = (void*)(((uintptr_t)pauseCtx->iconItemLangSegment + size + 0xF) & ~0xF);
+            // pauseCtx->nameSegment = (void*)(((uintptr_t)pauseCtx->iconItemLangSegment + size + 0xF) & ~0xF);
             pauseCtx->nameSegment = malloc(0x400 + 0xA00); // OTRTODO: GET RID OF THIS
 
             osSyncPrintf("サイズ＝%x\n", size2 + size1 + size0 + size);
@@ -3374,11 +4191,11 @@ void KaleidoScope_Update(PlayState* play)
 
             if (((void)0, gSaveContext.worldMapArea) < 22) {
                 const uint8_t offsets[] = { 36, 58, 80 };
-                const char* textureName = mapNameTextures[offsets[gSaveContext.language] + gSaveContext.worldMapArea];
+                const char*   textureName = mapNameTextures[offsets[gSaveContext.language] + gSaveContext.worldMapArea];
                 memcpy(pauseCtx->nameSegment + 0x400, textureName, strlen(textureName) + 1);
             }
-            // OTRTODO - player on pause
-            #if 1
+// OTRTODO - player on pause
+#if 1
             // HDTODO: Remove sPreRenderCvg stuff?
             sPreRenderCvg = (void*)(((uintptr_t)pauseCtx->nameSegment + 0x400 + 0xA00 + 0xF) & ~0xF);
 
@@ -3386,8 +4203,8 @@ void KaleidoScope_Update(PlayState* play)
             PreRender_SetValuesSave(&sPlayerPreRender, 64, 112, pauseCtx->playerSegment, NULL, sPreRenderCvg);
 
             KaleidoScope_DrawPlayerWork(play);
-            //KaleidoScope_SetupPlayerPreRender(play);
-            #endif
+// KaleidoScope_SetupPlayerPreRender(play);
+#endif
             for (i = 0; i < ARRAY_COUNT(pauseCtx->worldMapPoints); i++) {
                 pauseCtx->worldMapPoints[i] = 0;
             }
@@ -3617,8 +4434,8 @@ void KaleidoScope_Update(PlayState* play)
         case 4:
             if (pauseCtx->unk_1F4 == 160.0f) {
                 KaleidoScope_SetDefaultCursor(play);
-                //OTRTODO - Player on pause
-                //KaleidoScope_ProcessPlayerPreRender();
+                // OTRTODO - Player on pause
+                // KaleidoScope_ProcessPlayerPreRender();
             }
 
             pauseCtx->unk_1F4 = pauseCtx->unk_1F8 = pauseCtx->unk_1FC = pauseCtx->unk_200 -= 160.0f / WREG(6);
@@ -3905,16 +4722,16 @@ void KaleidoScope_Update(PlayState* play)
                                 __FILE__, __LINE__);
 
             pauseCtx->iconItem24Segment = (void*)(((uintptr_t)pauseCtx->iconItemSegment + size0 + 0xF) & ~0xF);
-            //size = (uintptr_t)_icon_item_24_staticSegmentRomEnd - (uintptr_t)_icon_item_24_staticSegmentRomStart;
+            // size = (uintptr_t)_icon_item_24_staticSegmentRomEnd - (uintptr_t)_icon_item_24_staticSegmentRomStart;
             osSyncPrintf("icon_item24 size=%x\n", size);
-            //DmaMgr_SendRequest1(pauseCtx->iconItem24Segment, (uintptr_t)_icon_item_24_staticSegmentRomStart, size,
-                                //__FILE__, __LINE__);
+            // DmaMgr_SendRequest1(pauseCtx->iconItem24Segment, (uintptr_t)_icon_item_24_staticSegmentRomStart, size,
+            //__FILE__, __LINE__);
 
             pauseCtx->iconItemAltSegment = (void*)(((uintptr_t)pauseCtx->iconItem24Segment + size + 0xF) & ~0xF);
-            //size2 = (uintptr_t)_icon_item_gameover_staticSegmentRomEnd - (uintptr_t)_icon_item_gameover_staticSegmentRomStart;
-            //osSyncPrintf("icon_item_dungeon gameover-size2=%x\n", size2);
-            //DmaMgr_SendRequest1(pauseCtx->iconItemAltSegment, (uintptr_t)_icon_item_gameover_staticSegmentRomStart, size2,
-                                //__FILE__, __LINE__);
+            // size2 = (uintptr_t)_icon_item_gameover_staticSegmentRomEnd - (uintptr_t)_icon_item_gameover_staticSegmentRomStart;
+            // osSyncPrintf("icon_item_dungeon gameover-size2=%x\n", size2);
+            // DmaMgr_SendRequest1(pauseCtx->iconItemAltSegment, (uintptr_t)_icon_item_gameover_staticSegmentRomStart, size2,
+            //__FILE__, __LINE__);
 
             pauseCtx->iconItemLangSegment = (void*)(((uintptr_t)pauseCtx->iconItemAltSegment + size2 + 0xF) & ~0xF);
 

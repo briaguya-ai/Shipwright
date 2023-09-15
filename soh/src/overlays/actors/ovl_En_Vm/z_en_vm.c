@@ -124,9 +124,16 @@ static Vec3f D_80B2EB70 = { -500.0f, 0.0f, 0.0f };
 static Vec3f D_80B2EB7C = { 0.4f, 0.4f, 0.4f };
 
 static void* D_80B2EB88[] = {
-    gEffEnemyDeathFlame1Tex, gEffEnemyDeathFlame2Tex,  gEffEnemyDeathFlame3Tex, gEffEnemyDeathFlame4Tex,
-    gEffEnemyDeathFlame5Tex, gEffEnemyDeathFlame6Tex,  gEffEnemyDeathFlame7Tex, gEffEnemyDeathFlame8Tex,
-    gEffEnemyDeathFlame9Tex, gEffEnemyDeathFlame10Tex,
+    gEffEnemyDeathFlame1Tex,
+    gEffEnemyDeathFlame2Tex,
+    gEffEnemyDeathFlame3Tex,
+    gEffEnemyDeathFlame4Tex,
+    gEffEnemyDeathFlame5Tex,
+    gEffEnemyDeathFlame6Tex,
+    gEffEnemyDeathFlame7Tex,
+    gEffEnemyDeathFlame8Tex,
+    gEffEnemyDeathFlame9Tex,
+    gEffEnemyDeathFlame10Tex,
 };
 
 void EnVm_SetupAction(EnVm* this, EnVmActionFunc actionFunc) {
@@ -179,10 +186,10 @@ void EnVm_SetupWait(EnVm* this) {
 
 void EnVm_Wait(EnVm* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    f32 dist;
-    s16 headRot;
-    s16 pad;
-    s16 pitch;
+    f32     dist;
+    s16     headRot;
+    s16     pad;
+    s16     pitch;
 
     switch (this->unk_25E) {
         case 0:
@@ -263,9 +270,9 @@ void EnVm_SetupAttack(EnVm* this) {
 
 void EnVm_Attack(EnVm* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 pitch = Math_Vec3f_Pitch(&this->beamPos1, &player->actor.world.pos);
-    f32 dist;
-    Vec3f playerPos;
+    s16     pitch = Math_Vec3f_Pitch(&this->beamPos1, &player->actor.world.pos);
+    f32     dist;
+    Vec3f   playerPos;
 
     if (pitch > 0x1B91) {
         pitch = 0x1B91;
@@ -470,14 +477,14 @@ s32 EnVm_OverrideLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3f* po
 
 void EnVm_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, void* thisx) {
     EnVm* this = (EnVm*)thisx;
-    Vec3f sp80 = D_80B2EAF8;
-    Vec3f sp74 = D_80B2EB04;
-    Vec3f sp68 = D_80B2EB10;
-    s32 pad;
-    Vec3f posResult;
+    Vec3f          sp80 = D_80B2EAF8;
+    Vec3f          sp74 = D_80B2EB04;
+    Vec3f          sp68 = D_80B2EB10;
+    s32            pad;
+    Vec3f          posResult;
     CollisionPoly* poly;
-    s32 bgId;
-    f32 dist;
+    s32            bgId;
+    f32            dist;
 
     if (limbIndex == 2) {
         Matrix_MultVec3f(&D_80B2EB1C, &this->beamPos1);
@@ -522,7 +529,7 @@ void EnVm_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, 
 void EnVm_Draw(Actor* thisx, PlayState* play2) {
     EnVm* this = (EnVm*)thisx;
     PlayState* play = play2;
-    Vec3f actorPos;
+    Vec3f      actorPos;
 
     OPEN_DISPS(play->state.gfxCtx);
 

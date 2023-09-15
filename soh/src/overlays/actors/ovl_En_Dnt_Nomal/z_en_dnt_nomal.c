@@ -110,9 +110,15 @@ static ColliderQuadInit sTargetQuadInit = {
 };
 
 static Color_RGBA8 sLeafColors[] = {
-    { 255, 255, 255, 255 }, { 255, 195, 175, 255 }, { 210, 255, 0, 255 },
-    { 255, 255, 255, 255 }, { 210, 255, 0, 255 },   { 255, 195, 175, 255 },
-    { 255, 255, 255, 255 }, { 255, 195, 175, 255 }, { 210, 255, 0, 255 },
+    { 255, 255, 255, 255 },
+    { 255, 195, 175, 255 },
+    { 210, 255, 0, 255 },
+    { 255, 255, 255, 255 },
+    { 210, 255, 0, 255 },
+    { 255, 195, 175, 255 },
+    { 255, 255, 255, 255 },
+    { 255, 195, 175, 255 },
+    { 210, 255, 0, 255 },
 };
 
 void EnDntNomal_Init(Actor* thisx, PlayState* play) {
@@ -211,12 +217,12 @@ void EnDntNomal_SetupTargetWait(EnDntNomal* this, PlayState* play) {
 
 void EnDntNomal_TargetWait(EnDntNomal* this, PlayState* play) {
     Vec3f scorePos;
-    f32 targetX = 1340.0f;
-    f32 targetY = 50.0f;
-    f32 targetZ = -30.0f;
-    f32 dx;
-    f32 dy;
-    f32 dz;
+    f32   targetX = 1340.0f;
+    f32   targetY = 50.0f;
+    f32   targetZ = -30.0f;
+    f32   dx;
+    f32   dy;
+    f32   dz;
     Vec3f scoreAccel = { 0.0f, 0.0f, 0.0f };
     Vec3f scoreVel = { 0.0f, 0.0f, 0.0f };
 
@@ -252,7 +258,7 @@ void EnDntNomal_TargetWait(EnDntNomal* this, PlayState* play) {
             if (!LINK_IS_ADULT && !Flags_GetItemGetInf(ITEMGETINF_1D)) {
                 this->hitCounter++;
                 if (this->hitCounter >= 3) {
-                    if(gSaveContext.n64ddFlag) {
+                    if (gSaveContext.n64ddFlag) {
                         this->actionFunc = EnDntNomal_TargetGivePrize;
                     } else {
                         OnePointCutscene_Init(play, 4140, -99, &this->actor, MAIN_CAM);
@@ -606,8 +612,8 @@ void EnDntNomal_SetupStageHide(EnDntNomal* this, PlayState* play) {
 
 void EnDntNomal_StageHide(EnDntNomal* this, PlayState* play) {
     EnExRuppy* rupee;
-    f32 frame = this->skelAnime.curFrame;
-    s16 rupeeColor;
+    f32        frame = this->skelAnime.curFrame;
+    s16        rupeeColor;
 
     SkelAnime_Update(&this->skelAnime);
     if (frame >= this->endFrame) {
@@ -664,11 +670,11 @@ void EnDntNomal_SetupStageAttack(EnDntNomal* this, PlayState* play) {
 
 void EnDntNomal_StageAttack(EnDntNomal* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Actor* nut;
-    f32 frame = this->skelAnime.curFrame;
-    f32 dz;
-    f32 dx;
-    f32 dy;
+    Actor*  nut;
+    f32     frame = this->skelAnime.curFrame;
+    f32     dz;
+    f32     dx;
+    f32     dy;
 
     SkelAnime_Update(&this->skelAnime);
     Math_SmoothStepToS(&this->actor.shape.rot.y, this->actor.yawTowardsPlayer, 3, 0x1388, 0);
@@ -689,9 +695,9 @@ void EnDntNomal_StageAttack(EnDntNomal* this, PlayState* play) {
     } else if ((frame >= 8.0f) && (!this->spawnedItem)) {
         Vec3f baseOffset;
         Vec3f spawnOffset;
-        f32 spawnX;
-        f32 spawnY;
-        f32 spawnZ;
+        f32   spawnX;
+        f32   spawnY;
+        f32   spawnZ;
 
         Matrix_RotateY(this->actor.shape.rot.y / (f32)0x8000 * M_PI, MTXMODE_NEW);
         Matrix_RotateX(this->actor.shape.rot.x / (f32)0x8000 * M_PI, MTXMODE_APPLY);
@@ -857,7 +863,7 @@ void EnDntNomal_DrawStageScrub(Actor* thisx, PlayState* play) {
     static void* blinkTex[] = { gDntStageEyeOpenTex, gDntStageEyeHalfTex, gDntStageEyeShutTex };
     EnDntNomal* this = (EnDntNomal*)thisx;
     Vec3f dustScale = { 0.25f, 0.25f, 0.25f };
-    s32 pad;
+    s32   pad;
 
     OPEN_DISPS(play->state.gfxCtx);
     Gfx_SetupDL_25Opa(play->state.gfxCtx);

@@ -101,8 +101,8 @@ bool blueFireArrowsEnabledOnRedIceLoad = false;
 void func_80890740(BgIceShelter* this, PlayState* play) {
     static s16 cylinderRadii[] = { 47, 33, 44, 41, 100 };
     static s16 cylinderHeights[] = { 80, 54, 90, 60, 200 };
-    s32 pad;
-    s32 type = (this->dyna.actor.params >> 8) & 7;
+    s32        pad;
+    s32        type = (this->dyna.actor.params >> 8) & 7;
 
     // Initialize this with the red ice, so it can't be affected by toggling while the actor is loaded
     blueFireArrowsEnabledOnRedIceLoad = CVarGetInteger("gBlueFireArrows", 0) || (gSaveContext.n64ddFlag && Randomizer_GetSettingValue(RSK_BLUE_FIRE_ARROWS));
@@ -134,9 +134,9 @@ void func_80890740(BgIceShelter* this, PlayState* play) {
 }
 
 void func_80890874(BgIceShelter* this, PlayState* play, CollisionHeader* collision, s32 moveFlag) {
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
-    s32 pad2;
+    s32              pad2;
 
     DynaPolyActor_Init(&this->dyna, moveFlag);
     CollisionHeader_GetVirtual(collision, &colHeader);
@@ -230,17 +230,17 @@ static s16 D_80891794[] = { 0x0000, 0x4000, 0x2000, 0x6000, 0x1000, 0x5000, 0x30
 static s16 D_808917A4[] = { 0x0000, 0x003C, 0x0018, 0x0054, 0x0030, 0x000C, 0x0048, 0x0024 };
 
 void func_80890B8C(BgIceShelter* this, PlayState* play, f32 chance, f32 scale) {
-    f32 cos;
-    f32 sin;
-    f32 xzOffset;
+    f32    cos;
+    f32    sin;
+    f32    xzOffset;
     Vec3f* icePos;
-    s16 angle;
-    s16 frames;
-    s32 i;
-    s32 pad[2];
-    Vec3f dustPos;
-    Vec3f dustVel;
-    Vec3f dustAccel;
+    s16    angle;
+    s16    frames;
+    s32    i;
+    s32    pad[2];
+    Vec3f  dustPos;
+    Vec3f  dustVel;
+    Vec3f  dustAccel;
 
     frames = (s16)play->state.frames & 7;
 
@@ -274,14 +274,14 @@ void func_80890B8C(BgIceShelter* this, PlayState* play, f32 chance, f32 scale) {
 
 void func_80890E00(BgIceShelter* this, PlayState* play, f32 chance, f32 arg3) {
     static f32 D_808917B4[] = { -1.0f, 1.0f };
-    Vec3f* icePos;
-    s16 frames;
-    s32 pad[2];
-    Vec3f dustPos;
-    Vec3f dustVel;
-    Vec3f dustAccel;
-    Vec3f posOffset;
-    s32 i;
+    Vec3f*     icePos;
+    s16        frames;
+    s32        pad[2];
+    Vec3f      dustPos;
+    Vec3f      dustVel;
+    Vec3f      dustAccel;
+    Vec3f      posOffset;
+    s32        i;
 
     frames = (s16)play->state.frames & 7;
 
@@ -386,7 +386,11 @@ static f32 D_808917BC[] = { -0.0015f, -0.0009f, -0.0016f, -0.0016f, -0.00375f };
 static f32 D_808917D0[] = { 1.0f, 0.6f, 1.2f, 1.0f, 1.8f };
 
 static void (*sEffSpawnFuncs[])(BgIceShelter* this, PlayState* play, f32 chance, f32 scale) = {
-    func_80890B8C, func_80890B8C, func_80890B8C, func_80890E00, func_80890B8C,
+    func_80890B8C,
+    func_80890B8C,
+    func_80890B8C,
+    func_80890E00,
+    func_80890B8C,
 };
 
 void func_808911D4(BgIceShelter* this, PlayState* play) {
@@ -462,7 +466,7 @@ void BgIceShelter_Draw(Actor* thisx, PlayState* play2) {
     }
 
     if (CVarGetInteger("gCosmetics.World_RedIce.Changed", 0)) {
-        Color_RGB8 color = CVarGetColor24("gCosmetics.World_RedIce.Value", (Color_RGB8){ 255, 0, 0});
+        Color_RGB8 color = CVarGetColor24("gCosmetics.World_RedIce.Value", (Color_RGB8){ 255, 0, 0 });
         gDPSetEnvColor(POLY_XLU_DISP++, color.r, color.g, color.b, this->alpha);
     } else {
         gDPSetEnvColor(POLY_XLU_DISP++, 255, 0, 0, this->alpha);

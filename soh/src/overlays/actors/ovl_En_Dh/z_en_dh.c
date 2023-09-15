@@ -174,8 +174,8 @@ void EnDh_SpawnDebris(PlayState* play, EnDh* this, Vec3f* spawnPos, f32 spread, 
     Vec3f pos;
     Vec3f vel = { 0.0f, 8.0f, 0.0f };
     Vec3f accel = { 0.0f, -1.5f, 0.0f };
-    f32 spreadAngle;
-    f32 scaleMod;
+    f32   spreadAngle;
+    f32   scaleMod;
 
     spreadAngle = (Rand_ZeroOne() - 0.5f) * 6.28f;
     pos.y = this->actor.floorHeight;
@@ -473,9 +473,9 @@ void EnDh_Death(EnDh* this, PlayState* play) {
 }
 
 void EnDh_CollisionCheck(EnDh* this, PlayState* play) {
-    s32 pad;
+    s32     pad;
     Player* player = GET_PLAYER(play);
-    s32 lastHealth;
+    s32     lastHealth;
 
     if ((this->collider2.base.acFlags & AC_HIT) && !this->retreat) {
         this->collider2.base.acFlags &= ~AC_HIT;
@@ -507,7 +507,7 @@ void EnDh_Update(Actor* thisx, PlayState* play) {
     s32 pad;
     EnDh* this = (EnDh*)thisx;
     Player* player = GET_PLAYER(play);
-    s32 pad40;
+    s32     pad40;
 
     EnDh_CollisionCheck(this, play);
     this->actionFunc(this, play);

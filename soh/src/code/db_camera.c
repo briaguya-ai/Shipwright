@@ -3,17 +3,17 @@
 
 static PlayState* sPlayState;
 
-char** cameraStrings = {0};
+char** cameraStrings = { 0 };
 
-#define ACTION_E 0
-#define ACTION_SAVE 1
-#define ACTION_LOAD 2
+#define ACTION_E     0
+#define ACTION_SAVE  1
+#define ACTION_LOAD  2
 #define ACTION_CLEAR 3
 
-#define MENU_INFO 0
+#define MENU_INFO     0
 #define MENU_CALLBACK 1
-#define MENU_SUCCESS 2
-#define MENU_ERROR 9
+#define MENU_SUCCESS  2
+#define MENU_ERROR    9
 
 #define DEMO_CTRL_MENU(actionIdx, menuIdx) (actionIdx * 100 + menuIdx)
 
@@ -22,10 +22,9 @@ s32 DbCamera_LoadCallback(char* c);
 s32 DbCamera_ClearCallback(char* c);
 s32 DbCamera_UpdateDemoControl(DbCamera* dbCamera, Camera* cam);
 
-static DbCamera* sDbCamPtr;
-static s16 D_8016110C;
+static DbCamera*    sDbCamPtr;
+static s16          D_8016110C;
 static DbCameraAnim sDbCamAnim;
-
 
 Vec3f* DbCamera_AddVecSph(Vec3f* out, Vec3f* in, VecSph* sph) {
     Vec3f ret;
@@ -41,28 +40,28 @@ Vec3f* DbCamera_AddVecSph(Vec3f* out, Vec3f* in, VecSph* sph) {
 }
 
 Vec3f* DbCamera_CalcUpFromPitchYawRoll(Vec3f* dest, s16 pitch, s16 yaw, s16 roll) {
-    f32 sinPitch;
-    f32 cosPitch;
-    f32 sinYaw;
-    f32 cosYaw;
-    f32 sinNegRoll;
-    f32 cosNegRoll;
+    f32   sinPitch;
+    f32   cosPitch;
+    f32   sinYaw;
+    f32   cosYaw;
+    f32   sinNegRoll;
+    f32   cosNegRoll;
     Vec3f spA4;
-    f32 sp54;
-    f32 sp4C;
-    f32 cosPitchCosYawSinRoll;
-    f32 negSinPitch;
-    f32 temp_f10_2;
-    f32 cosPitchcosYaw;
-    f32 temp_f14;
-    f32 negSinPitchSinYaw;
-    f32 negSinPitchCosYaw;
-    f32 cosPitchSinYaw;
-    f32 temp_f4_2;
-    f32 temp_f6;
-    f32 temp_f8;
-    f32 temp_f8_2;
-    f32 temp_f8_3;
+    f32   sp54;
+    f32   sp4C;
+    f32   cosPitchCosYawSinRoll;
+    f32   negSinPitch;
+    f32   temp_f10_2;
+    f32   cosPitchcosYaw;
+    f32   temp_f14;
+    f32   negSinPitchSinYaw;
+    f32   negSinPitchCosYaw;
+    f32   cosPitchSinYaw;
+    f32   temp_f4_2;
+    f32   temp_f6;
+    f32   temp_f8;
+    f32   temp_f8_2;
+    f32   temp_f8_3;
 
     sinPitch = Math_SinS(pitch);
     cosPitch = Math_CosS(pitch);
@@ -99,7 +98,7 @@ Vec3f* DbCamera_CalcUpFromPitchYawRoll(Vec3f* dest, s16 pitch, s16 yaw, s16 roll
 
 char* DbCamera_SetTextValue(s16 value, char* str, u8 endIdx) {
     char* strIter;
-    char sign;
+    char  sign;
 
     strIter = str + (s32)endIdx - 1;
     str[endIdx] = '\0';
@@ -156,7 +155,7 @@ void DbCamera_Vec3SToF2(Vec3s* in, Vec3f* out) {
 
 void func_800B3F94(PosRot* posRot, Vec3f* vec, Vec3s* out) {
     VecSph sph;
-    Vec3f tempVec;
+    Vec3f  tempVec;
     OLib_Vec3fDiffToVecSphGeo(&sph, &posRot->pos, vec);
     sph.yaw -= posRot->rot.y;
     OLib_VecSphGeoToVec3f(&tempVec, &sph);
@@ -165,7 +164,7 @@ void func_800B3F94(PosRot* posRot, Vec3f* vec, Vec3s* out) {
 
 void func_800B3FF4(PosRot* posRot, Vec3f* vec, Vec3f* out) {
     VecSph sph;
-    Vec3f tempVec;
+    Vec3f  tempVec;
     DbCamera_CopyVec3f(vec, &tempVec);
     OLib_Vec3fToVecSphGeo(&sph, &tempVec);
     sph.yaw += posRot->rot.y;
@@ -181,7 +180,7 @@ void func_800B404C(PosRot* posRot, Vec3s* vec, Vec3f* out) {
 s32 func_800B4088(DbCamera* dbCamera, Camera* cam) {
     CutsceneCameraPoint* position;
     CutsceneCameraPoint* lookAt;
-    s32 i;
+    s32                  i;
 
     position = &dbCamera->sub.position[dbCamera->sub.unkIdx];
     lookAt = &dbCamera->sub.lookAt[dbCamera->sub.unkIdx];
@@ -249,8 +248,8 @@ s32 func_800B42C0(DbCamera* dbCamera, Camera* cameraPtr) {
 s32 func_800B4370(DbCamera* dbCamera, s16 idx, Camera* cam) {
     CutsceneCameraPoint* lookAt = &dbCamera->sub.lookAt[idx];
     CutsceneCameraPoint* position = &dbCamera->sub.position[idx];
-    VecSph sph;
-    Vec3f at;
+    VecSph               sph;
+    Vec3f                at;
 
     if (dbCamera->sub.mode != 1) {
         if (dbCamera->sub.unk_0C) {
@@ -360,23 +359,23 @@ void DbCamera_PrintPoints(const char* name, s16 count, CutsceneCameraPoint* poin
 }
 
 void DbCamera_PrintF32Bytes(f32 value) {
-    f32 b = value;
+    f32   b = value;
     char* a = (char*)&b;
 
     osSyncPrintf("\n@@@%d,%d,%d,%d,", a[0], a[1], a[2], a[3]);
 }
 
 void DbCamera_PrintU16Bytes(u16 value) {
-    u16 pad;
-    u16 b = value;
+    u16   pad;
+    u16   b = value;
     char* a = (char*)&b;
 
     osSyncPrintf("\n@@@%d,%d,", a[0], a[1]);
 }
 
 void DbCamera_PrintS16Bytes(s16 value) {
-    u16 pad;
-    s16 b = value;
+    u16   pad;
+    s16   b = value;
     char* a = (char*)&b;
 
     osSyncPrintf("\n@@@%d,%d,", a[0], a[1]);
@@ -385,7 +384,7 @@ void DbCamera_PrintS16Bytes(s16 value) {
 void DbCamera_PrintCutBytes(DbCameraCut* cut) {
     CutsceneCameraPoint* point;
     CutsceneCameraPoint* points;
-    s32 i;
+    s32                  i;
 
     points = cut->lookAt;
     osSyncPrintf("\n@@@ 0,0,0,2,\t/* Look Camera\t*/");
@@ -492,32 +491,32 @@ void DbCamera_Update(DbCamera* dbCamera, Camera* cam) {
     static s32 D_8012D110 = 0;
     static s32 D_80161140; // bool
     static s32 D_80161144; // bool
-    Vec3f* sp124;
-    f32 temp_f0_5;
-    s16 yaw;
-    f32 new_var2;
-    f32 temp_f2;
-    s16 pitch;
-    char sp111;
-    char sp110;
-    f32 temp_f2_2;
-    VecSph sp104;
-    VecSph spFC;
-    VecSph spF4;
-    PosRot* temp_s6;
-    Vec3f* eye;
-    Vec3f* at;
-    Vec3f* phi_s0;
-    Vec3f spD8;
-    s32 pad;
-    Vec3f* sp90;
-    Vec3f* sp80;
-    Vec3f* sp7C;
-    s32 i;
-    Vec3f spB8;
-    Vec3f spAC;
-    s16 spAA;
-    VecSph spA0;
+    Vec3f*     sp124;
+    f32        temp_f0_5;
+    s16        yaw;
+    f32        new_var2;
+    f32        temp_f2;
+    s16        pitch;
+    char       sp111;
+    char       sp110;
+    f32        temp_f2_2;
+    VecSph     sp104;
+    VecSph     spFC;
+    VecSph     spF4;
+    PosRot*    temp_s6;
+    Vec3f*     eye;
+    Vec3f*     at;
+    Vec3f*     phi_s0;
+    Vec3f      spD8;
+    s32        pad;
+    Vec3f*     sp90;
+    Vec3f*     sp80;
+    Vec3f*     sp7C;
+    s32        i;
+    Vec3f      spB8;
+    Vec3f      spAC;
+    s16        spAA;
+    VecSph     spA0;
 
     sp90 = &dbCamera->unk_54;
     temp_s6 = &cam->playerPosRot;
@@ -1415,14 +1414,14 @@ void DbCamera_Update(DbCamera* dbCamera, Camera* cam) {
     }
 }
 
-static s16 sCurFileIdx;
-static s16 sLastFileIdx; // holds the file index of the slot to move
+static s16         sCurFileIdx;
+static s16         sLastFileIdx; // holds the file index of the slot to move
 // is the size correct? todo: add ALIGN32 for sizeof in Mempak functions, replace 0xF with sizeof()
 static DbCameraCut sDbCameraCuts[16];
-static char D_80161250[0x80];
-static char sLetters[26];
-static char D_801612EA;
-static s32 sAllocSize;
+static char        D_80161250[0x80];
+static char        sLetters[26];
+static char        D_801612EA;
+static s32         sAllocSize;
 
 s32 DbCamera_GetFirstAvailableLetter(void) {
     s32 i;
@@ -1511,9 +1510,9 @@ s32 DbCamera_GetMempakAllocSize(void) {
 }
 
 s32 DbCamera_LoadCallback(char* c) {
-    s32 i;
+    s32       i;
     ptrdiff_t size;
-    s32 off;
+    s32       off;
 
     for (i = 0; i < ARRAY_COUNT(sDbCameraCuts) - 1; i++) {
         if (sDbCameraCuts[i].letter != '?') {
@@ -1561,12 +1560,12 @@ s32 DbCamera_LoadCallback(char* c) {
 }
 
 s32 DbCamera_SaveCallback(char* c) {
-    s32 pad[2];
-    s32 ret;
-    size_t freeSize;
+    s32       pad[2];
+    s32       ret;
+    size_t    freeSize;
     ptrdiff_t off;
     ptrdiff_t size;
-    s32 i;
+    s32       i;
 
     ret = Mempak_GetFileSize(2, *c);
     freeSize = Mempak_GetFreeBytes(2);
@@ -1748,16 +1747,21 @@ void DbCamera_Reset(Camera* cam, DbCamera* dbCam) {
 s32 DbCamera_UpdateDemoControl(DbCamera* dbCamera, Camera* cam) {
     static s32 sMempakFiles;
     static u32 sDbCameraColors[] = {
-        4, 4, 4, 7, 4, 4,
+        4,
+        4,
+        4,
+        7,
+        4,
+        4,
     };
-    static s32 sMempakFilesize = 0;
-    s32 i;
-    s32 idx1;
-    s32 idx2;
-    s16 idx3;
-    char sp74[(ARRAY_COUNT(sDbCameraCuts) - 1 + 4) * 2];
+    static s32  sMempakFilesize = 0;
+    s32         i;
+    s32         idx1;
+    s32         idx2;
+    s16         idx3;
+    char        sp74[(ARRAY_COUNT(sDbCameraCuts) - 1 + 4) * 2];
     DbCameraCut sp64;
-    VecSph sp5C;
+    VecSph      sp5C;
     s32 (*callbacks[])(char*) = { DbCamera_SaveCallback, DbCamera_LoadCallback, DbCamera_ClearCallback };
 
     func_8006376C(0xE, 5, 0, cameraStrings[25]); // DEMO CONTROL

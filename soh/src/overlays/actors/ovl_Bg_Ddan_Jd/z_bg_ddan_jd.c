@@ -42,13 +42,13 @@ typedef enum {
 } BgDdanJdState;
 
 #define MOVE_HEIGHT_MIDDLE 140.0f
-#define MOVE_HEIGHT_TOP 700.0f
+#define MOVE_HEIGHT_TOP    700.0f
 
 #define IDLE_FRAMES 100
 
 // Since ySpeed is used to determine if the platform should rise to the top of the dungeon, these must be assigned
 // different values in order for the shortcut to work correctly
-#define DEFAULT_Y_SPEED 1
+#define DEFAULT_Y_SPEED  1
 #define SHORTCUT_Y_SPEED 5
 
 void BgDdanJd_Init(Actor* thisx, PlayState* play) {

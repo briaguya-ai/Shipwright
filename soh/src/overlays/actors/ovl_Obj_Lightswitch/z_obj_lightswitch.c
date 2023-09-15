@@ -141,7 +141,7 @@ void ObjLightswitch_InitCollider(ObjLightswitch* this, PlayState* play) {
 
 void ObjLightswitch_SetSwitchFlag(ObjLightswitch* this, PlayState* play) {
     Actor* thisx = &this->actor; // required
-    s32 type;
+    s32    type;
 
     if (!Flags_GetSwitch(play, this->actor.params >> 8 & 0x3F)) {
         type = this->actor.params >> 4 & 3;
@@ -170,12 +170,12 @@ void ObjLightswitch_ClearSwitchFlag(ObjLightswitch* this, PlayState* play) {
 
 void ObjLightswitch_SpawnDisappearEffects(ObjLightswitch* this, PlayState* play) {
     Vec3f pos;
-    f32 s = Math_SinS(this->actor.shape.rot.y);
-    f32 c = Math_CosS(this->actor.shape.rot.y);
-    f32 x;
-    f32 y;
-    f32 z;
-    s32 pad;
+    f32   s = Math_SinS(this->actor.shape.rot.y);
+    f32   c = Math_CosS(this->actor.shape.rot.y);
+    f32   x;
+    f32   y;
+    f32   z;
+    s32   pad;
 
     if (this->alpha >= (100 << 6)) {
         x = (CLAMP_MAX((1.0f - 1.0f / (255 << 6) * this->alpha) * 400.0f, 60.0f) - 30.0f + 30.0f) * Rand_ZeroOne();
@@ -249,7 +249,7 @@ void ObjLightswitch_Destroy(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
     ObjLightswitch* this = (ObjLightswitch*)thisx;
 
-    // Unset the switch flag on room exit to prevent the rock in the wall from 
+    // Unset the switch flag on room exit to prevent the rock in the wall from
     // vanishing on its own after activating the sun switch by Light Arrow
     // Also prevents the cobra mirror from rotating to face the sun on its own
     // Makes sun switches temporary when activated by Light Arrows (will turn off on room exit)
@@ -480,8 +480,8 @@ void ObjLightswitch_Update(Actor* thisx, PlayState* play2) {
 
 void ObjLightswitch_DrawOpa(ObjLightswitch* this, PlayState* play) {
     Actor* child;
-    Vec3f pos;
-    Vec3s rot;
+    Vec3f  pos;
+    Vec3s  rot;
 
     OPEN_DISPS(play->state.gfxCtx);
     Gfx_SetupDL_25Opa(play->state.gfxCtx);
@@ -529,7 +529,7 @@ void ObjLightswitch_DrawOpa(ObjLightswitch* this, PlayState* play) {
 }
 
 void ObjLightswitch_DrawXlu(ObjLightswitch* this, PlayState* play) {
-    s32 pad;
+    s32   pad;
     Vec3f sp68;
     Vec3s sp60;
 

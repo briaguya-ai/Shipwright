@@ -7,20 +7,20 @@
 #include "z_eff_ss_blast.h"
 #include "objects/gameplay_keep/gameplay_keep.h"
 
-#define rPrimColorR regs[0]
-#define rPrimColorG regs[1]
-#define rPrimColorB regs[2]
-#define rPrimColorA regs[3]
-#define rEnvColorR regs[4]
-#define rEnvColorG regs[5]
-#define rEnvColorB regs[6]
-#define rEnvColorA regs[7]
-#define rAlphaTarget regs[8]
-#define rScale regs[9]
-#define rScaleStep regs[10]
+#define rPrimColorR     regs[0]
+#define rPrimColorG     regs[1]
+#define rPrimColorB     regs[2]
+#define rPrimColorA     regs[3]
+#define rEnvColorR      regs[4]
+#define rEnvColorG      regs[5]
+#define rEnvColorB      regs[6]
+#define rEnvColorA      regs[7]
+#define rAlphaTarget    regs[8]
+#define rScale          regs[9]
+#define rScaleStep      regs[10]
 #define rScaleStepDecay regs[11]
 
-u32 EffectSsBlast_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsBlast_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsBlast_Update(PlayState* play, u32 index, EffectSs* this);
 void EffectSsBlast_Draw(PlayState* play, u32 index, EffectSs* this);
 
@@ -57,9 +57,9 @@ u32 EffectSsBlast_Init(PlayState* play, u32 index, EffectSs* this, void* initPar
 
 void EffectSsBlast_Draw(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    MtxF mf;
-    s32 pad;
-    f32 radius;
+    MtxF             mf;
+    s32              pad;
+    f32              radius;
 
     OPEN_DISPS(gfxCtx);
 

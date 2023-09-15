@@ -14,7 +14,7 @@ void BgHidanFirewall_Destroy(Actor* thisx, PlayState* play);
 void BgHidanFirewall_Update(Actor* thisx, PlayState* play);
 void BgHidanFirewall_Draw(Actor* thisx, PlayState* play);
 
-s32 BgHidanFirewall_CheckProximity(BgHidanFirewall* this, PlayState* play);
+s32  BgHidanFirewall_CheckProximity(BgHidanFirewall* this, PlayState* play);
 void BgHidanFirewall_Wait(BgHidanFirewall* this, PlayState* play);
 void BgHidanFirewall_Countdown(BgHidanFirewall* this, PlayState* play);
 void BgHidanFirewall_Erupt(BgHidanFirewall* this, PlayState* play);
@@ -83,7 +83,7 @@ void BgHidanFirewall_Destroy(Actor* thisx, PlayState* play) {
 
 s32 BgHidanFirewall_CheckProximity(BgHidanFirewall* this, PlayState* play) {
     Player* player;
-    Vec3f distance;
+    Vec3f   distance;
 
     player = GET_PLAYER(play);
     func_8002DBD0(&this->actor, &distance, &player->actor.world.pos);
@@ -139,10 +139,10 @@ void BgHidanFirewall_Collide(BgHidanFirewall* this, PlayState* play) {
 
 void BgHidanFirewall_ColliderFollowPlayer(BgHidanFirewall* this, PlayState* play) {
     Player* player;
-    Vec3f sp30;
-    f32 temp_ret;
-    f32 sp28;
-    f32 phi_f0;
+    Vec3f   sp30;
+    f32     temp_ret;
+    f32     sp28;
+    f32     phi_f0;
 
     player = GET_PLAYER(play);
 
@@ -195,8 +195,14 @@ void BgHidanFirewall_Update(Actor* thisx, PlayState* play) {
 }
 
 static void* sFireballTexs[] = {
-    gFireTempleFireball0Tex, gFireTempleFireball1Tex, gFireTempleFireball2Tex, gFireTempleFireball3Tex,
-    gFireTempleFireball4Tex, gFireTempleFireball5Tex, gFireTempleFireball6Tex, gFireTempleFireball7Tex,
+    gFireTempleFireball0Tex,
+    gFireTempleFireball1Tex,
+    gFireTempleFireball2Tex,
+    gFireTempleFireball3Tex,
+    gFireTempleFireball4Tex,
+    gFireTempleFireball5Tex,
+    gFireTempleFireball6Tex,
+    gFireTempleFireball7Tex,
 };
 
 void BgHidanFirewall_Draw(Actor* thisx, PlayState* play) {

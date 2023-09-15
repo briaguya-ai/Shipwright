@@ -56,7 +56,11 @@ static ColliderCylinderInit sCylinderInit = {
 };
 
 static CollisionCheckInfoInit2 sColChkInfoInit = {
-    0, 0, 0, 0, MASS_IMMOVABLE,
+    0,
+    0,
+    0,
+    0,
+    MASS_IMMOVABLE,
 };
 
 typedef enum {
@@ -165,7 +169,7 @@ s32 func_809FDDB4(EnDu* this, PlayState* play) {
 
 void func_809FDE24(EnDu* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s16 trackingMode = NPC_TRACKING_PLAYER_AUTO_TURN;
+    s16     trackingMode = NPC_TRACKING_PLAYER_AUTO_TURN;
 
     if (this->interactInfo.talkState == NPC_TALK_STATE_IDLE) {
         trackingMode = NPC_TRACKING_NONE;
@@ -247,7 +251,14 @@ void func_809FE000(CsCmdActorAction* csAction, Vec3f* dst) {
 
 void func_809FE040(EnDu* this) {
     s32 animationIndices[] = {
-        ENDU_ANIM_8, ENDU_ANIM_8, ENDU_ANIM_8, ENDU_ANIM_8, ENDU_ANIM_9, ENDU_ANIM_10, ENDU_ANIM_10, ENDU_ANIM_13,
+        ENDU_ANIM_8,
+        ENDU_ANIM_8,
+        ENDU_ANIM_8,
+        ENDU_ANIM_8,
+        ENDU_ANIM_9,
+        ENDU_ANIM_10,
+        ENDU_ANIM_10,
+        ENDU_ANIM_13,
     };
 
     if (Animation_OnFrame(&this->skelAnime, this->skelAnime.endFrame)) {
@@ -436,10 +447,10 @@ void func_809FE798(EnDu* this, PlayState* play) {
 }
 
 void func_809FE890(EnDu* this, PlayState* play) {
-    f32 frame;
-    Vec3f startPos;
-    Vec3f endPos;
-    Vec3f velocity = { 0.0f, 0.0f, 0.0f };
+    f32               frame;
+    Vec3f             startPos;
+    Vec3f             endPos;
+    Vec3f             velocity = { 0.0f, 0.0f, 0.0f };
     CsCmdActorAction* csAction;
 
     if (play->csCtx.state == CS_STATE_IDLE || gSaveContext.n64ddFlag) {
@@ -519,7 +530,7 @@ void func_809FEB08(EnDu* this, PlayState* play) {
         return;
     }
     if ((!gSaveContext.n64ddFlag && CUR_UPG_VALUE(UPG_STRENGTH) <= 0) ||
-         (gSaveContext.n64ddFlag && !Flags_GetTreasure(play, 0x1E))) {
+        (gSaveContext.n64ddFlag && !Flags_GetTreasure(play, 0x1E))) {
         if (gSaveContext.n64ddFlag) {
             Flags_SetTreasure(play, 0x1E);
         }

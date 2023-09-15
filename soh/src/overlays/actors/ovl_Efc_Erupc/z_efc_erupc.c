@@ -50,7 +50,7 @@ void EfcErupc_UpdateAction(EfcErupc* this, PlayState* play) {
     Vec3f pos;
     Vec3f vel;
     Vec3f accel;
-    s32 i;
+    s32   i;
 
     if (play->csCtx.state != 0) {
         if (play->csCtx.npcActions[1] != NULL) {
@@ -163,8 +163,8 @@ void EfcErupc_Draw(Actor* thisx, PlayState* play) {
 
 void EfcErupc_DrawParticles(EfcErupcParticles* particles, PlayState* play) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s16 i;
-    s32 pad;
+    s16              i;
+    s32              pad;
 
     OPEN_DISPS(gfxCtx);
     for (i = 0; i < EFC_ERUPC_NUM_PARTICLES; i++, particles++) {
@@ -199,15 +199,15 @@ static Color_RGB8 D_8099D770[] = {
 };
 
 void EfcErupc_UpdateParticles(EfcErupc* this, PlayState* play) {
-    s16 i;
-    s16 index;
+    s16        i;
+    s16        index;
     Color_RGB8 particleColors[] = {
         { 255, 128, 0 },
         { 255, 0, 0 },
         { 0, 0, 0 },
         { 100, 0, 0 },
     };
-    Color_RGB8* color;
+    Color_RGB8*        color;
     EfcErupcParticles* cur = this->particles;
 
     for (i = 0; i < EFC_ERUPC_NUM_PARTICLES; i++, cur++) {

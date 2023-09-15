@@ -54,9 +54,9 @@ void ObjHsblock_SetupAction(ObjHsblock* this, ObjHsblockActionFunc actionFunc) {
 }
 
 void func_80B93B68(ObjHsblock* this, PlayState* play, CollisionHeader* collision, s32 moveFlags) {
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
-    s32 pad2[2];
+    s32              pad2[2];
 
     DynaPolyActor_Init(&this->dyna, moveFlags);
     CollisionHeader_GetVirtual(collision, &colHeader);
@@ -147,7 +147,7 @@ void ObjHsblock_Update(Actor* thisx, PlayState* play) {
 
 void ObjHsblock_Draw(Actor* thisx, PlayState* play) {
     Color_RGB8* color;
-    Color_RGB8 defaultColor;
+    Color_RGB8  defaultColor;
 
     OPEN_DISPS(play->state.gfxCtx);
 

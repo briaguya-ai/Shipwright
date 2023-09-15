@@ -150,7 +150,7 @@ void func_80A9F350(EnMThunder* this, PlayState* play) {
 
 void func_80A9F408(EnMThunder* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    Actor* child = this->actor.child;
+    Actor*  child = this->actor.child;
 
     this->unk_1B8 = player->unk_858;
     this->actor.world.pos = player->bodyPartsPos[0];
@@ -159,7 +159,7 @@ void func_80A9F408(EnMThunder* this, PlayState* play) {
     if (this->unk_1CA == 0) {
         if (player->unk_858 >= 0.1f) {
             if ((gSaveContext.magicState) || (((this->actor.params & 0xFF00) >> 8) &&
-                                            !(func_80087708(play, (this->actor.params & 0xFF00) >> 8, 4)))) {
+                                              !(func_80087708(play, (this->actor.params & 0xFF00) >> 8, 4)))) {
                 func_80A9F350(this, play);
                 func_80A9EFE0(this, func_80A9F350);
                 this->unk_1C8 = 0;
@@ -320,8 +320,8 @@ void EnMThunder_Draw(Actor* thisx, PlayState* play2) {
     PlayState* play = play2;
     EnMThunder* this = (EnMThunder*)thisx;
     Player* player = GET_PLAYER(play);
-    f32 phi_f14;
-    s32 phi_t1;
+    f32     phi_f14;
+    s32     phi_t1;
 
     OPEN_DISPS(play->state.gfxCtx);
     Gfx_SetupDL_25Xlu(play->state.gfxCtx);
@@ -341,7 +341,7 @@ void EnMThunder_Draw(Actor* thisx, PlayState* play2) {
     switch (this->unk_1C6) {
         case 0:
             if (CVarGetInteger("gCosmetics.SpinAttack_Level2Primary.Changed", 0)) {
-                Color_RGB8 color = CVarGetColor24("gCosmetics.SpinAttack_Level2Primary.Value", (Color_RGB8){255, 255, 170});
+                Color_RGB8 color = CVarGetColor24("gCosmetics.SpinAttack_Level2Primary.Value", (Color_RGB8){ 255, 255, 170 });
                 gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, color.r, color.g, color.b, (u8)(this->unk_1B0 * 255));
             } else {
                 gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, 255, 255, 170, (u8)(this->unk_1B0 * 255));
@@ -350,8 +350,8 @@ void EnMThunder_Draw(Actor* thisx, PlayState* play2) {
             gSPDisplayList(POLY_XLU_DISP++, gSpinAttack4DL);
             break;
         case 1:
-             if (CVarGetInteger("gCosmetics.SpinAttack_Level1Primary.Changed", 0)) {
-                Color_RGB8 color = CVarGetColor24("gCosmetics.SpinAttack_Level1Primary.Value", (Color_RGB8){170, 255, 255});
+            if (CVarGetInteger("gCosmetics.SpinAttack_Level1Primary.Changed", 0)) {
+                Color_RGB8 color = CVarGetColor24("gCosmetics.SpinAttack_Level1Primary.Value", (Color_RGB8){ 170, 255, 255 });
                 gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, color.r, color.g, color.b, (u8)(this->unk_1B0 * 255));
             } else {
                 gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, 170, 255, 255, (u8)(this->unk_1B0 * 255));
@@ -384,13 +384,13 @@ void EnMThunder_Draw(Actor* thisx, PlayState* play2) {
     if (this->unk_1B8 >= 0.85f) {
         phi_f14 = (D_80AA046C[(play->gameplayFrames & 7)] * 6.0f) + 1.0f;
         if (CVarGetInteger("gCosmetics.SpinAttack_Level2Primary.Changed", 0)) {
-            Color_RGB8 color = CVarGetColor24("gCosmetics.SpinAttack_Level2Primary.Value", (Color_RGB8){255, 255, 170});
+            Color_RGB8 color = CVarGetColor24("gCosmetics.SpinAttack_Level2Primary.Value", (Color_RGB8){ 255, 255, 170 });
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, color.r, color.g, color.b, this->unk_1C8);
         } else {
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, 255, 255, 170, this->unk_1C8);
         }
         if (CVarGetInteger("gCosmetics.SpinAttack_Level2Secondary.Changed", 0)) {
-            Color_RGB8 color = CVarGetColor24("gCosmetics.SpinAttack_Level2Secondary.Value", (Color_RGB8){255, 100, 0});
+            Color_RGB8 color = CVarGetColor24("gCosmetics.SpinAttack_Level2Secondary.Value", (Color_RGB8){ 255, 100, 0 });
             gDPSetEnvColor(POLY_XLU_DISP++, color.r, color.g, color.b, 128);
         } else {
             gDPSetEnvColor(POLY_XLU_DISP++, 255, 100, 0, 128);
@@ -399,13 +399,13 @@ void EnMThunder_Draw(Actor* thisx, PlayState* play2) {
     } else {
         phi_f14 = (D_80AA046C[play->gameplayFrames & 7] * 2.0f) + 1.0f;
         if (CVarGetInteger("gCosmetics.SpinAttack_Level1Primary.Changed", 0)) {
-            Color_RGB8 color = CVarGetColor24("gCosmetics.SpinAttack_Level1Primary.Value", (Color_RGB8){170, 255, 255});
+            Color_RGB8 color = CVarGetColor24("gCosmetics.SpinAttack_Level1Primary.Value", (Color_RGB8){ 170, 255, 255 });
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, color.r, color.g, color.b, this->unk_1C8);
         } else {
             gDPSetPrimColor(POLY_XLU_DISP++, 0, 0x80, 170, 255, 255, this->unk_1C8);
         }
         if (CVarGetInteger("gCosmetics.SpinAttack_Level1Secondary.Changed", 0)) {
-            Color_RGB8 color = CVarGetColor24("gCosmetics.SpinAttack_Level1Secondary.Value", (Color_RGB8){0, 100, 255});
+            Color_RGB8 color = CVarGetColor24("gCosmetics.SpinAttack_Level1Secondary.Value", (Color_RGB8){ 0, 100, 255 });
             gDPSetEnvColor(POLY_XLU_DISP++, color.r, color.g, color.b, 128);
         } else {
             gDPSetEnvColor(POLY_XLU_DISP++, 0, 100, 255, 128);

@@ -55,12 +55,33 @@ static f32 sAnimParamsInit[][8] = {
 static s16 sBaseHeadTimers[] = { 20, 10, 20, 10, 13, 0 };
 
 static Vec3f sRupeePositions[] = {
-    { 0.0f, 0.0f, 90.0f },  { -55.0f, 0.0f, 90.0f }, { -55.0f, 0.0f, 30.0f }, { -55.0f, 0.0f, -30.0f },
-    { 0.0f, 0.0f, -30.0f }, { 55.0f, 0.0f, -30.0f }, { 55.0f, 0.0f, 30.0f },  { 55.0f, 0.0f, 90.0f },
+    { 0.0f, 0.0f, 90.0f },
+    { -55.0f, 0.0f, 90.0f },
+    { -55.0f, 0.0f, 30.0f },
+    { -55.0f, 0.0f, -30.0f },
+    { 0.0f, 0.0f, -30.0f },
+    { 55.0f, 0.0f, -30.0f },
+    { 55.0f, 0.0f, 30.0f },
+    { 55.0f, 0.0f, 90.0f },
 };
 
 static s32 sCamDataIdxs[] = {
-    7, 7, 2, 2, 2, 2, 3, 3, 4, 4, 5, 6, 4, 4, 5, 6,
+    7,
+    7,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    6,
+    4,
+    4,
+    5,
+    6,
 };
 
 static s16 sWaypoints[] = { 0, 4, 1, 5, 2, 6, 3, 7 };
@@ -73,7 +94,7 @@ void EnHeishi1_Init(Actor* thisx, PlayState* play) {
     s32 pad;
     EnHeishi1* this = (EnHeishi1*)thisx;
     Vec3f rupeePos;
-    s32 i;
+    s32   i;
 
     Actor_SetScale(&this->actor, 0.01f);
     SkelAnime_Init(play, &this->skelAnime, &gEnHeishiSkel, &gEnHeishiIdleAnim, this->jointTable, this->morphTable,
@@ -132,7 +153,7 @@ void EnHeishi1_Init(Actor* thisx, PlayState* play) {
         }
     } else {
         if ((gSaveContext.dayTime >= 0xB889) || !IS_DAY ||
-            (!gSaveContext.n64ddFlag && Flags_GetEventChkInf(EVENTCHKINF_ZELDA_FLED_HYRULE_CASTLE)) || 
+            (!gSaveContext.n64ddFlag && Flags_GetEventChkInf(EVENTCHKINF_ZELDA_FLED_HYRULE_CASTLE)) ||
             (gSaveContext.n64ddFlag && metZelda)) {
             this->actionFunc = EnHeishi1_SetupWaitNight;
         } else {
@@ -159,11 +180,11 @@ void EnHeishi1_SetupWalk(EnHeishi1* this, PlayState* play) {
 }
 
 void EnHeishi1_Walk(EnHeishi1* this, PlayState* play) {
-    Path* path;
+    Path*  path;
     Vec3s* pointPos;
-    f32 pathDiffX;
-    f32 pathDiffZ;
-    s16 randOffset;
+    f32    pathDiffX;
+    f32    pathDiffZ;
+    s16    randOffset;
 
     SkelAnime_Update(&this->skelAnime);
 
@@ -398,11 +419,11 @@ void EnHeishi1_WaitNight(EnHeishi1* this, PlayState* play) {
 
 void EnHeishi1_Update(Actor* thisx, PlayState* play) {
     EnHeishi1* this = (EnHeishi1*)thisx;
-    s16 path;
-    u8 i;
-    s32 pad;
+    s16     path;
+    u8      i;
+    s32     pad;
     Player* player = GET_PLAYER(play);
-    s32 pad2;
+    s32     pad2;
     Camera* activeCam;
 
     this->activeTimer++;

@@ -47,7 +47,7 @@ static InitChainEntry sInitChain[] = {
 };
 
 static s16 sObjectIDs[] = { OBJECT_MJIN_FLASH, OBJECT_MJIN_DARK, OBJECT_MJIN_FLAME,
-                            OBJECT_MJIN_ICE,   OBJECT_MJIN_SOUL, OBJECT_MJIN_WIND };
+                            OBJECT_MJIN_ICE, OBJECT_MJIN_SOUL, OBJECT_MJIN_WIND };
 
 void* gPedestalEmblems[] = { gLightMedallionPlatformTex, gShadowMedallionPlatformTex, gFireMedallionPlatformTex,
                              gWaterMedallionPlatformTex, gSpiritMedallionPlatformTex, gForestMedallionPlatformTex };

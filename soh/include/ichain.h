@@ -7,19 +7,19 @@
 #define ICHAIN_H
 
 typedef struct {
-    u32 cont:   1;
-    u32 type:   4;
-    u32 offset: 11;
-    s32 value:  16;
+    u32 cont   : 1;
+    u32 type   : 4;
+    u32 offset : 11;
+    s32 value  : 16;
 } InitChainEntry;
 
 typedef enum {
     /* 0x0 */ ICHAINTYPE_U8,            // sets byte
-    /* 0x1 */ ICHAINTYPE_S8, //
+    /* 0x1 */ ICHAINTYPE_S8,            //
     /* 0x2 */ ICHAINTYPE_U16,           // sets short
-    /* 0x3 */ ICHAINTYPE_S16, //
+    /* 0x3 */ ICHAINTYPE_S16,           //
     /* 0x4 */ ICHAINTYPE_U32,           // sets word
-    /* 0x5 */ ICHAINTYPE_S32, //
+    /* 0x5 */ ICHAINTYPE_S32,           //
     /* 0x6 */ ICHAINTYPE_F32,           // sets float
     /* 0x7 */ ICHAINTYPE_F32_DIV1000,   // sets float divided by 1000
     /* 0x8 */ ICHAINTYPE_VEC3F,         // sets Vec3f members
@@ -40,8 +40,8 @@ typedef enum {
  * * value ---- s16 value to use
  * * cont ----- ICHAIN_CONTINUE (or ICHAIN_STOP) to continue (or stop) parsing
  */
-#define ICHAIN(type, member, value, cont)      \
-        { cont, type, OFFSETOF(Actor, member), value }
+#define ICHAIN(type, member, value, cont) \
+    { cont, type, OFFSETOF(Actor, member), value }
 
 #define ICHAIN_U8(member, val, cont)            ICHAIN(ICHAINTYPE_U8, member, val, cont)
 #define ICHAIN_S8(member, val, cont)            ICHAIN(ICHAINTYPE_S8, member, val, cont)

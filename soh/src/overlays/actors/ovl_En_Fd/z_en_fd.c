@@ -278,7 +278,7 @@ s32 EnFd_CheckHammer(EnFd* this, PlayState* play) {
 }
 
 s32 EnFd_ColliderCheck(EnFd* this, PlayState* play) {
-    Player* player = GET_PLAYER(play);
+    Player*       player = GET_PLAYER(play);
     ColliderInfo* info;
 
     if (this->collider.base.acFlags & AC_HIT || EnFd_CheckHammer(this, play)) {
@@ -322,10 +322,10 @@ s32 EnFd_ColliderCheck(EnFd* this, PlayState* play) {
  */
 s32 EnFd_CanSeeActor(EnFd* this, Actor* actor, PlayState* play) {
     CollisionPoly* colPoly;
-    s32 bgId;
-    Vec3f colPoint;
-    s16 angle;
-    s32 pad;
+    s32            bgId;
+    Vec3f          colPoint;
+    s16            angle;
+    s32            pad;
 
     // Check to see if `actor` is within 400 units of `this`
     if (Math_Vec3f_DistXYZ(&this->actor.world.pos, &actor->world.pos) > 400.0f) {
@@ -373,7 +373,7 @@ Actor* EnFd_FindBomb(EnFd* this, PlayState* play) {
 
 Actor* EnFd_FindPotentialTheat(EnFd* this, PlayState* play) {
     Player* player;
-    Actor* bomb = EnFd_FindBomb(this, play);
+    Actor*  bomb = EnFd_FindBomb(this, play);
 
     if (bomb != NULL) {
         return bomb;
@@ -396,7 +396,7 @@ Actor* EnFd_FindPotentialTheat(EnFd* this, PlayState* play) {
  * position in a circle formed by `radius` with center at `this`'s initial position.
  */
 Vec3f* EnFd_GetPosAdjAroundCircle(Vec3f* dst, EnFd* this, f32 radius, s16 dir) {
-    s16 angle;
+    s16   angle;
     Vec3f newPos;
 
     angle = Math_Vec3f_Yaw(&this->actor.home.pos, &this->actor.world.pos) + (dir * 0x1554); // ~30 degrees
@@ -410,9 +410,9 @@ Vec3f* EnFd_GetPosAdjAroundCircle(Vec3f* dst, EnFd* this, f32 radius, s16 dir) {
 
 s32 EnFd_ShouldStopRunning(EnFd* this, PlayState* play, f32 radius, s16* runDir) {
     CollisionPoly* poly;
-    s32 bgId;
-    Vec3f colPoint;
-    Vec3f pos;
+    s32            bgId;
+    Vec3f          colPoint;
+    Vec3f          pos;
 
     // Check to see if the next position on the rotation around the circle
     // will result in a background collision
@@ -585,9 +585,9 @@ void EnFd_SpinAndSpawnFire(EnFd* this, PlayState* play) {
  */
 void EnFd_Run(EnFd* this, PlayState* play) {
     Actor* potentialThreat;
-    s16 yawToYawTarget;
-    f32 runRadiusTarget;
-    Vec3f adjPos;
+    s16    yawToYawTarget;
+    f32    runRadiusTarget;
+    Vec3f  adjPos;
 
     if (EnFd_ShouldStopRunning(this, play, this->runRadius, &this->runDir)) {
         if (this->invincibilityTimer == 0) {
@@ -723,7 +723,7 @@ void EnFd_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, 
     Vec3f pos = { 0.0f, 0.0f, 0.0f };
     Vec3f accel = { 0.0f, 0.0f, 0.0f };
     Vec3f velocity = { 0.0f, 0.0f, 0.0f };
-    s32 i;
+    s32   i;
 
     if (limbIndex == 21) {
         Matrix_MultVec3f(&initialPos, &this->corePos);
@@ -755,7 +755,7 @@ void EnFd_PostLimbDraw(PlayState* play, s32 limbIndex, Gfx** dList, Vec3s* rot, 
 
 void EnFd_Draw(Actor* thisx, PlayState* play) {
     EnFd* this = (EnFd*)thisx;
-    s32 clampedHealth;
+    s32         clampedHealth;
     Color_RGBA8 primColors[] = {
         { 255, 255, 200, 255 },
         { 200, 200, 200, 255 },
@@ -800,7 +800,7 @@ void EnFd_Draw(Actor* thisx, PlayState* play) {
 void EnFd_AddEffect(EnFd* this, u8 type, Vec3f* pos, Vec3f* velocity, Vec3f* accel, u8 timer, f32 scale,
                     f32 scaleStep) {
     EnFdEffect* eff = this->effects;
-    s16 i;
+    s16         i;
 
     for (i = 0; i < ARRAY_COUNT(this->effects); i++, eff++) {
         if (eff->type != FD_EFFECT_NONE) {
@@ -823,7 +823,7 @@ void EnFd_AddEffect(EnFd* this, u8 type, Vec3f* pos, Vec3f* velocity, Vec3f* acc
 }
 
 void EnFd_UpdateFlames(EnFd* this) {
-    s16 i;
+    s16         i;
     EnFdEffect* eff = this->effects;
 
     for (i = 0; i < ARRAY_COUNT(this->effects); i++, eff++) {
@@ -847,7 +847,7 @@ void EnFd_UpdateFlames(EnFd* this) {
 
 void EnFd_UpdateDots(EnFd* this) {
     EnFdEffect* eff = this->effects;
-    s16 i;
+    s16         i;
     Color_RGBA8 dotColors[] = {
         { 255, 128, 0, 0 },
         { 255, 0, 0, 0 },
@@ -880,11 +880,18 @@ void EnFd_UpdateDots(EnFd* this) {
 
 void EnFd_DrawFlames(EnFd* this, PlayState* play) {
     static void* dustTextures[] = {
-        gDust8Tex, gDust7Tex, gDust6Tex, gDust5Tex, gDust4Tex, gDust3Tex, gDust2Tex, gDust1Tex,
+        gDust8Tex,
+        gDust7Tex,
+        gDust6Tex,
+        gDust5Tex,
+        gDust4Tex,
+        gDust3Tex,
+        gDust2Tex,
+        gDust1Tex,
     };
-    s32 firstDone;
-    s16 i;
-    s16 idx;
+    s32         firstDone;
+    s16         i;
+    s16         idx;
     EnFdEffect* eff = this->effects;
 
     OPEN_DISPS(play->state.gfxCtx);
@@ -919,8 +926,8 @@ void EnFd_DrawFlames(EnFd* this, PlayState* play) {
 }
 
 void EnFd_DrawDots(EnFd* this, PlayState* play) {
-    s16 i;
-    s16 firstDone;
+    s16         i;
+    s16         firstDone;
     EnFdEffect* eff = this->effects;
 
     OPEN_DISPS(play->state.gfxCtx);
@@ -946,7 +953,7 @@ void EnFd_DrawDots(EnFd* this, PlayState* play) {
             gSPMatrix(POLY_XLU_DISP++, MATRIX_NEWMTX(play->state.gfxCtx),
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPDisplayList(POLY_XLU_DISP++, gFlareDancerTriangleParticleDL);
-            
+
             FrameInterpolation_RecordCloseChild();
         }
     }

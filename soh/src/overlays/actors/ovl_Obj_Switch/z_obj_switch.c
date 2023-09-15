@@ -184,9 +184,9 @@ void ObjSwitch_RotateY(Vec3f* dest, Vec3f* src, s16 angle) {
 }
 
 void ObjSwitch_InitDynapoly(ObjSwitch* this, PlayState* play, CollisionHeader* collision, s32 moveFlag) {
-    s32 pad;
+    s32              pad;
     CollisionHeader* colHeader = NULL;
-    s32 pad2;
+    s32              pad2;
 
     DynaPolyActor_Init(&this->dyna, moveFlag);
     CollisionHeader_GetVirtual(collision, &colHeader);
@@ -214,9 +214,9 @@ void ObjSwitch_InitJntSphCollider(ObjSwitch* this, PlayState* play, ColliderJntS
 
 void ObjSwitch_InitTrisCollider(ObjSwitch* this, PlayState* play, ColliderTrisInit* colliderTrisInit) {
     ColliderTris* colliderTris = &this->tris.col;
-    s32 i;
-    s32 j;
-    Vec3f pos[3];
+    s32           i;
+    s32           j;
+    Vec3f         pos[3];
 
     Collider_InitTris(play, colliderTris);
     Collider_SetTris(play, colliderTris, &this->dyna.actor, colliderTrisInit, this->tris.items);
@@ -489,7 +489,7 @@ void ObjSwitch_FloorRelease(ObjSwitch* this, PlayState* play) {
 
 s32 ObjSwitch_EyeIsHit(ObjSwitch* this) {
     Actor* collidingActor;
-    s16 yawDiff;
+    s16    yawDiff;
 
     if ((this->tris.col.base.acFlags & AC_HIT) && !(this->unk_17F & 2)) {
         collidingActor = this->tris.col.base.ac;
@@ -728,8 +728,8 @@ void ObjSwitch_DrawEye(ObjSwitch* this, PlayState* play) {
         { gEyeSwitchSilverOpenTex, gEyeSwitchSilverHalfTex, gEyeSwitchSilverClosedTex, gEyeSwitchSilverClosedTex },
     };
     static Gfx* eyeDlists[] = { gEyeSwitch1DL, gEyeSwitch2DL };
-    s32 pad;
-    s32 subType = (this->dyna.actor.params >> 4 & 7);
+    s32         pad;
+    s32         subType = (this->dyna.actor.params >> 4 & 7);
 
     OPEN_DISPS(play->state.gfxCtx);
 
@@ -747,9 +747,9 @@ void ObjSwitch_DrawCrystal(ObjSwitch* this, PlayState* play) {
                                 gCrystalSwitchCoreXluDL };
     static Gfx* opaDLists[] = { gCrystalSwitchCoreOpaDL, gCrystalSwitchDiamondOpaDL, NULL, NULL,
                                 gCrystalSwitchCoreOpaDL };
-    s32 pad1;
-    s32 pad2;
-    s32 subType;
+    s32         pad1;
+    s32         pad2;
+    s32         subType;
 
     subType = (this->dyna.actor.params >> 4 & 7);
     func_8002ED80(&this->dyna.actor, play, 0);
@@ -783,7 +783,11 @@ void ObjSwitch_DrawCrystal(ObjSwitch* this, PlayState* play) {
 }
 
 static ObjSwitchActionFunc sDrawFuncs[] = {
-    ObjSwitch_DrawFloor, ObjSwitch_DrawFloorRusty, ObjSwitch_DrawEye, ObjSwitch_DrawCrystal, ObjSwitch_DrawCrystal,
+    ObjSwitch_DrawFloor,
+    ObjSwitch_DrawFloorRusty,
+    ObjSwitch_DrawEye,
+    ObjSwitch_DrawCrystal,
+    ObjSwitch_DrawCrystal,
 };
 
 void ObjSwitch_Draw(Actor* thisx, PlayState* play) {

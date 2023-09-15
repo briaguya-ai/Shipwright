@@ -7,19 +7,19 @@
 #include "z_eff_ss_dead_dd.h"
 #include "objects/gameplay_keep/gameplay_keep.h"
 
-#define rScale regs[0]
+#define rScale      regs[0]
 #define rPrimColorR regs[2]
 #define rPrimColorG regs[3]
 #define rPrimColorB regs[4]
-#define rAlpha regs[5]
-#define rEnvColorR regs[6]
-#define rEnvColorG regs[7]
-#define rEnvColorB regs[8]
-#define rScaleStep regs[9]
-#define rAlphaStep regs[10]
-#define rAlphaMode regs[11] // if mode is 0 alpha decreases over time, otherwise it increases
+#define rAlpha      regs[5]
+#define rEnvColorR  regs[6]
+#define rEnvColorG  regs[7]
+#define rEnvColorB  regs[8]
+#define rScaleStep  regs[9]
+#define rAlphaStep  regs[10]
+#define rAlphaMode  regs[11] // if mode is 0 alpha decreases over time, otherwise it increases
 
-u32 EffectSsDeadDd_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsDeadDd_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsDeadDd_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsDeadDd_Update(PlayState* play, u32 index, EffectSs* this);
 
@@ -29,7 +29,7 @@ EffectSsInit Effect_Ss_Dead_Dd_InitVars = {
 };
 
 u32 EffectSsDeadDd_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx) {
-    s32 i;
+    s32                       i;
     EffectSsDeadDdInitParams* initParams = (EffectSsDeadDdInitParams*)initParamsx;
 
     if (initParams->type == 0) {
@@ -91,11 +91,11 @@ u32 EffectSsDeadDd_Init(PlayState* play, u32 index, EffectSs* this, void* initPa
 
 void EffectSsDeadDd_Draw(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    MtxF mfTrans;
-    MtxF mfScale;
-    MtxF mfResult;
-    Mtx* mtx;
-    f32 scale;
+    MtxF             mfTrans;
+    MtxF             mfScale;
+    MtxF             mfResult;
+    Mtx*             mtx;
+    f32              scale;
 
     OPEN_DISPS(gfxCtx);
 

@@ -47,8 +47,8 @@ static s16 sTargetRot[] = { 0x0000, 0x0000, 0x3FFF, -0x3FFF };
 
 void BgBowlWall_Init(Actor* thisx, PlayState* play) {
     BgBowlWall* this = (BgBowlWall*)thisx;
-    s32 pad1;
-    s32 pad2;
+    s32              pad1;
+    s32              pad2;
     CollisionHeader* colHeader = NULL;
 
     DynaPolyActor_Init(&this->dyna, DPM_UNK);
@@ -74,10 +74,10 @@ void BgBowlWall_Destroy(Actor* thisx, PlayState* play) {
 }
 
 void BgBowlWall_SpawnBullseyes(BgBowlWall* this, PlayState* play) {
-    s32 pad;
+    s32         pad;
     EnWallTubo* bullseye;
-    Actor* lookForGirl;
-    s16 type;
+    Actor*      lookForGirl;
+    s16         type;
 
     type = this->dyna.actor.params;
     if (type != 0) {
@@ -118,13 +118,13 @@ void BgBowlWall_WaitForHit(BgBowlWall* this, PlayState* play) {
 }
 
 void BgBowlWall_FallDoEffects(BgBowlWall* this, PlayState* play) {
-    s16 pad;
+    s16   pad;
     Vec3f effectAccel = { 0.0f, 0.1f, 0.0f };
     Vec3f effectVelocity = { 0.0f, 0.0f, 0.0f };
     Vec3f effectPos;
-    s16 quakeIndex;
-    s32 wallFallen;
-    s32 i;
+    s16   quakeIndex;
+    s32   wallFallen;
+    s32   i;
 
     wallFallen = false;
 

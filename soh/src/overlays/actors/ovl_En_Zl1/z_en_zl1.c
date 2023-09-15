@@ -138,7 +138,7 @@ void func_80B4AE18(EnZl1* this) {
 
 void func_80B4AF18(EnZl1* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 pad;
+    s32     pad;
 
     func_80038290(play, &this->actor, &this->unk_200, &this->unk_206, this->actor.focus.pos);
 
@@ -158,13 +158,13 @@ void func_80B4AF18(EnZl1* this, PlayState* play) {
 
 void func_80B4B010(EnZl1* this, PlayState* play) {
     Player* player = GET_PLAYER(play);
-    s32 pad2;
-    s32 pad3;
-    s32 pad;
-    Vec3f vec1 = { -460.0f, 118.0f, 0.0f };
-    Vec3f vec2 = { -406.0f, 110.0f, 0.0f };
-    Vec3f playerPos = { -398.0f, 84.0f, 0.0f };
-    s16 rotDiff;
+    s32     pad2;
+    s32     pad3;
+    s32     pad;
+    Vec3f   vec1 = { -460.0f, 118.0f, 0.0f };
+    Vec3f   vec2 = { -406.0f, 110.0f, 0.0f };
+    Vec3f   playerPos = { -398.0f, 84.0f, 0.0f };
+    s16     rotDiff;
 
     if (Actor_ProcessTalkRequest(&this->actor, play)) {
         Animation_Change(&this->skelAnime, &gChildZelda1Anim_10B38, 1.0f, 0.0f,
@@ -196,17 +196,17 @@ void func_80B4B010(EnZl1* this, PlayState* play) {
 }
 
 void func_80B4B240(EnZl1* this, PlayState* play) {
-    Vec3f sp74 = { -427.0f, 108.0, 26.0 };
-    Vec3f sp68 = { -340.0f, 108.0f, 98.0f };
-    s32 pad;
-    Vec3f sp58 = { -434.0f, 84.0f, 0.0f };
-    u8 sp54[] = { 0x00, 0x00, 0x02 };
-    s32 pad2;
-    Player* player = GET_PLAYER(play);
+    Vec3f            sp74 = { -427.0f, 108.0, 26.0 };
+    Vec3f            sp68 = { -340.0f, 108.0f, 98.0f };
+    s32              pad;
+    Vec3f            sp58 = { -434.0f, 84.0f, 0.0f };
+    u8               sp54[] = { 0x00, 0x00, 0x02 };
+    s32              pad2;
+    Player*          player = GET_PLAYER(play);
     AnimationHeader* animHeaderSeg;
-    MessageContext* msgCtx = &play->msgCtx;
-    f32 frameCount;
-    s32 sp3C = 0;
+    MessageContext*  msgCtx = &play->msgCtx;
+    f32              frameCount;
+    s32              sp3C = 0;
 
     switch (this->unk_1E2) {
         case 0:
@@ -362,19 +362,28 @@ void func_80B4B8B4(EnZl1* this, PlayState* play) {
         &gChildZelda1Anim_10B38,
     };
     u8 spA4[] = {
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x02,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x02,
+        0x00,
+        0x02,
     };
-    Vec3f sp98 = { -421.0f, 143.0f, -5.0f };
-    Vec3f sp8C = { -512.0f, 105.0f, -4.0f };
-    s32 pad2;
-    f32 actionLength;
+    Vec3f             sp98 = { -421.0f, 143.0f, -5.0f };
+    Vec3f             sp8C = { -512.0f, 105.0f, -4.0f };
+    s32               pad2;
+    f32               actionLength;
     CsCmdActorAction* npcAction;
-    Vec3f sp74;
-    Vec3f sp68;
-    Vec3f velocity = { 0.0f, 0.0f, 0.0f };
-    s32 pad;
-    f32 frameCount;
-    Vec3f sp48;
+    Vec3f             sp74;
+    Vec3f             sp68;
+    Vec3f             velocity = { 0.0f, 0.0f, 0.0f };
+    s32               pad;
+    f32               frameCount;
+    Vec3f             sp48;
 
     SkelAnime_Update(&this->skelAnime);
     func_80B4B874(this, play);
@@ -416,8 +425,8 @@ void func_80B4B8B4(EnZl1* this, PlayState* play) {
 }
 
 void func_80B4BBC4(EnZl1* this, PlayState* play) {
-    s32 pad;
-    f32 frameCount = Animation_GetLastFrame(&gChildZelda1Anim_00438);
+    s32     pad;
+    f32     frameCount = Animation_GetLastFrame(&gChildZelda1Anim_00438);
     Player* player = GET_PLAYER(play);
 
     Animation_Change(&this->skelAnime, &gChildZelda1Anim_00438, 1.0f, 0.0f, frameCount, ANIMMODE_LOOP, 0.0f);
@@ -443,16 +452,25 @@ void func_80B4BC78(EnZl1* this, PlayState* play) {
         &gChildZelda1Anim_10B38,
     };
     u8 sp84[] = {
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x02,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x02,
+        0x00,
+        0x02,
     };
-    s32 pad2;
-    f32 actionLength;
-    Vec3f sp70;
-    Vec3f sp64;
-    Vec3f velocity = { 0.0f, 0.0f, 0.0f };
+    s32               pad2;
+    f32               actionLength;
+    Vec3f             sp70;
+    Vec3f             sp64;
+    Vec3f             velocity = { 0.0f, 0.0f, 0.0f };
     CsCmdActorAction* npcAction;
-    s32 pad;
-    f32 frameCount;
+    s32               pad;
+    f32               frameCount;
 
     if (SkelAnime_Update(&this->skelAnime) && (this->skelAnime.animation == &gChildZelda1Anim_10B38)) {
         frameCount = Animation_GetLastFrame(&gChildZelda1Anim_11348);
@@ -488,9 +506,9 @@ void func_80B4BC78(EnZl1* this, PlayState* play) {
 }
 
 void func_80B4BF2C(EnZl1* this, PlayState* play) {
-    s32 pad;
+    s32             pad;
     MessageContext* msgCtx = &play->msgCtx;
-    Player* player = GET_PLAYER(play);
+    Player*         player = GET_PLAYER(play);
 
     switch (this->unk_1E2) {
         case 0:

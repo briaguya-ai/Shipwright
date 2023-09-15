@@ -10,25 +10,33 @@
 #define rPrimColorR regs[0]
 #define rPrimColorG regs[1]
 #define rPrimColorA regs[2]
-#define rEnvColorR regs[3]
-#define rEnvColorG regs[4]
-#define rEnvColorA regs[5]
-#define rTexIdx regs[6]
-#define rTimer regs[7]
+#define rEnvColorR  regs[3]
+#define rEnvColorG  regs[4]
+#define rEnvColorA  regs[5]
+#define rTexIdx     regs[6]
+#define rTimer      regs[7]
 #define rUpdateRate regs[8]
-#define rDrawMode regs[9]
+#define rDrawMode   regs[9]
 #define rObjBankIdx regs[10]
-#define rScale regs[11]
+#define rScale      regs[11]
 
-u32 EffectSsGMagma2_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
+u32  EffectSsGMagma2_Init(PlayState* play, u32 index, EffectSs* this, void* initParamsx);
 void EffectSsGMagma2_Draw(PlayState* play, u32 index, EffectSs* this);
 void EffectSsGMagma2_Update(PlayState* play, u32 index, EffectSs* this);
 
 static void* sTextures[] = {
-    object_kingdodongo_Tex_02E4E0, object_kingdodongo_Tex_02E8E0, object_kingdodongo_Tex_02ECE0,
-    object_kingdodongo_Tex_02F0E0, object_kingdodongo_Tex_02F4E0, object_kingdodongo_Tex_02F8E0,
-    object_kingdodongo_Tex_02FCE0, object_kingdodongo_Tex_0300E0, object_kingdodongo_Tex_0304E0,
-    object_kingdodongo_Tex_0308E0, object_kingdodongo_Tex_0308E0, object_kingdodongo_Tex_0308E0,
+    object_kingdodongo_Tex_02E4E0,
+    object_kingdodongo_Tex_02E8E0,
+    object_kingdodongo_Tex_02ECE0,
+    object_kingdodongo_Tex_02F0E0,
+    object_kingdodongo_Tex_02F4E0,
+    object_kingdodongo_Tex_02F8E0,
+    object_kingdodongo_Tex_02FCE0,
+    object_kingdodongo_Tex_0300E0,
+    object_kingdodongo_Tex_0304E0,
+    object_kingdodongo_Tex_0308E0,
+    object_kingdodongo_Tex_0308E0,
+    object_kingdodongo_Tex_0308E0,
     object_kingdodongo_Tex_0308E0,
 };
 
@@ -42,7 +50,7 @@ u32 EffectSsGMagma2_Init(PlayState* play, u32 index, EffectSs* this, void* initP
     s32 pad;
 
     if ((objBankIndex >= 0) && Object_IsLoaded(&play->objectCtx, objBankIndex)) {
-        Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
+        Vec3f                      zeroVec = { 0.0f, 0.0f, 0.0f };
         EffectSsGMagma2InitParams* initParams = (EffectSsGMagma2InitParams*)initParamsx;
 
         gSegments[6] = VIRTUAL_TO_PHYSICAL(play->objectCtx.status[objBankIndex].segment);
@@ -73,9 +81,9 @@ u32 EffectSsGMagma2_Init(PlayState* play, u32 index, EffectSs* this, void* initP
 
 void EffectSsGMagma2_Draw(PlayState* play, u32 index, EffectSs* this) {
     GraphicsContext* gfxCtx = play->state.gfxCtx;
-    s32 pad;
-    f32 scale;
-    void* object;
+    s32              pad;
+    f32              scale;
+    void*            object;
 
     scale = this->rScale / 100.0f;
     object = play->objectCtx.status[this->rObjBankIdx].segment;
