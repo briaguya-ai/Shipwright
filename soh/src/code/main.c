@@ -61,6 +61,21 @@ int main(int argc, char** argv)
 
     GameConsole_Init();
     InitOTR();
+
+    if (CVarGetInteger("gAltAssets", 0)) {
+        // LoadResourceDirectory("textures/nintendo_rogo_static/*");
+        // LoadResourceDirectory("textures/font/*");
+        ResourceLoadDirectory("audio/*");
+        // LoadResourceDirectory("text/*");
+        // LoadResourceDirectory("scenes/*/spot00*");
+
+        ResourceLoadDirectoryAsync("alt/code/*");
+        ResourceLoadDirectoryAsync("alt/objects/gameplay_*");
+        ResourceLoadDirectoryAsync("alt/objects/object_mag/*");
+        ResourceLoadDirectoryAsync("alt/overlays/*");
+        ResourceLoadDirectoryAsync("alt/textures/*");
+    }
+
     // TODO: Was moved to below InitOTR because it requires window to be setup. But will be late to catch crashes.
     CrashHandlerRegisterCallback(CrashHandler_PrintSohData);
     BootCommands_Init();

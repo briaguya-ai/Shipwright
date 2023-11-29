@@ -464,12 +464,56 @@ void GameState_Destroy(GameState* gameState) {
 
     osSyncPrintf("game デストラクタ終了\n"); // "game destructor end"
 
-    // Performing clear skeletons before unload resources fixes an actor heap corruption crash due to the skeleton patching system.
-    ResourceMgr_ClearSkeletons();
+    PlayState* play = (PlayState*)gameState;
+    static s16 sceneNum = -1;
+    if (play->sceneNum != sceneNum) {
+        sceneNum = play->sceneNum;
 
-    if (CVarGetInteger("gAltAssets", 0)) {
-        ResourceUnloadDirectory("alt/*");
-        gfx_texture_cache_clear();
+        // Performing clear skeletons before unload resources fixes an actor heap corruption crash due to the skeleton patching system.
+        ResourceMgr_ClearSkeletons();
+
+        if (CVarGetInteger("gAltAssets", 0)) {
+            ResourceUnloadDirectory("alt/objects/object_a*");
+            ResourceUnloadDirectory("alt/objects/object_B*");
+            ResourceUnloadDirectory("alt/objects/object_b*");
+            ResourceUnloadDirectory("alt/objects/object_c*");
+            ResourceUnloadDirectory("alt/objects/object_d*");
+            ResourceUnloadDirectory("alt/objects/object_e*");
+            ResourceUnloadDirectory("alt/objects/object_f*");
+            ResourceUnloadDirectory("alt/objects/object_g*");
+            ResourceUnloadDirectory("alt/objects/object_h*");
+            ResourceUnloadDirectory("alt/objects/object_i*");
+            ResourceUnloadDirectory("alt/objects/object_j*");
+            ResourceUnloadDirectory("alt/objects/object_k*");
+            ResourceUnloadDirectory("alt/objects/object_l*");
+            ResourceUnloadDirectory("alt/objects/object_ma1/*");
+            ResourceUnloadDirectory("alt/objects/object_ma2/*");
+            ResourceUnloadDirectory("alt/objects/object_mam*");
+            ResourceUnloadDirectory("alt/objects/object_mas*");
+            ResourceUnloadDirectory("alt/objects/object_mb*");
+            ResourceUnloadDirectory("alt/objects/object_md*");
+            ResourceUnloadDirectory("alt/objects/object_me*");
+            ResourceUnloadDirectory("alt/objects/object_mi*");
+            ResourceUnloadDirectory("alt/objects/object_mj*");
+            ResourceUnloadDirectory("alt/objects/object_mk*");
+            ResourceUnloadDirectory("alt/objects/object_mm*");
+            ResourceUnloadDirectory("alt/objects/object_mo*");
+            ResourceUnloadDirectory("alt/objects/object_n*");
+            ResourceUnloadDirectory("alt/objects/object_o*");
+            ResourceUnloadDirectory("alt/objects/object_p*");
+            ResourceUnloadDirectory("alt/objects/object_q*");
+            ResourceUnloadDirectory("alt/objects/object_r*");
+            ResourceUnloadDirectory("alt/objects/object_s*");
+            ResourceUnloadDirectory("alt/objects/object_t*");
+            ResourceUnloadDirectory("alt/objects/object_u*");
+            ResourceUnloadDirectory("alt/objects/object_v*");
+            ResourceUnloadDirectory("alt/objects/object_w*");
+            ResourceUnloadDirectory("alt/objects/object_x*");
+            ResourceUnloadDirectory("alt/objects/object_y*");
+            ResourceUnloadDirectory("alt/objects/object_z*");
+            ResourceUnloadDirectory("alt/scenes/*");
+            gfx_texture_cache_clear();
+        }
     }
 }
 

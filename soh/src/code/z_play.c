@@ -1977,6 +1977,10 @@ void Play_InitScene(PlayState* play, s32 spawn)
 }
 
 void Play_SpawnScene(PlayState* play, s32 sceneNum, s32 spawn) {
+    if (CVarGetInteger("gAltAssets", 0)) {
+        ResourceMgr_LoadAllSceneResources(sceneNum, false);
+    }
+
     uint8_t mqMode = CVarGetInteger("gBetterDebugWarpScreenMQMode", WARP_MODE_OVERRIDE_OFF);
     int16_t mqModeScene = CVarGetInteger("gBetterDebugWarpScreenMQModeScene", -1);
     if (mqMode != WARP_MODE_OVERRIDE_OFF && sceneNum != mqModeScene) {
