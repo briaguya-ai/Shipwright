@@ -8,14 +8,12 @@ std::shared_ptr<LUS::IResource> ResourceFactoryBinaryRawJsonV0::ReadResource(std
         return nullptr;
     }
 
-    auto json = std::make_shared<RawJson>(file->InitData);
+    auto rawJson = std::make_shared<RawJson>(file->InitData);
     auto reader = std::get<std::shared_ptr<LUS::BinaryReader>>(file->Reader);
 
-    json->DataSize = json->Buffer->size();
+    rawJson->DataSize = file->Buffer->size();
+    rawJson->Data = nlohmann::json::parse(reader->ReadCString(), nullptr, true, true);
 
-    json->Data = new char[json->DataSize];
-    reader->Read(json->Data, json->DataSize);
-
-    return json;
+    return rawJson;
 }
 } // namespace SOH

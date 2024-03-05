@@ -4,14 +4,8 @@ namespace SOH {
 RawJson::RawJson() : Resource(std::shared_ptr<LUS::ResourceInitData>()) {
 }
 
-RawJson::~RawJson() {
-    if (Data != nullptr) {
-        delete Data;
-    }
-}
-
 void* RawJson::GetPointer() {
-    return Data;
+    return &Data;
 }
 
 size_t RawJson::GetPointerSize() {
