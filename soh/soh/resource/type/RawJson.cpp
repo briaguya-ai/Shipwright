@@ -1,14 +1,20 @@
-#include "Blob.h"
+#include "RawJson.h"
 
-namespace LUS {
-Blob::Blob() : Resource(std::shared_ptr<ResourceInitData>()) {
+namespace SOH {
+RawJson::RawJson() : Resource(std::shared_ptr<LUS::ResourceInitData>()) {
 }
 
-void* Blob::GetPointer() {
-    return Data.data();
+RawJson::~RawJson() {
+    if (Data != nullptr) {
+        delete Data;
+    }
 }
 
-size_t Blob::GetPointerSize() {
-    return Data.size() * sizeof(uint8_t);
+void* RawJson::GetPointer() {
+    return Data;
 }
-} // namespace LUS
+
+size_t RawJson::GetPointerSize() {
+    return DataSize * sizeof(char);
+}
+} // namespace SOH
