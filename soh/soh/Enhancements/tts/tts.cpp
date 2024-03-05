@@ -1055,8 +1055,6 @@ void InitTTSBank() {
 
     fileChooseMap = std::static_pointer_cast<SOH::RawJson>(
         LUS::Context::GetInstance()->GetResourceManager()->LoadResource("accessibility/texts/filechoose" + languageSuffix, true, initData))->Data;
-
-    int blarg = 3;
 }
 
 void RegisterOnSetGameLanguageHook() {
