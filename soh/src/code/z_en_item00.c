@@ -1183,41 +1183,55 @@ void EnItem00_Draw(Actor* thisx, PlayState* play) {
     }
 }
 
+#define MINUET_GREEN 0
+#define BOLERO_RED 1
+#define SERENADE_AQUA 2 
+#define REQUIEM_AMBER 3
+#define NOCTURNE_VIOLET 4
+#define PRELUDE_YELLOW 5
+#define STICK_FOREST_GREEN 6 
+#define NUT_GOLD 7
+#define DOUBLE_WHITE 8 
+#define BOMBCHU_BLUE 9
+#define FAIRY_PINK 10
+#define RED_POTION_RED 11
+#define BLUE_FIRE_BLUE 12
+
 void EnItem00_CustomItemsParticles(Actor* Parent, PlayState* play, GetItemEntry giEntry) {
-    s16 color_slot;
+    s16 colorIndex;
     switch (giEntry.drawModIndex) {
         case MOD_NONE:
             switch (giEntry.drawItemId) {
                 case ITEM_SONG_MINUET:
-                    color_slot = 0;
+                    colorIndex = MINUET_GREEN;
                     break;
                 case ITEM_SONG_BOLERO:
-                    color_slot = 1;
+                    colorIndex = BOLERO_RED;
                     break;
                 case ITEM_SONG_SERENADE:
-                    color_slot = 2;
+                    colorIndex = SERENADE_AQUA;
                     break;
                 case ITEM_SONG_REQUIEM:
-                    color_slot = 3;
+                    colorIndex = REQUIEM_AMBER;
                     break;
                 case ITEM_SONG_NOCTURNE:
-                    color_slot = 4;
+                    colorIndex = NOCTURNE_VIOLET;
                     break;
                 case ITEM_SONG_PRELUDE:
-                    color_slot = 5;
+                    colorIndex = PRELUDE_YELLOW;
                     break;
                 case ITEM_STICK_UPGRADE_20:
                 case ITEM_STICK_UPGRADE_30:
-                    color_slot = 6;
+                    colorIndex = STICK_FOREST_GREEN;
                     break;
                 case ITEM_NUT_UPGRADE_30:
                 case ITEM_NUT_UPGRADE_40:
-                    color_slot = 7;
+                    colorIndex = NUT_GOLD;
                     break;
                 case ITEM_BOTTLE:
                 case ITEM_MILK_BOTTLE:
                 case ITEM_LETTER_RUTO:
-                    color_slot = 8;
+                    colorIndex = DOUBLE_WHITE;
                     break;
                 default:
                     return;
@@ -1231,32 +1245,32 @@ void EnItem00_CustomItemsParticles(Actor* Parent, PlayState* play, GetItemEntry 
                 case RG_BOTTLE_WITH_GREEN_POTION:
                 case RG_BOTTLE_WITH_BUGS:
                 case RG_GREG_RUPEE:
-                    color_slot = 0;
+                    colorIndex = MINUET_GREEN;
                     break;
                 case RG_BOTTLE_WITH_FISH:
-                    color_slot = 2;
+                    colorIndex = SERENADE_AQUA;
                     break;
                 case RG_BOTTLE_WITH_POE:
-                    color_slot = 4;
+                    colorIndex = NOCTURNE_VIOLET;
                     break;
                 case RG_BOTTLE_WITH_BIG_POE:
-                    color_slot = 5;
+                    colorIndex = PRELUDE_YELLOW;
                     break;
                 case RG_DOUBLE_DEFENSE:
-                    color_slot = 8;
+                    colorIndex = DOUBLE_WHITE;
                     break;
                 case RG_PROGRESSIVE_BOMBCHUS:
-                    color_slot = 9;
+                    colorIndex = BOMBCHU_BLUE;
                     break;
                 case RG_BOTTLE_WITH_FAIRY:
-                    color_slot = 10;
+                    colorIndex = FAIRY_PINK;
                     break;
                 case RG_BOTTLE_WITH_RED_POTION:
-                    color_slot = 11;
+                    colorIndex = RED_POTION_RED;
                     break;
                 case RG_BOTTLE_WITH_BLUE_FIRE:
                 case RG_BOTTLE_WITH_BLUE_POTION:
-                    color_slot = 12;
+                    colorIndex = BLUE_FIRE_BLUE;
                     break;
                 default:
                     return;
@@ -1304,8 +1318,8 @@ void EnItem00_CustomItemsParticles(Actor* Parent, PlayState* play, GetItemEntry 
     static Vec3f accel = { 0.0f, 0.0f, 0.0f };
     Color_RGBA8 primColor;
     Color_RGBA8 envColor;
-    Color_RGBA8_Copy(&primColor, &mainColors[color_slot]);
-    Color_RGBA8_Copy(&envColor, &flareColors[color_slot]);
+    Color_RGBA8_Copy(&primColor, &mainColors[colorIndex]);
+    Color_RGBA8_Copy(&envColor, &flareColors[colorIndex]);
     Vec3f pos;
 
     // Make particles more compact for shop items and use a different height offset for them.
