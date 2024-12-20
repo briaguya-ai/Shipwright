@@ -8,7 +8,7 @@ jobs:
   build:
     strategy:
       matrix:
-        image: ["archlinux:base", "opensuse/tumbleweed:latest", "ubuntu:mantic", "debian:bookworm", "fedora:39"]
+        image: ["archlinux:base", "opensuse/tumbleweed:latest", "ubuntu:noble", "debian:bookworm", "fedora:39"]
         cc: ["gcc", "clang"] 
         include:
         - cxx: g++
@@ -34,7 +34,7 @@ jobs:
         dnf -y upgrade
         dnf -y install ${{ matrix.cc }} ${{ (matrix.cxx == 'g++' && 'gcc-c++') || '' }} wget git cmake ninja-build lsb_release SDL2-devel libpng-devel libzip-devel libzip-tools tinyxml2-devel spdlog-devel boost-devel
     - name: Install dependencies (apt)
-      if: ${{ matrix.image == 'ubuntu:mantic' || matrix.image == 'debian:bookworm' }}
+      if: ${{ matrix.image == 'ubuntu:noble' || matrix.image == 'debian:bookworm' }}
       run: |
         echo debian based
         echo apt-get install ${{ matrix.cc }} ${{ (matrix.cxx == 'g++' && 'g++') || '' }} git cmake ninja-build lsb-release libsdl2-dev libpng-dev libsdl2-net-dev libzip-dev zipcmp zipmerge ziptool nlohmann-json3-dev libtinyxml2-dev libspdlog-dev libboost-dev libopengl-dev
