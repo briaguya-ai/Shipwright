@@ -24,9 +24,9 @@ jobs:
       if: ${{ matrix.image == 'archlinux:base' }}
       run: |
         echo arch
-        echo pacman -S ${{ matrix.cc }} git cmake ninja lsb-release sdl2 libpng libzip nlohmann-json tinyxml2 spdlog sdl2_net boost
+        echo pacman -S ${{ matrix.cc }} git cmake ninja lsb-release sdl2 libpng libzip nlohmann-json tinyxml2 spdlog sdl2_net boost python
         pacman -Syu --noconfirm
-        pacman -S --noconfirm ${{ matrix.cc }} git cmake ninja lsb-release sdl2 libpng libzip nlohmann-json tinyxml2 spdlog sdl2_net boost
+        pacman -S --noconfirm ${{ matrix.cc }} git cmake ninja lsb-release sdl2 libpng libzip nlohmann-json tinyxml2 spdlog sdl2_net boost python
     - name: Install dependencies (dnf)
       if: ${{ matrix.image == 'fedora:39' }}
       run: |
