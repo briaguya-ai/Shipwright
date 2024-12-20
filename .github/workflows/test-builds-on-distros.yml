@@ -57,7 +57,7 @@ jobs:
         apt-get update
         apt-get -y full-upgrade
         apt-get -y install python3-pip
-        pip install cmake
+        pip --break-system-packages install cmake
     - name: Install dependencies (zypper)
       if: ${{ matrix.image == 'opensuse/tumbleweed:latest' }}
       run: |
