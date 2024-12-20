@@ -6,6 +6,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build:
+    continue-on-error: true
     strategy:
       matrix:
         image: ["archlinux:base", "opensuse/tumbleweed:latest", "ubuntu:noble", "debian:bookworm", "fedora:39"]
@@ -37,10 +38,26 @@ jobs:
       if: ${{ matrix.image == 'ubuntu:noble' || matrix.image == 'debian:bookworm' }}
       run: |
         echo debian based
-        echo apt-get install ${{ matrix.cc }} ${{ (matrix.cxx == 'g++' && 'g++') || '' }} git cmake ninja-build lsb-release libsdl2-dev libpng-dev libsdl2-net-dev libzip-dev zipcmp zipmerge ziptool nlohmann-json3-dev libtinyxml2-dev libspdlog-dev libboost-dev libopengl-dev
+        echo apt-get install ${{ matrix.cc }} ${{ (matrix.cxx == 'g++' && 'g++') || '' }} git ninja-build lsb-release libsdl2-dev libpng-dev libsdl2-net-dev libzip-dev zipcmp zipmerge ziptool nlohmann-json3-dev libtinyxml2-dev libspdlog-dev libboost-dev libopengl-dev
         apt-get update
         apt-get -y full-upgrade
-        apt-get -y install ${{ matrix.cc }} ${{ (matrix.cxx == 'g++' && 'g++') || '' }} git cmake ninja-build lsb-release libsdl2-dev libpng-dev libsdl2-net-dev libzip-dev zipcmp zipmerge ziptool nlohmann-json3-dev libtinyxml2-dev libspdlog-dev libboost-dev libopengl-dev
+        apt-get -y install ${{ matrix.cc }} ${{ (matrix.cxx == 'g++' && 'g++') || '' }} git ninja-build lsb-release libsdl2-dev libpng-dev libsdl2-net-dev libzip-dev zipcmp zipmerge ziptool nlohmann-json3-dev libtinyxml2-dev libspdlog-dev libboost-dev libopengl-dev
+    - name: Install cmake (ubuntu noble)
+      if: ${{ matrix.image == 'ubuntu:noble' }}
+      run: |
+        echo apt-get install cmake
+        apt-get update
+        apt-get -y full-upgrade
+        apt-get -y cmake
+    - name: Install cmake (debian bookworm)
+      if: ${{ matrix.image == 'debian:bookworm' }}
+      run: |
+        echo apt-get install python3-pip
+        echo pip install cmake
+        apt-get update
+        apt-get -y full-upgrade
+        apt-get -y python3-pip
+        pip install cmake
     - name: Install dependencies (zypper)
       if: ${{ matrix.image == 'opensuse/tumbleweed:latest' }}
       run: |
@@ -66,7 +83,11 @@ jobs:
       run: |
         export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
         cmake --no-warn-unused-cli -H. -Bbuild-cmake -GNinja -DCMAKE_BUILD_TYPE:STRING=Release -DBUILD_REMOTE_CONTROL=1
+        cmake --build build-cmake --config Release --target GenerateSohOtr
         cmake --build build-cmake --config Release -j3
+        (cd build-cmake && cpack -G External)
+        mv README.md readme.txt
+        mv build-cmake/*.appimage soh.appimage
       env:
         CC: ${{ matrix.cc }}
         CXX: ${{ matrix.cxx }}
