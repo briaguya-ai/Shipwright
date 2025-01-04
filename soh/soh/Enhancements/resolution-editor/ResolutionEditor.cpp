@@ -103,7 +103,7 @@ void AdvancedResolutionSettingsWindow::DrawElement() {
     const bool disabled_everything = !CVarGetInteger(CVAR_PREFIX_ADVANCED_RESOLUTION ".Enabled", 0);
     const bool disabled_pixelCount = !CVarGetInteger(CVAR_PREFIX_ADVANCED_RESOLUTION ".VerticalResolutionToggle", 0);
 
-#ifdef __APPLE__
+#ifdef SDL_PLATFORM_APPLE
     // Display HiDPI warning. (Remove this once we can definitively say it's fixed.)
     ImGui::TextColored(messageColor[MESSAGE_INFO],
                         ICON_FA_INFO_CIRCLE " These settings may behave incorrectly on Retina displays.");

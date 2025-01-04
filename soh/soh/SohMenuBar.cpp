@@ -197,7 +197,7 @@ void DrawShipMenu() {
         UIWidgets::Spacer(0);
 #endif
         if (ImGui::MenuItem("Reset",
-#ifdef __APPLE__
+#ifdef SDL_PLATFORM_APPLE
                             "Command-R"
 #elif !defined(__SWITCH__) && !defined(__WIIU__)
                             "Ctrl+R"
@@ -320,7 +320,7 @@ void DrawSettingsMenu() {
         UIWidgets::Spacer(0);
 
         if (ImGui::BeginMenu("Graphics")) {
-        #ifndef __APPLE__
+        #ifndef SDL_PLATFORM_APPLE
             const bool disabled_resolutionSlider = CVarGetInteger(CVAR_PREFIX_ADVANCED_RESOLUTION ".VerticalResolutionToggle", 0) &&
                                                    CVarGetInteger(CVAR_PREFIX_ADVANCED_RESOLUTION ".Enabled", 0);
             if (UIWidgets::EnhancementSliderFloat("Internal Resolution: %.1f %%", "##IMul", CVAR_INTERNAL_RESOLUTION, 0.5f,
@@ -562,7 +562,7 @@ void DrawSettingsMenu() {
         UIWidgets::Spacer(0);
         
         if (ImGui::BeginMenu("Accessibility")) {
-        #if defined(_WIN32) || defined(__APPLE__)
+        #if defined(_WIN32) || defined(SDL_PLATFORM_APPLE)
             UIWidgets::PaddedEnhancementCheckbox("Text to Speech", CVAR_SETTING("A11yTTS"));
             UIWidgets::Tooltip("Enables text to speech for in game dialog");
         #endif

@@ -33,7 +33,7 @@ class SpeechSynthesizer {
 
 #ifdef _WIN32
 #include "SAPISpeechSynthesizer.h"
-#elif defined(__APPLE__)
+#elif defined(SDL_PLATFORM_APPLE)
 #include "DarwinSpeechSynthesizer.h"
 #endif
 
