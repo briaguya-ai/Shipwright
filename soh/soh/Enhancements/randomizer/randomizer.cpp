@@ -3276,12 +3276,16 @@ CustomMessage Randomizer::GetGoronMessage(u16 index) {
     return messageEntry;
 }
 
+std::string CUSTOM_ITEM_ICON(uint8_t customIconIndex, std::string msg) {
+    return char(customIconIndex) + msg;
+}
+
 void Randomizer::CreateCustomMessages() {
     // RANDTODO: Translate into french and german and replace GIMESSAGE_UNTRANSLATED
     // with GIMESSAGE(getItemID, itemID, english, german, french).
     const std::array<GetItemMessage, 85> getItemMessages = {{
-        GIMESSAGE(RG_GREG_RUPEE, ITEM_MASK_GORON, 
-			"You found %gGreg%w!",
+        GIMESSAGE(RG_GREG_RUPEE, ITEM_INVALID_4, 
+			CUSTOM_ITEM_ICON(0, "You found %gGreg%w!"),
 			"%gGreg%w! Du hast ihn wirklich gefunden!",
             "Félicitation! Vous avez trouvé %gGreg%w!"),
         GIMESSAGE(RG_MASTER_SWORD, ITEM_SWORD_MASTER, 
@@ -3519,7 +3523,7 @@ void Randomizer::CreateCustomMessages() {
 			"Du erhältst die %rKindergeldbörse%w!&Jetzt kannst Du bis&zu %y99 Rubine%w mit Dir führen!",
 			"Vous obtenez la %rBourse d'Enfant%w!&Elle peut contenir jusqu'à %y99 rubis%w!"),
 
-        GIMESSAGE_UNTRANSLATED(RG_GOHMA_SOUL, ITEM_BIG_POE, "You found the soul for %gGohma%w!"),
+        GIMESSAGE_UNTRANSLATED(RG_GOHMA_SOUL, ITEM_INVALID_4, CUSTOM_ITEM_ICON(1, "You found the soul for %gGohma%w!")),
         GIMESSAGE_UNTRANSLATED(RG_KING_DODONGO_SOUL, ITEM_BIG_POE, "You found the soul for %rKing&Dodongo%w!"),
         GIMESSAGE_UNTRANSLATED(RG_BARINADE_SOUL, ITEM_BIG_POE, "You found the soul for %bBarinade%w!"),
         GIMESSAGE_UNTRANSLATED(RG_PHANTOM_GANON_SOUL, ITEM_BIG_POE, "You found the soul for %gPhantom&Ganon%w!"),

@@ -181,3 +181,10 @@ static const ALIGN_ASSET(2) char gLinkAdultGoronTunicSkel[] = dgLinkAdultGoronTu
 
 #define dgLinkAdultZoraTunicSkel "__OTR__objects/object_link_boy_zora/gLinkAdultZoraTunicSkel"
 static const ALIGN_ASSET(2) char gLinkAdultZoraTunicSkel[] = dgLinkAdultZoraTunicSkel;
+
+// Custom Item Get Icons
+#define dgItemIconGregTex "__OTR__textures/icon_item_static/gItemIconGregTex"
+static const ALIGN_ASSET(2) char gItemIconGregTex[] = dgItemIconGregTex;
+
+#define dgItemIconSoulTex "__OTR__textures/icon_item_static/gItemIconSoulTex"
+static const ALIGN_ASSET(2) char gItemIconSoulTex[] = dgItemIconSoulTex;

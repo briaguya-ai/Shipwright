@@ -12,6 +12,12 @@
 #include "soh/Enhancements/game-interactor/GameInteractor.h"
 #include "soh/Enhancements/game-interactor/GameInteractor_Hooks.h"
 #include "soh/OTRGlobals.h"
+#include <soh_assets.h>
+
+void* gCustomGetItemIcons[] = {
+    gItemIconGregTex,
+    gItemIconSoulTex
+};
 
 s16 sTextFade = false; // original name: key_off_flag ?
 
@@ -810,7 +816,7 @@ u16 Message_DrawItemIcon(PlayState* play, u16 itemId, Gfx** p, u16 i) {
     // Invalidate icon texture as it may have changed from the last time a text box had an icon
     gSPInvalidateTexCache(gfx++, (uintptr_t)msgCtx->textboxSegment + MESSAGE_STATIC_TEX_SIZE);
 
-    if (itemId >= ITEM_MEDALLION_FOREST) {
+    if (itemId >= ITEM_MEDALLION_FOREST && itemId != ITEM_INVALID_4) {
         gDPLoadTextureBlock(gfx++, (uintptr_t)msgCtx->textboxSegment + MESSAGE_STATIC_TEX_SIZE, G_IM_FMT_RGBA, G_IM_SIZ_32b,
                             24, 24, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOMASK,
                             G_TX_NOLOD, G_TX_NOLOD);
@@ -828,6 +834,9 @@ u16 Message_DrawItemIcon(PlayState* play, u16 itemId, Gfx** p, u16 i) {
     msgCtx->textPosX += 32;
 
     i++;
+    if (itemId == ITEM_INVALID_4) {
+        i++;
+    }
     *p = gfx;
 
     return i;
@@ -1217,6 +1226,20 @@ void Message_LoadItemIcon(PlayState* play, u16 itemId, s16 y) {
     static s16 sIconItem24XOffsets[] = { 72, 72, 72 };
     MessageContext* msgCtx = &play->msgCtx;
     InterfaceContext* interfaceCtx = &play->interfaceCtx;
+
+    // itemId gets formatted as a char in CustomMessage::ITEM_OBTAINED
+    // ITEM_INVALID_4 happens to turn into "~" which is cool so let's use that 
+    if (itemId == ITEM_INVALID_4) {
+        R_TEXTBOX_ICON_XPOS = R_TEXT_INIT_XPOS - sIconItem32XOffsets[gSaveContext.language];
+        R_TEXTBOX_ICON_YPOS = y + 6;
+        R_TEXTBOX_ICON_SIZE = 32;
+        uint8_t customIconIndex = msgCtx->msgBufDecoded[msgCtx->msgBufPos + 2];
+        memcpy((uintptr_t)msgCtx->textboxSegment + MESSAGE_STATIC_TEX_SIZE,
+            gCustomGetItemIcons[customIconIndex], strlen(gCustomGetItemIcons[customIconIndex]) + 1);
+        msgCtx->msgBufPos += 2;
+        msgCtx->choiceNum = 1;
+        return;
+    }
 
     if (itemId == ITEM_DUNGEON_MAP) {
         interfaceCtx->mapPalette[30] = 0xFF;
@@ -1611,6 +1634,9 @@ void Message_Decode(PlayState* play) {
             decodedBufPos--;
         } else if (temp_s2 == MESSAGE_ITEM_ICON) {
             msgCtx->msgBufDecoded[++decodedBufPos] = font->msgBuf[msgCtx->msgBufPos + 1];
+            if (msgCtx->msgBufDecoded[decodedBufPos] == ITEM_INVALID_4) {
+                msgCtx->msgBufDecoded[++decodedBufPos] = font->msgBuf[msgCtx->msgBufPos + 2];
+            }
             osSyncPrintf("ITEM_NO=(%d) (%d)\n", msgCtx->msgBufDecoded[decodedBufPos],
                          font->msgBuf[msgCtx->msgBufPos + 1]);
             Message_LoadItemIcon(play, font->msgBuf[msgCtx->msgBufPos + 1], R_TEXTBOX_Y + 10);
