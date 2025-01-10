@@ -715,14 +715,11 @@ void PlandomizerDrawItemPopup(uint32_t index) {
             ImGui::PushID(item);
             ImGui::TableNextColumn();
             PlandomizerItemImageCorrection(plandomizerRandoRetrieveItem(item));
-            std::string name = plandomizerRandoRetrieveItem(item).GetName().english;
-            if (ImGui::ImageButton(name.c_str(),
-                                   textureID,
-                                   imageSize,
-                                   textureUV0,
-                                   textureUV1,
-                                   ImVec4(0, 0, 0, 0),
-                                   itemColor)) {
+            auto name = plandomizerRandoRetrieveItem(item).GetName().english;
+            ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(imagePadding, imagePadding));
+            auto ret = ImGui::ImageButton(name.c_str(), textureID, imageSize, textureUV0, textureUV1, ImVec4(0, 0, 0, 0), itemColor);
+            ImGui::PopStyleVar();
+            if (ret) {
                 if (std::find(infiniteItemList.begin(), infiniteItemList.end(), plandoLogData[index].checkRewardItem.GetRandomizerGet()) == infiniteItemList.end()) {
                     PlandomizerAddToItemList(plandoLogData[index].checkRewardItem);
                 }
@@ -748,13 +745,10 @@ void PlandomizerDrawItemPopup(uint32_t index) {
             auto itemToDraw = drawSlots.first;
             PlandomizerItemImageCorrection(drawSlots.first);
             auto name = drawSlots.first.GetName().english;
-            if (ImGui::ImageButton(name.c_str(),
-                                   textureID,
-                                   imageSize,
-                                   textureUV0,
-                                   textureUV1,
-                                   ImVec4(0, 0, 0, 0),
-                                   itemColor)) {
+            ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(imagePadding, imagePadding));
+            auto ret = ImGui::ImageButton(name.c_str(), textureID, imageSize, textureUV0, textureUV1, ImVec4(0, 0, 0, 0), itemColor);
+            ImGui::PopStyleVar();
+            if (ret) {
                 if (itemToDraw.GetRandomizerGet() >= RG_PROGRESSIVE_HOOKSHOT && 
                     itemToDraw.GetRandomizerGet() <= RG_PROGRESSIVE_GORONSWORD) {
                     plandoLogData[index].checkRewardItem = drawSlots.first;
@@ -800,7 +794,10 @@ void PlandomizerDrawIceTrapPopUp(uint32_t index) {
             ImGui::PushID(items.first);
             auto name = Rando::StaticData::RetrieveItem(items.first).GetName().english;
             PlandomizerItemImageCorrection(Rando::StaticData::RetrieveItem(items.first));
-            if (ImGui::ImageButton(name.c_str(), textureID, imageSize, textureUV0, textureUV1, ImVec4(0, 0, 0, 0), itemColor)) {
+            ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(imagePadding, imagePadding));
+            auto ret = ImGui::ImageButton(name.c_str(), textureID, imageSize, textureUV0, textureUV1, ImVec4(0, 0, 0, 0), itemColor); 
+            ImGui::PopStyleVar();
+            if (ret) {
                 plandoLogData[index].iceTrapModel = Rando::StaticData::RetrieveItem(items.first);
                 ImGui::CloseCurrentPopup();
             };
@@ -822,7 +819,10 @@ void PlandomizerDrawItemSlots(uint32_t index) {
     PlandoPushImageButtonStyle();
     PlandomizerItemImageCorrection(plandoLogData[index].checkRewardItem);
     auto name = plandoLogData[index].checkRewardItem.GetName().english;
-    if (ImGui::ImageButton(name.c_str(), textureID, imageSize, textureUV0, textureUV1, ImVec4(0, 0, 0, 0), itemColor)) {
+    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(imagePadding, imagePadding));
+    auto ret = ImGui::ImageButton(name.c_str(), textureID, imageSize, textureUV0, textureUV1, ImVec4(0, 0, 0, 0), itemColor);
+    ImGui::PopStyleVar();
+    if (ret) {
         shouldPopup = true;
         temporaryItem = plandoLogData[index].checkRewardItem;
         ImGui::OpenPopup("ItemList");
@@ -867,7 +867,10 @@ void PlandomizerDrawIceTrapSetup(uint32_t index) {
     PlandomizerItemImageCorrection(plandoLogData[index].iceTrapModel);
     PlandoPushImageButtonStyle();
     auto name = plandoLogData[index].iceTrapModel.GetName().english;
-    if (ImGui::ImageButton(name.c_str(), textureID, imageSize, textureUV0, textureUV1, ImVec4(0, 0, 0, 0), itemColor)) {
+    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(imagePadding, imagePadding));
+    auto ret = ImGui::ImageButton(name.c_str(), textureID, imageSize, textureUV0, textureUV1, ImVec4(0, 0, 0, 0), itemColor);
+    ImGui::PopStyleVar();
+    if (ret) {
         shouldTrapPopup = true;
         ImGui::OpenPopup("TrapList");
     };
@@ -949,8 +952,11 @@ void PlandomizerDrawOptions() {
                 for (auto& hash : plandoHash) {
                     ImGui::PushID(index);
                     textureID = Ship::Context::GetInstance()->GetWindow()->GetGui()->GetTextureByName(gSeedTextures[hash].tex);
-                    if (ImGui::ImageButton("HASH ARROW UP", Ship::Context::GetInstance()->GetWindow()->GetGui()->GetTextureByName("HASH_ARROW_UP"),
-                        ImVec2(35.0f, 18.0f), ImVec2(1, 1), ImVec2(0, 0), ImVec4(0, 0, 0, 0), ImVec4(1, 1, 1, 1))) {
+                    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(2.0f, 2.0f));
+                    auto upRet = ImGui::ImageButton("HASH_ARROW_UP", Ship::Context::GetInstance()->GetWindow()->GetGui()->GetTextureByName("HASH_ARROW_UP"),
+                                                  ImVec2(35.0f, 18.0f), ImVec2(1, 1), ImVec2(0, 0), ImVec4(0, 0, 0, 0), ImVec4(1, 1, 1, 1));
+                    ImGui::PopStyleVar();
+                    if (upRet) {
                         if (hash + 1 >= gSeedTextures.size()) {
                             hash = 0;
                         }
@@ -959,8 +965,11 @@ void PlandomizerDrawOptions() {
                         }
                     }
                     ImGui::Image(textureID, ImVec2(35.0f, 35.0f));
-                    if (ImGui::ImageButton("HASH_ARROW_DWN", Ship::Context::GetInstance()->GetWindow()->GetGui()->GetTextureByName("HASH_ARROW_DWN"),
-                        ImVec2(35.0f, 18.0f), ImVec2(0, 0), ImVec2(1, 1), ImVec4(0, 0, 0, 0), ImVec4(1, 1, 1, 1))) {
+                    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(2.0f, 2.0f));
+                    auto downRet = ImGui::ImageButton("HASH_ARROW_DWN", Ship::Context::GetInstance()->GetWindow()->GetGui()->GetTextureByName("HASH_ARROW_DWN"),
+                                                  ImVec2(35.0f, 18.0f), ImVec2(0, 0), ImVec2(1, 1), ImVec4(0, 0, 0, 0), ImVec4(1, 1, 1, 1));
+                    ImGui::PopStyleVar();
+                    if (downRet) {
                         if (hash == 0) {
                             hash = gSeedTextures.size() - 1;
                         }
