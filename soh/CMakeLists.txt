@@ -303,19 +303,20 @@ endif()
 ################################################################################
 # Compile definitions
 ################################################################################
-find_package(SDL2)
-set(SDL2-INCLUDE ${SDL2_INCLUDE_DIRS})
+find_package(SDL3)
+set(SDL3-INCLUDE ${SDL3_INCLUDE_DIRS})
 
-if (BUILD_REMOTE_CONTROL)
-    find_package(SDL2_net)
+# todo: figure out sdl net stuff
+# if (BUILD_REMOTE_CONTROL)
+#     find_package(SDL2_net)
 
-    if(NOT SDL2_net_FOUND)
-        message(STATUS "SDL2_net not found (it's possible the version installed is too old). Disabling BUILD_REMOTE_CONTROL.")
-        set(BUILD_REMOTE_CONTROL 0)
-    else()
-        set(SDL2-NET-INCLUDE ${SDL_NET_INCLUDE_DIRS})
-    endif()
-endif()
+#     if(NOT SDL2_net_FOUND)
+#         message(STATUS "SDL2_net not found (it's possible the version installed is too old). Disabling BUILD_REMOTE_CONTROL.")
+#         set(BUILD_REMOTE_CONTROL 0)
+#     else()
+#         set(SDL2-NET-INCLUDE ${SDL_NET_INCLUDE_DIRS})
+#     endif()
+# endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE assets
 	${CMAKE_CURRENT_SOURCE_DIR}/include/
@@ -667,35 +668,14 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
 			"setupapi"
 		)
 	endif()
-elseif(CMAKE_SYSTEM_NAME STREQUAL "NintendoSwitch")
-    find_package(SDL2)
-    set(THREADS_PREFER_PTHREAD_FLAG ON)
-    find_package(Threads REQUIRED)
-    set(ADDITIONAL_LIBRARY_DEPENDENCIES
-        "libultraship;"
-        SDL2::SDL2
-        -lglad
-        Threads::Threads
-    )
-elseif(CMAKE_SYSTEM_NAME STREQUAL "CafeOS")
-    find_package(SDL2 REQUIRED)
-    set(ADDITIONAL_LIBRARY_DEPENDENCIES
-        "libultraship;"
-        SDL2::SDL2-static
-
-        "$<$<CONFIG:Debug>:-Wl,--wrap=abort>"
-    )
-    target_include_directories(${PROJECT_NAME} PRIVATE
-        ${DEVKITPRO}/portlibs/wiiu/include/
-    )
 else()
-    find_package(SDL2)
+    find_package(SDL3)
     set(THREADS_PREFER_PTHREAD_FLAG ON)
     find_package(Threads REQUIRED)
  	set(ADDITIONAL_LIBRARY_DEPENDENCIES
         "libultraship;"
 		"ZAPDLib;"
-		SDL2::SDL2
+		SDL3::SDL3
         "$<$<BOOL:${BUILD_REMOTE_CONTROL}>:SDL2_net::SDL2_net>"
 		${CMAKE_DL_LIBS}
 		Threads::Threads
