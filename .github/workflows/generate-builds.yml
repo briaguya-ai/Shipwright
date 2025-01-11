@@ -41,9 +41,12 @@ jobs:
           wget https://www.libsdl.org/release/SDL3-3.1.8.tar.gz
           tar -xzf SDL3-3.1.8.tar.gz
         fi
-        cmake -S ./SDL3-3.1.8 -B ./SDL_build
-        cmake --build ./SDL_build
-        sudo cmake --install ./SDL_build --prefix /usr/local 
+        cd SDL3-3.1.8
+        mkdir -p build
+        cd build
+        cmake -S .. -B .
+        cmake --build .
+        sudo cmake --install . --prefix /usr/local 
         sudo cp -av /usr/local/lib/libSDL* /lib/x86_64-linux-gnu/
     - name: Install latest tinyxml2
       run: |
