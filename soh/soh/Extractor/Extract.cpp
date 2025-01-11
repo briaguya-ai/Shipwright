@@ -40,7 +40,7 @@
 
 #include <stdlib.h>
 
-#include <SDL2/SDL_messagebox.h>
+#include <SDL3/SDL_messagebox.h>
 
 #include <array>
 #include <fstream>

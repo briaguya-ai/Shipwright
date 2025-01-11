@@ -54,9 +54,9 @@
 #include <Fast3D/gfx_pc.h>
 
 #ifdef __APPLE__
-#include <SDL_scancode.h>
+#include <SDL3/SDL_scancode.h>
 #else
-#include <SDL2/SDL_scancode.h>
+#include <SDL3/SDL_scancode.h>
 #endif
 
 #ifdef __SWITCH__
