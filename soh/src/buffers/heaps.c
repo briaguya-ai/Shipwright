@@ -1,6 +1,6 @@
 #include "z64.h"
 #include <assert.h>
-#ifndef SDL_PLATFORM_APPLE
+#ifndef __APPLE__
 #include <malloc.h>
 #endif
 #include <stdlib.h>
