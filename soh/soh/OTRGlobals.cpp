@@ -53,7 +53,7 @@
 
 #include <Fast3D/gfx_pc.h>
 
-#ifdef __APPLE__
+#ifdef SDL_PLATFORM_APPLE
 #include <SDL3/SDL_scancode.h>
 #else
 #include <SDL3/SDL_scancode.h>
@@ -1147,7 +1147,7 @@ extern "C" void InitOTR() {
     ShipInit::InitAll();
     AudioCollection::Instance = new AudioCollection();
     ActorDB::Instance = new ActorDB();
-#ifdef __APPLE__
+#ifdef SDL_PLATFORM_APPLE
     SpeechSynthesizer::Instance = new DarwinSpeechSynthesizer();
     SpeechSynthesizer::Instance->Init();
 #elif defined(_WIN32)
@@ -1333,7 +1333,7 @@ extern "C" void Graph_StartFrame() {
 
             break;
         }
-#if defined(_WIN32) || defined(__APPLE__)
+#if defined(_WIN32) || defined(SDL_PLATFORM_APPLE)
         case KbScancode::LUS_KB_F9: {
             // Toggle TTS
             CVarSetInteger(CVAR_SETTING("A11yTTS"), !CVarGetInteger(CVAR_SETTING("A11yTTS"), 0));

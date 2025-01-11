@@ -13,7 +13,7 @@
 #include <libultraship/libultraship.h>
 #include <Fast3D/gfx_pc.h>
 
-#ifdef __APPLE__
+#ifdef SDL_PLATFORM_APPLE
 #include "graphic/Fast3D/gfx_metal.h"
 #endif
 
