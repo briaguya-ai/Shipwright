@@ -37,14 +37,13 @@ jobs:
     - name: Install latest SDL
       run: |
         export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
-        if [ ! -d "SDL2-2.30.3" ]; then
+        if [ ! -d "SDL3-3.1.8" ]; then
           wget https://www.libsdl.org/release/SDL3-3.1.8.tar.gz
           tar -xzf SDL3-3.1.8.tar.gz
         fi
-        cd SDL3-3.1.8
-        ./configure --enable-hidapi-libusb
-        make -j 10
-        sudo make install
+        cmake -S ./SDL3-3.1.8 -B ./SDL_build
+        cmake --build ./SDL_build
+        cmake --install ./SDL_build --prefix /usr/local 
         sudo cp -av /usr/local/lib/libSDL* /lib/x86_64-linux-gnu/
     - name: Install latest tinyxml2
       run: |
