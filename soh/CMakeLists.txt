@@ -676,7 +676,7 @@ else()
         "libultraship;"
 		"ZAPDLib;"
 		SDL3::SDL3
-        "$<$<BOOL:${BUILD_REMOTE_CONTROL}>:SDL2_net::SDL2_net>"
+        # "$<$<BOOL:${BUILD_REMOTE_CONTROL}>:SDL2_net::SDL2_net>"
 		${CMAKE_DL_LIBS}
 		Threads::Threads
 	)
