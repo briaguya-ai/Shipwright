@@ -32,16 +32,16 @@ jobs:
           ${{ runner.os }}-otr-build-
         path: |
           build-cmake
-          SDL2-2.30.3
+          SDL3-3.1.8
           tinyxml2-10.0.0
     - name: Install latest SDL
       run: |
         export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
         if [ ! -d "SDL2-2.30.3" ]; then
-          wget https://www.libsdl.org/release/SDL2-2.30.3.tar.gz
-          tar -xzf SDL2-2.30.3.tar.gz
+          wget https://www.libsdl.org/release/SDL3-3.1.8.tar.gz
+          tar -xzf SDL3-3.1.8.tar.gz
         fi
-        cd SDL2-2.30.3
+        cd SDL3-3.1.8
         ./configure --enable-hidapi-libusb
         make -j 10
         sudo make install
@@ -158,34 +158,34 @@ jobs:
           linux-build-${{ github.ref }}
           linux-build-
         path: |
-          SDL2-2.30.3
+          SDL3-3.1.8
           SDL2_net-2.2.0
           tinyxml2-10.0.0
           libzip-1.10.1
     - name: Install latest SDL
       run: |
         export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
-        if [ ! -d "SDL2-2.30.3" ]; then
-          wget https://www.libsdl.org/release/SDL2-2.30.3.tar.gz
-          tar -xzf SDL2-2.30.3.tar.gz
+        if [ ! -d "SDL3-3.1.8" ]; then
+          wget https://www.libsdl.org/release/SDL3-3.1.8.tar.gz
+          tar -xzf SDL3-3.1.8.tar.gz
         fi
-        cd SDL2-2.30.3
+        cd SDL3-3.1.8
         ./configure --enable-hidapi-libusb
         make -j 10
         sudo make install
         sudo cp -av /usr/local/lib/libSDL* /lib/x86_64-linux-gnu/
-    - name: Install latest SDL_net
-      run: |
-        export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
-        if [ ! -d "SDL2_net-2.2.0" ]; then
-          wget https://www.libsdl.org/projects/SDL_net/release/SDL2_net-2.2.0.tar.gz
-          tar -xzf SDL2_net-2.2.0.tar.gz
-        fi
-        cd SDL2_net-2.2.0
-        ./configure
-        make -j 10
-        sudo make install
-        sudo cp -av /usr/local/lib/libSDL* /lib/x86_64-linux-gnu/
+    # - name: Install latest SDL_net
+    #   run: |
+    #     export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
+    #     if [ ! -d "SDL2_net-2.2.0" ]; then
+    #       wget https://www.libsdl.org/projects/SDL_net/release/SDL2_net-2.2.0.tar.gz
+    #       tar -xzf SDL2_net-2.2.0.tar.gz
+    #     fi
+    #     cd SDL2_net-2.2.0
+    #     ./configure
+    #     make -j 10
+    #     sudo make install
+    #     sudo cp -av /usr/local/lib/libSDL* /lib/x86_64-linux-gnu/
     - name: Install latest tinyxml2
       run: |
         sudo apt-get remove libtinyxml2-dev
