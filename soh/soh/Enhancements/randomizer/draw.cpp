@@ -20,6 +20,11 @@
 #include "soh_assets.h"
 #include "soh/Enhancements/cosmetics/cosmeticsTypes.h"
 
+// no idea why this suddently decided it didn't exist on windows
+#ifndef M_PI_2
+#define M_PI_2 1.57079632679489661923
+#endif
+
 extern "C" {
 extern SaveContext gSaveContext;
 }
