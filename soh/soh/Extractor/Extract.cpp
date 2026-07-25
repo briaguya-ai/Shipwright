@@ -6,6 +6,7 @@
 #endif
 #include "Extract.h"
 #include "TorchExtract.h"
+#include "soh/Diag.h"
 #include "portable-file-dialogs.h"
 #include "spdlog/spdlog.h"
 #include <ship/utils/binarytools/BitConverter.h>
@@ -652,12 +653,21 @@ bool Extractor::CallTorch(std::string installPath, std::string exportdir, std::a
     // Work this out in the temporary folder
     std::string tempdir = Mkdtemp();
 
+    SOH_DIAG("CallTorch: rom {}", romPath);
+    SOH_DIAG("CallTorch: srcDir {} (exists: {})", srcDir, std::filesystem::exists(srcDir));
+    SOH_DIAG("CallTorch: versionDir {} (exists: {})", GetTorchVersionDir(),
+             std::filesystem::exists(srcDir + "/" + GetTorchVersionDir()));
+    SOH_DIAG("CallTorch: config.yml exists: {}", std::filesystem::exists(srcDir + "/config.yml"));
+    SOH_DIAG("CallTorch: exportdir {}, tempdir {}", exportdir, tempdir);
+
     *totalExtract = SohTorch::CountAssetFiles(srcDir + "/" + GetTorchVersionDir());
     *extractCount = 0;
+    SOH_DIAG("CallTorch: {} yml files to process", totalExtract->load());
 
     // config.yml decides whether this is oot.o2r or oot-mq.o2r.
     std::string archiveName = SohTorch::Extract(romPath, srcDir, tempdir, portVersion, extractCount);
     bool success = !archiveName.empty();
+    SOH_DIAG("CallTorch: archive '{}', {} phase callbacks fired", archiveName, extractCount->load());
 
     std::error_code ec;
     if (success) {
@@ -671,6 +681,7 @@ bool Extractor::CallTorch(std::string installPath, std::string exportdir, std::a
 
     std::filesystem::remove_all(tempdir, ec);
 
+    SOH_DIAG("CallTorch: returning {}", success);
     return success;
 }
 

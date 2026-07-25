@@ -1,4 +1,5 @@
 ﻿#include "OTRGlobals.h"
+#include "Diag.h"
 #include "OTRAudio.h"
 #include <algorithm>
 #include <atomic>
@@ -276,16 +277,31 @@ std::string portArchivePath = "";
 static bool sohArchiveVersionMatch = false;
 
 OTRGlobals::OTRGlobals() {
+    SOH_DIAG("OTRGlobals ctor: version {}.{}.{}", gBuildVersionMajor, gBuildVersionMinor, gBuildVersionPatch);
     context = Ship::Context::CreateUninitializedInstance("Ship of Harkinian", appShortName, "shipofharkinian.json");
 
+    // Initialize() normally does these two, but it runs after RunExtract, which leaves the whole
+    // extraction phase with no file sink (and no console sink at all on Windows release) and no
+    // crash handler. Doing them here is what makes an extraction-time crash reportable.
+    context->InitLogging(spdlog::level::trace, spdlog::level::trace);
+    context->InitCrashHandler();
+    SOH_DIAG("logging and crash handler installed early");
+
+    SOH_DIAG("app dir: {}", Ship::Context::GetAppDirectoryPath(appShortName));
+    SOH_DIAG("bundle path: {}", Ship::Context::GetAppBundlePath());
+
     portArchivePath = Ship::Context::LocateFileAcrossAppDirs("soh.o2r");
+    SOH_DIAG("soh.o2r: {} (exists: {})", portArchivePath, std::filesystem::exists(portArchivePath));
     OTRVersion portArchiveVersion = DetectOTRVersion("soh.o2r", false);
     sohArchiveVersionMatch = portArchiveVersion.major == gBuildVersionMajor &&
                              portArchiveVersion.minor == gBuildVersionMinor &&
                              portArchiveVersion.patch == gBuildVersionPatch;
+    SOH_DIAG("soh.o2r version {}.{}.{}, match: {}", portArchiveVersion.major, portArchiveVersion.minor,
+             portArchiveVersion.patch, sohArchiveVersionMatch);
 
     context->InitConfiguration();
     context->InitConsoleVariables();
+    SOH_DIAG("config and cvars initialized");
 
     auto controlDeck = std::make_shared<LUS::ControlDeck>(std::vector<CONTROLLERBUTTONS_T>({
         BTN_CUSTOM_MODIFIER1,
@@ -300,16 +316,21 @@ OTRGlobals::OTRGlobals() {
         BTN_CUSTOM_OCARINA_PITCH_DOWN,
     }));
     context->InitControlDeck(controlDeck);
+    SOH_DIAG("control deck initialized");
     context->InitResourceManager({ portArchivePath }, {}, 3, true);
+    SOH_DIAG("resource manager initialized");
     context->InitConsole();
+    SOH_DIAG("console initialized");
 
     auto sohInputEditorWindow =
         std::make_shared<SohInputEditorWindow>(CVAR_WINDOW("ControllerConfiguration"), "Configure Controller");
     sohFast3dWindow =
         std::make_shared<Fast::Fast3dWindow>(std::vector<std::shared_ptr<Ship::GuiWindow>>({ sohInputEditorWindow }));
     context->InitWindow(sohFast3dWindow);
+    SOH_DIAG("window initialized");
 
     SohGui::SetupMenu();
+    SOH_DIAG("menu set up");
 
     if (sohArchiveVersionMatch) {
 
@@ -359,6 +380,42 @@ typedef enum WindowsSteps {
     WS_DONE,
 } WindowsSteps;
 
+static const char* ExtractStepName(ExtractSteps step) {
+    switch (step) {
+        case ES_PORT_ARCHIVE:
+            return "ES_PORT_ARCHIVE";
+        case ES_WINDOWS:
+            return "ES_WINDOWS";
+        case ES_EXTRACT_ARGS:
+            return "ES_EXTRACT_ARGS";
+        case ES_EXTRACT:
+            return "ES_EXTRACT";
+        case ES_VERIFY:
+            return "ES_VERIFY";
+    }
+    return "?";
+}
+
+static const char* PromptStepName(PromptSteps step) {
+    switch (step) {
+        case PS_FILE_CHECK:
+            return "PS_FILE_CHECK";
+        case PS_LOCAL:
+            return "PS_LOCAL";
+        case PS_FIRST:
+            return "PS_FIRST";
+        case PS_SECOND:
+            return "PS_SECOND";
+        case PS_DUPE:
+            return "PS_DUPE";
+        case PS_WAIT:
+            return "PS_WAIT";
+        case PS_NONE:
+            return "PS_NONE";
+    }
+    return "?";
+}
+
 bool IsSubpath(const std::filesystem::path& path, const std::filesystem::path& base) {
     auto rel = std::filesystem::relative(path, base);
     return !rel.empty() && rel.native()[0] != '.';
@@ -396,6 +453,7 @@ extern std::shared_ptr<SohGui::SohMenu> mSohMenu;
 }
 
 void OTRGlobals::RunExtract(int argc, char* argv[]) {
+    SOH_DIAG("RunExtract: argc {}", argc);
     bool extractDone = false;
     ExtractSteps extractStep = ES_PORT_ARCHIVE;
     WindowsSteps windowsStep = WS_TEMP;
@@ -438,6 +496,12 @@ void OTRGlobals::RunExtract(int argc, char* argv[]) {
     OSFatal();
 #endif
 
+    SOH_DIAG("installPath {} (assets exists: {})", installPath, std::filesystem::exists(installPath + "/assets"));
+    SOH_DIAG("dataPath {}", dataPath);
+    SOH_DIAG("oot.o2r version {}.{}.{}, oot-mq.o2r version {}.{}.{}, shouldRegen {}", vanillaVersion.major,
+             vanillaVersion.minor, vanillaVersion.patch, mqVersion.major, mqVersion.minor, mqVersion.patch,
+             shouldRegen);
+
     if (!std::filesystem::exists(installPath + "/assets")) {
         SohGui::RegisterPopup("Extractor assets not found",
                               "No O2R files found. Missing 'assets/' folder needed to generate OTR file.\nPlease "
@@ -458,7 +522,18 @@ void OTRGlobals::RunExtract(int argc, char* argv[]) {
     CheckAndCreateModFolder();
 #endif
 
+    // Logged on change only; the loop body runs every frame.
+    ExtractSteps loggedStep = ES_VERIFY;
+    PromptSteps loggedPrompt = PS_NONE;
+    bool everLogged = false;
+
     while (!extractDone) {
+        if (!everLogged || extractStep != loggedStep || promptStep != loggedPrompt) {
+            SOH_DIAG("state: {} / {}", ExtractStepName(extractStep), PromptStepName(promptStep));
+            loggedStep = extractStep;
+            loggedPrompt = promptStep;
+            everLogged = true;
+        }
         if (SohGui::PopupsQueued() > 0 || extractionTask.has_value()) {
             goto render;
         }
