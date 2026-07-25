@@ -395,6 +395,46 @@ namespace SohGui {
 extern std::shared_ptr<SohGui::SohMenu> mSohMenu;
 }
 
+// Benchmark branch only: picking a ROM extracts it this many times back to back and appends the
+// per-run wall clock to extraction-benchmark.csv in the app directory.
+static constexpr int kBenchmarkRuns = 10;
+static constexpr const char* kBenchmarkPipeline = "torch";
+static std::atomic<int> gBenchmarkRun = 0;
+
+static void RunExtractionBenchmark(Extractor& extract, const std::string& installPath,
+                                   std::atomic<size_t>* extractCount, std::atomic<size_t>* totalExtract) {
+    const std::string exportDir = Ship::Context::GetAppDirectoryPath(appShortName);
+    const std::string csvPath = exportDir + "/extraction-benchmark.csv";
+    const std::string rom = std::filesystem::path(extract.GetRomPath()).filename().string();
+
+    const bool needsHeader = !std::filesystem::exists(csvPath);
+    std::ofstream csv(csvPath, std::ios::app);
+    if (needsHeader) {
+        csv << "pipeline,rom,run,seconds,ok\n";
+    }
+
+    double total = 0.0;
+    for (int run = 1; run <= kBenchmarkRuns; run++) {
+        gBenchmarkRun = run;
+        *extractCount = 0;
+        *totalExtract = 0;
+
+        const auto start = std::chrono::steady_clock::now();
+        const bool ok = extract.CallTorch(installPath, exportDir, extractCount, totalExtract);
+        const std::chrono::duration<double> elapsed = std::chrono::steady_clock::now() - start;
+
+        total += elapsed.count();
+        csv << fmt::format("{},{},{},{:.3f},{}\n", kBenchmarkPipeline, rom, run, elapsed.count(), ok ? 1 : 0);
+        csv.flush();
+        SPDLOG_INFO("Benchmark {} run {}/{}: {:.3f}s ({})", kBenchmarkPipeline, run, kBenchmarkRuns, elapsed.count(),
+                    ok ? "ok" : "FAILED");
+    }
+
+    SPDLOG_INFO("Benchmark {} mean of {} runs: {:.3f}s, written to {}", kBenchmarkPipeline, kBenchmarkRuns,
+                total / kBenchmarkRuns, csvPath);
+    gBenchmarkRun = 0;
+}
+
 void OTRGlobals::RunExtract(int argc, char* argv[]) {
     bool extractDone = false;
     ExtractSteps extractStep = ES_PORT_ARCHIVE;
@@ -470,7 +510,7 @@ void OTRGlobals::RunExtract(int argc, char* argv[]) {
 #elif (defined(__WIIU__) || defined(__SWITCH__))
                     extractStep = ES_VERIFY;
 #else
-                    extractStep = args.empty() ? ES_EXTRACT : ES_EXTRACT_ARGS;
+                    extractStep = ES_EXTRACT; // benchmark always goes through the picker
 #endif
                 } else {
                     std::string msg;
@@ -555,7 +595,7 @@ void OTRGlobals::RunExtract(int argc, char* argv[]) {
                                                   "OK", "", [&]() { exit(0); });
                         } else {
                             windowsStep = WS_DONE;
-                            extractStep = args.empty() ? ES_EXTRACT : ES_EXTRACT_ARGS;
+                            extractStep = ES_EXTRACT; // benchmark always goes through the picker
                         }
                         continue;
                     }
@@ -618,18 +658,12 @@ void OTRGlobals::RunExtract(int argc, char* argv[]) {
             case ES_EXTRACT: {
                 switch (promptStep) {
                     case PS_FILE_CHECK: {
-                        const bool ootO2RExists =
-                            std::filesystem::exists(
-                                Ship::Context::LocateFileAcrossAppDirs("oot-mq.o2r", appShortName)) ||
-                            std::filesystem::exists(Ship::Context::LocateFileAcrossAppDirs("oot.o2r", appShortName));
-
-                        if (!ootO2RExists) {
-                            SohGui::RegisterPopup(
-                                "No O2R Files", "No O2R files found. Generate one now?", "Yes", "No",
-                                [&]() { promptStep = PS_LOCAL; }, [&]() { exit(0); });
-                        } else {
-                            extractStep = ES_VERIFY;
-                        }
+                        // Always benchmark, whether or not an archive is already present.
+                        static const std::string msg =
+                            fmt::format("Pick a ROM to extract {} times in a row?", kBenchmarkRuns);
+                        SohGui::RegisterPopup(
+                            "Extraction Benchmark", msg.c_str(), "Yes", "No", [&]() { promptStep = PS_FIRST; },
+                            [&]() { exit(0); });
                         continue;
                     }
                     case PS_LOCAL: {
@@ -654,11 +688,10 @@ void OTRGlobals::RunExtract(int argc, char* argv[]) {
                             promptStep = PS_FILE_CHECK;
                             continue;
                         }
+                        file = extract.GetRomPath();
                         extractionTask = threadPool->submit_task([&]() -> void {
-                            extract.CallTorch(installPath, Ship::Context::GetAppDirectoryPath(appShortName),
-                                              &extractCount, &totalExtract);
-                            generatedIsMQ = extract.IsMasterQuest();
-                            promptStep = PS_SECOND;
+                            RunExtractionBenchmark(extract, installPath, &extractCount, &totalExtract);
+                            extractStep = ES_VERIFY;
                             extractCount = 0;
                             totalExtract = 0;
                         });
@@ -749,8 +782,8 @@ void OTRGlobals::RunExtract(int argc, char* argv[]) {
                                                ImGuiWindowFlags_NoSavedSettings)) {
                     float progress = (totalExtract > 0.0f ? (float)extractCount / (float)totalExtract : 0) * 100.0f;
                     auto filename = std::filesystem::path(file).filename().string();
-                    ImGui::Text("Extracting %s...%s", filename.c_str(),
-                                roundf(progress) == 100.0f ? " Done. Finishing up." : "");
+                    ImGui::Text("Run %d/%d: extracting %s...%s", gBenchmarkRun.load(), kBenchmarkRuns,
+                                filename.c_str(), roundf(progress) == 100.0f ? " Done. Finishing up." : "");
                     std::string overlay = extractCount > 0 ? fmt::format("{:.0f}%", progress) : "Starting Up";
                     ImGui::ProgressBar(progress / 100.0f, ImVec2(600.0f, 50.0f), overlay.c_str());
                     ImGui::EndPopup();

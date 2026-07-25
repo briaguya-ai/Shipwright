@@ -57,6 +57,7 @@ class Extractor {
     static int ShowYesNoBox(const char* title, const char* text);
     static void ShowErrorBox(const char* title, const char* text);
     bool IsMasterQuest() const;
+    const std::string& GetRomPath() const;
     bool ManuallySearchForRomMatchingType(RomSearchMode searchMode);
 
     void SetSearchPath(const std::string& path);
