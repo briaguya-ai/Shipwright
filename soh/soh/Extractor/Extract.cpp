@@ -558,6 +558,10 @@ bool Extractor::Run(std::string searchPath, RomSearchMode searchMode) {
     return true;
 }
 
+const std::string& Extractor::GetRomPath() const {
+    return mCurrentRomPath;
+}
+
 bool Extractor::IsMasterQuest() const {
     switch (GetRomVerCrc()) {
         case OOT_PAL_MQ:
