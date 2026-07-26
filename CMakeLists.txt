@@ -226,7 +226,7 @@ endforeach()
 FetchContent_Declare(
     torch
     GIT_REPOSITORY https://github.com/briaguya0/Torch.git
-    GIT_TAG        b10d71da3712cd71e159caaf1bbf305385101870
+    GIT_TAG        869dc3448760f0a794dfd9a35eb62a5bbcef7167
 )
 FetchContent_MakeAvailable(torch)
 
