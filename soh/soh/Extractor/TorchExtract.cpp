@@ -9,6 +9,8 @@
 
 #include "spdlog/spdlog.h"
 
+#include "soh/Diag.h"
+
 #include "Companion.h"
 #include "factories/BaseFactory.h"
 
@@ -80,6 +82,7 @@ std::string Extract(const std::string& romPath, const std::string& srcDir, const
     samples.reserve(4096);
 
     try {
+        SOH_DIAG("Torch: constructing Companion");
         // Companion::Instance is a raw global with no getter; factories dereference it.
         auto companion = std::make_unique<Companion>(fs::path(romPath), ArchiveType::O2R, false, srcDir, destDir);
         Companion::Instance = companion.get();
@@ -93,9 +96,12 @@ std::string Extract(const std::string& romPath, const std::string& srcDir, const
         });
 
         // Init is the whole run; it calls Process() internally.
+        SOH_DIAG("Torch: Init(Binary) starting");
         const auto start = std::chrono::steady_clock::now();
         companion->Init(ExportType::Binary);
+        SOH_DIAG("Torch: Init(Binary) returned");
         WriteProfile(samples, start, std::chrono::steady_clock::now());
+        SOH_DIAG("Torch: profile written ({} samples)", samples.size());
 
         // config.yml names the archive per rom; ask rather than guess, and ask before the
         // companion goes away.
@@ -105,10 +111,12 @@ std::string Extract(const std::string& romPath, const std::string& srcDir, const
         companion.reset();
         Companion::Instance = nullptr;
     } catch (const std::exception& e) {
+        SOH_DIAG("Torch: threw std::exception: {}", e.what());
         SPDLOG_ERROR("Torch extraction failed: {}", e.what());
         Companion::Instance = nullptr;
         return "";
     } catch (...) {
+        SOH_DIAG("Torch: threw an unknown exception");
         SPDLOG_ERROR("Torch extraction failed with an unknown exception");
         Companion::Instance = nullptr;
         return "";
@@ -118,6 +126,7 @@ std::string Extract(const std::string& romPath, const std::string& srcDir, const
     // archive is really there rather than trusting the run.
     std::error_code ec;
     if (archiveName.empty() || !fs::exists(fs::path(destDir) / archiveName, ec)) {
+        SOH_DIAG("Torch: no archive '{}' in {}", archiveName, destDir);
         SPDLOG_ERROR("Torch produced no archive in {}", destDir);
         return "";
     }
