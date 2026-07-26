@@ -1,4 +1,7 @@
 ﻿#include "OTRGlobals.h"
+#ifdef SOH_USE_MIMALLOC
+#include <mimalloc.h>
+#endif
 #include "OTRAudio.h"
 #include <algorithm>
 #include <atomic>
@@ -401,6 +404,19 @@ static constexpr int kBenchmarkRuns = 10;
 static constexpr const char* kBenchmarkPipeline = "torch";
 static std::atomic<int> gBenchmarkRun = 0;
 
+// Report which allocator the run actually used, so an unchanged timing can't be confused with an
+// override that silently didn't take effect.
+static const char* AllocatorInUse() {
+#ifdef SOH_USE_MIMALLOC
+    auto* probe = new char[64];
+    const bool routed = mi_is_in_heap_region(probe);
+    delete[] probe;
+    return routed ? "mimalloc" : "mimalloc-linked-not-routed";
+#else
+    return "system";
+#endif
+}
+
 static void RunExtractionBenchmark(Extractor& extract, const std::string& installPath,
                                    std::atomic<size_t>* extractCount, std::atomic<size_t>* totalExtract) {
     const std::string exportDir = Ship::Context::GetAppDirectoryPath(appShortName);
@@ -410,7 +426,7 @@ static void RunExtractionBenchmark(Extractor& extract, const std::string& instal
     const bool needsHeader = !std::filesystem::exists(csvPath);
     std::ofstream csv(csvPath, std::ios::app);
     if (needsHeader) {
-        csv << "pipeline,rom,run,seconds,ok\n";
+        csv << "pipeline,allocator,rom,run,seconds,ok\n";
     }
 
     double total = 0.0;
@@ -424,7 +440,8 @@ static void RunExtractionBenchmark(Extractor& extract, const std::string& instal
         const std::chrono::duration<double> elapsed = std::chrono::steady_clock::now() - start;
 
         total += elapsed.count();
-        csv << fmt::format("{},{},{},{:.3f},{}\n", kBenchmarkPipeline, rom, run, elapsed.count(), ok ? 1 : 0);
+        csv << fmt::format("{},{},{},{},{:.3f},{}\n", kBenchmarkPipeline, AllocatorInUse(), rom, run,
+                           elapsed.count(), ok ? 1 : 0);
         csv.flush();
         SPDLOG_INFO("Benchmark {} run {}/{}: {:.3f}s ({})", kBenchmarkPipeline, run, kBenchmarkRuns, elapsed.count(),
                     ok ? "ok" : "FAILED");

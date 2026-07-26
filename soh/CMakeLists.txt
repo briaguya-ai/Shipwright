@@ -617,6 +617,14 @@ add_dependencies(${PROJECT_NAME}
 )
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    if(SOH_USE_MIMALLOC)
+        find_package(mimalloc CONFIG REQUIRED)
+        # Target name depends on whether the port built static or shared; this is vcpkg's own form.
+        target_link_libraries(${PROJECT_NAME} PRIVATE
+            $<IF:$<TARGET_EXISTS:mimalloc>,mimalloc,mimalloc-static>)
+        target_compile_definitions(${PROJECT_NAME} PRIVATE SOH_USE_MIMALLOC)
+    endif()
+
     find_package(glfw3 REQUIRED)
     find_package(Ogg CONFIG REQUIRED)
     link_libraries(Ogg::ogg)

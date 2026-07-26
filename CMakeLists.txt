@@ -101,7 +101,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     endif()
 
     vcpkg_bootstrap()
-    vcpkg_install_packages(zlib bzip2 libzip libpng sdl2 sdl2-net glew glfw3 nlohmann-json tinyxml2 spdlog libogg libvorbis opus opusfile)
+    vcpkg_install_packages(zlib bzip2 libzip libpng sdl2 sdl2-net glew glfw3 nlohmann-json tinyxml2 spdlog libogg libvorbis opus opusfile mimalloc)
     if (CMAKE_C_COMPILER_LAUNCHER MATCHES "ccache|sccache")
         set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT Embedded)
     endif()
@@ -229,6 +229,15 @@ FetchContent_Declare(
     GIT_TAG        b10d71da3712cd71e159caaf1bbf305385101870
 )
 FetchContent_MakeAvailable(torch)
+
+# Experiment: route allocations through mimalloc on Windows, where extraction time is concentrated
+# in the display list and scene paths that churn small allocations, and bulk texture files are not.
+if(MSVC)
+    set(_soh_mimalloc_default ON)
+else()
+    set(_soh_mimalloc_default OFF)
+endif()
+option(SOH_USE_MIMALLOC "Route allocations through mimalloc (Windows only)" ${_soh_mimalloc_default})
 
 # Build-time ROM extraction. soh links torch as a static library, which compiles out torch's
 # own CLI, so this supplies an entry point around the same code the game runs.
